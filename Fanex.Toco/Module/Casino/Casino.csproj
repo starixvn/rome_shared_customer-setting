@@ -35,6 +35,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CasinoLibrary">
+      <HintPath>..\..\_Dependencies\CasinoLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="CasinoSetting">
+      <HintPath>..\..\_Dependencies\CasinoSetting.dll</HintPath>
+    </Reference>
+    <Reference Include="CasinoUtility">
+      <HintPath>..\..\_Dependencies\CasinoUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="DNAide">
+      <HintPath>..\..\_Dependencies\Fanex\DNAide.dll</HintPath>
+    </Reference>
     <Reference Include="dotless.Core">
       <HintPath>..\..\_Dependencies\Web\dotless.Core.dll</HintPath>
     </Reference>
@@ -48,6 +60,9 @@
       <HintPath>..\..\_Dependencies\_FanexLib\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Sunplus.Libraries.AOP">
+      <HintPath>..\..\_Dependencies\Sunplus.Libraries.AOP.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -139,11 +154,19 @@
     <Compile Include="Criteria\ReportRequestTicket\GetRequestTicketReportCriteria.cs" />
     <Compile Include="Criteria\ReportRequestTicket\UpdateRequestTicketCriteria.cs" />
     <Compile Include="Entities\BaseTicketInfo.cs" />
+    <Compile Include="Entities\CasinoCustomer.cs" />
+    <Compile Include="Entities\CasinoObject.cs" />
+    <Compile Include="Entities\GameKindDetail.cs" />
+    <Compile Include="Entities\GameTypeDetail.cs" />
     <Compile Include="Entities\ReportRequestTicket\RequestTicketInfo.cs" />
     <Compile Include="Entities\Result.cs" />
+    <Compile Include="Entities\StakeLevelDetail.cs" />
+    <Compile Include="Entities\Stakes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Impl\CasinoDao.cs" />
     <Compile Include="Repositories\Impl\ReportRequestTicketRepository.cs" />
     <Compile Include="Repositories\Interface\IReportRequestTicketRepository.cs" />
+    <Compile Include="Services\Implement\CasinoManager.cs" />
     <Compile Include="Services\Implement\ReportRequestTicketService.cs" />
     <Compile Include="Services\Interface\IReportRequestTicketService.cs" />
     <Compile Include="ViewModels\ExchangeRate.cs" />

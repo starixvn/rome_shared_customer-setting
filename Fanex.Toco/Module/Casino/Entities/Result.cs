@@ -17,17 +17,20 @@ namespace Fanex.Toco.Module.Casino.Entities
         public Result()
         {
             ErrorCode = 0;
-            ErrorMessage = "Successfull";
+            ErrorMessage = string.Empty;
         }
 
         public Result(int errorCode, string errorMessage)
         {
             ErrorCode = errorCode;
             ErrorMessage = errorMessage;
+            IsSuccess = ErrorCode == 0 || ErrorMessage == string.Empty;
         }
 
         public int ErrorCode { get; set; }
 
         public string ErrorMessage { get; set; }
+
+        public bool IsSuccess { get; private set; }
     }
 }
