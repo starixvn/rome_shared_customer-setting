@@ -18,6 +18,8 @@ using Fanex.NAP.Core.Service.Interface;
 using Fanex.NAP.Core.Web;
 using Fanex.NAP.Core.Web.Context;
 using Fanex.NAP.Core.Web.Session;
+using Newtonsoft.Json;
+using Fanex.ExternalAccount.Controllers.Base;
 
 namespace Fanex.CustomerSetting.Module.Core.Web.Controllers
 {
@@ -30,11 +32,15 @@ namespace Fanex.CustomerSetting.Module.Core.Web.Controllers
 
         protected readonly IServiceContext ServiceContext;
 
+        public const int Super = 4;
 
+        public const int Master = 3;
 
+        public const int Agent = 2;
 
+        public const int Member = 1;
 
-
+        public const int FromSystem = 4;
 
         protected ViewFlags _viewFlags;
 
@@ -146,6 +152,18 @@ namespace Fanex.CustomerSetting.Module.Core.Web.Controllers
 
             return listAction;
 
+        }
+
+        public virtual ActionResult JsonBase(object data, JsonSerializerSettings settings = null)
+        {
+            if (settings == null)
+            {
+                settings = new JsonSerializerSettings();
+                settings.NullValueHandling = NullValueHandling.Ignore;
+                settings.Formatting = Formatting.Indented;
+            }
+
+            return new JsonBase(data, settings);
         }
     }
 }

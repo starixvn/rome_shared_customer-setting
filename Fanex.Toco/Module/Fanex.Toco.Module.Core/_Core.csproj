@@ -67,6 +67,9 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>..\_Dependency\FanexLibs\Excel\Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\_Dependencies\Web\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="RemotingRef">
       <HintPath>..\..\_Dependencies\RemotingRef.dll</HintPath>
     </Reference>
@@ -88,6 +91,8 @@
   <ItemGroup>
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Controllers\Base\ControllerExtentions.cs" />
+    <Compile Include="Controllers\Base\JsonBase.cs" />
     <Compile Include="Criteria\GetBettypeCriteria.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -145,9 +150,7 @@
     <Compile Include="Web\SessionManager.cs" />
     <Compile Include="Web\ViewEngine\CustomViewEngine.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Resources\Errors.resx">
       <Generator>ResXFileCodeGenerator</Generator>

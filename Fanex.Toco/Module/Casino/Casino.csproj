@@ -56,6 +56,10 @@
     <Reference Include="Fanex.Data">
       <HintPath>..\..\_Dependencies\Fanex\Fanex.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.NAP.Core, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_Dependencies\Fanex\Fanex.NAP.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.NAP.Framework, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\_Dependencies\_FanexLib\Fanex.NAP.Framework.dll</HintPath>
     </Reference>

@@ -17,7 +17,7 @@ namespace Fanex.ExternalAccount.Service.Impl.Customer.Casino
     using Fanex.ExternalAccount.DataAccess.Impl.Customer.Casino;
     using Fanex.ExternalAccount.DTO;
     using Fanex.ExternalAccount.DTO.Customer.Casino;
-    using Fanex.Toco.Module.Casino.Entities;
+    using Fanex.CustomerSetting.Module.Casino.Entities;
     
     /// <summary>
     /// TODO: Update summary.
