@@ -20,6 +20,7 @@ using Fanex.NAP.Core.Web.Context;
 using Fanex.NAP.Core.Web.Session;
 using Newtonsoft.Json;
 using Fanex.ExternalAccount.Controllers.Base;
+using Fanex.NAP.Core.Service.Impl;
 
 namespace Fanex.CustomerSetting.Module.Core.Web.Controllers
 {
@@ -61,7 +62,7 @@ namespace Fanex.CustomerSetting.Module.Core.Web.Controllers
 
         public BaseController()
         {
-            /*  this.CurrentContext = new CurrentContext();
+              this.CurrentContext = new CurrentContext();
               ViewBag.Session = this.CurrentSession = new CurrentSession();
               this.ServiceContext = new ServiceContext
               {
@@ -78,7 +79,6 @@ namespace Fanex.CustomerSetting.Module.Core.Web.Controllers
               };
 
               this._menuService = new MenuService();
-             * */
         }
 
         /// <summary>
