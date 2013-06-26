@@ -35,14 +35,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CasinoLibrary">
-      <HintPath>..\..\_Dependencies\CasinoLibrary.dll</HintPath>
+    <Reference Include="CasinoLibrary, Version=1.0.1.7, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_Dependencies\Casino\CasinoLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="CasinoSetting">
-      <HintPath>..\..\_Dependencies\CasinoSetting.dll</HintPath>
+    <Reference Include="CasinoSetting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_Dependencies\Casino\CasinoSetting.dll</HintPath>
     </Reference>
-    <Reference Include="CasinoUtility">
-      <HintPath>..\..\_Dependencies\CasinoUtility.dll</HintPath>
+    <Reference Include="CasinoUtility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_Dependencies\Casino\CasinoUtility.dll</HintPath>
     </Reference>
     <Reference Include="DNAide">
       <HintPath>..\..\_Dependencies\Fanex\DNAide.dll</HintPath>
@@ -64,8 +67,9 @@
       <HintPath>..\..\_Dependencies\_FanexLib\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Sunplus.Libraries.AOP">
-      <HintPath>..\..\_Dependencies\Sunplus.Libraries.AOP.dll</HintPath>
+    <Reference Include="Sunplus.Libraries.AOP, Version=1.0.4218.28561, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_Dependencies\Casino\Sunplus.Libraries.AOP.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
