@@ -1,6 +1,6 @@
 ﻿using System.Web.Optimization;
 
-namespace Fanex.Toco.Module.Common.App_Start
+namespace Fanex.CustomerSetting.Module.Common.App_Start
 {
     public class BundleConfig
     {

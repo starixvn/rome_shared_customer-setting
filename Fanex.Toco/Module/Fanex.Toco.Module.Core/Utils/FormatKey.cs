@@ -1,4 +1,4 @@
-﻿namespace Fanex.Toco.Module.Core.Utils
+﻿namespace Fanex.CustomerSetting.Module.Core.Utils
 {
     public class FormatKey
     {

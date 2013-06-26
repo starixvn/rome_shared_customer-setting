@@ -7,7 +7,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Fanex.Toco.Module.Core.Models
+namespace Fanex.CustomerSetting.Module.Core.Models
 {
     /// <summary>
     /// TODO: Update summary.

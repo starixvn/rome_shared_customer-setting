@@ -10,13 +10,13 @@
 
 using System.Diagnostics.CodeAnalysis;
 using System.Web.Mvc;
-using Fanex.Toco.Module.Casino.Criteria.ReportRequestTicket;
-using Fanex.Toco.Module.Casino.Services.Implement;
-using Fanex.Toco.Module.Casino.Services.Interface;
-using Fanex.Toco.Module.Core.Security;
-using Fanex.Toco.Module.Core.Web.Controllers;
+using Fanex.CustomerSetting.Module.Casino.Criteria.ReportRequestTicket;
+using Fanex.CustomerSetting.Module.Casino.Services.Implement;
+using Fanex.CustomerSetting.Module.Casino.Services.Interface;
+using Fanex.CustomerSetting.Module.Core.Security;
+using Fanex.CustomerSetting.Module.Core.Web.Controllers;
 
-namespace Fanex.Toco.Module.Casino.Controllers
+namespace Fanex.CustomerSetting.Module.Casino.Controllers
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ReportRequestTicketController : BaseController

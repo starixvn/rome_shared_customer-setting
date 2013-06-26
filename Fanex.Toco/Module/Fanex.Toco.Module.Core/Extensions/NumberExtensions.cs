@@ -9,7 +9,7 @@
 
 using System;
 
-namespace Fanex.Toco.Module.Core.Extensions
+namespace Fanex.CustomerSetting.Module.Core.Extensions
 {
     /// <summary>
     /// TODO: Update summary.

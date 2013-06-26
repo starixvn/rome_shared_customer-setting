@@ -12,7 +12,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using ExcelUtil.Spreadsheet;
 
-namespace Fanex.Toco.Module.Core.Web.CustomResults
+namespace Fanex.CustomerSetting.Module.Core.Web.CustomResults
 {
     /// <summary>
     ///  A custom result with content type application/vnd.ms-excel

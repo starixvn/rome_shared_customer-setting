@@ -13,13 +13,13 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Web.Mvc;
+using Fanex.CustomerSetting.Module.Core.Services.Impl;
 using Fanex.NAP.Core.Service.Interface;
 using Fanex.NAP.Core.Web;
 using Fanex.NAP.Core.Web.Context;
 using Fanex.NAP.Core.Web.Session;
-using Fanex.Toco.Module.Core.Services.Impl;
 
-namespace Fanex.Toco.Module.Core.Web.Controllers
+namespace Fanex.CustomerSetting.Module.Core.Web.Controllers
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class BaseController : Controller

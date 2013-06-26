@@ -1,7 +1,6 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
-namespace Fanex.Toco.Website
+namespace Fanex.CustomerSetting.Website.App_Start
 {
     public class BundleConfig
     {

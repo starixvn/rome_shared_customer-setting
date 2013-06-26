@@ -9,9 +9,9 @@
 
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
-using Fanex.Toco.Module.Casino.Criteria.ReportRequestTicket;
+using Fanex.CustomerSetting.Module.Casino.Criteria.ReportRequestTicket;
 
-namespace Fanex.Toco.Module.Casino.Repositories.Interface
+namespace Fanex.CustomerSetting.Module.Casino.Repositories.Interface
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public interface IReportRequestTicketRepository

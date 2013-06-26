@@ -10,13 +10,13 @@
 
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using Fanex.CustomerSetting.Module.Core.Web;
 using Fanex.NAP.Core.Business;
 using Fanex.NAP.Core.Model.ValueObject;
 using Fanex.NAP.Core.Service.Impl;
 using Fanex.NAP.Core.Service.Interface;
-using Fanex.Toco.Module.Core.Web;
 
-namespace Fanex.Toco.Module.Core.Services.Impl
+namespace Fanex.CustomerSetting.Module.Core.Services.Impl
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class PermissionService

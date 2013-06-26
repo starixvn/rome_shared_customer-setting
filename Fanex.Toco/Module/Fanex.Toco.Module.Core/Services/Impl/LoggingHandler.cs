@@ -7,7 +7,7 @@
 using System;
 using Fanex.Logging;
 
-namespace Fanex.Toco.Module.Core.Services.Impl
+namespace Fanex.CustomerSetting.Module.Core.Services.Impl
 {
     /// <summary>
     /// TODO: Update summary.

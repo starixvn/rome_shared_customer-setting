@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Fanex.Toco.Module.Casino.App_Start
+namespace Fanex.CustomerSetting.Module.Casino.App_Start
 {
     public class FilterConfig
     {

@@ -12,7 +12,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Net.Mail;
 
-namespace Fanex.Toco.Module.Core.Models
+namespace Fanex.CustomerSetting.Module.Core.Models
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class MailItem

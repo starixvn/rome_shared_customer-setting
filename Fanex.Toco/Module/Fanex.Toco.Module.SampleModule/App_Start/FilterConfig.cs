@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Fanex.Toco.Module.SampleModule.App_Start
+namespace Fanex.CustomerSetting.Module.SampleModule.App_Start
 {
     public class FilterConfig
     {

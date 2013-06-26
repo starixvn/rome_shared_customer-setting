@@ -10,7 +10,7 @@
 using System.Configuration;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Fanex.Toco.Module.Core.Configurations
+namespace Fanex.CustomerSetting.Module.Core.Configurations
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public static class AppSettings

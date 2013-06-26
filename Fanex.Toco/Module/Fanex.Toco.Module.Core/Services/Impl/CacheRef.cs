@@ -8,7 +8,7 @@ using System.Diagnostics.CodeAnalysis;
 using Fanex.Common;
 using RemotingRef;
 
-namespace Fanex.Toco.Module.Core.Services.Impl
+namespace Fanex.CustomerSetting.Module.Core.Services.Impl
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public static class CacheRef

@@ -2,7 +2,7 @@
 
 using System.Web.Http;
 
-namespace Fanex.Toco.Module.Core.Web.App_Start
+namespace Fanex.CustomerSetting.Module.Core.Web.App_Start
 {
     public static class WebApiConfig
     {

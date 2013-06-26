@@ -6,7 +6,7 @@
 
 using System;
 
-namespace Fanex.Toco.Module.Casino.ViewModels
+namespace Fanex.CustomerSetting.Module.Casino.ViewModels
 {
     /// <summary>
     /// TODO: Update summary.

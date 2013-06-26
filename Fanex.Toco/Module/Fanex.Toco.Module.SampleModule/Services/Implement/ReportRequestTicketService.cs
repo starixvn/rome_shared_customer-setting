@@ -13,16 +13,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Fanex.Common;
-using Fanex.Toco.Module.Core.Extensions;
-using Fanex.Toco.Module.Core.Services.Impl;
-using Fanex.Toco.Module.SampleModule.Criteria.ReportRequestTicket;
-using Fanex.Toco.Module.SampleModule.Entities;
-using Fanex.Toco.Module.SampleModule.Entities.ReportRequestTicket;
-using Fanex.Toco.Module.SampleModule.Repositories.Impl;
-using Fanex.Toco.Module.SampleModule.Repositories.Interface;
-using Fanex.Toco.Module.SampleModule.Services.Interface;
+using Fanex.CustomerSetting.Module.Core.Extensions;
+using Fanex.CustomerSetting.Module.Core.Services.Impl;
+using Fanex.CustomerSetting.Module.SampleModule.Criteria.ReportRequestTicket;
+using Fanex.CustomerSetting.Module.SampleModule.Entities;
+using Fanex.CustomerSetting.Module.SampleModule.Entities.ReportRequestTicket;
+using Fanex.CustomerSetting.Module.SampleModule.Repositories.Impl;
+using Fanex.CustomerSetting.Module.SampleModule.Repositories.Interface;
+using Fanex.CustomerSetting.Module.SampleModule.Services.Interface;
 
-namespace Fanex.Toco.Module.SampleModule.Services.Implement
+namespace Fanex.CustomerSetting.Module.SampleModule.Services.Implement
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ReportRequestTicketService : ServiceBase, IReportRequestTicketService

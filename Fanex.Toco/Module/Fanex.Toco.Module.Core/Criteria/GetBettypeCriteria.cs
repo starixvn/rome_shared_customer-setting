@@ -4,11 +4,11 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using Fanex.CustomerSetting.Module.Core.Models;
 using Fanex.NAP.Framework.Data;
 using System.Diagnostics.CodeAnalysis;
-using Fanex.Toco.Module.Core.Models;
 
-namespace Fanex.Toco.Module.Core.Criteria
+namespace Fanex.CustomerSetting.Module.Core.Criteria
 {
     /// <summary>
     /// TODO: Update summary.

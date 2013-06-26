@@ -12,9 +12,9 @@ using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Web;
 using ExcelUtil.Spreadsheet;
-using Fanex.Toco.Module.Core.Resources;
+using Fanex.CustomerSetting.Module.Core.Resources;
 
-namespace Fanex.Toco.Module.Core.Extensions
+namespace Fanex.CustomerSetting.Module.Core.Extensions
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public static class ExcelExtensions

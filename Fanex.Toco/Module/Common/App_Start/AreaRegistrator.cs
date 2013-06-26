@@ -2,7 +2,7 @@
 using System.Web.Optimization;
 using System.Web.Http;
 
-namespace Fanex.Toco.Module.Common.App_Start
+namespace Fanex.CustomerSetting.Module.Common.App_Start
 {
     public class AreaRegistrator : AreaRegistration
     {

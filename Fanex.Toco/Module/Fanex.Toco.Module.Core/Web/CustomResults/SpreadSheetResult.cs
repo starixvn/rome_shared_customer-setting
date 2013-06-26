@@ -13,7 +13,7 @@ using System.IO;
 using System.Web.Mvc;
 using ExcelUtil.Spreadsheet;
 
-namespace Fanex.Toco.Module.Core.Web.CustomResults
+namespace Fanex.CustomerSetting.Module.Core.Web.CustomResults
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public abstract class SpreadSheetResult : ActionResult

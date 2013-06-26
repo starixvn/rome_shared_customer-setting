@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Fanex.Toco.Module.Core.Web.ViewEngine
+namespace Fanex.CustomerSetting.Module.Core.Web.ViewEngine
 {
 
     public class CustomViewEngine : RazorViewEngine

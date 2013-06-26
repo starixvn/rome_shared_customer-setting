@@ -4,7 +4,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace Fanex.Toco.Module.Casino.Entities
+namespace Fanex.CustomerSetting.Module.Casino.Entities
 {
     /// <summary>
     /// TODO: Update summary.

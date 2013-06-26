@@ -10,18 +10,15 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Diagnostics.CodeAnalysis;
 using System.Data;
 using Fanex.Common.Extensions;
-using Fanex.Data;
-using Fanex.Toco.Module.Core.Criteria;
-using Fanex.Toco.Module.Core.Models;
-using Fanex.Toco.Module.Core.Repository;
-using Fanex.Toco.Module.Core.Services.Interface;
-using Fanex.Toco.Module.Core.Utils;
+using Fanex.CustomerSetting.Module.Core.Criteria;
+using Fanex.CustomerSetting.Module.Core.Models;
+using Fanex.CustomerSetting.Module.Core.Repository;
+using Fanex.CustomerSetting.Module.Core.Services.Interface;
 
-namespace Fanex.Toco.Module.Core.Services.Impl
+namespace Fanex.CustomerSetting.Module.Core.Services.Impl
 {
     /// <summary>
     /// TODO: Update summary.

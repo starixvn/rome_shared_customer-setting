@@ -10,11 +10,11 @@
 using System.Collections;
 using System.Data;
 using System.Diagnostics.CodeAnalysis;
+using Fanex.CustomerSetting.Module.Casino.Criteria.ReportRequestTicket;
+using Fanex.CustomerSetting.Module.Casino.Repositories.Interface;
 using Fanex.Data;
-using Fanex.Toco.Module.Casino.Criteria.ReportRequestTicket;
-using Fanex.Toco.Module.Casino.Repositories.Interface;
 
-namespace Fanex.Toco.Module.Casino.Repositories.Impl
+namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ReportRequestTicketRepository : IReportRequestTicketRepository

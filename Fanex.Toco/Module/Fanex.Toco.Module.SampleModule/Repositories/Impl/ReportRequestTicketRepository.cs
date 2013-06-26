@@ -10,11 +10,11 @@
 using System.Collections;
 using System.Data;
 using System.Diagnostics.CodeAnalysis;
+using Fanex.CustomerSetting.Module.SampleModule.Criteria.ReportRequestTicket;
+using Fanex.CustomerSetting.Module.SampleModule.Repositories.Interface;
 using Fanex.Data;
-using Fanex.Toco.Module.SampleModule.Criteria.ReportRequestTicket;
-using Fanex.Toco.Module.SampleModule.Repositories.Interface;
 
-namespace Fanex.Toco.Module.SampleModule.Repositories.Impl
+namespace Fanex.CustomerSetting.Module.SampleModule.Repositories.Impl
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ReportRequestTicketRepository : IReportRequestTicketRepository

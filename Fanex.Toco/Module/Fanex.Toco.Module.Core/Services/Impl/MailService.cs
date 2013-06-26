@@ -10,11 +10,11 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Fanex.CustomerSetting.Module.Core.Models;
 using Fanex.MailDeliver.Model;
 using System.Threading.Tasks;
-using Fanex.Toco.Module.Core.Models;
 
-namespace Fanex.Toco.Module.Core.Services.Impl
+namespace Fanex.CustomerSetting.Module.Core.Services.Impl
 {
     /// <summary>
     /// TODO: Update summary.

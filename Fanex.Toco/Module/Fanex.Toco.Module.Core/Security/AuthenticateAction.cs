@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Fanex.Toco.Module.Core.Security
+namespace Fanex.CustomerSetting.Module.Core.Security
 {
     public class AuthenticateAction : ActionFilterAttribute
     {

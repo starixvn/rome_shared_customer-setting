@@ -5,10 +5,10 @@
 // -----------------------------------------------------------------------
 
 using System.Collections.Generic;
-using Fanex.Toco.Module.Core.Criteria;
-using Fanex.Toco.Module.Core.Models;
+using Fanex.CustomerSetting.Module.Core.Criteria;
+using Fanex.CustomerSetting.Module.Core.Models;
 
-namespace Fanex.Toco.Module.Core.Services.Interface
+namespace Fanex.CustomerSetting.Module.Core.Services.Interface
 {
     /// <summary>
     /// TODO: Update summary.

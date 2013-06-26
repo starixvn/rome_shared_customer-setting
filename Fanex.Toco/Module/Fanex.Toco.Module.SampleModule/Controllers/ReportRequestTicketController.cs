@@ -10,13 +10,13 @@
 
 using System.Diagnostics.CodeAnalysis;
 using System.Web.Mvc;
-using Fanex.Toco.Module.Core.Security;
-using Fanex.Toco.Module.Core.Web.Controllers;
-using Fanex.Toco.Module.SampleModule.Criteria.ReportRequestTicket;
-using Fanex.Toco.Module.SampleModule.Services.Implement;
-using Fanex.Toco.Module.SampleModule.Services.Interface;
+using Fanex.CustomerSetting.Module.Core.Security;
+using Fanex.CustomerSetting.Module.Core.Web.Controllers;
+using Fanex.CustomerSetting.Module.SampleModule.Criteria.ReportRequestTicket;
+using Fanex.CustomerSetting.Module.SampleModule.Services.Implement;
+using Fanex.CustomerSetting.Module.SampleModule.Services.Interface;
 
-namespace Fanex.Toco.Module.SampleModule.Controllers
+namespace Fanex.CustomerSetting.Module.SampleModule.Controllers
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ReportRequestTicketController : BaseController
