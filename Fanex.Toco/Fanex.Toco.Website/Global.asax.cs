@@ -19,6 +19,8 @@ namespace Fanex.CustomerSetting.Website
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
         }
     }
 }

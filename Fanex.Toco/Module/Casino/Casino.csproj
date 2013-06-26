@@ -39,14 +39,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\_Dependencies\Casino\CasinoLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="CasinoSetting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\_Dependencies\Casino\CasinoSetting.dll</HintPath>
-    </Reference>
-    <Reference Include="CasinoUtility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\_Dependencies\Casino\CasinoUtility.dll</HintPath>
-    </Reference>
     <Reference Include="DNAide">
       <HintPath>..\..\_Dependencies\Fanex\DNAide.dll</HintPath>
     </Reference>
@@ -66,7 +58,28 @@
     <Reference Include="Fanex.NAP.Framework, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\_Dependencies\_FanexLib\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="GotDotNet.ApplicationBlocks.Data">
+      <HintPath>..\..\_Dependencies\Casino\GotDotNet.ApplicationBlocks.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="IBCCrypt">
+      <HintPath>..\..\_Dependencies\Casino\IBCCrypt.dll</HintPath>
+    </Reference>
+    <Reference Include="IBCDBLibrary">
+      <HintPath>..\..\_Dependencies\Casino\IBCDBLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="ILogger">
+      <HintPath>..\..\_Dependencies\Casino\ILogger.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\_Dependencies\Casino\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationBlocks.Data">
+      <HintPath>..\..\_Dependencies\Casino\Microsoft.ApplicationBlocks.Data.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NetUtility">
+      <HintPath>..\..\_Dependencies\Casino\NetUtility.dll</HintPath>
+    </Reference>
     <Reference Include="Sunplus.Libraries.AOP, Version=1.0.4218.28561, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\_Dependencies\Casino\Sunplus.Libraries.AOP.dll</HintPath>

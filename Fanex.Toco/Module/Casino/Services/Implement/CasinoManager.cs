@@ -18,6 +18,7 @@ namespace Fanex.ExternalAccount.Service.Impl.Customer.Casino
     using Fanex.ExternalAccount.DTO;
     using Fanex.ExternalAccount.DTO.Customer.Casino;
     using Fanex.CustomerSetting.Module.Casino.Entities;
+    using Fanex.ExternalAccount.Utilities;
     
     /// <summary>
     /// TODO: Update summary.
@@ -52,7 +53,7 @@ namespace Fanex.ExternalAccount.Service.Impl.Customer.Casino
             var dt = basicInfo.GetGameKind(null);
             foreach (DataRow row in dt.Rows)
             {
-                var gameKind = new GameKindDetail(Convert.ToInt32(row["CodeID"]), Convert.ToString(row["CodeNo"]), Convert.ToString(row[Lang("CodeName")]), Convert.ToString(row["CodeSName"]));
+                var gameKind = new GameKindDetail(Utils.ToInt32(row["CodeID"]), Utils.ToString(row["CodeNo"]), Utils.ToString(row[Lang("CodeName")]), Utils.ToString(row["CodeSName"]));
                 gameKinds.Add(gameKind);
             }
 
@@ -105,7 +106,7 @@ namespace Fanex.ExternalAccount.Service.Impl.Customer.Casino
             var dt = basicInfo.GetGameKind(casinoNo);
             foreach (DataRow row in dt.Rows)
             {
-                var gameKind = new GameKindDetail(Convert.ToInt32(row["CodeID"]), Convert.ToString(row["CodeNo"]), Convert.ToString(row[Lang("CodeName")]), Convert.ToString(row["CodeSName"]));
+                var gameKind = new GameKindDetail(Utils.ToInt32(row["CodeID"]), Utils.ToString(row["CodeNo"]), Utils.ToString(row[Lang("CodeName")]), Utils.ToString(row["CodeSName"]));
                 gameKinds.Add(gameKind);
             }
 
@@ -120,32 +121,32 @@ namespace Fanex.ExternalAccount.Service.Impl.Customer.Casino
             foreach (DataRow row in dt.Rows)
             {
                 var gameKind = new GameKindDetail();
-                gameKind.CodeID = Convert.ToInt32(row["GameKind"]);
-                gameKind.CodeName = Convert.ToString(row[Lang("GameKindName")]);
-                gameKind.AgentRollingRate = Convert.ToDouble(row["AgentRollingRate"]);
-                gameKind.APositionTaking = Convert.ToDouble(row["APositionTaking"]);
-                gameKind.AutoPositionTaking = Convert.ToDouble(row["AutoPositionTaking"]);
-                gameKind.IsAutoPositionTaking = Convert.ToBoolean(row["IsAutoPositionTaking"]);
-                gameKind.MAgentRollingRate = Convert.ToDouble(row["MAgentRollingRate"]);
-                gameKind.MaxPositionTaking = Convert.ToDouble(row["MaxPositionTaking"]);
-                gameKind.MemberRollingRate = Convert.ToDouble(row["MemberRollingRate"]);
-                gameKind.MinPositionTaking = Convert.ToDouble(row["MinPositionTaking"]);
-                gameKind.MPositionTaking = Convert.ToDouble(row["MPositionTaking"]);
-                gameKind.SMAgentRollingRate = Convert.ToDouble(row["SMAgentRollingRate"]);
-                gameKind.SPositionTaking = Convert.ToDouble(row["SPositionTaking"]);
-                gameKind.SuperSPositionTaking = Convert.ToDouble(row["SuperSPositionTaking"]);
+                gameKind.CodeID = Utils.ToInt32(row["GameKind"]);
+                gameKind.CodeName = Utils.ToString(row[Lang("GameKindName")]);
+                gameKind.AgentRollingRate = Utils.ToDouble(row["AgentRollingRate"]);
+                gameKind.APositionTaking = Utils.ToDouble(row["APositionTaking"]);
+                gameKind.AutoPositionTaking = Utils.ToDouble(row["AutoPositionTaking"]);
+                gameKind.IsAutoPositionTaking = Utils.ToBoolean(row["IsAutoPositionTaking"]);
+                gameKind.MAgentRollingRate = Utils.ToDouble(row["MAgentRollingRate"]);
+                gameKind.MaxPositionTaking = Utils.ToDouble(row["MaxPositionTaking"]);
+                gameKind.MemberRollingRate = Utils.ToDouble(row["MemberRollingRate"]);
+                gameKind.MinPositionTaking = Utils.ToDouble(row["MinPositionTaking"]);
+                gameKind.MPositionTaking = Utils.ToDouble(row["MPositionTaking"]);
+                gameKind.SMAgentRollingRate = Utils.ToDouble(row["SMAgentRollingRate"]);
+                gameKind.SPositionTaking = Utils.ToDouble(row["SPositionTaking"]);
+                gameKind.SuperSPositionTaking = Utils.ToDouble(row["SuperSPositionTaking"]);
 
-                gameKind.AgentRollingRateUpline = Convert.ToDouble(row["UplineAgentRollingRate"]);
-                gameKind.APositionTakingUpline = Convert.ToDouble(row["UplineAPositionTaking"]);
-                gameKind.AutoPositionTakingUpline = Convert.ToDouble(row["UplineAutoPositionTaking"]);
-                gameKind.IsAutoPositionTakingUpline = Convert.ToBoolean(row["UplineIsAutoPositionTaking"]);
-                gameKind.MAgentRollingRateUpline = Convert.ToDouble(row["UplineMAgentRollingRate"]);
-                gameKind.MaxPositionTakingUpline = Convert.ToDouble(row["UplineMaxPositionTaking"]);
-                gameKind.MemberRollingRateUpline = Convert.ToDouble(row["UplineMemberRollingRate"]);
-                gameKind.MinPositionTakingUpline = Convert.ToDouble(row["UplineMinPositionTaking"]);
-                gameKind.MPositionTakingUpline = Convert.ToDouble(row["UplineMPositionTaking"]);
-                gameKind.SMAgentRollingRateUpline = Convert.ToDouble(row["UplineSMAgentRollingRate"]);
-                gameKind.SPositionTakingUpline = Convert.ToDouble(row["UplineSPositionTaking"]);
+                gameKind.AgentRollingRateUpline = Utils.ToDouble(row["UplineAgentRollingRate"]);
+                gameKind.APositionTakingUpline = Utils.ToDouble(row["UplineAPositionTaking"]);
+                gameKind.AutoPositionTakingUpline = Utils.ToDouble(row["UplineAutoPositionTaking"]);
+                gameKind.IsAutoPositionTakingUpline = Utils.ToBoolean(row["UplineIsAutoPositionTaking"]);
+                gameKind.MAgentRollingRateUpline = Utils.ToDouble(row["UplineMAgentRollingRate"]);
+                gameKind.MaxPositionTakingUpline = Utils.ToDouble(row["UplineMaxPositionTaking"]);
+                gameKind.MemberRollingRateUpline = Utils.ToDouble(row["UplineMemberRollingRate"]);
+                gameKind.MinPositionTakingUpline = Utils.ToDouble(row["UplineMinPositionTaking"]);
+                gameKind.MPositionTakingUpline = Utils.ToDouble(row["UplineMPositionTaking"]);
+                gameKind.SMAgentRollingRateUpline = Utils.ToDouble(row["UplineSMAgentRollingRate"]);
+                gameKind.SPositionTakingUpline = Utils.ToDouble(row["UplineSPositionTaking"]);
 
                 gameKinds.Add(gameKind);
             }
@@ -161,15 +162,15 @@ namespace Fanex.ExternalAccount.Service.Impl.Customer.Casino
             foreach (DataRow row in dt.Rows)
             {
                 var gameKind = new GameKindDetail();
-                gameKind.CodeID = Convert.ToInt32(row["GameKind"]);
-                gameKind.CodeName = Convert.ToString(row[Lang("GameKindName")]);
-                gameKind.APositionTaking = Convert.ToDouble(row["APositionTaking"]);
-                gameKind.AutoPositionTaking = Convert.ToDouble(row["AutoPositionTaking"]);
-                gameKind.IsAutoPositionTaking = Convert.ToBoolean(row["IsAutoPositionTaking"]);
-                gameKind.MPositionTaking = Convert.ToDouble(row["MPositionTaking"]);
-                gameKind.SPositionTaking = Convert.ToDouble(row["SPositionTaking"]);
-                gameKind.SuperMaxPositionTaking = Convert.ToDouble(row["SuperMaxPositionTaking"]);
-                gameKind.SuperMinPositionTaking = Convert.ToDouble(row["SuperMinPositionTaking"]);
+                gameKind.CodeID = Utils.ToInt32(row["GameKind"]);
+                gameKind.CodeName = Utils.ToString(row[Lang("GameKindName")]);
+                gameKind.APositionTaking = Utils.ToDouble(row["APositionTaking"]);
+                gameKind.AutoPositionTaking = Utils.ToDouble(row["AutoPositionTaking"]);
+                gameKind.IsAutoPositionTaking = Utils.ToBoolean(row["IsAutoPositionTaking"]);
+                gameKind.MPositionTaking = Utils.ToDouble(row["MPositionTaking"]);
+                gameKind.SPositionTaking = Utils.ToDouble(row["SPositionTaking"]);
+                gameKind.SuperMaxPositionTaking = Utils.ToDouble(row["SuperMaxPositionTaking"]);
+                gameKind.SuperMinPositionTaking = Utils.ToDouble(row["SuperMinPositionTaking"]);
 
                 gameKinds.Add(gameKind);
             }
@@ -186,15 +187,15 @@ namespace Fanex.ExternalAccount.Service.Impl.Customer.Casino
             {
                 var gameType = new GameTypeDetail();
 
-                gameType.GameTypeID = Convert.ToInt32(row["GameTypeID"]);
-                gameType.GameTypeName = Convert.ToString(row[Lang("GameTypeName")]);
-                gameType.APositionTaking = Convert.ToDouble(row["APositionTaking"]);
-                gameType.AutoPositionTaking = Convert.ToDouble(row["AutoPositionTaking"]);
-                gameType.IsAutoPositionTaking = Convert.ToBoolean(row["IsAutoPositionTaking"]);
-                gameType.MPositionTaking = Convert.ToDouble(row["MPositionTaking"]);
-                gameType.SPositionTaking = Convert.ToDouble(row["SPositionTaking"]);
-                gameType.SuperMaxPositionTaking = Convert.ToDouble(row["SuperMaxPositionTaking"]);
-                gameType.SuperMinPositionTaking = Convert.ToDouble(row["SuperMinPositionTaking"]);
+                gameType.GameTypeID = Utils.ToInt32(row["GameTypeID"]);
+                gameType.GameTypeName = Utils.ToString(row[Lang("GameTypeName")]);
+                gameType.APositionTaking = Utils.ToDouble(row["APositionTaking"]);
+                gameType.AutoPositionTaking = Utils.ToDouble(row["AutoPositionTaking"]);
+                gameType.IsAutoPositionTaking = Utils.ToBoolean(row["IsAutoPositionTaking"]);
+                gameType.MPositionTaking = Utils.ToDouble(row["MPositionTaking"]);
+                gameType.SPositionTaking = Utils.ToDouble(row["SPositionTaking"]);
+                gameType.SuperMaxPositionTaking = Utils.ToDouble(row["SuperMaxPositionTaking"]);
+                gameType.SuperMinPositionTaking = Utils.ToDouble(row["SuperMinPositionTaking"]);
 
                 gameTypes.Add(gameType);
             }
@@ -210,16 +211,16 @@ namespace Fanex.ExternalAccount.Service.Impl.Customer.Casino
             foreach (DataRow row in dt.Rows)
             {
                 var gameType = new GameTypeDetail();
-                gameType.CasinoID = Convert.ToInt32(row["CasinoID"]);
-                gameType.GameTypeID = Convert.ToInt32(row["GameTypeID"]);
-                gameType.GameTypeName = Convert.ToString(row[Lang("GameTypeName")]);
-                gameType.GameTypeNo = Convert.ToString(row["GameTypeNo"]);
-                gameType.GameKind = Convert.ToInt32(row["GameKind"]);
-                gameType.GameGroupID = Convert.ToInt32(row["GameGroupID"]);
-                gameType.FlashFileName = Convert.ToString(row["FlashFileName"]);
-                gameType.AlertMaxIdle = Convert.ToInt32(row["AlertMaxIdle"]);
-                gameType.IsTrialTime = Convert.ToBoolean(row["IsTrialTime"]);
-                gameType.MaxIdle = Convert.ToInt32(row["MaxIdle"]);
+                gameType.CasinoID = Utils.ToInt32(row["CasinoID"]);
+                gameType.GameTypeID = Utils.ToInt32(row["GameTypeID"]);
+                gameType.GameTypeName = Utils.ToString(row[Lang("GameTypeName")]);
+                gameType.GameTypeNo = Utils.ToString(row["GameTypeNo"]);
+                gameType.GameKind = Utils.ToInt32(row["GameKind"]);
+                gameType.GameGroupID = Utils.ToInt32(row["GameGroupID"]);
+                gameType.FlashFileName = Utils.ToString(row["FlashFileName"]);
+                gameType.AlertMaxIdle = Utils.ToInt32(row["AlertMaxIdle"]);
+                gameType.IsTrialTime = Utils.ToBoolean(row["IsTrialTime"]);
+                gameType.MaxIdle = Utils.ToInt32(row["MaxIdle"]);
                 gameTypes.Add(gameType);
             }
 
@@ -235,31 +236,31 @@ namespace Fanex.ExternalAccount.Service.Impl.Customer.Casino
             {
                 var gameType = new GameTypeDetail();
 
-                gameType.GameTypeID = Convert.ToInt32(row["GameTypeID"]);
-                gameType.GameTypeName = Convert.ToString(row[Lang("GameTypeName")]);
-                gameType.AgentRollingRate = Convert.ToDouble(row["AgentRollingRate"]);
-                gameType.APositionTaking = Convert.ToDouble(row["APositionTaking"]);
-                gameType.AutoPositionTaking = Convert.ToDouble(row["AutoPositionTaking"]);
-                gameType.IsAutoPositionTaking = Convert.ToBoolean(row["IsAutoPositionTaking"]);
-                gameType.MAgentRollingRate = Convert.ToDouble(row["MAgentRollingRate"]);
-                gameType.MaxPositionTaking = Convert.ToDouble(row["MaxPositionTaking"]);
-                gameType.MemberRollingRate = Convert.ToDouble(row["MemberRollingRate"]);
-                gameType.MinPositionTaking = Convert.ToDouble(row["MinPositionTaking"]);
-                gameType.MPositionTaking = Convert.ToDouble(row["MPositionTaking"]);
-                gameType.SMAgentRollingRate = Convert.ToDouble(row["SMAgentRollingRate"]);
-                gameType.SPositionTaking = Convert.ToDouble(row["SPositionTaking"]);
+                gameType.GameTypeID = Utils.ToInt32(row["GameTypeID"]);
+                gameType.GameTypeName = Utils.ToString(row[Lang("GameTypeName")]);
+                gameType.AgentRollingRate = Utils.ToDouble(row["AgentRollingRate"]);
+                gameType.APositionTaking = Utils.ToDouble(row["APositionTaking"]);
+                gameType.AutoPositionTaking = Utils.ToDouble(row["AutoPositionTaking"]);
+                gameType.IsAutoPositionTaking = Utils.ToBoolean(row["IsAutoPositionTaking"]);
+                gameType.MAgentRollingRate = Utils.ToDouble(row["MAgentRollingRate"]);
+                gameType.MaxPositionTaking = Utils.ToDouble(row["MaxPositionTaking"]);
+                gameType.MemberRollingRate = Utils.ToDouble(row["MemberRollingRate"]);
+                gameType.MinPositionTaking = Utils.ToDouble(row["MinPositionTaking"]);
+                gameType.MPositionTaking = Utils.ToDouble(row["MPositionTaking"]);
+                gameType.SMAgentRollingRate = Utils.ToDouble(row["SMAgentRollingRate"]);
+                gameType.SPositionTaking = Utils.ToDouble(row["SPositionTaking"]);
 
-                gameType.AgentRollingRateUpline = Convert.ToDouble(row["UplineAgentRollingRate"]);
-                gameType.APositionTakingUpline = Convert.ToDouble(row["UplineAPositionTaking"]);
-                gameType.AutoPositionTakingUpline = Convert.ToDouble(row["UplineAutoPositionTaking"]);
-                gameType.IsAutoPositionTakingUpline = Convert.ToBoolean(row["UplineIsAutoPositionTaking"]);
-                gameType.MAgentRollingRateUpline = Convert.ToDouble(row["UplineMAgentRollingRate"]);
-                gameType.MaxPositionTakingUpline = Convert.ToDouble(row["UplineMaxPositionTaking"]);
-                gameType.MemberRollingRateUpline = Convert.ToDouble(row["UplineMemberRollingRate"]);
-                gameType.MinPositionTakingUpline = Convert.ToDouble(row["UplineMinPositionTaking"]);
-                gameType.MPositionTakingUpline = Convert.ToDouble(row["UplineMPositionTaking"]);
-                gameType.SMAgentRollingRateUpline = Convert.ToDouble(row["UplineSMAgentRollingRate"]);
-                gameType.SPositionTakingUpline = Convert.ToDouble(row["UplineSPositionTaking"]);
+                gameType.AgentRollingRateUpline = Utils.ToDouble(row["UplineAgentRollingRate"]);
+                gameType.APositionTakingUpline = Utils.ToDouble(row["UplineAPositionTaking"]);
+                gameType.AutoPositionTakingUpline = Utils.ToDouble(row["UplineAutoPositionTaking"]);
+                gameType.IsAutoPositionTakingUpline = Utils.ToBoolean(row["UplineIsAutoPositionTaking"]);
+                gameType.MAgentRollingRateUpline = Utils.ToDouble(row["UplineMAgentRollingRate"]);
+                gameType.MaxPositionTakingUpline = Utils.ToDouble(row["UplineMaxPositionTaking"]);
+                gameType.MemberRollingRateUpline = Utils.ToDouble(row["UplineMemberRollingRate"]);
+                gameType.MinPositionTakingUpline = Utils.ToDouble(row["UplineMinPositionTaking"]);
+                gameType.MPositionTakingUpline = Utils.ToDouble(row["UplineMPositionTaking"]);
+                gameType.SMAgentRollingRateUpline = Utils.ToDouble(row["UplineSMAgentRollingRate"]);
+                gameType.SPositionTakingUpline = Utils.ToDouble(row["UplineSPositionTaking"]);
 
                 gameTypes.Add(gameType);
             }
@@ -275,19 +276,19 @@ namespace Fanex.ExternalAccount.Service.Impl.Customer.Casino
             foreach (DataRow row in dt.Rows)
             {
                 var gameKind = new GameKindDetail();
-                gameKind.CodeID = Convert.ToInt32(row["GameKind"]);
-                gameKind.CodeName = Convert.ToString(row[Lang("GameKindName")]);
-                gameKind.APositionTaking = Convert.ToDouble(row["APositionTaking"]);
-                gameKind.AutoPositionTaking = Convert.ToDouble(row["AutoPositionTaking"]);
-                gameKind.IsAutoPositionTaking = Convert.ToBoolean(row["IsAutoPositionTaking"]);
-                gameKind.MPositionTaking = Convert.ToDouble(row["MPositionTaking"]);
-                gameKind.MasterMaxPositionTaking = Convert.ToDouble(row["MasterMaxPositionTalking"]);
-                gameKind.MasterMinPositionTaking = Convert.ToDouble(row["MasterMinPositionTaking"]);
-                gameKind.SPositionTaking = Convert.ToDouble(row["SPositionTaking"]);
-                gameKind.SuperSPositionTaking = Convert.ToDouble(row["SuperSPositionTaking"]);
+                gameKind.CodeID = Utils.ToInt32(row["GameKind"]);
+                gameKind.CodeName = Utils.ToString(row[Lang("GameKindName")]);
+                gameKind.APositionTaking = Utils.ToDouble(row["APositionTaking"]);
+                gameKind.AutoPositionTaking = Utils.ToDouble(row["AutoPositionTaking"]);
+                gameKind.IsAutoPositionTaking = Utils.ToBoolean(row["IsAutoPositionTaking"]);
+                gameKind.MPositionTaking = Utils.ToDouble(row["MPositionTaking"]);
+                gameKind.MasterMaxPositionTaking = Utils.ToDouble(row["MasterMaxPositionTalking"]);
+                gameKind.MasterMinPositionTaking = Utils.ToDouble(row["MasterMinPositionTaking"]);
+                gameKind.SPositionTaking = Utils.ToDouble(row["SPositionTaking"]);
+                gameKind.SuperSPositionTaking = Utils.ToDouble(row["SuperSPositionTaking"]);
 
-                gameKind.IsAutoPositionTaking = Convert.ToBoolean(row["IsAutoPositionTaking"]);
-                gameKind.IsAutoPositionTakingUpline = Convert.ToBoolean(row["SuperIsAutoPositionTaking"]);
+                gameKind.IsAutoPositionTaking = Utils.ToBoolean(row["IsAutoPositionTaking"]);
+                gameKind.IsAutoPositionTakingUpline = Utils.ToBoolean(row["SuperIsAutoPositionTaking"]);
 
                 gameKinds.Add(gameKind);
             }
@@ -304,19 +305,19 @@ namespace Fanex.ExternalAccount.Service.Impl.Customer.Casino
             {
                 var gameType = new GameTypeDetail();
 
-                gameType.GameTypeID = Convert.ToInt32(row["GameTypeID"]);
-                gameType.GameTypeName = Convert.ToString(row[Lang("GameTypeName")]);
-                gameType.AgentRollingRate = Convert.ToDouble(row["AgentRollingRate"]);
-                gameType.APositionTaking = Convert.ToDouble(row["APositionTaking"]);
-                gameType.AutoPositionTaking = Convert.ToDouble(row["AutoPositionTaking"]);
-                gameType.IsAutoPositionTaking = Convert.ToBoolean(row["IsAutoPositionTaking"]);
-                gameType.MPositionTaking = Convert.ToDouble(row["MPositionTaking"]);
-                gameType.MasterMaxPositionTaking = Convert.ToDouble(row["MasterMaxPositionTalking"]);
-                gameType.MasterMinPositionTaking = Convert.ToDouble(row["MasterMinPositionTaking"]);
-                gameType.SPositionTaking = Convert.ToDouble(row["SPositionTaking"]);
-                gameType.SuperSPositionTaking = Convert.ToDouble(row["SuperSPositionTaking"]);
-                gameType.IsAutoPositionTaking = Convert.ToBoolean(row["IsAutoPositionTaking"]);
-                gameType.IsAutoPositionTakingUpline = Convert.ToBoolean(row["SuperIsAutoPositionTaking"]);
+                gameType.GameTypeID = Utils.ToInt32(row["GameTypeID"]);
+                gameType.GameTypeName = Utils.ToString(row[Lang("GameTypeName")]);
+                gameType.AgentRollingRate = Utils.ToDouble(row["AgentRollingRate"]);
+                gameType.APositionTaking = Utils.ToDouble(row["APositionTaking"]);
+                gameType.AutoPositionTaking = Utils.ToDouble(row["AutoPositionTaking"]);
+                gameType.IsAutoPositionTaking = Utils.ToBoolean(row["IsAutoPositionTaking"]);
+                gameType.MPositionTaking = Utils.ToDouble(row["MPositionTaking"]);
+                gameType.MasterMaxPositionTaking = Utils.ToDouble(row["MasterMaxPositionTalking"]);
+                gameType.MasterMinPositionTaking = Utils.ToDouble(row["MasterMinPositionTaking"]);
+                gameType.SPositionTaking = Utils.ToDouble(row["SPositionTaking"]);
+                gameType.SuperSPositionTaking = Utils.ToDouble(row["SuperSPositionTaking"]);
+                gameType.IsAutoPositionTaking = Utils.ToBoolean(row["IsAutoPositionTaking"]);
+                gameType.IsAutoPositionTakingUpline = Utils.ToBoolean(row["SuperIsAutoPositionTaking"]);
                 gameTypes.Add(gameType);
             }
 
@@ -331,9 +332,9 @@ namespace Fanex.ExternalAccount.Service.Impl.Customer.Casino
             foreach (DataRow row in dt.Rows)
             {
                 var stake = new StakeLevelDetail();
-                stake.StakeLevelID = Convert.ToInt32(row["StakeLevelID"]);
-                stake.StakeLevelName = Convert.ToString(row["StakeLevelName"]);
-                stake.IsChecked = Convert.ToBoolean(row["IsChecked"]);
+                stake.StakeLevelID = Utils.ToInt32(row["StakeLevelID"]);
+                stake.StakeLevelName = Utils.ToString(row["StakeLevelName"]);
+                stake.IsChecked = Utils.ToBoolean(row["IsChecked"]);
                 stakeLevels.Add(stake);
             }
 
@@ -348,8 +349,8 @@ namespace Fanex.ExternalAccount.Service.Impl.Customer.Casino
             foreach (DataRow row in dt.Rows)
             {
                 var stake = new StakeLevelDetail();
-                stake.StakeLevelID = Convert.ToInt32(row["StakeLevelID"]);
-                stake.StakeLevelName = Convert.ToString(row["StakeLevelName"]);
+                stake.StakeLevelID = Utils.ToInt32(row["StakeLevelID"]);
+                stake.StakeLevelName = Utils.ToString(row["StakeLevelName"]);
                 stake.IsChecked = true;
                 stakeLevels.Add(stake);
             }
@@ -366,26 +367,26 @@ namespace Fanex.ExternalAccount.Service.Impl.Customer.Casino
             if (dt.Rows.Count > 0)
             {
                 row = dt.Rows[0];
-                custSetting.IsEnablePT = Convert.ToBoolean(row["IsEnablePT"]);
-                custSetting.TotalWinLoss = Convert.ToDouble(row["ActualMaxTransfer"]);
-                custSetting.MaxWin = Convert.ToDouble(row["MaxWin"]);
-                custSetting.MaxLose = Convert.ToDouble(row["MaxLose"]);
-                custSetting.MaxTransferCredit = Convert.ToDouble(row["MaxTransferCredit"]);
-                custSetting.IsMaxWin = Convert.ToBoolean(row["IsMaxWin"]);
-                custSetting.IsMaxLose = Convert.ToBoolean(row["IsMaxLose"]);
-                custSetting.PTByGameType = Convert.ToBoolean(row["PTByGameType"]);
-                custSetting.RoleId = Convert.ToInt32(row["RoleId"]);
-                custSetting.UpperCustID = Convert.ToInt32(row["UpperCustId"]);
-                custSetting.IsAutoReset = Convert.ToBoolean(row["IsAutoReset"]);
+                custSetting.IsEnablePT = Utils.ToBoolean(row["IsEnablePT"]);
+                custSetting.TotalWinLoss = Utils.ToDouble(row["ActualMaxTransfer"]);
+                custSetting.MaxWin = Utils.ToDouble(row["MaxWin"]);
+                custSetting.MaxLose = Utils.ToDouble(row["MaxLose"]);
+                custSetting.MaxTransferCredit = Utils.ToDouble(row["MaxTransferCredit"]);
+                custSetting.IsMaxWin = Utils.ToBoolean(row["IsMaxWin"]);
+                custSetting.IsMaxLose = Utils.ToBoolean(row["IsMaxLose"]);
+                custSetting.PTByGameType = Utils.ToBoolean(row["PTByGameType"]);
+                custSetting.RoleId = Utils.ToInt32(row["RoleId"]);
+                custSetting.UpperCustID = Utils.ToInt32(row["UpperCustId"]);
+                custSetting.IsAutoReset = Utils.ToBoolean(row["IsAutoReset"]);
 
                 // Get max transfer information
                 if (custSetting.UpperCustID != 0)
                 {
                     var dt2 = cust.GetDefaultMaxTransfer(custSetting.UpperCustID, 0, false);
-                    custSetting.MaxTransferCreditLimit = Convert.ToDouble(dt2.Rows[0]["MaxLimit"]);
-                    custSetting.MinTransferCreditLimit = Convert.ToDouble(dt2.Rows[0]["MinLimit"]);
+                    custSetting.MaxTransferCreditLimit = Utils.ToDouble(dt2.Rows[0]["MaxLimit"]);
+                    custSetting.MinTransferCreditLimit = Utils.ToDouble(dt2.Rows[0]["MinLimit"]);
 
-                    custSetting.DefaultTransferCredit = Convert.ToDouble(dt2.Rows[0]["DefMaxTransferCredit"]);
+                    custSetting.DefaultTransferCredit = Utils.ToDouble(dt2.Rows[0]["DefMaxTransferCredit"]);
                 }
 
                 custSetting.NoCSData = false;
@@ -402,29 +403,29 @@ namespace Fanex.ExternalAccount.Service.Impl.Customer.Casino
             if (dt != null && dt.Rows.Count > 0)
             {
                 row = dt.Rows[0];
-                custIBC.IsEnablePT = Convert.ToBoolean(row["IsEnablePT"]);
-                custIBC.TotalWinLoss = Convert.ToDouble(row["ActualMaxTransfer"]);
-                custIBC.MaxWin = Convert.ToDouble(row["MaxWin"]);
-                custIBC.MaxLose = Convert.ToDouble(row["MaxLose"]);
+                custIBC.IsEnablePT = Utils.ToBoolean(row["IsEnablePT"]);
+                custIBC.TotalWinLoss = Utils.ToDouble(row["ActualMaxTransfer"]);
+                custIBC.MaxWin = Utils.ToDouble(row["MaxWin"]);
+                custIBC.MaxLose = Utils.ToDouble(row["MaxLose"]);
 
-                custIBC.MaxTransferCredit = Convert.ToDouble(row["MaxTransferCredit"]);
+                custIBC.MaxTransferCredit = Utils.ToDouble(row["MaxTransferCredit"]);
 
-                custIBC.IsMaxWin = Convert.ToBoolean(row["IsMaxWin"]);
-                custIBC.IsMaxLose = Convert.ToBoolean(row["IsMaxLose"]);
-                custIBC.PTByGameType = Convert.ToBoolean(row["PTByGameType"]);
-                custIBC.PTByGameKind = Convert.ToBoolean(row["PTByGameKind"]);
-                custIBC.RoleId = Convert.ToInt32(row["RoleId"]);
-                custIBC.UpperCustID = Convert.ToInt32(row["UpperCustId"]);
-                custIBC.IsAutoReset = Convert.ToBoolean(row["IsAutoReset"]);
+                custIBC.IsMaxWin = Utils.ToBoolean(row["IsMaxWin"]);
+                custIBC.IsMaxLose = Utils.ToBoolean(row["IsMaxLose"]);
+                custIBC.PTByGameType = Utils.ToBoolean(row["PTByGameType"]);
+                custIBC.PTByGameKind = Utils.ToBoolean(row["PTByGameKind"]);
+                custIBC.RoleId = Utils.ToInt32(row["RoleId"]);
+                custIBC.UpperCustID = Utils.ToInt32(row["UpperCustId"]);
+                custIBC.IsAutoReset = Utils.ToBoolean(row["IsAutoReset"]);
 
                 // Get max transfer information
                 if (custIBC.UpperCustID != 0)
                 {
                     var dt2 = cust.GetDefaultMaxTransfer(custIBC.UpperCustID, 0, false);
-                    custIBC.MaxTransferCreditLimit = Convert.ToDouble(dt2.Rows[0]["MaxLimit"]);
-                    custIBC.MinTransferCreditLimit = Convert.ToDouble(dt2.Rows[0]["MinLimit"]);
+                    custIBC.MaxTransferCreditLimit = Utils.ToDouble(dt2.Rows[0]["MaxLimit"]);
+                    custIBC.MinTransferCreditLimit = Utils.ToDouble(dt2.Rows[0]["MinLimit"]);
 
-                    custIBC.DefaultTransferCredit = Convert.ToDouble(dt2.Rows[0]["DefMaxTransferCredit"]);
+                    custIBC.DefaultTransferCredit = Utils.ToDouble(dt2.Rows[0]["DefMaxTransferCredit"]);
                 }
 
                 custIBC.NoCSData = false;
