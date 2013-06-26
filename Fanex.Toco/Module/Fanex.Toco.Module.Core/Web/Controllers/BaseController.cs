@@ -62,6 +62,7 @@ namespace Fanex.CustomerSetting.Module.Core.Web.Controllers
 
         public BaseController()
         {
+            /*
               this.CurrentContext = new CurrentContext();
               ViewBag.Session = this.CurrentSession = new CurrentSession();
               this.ServiceContext = new ServiceContext
@@ -79,6 +80,7 @@ namespace Fanex.CustomerSetting.Module.Core.Web.Controllers
               };
 
               this._menuService = new MenuService();
+             * */
         }
 
         /// <summary>
