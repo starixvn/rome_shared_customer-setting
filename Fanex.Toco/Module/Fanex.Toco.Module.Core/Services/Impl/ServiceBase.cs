@@ -12,17 +12,14 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Fanex.Common.Helper;
+using Fanex.CustomerSetting.Module.Core.Repository;
+using Fanex.CustomerSetting.Module.Core.Services.Interface;
 using Fanex.NAP.Framework.Data;
 using Fanex.Caching;
-using System.Web.Mvc;
-using System.Data;
 using Fanex.NAP.Core.Web.Context;
 using Fanex.NAP.Core.Web.Session;
-using Fanex.Toco.Module.Core.Criteria;
-using Fanex.Toco.Module.Core.Repository;
-using Fanex.Toco.Module.Core.Services.Interface;
 
-namespace Fanex.Toco.Module.Core.Services.Impl
+namespace Fanex.CustomerSetting.Module.Core.Services.Impl
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ServiceBase : IServiceBase

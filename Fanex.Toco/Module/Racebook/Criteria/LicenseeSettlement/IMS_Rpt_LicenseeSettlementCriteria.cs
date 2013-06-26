@@ -10,7 +10,7 @@
 using System;
 using Fanex.NAP.Framework.Data;
 
-namespace Fanex.Toco.Module.Racebook.Criteria.LicenseeSettlement
+namespace Fanex.CustomerSetting.Module.Racebook.Criteria.LicenseeSettlement
 {
     [Serializable]
     public class IMS_Rpt_LicenseeSettlementCriteria : CriteriaBase

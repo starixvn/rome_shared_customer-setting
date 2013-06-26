@@ -6,7 +6,7 @@
 
 using Fanex.NAP.Framework.Data;
 
-namespace Fanex.Toco.Module.Core.Criteria
+namespace Fanex.CustomerSetting.Module.Core.Criteria
 {
     /// <summary>
     /// TODO: Update summary.

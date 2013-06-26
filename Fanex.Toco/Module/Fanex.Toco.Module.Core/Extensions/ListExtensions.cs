@@ -13,7 +13,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using Fanex.Common;
 
-namespace Fanex.Toco.Module.Core.Extensions
+namespace Fanex.CustomerSetting.Module.Core.Extensions
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public static class ListExtensions

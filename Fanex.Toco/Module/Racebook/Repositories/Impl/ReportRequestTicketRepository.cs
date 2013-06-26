@@ -10,11 +10,11 @@
 using System.Collections;
 using System.Data;
 using System.Diagnostics.CodeAnalysis;
+using Fanex.CustomerSetting.Module.Racebook.Criteria.ReportRequestTicket;
+using Fanex.CustomerSetting.Module.Racebook.Repositories.Interface;
 using Fanex.Data;
-using Fanex.Toco.Module.Racebook.Criteria.ReportRequestTicket;
-using Fanex.Toco.Module.Racebook.Repositories.Interface;
 
-namespace Fanex.Toco.Module.Racebook.Repositories.Impl
+namespace Fanex.CustomerSetting.Module.Racebook.Repositories.Impl
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ReportRequestTicketRepository : IReportRequestTicketRepository

@@ -19,7 +19,7 @@ using System.Globalization;
 using System.Web;
 using System.Collections.Specialized;
 
-namespace Fanex.Toco.Module.Core.Extensions
+namespace Fanex.CustomerSetting.Module.Core.Extensions
 {
     /// <summary>
     /// It contains extension to render common html control

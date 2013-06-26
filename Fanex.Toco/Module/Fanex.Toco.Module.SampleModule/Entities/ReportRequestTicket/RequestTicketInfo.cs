@@ -10,7 +10,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Fanex.Toco.Module.SampleModule.Entities.ReportRequestTicket
+namespace Fanex.CustomerSetting.Module.SampleModule.Entities.ReportRequestTicket
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class RequestTicketInfo

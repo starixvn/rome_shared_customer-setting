@@ -10,7 +10,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Fanex.NAP.Framework.Data;
 
-namespace Fanex.Toco.Module.Racebook.Criteria.ReportRequestTicket
+namespace Fanex.CustomerSetting.Module.Racebook.Criteria.ReportRequestTicket
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class GetMaxRequestNoCriteria : CriteriaBase

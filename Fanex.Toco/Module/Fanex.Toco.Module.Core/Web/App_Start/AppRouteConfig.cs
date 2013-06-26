@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Reflection;
 using System.Web.Mvc;
 
-namespace Fanex.Toco.Module.Core.Web.App_Start
+namespace Fanex.CustomerSetting.Module.Core.Web.App_Start
 {
     public class AppRouteConfig
     {

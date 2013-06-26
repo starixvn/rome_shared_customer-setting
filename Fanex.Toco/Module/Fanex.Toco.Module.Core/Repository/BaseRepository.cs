@@ -15,7 +15,7 @@ using System.Data;
 using Fanex.Data;
 using Fanex.NAP.Framework.Data;
 
-namespace Fanex.Toco.Module.Core.Repository
+namespace Fanex.CustomerSetting.Module.Core.Repository
 {
     /// <summary>
     /// TODO: Update summary.

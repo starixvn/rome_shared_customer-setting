@@ -4,7 +4,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace Fanex.Toco.Module.SampleModule.Entities
+namespace Fanex.CustomerSetting.Module.SampleModule.Entities
 {
     /// <summary>
     /// TODO: Update summary.

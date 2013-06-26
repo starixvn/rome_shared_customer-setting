@@ -9,7 +9,7 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-namespace Fanex.Toco.Module.Racebook.Entities
+namespace Fanex.CustomerSetting.Module.Racebook.Entities
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class Result

@@ -8,11 +8,11 @@
 // </history>
 
 using System.Diagnostics.CodeAnalysis;
-using Fanex.Toco.Module.Casino.Criteria.ReportRequestTicket;
-using Fanex.Toco.Module.Casino.Entities;
-using Fanex.Toco.Module.Casino.Entities.ReportRequestTicket;
+using Fanex.CustomerSetting.Module.Casino.Criteria.ReportRequestTicket;
+using Fanex.CustomerSetting.Module.Casino.Entities;
+using Fanex.CustomerSetting.Module.Casino.Entities.ReportRequestTicket;
 
-namespace Fanex.Toco.Module.Casino.Services.Interface
+namespace Fanex.CustomerSetting.Module.Casino.Services.Interface
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public interface IReportRequestTicketService

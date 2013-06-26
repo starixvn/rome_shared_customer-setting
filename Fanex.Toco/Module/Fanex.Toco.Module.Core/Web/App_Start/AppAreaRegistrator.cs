@@ -1,9 +1,7 @@
-﻿using System.Reflection;
-using System.Web.Mvc;
-using System.Web.Http;
+﻿using System.Web.Mvc;
 using System.Collections.Generic;
 
-namespace Fanex.Toco.Module.Core.Web.App_Start
+namespace Fanex.CustomerSetting.Module.Core.Web.App_Start
 {
     public class AppAreaRegistrator : AreaRegistration
     {

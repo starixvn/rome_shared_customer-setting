@@ -4,9 +4,9 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-using Fanex.Toco.Module.Core.Services.Impl;
+using Fanex.CustomerSetting.Module.Core.Services.Impl;
 
-namespace Fanex.Toco.Module.Core.Models
+namespace Fanex.CustomerSetting.Module.Core.Models
 {
     /// <summary>
     /// TODO: Update summary.

@@ -1,7 +1,6 @@
-﻿using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
-namespace Fanex.Toco.Website
+namespace Fanex.CustomerSetting.Website.App_Start
 {
     public class FilterConfig
     {

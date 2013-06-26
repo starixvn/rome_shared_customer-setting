@@ -6,7 +6,7 @@
 
 using System;
 
-namespace Fanex.Toco.Module.SampleModule.ViewModels
+namespace Fanex.CustomerSetting.Module.SampleModule.ViewModels
 {
     /// <summary>
     /// TODO: Update summary.

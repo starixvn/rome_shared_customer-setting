@@ -1,4 +1,4 @@
-﻿namespace Fanex.Toco.Module.Core.Models
+﻿namespace Fanex.CustomerSetting.Module.Core.Models
 {
     public class Message
     {

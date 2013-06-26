@@ -13,16 +13,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Fanex.Common;
-using Fanex.Toco.Module.Casino.Criteria.ReportRequestTicket;
-using Fanex.Toco.Module.Casino.Entities;
-using Fanex.Toco.Module.Casino.Entities.ReportRequestTicket;
-using Fanex.Toco.Module.Casino.Repositories.Impl;
-using Fanex.Toco.Module.Casino.Repositories.Interface;
-using Fanex.Toco.Module.Casino.Services.Interface;
-using Fanex.Toco.Module.Core.Extensions;
-using Fanex.Toco.Module.Core.Services.Impl;
+using Fanex.CustomerSetting.Module.Casino.Criteria.ReportRequestTicket;
+using Fanex.CustomerSetting.Module.Casino.Entities;
+using Fanex.CustomerSetting.Module.Casino.Entities.ReportRequestTicket;
+using Fanex.CustomerSetting.Module.Casino.Repositories.Impl;
+using Fanex.CustomerSetting.Module.Casino.Repositories.Interface;
+using Fanex.CustomerSetting.Module.Casino.Services.Interface;
+using Fanex.CustomerSetting.Module.Core.Extensions;
+using Fanex.CustomerSetting.Module.Core.Services.Impl;
 
-namespace Fanex.Toco.Module.Casino.Services.Implement
+namespace Fanex.CustomerSetting.Module.Casino.Services.Implement
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ReportRequestTicketService : ServiceBase, IReportRequestTicketService

@@ -13,16 +13,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Fanex.Common;
-using Fanex.Toco.Module.Core.Extensions;
-using Fanex.Toco.Module.Core.Services.Impl;
-using Fanex.Toco.Module.Racebook.Criteria.ReportRequestTicket;
-using Fanex.Toco.Module.Racebook.Entities;
-using Fanex.Toco.Module.Racebook.Entities.ReportRequestTicket;
-using Fanex.Toco.Module.Racebook.Repositories.Impl;
-using Fanex.Toco.Module.Racebook.Repositories.Interface;
-using Fanex.Toco.Module.Racebook.Services.Interface;
+using Fanex.CustomerSetting.Module.Core.Extensions;
+using Fanex.CustomerSetting.Module.Core.Services.Impl;
+using Fanex.CustomerSetting.Module.Racebook.Criteria.ReportRequestTicket;
+using Fanex.CustomerSetting.Module.Racebook.Entities;
+using Fanex.CustomerSetting.Module.Racebook.Entities.ReportRequestTicket;
+using Fanex.CustomerSetting.Module.Racebook.Repositories.Impl;
+using Fanex.CustomerSetting.Module.Racebook.Repositories.Interface;
+using Fanex.CustomerSetting.Module.Racebook.Services.Interface;
 
-namespace Fanex.Toco.Module.Racebook.Services.Implement
+namespace Fanex.CustomerSetting.Module.Racebook.Services.Implement
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ReportRequestTicketService : ServiceBase, IReportRequestTicketService

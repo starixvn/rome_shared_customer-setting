@@ -10,7 +10,7 @@
 using System;
 using System.Web;
 
-namespace Fanex.Toco.Module.Core.Web
+namespace Fanex.CustomerSetting.Module.Core.Web
 {
     /// <summary>
     /// TODO: Update summary.

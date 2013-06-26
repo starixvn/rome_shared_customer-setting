@@ -4,7 +4,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace Fanex.Toco.Module.Racebook.Entities
+namespace Fanex.CustomerSetting.Module.Racebook.Entities
 {
     /// <summary>
     /// TODO: Update summary.

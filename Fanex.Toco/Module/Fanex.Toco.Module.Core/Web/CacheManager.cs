@@ -11,7 +11,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using Fanex.Caching;
 
-namespace Fanex.Toco.Module.Core.Web
+namespace Fanex.CustomerSetting.Module.Core.Web
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public static class CacheManager

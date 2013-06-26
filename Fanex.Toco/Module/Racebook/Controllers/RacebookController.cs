@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
-using Fanex.Toco.Module.Core.Security;
+using Fanex.CustomerSetting.Module.Core.Security;
 
-namespace Fanex.Toco.Module.Racebook.Controllers
+namespace Fanex.CustomerSetting.Module.Racebook.Controllers
 {
     public class RacebookController : Controller
     {
