@@ -132,8 +132,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Report\Views\Consolidate\Scripts\Report.Consolidate.js" />
-    <Content Include="Areas\Report\Views\Consolidate\Style\Consolidate.css" />
     <Content Include="Content\base\img\1350530947_page_excel.png" />
     <Content Include="Content\base\img\actions\add-user.png" />
     <Content Include="Content\base\img\actions\chgpwd-ico.png" />
@@ -314,10 +312,6 @@
     <Content Include="Content\themes\Honolulu\js\bootstrap.js" />
     <Content Include="Content\themes\Honolulu\js\bootstrap.min.js" />
     <Content Include="Global.asax" />
-    <Content Include="Areas\Report\Views\Consolidate\Index.cshtml" />
-    <Content Include="Areas\Report\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Report\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Report\Views\Web.config" />
     <Content Include="Areas\CustomerSetting\Views\Foo\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\SampleModule\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Shared\_Layout.cshtml" />
@@ -552,6 +546,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\CustomerSetting\Views\Casino\Scripts\" />
+    <Folder Include="Areas\CustomerSetting\Views\Casino\Styles\" />
     <Folder Include="Content\base\img\icons\" />
     <Folder Include="Models\" />
     <Folder Include="Scripts\_Libs\BlockUI\img\" />
@@ -560,17 +556,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Heaven\Views\Foo\Index.cshtml" />
-    <Content Include="Areas\Heaven\Views\Fu\Index.cshtml" />
-    <Content Include="Areas\Heaven\Views\Hell\Index.cshtml">
-      <SubType>
-      </SubType>
-    </Content>
-    <Content Include="Areas\Heaven\Views\Shared\_Layout.cshtml">
-      <SubType>
-      </SubType>
-    </Content>
-    <Content Include="Areas\Heaven\Views\Web.config" />
     <Content Include="Areas\Common\Views\Authenticate\AccessDenied.cshtml" />
     <Content Include="Areas\Common\Views\Home\Index.cshtml" />
     <Content Include="Areas\Common\Views\Shared\_Layout.cshtml" />
