@@ -11,38 +11,49 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 {
     public class CasinoController : BaseController
     {
-        //
-        // GET: /Home/
-
-       
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "index")]
         public ActionResult Index()
         {
             return View();
         }
 
-        //
-        // GET: /Home/Details/5
+        public static int GameCount(int id, int uplineId, int roleId, int uplineRoleId)
+        {            
+            var custInfo = CasinoManager.Instance.GetCustInfoIBC(id, uplineId);
+            var gameKinds = new List<GameKindDetail>();
 
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+            if (!custInfo.CasinoSync)
+            {
+                if (uplineRoleId == BaseController.Super && roleId == BaseController.Member)
+                {
+                    gameKinds = CasinoManager.Instance.GetGameKinds_EditMember(uplineId);
+                }
+                else if (uplineRoleId == BaseController.Master && roleId == BaseController.Member)
+                {
+                    gameKinds = CasinoManager.Instance.GetGameKinds_MasterEditMember(uplineId);
+                }
+                else
+                {
+                    gameKinds = CasinoManager.Instance.GetGameKinds(uplineId);
+                }
+            }
+            else
+            {
+                if (uplineRoleId == BaseController.Super && roleId == BaseController.Member)
+                {
+                    gameKinds = CasinoManager.Instance.GetGameKinds_EditMember(id);
+                }
+                else if (uplineRoleId == BaseController.Master && roleId == BaseController.Member)
+                {
+                    gameKinds = CasinoManager.Instance.GetGameKinds_MasterEditMember(id);
+                }
+                else
+                {
+                    gameKinds = CasinoManager.Instance.GetGameKinds(id);
+                }
+            }
 
-        //
-        // GET: /Home/Create
-
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        //
-        // POST: /Home/Create
-
-        public ActionResult EditCasino(int custId, int uplineId)
-        {
-            return this.PartialView();
+            return gameKinds.Count;          
         }
 
         public ActionResult EditCasinoPost(int custId, int uplineId, int roleId, int uplineRoleId)

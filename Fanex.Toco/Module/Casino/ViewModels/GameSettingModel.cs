@@ -1,0 +1,88 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace Fanex.CustomerSetting.Module.Casino.ViewModels
+{
+    public class CasinoSettingModel
+    {
+        public CasinoSettingModel()
+        {
+            this.GameGroups = new List<GameGroup>();
+        }
+
+        public List<GameGroup> GameGroups { get; set; }
+    }
+
+    public class Pt : Commission
+    {
+        public decimal? A1 { get; set; }
+        public decimal? A2 { get; set; }
+        public decimal? A4 { get; set; }
+        public bool? Im1 { get; set; }
+        public bool? Im2 { get; set; }
+        public bool? Is1 { get; set; }
+        public bool? Is3 { get; set; }
+        public decimal? L2 { get; set; }
+        public decimal? L3 { get; set; }
+        public decimal? L4 { get; set; }
+        public decimal? M1 { get; set; }
+        public decimal? M2 { get; set; }
+        public decimal? M3 { get; set; }
+        public decimal? M4 { get; set; }
+        public decimal? N2 { get; set; }
+        public decimal? N3 { get; set; }
+        public decimal? N4 { get; set; }
+        public decimal? S1 { get; set; }
+        public decimal? S3 { get; set; }
+        public decimal? S4 { get; set; }
+        public decimal? Um1 { get; set; }
+        public decimal? Um2 { get; set; }
+        public decimal? Us1 { get; set; }
+        public decimal? Us3 { get; set; }
+    }
+
+    public class Commission
+    {
+        public decimal? SuperCommission { get; set; }
+        public decimal? MasterCommission { get; set; }
+        public decimal? AgentCommission { get; set; }
+        public decimal? MemberCommission { get; set; }
+    }
+
+    public class GameGroup : Pt
+    {
+        public GameGroup()
+        {
+            this.GameTypes = new List<GameType>();
+        }
+
+        public int GameGroupID { get; set; }
+
+        public string GameGroupName { get; set; }
+
+        public List<GameType> GameTypes { get; set; }
+    }
+
+    public class GameType : Pt
+    {
+        public GameType()
+        {
+            this.BettingLimits = new List<StakeLevel>();
+        }
+
+        public int GameTypeID { get; set; }
+
+        public string GameTypeName { get; set; }
+
+        public List<StakeLevel> BettingLimits { get; set; }
+    }
+
+    public class StakeLevel
+    {
+        public int StakeLevelID { get; set; }
+        public string StakeLevelName { get; set; }
+        public bool IsChecked { get; set; }
+    }
+}

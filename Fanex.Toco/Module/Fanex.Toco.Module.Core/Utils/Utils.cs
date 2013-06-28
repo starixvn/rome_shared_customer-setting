@@ -404,5 +404,10 @@
             }
             return retValue;
         }
+
+        public static string CasinoArea
+        {
+            get { return "~/CustomerSetting/Casino/"; }
+        }
     }
 }

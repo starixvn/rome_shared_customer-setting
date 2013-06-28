@@ -136,6 +136,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Common\Views\Shared\Images\Loading.gif" />
+    <Content Include="Areas\Common\Views\Shared\Scripts\Fanex.CustomerSetting.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\Fanex.CustomerSetting.Casino.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\Fanex.ExtAcc.Customer.Casino.js" />
     <Content Include="Content\base\img\1350530947_page_excel.png" />
     <Content Include="Content\base\img\actions\add-user.png" />
     <Content Include="Content\base\img\actions\chgpwd-ico.png" />
@@ -323,6 +327,14 @@
     <Content Include="Areas\CustomerSetting\Views\Racebook\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Sample\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Index.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Master\EditMaster.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Customer\CustomerInfo.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Agent\EditAgent.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Agent\ViewAgentBySuper.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Member\EditMember.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Member\EditMemberBySuper.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Member\EditMemberByMaster.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Master\Copy of EditMaster.cshtml" />
     <None Include="Content\Site.less" />
     <Content Include="Scripts\Common\Message.Helper.js" />
     <Content Include="Scripts\Common\Message.Validator.js" />
@@ -551,7 +563,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\CustomerSetting\Views\Casino\Scripts\" />
+    <Folder Include="Areas\Common\Views\Shared\Styles\" />
     <Folder Include="Areas\CustomerSetting\Views\Casino\Styles\" />
     <Folder Include="Content\base\img\icons\" />
     <Folder Include="Models\" />
@@ -635,6 +647,10 @@
     <ProjectReference Include="..\Module\Common\_Common.csproj">
       <Project>{9503B9B7-DAE3-41CC-905C-F1B27B64E0DD}</Project>
       <Name>_Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Module\Fanex.Toco.Module.Core\_Core.csproj">
+      <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
+      <Name>_Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Module\Fanex.Toco.Module.SampleModule\_SampleModule.csproj">
       <Project>{0B2FC4E3-FEED-4849-BA9B-36D077679F32}</Project>

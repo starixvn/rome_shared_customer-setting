@@ -77,6 +77,12 @@
       <HintPath>..\..\_Dependencies\Casino\Microsoft.ApplicationBlocks.Data.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
+      <HintPath>..\..\_Dependencies\Fanex\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
+      <HintPath>..\..\_Dependencies\Fanex\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
     <Reference Include="NetUtility">
       <HintPath>..\..\_Dependencies\Casino\NetUtility.dll</HintPath>
     </Reference>
@@ -167,6 +173,8 @@
     <Compile Include="App_Start\ControllerRegistrator.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="Controllers\CasinoController.cs" />
+    <Compile Include="Controllers\MasterController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\ReportRequestTicketController.cs" />
     <Compile Include="Criteria\LicenseeSettlement\IMS_Rpt_LicenseeSettlementCriteria.cs" />
     <Compile Include="Criteria\ReportRequestTicket\AddNewRequestTicketCriteria.cs" />
@@ -191,6 +199,7 @@
     <Compile Include="Services\Implement\ReportRequestTicketService.cs" />
     <Compile Include="Services\Interface\IReportRequestTicketService.cs" />
     <Compile Include="ViewModels\ExchangeRate.cs" />
+    <Compile Include="ViewModels\GameSettingModel.cs" />
     <Compile Include="ViewModels\LicenseeInformation.cs" />
   </ItemGroup>
   <ItemGroup>
