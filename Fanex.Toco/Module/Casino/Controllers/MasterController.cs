@@ -9,7 +9,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 {
     public class MasterController : BaseController
     {
-        public ActionResult EditMaster(int id, int uplineId, int roleId, int uplineRoleId)
+        public ActionResult EditMaster(int id, int uplineId)
         {
             var customerSetting = CasinoManager.Instance.MasterCasinoModel(id, uplineId);
 

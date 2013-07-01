@@ -140,6 +140,14 @@
     <Content Include="Areas\Common\Views\Shared\Scripts\Fanex.CustomerSetting.js" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\Fanex.CustomerSetting.Casino.js" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\Fanex.ExtAcc.Customer.Casino.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Styles\Casino.css" />
+    <Content Include="Areas\CustomerSetting\Views\Images\btn-bgsubmit-hover.png" />
+    <Content Include="Areas\CustomerSetting\Views\Images\btn-bgsubmit-original.png" />
+    <Content Include="Areas\CustomerSetting\Views\Images\b_add.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Images\b_down.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Images\b_sub.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Images\b_up.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Styles\Common.css" />
     <Content Include="Content\base\img\1350530947_page_excel.png" />
     <Content Include="Content\base\img\actions\add-user.png" />
     <Content Include="Content\base\img\actions\chgpwd-ico.png" />
@@ -334,7 +342,6 @@
     <Content Include="Areas\CustomerSetting\Views\Casino\Member\EditMember.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Member\EditMemberBySuper.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Member\EditMemberByMaster.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Casino\Master\Copy of EditMaster.cshtml" />
     <None Include="Content\Site.less" />
     <Content Include="Scripts\Common\Message.Helper.js" />
     <Content Include="Scripts\Common\Message.Validator.js" />
@@ -564,9 +571,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Common\Views\Shared\Styles\" />
-    <Folder Include="Areas\CustomerSetting\Views\Casino\Styles\" />
     <Folder Include="Content\base\img\icons\" />
-    <Folder Include="Models\" />
     <Folder Include="Scripts\_Libs\BlockUI\img\" />
   </ItemGroup>
   <ItemGroup>
