@@ -138,16 +138,17 @@
   <ItemGroup>
     <Content Include="Areas\Common\Views\Shared\Images\Loading.gif" />
     <Content Include="Areas\Common\Views\Shared\Scripts\Fanex.CustomerSetting.js" />
+    <Content Include="Areas\CustomerSetting\Scripts\Fanex.CustomerSetting.Core.js" />
+    <Content Include="Areas\CustomerSetting\Scripts\_references.js" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\Fanex.CustomerSetting.Casino.js" />
-    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\Fanex.ExtAcc.Customer.Casino.js" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Styles\Casino.css" />
-    <Content Include="Areas\CustomerSetting\Views\Images\btn-bgsubmit-hover.png" />
-    <Content Include="Areas\CustomerSetting\Views\Images\btn-bgsubmit-original.png" />
-    <Content Include="Areas\CustomerSetting\Views\Images\b_add.jpg" />
-    <Content Include="Areas\CustomerSetting\Views\Images\b_down.jpg" />
-    <Content Include="Areas\CustomerSetting\Views\Images\b_sub.jpg" />
-    <Content Include="Areas\CustomerSetting\Views\Images\b_up.jpg" />
-    <Content Include="Areas\CustomerSetting\Views\Styles\Common.css" />
+    <Content Include="Areas\CustomerSetting\Images\btn-bgsubmit-hover.png" />
+    <Content Include="Areas\CustomerSetting\Images\btn-bgsubmit-original.png" />
+    <Content Include="Areas\CustomerSetting\Images\b_add.jpg" />
+    <Content Include="Areas\CustomerSetting\Images\b_down.jpg" />
+    <Content Include="Areas\CustomerSetting\Images\b_sub.jpg" />
+    <Content Include="Areas\CustomerSetting\Images\b_up.jpg" />
+    <Content Include="Areas\CustomerSetting\Styles\Common.css" />
     <Content Include="Content\base\img\1350530947_page_excel.png" />
     <Content Include="Content\base\img\actions\add-user.png" />
     <Content Include="Content\base\img\actions\chgpwd-ico.png" />

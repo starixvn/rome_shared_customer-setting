@@ -1,921 +1,825 @@
-﻿/// <reference path="../_references.js" />
+﻿/// <reference path="../../../Scripts/_references.js" />
 
-if (typeof Fanex == 'undefined') {
-    Fanex = {};
+if (typeof Fanex == 'undefined' || typeof Fanex.CustomerSetting == 'undefined') {
+    alert("Require Fanex.CustomerSetting.Core.js");
 };
 
-if (typeof Fanex.CustomerSetting == 'undefined') {
-    Fanex.CustomerSetting = {};
-}
-
 Fanex.CustomerSetting.Casino = {
-    custInfo: { custId: 0, roleId: 3, uplineId: 0, uplineRoleId: 4},
     customer: null,
-    IsMultiple: false,
     colspan: 1,
-    uplineId: 0,
+    uplineId: 1373389,
+    IsMultiple: false,
     ErrorMessage: '',
+    custInfo: { custId: 1373580, uplineId: 1373389, roleId: 3, uplineRoleId: 4 },
     enabled: false,
 
-    Init: function (customerInfo, customerModel, isMult) {
-        Fanex.CustomerSetting.Casino.custInfo = customerInfo;
-        Fanex.CustomerSetting.Casino.customer = customerModel;
-        Fanex.CustomerSetting.Casino.IsMultiple = isMult;
-        Fanex.CustomerSetting.Casino.colspan = 1;
-        Fanex.CustomerSetting.Casino.uplineId = 0;
-        Fanex.CustomerSetting.Casino.ErrorMessage = '';
-        Fanex.CustomerSetting.Casino.enabled = false;
-
-        this.LoadData = function () {
-            Fanex.CustomerSetting.BlockUI();
-
-            if (this.IsMultiple) {
-                $('#custInfo').remove();
-                Fanex.CustomerSetting.ProcessDisplayMultiple(125);
-            }
-            else {
-                $('#arrowUpDown').remove();
-                $('#statusInfo').remove();
-            }
-
-            $('#chkEnableDownline').hide();
-            $('#enableDownlineText').hide();
-
-            switch (Fanex.CustomerSetting.CurrentLevel) {
-                case Fanex.CustomerSetting.Master:
-                    $('#downline').html('Master');
-                    $('#member').remove();
-                    $('#agent').remove();
-                    $('#sagent').remove();
-                    $('#smember').remove();
-                    $('#mmember').remove();
-                    this.colspan = 5;
-                    break;
-                case Fanex.CustomerSetting.Agent:
-                    $('#downline').html('Agent');
-                    $('#member').remove();
-
-                    if (!Fanex.CustomerSetting.isSuperEditAgent) {
-                        $('#sagent').remove();
-                    }
-                    else {
-                        $('#agent').remove();
-                    }
-
-                    $('#master').remove();
-                    $('#smember').remove();
-                    $('#mmember').remove();
-                    this.colspan = 4;
-                    break;
-                case Fanex.CustomerSetting.Member:
-                    if (Fanex.CustomerSetting.isSuperEditMember) {
-                        $('#mmember').remove();
-                        $('#member').remove();
-
-                        this.colspan = 4;
-                    }
-                    else if (Fanex.CustomerSetting.isMasterEditMember) {
-                        $('#smember').remove();
-                        $('#member').remove();
-
-                        this.colspan = 2;
-                    }
-                    else {
-                        $('#smember').remove();
-                        $('#mmember').remove();
-
-                        this.colspan = 2;
-                    }
-
-                    $('#downline').html('');
-                    $('#master').remove();
-                    $('#agent').remove();
-                    $('#sagent').remove();
-
-                    break;
-            }
-
-            $.ajax({
-                url: resolveClientUrl('Casino/EditCasinoPost'),
-                type: 'post',
-                data: Fanex.CustomerSetting.Casino.custInfo, //{ custId: Fanex.CustomerSetting.UserId, uplineId: Fanex.CustomerSetting.Casino.uplineId },
-                dataType: 'json'
-            })
-            .success(function (result) {
-                Fanex.CustomerSetting.Casino.customer = result;
-
-                Fanex.CustomerSetting.Casino.RenderSetting(result);
-
-                Fanex.CustomerSetting.Casino.RenderPT(result.pts);
-
-                Fanex.CustomerSetting.Casino.CasinoModel = function () {
-                    this.saveCustomer = function () {
-                        $('#windowPopup').scrollTop(0);
-
-                        if (Fanex.CustomerSetting.Casino.IsMultiple) {
-                            Fanex.CustomerSetting.Casino.UpdateSetting(0);
-                        }
-                        else {
-                            Fanex.CustomerSetting.Casino.UpdateSetting(null);
-                        }
-                    }
-                }
-
-                ko.applyBindings(new Fanex.CustomerSetting.Casino.CasinoModel());
-            })
-            .error(function (data, status, err) {
-                if (typeof console != 'undefined') {
-                    console.log(data.responseText);
-                }
-
-                if (document.getElementById('tabs-4')) {
-                    $('#tabs-4').css('display', 'block');
-                    $('#tabs-4').html('<font color="Red">Not casino\'s customer</font>');
-                }
-
-                $('#windowPopup').html('<font color="Red">Not casino\'s customer</font>');
-                Fanex.ExtAcc.UnBlockUI();
-            });
-
-            var level = $('#downline').html();
-            var timeout = setTimeout(function () {
-                clearTimeout(timeout);
-                Fanex.CustomerSetting.Casino.enabled = document.getElementById('chkEnable').checked;
-                Fanex.ExtAcc.UnBlockUI();
-            }, 2000);
-
-            $('#chkEnable').bind('click', function () {
-                if (Fanex.CustomerSetting.CurrentLevel != Fanex.CustomerSetting.Member) {
-                    if (this.checked) {
-                        if (!Fanex.CustomerSetting.Casino.enabled) {
-                            $('#chkEnableDownline').show();
-                            $('#enableDownlineText').show();
-                        }
-
-                        $('#downline').html(level);
-                    }
-                    else {
-                        $('#chkEnableDownline').hide();
-                        $('#enableDownlineText').hide();
-
-                        if (Fanex.CustomerSetting.Casino.enabled) {
-                            $('#downline').html(level + '&nbsp;' + "<font color='Red'>(Casino downlines will be disabled as well)</font>");
-                        }
-                    }
-                }
-            });
-        };
-
-        this.RenderSetting = function (result) {
-            var isPtByGameType = this.customer.casinoInfo.pTByGameType;
-            var rowspan = isPtByGameType ? ' rowspan="2" ' : ' rowspan="1" ';
-
-            // Renders casino games setting
-            if (result && result.casinoGames.length > 0) {
-                var table = document.getElementById('casinoGame');
-                var parent = document.getElementById('casinoGame').parentNode;
-
-                for (var i = 0; i < result.casinoGames.length; i++) {
-                    var games = result.casinoGames[i];
-
-                    $(table).attr('id', 'casinoGame_' + i);
-
-                    for (var j = 0; j < games.length; j++) {
-                        var gameName = games[j].gameTypeName;
-                        var stakeLevels = '';
-
-                        for (var k = 0; k < games[j].stakeLevels.length; k++) {
-                            var checked = '';
-
-                            if (games[j].stakeLevels[k].isChecked) {
-                                checked = 'checked="checked"';
-                            }
-
-                            stakeLevels += '<input ' + checked + ' type="checkbox" id="rng-' + games[j].stakeLevels[k].stakeLevelID + '" />' + games[j].stakeLevels[k].stakeLevelName;
-                        }
-
-                        var rowPT = isPtByGameType ? this.RenderPtByGameType(games[j].pt, i, '_rng') : '';
-                        var row = rowPT == '' ?
-                                    '<tr>' +
-                                        '<td class="R">' + gameName + '</td>' +
-                                        '<td colspan="' + this.colspan + '" style="border-right: none">Betting limit:<span id="rng-bettingLimit-' + j + '">' + stakeLevels + '</span></td>' +
-                                    '</tr>' :
-                                    '<tr>' +
-                                        '<td class="R" ' + rowspan + '>' + gameName + '</td>' +
-                                        rowPT +
-                                    '</tr>' +
-                                    '<tr>' +
-                                        '<td colspan="' + this.colspan + '" style="border-right: none">Betting limit:<span id="rng-bettingLimit-' + j + '">' + stakeLevels + '</span></td>' +
-                                    '</tr>';
-
-                        $(table).append(row);
-
-                        if (i != 0) {
-                            console.log(parent);
-                            parent.appendChild(table);
-                        }
-                    }
-
-                    $('#rowspanCasino').attr('id', 'rowspanCasino_' + i);
-                    $('#rowspanCasino_' + i).attr('rowspan', !isPtByGameType ? result.casinoGames[i].length + 1 : (result.casinoGames[i].length) * 2 + 1);
-                    $('#rowspanCasino_' + i).html(result.pts[i].codeName);
-                }
-            }
-
-            if (Fanex.CustomerSetting.isSuperEditAgent) {
-                var checkboxes = $('input[type=checkbox]');
-
-                for (var i = 0; i < checkboxes.length; i++) {
-                    checkboxes[i].disabled = true;
-                }
-            }
-        };
-
-        this.RenderPT = function (pts) {
-            var casinoGamePT = pts[0];
-            var miniGamePT = pts[1];
-            var uplineMin = 0;
-            var uplineMax = 0;
-            var uplinePreset = 0;
-            var uplineAutoPreset = 0;
-            var downlinePreset = 0;
-            var downlinePreset2 = 0;
-            var commMax = 0;
-            var commPreset = 0;
-            var max = 0;
-            var synced = this.customer.customerInfo.casinoSync;
-
-            // Renders Master-Agent PT
-            if (Fanex.CustomerSetting.CurrentLevel == Fanex.CustomerSetting.Master) {
-                //PT Renderring for Casino Game
-                //PT values
-                uplineMax = synced ? casinoGamePT.maxPositionTakingUpline : casinoGamePT.maxPositionTaking;
-                uplinePreset = synced ? casinoGamePT.sPositionTaking : casinoGamePT.sPositionTakingUpline;
-                uplineAutoPreset = synced ? casinoGamePT.autoPositionTaking : casinoGamePT.autoPositionTakingUpline;
-                downlinePreset = synced ? casinoGamePT.maxPositionTaking : casinoGamePT.maxPositionTakingUpline;
-                downlinePreset2 = synced ? casinoGamePT.minPositionTaking : casinoGamePT.minPositionTakingUpline;
-                commMax = synced ? casinoGamePT.sMAgentRollingRateUpline : casinoGamePT.sMAgentRollingRate;
-                commPreset = synced ? casinoGamePT.mAgentRollingRate : casinoGamePT.sMAgentRollingRate;
-
-                //Render super preset pt
-                PT_RenderCombo(document.getElementById('pt_1'), uplineMin, uplineMax, 0.01, uplinePreset);
-                //Render super auto preset pt
-                PT_RenderCombo(document.getElementById('pt_2'), uplineMin, uplineMax, 0.01, uplineAutoPreset);
-                if (!casinoGamePT.isAutoPositionTaking) {
-                    $('#pt_2').attr('disabled', 'disabled');
-                }
-                else {
-                    $('#pt_1').attr('disabled', 'disabled');
-                }
-                $('#chkAutoPT').attr('checked', casinoGamePT.isAutoPositionTaking);
-
-                //Render Master Max PT
-                PT_RenderCombo(document.getElementById('pt_3'), 0, (uplineMax - uplinePreset), 0.01, downlinePreset);
-
-                //Render Master Min PT
-                PT_RenderCombo(document.getElementById('pt_4'), 0, downlinePreset, 0.01, downlinePreset2);
-
-                //Render Master Commission
-                Comm_RenderCombo(document.getElementById('comm_5'), 0, commMax, 0.0005, commPreset);
-
-                //PT Renderring for Mini Game
-                //PT values
-                uplineMax = synced ? miniGamePT.maxPositionTakingUpline : miniGamePT.maxPositionTaking;
-                uplinePreset = synced ? miniGamePT.sPositionTaking : miniGamePT.sPositionTakingUpline;
-                uplineAutoPreset = synced ? miniGamePT.autoPositionTaking : miniGamePT.autoPositionTakingUpline;
-                downlinePreset = synced ? miniGamePT.maxPositionTaking : miniGamePT.maxPositionTakingUpline;
-                downlinePreset2 = synced ? miniGamePT.minPositionTaking : miniGamePT.minPositionTakingUpline;
-                commMax = synced ? miniGamePT.sMAgentRollingRateUpline : miniGamePT.sMAgentRollingRate;
-                commPreset = synced ? miniGamePT.mAgentRollingRate : miniGamePT.sMAgentRollingRate;
-
-                //Render super preset pt
-                PT_RenderCombo(document.getElementById('pt_1_1'), uplineMin, uplineMax, 0.01, uplinePreset);
-
-                //Render super auto preset pt
-                PT_RenderCombo(document.getElementById('pt_2_1'), uplineMin, uplineMax, 0.01, uplineAutoPreset);
-                if (!miniGamePT.isAutoPositionTaking) {
-                    $('#pt_2_1').attr('disabled', 'disabled');
-                }
-                else {
-                    $('#pt_1_1').attr('disabled', 'disabled');
-                }
-                $('#chkAutoPT_1').attr('checked', miniGamePT.isAutoPositionTaking);
-
-                //Render Master Max PT
-                PT_RenderCombo(document.getElementById('pt_3_1'), 0, (uplineMax - uplinePreset), 0.01, downlinePreset);
-
-                //Render Master Min PT
-                PT_RenderCombo(document.getElementById('pt_4_1'), 0, downlinePreset, 0.01, downlinePreset2);
-
-                //Render Master Commission
-                Comm_RenderCombo(document.getElementById('comm_5_1'), 0, commMax, 0.0005, commPreset);
-            }
-            else if (Fanex.CustomerSetting.CurrentLevel == Fanex.CustomerSetting.Agent) {
-                //PT Renderring for Casino Game
-                //PT values
-                uplineMax = synced ? casinoGamePT.maxPositionTakingUpline : casinoGamePT.maxPositionTaking;
-                uplinePreset = synced ? casinoGamePT.mPositionTaking : casinoGamePT.mPositionTakingUpline;
-                downlinePreset = synced ? casinoGamePT.aPositionTaking : casinoGamePT.aPositionTakingUpline;
-                downlinePreset2 = synced ? casinoGamePT.minPositionTaking : casinoGamePT.minPositionTakingUpline;
-                commMax = synced ? casinoGamePT.mAgentRollingRateUpline : casinoGamePT.mAgentRollingRate;
-                commPreset = synced ? casinoGamePT.agentRollingRate : casinoGamePT.mAgentRollingRate;
-
-                if (!Fanex.CustomerSetting.isSuperEditAgent) {
-                    //Render Master preset pt
-                    PT_RenderCombo(document.getElementById('pt_1'), uplineMin, uplineMax, 0.01, uplinePreset);
-
-                    //Render Agent Max PT
-                    PT_RenderCombo(document.getElementById('pt_3'), 0, (uplineMax - uplinePreset), 0.01, downlinePreset);
-
-                    //Render Agent Min PT
-                    PT_RenderCombo(document.getElementById('pt_4'), 0, downlinePreset, 0.01, downlinePreset2);
-
-                    //Render Agent Commission
-                    Comm_RenderCombo(document.getElementById('comm_5'), 0, commMax, 0.0005, commPreset);
-                }
-                else {
-                    $('#chkEnable').attr('disabled', true);
-                    $('#maxTransfer').attr('disabled', true);
-                    $('#isAutoReset').attr('disabled', true);
-
-                    $('#mPT').html(casinoGamePT.mPositionTaking);
-                    $('#aPT').html(casinoGamePT.aPositionTaking);
-
-                    $('.buttonPopup').remove();
-                }
-
-                //PT Renderring for Mini Game
-                //PT values
-                uplineMax = synced ? miniGamePT.maxPositionTakingUpline : miniGamePT.maxPositionTaking;
-                uplinePreset = synced ? miniGamePT.mPositionTaking : miniGamePT.mPositionTakingUpline;
-                downlinePreset = synced ? miniGamePT.aPositionTaking : miniGamePT.aPositionTakingUpline;
-                downlinePreset2 = synced ? miniGamePT.minPositionTaking : miniGamePT.minPositionTakingUpline;
-                commMax = synced ? miniGamePT.mAgentRollingRateUpline : miniGamePT.mAgentRollingRate;
-                commPreset = synced ? miniGamePT.agentRollingRate : miniGamePT.mAgentRollingRate;
-
-                if (!Fanex.CustomerSetting.isSuperEditAgent) {
-                    //Render Master preset pt
-                    PT_RenderCombo(document.getElementById('pt_1_1'), uplineMin, uplineMax, 0.01, uplinePreset);
-
-                    //Render Agent Max PT
-                    PT_RenderCombo(document.getElementById('pt_3_1'), 0, (uplineMax - uplinePreset), 0.01, downlinePreset);
-
-                    //Render Agent Min PT
-                    PT_RenderCombo(document.getElementById('pt_4_1'), 0, downlinePreset, 0.01, downlinePreset2);
-
-                    //Render Agent Commission
-                    Comm_RenderCombo(document.getElementById('comm_5_1'), 0, commMax, 0.0005, commPreset);
-                }
-                else {
-                    $('#chkEnable').attr('disabled', true);
-                    $('#maxTransfer').attr('disabled', true);
-                    $('#isAutoReset').attr('disabled', true);
-
-                    $('#mPT_1').html(miniGamePT.mPositionTaking);
-                    $('#aPT_1').html(miniGamePT.aPositionTaking);
-                }
-            }
-            else {
-                // Renders member PT
-                if (Fanex.CustomerSetting.isSuperEditMember) {
-                    $('#chkEnable').attr('disabled', true);
-                    $('#maxTransfer').attr('disabled', true);
-                    $('#isAutoReset').attr('disabled', true);
-
-                    //PT Renderring for Casino Game
-                    //PT values
-                    uplineMin = casinoGamePT.isAutoPositionTaking ? casinoGamePT.superMinPositionTaking - casinoGamePT.mPositionTaking - casinoGamePT.aPositionTaking : 0;
-                    uplineMax = casinoGamePT.superMaxPositionTaking - casinoGamePT.mPositionTaking - casinoGamePT.aPositionTaking;
-                    uplinePreset = casinoGamePT.sPositionTaking;
-                    uplineAutoPreset = casinoGamePT.autoPositionTaking;
-                    max = casinoGamePT.superMaxPositionTaking;
-
-                    uplineMin = uplineMin < 0 ? 0 : uplineMin;
-
-                    //Render Super preset pt
-                    PT_RenderCombo(document.getElementById('pt_1'), uplineMin, uplineMax, 0.01, uplinePreset);
-
-                    //Render super auto preset pt
-                    PT_RenderCombo(document.getElementById('pt_2'), uplineMin, max, 0.01, uplineAutoPreset);
-                    if (!casinoGamePT.isAutoPositionTaking) {
-                        $('#pt_2').attr('disabled', 'disabled');
-                    }
-                    else {
-                        $('#pt_1').attr('disabled', 'disabled');
-                    }
-                    $('#chkAutoPT').attr('checked', casinoGamePT.isAutoPositionTaking);
-
-                    //Render master preset PT
-                    $('#mPT').html(casinoGamePT.mPositionTaking);
-
-                    //Render agent preset PT
-                    $('#aPT').html(casinoGamePT.aPositionTaking);
-
-                    //PT Renderring for Mini Game
-                    //PT values
-                    uplineMin = miniGamePT.isAutoPositionTaking ? miniGamePT.superMinPositionTaking - miniGamePT.mPositionTaking - miniGamePT.aPositionTaking : 0;
-                    uplineMax = miniGamePT.superMaxPositionTaking - miniGamePT.mPositionTaking - miniGamePT.aPositionTaking;
-                    uplinePreset = miniGamePT.sPositionTaking;
-                    uplineAutoPreset = miniGamePT.autoPositionTaking;
-                    max = miniGamePT.superMaxPositionTaking;
-
-                    uplineMin = uplineMin < 0 ? 0 : uplineMin;
-
-                    //Render Super preset pt
-                    PT_RenderCombo(document.getElementById('pt_1_1'), uplineMin, uplineMax, 0.01, uplinePreset);
-
-                    //Render super auto preset pt
-                    PT_RenderCombo(document.getElementById('pt_2_1'), uplineMin, max, 0.01, uplineAutoPreset);
-                    if (!miniGamePT.isAutoPositionTaking) {
-                        $('#pt_2_1').attr('disabled', 'disabled');
-                    }
-                    else {
-                        $('#pt_1_1').attr('disabled', 'disabled');
-                    }
-                    $('#chkAutoPT_1').attr('checked', miniGamePT.isAutoPositionTaking);
-
-                    //Render master preset PT
-                    $('#mPT_1').html(miniGamePT.mPositionTaking);
-
-                    //Render agent preset PT
-                    $('#aPT_1').html(miniGamePT.aPositionTaking);
-                }
-                else if (Fanex.CustomerSetting.isMasterEditMember) {
-                    $('#chkEnable').attr('disabled', true);
-                    $('#maxTransfer').attr('disabled', true);
-                    $('#isAutoReset').attr('disabled', true);
-
-                    //PT Renderring for Casino Game
-                    //PT values
-                    uplineMax = casinoGamePT.masterMaxPositionTaking - casinoGamePT.aPositionTaking;
-                    uplinePreset = casinoGamePT.mPositionTaking;
-
-                    //Render Super preset pt
-                    PT_RenderCombo(document.getElementById('pt_1'), uplineMin, uplineMax, 0.01, uplinePreset);
-
-                    //Render agent preset PT
-                    $('#aPT').html(casinoGamePT.aPositionTaking);
-
-                    //PT Renderring for Mini Game
-                    //PT values
-                    uplineMax = miniGamePT.masterMaxPositionTaking - miniGamePT.aPositionTaking;
-                    uplinePreset = miniGamePT.mPositionTaking;
-
-                    //Render Super preset pt
-                    PT_RenderCombo(document.getElementById('pt_1_1'), uplineMin, uplineMax, 0.01, uplinePreset);
-
-                    //Render agent preset PT
-                    $('#aPT_1').html(miniGamePT.aPositionTaking);
-                }
-                else {
-                    //PT Renderring for Casino Game
-                    //PT values
-                    uplineMax = synced ? casinoGamePT.maxPositionTakingUpline : casinoGamePT.maxPositionTaking;
-                    uplinePreset = synced ? casinoGamePT.aPositionTaking : casinoGamePT.aPositionTakingUpline;
-                    commMax = synced ? casinoGamePT.agentRollingRateUpline : casinoGamePT.agentRollingRate;
-                    commPreset = synced ? casinoGamePT.memberRollingRate : casinoGamePT.agentRollingRate;
-
-                    uplineMin = uplineMax < 0 ? (synced ? casinoGamePT.minPositionTakingUpline : casinoGamePT.minPositionTaking) : uplineMin;
-                    uplineMax = uplineMax < 0 ? (synced ? casinoGamePT.aPositionTakingUpline : casinoGamePT.aPositionTaking) : uplineMax;
-
-                    //Render Master preset pt
-                    PT_RenderCombo(document.getElementById('pt_1'), uplineMin, uplineMax, 0.01, uplinePreset);
-
-                    //Render Agent Commission
-                    Comm_RenderCombo(document.getElementById('comm_2'), 0, commMax, 0.0005, commPreset);
-
-                    //PT Renderring for Mini Game
-                    //PT values
-                    uplineMax = synced ? miniGamePT.maxPositionTakingUpline : miniGamePT.maxPositionTaking;
-                    uplinePreset = synced ? miniGamePT.aPositionTaking : miniGamePT.aPositionTakingUpline;
-                    commMax = synced ? miniGamePT.agentRollingRateUpline : miniGamePT.agentRollingRate;
-                    commPreset = synced ? miniGamePT.memberRollingRate : miniGamePT.agentRollingRate;
-
-                    uplineMin = uplineMax < 0 ? (synced ? miniGamePT.minPositionTakingUpline : miniGamePT.minPositionTaking) : uplineMin;
-                    uplineMax = uplineMax < 0 ? (synced ? miniGamePT.aPositionTakingUpline : miniGamePT.aPositionTaking) : uplineMax;
-
-                    //Render Master preset pt
-                    PT_RenderCombo(document.getElementById('pt_1_1'), uplineMin, uplineMax, 0.01, uplinePreset);
-
-                    //Render Agent Commission
-                    Comm_RenderCombo(document.getElementById('comm_2_1'), 0, commMax, 0.0005, commPreset);
-                }
-            }
-        };
-
-        this.UpdateSetting = function (idx) {
-            var min = parseFloat(Fanex.ExtAcc.ReplaceAll($('#minCredit').text(), ',', ''));
-            var max = parseFloat(Fanex.ExtAcc.ReplaceAll($('#maxCredit').text(), ',', ''));
-            var cur = parseFloat(Fanex.ExtAcc.ReplaceAll($('#maxTransfer').val(), ',', ''));
-
-            if (cur < min || cur > max) {
-                Validators.show($('#maxTransfer').get(0), 'Member Max Transfer Credit must be between ' + $('#minCredit').text() + ' and ' + $('#maxCredit').text());
-
-                return;
-            }
-
-            Fanex.CustomerSetting.BlockUI();
-
-            var custInfo = this.custInfo;
-
-            // Sets status, max transfer limit and daily auto reset RnG Casino
-            if (Fanex.CustomerSetting.CurrentLevel != Fanex.CustomerSetting.Member && !this.enabled && document.getElementById('chkEnable').checked) {
-                // Sets enable for downline if previous value is unchecked
-                this.customer.customerInfo.enableDownline = document.getElementById('chkEnableDownline').checked;
-            }
-
-            this.customer.customerInfo.casinoDisabled = !document.getElementById('chkEnable').checked;
-            this.customer.casinoInfo.maxTransferCredit = parseFloat(Fanex.ExtAcc.ReplaceAll($('#maxTransfer').val(), ',', ''));
-            this.customer.casinoInfo.isAutoReset = document.getElementById('isAutoReset').checked;
-
-            // PT and Betting limit variables
-            var ptRngGame = this.customer.pts[0];
-            var ptMiniGame = this.customer.pts[1];
-            var rngGames = this.customer.casinoGame;
-            var miniGames = this.customer.miniGame;
-            var isPtByGameType = this.customer.casinoInfo.pTByGameType;
-
-            // Sets PT for RnG and Mini Game
-            switch (custInfo.uplineRoleId) {
-                case Fanex.CustomerSetting.Super:
-                    if (custInfo.roleId == Fanex.CustomerSetting.Master) {
-                        this.SetPtForMaster(ptRngGame);
-                        this.SetPtForMaster(ptMiniGame, '_1');
-                    }
-                    else if (custInfo.roleId == Fanex.CustomerSetting.Member) {
-                        this.SetPtForMemberBySuper(ptRngGame);
-                        this.SetPtForMemberBySuper(ptMiniGame, '_1');
-                    }
-                    break;
-                case Fanex.CustomerSetting.Master:
-                    if (custInfo.roleId == Fanex.CustomerSetting.Agent) {
-                        this.SetPtForAgent(ptRngGame);
-                        this.SetPtForAgent(ptMiniGame, '_1');
-                    }
-                    else if (custInfo.roleId == Fanex.CustomerSetting.Member) {
-                        this.SetPtForMemberByMaster(ptRngGame);
-                        this.SetPtForMemberByMaster(ptMiniGame, '_1');
-                    }
-                    break;
-                case Fanex.CustomerSetting.Agent:
-                    if (custInfo.roleId == Fanex.CustomerSetting.Member) {
-                        this.SetPtForMember(ptRngGame);
-                        this.SetPtForMember(ptMiniGame, '_1');
-                    }
-                    break;
-                default:
-                    break;
-            }
-
-            // Sets Betting Limits and PT By Game Type for RnG Game
-            for (var i = 0; i < rngGames.length; i++) {
-                var game = rngGames[i];
-
-                if (game.stakeLevels.length > 0) {
-                    for (var j = 0; j < game.stakeLevels.length; j++) {
-                        game.stakeLevels[j].isChecked = document.getElementById('rng-' + game.stakeLevels[j].stakeLevelID).checked;
-                    }
-
-                }
-
-                if (isPtByGameType) {
-                    this.SetPtForGameType(game.pt, '_1_' + i + '_rng');
-                }
-            }
-
-            // Sets Betting Limits for Mini Game
-            for (var i = 0; i < miniGames.length; i++) {
-                var game = miniGames[i];
-
-                if (game.stakeLevels.length > 0) {
-                    for (var j = 0; j < game.stakeLevels.length; j++) {
-                        game.stakeLevels[j].isChecked = document.getElementById('mini-' + +game.stakeLevels[j].stakeLevelID).checked;
-                    }
-                }
-
-                if (isPtByGameType) {
-                    this.SetPtForGameType(game.pt, '_1_' + i + '_mini');
-                }
-            }
-
-            var data = {
-                custId: idx == null ? Fanex.CustomerSetting.UserId : Fanex.CustomerSetting.Ids()[idx],
-                roleId: custInfo.roleId,
-                uplineId: this.uplineId,
-                uplineRoleId: custInfo.uplineRoleId,
-                customer: JSON.stringify(this.customer)
-            };
-
-            $.ajax({
-                url: resolveClientUrl('Casino/UpdateCasinoPost'),
-                type: 'post',
-                data: data,
-                dataType: 'json'
-            })
-            .success(function (result) {
-                if (result.ErrorCode != 0) {
-                    if (!Fanex.CustomerSetting.Casino.IsMultiple) {
-                        Fanex.CustomerSetting.Casino.ErrorMessage += result.ErrorMessage.formatErrorMessage() + '<br />';
-                    }
-                    else {
-                        Fanex.CustomerSetting.Casino.ErrorMessage += '<font color="Blue" style="font-weight: bold">' + Fanex.CustomerSetting.Names()[idx] + ":</font><br />" + result.ErrorMessage.formatErrorMessage() + '<br /><br />';
-                    }
-                }
-
-                if (!Fanex.CustomerSetting.Casino.IsMultiple || (idx != null && idx == Fanex.CustomerSetting.Ids().length - 1)) {
-                    if (Fanex.CustomerSetting.Casino.ErrorMessage != '') {
-                        $('#errMsg').html(Fanex.CustomerSetting.Casino.ErrorMessage);
-                        $('#errMsg').show();
-
-                        Fanex.CustomerSetting.Casino.ErrorMessage = '';
-                    }
-                    else {
-                        Fanex.ExtAcc.Form.Close();
-                        Fanex.CustomerSetting.CallBackCustomerList();
-                    }
-
-                    Fanex.ExtAcc.UnBlockUI();
-                }
-                else if (Fanex.CustomerSetting.Casino.IsMultiple && idx < Fanex.CustomerSetting.Ids().length - 1) {
-                    Fanex.CustomerSetting.Casino.UpdateSetting(++idx);
-                }
-            })
-            .error(function (data) {
-                if (typeof console != 'undefined') {
-                    console.log(data.responseText);
-                }
-
-                if (!Fanex.CustomerSetting.Casino.IsMultiple) {
-                    Fanex.CustomerSetting.Casino.ErrorMessage += "Not Casino\'s customer<br />".formatErrorMessage() + '<br />';
-                }
-                else {
-                    Fanex.CustomerSetting.Casino.ErrorMessage += '<font color="Blue" style="font-weight: bold">' + Fanex.CustomerSetting.Names()[idx] + ":</font><br />" + " Not Casino\'s customer<br /><br />".formatErrorMessage();
-                }
-
-                if (!Fanex.CustomerSetting.Casino.IsMultiple || (idx != null && idx == Fanex.CustomerSetting.Ids().length - 1)) {
-                    if (Fanex.CustomerSetting.Casino.ErrorMessage != '') {
-                        $('#errMsg').html(Fanex.CustomerSetting.Casino.ErrorMessage);
-                        $('#errMsg').show();
-
-
-                        Fanex.CustomerSetting.Casino.ErrorMessage = '';
-                    }
-                    else {
-                        Fanex.CustomerSetting.CallBackCustomerList();
-                    }
-
-                    Fanex.ExtAcc.UnBlockUI();
-                }
-                else if (Fanex.CustomerSetting.Casino.IsMultiple && idx < Fanex.CustomerSetting.Ids().length - 1) {
-                    Fanex.CustomerSetting.Casino.UpdateSetting(++idx);
-                }
-            });
-        };
-
-        this.SetPtForGameType = function (pt, subfix) {
-            switch (this.custInfo.uplineRoleId) {
-                case Fanex.CustomerSetting.Super:
-                    if (this.custInfo.roleId == Fanex.CustomerSetting.Master) {
-                        this.SetPtForMaster(pt, subfix);
-                    }
-                    else if (this.custInfo.roleId == Fanex.CustomerSetting.Member) {
-                        this.SetPtForMemberBySuper(pt, subfix);
-                    }
-                    break;
-                case Fanex.CustomerSetting.Master:
-                    if (this.custInfo.roleId == Fanex.CustomerSetting.Agent) {
-                        this.SetPtForAgent(pt, subfix);
-                    }
-                    else if (this.custInfo.roleId == Fanex.CustomerSetting.Member) {
-                        this.SetPtForMemberByMaster(pt, subfix);
-                    }
-                    break;
-                case Fanex.CustomerSetting.Agent:
-                    this.SetPtForMember(pt, subfix);
-                    break;
-                default:
-                    break;
-            }
-        };
-
-        this.SetPtForMaster = function (pt, _subfix) {
-            var subfix = _subfix != null ? _subfix : '';
-            var chkId = (subfix.indexOf('_rng') != -1 || subfix.indexOf('_mini') != -1) ? ('chkAutoPT_1' + subfix) : ('chkAutoPT' + subfix);
-            // Super preset PT
-            pt.sPositionTaking = $('#pt_1' + subfix).val();
-            // Super Is Auto PT
-            pt.isAutoPositionTaking = document.getElementById(chkId).checked;
-
-            // Super Auto Preset PT
-            pt.autoPositionTaking = !pt.isAutoPositionTaking ? 0 : $('#pt_2' + subfix).val();
-
-            // Master Preset PT
-            pt.mPositionTaking = $('#pt_3' + subfix).val();
-
-            // Master Min PT
-            pt.minPositionTaking = $('#pt_4' + subfix).val();
-
-            // Master Commission
-            pt.mAgentRollingRate = $('#comm_5' + subfix).val();
-
-            return pt;
-        };
-
-        this.SetPtForAgent = function (pt, _subfix) {
-            var subfix = _subfix != null ? _subfix : '';
-            // Master Preset PT
-            pt.mPositionTaking = $('#pt_1' + subfix).val();
-
-            // Agent Preset PT
-            pt.aPositionTaking = $('#pt_3' + subfix).val();
-
-            // Agent Min PT
-            pt.minPositionTaking = $('#pt_4' + subfix).val();
-
-            // Agent Commission
-            pt.agentRollingRate = $('#comm_5' + subfix).val();
-
-            return pt;
-        };
-
-        this.SetPtForMember = function (pt, _subfix) {
-            var subfix = _subfix != null ? _subfix : '';
-            // Agent Preset PT
-            pt.aPositionTaking = $('#pt_1' + subfix).val();
-
-            // Member Commission
-            pt.memberRollingRate = $('#comm_2' + subfix).val();
-
-            return pt;
-        };
-
-        this.SetPtForMemberBySuper = function (pt, _subfix) {
-            var subfix = _subfix != null ? _subfix : '';
-            // Super preset PT
-            pt.sPositionTaking = $('#pt_1' + subfix).val();
-
-            // Super Is Auto PT
-            pt.isAutoPositionTaking = document.getElementById('chkAutoPT' + subfix).checked;
-
-            // Super Auto Preset PT
-            pt.autoPositionTaking = $('#pt_2' + subfix).val();
-
-            return pt;
-        };
-
-        this.SetPtForMemberByMaster = function (pt, _subfix) {
-            var subfix = _subfix != null ? _subfix : '';
-            // Master Preset PT
-            ptRngGame.mPositionTaking = $('#pt_1' + subfix).val();
-
-            return pt;
-        };
-
-        this.RenderPtByGameType = function (pt, i, subfix) {
-            var row = '';
-
-            switch (this.custInfo.uplineRoleId) {
-                case Fanex.CustomerSetting.Super:
-                    if (this.custInfo.roleId == Fanex.CustomerSetting.Master) {
-                        row = this.RenderPtByGameTypeMaster(pt, i, subfix);
-                    }
-                    else if (this.custInfo.roleId == Fanex.CustomerSetting.Agent) {
-                        row = this.RenderPtByGameTypeAgentBySuper(pt);
-                    }
-                    else if (this.custInfo.roleId == Fanex.CustomerSetting.Member) {
-                        row = this.RenderPtByGameTypeMemberBySuper(pt, i, subfix);
-                    }
-                    break;
-                case Fanex.CustomerSetting.Master:
-                    if (this.custInfo.roleId == Fanex.CustomerSetting.Agent) {
-                        row = this.RenderPtByGameTypeAgent(pt, i, subfix);
-                    }
-                    else if (this.custInfo.roleId == Fanex.CustomerSetting.Member) {
-                        row = this.RenderPtByGameTypeMemberByMaster(pt, i, subfix);
-                    }
-                    break;
-                case Fanex.CustomerSetting.Agent:
-                    row = this.RenderPtByGameTypeMember(pt, i, subfix);
-                    break;
-                default:
-                    break;
-            }
-
-            return row;
-        };
-
-        this.RenderPtByGameTypeMaster = function (pt, idx, subfix) {
-            var row = '';
-            var synced = this.customer.customerInfo.casinoSync;
-
-            var uplineMax = synced ? pt.maxPositionTakingUpline : pt.maxPositionTaking;
-            var uplinePreset = synced ? pt.sPositionTaking : pt.sPositionTakingUpline;
-            var uplineAutoPreset = synced ? pt.autoPositionTaking : pt.autoPositionTakingUpline;
-            var downlinePreset = synced ? pt.maxPositionTaking : pt.maxPositionTakingUpline;
-            var downlinePreset2 = synced ? pt.minPositionTaking : pt.minPositionTakingUpline;
-            var commMax = synced ? pt.sMAgentRollingRateUpline : pt.sMAgentRollingRate;
-            var commPreset = synced ? pt.mAgentRollingRate : pt.sMAgentRollingRate;
-
-            var isAuto = synced ? pt.isAutoPositionTaking : pt.isAutoPositionTakingUpline;
-            var checked = isAuto ? ' checked="checked"' : '';
-            var input = '<input name="' + subfix + '" onclick="checkPT(this, \'_1_' + idx + subfix + '\', ' + uplineMax + ')" type="checkbox" id="chkAutoPT_1_1_' + idx + subfix + '" ' + checked + ' />';
-            var disabledPT1 = isAuto ? ' disabled="disabled"' : '';
-            var disabledPT2 = !isAuto ? ' disabled="disabled"' : '';
-
-            row += '<td class="C"><select name="pt_1' + subfix + '" ' + disabledPT1 + ' id="pt_1_1_' + idx + subfix + '" onchange="PTChanging(this, \'_1_' + idx + subfix + '\', ' + uplineMax + ')">' + PT_RenderOption(0, uplineMax, 0.01, uplinePreset) + '</select></td>';
-            row += '<td class="C">' + input + '<select name="pt_2' + subfix + '" ' + disabledPT2 + ' id="pt_2_1_' + idx + subfix + '">' + PT_RenderOption(0, uplineMax, 0.01, uplineAutoPreset) + '</select></td>';
-            row += '<td class="C"><select name="pt_3' + subfix + '" id="pt_3_1_' + idx + subfix + '" onchange="PTChanging(this, \'_1_' + idx + subfix + '\', ' + uplineMax + ')">' + PT_RenderOption(0, uplineMax - uplinePreset, 0.01, downlinePreset) + '</select></td>';
-            row += '<td class="C"><select name="pt_4' + subfix + '" id="pt_4_1_' + idx + subfix + '">' + PT_RenderOption(0, downlinePreset, 0.01, downlinePreset2) + '</select></td>';
-            row += '<td class="C" style="border-right: none"><select name="comm_5' + subfix + '" id="comm_5_1_' + idx + subfix + '">' + Comm_RenderOption(0, commMax, 0.0005, commPreset) + '</select></td>';
-
-            return row;
-        };
-
-        this.RenderPtByGameTypeAgent = function (pt, idx, subfix) {
-            var row = '';
-            var synced = this.customer.customerInfo.casinoSync;
-
-            var uplineMin = 0;
-            var uplineMax = synced ? pt.maxPositionTakingUpline : pt.maxPositionTaking;
-            var uplinePreset = synced ? pt.mPositionTaking : pt.mPositionTakingUpline;
-            var downlinePreset = synced ? pt.aPositionTaking : pt.aPositionTakingUpline;
-            var downlinePreset2 = synced ? pt.minPositionTaking : pt.minPositionTakingUpline;
-            var commMax = synced ? pt.mAgentRollingRateUpline : pt.mAgentRollingRate;
-            var commPreset = synced ? pt.agentRollingRate : pt.mAgentRollingRate;
-
-            row += '<td class="C"><select name="pt_1' + subfix + '" id="pt_1_1_' + idx + subfix + '" onchange="PTChanging(this, \'_1_' + idx + subfix + '\', ' + uplineMax + ')">' + PT_RenderOption(0, uplineMax, 0.01, uplinePreset) + '</select></td>';
-            row += '<td class="C"><select name="pt_3' + subfix + '" id="pt_3_1_' + idx + subfix + '" onchange="PTChanging(this, \'_1_' + idx + subfix + '\', ' + uplineMax + ')">' + PT_RenderOption(0, uplineMax - uplinePreset, 0.01, downlinePreset) + '</select></td>';
-            row += '<td class="C"><select name="pt_4' + subfix + '" id="pt_4_1_' + idx + subfix + '">' + PT_RenderOption(0, downlinePreset, 0.01, downlinePreset2) + '</select></td>';
-            row += '<td class="C" style="border-right: none"><select name="comm_5' + subfix + '" id="comm_5_1_' + idx + subfix + '">' + Comm_RenderOption(0, commMax, 0.0005, commPreset) + '</select></td>';
-
-            return row;
-        };
-
-        this.RenderPtByGameTypeAgentBySuper = function (pt) {
-            var row = '';
-
-            row += '<td class="C">' + pt.mPositionTaking + '</td>';
-            row += '<td class="C" style="border-right: none">' + pt.aPositionTaking + '</td>';
-
-            return row;
-        };
-
-        this.RenderPtByGameTypeMember = function (pt, idx, subfix) {
-            var row = '';
-            var synced = this.customer.customerInfo.casinoSync;
-
-            var uplineMin = 0;
-            var uplineMax = synced ? pt.maxPositionTakingUpline : pt.maxPositionTaking;
-            var uplinePreset = synced ? pt.aPositionTaking : pt.aPositionTakingUpline;
-            var commMax = synced ? pt.agentRollingRateUpline : pt.agentRollingRate;
-            var commPreset = synced ? pt.memberRollingRate : pt.agentRollingRate;
-
-            uplineMin = uplineMax < 0 ? (synced ? pt.minPositionTakingUpline : pt.minPositionTaking) : uplineMin;
-            uplineMax = uplineMax < 0 ? (synced ? pt.aPositionTakingUpline : pt.aPositionTaking) : uplineMax;
-
-            row += '<td class="C"><select name="pt_1' + subfix + '" id="pt_1_1_' + idx + subfix + '">' + PT_RenderOption(uplineMin, uplineMax, 0.01, uplinePreset) + '</select></td>';
-            row += '<td class="C" style="border-right: none"><select name="comm_2' + subfix + '" id="comm_2_1_' + idx + subfix + '">' + Comm_RenderOption(0, commMax, 0.0005, commPreset) + '</select></td>';
-
-            return row;
-        };
-
-        this.RenderPtByGameTypeMemberBySuper = function (pt, idx, subfix) {
-            var row = '';
-            var uplineMin = pt.isAutoPositionTaking ? pt.superMinPositionTaking - pt.mPositionTaking - pt.aPositionTaking : 0;
-            var uplineMax = pt.superMaxPositionTaking - pt.mPositionTaking - pt.aPositionTaking;
-            var uplinePreset = pt.sPositionTaking;
-            var uplineAutoPreset = pt.autoPositionTaking;
-            var max = pt.superMaxPositionTaking;
-
-            uplineMin = uplineMin < 0 ? 0 : uplineMin;
-
-            var isAuto = pt.isAutoPositionTaking;
-            var checked = isAuto ? ' checked="checked"' : '';
-            var input = '<input name="' + subfix + '" onclick="checkPT(this, \'_1_' + idx + subfix + '\', ' + uplineMax + ')" type="checkbox" id="chkAutoPT_1_1_' + idx + subfix + '" ' + checked + ' />';
-            var disabledPT1 = isAuto ? ' disabled="disabled"' : '';
-            var disabledPT2 = !isAuto ? ' disabled="disabled"' : '';
-
-            row += '<td class="C"><select name="pt_1' + subfix + '" ' + disabledPT1 + ' id="pt_1_1_' + idx + subfix + '" onchange="PTChanging(this, \'_1_' + idx + subfix + '\', ' + uplineMax + ')">' + PT_RenderOption(uplineMin, uplineMax, 0.01, uplinePreset) + '</select></td>';
-            row += '<td class="C">' + input + '<select name="pt_2' + subfix + '" ' + disabledPT2 + ' id="pt_2_1_' + idx + subfix + '">' + PT_RenderOption(uplineMin, max, 0.01, uplineAutoPreset) + '</select></td>';
-            row += '<td class="C">' + pt.mPositionTaking + '</td>';
-            row += '<td class="C" style="border-right: none">' + pt.aPositionTaking + '</td>';
-
-            return row;
-        };
-
-        this.RenderPtByGameTypeMemberByMaster = function (pt, idx, subfix) {
-            var row = '';
-
-            var uplineMin = 0;
-            var uplineMax = pt.masterMaxPositionTaking;
-            var uplinePreset = pt.mPositionTaking;
-
-
-            row += '<td class="C"><select name="pt_1' + subfix + '" id="pt_1_1_' + idx + subfix + '" onchange="PTChanging(this, \'_1_' + idx + subfix + '\', ' + uplineMax + ')">' + PT_RenderOption(uplineMin, uplineMax, 0.01, uplinePreset) + '</select></td>';
-            row += '<td class="C" style="border-right: none">' + pt.aPositionTaking + '</td>';
-
-            return row;
+    Init: function () {
+        this.LoadData();
+    },
+
+    LoadData: function () {
+        if (this.IsMultiple) {
+            $('#custInfo').remove();
         }
+        else {
+            $('#arrowUpDown').remove();
+            $('#statusInfo').remove();
+        }
+
+        $('#chkEnableDownline').hide();
+        $('#enableDownlineText').hide();
+
+        $('#downline').html('Master');
+        $('#member').remove();
+        $('#agent').remove();
+        $('#sagent').remove();
+        $('#smember').remove();
+        $('#mmember').remove();
+        this.colspan = 5;
+
+        $.ajax({
+            url: toUrl('Casino/EditCasinoPost'),
+            type: 'post',
+            data: Fanex.CustomerSetting.Casino.custInfo,
+            dataType: 'json'
+        })
+        .success(function (result) {
+            Fanex.CustomerSetting.Casino.customer = result;
+
+            Fanex.CustomerSetting.Casino.RenderSetting(result);
+
+            Fanex.CustomerSetting.Casino.RenderPT(result.pts);
+
+            Fanex.CustomerSetting.Casino.CasinoModel = function () {
+                this.saveCustomer = function () {
+                    $('#windowPopup').scrollTop(0);
+
+                    if (Fanex.CustomerSetting.Casino.IsMultiple) {
+                        Fanex.CustomerSetting.Casino.UpdateSetting(0);
+                    }
+                    else {
+                        Fanex.CustomerSetting.Casino.UpdateSetting(null);
+                    }
+                }
+            }
+
+            //ko.applyBindings(new Fanex.CustomerSetting.Casino.CasinoModel());
+        })
+        .error(function (data, status, err) {
+            if (typeof console != 'undefined') {
+                console.log(data.responseText);
+            }
+        });
+
+        var level = $('#downline').html();
+        var timeout = setTimeout(function () {
+            clearTimeout(timeout);
+            Fanex.CustomerSetting.Casino.enabled = document.getElementById('chkEnable').checked;
+        }, 2000);
+    },
+
+    RenderSetting: function (result) {
+        var isPtByGameType = this.customer.casinoInfo.pTByGameType;
+        var rowspan = isPtByGameType ? ' rowspan="2" ' : ' rowspan="1" ';
+
+        // Renders casino games setting
+        if (result && result.casinoGames.length > 0) {
+            var table = document.getElementById('casinoGame');
+            var parent = document.getElementById('casinoGame').parentNode;
+
+            for (var i = 0; i < result.casinoGames.length; i++) {
+                var games = result.casinoGames[i];
+
+                for (var j = 0; j < games.length; j++) {
+                    var gameName = games[j].gameTypeName;
+                    var stakeLevels = '';
+
+                    for (var k = 0; k < games[j].stakeLevels.length; k++) {
+                        var checked = '';
+
+                        if (games[j].stakeLevels[k].isChecked) {
+                            checked = 'checked="checked"';
+                        }
+
+                        stakeLevels += '<input ' + checked + ' type="checkbox" id="rng-' + games[j].stakeLevels[k].stakeLevelID + '" />' + games[j].stakeLevels[k].stakeLevelName;
+                    }
+
+                    var rowPT = isPtByGameType ? this.RenderPtByGameType(games[j].pt, i, '_rng') : '';
+                    var row = rowPT == '' ?
+                                '<tr>' +
+                                    '<td class="R">' + gameName + '</td>' +
+                                    '<td colspan="' + this.colspan + '" style="border-right: none">Betting limit:<span id="rng-bettingLimit-' + j + '">' + stakeLevels + '</span></td>' +
+                                '</tr>' :
+                                '<tr>' +
+                                    '<td class="R" ' + rowspan + '>' + gameName + '</td>' +
+                                    rowPT +
+                                '</tr>' +
+                                '<tr>' +
+                                    '<td colspan="' + this.colspan + '" style="border-right: none">Betting limit:<span id="rng-bettingLimit-' + j + '">' + stakeLevels + '</span></td>' +
+                                '</tr>';
+
+                    $('#casinoGame').append(row);
+                }
+
+                $('#rowspanCasino').attr('id', 'rowspanCasino_' + i);
+                $('#rowspanCasino_' + i).attr('rowspan', !isPtByGameType ? result.casinoGames[i].length + 1 : (result.casinoGames[i].length) * 2 + 1);
+                $('#rowspanCasino_' + i).html(result.pts[i].codeName);
+            }
+        }
+
+        if (Fanex.CustomerSetting.isSuperEditAgent) {
+            var checkboxes = $('input[type=checkbox]');
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].disabled = true;
+            }
+        }
+    },
+
+    RenderPT: function (pts) {
+        var casinoGamePT = pts[0];
+        var miniGamePT = pts[1];
+        var uplineMin = 0;
+        var uplineMax = 0;
+        var uplinePreset = 0;
+        var uplineAutoPreset = 0;
+        var downlinePreset = 0;
+        var downlinePreset2 = 0;
+        var commMax = 0;
+        var commPreset = 0;
+        var max = 0;
+        var synced = this.customer.customerInfo.casinoSync;
+
+        // Renders Master-Agent PT
+        //if (Fanex.CustomerSetting.CurrentLevel == Fanex.CustomerSetting.Master) {
+        //PT Renderring for Casino Game
+        //PT values
+        uplineMax = synced ? casinoGamePT.maxPositionTakingUpline : casinoGamePT.maxPositionTaking;
+        uplinePreset = synced ? casinoGamePT.sPositionTaking : casinoGamePT.sPositionTakingUpline;
+        uplineAutoPreset = synced ? casinoGamePT.autoPositionTaking : casinoGamePT.autoPositionTakingUpline;
+        downlinePreset = synced ? casinoGamePT.maxPositionTaking : casinoGamePT.maxPositionTakingUpline;
+        downlinePreset2 = synced ? casinoGamePT.minPositionTaking : casinoGamePT.minPositionTakingUpline;
+        commMax = synced ? casinoGamePT.sMAgentRollingRateUpline : casinoGamePT.sMAgentRollingRate;
+        commPreset = synced ? casinoGamePT.mAgentRollingRate : casinoGamePT.sMAgentRollingRate;
+
+        //Render super preset pt
+        PT_RenderCombo(document.getElementById('pt_1'), uplineMin, uplineMax, 0.01, uplinePreset);
+        //Render super auto preset pt
+        PT_RenderCombo(document.getElementById('pt_2'), uplineMin, uplineMax, 0.01, uplineAutoPreset);
+        if (!casinoGamePT.isAutoPositionTaking) {
+            $('#pt_2').attr('disabled', 'disabled');
+        }
+        else {
+            $('#pt_1').attr('disabled', 'disabled');
+        }
+        $('#chkAutoPT').attr('checked', casinoGamePT.isAutoPositionTaking);
+
+        //Render Master Max PT
+        PT_RenderCombo(document.getElementById('pt_3'), 0, (uplineMax - uplinePreset), 0.01, downlinePreset);
+
+        //Render Master Min PT
+        PT_RenderCombo(document.getElementById('pt_4'), 0, downlinePreset, 0.01, downlinePreset2);
+
+        //Render Master Commission
+        Comm_RenderCombo(document.getElementById('comm_5'), 0, commMax, 0.0005, commPreset);
+
+        //PT Renderring for Mini Game
+        //PT values
+        uplineMax = synced ? miniGamePT.maxPositionTakingUpline : miniGamePT.maxPositionTaking;
+        uplinePreset = synced ? miniGamePT.sPositionTaking : miniGamePT.sPositionTakingUpline;
+        uplineAutoPreset = synced ? miniGamePT.autoPositionTaking : miniGamePT.autoPositionTakingUpline;
+        downlinePreset = synced ? miniGamePT.maxPositionTaking : miniGamePT.maxPositionTakingUpline;
+        downlinePreset2 = synced ? miniGamePT.minPositionTaking : miniGamePT.minPositionTakingUpline;
+        commMax = synced ? miniGamePT.sMAgentRollingRateUpline : miniGamePT.sMAgentRollingRate;
+        commPreset = synced ? miniGamePT.mAgentRollingRate : miniGamePT.sMAgentRollingRate;
+
+        //Render super preset pt
+        PT_RenderCombo(document.getElementById('pt_1_1'), uplineMin, uplineMax, 0.01, uplinePreset);
+
+        //Render super auto preset pt
+        PT_RenderCombo(document.getElementById('pt_2_1'), uplineMin, uplineMax, 0.01, uplineAutoPreset);
+        if (!miniGamePT.isAutoPositionTaking) {
+            $('#pt_2_1').attr('disabled', 'disabled');
+        }
+        else {
+            $('#pt_1_1').attr('disabled', 'disabled');
+        }
+        $('#chkAutoPT_1').attr('checked', miniGamePT.isAutoPositionTaking);
+
+        //Render Master Max PT
+        PT_RenderCombo(document.getElementById('pt_3_1'), 0, (uplineMax - uplinePreset), 0.01, downlinePreset);
+
+        //Render Master Min PT
+        PT_RenderCombo(document.getElementById('pt_4_1'), 0, downlinePreset, 0.01, downlinePreset2);
+
+        //Render Master Commission
+        Comm_RenderCombo(document.getElementById('comm_5_1'), 0, commMax, 0.0005, commPreset);
+        /*}
+        else if (Fanex.CustomerSetting.CurrentLevel == Fanex.CustomerSetting.Agent) {
+        //PT Renderring for Casino Game
+        //PT values
+        uplineMax = synced ? casinoGamePT.maxPositionTakingUpline : casinoGamePT.maxPositionTaking;
+        uplinePreset = synced ? casinoGamePT.mPositionTaking : casinoGamePT.mPositionTakingUpline;
+        downlinePreset = synced ? casinoGamePT.aPositionTaking : casinoGamePT.aPositionTakingUpline;
+        downlinePreset2 = synced ? casinoGamePT.minPositionTaking : casinoGamePT.minPositionTakingUpline;
+        commMax = synced ? casinoGamePT.mAgentRollingRateUpline : casinoGamePT.mAgentRollingRate;
+        commPreset = synced ? casinoGamePT.agentRollingRate : casinoGamePT.mAgentRollingRate;
+
+        if (!Fanex.CustomerSetting.isSuperEditAgent) {
+        //Render Master preset pt
+        PT_RenderCombo(document.getElementById('pt_1'), uplineMin, uplineMax, 0.01, uplinePreset);
+
+        //Render Agent Max PT
+        PT_RenderCombo(document.getElementById('pt_3'), 0, (uplineMax - uplinePreset), 0.01, downlinePreset);
+
+        //Render Agent Min PT
+        PT_RenderCombo(document.getElementById('pt_4'), 0, downlinePreset, 0.01, downlinePreset2);
+
+        //Render Agent Commission
+        Comm_RenderCombo(document.getElementById('comm_5'), 0, commMax, 0.0005, commPreset);
+        }
+        else {
+        $('#chkEnable').attr('disabled', true);
+        $('#maxTransfer').attr('disabled', true);
+        $('#isAutoReset').attr('disabled', true);
+
+        $('#mPT').html(casinoGamePT.mPositionTaking);
+        $('#aPT').html(casinoGamePT.aPositionTaking);
+
+        $('.buttonPopup').remove();
+        }
+
+        //PT Renderring for Mini Game
+        //PT values
+        uplineMax = synced ? miniGamePT.maxPositionTakingUpline : miniGamePT.maxPositionTaking;
+        uplinePreset = synced ? miniGamePT.mPositionTaking : miniGamePT.mPositionTakingUpline;
+        downlinePreset = synced ? miniGamePT.aPositionTaking : miniGamePT.aPositionTakingUpline;
+        downlinePreset2 = synced ? miniGamePT.minPositionTaking : miniGamePT.minPositionTakingUpline;
+        commMax = synced ? miniGamePT.mAgentRollingRateUpline : miniGamePT.mAgentRollingRate;
+        commPreset = synced ? miniGamePT.agentRollingRate : miniGamePT.mAgentRollingRate;
+
+        if (!Fanex.CustomerSetting.isSuperEditAgent) {
+        //Render Master preset pt
+        PT_RenderCombo(document.getElementById('pt_1_1'), uplineMin, uplineMax, 0.01, uplinePreset);
+
+        //Render Agent Max PT
+        PT_RenderCombo(document.getElementById('pt_3_1'), 0, (uplineMax - uplinePreset), 0.01, downlinePreset);
+
+        //Render Agent Min PT
+        PT_RenderCombo(document.getElementById('pt_4_1'), 0, downlinePreset, 0.01, downlinePreset2);
+
+        //Render Agent Commission
+        Comm_RenderCombo(document.getElementById('comm_5_1'), 0, commMax, 0.0005, commPreset);
+        }
+        else {
+        $('#chkEnable').attr('disabled', true);
+        $('#maxTransfer').attr('disabled', true);
+        $('#isAutoReset').attr('disabled', true);
+
+        $('#mPT_1').html(miniGamePT.mPositionTaking);
+        $('#aPT_1').html(miniGamePT.aPositionTaking);
+        }
+        }
+        else {
+        // Renders member PT
+        if (Fanex.CustomerSetting.isSuperEditMember) {
+        $('#chkEnable').attr('disabled', true);
+        $('#maxTransfer').attr('disabled', true);
+        $('#isAutoReset').attr('disabled', true);
+
+        //PT Renderring for Casino Game
+        //PT values
+        uplineMin = casinoGamePT.isAutoPositionTaking ? casinoGamePT.superMinPositionTaking - casinoGamePT.mPositionTaking - casinoGamePT.aPositionTaking : 0;
+        uplineMax = casinoGamePT.superMaxPositionTaking - casinoGamePT.mPositionTaking - casinoGamePT.aPositionTaking;
+        uplinePreset = casinoGamePT.sPositionTaking;
+        uplineAutoPreset = casinoGamePT.autoPositionTaking;
+        max = casinoGamePT.superMaxPositionTaking;
+
+        uplineMin = uplineMin < 0 ? 0 : uplineMin;
+
+        //Render Super preset pt
+        PT_RenderCombo(document.getElementById('pt_1'), uplineMin, uplineMax, 0.01, uplinePreset);
+
+        //Render super auto preset pt
+        PT_RenderCombo(document.getElementById('pt_2'), uplineMin, max, 0.01, uplineAutoPreset);
+        if (!casinoGamePT.isAutoPositionTaking) {
+        $('#pt_2').attr('disabled', 'disabled');
+        }
+        else {
+        $('#pt_1').attr('disabled', 'disabled');
+        }
+        $('#chkAutoPT').attr('checked', casinoGamePT.isAutoPositionTaking);
+
+        //Render master preset PT
+        $('#mPT').html(casinoGamePT.mPositionTaking);
+
+        //Render agent preset PT
+        $('#aPT').html(casinoGamePT.aPositionTaking);
+
+        //PT Renderring for Mini Game
+        //PT values
+        uplineMin = miniGamePT.isAutoPositionTaking ? miniGamePT.superMinPositionTaking - miniGamePT.mPositionTaking - miniGamePT.aPositionTaking : 0;
+        uplineMax = miniGamePT.superMaxPositionTaking - miniGamePT.mPositionTaking - miniGamePT.aPositionTaking;
+        uplinePreset = miniGamePT.sPositionTaking;
+        uplineAutoPreset = miniGamePT.autoPositionTaking;
+        max = miniGamePT.superMaxPositionTaking;
+
+        uplineMin = uplineMin < 0 ? 0 : uplineMin;
+
+        //Render Super preset pt
+        PT_RenderCombo(document.getElementById('pt_1_1'), uplineMin, uplineMax, 0.01, uplinePreset);
+
+        //Render super auto preset pt
+        PT_RenderCombo(document.getElementById('pt_2_1'), uplineMin, max, 0.01, uplineAutoPreset);
+        if (!miniGamePT.isAutoPositionTaking) {
+        $('#pt_2_1').attr('disabled', 'disabled');
+        }
+        else {
+        $('#pt_1_1').attr('disabled', 'disabled');
+        }
+        $('#chkAutoPT_1').attr('checked', miniGamePT.isAutoPositionTaking);
+
+        //Render master preset PT
+        $('#mPT_1').html(miniGamePT.mPositionTaking);
+
+        //Render agent preset PT
+        $('#aPT_1').html(miniGamePT.aPositionTaking);
+        }
+        else if (Fanex.CustomerSetting.isMasterEditMember) {
+        $('#chkEnable').attr('disabled', true);
+        $('#maxTransfer').attr('disabled', true);
+        $('#isAutoReset').attr('disabled', true);
+
+        //PT Renderring for Casino Game
+        //PT values
+        uplineMax = casinoGamePT.masterMaxPositionTaking - casinoGamePT.aPositionTaking;
+        uplinePreset = casinoGamePT.mPositionTaking;
+
+        //Render Super preset pt
+        PT_RenderCombo(document.getElementById('pt_1'), uplineMin, uplineMax, 0.01, uplinePreset);
+
+        //Render agent preset PT
+        $('#aPT').html(casinoGamePT.aPositionTaking);
+
+        //PT Renderring for Mini Game
+        //PT values
+        uplineMax = miniGamePT.masterMaxPositionTaking - miniGamePT.aPositionTaking;
+        uplinePreset = miniGamePT.mPositionTaking;
+
+        //Render Super preset pt
+        PT_RenderCombo(document.getElementById('pt_1_1'), uplineMin, uplineMax, 0.01, uplinePreset);
+
+        //Render agent preset PT
+        $('#aPT_1').html(miniGamePT.aPositionTaking);
+        }
+        else {
+        //PT Renderring for Casino Game
+        //PT values
+        uplineMax = synced ? casinoGamePT.maxPositionTakingUpline : casinoGamePT.maxPositionTaking;
+        uplinePreset = synced ? casinoGamePT.aPositionTaking : casinoGamePT.aPositionTakingUpline;
+        commMax = synced ? casinoGamePT.agentRollingRateUpline : casinoGamePT.agentRollingRate;
+        commPreset = synced ? casinoGamePT.memberRollingRate : casinoGamePT.agentRollingRate;
+
+        uplineMin = uplineMax < 0 ? (synced ? casinoGamePT.minPositionTakingUpline : casinoGamePT.minPositionTaking) : uplineMin;
+        uplineMax = uplineMax < 0 ? (synced ? casinoGamePT.aPositionTakingUpline : casinoGamePT.aPositionTaking) : uplineMax;
+
+        //Render Master preset pt
+        PT_RenderCombo(document.getElementById('pt_1'), uplineMin, uplineMax, 0.01, uplinePreset);
+
+        //Render Agent Commission
+        Comm_RenderCombo(document.getElementById('comm_2'), 0, commMax, 0.0005, commPreset);
+
+        //PT Renderring for Mini Game
+        //PT values
+        uplineMax = synced ? miniGamePT.maxPositionTakingUpline : miniGamePT.maxPositionTaking;
+        uplinePreset = synced ? miniGamePT.aPositionTaking : miniGamePT.aPositionTakingUpline;
+        commMax = synced ? miniGamePT.agentRollingRateUpline : miniGamePT.agentRollingRate;
+        commPreset = synced ? miniGamePT.memberRollingRate : miniGamePT.agentRollingRate;
+
+        uplineMin = uplineMax < 0 ? (synced ? miniGamePT.minPositionTakingUpline : miniGamePT.minPositionTaking) : uplineMin;
+        uplineMax = uplineMax < 0 ? (synced ? miniGamePT.aPositionTakingUpline : miniGamePT.aPositionTaking) : uplineMax;
+
+        //Render Master preset pt
+        PT_RenderCombo(document.getElementById('pt_1_1'), uplineMin, uplineMax, 0.01, uplinePreset);
+
+        //Render Agent Commission
+        Comm_RenderCombo(document.getElementById('comm_2_1'), 0, commMax, 0.0005, commPreset);
+        }
+        }*/
+    },
+
+    UpdateSetting: function (idx) {
+        var min = parseFloat(Fanex.CustomerSetting.ReplaceAll($('#minCredit').text(), ',', ''));
+        var max = parseFloat(Fanex.CustomerSetting.ReplaceAll($('#maxCredit').text(), ',', ''));
+        var cur = parseFloat(Fanex.CustomerSetting.ReplaceAll($('#maxTransfer').val(), ',', ''));
+
+        if (cur < min || cur > max) {
+            Validators.show($('#maxTransfer').get(0), 'Member Max Transfer Credit must be between ' + $('#minCredit').text() + ' and ' + $('#maxCredit').text());
+
+            return;
+        }
+
+        Fanex.CustomerSetting.BlockUI();
+
+        var custInfo = this.custInfo;
+
+        // Sets status, max transfer limit and daily auto reset RnG Casino
+        if (Fanex.CustomerSetting.CurrentLevel != Fanex.CustomerSetting.Member && !this.enabled && document.getElementById('chkEnable').checked) {
+            // Sets enable for downline if previous value is unchecked
+            this.customer.customerInfo.enableDownline = document.getElementById('chkEnableDownline').checked;
+        }
+
+        this.customer.customerInfo.casinoDisabled = !document.getElementById('chkEnable').checked;
+        this.customer.casinoInfo.maxTransferCredit = parseFloat(Fanex.CustomerSetting.ReplaceAll($('#maxTransfer').val(), ',', ''));
+        this.customer.casinoInfo.isAutoReset = document.getElementById('isAutoReset').checked;
+
+        // PT and Betting limit variables
+        var ptRngGame = this.customer.pts[0];
+        var ptMiniGame = this.customer.pts[1];
+        var rngGames = this.customer.casinoGame;
+        var miniGames = this.customer.miniGame;
+        var isPtByGameType = this.customer.casinoInfo.pTByGameType;
+
+        // Sets PT for RnG and Mini Game
+        switch (custInfo.uplineRoleId) {
+            case Fanex.CustomerSetting.Super:
+                if (custInfo.roleId == Fanex.CustomerSetting.Master) {
+                    this.SetPtForMaster(ptRngGame);
+                    this.SetPtForMaster(ptMiniGame, '_1');
+                }
+                else if (custInfo.roleId == Fanex.CustomerSetting.Member) {
+                    this.SetPtForMemberBySuper(ptRngGame);
+                    this.SetPtForMemberBySuper(ptMiniGame, '_1');
+                }
+                break;
+            case Fanex.CustomerSetting.Master:
+                if (custInfo.roleId == Fanex.CustomerSetting.Agent) {
+                    this.SetPtForAgent(ptRngGame);
+                    this.SetPtForAgent(ptMiniGame, '_1');
+                }
+                else if (custInfo.roleId == Fanex.CustomerSetting.Member) {
+                    this.SetPtForMemberByMaster(ptRngGame);
+                    this.SetPtForMemberByMaster(ptMiniGame, '_1');
+                }
+                break;
+            case Fanex.CustomerSetting.Agent:
+                if (custInfo.roleId == Fanex.CustomerSetting.Member) {
+                    this.SetPtForMember(ptRngGame);
+                    this.SetPtForMember(ptMiniGame, '_1');
+                }
+                break;
+            default:
+                break;
+        }
+
+        // Sets Betting Limits and PT By Game Type for RnG Game
+        for (var i = 0; i < rngGames.length; i++) {
+            var game = rngGames[i];
+
+            if (game.stakeLevels.length > 0) {
+                for (var j = 0; j < game.stakeLevels.length; j++) {
+                    game.stakeLevels[j].isChecked = document.getElementById('rng-' + game.stakeLevels[j].stakeLevelID).checked;
+                }
+
+            }
+
+            if (isPtByGameType) {
+                this.SetPtForGameType(game.pt, '_1_' + i + '_rng');
+            }
+        }
+
+        // Sets Betting Limits for Mini Game
+        for (var i = 0; i < miniGames.length; i++) {
+            var game = miniGames[i];
+
+            if (game.stakeLevels.length > 0) {
+                for (var j = 0; j < game.stakeLevels.length; j++) {
+                    game.stakeLevels[j].isChecked = document.getElementById('mini-' + +game.stakeLevels[j].stakeLevelID).checked;
+                }
+            }
+
+            if (isPtByGameType) {
+                this.SetPtForGameType(game.pt, '_1_' + i + '_mini');
+            }
+        }
+
+        var data = {
+            custId: idx == null ? Fanex.CustomerSetting.UserId : Fanex.CustomerSetting.Ids()[idx],
+            roleId: custInfo.roleId,
+            uplineId: this.uplineId,
+            uplineRoleId: custInfo.uplineRoleId,
+            customer: JSON.stringify(this.customer)
+        };
+
+        $.ajax({
+            url: resolveClientUrl('Casino/UpdateCasinoPost'),
+            type: 'post',
+            data: data,
+            dataType: 'json'
+        })
+        .success(function (result) {
+            if (result.ErrorCode != 0) {
+                if (!Fanex.CustomerSetting.Casino.IsMultiple) {
+                    Fanex.CustomerSetting.Casino.ErrorMessage += result.ErrorMessage.formatErrorMessage() + '<br />';
+                }
+                else {
+                    Fanex.CustomerSetting.Casino.ErrorMessage += '<font color="Blue" style="font-weight: bold">' + Fanex.CustomerSetting.Names()[idx] + ":</font><br />" + result.ErrorMessage.formatErrorMessage() + '<br /><br />';
+                }
+            }
+
+            if (!Fanex.CustomerSetting.Casino.IsMultiple || (idx != null && idx == Fanex.CustomerSetting.Ids().length - 1)) {
+                if (Fanex.CustomerSetting.Casino.ErrorMessage != '') {
+                    $('#errMsg').html(Fanex.CustomerSetting.Casino.ErrorMessage);
+                    $('#errMsg').show();
+
+                    Fanex.CustomerSetting.Casino.ErrorMessage = '';
+                }
+                else {
+                    Fanex.CustomerSetting.Form.Close();
+                    Fanex.CustomerSetting.CallBackCustomerList();
+                }
+
+                Fanex.CustomerSetting.UnBlockUI();
+            }
+            else if (Fanex.CustomerSetting.Casino.IsMultiple && idx < Fanex.CustomerSetting.Ids().length - 1) {
+                Fanex.CustomerSetting.Casino.UpdateSetting(++idx);
+            }
+        })
+        .error(function (data) {
+            if (typeof console != 'undefined') {
+                console.log(data.responseText);
+            }
+
+            if (!Fanex.CustomerSetting.Casino.IsMultiple) {
+                Fanex.CustomerSetting.Casino.ErrorMessage += "Not Casino\'s customer<br />".formatErrorMessage() + '<br />';
+            }
+            else {
+                Fanex.CustomerSetting.Casino.ErrorMessage += '<font color="Blue" style="font-weight: bold">' + Fanex.CustomerSetting.Names()[idx] + ":</font><br />" + " Not Casino\'s customer<br /><br />".formatErrorMessage();
+            }
+
+            if (!Fanex.CustomerSetting.Casino.IsMultiple || (idx != null && idx == Fanex.CustomerSetting.Ids().length - 1)) {
+                if (Fanex.CustomerSetting.Casino.ErrorMessage != '') {
+                    $('#errMsg').html(Fanex.CustomerSetting.Casino.ErrorMessage);
+                    $('#errMsg').show();
+
+
+                    Fanex.CustomerSetting.Casino.ErrorMessage = '';
+                }
+                else {
+                    Fanex.CustomerSetting.CallBackCustomerList();
+                }
+
+                Fanex.CustomerSetting.UnBlockUI();
+            }
+            else if (Fanex.CustomerSetting.Casino.IsMultiple && idx < Fanex.CustomerSetting.Ids().length - 1) {
+                Fanex.CustomerSetting.Casino.UpdateSetting(++idx);
+            }
+        });
+    },
+
+    SetPtForGameType: function (pt, subfix) {
+        switch (this.custInfo.uplineRoleId) {
+            case Fanex.CustomerSetting.Super:
+                if (this.custInfo.roleId == Fanex.CustomerSetting.Master) {
+                    this.SetPtForMaster(pt, subfix);
+                }
+                else if (this.custInfo.roleId == Fanex.CustomerSetting.Member) {
+                    this.SetPtForMemberBySuper(pt, subfix);
+                }
+                break;
+            case Fanex.CustomerSetting.Master:
+                if (this.custInfo.roleId == Fanex.CustomerSetting.Agent) {
+                    this.SetPtForAgent(pt, subfix);
+                }
+                else if (this.custInfo.roleId == Fanex.CustomerSetting.Member) {
+                    this.SetPtForMemberByMaster(pt, subfix);
+                }
+                break;
+            case Fanex.CustomerSetting.Agent:
+                this.SetPtForMember(pt, subfix);
+                break;
+            default:
+                break;
+        }
+    },
+
+    SetPtForMaster: function (pt, _subfix) {
+        var subfix = _subfix != null ? _subfix : '';
+        var chkId = (subfix.indexOf('_rng') != -1 || subfix.indexOf('_mini') != -1) ? ('chkAutoPT_1' + subfix) : ('chkAutoPT' + subfix);
+        // Super preset PT
+        pt.sPositionTaking = $('#pt_1' + subfix).val();
+        // Super Is Auto PT
+        pt.isAutoPositionTaking = document.getElementById(chkId).checked;
+
+        // Super Auto Preset PT
+        pt.autoPositionTaking = !pt.isAutoPositionTaking ? 0 : $('#pt_2' + subfix).val();
+
+        // Master Preset PT
+        pt.mPositionTaking = $('#pt_3' + subfix).val();
+
+        // Master Min PT
+        pt.minPositionTaking = $('#pt_4' + subfix).val();
+
+        // Master Commission
+        pt.mAgentRollingRate = $('#comm_5' + subfix).val();
+
+        return pt;
+    },
+
+    SetPtForAgent: function (pt, _subfix) {
+        var subfix = _subfix != null ? _subfix : '';
+        // Master Preset PT
+        pt.mPositionTaking = $('#pt_1' + subfix).val();
+
+        // Agent Preset PT
+        pt.aPositionTaking = $('#pt_3' + subfix).val();
+
+        // Agent Min PT
+        pt.minPositionTaking = $('#pt_4' + subfix).val();
+
+        // Agent Commission
+        pt.agentRollingRate = $('#comm_5' + subfix).val();
+
+        return pt;
+    },
+
+    SetPtForMember: function (pt, _subfix) {
+        var subfix = _subfix != null ? _subfix : '';
+        // Agent Preset PT
+        pt.aPositionTaking = $('#pt_1' + subfix).val();
+
+        // Member Commission
+        pt.memberRollingRate = $('#comm_2' + subfix).val();
+
+        return pt;
+    },
+
+    SetPtForMemberBySuper: function (pt, _subfix) {
+        var subfix = _subfix != null ? _subfix : '';
+        // Super preset PT
+        pt.sPositionTaking = $('#pt_1' + subfix).val();
+
+        // Super Is Auto PT
+        pt.isAutoPositionTaking = document.getElementById('chkAutoPT' + subfix).checked;
+
+        // Super Auto Preset PT
+        pt.autoPositionTaking = $('#pt_2' + subfix).val();
+
+        return pt;
+    },
+
+    SetPtForMemberByMaster: function (pt, _subfix) {
+        var subfix = _subfix != null ? _subfix : '';
+        // Master Preset PT
+        ptRngGame.mPositionTaking = $('#pt_1' + subfix).val();
+
+        return pt;
+    },
+
+    RenderPtByGameType: function (pt, i, subfix) {
+        var row = '';
+
+        switch (this.custInfo.uplineRoleId) {
+            case Fanex.CustomerSetting.Super:
+                if (this.custInfo.roleId == Fanex.CustomerSetting.Master) {
+                    row = this.RenderPtByGameTypeMaster(pt, i, subfix);
+                }
+                else if (this.custInfo.roleId == Fanex.CustomerSetting.Agent) {
+                    row = this.RenderPtByGameTypeAgentBySuper(pt);
+                }
+                else if (this.custInfo.roleId == Fanex.CustomerSetting.Member) {
+                    row = this.RenderPtByGameTypeMemberBySuper(pt, i, subfix);
+                }
+                break;
+            case Fanex.CustomerSetting.Master:
+                if (this.custInfo.roleId == Fanex.CustomerSetting.Agent) {
+                    row = this.RenderPtByGameTypeAgent(pt, i, subfix);
+                }
+                else if (this.custInfo.roleId == Fanex.CustomerSetting.Member) {
+                    row = this.RenderPtByGameTypeMemberByMaster(pt, i, subfix);
+                }
+                break;
+            case Fanex.CustomerSetting.Agent:
+                row = this.RenderPtByGameTypeMember(pt, i, subfix);
+                break;
+            default:
+                break;
+        }
+
+        return row;
+    },
+
+    RenderPtByGameTypeMaster: function (pt, idx, subfix) {
+        var row = '';
+        var synced = this.customer.customerInfo.casinoSync;
+
+        var uplineMax = synced ? pt.maxPositionTakingUpline : pt.maxPositionTaking;
+        var uplinePreset = synced ? pt.sPositionTaking : pt.sPositionTakingUpline;
+        var uplineAutoPreset = synced ? pt.autoPositionTaking : pt.autoPositionTakingUpline;
+        var downlinePreset = synced ? pt.maxPositionTaking : pt.maxPositionTakingUpline;
+        var downlinePreset2 = synced ? pt.minPositionTaking : pt.minPositionTakingUpline;
+        var commMax = synced ? pt.sMAgentRollingRateUpline : pt.sMAgentRollingRate;
+        var commPreset = synced ? pt.mAgentRollingRate : pt.sMAgentRollingRate;
+
+        var isAuto = synced ? pt.isAutoPositionTaking : pt.isAutoPositionTakingUpline;
+        var checked = isAuto ? ' checked="checked"' : '';
+        var input = '<input name="' + subfix + '" onclick="checkPT(this, \'_1_' + idx + subfix + '\', ' + uplineMax + ')" type="checkbox" id="chkAutoPT_1_1_' + idx + subfix + '" ' + checked + ' />';
+        var disabledPT1 = isAuto ? ' disabled="disabled"' : '';
+        var disabledPT2 = !isAuto ? ' disabled="disabled"' : '';
+
+        row += '<td class="C"><select name="pt_1' + subfix + '" ' + disabledPT1 + ' id="pt_1_1_' + idx + subfix + '" onchange="PTChanging(this, \'_1_' + idx + subfix + '\', ' + uplineMax + ')">' + PT_RenderOption(0, uplineMax, 0.01, uplinePreset) + '</select></td>';
+        row += '<td class="C">' + input + '<select name="pt_2' + subfix + '" ' + disabledPT2 + ' id="pt_2_1_' + idx + subfix + '">' + PT_RenderOption(0, uplineMax, 0.01, uplineAutoPreset) + '</select></td>';
+        row += '<td class="C"><select name="pt_3' + subfix + '" id="pt_3_1_' + idx + subfix + '" onchange="PTChanging(this, \'_1_' + idx + subfix + '\', ' + uplineMax + ')">' + PT_RenderOption(0, uplineMax - uplinePreset, 0.01, downlinePreset) + '</select></td>';
+        row += '<td class="C"><select name="pt_4' + subfix + '" id="pt_4_1_' + idx + subfix + '">' + PT_RenderOption(0, downlinePreset, 0.01, downlinePreset2) + '</select></td>';
+        row += '<td class="C" style="border-right: none"><select name="comm_5' + subfix + '" id="comm_5_1_' + idx + subfix + '">' + Comm_RenderOption(0, commMax, 0.0005, commPreset) + '</select></td>';
+
+        return row;
+    },
+
+    RenderPtByGameTypeAgent: function (pt, idx, subfix) {
+        var row = '';
+        var synced = this.customer.customerInfo.casinoSync;
+
+        var uplineMin = 0;
+        var uplineMax = synced ? pt.maxPositionTakingUpline : pt.maxPositionTaking;
+        var uplinePreset = synced ? pt.mPositionTaking : pt.mPositionTakingUpline;
+        var downlinePreset = synced ? pt.aPositionTaking : pt.aPositionTakingUpline;
+        var downlinePreset2 = synced ? pt.minPositionTaking : pt.minPositionTakingUpline;
+        var commMax = synced ? pt.mAgentRollingRateUpline : pt.mAgentRollingRate;
+        var commPreset = synced ? pt.agentRollingRate : pt.mAgentRollingRate;
+
+        row += '<td class="C"><select name="pt_1' + subfix + '" id="pt_1_1_' + idx + subfix + '" onchange="PTChanging(this, \'_1_' + idx + subfix + '\', ' + uplineMax + ')">' + PT_RenderOption(0, uplineMax, 0.01, uplinePreset) + '</select></td>';
+        row += '<td class="C"><select name="pt_3' + subfix + '" id="pt_3_1_' + idx + subfix + '" onchange="PTChanging(this, \'_1_' + idx + subfix + '\', ' + uplineMax + ')">' + PT_RenderOption(0, uplineMax - uplinePreset, 0.01, downlinePreset) + '</select></td>';
+        row += '<td class="C"><select name="pt_4' + subfix + '" id="pt_4_1_' + idx + subfix + '">' + PT_RenderOption(0, downlinePreset, 0.01, downlinePreset2) + '</select></td>';
+        row += '<td class="C" style="border-right: none"><select name="comm_5' + subfix + '" id="comm_5_1_' + idx + subfix + '">' + Comm_RenderOption(0, commMax, 0.0005, commPreset) + '</select></td>';
+
+        return row;
+    },
+
+    RenderPtByGameTypeAgentBySuper: function (pt) {
+        var row = '';
+
+        row += '<td class="C">' + pt.mPositionTaking + '</td>';
+        row += '<td class="C" style="border-right: none">' + pt.aPositionTaking + '</td>';
+
+        return row;
+    },
+
+    RenderPtByGameTypeMember: function (pt, idx, subfix) {
+        var row = '';
+        var synced = this.customer.customerInfo.casinoSync;
+
+        var uplineMin = 0;
+        var uplineMax = synced ? pt.maxPositionTakingUpline : pt.maxPositionTaking;
+        var uplinePreset = synced ? pt.aPositionTaking : pt.aPositionTakingUpline;
+        var commMax = synced ? pt.agentRollingRateUpline : pt.agentRollingRate;
+        var commPreset = synced ? pt.memberRollingRate : pt.agentRollingRate;
+
+        uplineMin = uplineMax < 0 ? (synced ? pt.minPositionTakingUpline : pt.minPositionTaking) : uplineMin;
+        uplineMax = uplineMax < 0 ? (synced ? pt.aPositionTakingUpline : pt.aPositionTaking) : uplineMax;
+
+        row += '<td class="C"><select name="pt_1' + subfix + '" id="pt_1_1_' + idx + subfix + '">' + PT_RenderOption(uplineMin, uplineMax, 0.01, uplinePreset) + '</select></td>';
+        row += '<td class="C" style="border-right: none"><select name="comm_2' + subfix + '" id="comm_2_1_' + idx + subfix + '">' + Comm_RenderOption(0, commMax, 0.0005, commPreset) + '</select></td>';
+
+        return row;
+    },
+
+    RenderPtByGameTypeMemberBySuper: function (pt, idx, subfix) {
+        var row = '';
+        var uplineMin = pt.isAutoPositionTaking ? pt.superMinPositionTaking - pt.mPositionTaking - pt.aPositionTaking : 0;
+        var uplineMax = pt.superMaxPositionTaking - pt.mPositionTaking - pt.aPositionTaking;
+        var uplinePreset = pt.sPositionTaking;
+        var uplineAutoPreset = pt.autoPositionTaking;
+        var max = pt.superMaxPositionTaking;
+
+        uplineMin = uplineMin < 0 ? 0 : uplineMin;
+
+        var isAuto = pt.isAutoPositionTaking;
+        var checked = isAuto ? ' checked="checked"' : '';
+        var input = '<input name="' + subfix + '" onclick="checkPT(this, \'_1_' + idx + subfix + '\', ' + uplineMax + ')" type="checkbox" id="chkAutoPT_1_1_' + idx + subfix + '" ' + checked + ' />';
+        var disabledPT1 = isAuto ? ' disabled="disabled"' : '';
+        var disabledPT2 = !isAuto ? ' disabled="disabled"' : '';
+
+        row += '<td class="C"><select name="pt_1' + subfix + '" ' + disabledPT1 + ' id="pt_1_1_' + idx + subfix + '" onchange="PTChanging(this, \'_1_' + idx + subfix + '\', ' + uplineMax + ')">' + PT_RenderOption(uplineMin, uplineMax, 0.01, uplinePreset) + '</select></td>';
+        row += '<td class="C">' + input + '<select name="pt_2' + subfix + '" ' + disabledPT2 + ' id="pt_2_1_' + idx + subfix + '">' + PT_RenderOption(uplineMin, max, 0.01, uplineAutoPreset) + '</select></td>';
+        row += '<td class="C">' + pt.mPositionTaking + '</td>';
+        row += '<td class="C" style="border-right: none">' + pt.aPositionTaking + '</td>';
+
+        return row;
+    },
+
+    RenderPtByGameTypeMemberByMaster: function (pt, idx, subfix) {
+        var row = '';
+
+        var uplineMin = 0;
+        var uplineMax = pt.masterMaxPositionTaking;
+        var uplinePreset = pt.mPositionTaking;
+
+
+        row += '<td class="C"><select name="pt_1' + subfix + '" id="pt_1_1_' + idx + subfix + '" onchange="PTChanging(this, \'_1_' + idx + subfix + '\', ' + uplineMax + ')">' + PT_RenderOption(uplineMin, uplineMax, 0.01, uplinePreset) + '</select></td>';
+        row += '<td class="C" style="border-right: none">' + pt.aPositionTaking + '</td>';
+
+        return row;
     }
 }
 
@@ -1077,7 +981,7 @@ function Comm_RenderOption(min, max, step, selectedValue) {
     for (var i = c; i >= 0; i--) {
         var f = Math.round(min * 10000 + (i * step * 10000)) / 10000;
         var selected = '';
-           
+
         if (selectedValue == f) {
             selected = ' selected="selected"';
         }
@@ -1310,6 +1214,5 @@ function PT_RenderCombo2(combo, min, max, step, sub_id) {
 }
 
 $(document).ready(function () {
-    var casino = new Fanex.CustomerSetting.Casino.Init();
-    
+    Fanex.CustomerSetting.Casino.Init();
 });

@@ -33,9 +33,12 @@
             <td style="border-right: none">                
                 <div style="float: left; height: 24px">
                     <input type="checkbox" id="chkEnable" style="margin-top: 5px" @enable/>                    
-                    <label for="chkEnable" id="downline"></label>
+                    <label for="chkEnable" id="downline">Master</label>
+                    @if (Model.CasinoDisabled && @Model.CasinoSync)
+                    {
                     <input type="checkbox" id="chkEnableDownline" @enable style="margin-top: 5px" />                    
                     <label for="chkEnableDownline" id="enableDownlineText">Previous enabled downlines</label>
+                    }
                 </div>                
             </td>
         </tr>         
