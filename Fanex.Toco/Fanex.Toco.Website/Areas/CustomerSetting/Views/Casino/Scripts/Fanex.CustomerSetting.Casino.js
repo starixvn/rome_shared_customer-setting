@@ -1214,5 +1214,5 @@ function PT_RenderCombo2(combo, min, max, step, sub_id) {
 }
 
 $(document).ready(function () {
-    Fanex.CustomerSetting.Casino.Init();
+    //Fanex.CustomerSetting.Casino.Init();
 });
