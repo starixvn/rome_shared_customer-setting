@@ -2,11 +2,12 @@
 @{
     var check = Model.IsAutoReset ? " checked=\"checked=\"" : string.Empty;
     var enable = !Model.CasinoDisabled && Model.CasinoSync ? " checked=\"checked\"" : string.Empty;
+    var isPtByGameType = Model.PTByGameType;
 }
 <div id="custInfo">
-    <div class="headerPositionTaking noneBorderLR" style="border-bottom: 0;">
+    <div class="headerPositionTaking noneBorderLR" style="border-bottom: 0; border-top: 1px solid #ccc">
         General Information</div>
-    <table border="1" cellpadding="1" cellspacing="2" class="tableInfo">
+    <table border="1" cellpadding="1" cellspacing="2" class="tableInfo" style="border-collapse: collapse">
         <tr>
             <td class="tdTitleLeft">Username</td>
             <td style="width: 35%"><span>@Model.UserName</span></td>

@@ -315,7 +315,7 @@
 
         public static decimal Format(this decimal obj, int prec = 2)
         {
-            return decimal.Round(obj, prec);
+            return Convert.ToDecimal(decimal.Round(obj, prec).ToStringFormat(prec));
         }
 
         public static string ToStringFormat(this decimal obj, int prec = 2)
@@ -323,7 +323,7 @@
             var ret = decimal.Round(obj, prec);
             var valRet = ret.ToString("#,##0.########");
 
-            return ret < 0.0m ? "<font color=\"red\">" + valRet + "</font>" : valRet;
+            return valRet;
         }
 
         public static decimal Format(this IDataReader obj, string fieldName, int prec = 2)

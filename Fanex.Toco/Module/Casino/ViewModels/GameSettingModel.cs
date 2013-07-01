@@ -12,6 +12,8 @@ namespace Fanex.CustomerSetting.Module.Casino.ViewModels
             this.GameGroups = new List<GameGroup>();
         }
 
+        public bool IsPtByGameType { get; set; }
+
         public List<GameGroup> GameGroups { get; set; }
     }
 

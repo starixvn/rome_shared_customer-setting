@@ -16,21 +16,11 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             return PartialView("~/Areas/CustomerSetting/Views/Casino/Master/EditMaster.cshtml", customerSetting);
         }
 
-        private List<GameKindDetail> GetGameKinds(int custId, int uplineId)
+        public ActionResult MasterModel(int id, int uplineId)
         {
-            var custInfo = CasinoManager.Instance.GetCustInfoIBC(custId, uplineId);
-            var gameKinds = new List<GameKindDetail>();
-                        
-            if (!custInfo.CasinoSync)
-            {
-                gameKinds = CasinoManager.Instance.GetGameKinds(uplineId);
-            }
-            else
-            {
-                gameKinds = CasinoManager.Instance.GetGameKinds(custId);
-            }
+            var customerSetting = CasinoManager.Instance.MasterCasinoModel(id, uplineId);
 
-            return gameKinds;
+            return JsonBase(customerSetting);
         }
     }
 }

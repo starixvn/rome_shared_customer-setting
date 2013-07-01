@@ -1,0 +1,178 @@
+﻿.buttonPopup, .ui-button, button[type=button]
+{
+	background: url(../Images/btn-bgsubmit-original.png) repeat-x scroll 5px center !important;
+	color: #fff !important;
+	cursor: pointer;
+	width: 80px;
+	height: 30px;
+	border: none !important;
+	border-radius: 3px !important;
+	-moz-border-radius: 3px !important;
+	-webkit-border-radius: 3px !important;
+	padding-bottom: 2px;
+	margin-top: 5px;
+	text-indent: 0 !important;
+	margin-bottom: 5px;
+}
+.buttonPopup:hover, .ui-button:hover
+{
+	background: url(../Images/btn-bgsubmit-hover.png) repeat-x scroll 5px center !important;
+	color: #fff !important;
+	border: none !important;
+	cursor: pointer;
+}
+.btnPTDown
+{
+	background: url(../Images/b_down.jpg) repeat-x scroll center top transparent;
+	border: 0 solid #000000;
+	height: 17px;
+	width: 17px;
+	cursor: pointer;
+}
+
+.btnPTUp
+{
+	background: url(../Images/b_up.jpg) repeat-x scroll center top transparent;
+	border: 0 solid #000000;
+	height: 17px;
+	width: 17px;
+	cursor: pointer;
+}
+
+.btnPTSub
+{
+	background: url(../Images/b_sub.jpg) repeat-x scroll center top transparent;
+	border: 0 solid #000000;
+	height: 17px;
+	width: 17px;
+	cursor: pointer;
+}
+
+.btnPTAdd
+{
+	background: url(../Images/b_add.jpg) repeat-x scroll center top transparent;
+	border: 0 solid #000000;
+	height: 17px;
+	width: 17px;
+	cursor: pointer;
+}
+select
+{
+    width: 61px !important;
+}
+html, body
+{
+	font-size: 11px;
+	color: #444;
+	font-size: 12pt;
+	font-family: Tahoma, Helvetica, Arial, sans-serif;
+}
+div#settingContainer,div#custInfo
+{
+    border: 1px solid #ccc;
+    border-bottom:0px;
+    border-top: none;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+td
+{
+    font-size: 12px;
+}
+.headerPositionTaking
+{
+	border: 1px solid #CCC;
+	background-color: #f1f1a6;
+	clear: both;
+	color: #464646;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 25px;
+	text-align: center;
+	text-indent: 5px;
+	border-top: 0;
+}
+.positionTaking
+{
+	border-left: 1px solid #CCC;
+	border-right: 1px solid #CCC;
+	border-bottom: 1px solid #CCC;
+	padding: 3px;
+	border-top: 0;
+}
+.tableInfo
+{
+    border: none;
+    border-color: #ccc; 
+    border-collapse: collapse; 
+    border-style: none;
+    width: 100%;
+    min-width: 1024px;
+    margin: 0;
+}
+.tableInfo tr
+{
+    height: 26px;
+}
+td
+{
+    border: 1px solid #ccc;
+}
+.tdTitleLeft
+{
+    width: 15%;
+    text-align: right;
+    font-weight:bold;
+    border-left: none;
+}
+.tdTitleRight
+{
+    width: 15%;
+    text-align: right;
+    font-weight:bold;
+}
+.noneBorderLR
+{
+    border-left: none;
+    border-right: none;
+}
+.noneBorderR
+{
+    border-right: none;
+}
+.noneBorderL
+{
+    border-left: none;    
+}
+.noneBorderT
+{
+    border-top: none;
+}
+.noneBorderB
+{
+    border-bottom: none;
+}
+.gameTitle
+{
+    text-align: center;
+    font-weight: bold;
+    width: 70px;
+    border-left: none;
+}
+.ptTitle
+{
+    text-align: center;
+    font-weight: bold;
+}
+.R
+{
+    text-align: right;
+}
+.C
+{
+    text-align: center;
+}
+select
+{
+    height: 18px;
+}
