@@ -7,7 +7,57 @@ if (typeof Fanex.CustomerSetting == 'undefined') {
 }
 
 Fanex.CustomerSetting.Core = {
+    DecodeHtml: function (str) {
+        return $("<div/>").html(str).text();
+    },
 
+    EncodeHtml: function(str){
+        return $('<div/>').text(str).html();
+    },
+
+    FormatNumber: function (number) { // Format a number to 1,234,567.89
+        number += '';
+
+        x = number.split('.');
+        x1 = x[0];
+        x2 = x.length > 1 ? '.' + x[1] : '';
+        var rgx = /(\d+)(\d{3})/;
+        while (rgx.test(x1)) {
+            x1 = x1.replace(rgx, '$1' + ',' + '$2');
+        }
+        return x1 + x2;
+    },
+
+    ReplaceAll: function (src, args, replace) {
+        while (src.indexOf(args) != -1) {
+            src = src.replace(args, replace);
+        }
+
+        return src;
+    },
+
+    CheckNumber: function (evt, ele) {
+        ele.value = Fanex.CustomerSetting.Core.FormatNumber(Fanex.CustomerSetting.Core.ReplaceAll(ele.value, ',', ''));
+
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        var ret = true;
+
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            ret = false;
+        }
+
+        if (ele && ele.value.length > 1 && ele.value.indexOf('0') == 0) {
+            while (ele.value.indexOf('0') == 0 && ele.value.length > 1) {
+                ele.value = ele.value.substring(1);
+                ele.value = Fanex.CustomerSetting.Core.FormatNumber(Fanex.CustomerSetting.Core.ReplaceAll(ele.value, ',', ''));
+            }
+        }
+        else if (ele && ele.value.length == 0) {
+            ele.value = '0';
+        }
+
+        return ret;
+    }
 }
 
 String.prototype.formatErrorMessage = function () {
