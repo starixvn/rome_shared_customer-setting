@@ -21,6 +21,7 @@ using Fanex.NAP.Core.Web.Session;
 using Newtonsoft.Json;
 using Fanex.ExternalAccount.Controllers.Base;
 using Fanex.NAP.Core.Service.Impl;
+using Newtonsoft.Json.Serialization;
 
 namespace Fanex.CustomerSetting.Module.Core.Web.Controllers
 {
@@ -163,6 +164,7 @@ namespace Fanex.CustomerSetting.Module.Core.Web.Controllers
                 settings = new JsonSerializerSettings();
                 settings.NullValueHandling = NullValueHandling.Ignore;
                 settings.Formatting = Formatting.Indented;
+                settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             }
 
             return new JsonBase(data, settings);

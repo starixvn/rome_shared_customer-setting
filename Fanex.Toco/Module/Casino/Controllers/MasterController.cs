@@ -15,12 +15,5 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
             return PartialView("~/Areas/CustomerSetting/Views/Casino/Master/EditMaster.cshtml", customerSetting);
         }
-
-        public ActionResult MasterModel(int id, int uplineId)
-        {
-            var customerSetting = CasinoManager.Instance.MasterCasinoModel(id, uplineId);
-
-            return JsonBase(customerSetting);
-        }
     }
 }

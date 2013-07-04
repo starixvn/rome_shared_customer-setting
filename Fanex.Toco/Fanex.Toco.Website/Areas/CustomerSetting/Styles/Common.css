@@ -56,15 +56,10 @@
 	width: 17px;
 	cursor: pointer;
 }
-select
-{
-    width: 61px !important;
-}
 html, body
 {
 	font-size: 11px;
 	color: #444;
-	font-size: 12pt;
 	font-family: Tahoma, Helvetica, Arial, sans-serif;
 }
 div#settingContainer,div#custInfo
@@ -104,11 +99,12 @@ td
 {
     border: none;
     border-color: #ccc; 
-    border-collapse: collapse; 
-    border-style: none;
+    border-collapse: collapse;
+    border-style: none; 
     width: 100%;
     min-width: 1024px;
     margin: 0;
+    border-width: 1px;    
 }
 .tableInfo tr
 {
@@ -172,7 +168,8 @@ td
 {
     text-align: center;
 }
-select
+select,.select
 {
-    height: 18px;
+    height: 18px !important;
+    width: 65px !important;    
 }

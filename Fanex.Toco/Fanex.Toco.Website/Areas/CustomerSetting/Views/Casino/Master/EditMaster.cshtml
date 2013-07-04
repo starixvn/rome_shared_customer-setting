@@ -4,13 +4,20 @@
     var j = 0;
     var isPtByGameType = true;
     //var isPtByGameType = Model.IsPtByGameType;
+    Model.IsPtByGameType = isPtByGameType;// For testing purpose only
+    var settingModel = Newtonsoft.Json.JsonConvert.SerializeObject(Model, new Newtonsoft.Json.JsonSerializerSettings
+        {
+            ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver(),
+            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore
+        });    
 }
 <link href="@Url.Content("~/Areas/CustomerSetting/Styles/Common.css")" rel="stylesheet" type="text/css" />
 <link href="@Url.Content("~/Areas/CustomerSetting/Views/Casino/Styles/Casino.css")" rel="stylesheet" type="text/css" />
 <script src="@Url.Content("~/Scripts/_Libs/jQuery/Core/jquery.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Areas/CustomerSetting/Scripts/Fanex.CustomerSetting.Core.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Areas/CustomerSetting/Views/Casino/Scripts/Fanex.CustomerSetting.Casino.js")" type="text/javascript"></script>
-<div id="product" style="width: 1026px">
+<script src="@Url.Content("~/Areas/CustomerSetting/Views/Casino/Scripts/Fanex.CustomerSetting.Casino.EditMaster.js")" type="text/javascript"></script>
+<div id="product" style="width: 1024px">
     <div id="errMsg" style="display: none;" class="errMsg">
     </div>
     <div id="arrowUpDown" class="collapse">
@@ -33,10 +40,11 @@
             var isAuto = gameSetting.Is3 == true ? "checked=\"checked\"" : string.Empty;
             var disabled = gameSetting.Is3 == true ? "disabled=\"disabled\"" : string.Empty;
             var disabledIsAuto = gameSetting.Is3 == false ? "disabled=\"disabled\"" : string.Empty;
+            var maxPtMaster = gameSetting.S4 - gameSetting.S3;
             
-        <table id="casinoGame_@i" class="tableInfo" border="1" cellpadding="1" cellspacing="2">
+        <table id="casinoGame_@i" class="tableInfo" border="1" cellpadding="0" cellspacing="0">
             <tr>
-                <td style="border-top: none" colspan="2" class="noneBorderL" style="width: 310px">&nbsp;</td>
+                <td style="border-top: none" colspan="2" class="noneBorderL" style="width: 230px">&nbsp;</td>
                 <td style="border-top: none"  class="ptTitle">Super Preset PT</td>
                 <td style="border-top: none"  class="ptTitle">Super Auto PT</td>
                 <td style="border-top: none"  class="ptTitle">Master Max PT</td>
@@ -44,12 +52,12 @@
                 <td style="border-top: none"  class="ptTitle noneBorderR">Master Commission</td>
             </tr>
             <tr>
-                <td id="rowspanCasino_@i" rowspan="@rowSpan" class="gameTitle">@gameSetting.GameGroupName</td>                
-                <td class="ptTitle R" style="width: 135px">Group Setting</td>
+                <td id="rowspanCasino_@i" rowspan="@rowSpan" class="gameTitle" style="width: 80px">@gameSetting.GameGroupName</td>                
+                <td class="ptTitle R" style="width: 150px">Group Setting</td>
                 <td class="C">
                     <span class="spanPT">
-                        <select @disabled id="pt_1_@i" name="pt_1_@i" onchange="PTChanging(this, '_@i')" style="position: relative;">
-                            <option>@gameSetting.S3</option>
+                        <select min = "0" max = "@gameSetting.S4" step="0.01" @disabled id="pt_1_@i" name="pt_1_@i"  style="position: relative;">
+                            <option value="@gameSetting.S3">@gameSetting.S3</option>
                         </select>
                         <input type="button" class="btnPTDown" onclick="PT_Reduce('pt_1_@i', 1);" />
                         <input type="button" class="btnPTUp" onclick="PT_Increase('pt_1_@i', 1);" />
@@ -59,9 +67,9 @@
                 </td>
                 <td class="C">
                     <span class="spanPT">
-                        <input @isAuto type="checkbox" name="chkAutoPT_@i" id="chkAutoPT_@i" onclick="checkPT(this, '_@i');" style="vertical-align: middle;" />
-                        <select @disabledIsAuto id="pt_2_@i" name="pt_2_@i" style="position: relative;" onchange="PTChanging(this, '_@i')">
-                            <option>@gameSetting.Us3</option>
+                        <input @isAuto type="checkbox" name="chkAutoPT" id="chkAutoPT_@i" style="vertical-align: middle;" />
+                        <select min = "0" max = "@gameSetting.S4" step="0.01" @disabledIsAuto id="pt_2_@i" name="pt_2_@i" style="position: relative;" >
+                            <option value="@gameSetting.Us3">@gameSetting.Us3</option>
                         </select>
                         <input type="button" class="btnPTDown" onclick="PT_Reduce('pt_2_@i', 1);" />
                         <input type="button" class="btnPTUp" onclick="PT_Increase('pt_2_@i', 1);" />
@@ -71,8 +79,8 @@
                 </td>
                 <td class="C">
                     <span class="spanPT">
-                        <select id="pt_3_@i" name="pt_3" onchange="PTChanging(this, '_@i')" style="position: relative;">
-                            <option>@gameSetting.M3</option>
+                        <select min = "0" max = "@maxPtMaster" step="0.01" id="pt_3_@i" name="pt_3_@i"  style="position: relative;">
+                            <option value="@gameSetting.M3">@gameSetting.M3</option>
                         </select>
                         <input type="button" class="btnPTDown" onclick="PT_Reduce('pt_3_@i', 1);" />
                         <input type="button" class="btnPTUp" onclick="PT_Increase('pt_3_@i', 1);" />
@@ -82,8 +90,8 @@
                 </td>
                 <td class="C">
                     <span class="spanPT">
-                        <select id="pt_4_@i" name="pt_4_@i" onchange="PTChanging(this, '_@i')" style="position: relative;">
-                            <option>@gameSetting.N3</option>
+                        <select min = "0" max = "@maxPtMaster" step="0.01" id="pt_4_@i" name="pt_4_@i"  style="position: relative;">
+                            <option value="@gameSetting.N3">@gameSetting.N3</option>
                         </select>
                         <input type="button" class="btnPTDown" onclick="PT_Reduce('pt_4_@i', 1);" />
                         <input type="button" class="btnPTUp" onclick="PT_Increase('pt_4_@i', 1);" />
@@ -93,8 +101,8 @@
                 </td>
                 <td class="noneBorderR C">
                     <span class="spanPT">
-                        <select id="comm_5_@i" name="comm_5_@i" onchange="PTChanging(this, '_@i')" style="position: relative;">
-                            <option>@gameSetting.MasterCommission</option>
+                        <select min = "0" max = "@gameSetting.SuperCommission" step="0.0005" id="comm_5_@i" name="comm_5_@i"  style="position: relative;">
+                            <option value="@gameSetting.MasterCommission">@gameSetting.MasterCommission</option>
                         </select>
                         <input type="button" class="btnPTDown" onclick="PT_Reduce('comm_5_@i', 1);" />
                         <input type="button" class="btnPTUp" onclick="PT_Increase('comm_5_@i', 1);" />
@@ -112,7 +120,8 @@
             isAuto = gameType.Is3 == true ? "checked=\"checked\"" : string.Empty;
             disabled = gameType.Is3 == true ? "disabled=\"disabled\"" : string.Empty;
             disabledIsAuto = gameType.Is3 == false ? "disabled=\"disabled\"" : string.Empty;
-            
+            maxPtMaster = gameType.S4 - gameType.S3;
+                        
             if (isPtByGameType)
             {
             <tr>
@@ -121,39 +130,39 @@
                 </td>
                 <td class="C">
                     <span class="spanPT">
-                        <select @disabled id="pt_1_@subid" name="pt_1_@subid" onchange="PTChanging(this, '_@subid', @uplineMax)" style="position: relative;">
-                            <option>@gameType.S3</option>
+                        <select min = "0" max = "@gameType.S4" step="0.01" @disabled id="pt_1_@subid" name="pt_1_@subid" style="position: relative;">
+                            <option value="@gameType.S3">@gameType.S3</option>
                         </select>
-                    </span>
+                    </span><span id="lbl_pt_1_@subid" class="hideWarningPT">*</span>
                 </td>
                 <td class="C">
                     <span class="spanPT">
-                        <input @isAuto type="checkbox" name="chkAutoPT" id="chkAutoPT" onclick="checkPT(this, '_@subid');" style="vertical-align: middle;" />
-                        <select @disabledIsAuto id="pt_2_@subid" name="pt_2_@subid" style="position: relative;" onchange="PTChanging(this, '_@subid', @uplineMax)">
-                            <option>@gameType.Us3</option>
+                        <input @isAuto type="checkbox" name="chkAutoPT" id="chkAutoPT_@subid" style="vertical-align: middle;" />
+                        <select min = "0" max = "@gameType.S4" step="0.01" @disabledIsAuto id="pt_2_@subid" name="pt_2_@subid" style="position: relative;" >
+                            <option value="@gameType.Us3">@gameType.Us3</option>
                         </select>
-                    </span>
+                    </span><span id="lbl_pt_2_@subid" class="hideWarningPT">*</span>
                 </td>
                 <td class="C">
                     <span class="spanPT">
-                        <select id="pt_3_@subid" name="pt_3_@subid" onchange="PTChanging(this, '_@subid', @max)" style="position: relative;">
-                            <option>@gameType.M3</option>
+                        <select min = "0" max = "@maxPtMaster" step="0.01" id="pt_3_@subid" name="pt_3_@subid" style="position: relative;">
+                            <option value="@gameType.M3">@gameType.M3</option>
                         </select>
-                    </span>
+                    </span><span id="lbl_pt_3_@subid" class="hideWarningPT">*</span>
                 </td>
                 <td class="C">
                     <span class="spanPT">
-                        <select id="pt_4_@subid" name="pt_4_@subid" onchange="PTChanging(this, '_@subid', @max)" style="position: relative;">
-                            <option>@gameType.N3</option>
+                        <select min = "0" max = "@maxPtMaster" step="0.01" id="pt_4_@subid" name="pt_4_@subid" style="position: relative;">
+                            <option value="@gameType.N3">@gameType.N3</option>
                         </select>
-                    </span>
+                    </span><span id="lbl_pt_4_@subid" class="hideWarningPT">*</span>
                 </td>
                 <td class="noneBorderR C">
                     <span class="spanPT">
-                        <select id="comm_5_@subid" name="comm_5_@subid" onchange="PTChanging(this, '_@subid')" style="position: relative;">
-                            <option>@gameType.MasterCommission</option>
+                        <select min = "0" max = "@gameType.SuperCommission" step="0.0005" id="comm_5_@subid" name="comm_5_@subid" style="position: relative;">
+                            <option value="@gameType.MasterCommission">@gameType.MasterCommission</option>
                         </select>
-                    </span>
+                    </span><span id="lbl_comm_5_@subid" class="hideWarningPT">*</span>
                 </td>                
             </tr>
             <tr>
@@ -187,24 +196,15 @@
         }            
         </table>
         i++;
+        j = 0;
         }    
         </div>        
     <div style="text-align: right">
         <input class="buttonPopup btnTop" type="button" value="Submit" data-bind='click: saveCustomer' />
     </div>
     <script type="text/javascript">
-        var model = null;
-
-        $.ajax({
-            url: '@Url.Content("~/CustomerSetting/Casino/Master/MasterModel")',
-            data: { id: 1373580, uplineId: 1373389 },
-            type: 'post',
-            dataType: 'json'
-        })
-        .success(function (result) {
-            model = result;
-            console.log(model);
-        });
+        var model = Fanex.CustomerSetting.Casino.customer = $.parseJSON(Fanex.CustomerSetting.Core.DecodeHtml('@settingModel'));
+        console.log(model);
 
         function toUrl(relativeUrl){
             return '@Url.Content("~/CustomerSetting/Casino/")' + relativeUrl;

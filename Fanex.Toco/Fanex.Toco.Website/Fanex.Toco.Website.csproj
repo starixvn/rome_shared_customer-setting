@@ -140,6 +140,7 @@
     <Content Include="Areas\Common\Views\Shared\Scripts\Fanex.CustomerSetting.js" />
     <Content Include="Areas\CustomerSetting\Scripts\Fanex.CustomerSetting.Core.js" />
     <Content Include="Areas\CustomerSetting\Scripts\_references.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\Fanex.CustomerSetting.Casino.EditMaster.js" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\Fanex.CustomerSetting.Casino.js" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Styles\Casino.css" />
     <Content Include="Areas\CustomerSetting\Images\btn-bgsubmit-hover.png" />

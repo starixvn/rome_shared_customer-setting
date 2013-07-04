@@ -26,114 +26,21 @@ Fanex.CustomerSetting.Casino = {
             $('#statusInfo').remove();
         }
 
-        $('#chkEnableDownline').hide();
-        $('#enableDownlineText').hide();
-
-        $('#downline').html('Master');
-        $('#member').remove();
-        $('#agent').remove();
-        $('#sagent').remove();
-        $('#smember').remove();
-        $('#mmember').remove();
-        this.colspan = 5;
-
-        $.ajax({
-            url: toUrl('Casino/EditCasinoPost'),
-            type: 'post',
-            data: Fanex.CustomerSetting.Casino.custInfo,
-            dataType: 'json'
-        })
-        .success(function (result) {
-            Fanex.CustomerSetting.Casino.customer = result;
-
-            Fanex.CustomerSetting.Casino.RenderSetting(result);
-
-            Fanex.CustomerSetting.Casino.RenderPT(result.pts);
-
-            Fanex.CustomerSetting.Casino.CasinoModel = function () {
-                this.saveCustomer = function () {
-                    $('#windowPopup').scrollTop(0);
-
-                    if (Fanex.CustomerSetting.Casino.IsMultiple) {
-                        Fanex.CustomerSetting.Casino.UpdateSetting(0);
-                    }
-                    else {
-                        Fanex.CustomerSetting.Casino.UpdateSetting(null);
-                    }
-                }
-            }
-
-            //ko.applyBindings(new Fanex.CustomerSetting.Casino.CasinoModel());
-        })
-        .error(function (data, status, err) {
-            if (typeof console != 'undefined') {
-                console.log(data.responseText);
-            }
-        });
-
         var level = $('#downline').html();
         var timeout = setTimeout(function () {
             clearTimeout(timeout);
-            Fanex.CustomerSetting.Casino.enabled = document.getElementById('chkEnable').checked;
-        }, 2000);
-    },
+            Fanex.CustomerSetting.Casino.enabled = $('#chkEnable').is(':checked');
 
-    RenderSetting: function (result) {
-        var isPtByGameType = this.customer.casinoInfo.pTByGameType;
-        var rowspan = isPtByGameType ? ' rowspan="2" ' : ' rowspan="1" ';
-
-        // Renders casino games setting
-        if (result && result.casinoGames.length > 0) {
-            var table = document.getElementById('casinoGame');
-            var parent = document.getElementById('casinoGame').parentNode;
-
-            for (var i = 0; i < result.casinoGames.length; i++) {
-                var games = result.casinoGames[i];
-
-                for (var j = 0; j < games.length; j++) {
-                    var gameName = games[j].gameTypeName;
-                    var stakeLevels = '';
-
-                    for (var k = 0; k < games[j].stakeLevels.length; k++) {
-                        var checked = '';
-
-                        if (games[j].stakeLevels[k].isChecked) {
-                            checked = 'checked="checked"';
-                        }
-
-                        stakeLevels += '<input ' + checked + ' type="checkbox" id="rng-' + games[j].stakeLevels[k].stakeLevelID + '" />' + games[j].stakeLevels[k].stakeLevelName;
-                    }
-
-                    var rowPT = isPtByGameType ? this.RenderPtByGameType(games[j].pt, i, '_rng') : '';
-                    var row = rowPT == '' ?
-                                '<tr>' +
-                                    '<td class="R">' + gameName + '</td>' +
-                                    '<td colspan="' + this.colspan + '" style="border-right: none">Betting limit:<span id="rng-bettingLimit-' + j + '">' + stakeLevels + '</span></td>' +
-                                '</tr>' :
-                                '<tr>' +
-                                    '<td class="R" ' + rowspan + '>' + gameName + '</td>' +
-                                    rowPT +
-                                '</tr>' +
-                                '<tr>' +
-                                    '<td colspan="' + this.colspan + '" style="border-right: none">Betting limit:<span id="rng-bettingLimit-' + j + '">' + stakeLevels + '</span></td>' +
-                                '</tr>';
-
-                    $('#casinoGame').append(row);
+            $('#chkEnable').bind('click', function () {
+                if (this.checked) {
+                    $('#downline').html(level);
                 }
+                else {
+                    $('#downline').html(level + ' (<font color="Red">Casino downlines will be disabled as well</font>)');
+                }
+            });
 
-                $('#rowspanCasino').attr('id', 'rowspanCasino_' + i);
-                $('#rowspanCasino_' + i).attr('rowspan', !isPtByGameType ? result.casinoGames[i].length + 1 : (result.casinoGames[i].length) * 2 + 1);
-                $('#rowspanCasino_' + i).html(result.pts[i].codeName);
-            }
-        }
-
-        if (Fanex.CustomerSetting.isSuperEditAgent) {
-            var checkboxes = $('input[type=checkbox]');
-
-            for (var i = 0; i < checkboxes.length; i++) {
-                checkboxes[i].disabled = true;
-            }
-        }
+        }, 2000);
     },
 
     RenderPT: function (pts) {
@@ -407,7 +314,7 @@ Fanex.CustomerSetting.Casino = {
         }
         }*/
     },
-
+        
     UpdateSetting: function (idx) {
         var min = parseFloat(Fanex.CustomerSetting.ReplaceAll($('#minCredit').text(), ',', ''));
         var max = parseFloat(Fanex.CustomerSetting.ReplaceAll($('#maxCredit').text(), ',', ''));
@@ -827,27 +734,38 @@ function PT_Reduce(id, f) {
     var combo = document.getElementById(id);
     if (combo.disabled) return;
 
-    var selectedIndex = combo.selectedIndex;
-
-    var newSelectedIndex = selectedIndex + f;
-    if (newSelectedIndex >= combo.options.length) newSelectedIndex = combo.options.length - 1;
-
-    combo.selectedIndex = newSelectedIndex;
-
-    if (combo.onchange) combo.onchange();
+    var step = parseFloat(combo.getAttribute('step'));
+    var roundPrec = step == 0.01 ? 100 : 10000;
+    var prec = step == 0.01 ? 2 : 4;
+    var cur = parseFloat(combo.value.toFixed(prec));    
+    var option = document.createElement('option');
+    var min = parseFloat(combo.getAttribute('min').toFixed(prec));
+    var max = parseFloat(combo.getAttribute('max').toFixed(prec));
+    var newValue = parseFloat((cur - step * f).toFixed(prec));
+    var value = newValue < min ? min : newValue > max ? max : newValue;
+    
+    option.text = option.value = value * roundPrec / roundPrec;
+    combo.length = 0;
+    combo.options.add(option);
 }
 
 function PT_Increase(id, f) {
     var combo = document.getElementById(id);
     if (combo.disabled) return;
 
-    var selectedIndex = combo.selectedIndex;
+    var step = parseFloat(combo.getAttribute('step'));
+    var roundPrec = step == 0.01 ? 100 : 10000;
+    var prec = step == 0.01 ? 2 : 4;
+    var cur = parseFloat(combo.value.toFixed(prec));
+    var option = document.createElement('option');
+    var min = parseFloat(combo.getAttribute('min').toFixed(prec));
+    var max = parseFloat(combo.getAttribute('max').toFixed(prec));
+    var newValue = parseFloat((cur + step * f).toFixed(prec));
+    var value = newValue < min ? min : newValue > max ? max : newValue;
 
-    var newSelectedIndex = selectedIndex - f;
-    if (newSelectedIndex <= 0) newSelectedIndex = 0;
-
-    combo.selectedIndex = newSelectedIndex;
-    if (combo.onchange) combo.onchange();
+    option.text = option.value = value * roundPrec / roundPrec;
+    combo.length = 0;
+    combo.options.add(option);
 }
 
 function PT_RenderCombo(combo, min, max, step, selectedValue) {
@@ -877,7 +795,6 @@ function PT_RenderCombo(combo, min, max, step, selectedValue) {
     for (var i = c; i >= 0; i--) {
         var f = Math.round(min * 100 + (i * step * 100)) / 100;
         var opt = document.createElement("option");
-
         if (selectedValue == f) {
             index = itemIndex;
             opt.selected = true;
@@ -895,34 +812,6 @@ function PT_RenderCombo(combo, min, max, step, selectedValue) {
         else
             combo.value = selectedValue;
     }
-}
-
-function PT_RenderOption(min, max, step, selectedValue) {
-    var option = '';
-    min = min > max ? max : min;
-
-    if (selectedValue > max) {
-        option = '<option value="' + ((selectedValue * 100) / 100) + '">' + ((selectedValue * 100) / 100) + '</option>';
-    }
-
-    var c = Math.round((max * 100 - min * 100) / (step * 100));
-
-    if (c <= 0) {
-        return '<option value="' + (Math.round(min * 100) / 100) + '">' + (Math.round(min * 100) / 100) + '</option>';
-    }
-
-    for (var i = c; i >= 0; i--) {
-        var f = Math.round(min * 100 + (i * step * 100)) / 100;
-        var selected = '';
-
-        if (selectedValue == f) {
-            selected = ' selected="selected"';
-        }
-
-        option += '<option value="' + f + '"' + selected + '>' + f + '</option>';
-    }
-
-    return option;
 }
 
 function Comm_RenderCombo(combo, min, max, step, selectedValue) {
@@ -964,32 +853,6 @@ function Comm_RenderCombo(combo, min, max, step, selectedValue) {
         else
             combo.value = selectedValue;
     }
-}
-
-function Comm_RenderOption(min, max, step, selectedValue) {
-    var option = '';
-
-    min = min > max ? max : min;
-    selectedValue = selectedValue > max ? max : selectedValue;
-
-    var c = Math.round((max * 10000 - min * 10000) / (step * 10000));
-
-    if (c <= 0) {
-        return '<option value="' + Math.round(min * 10000) / 10000 + '">' + Math.round(min * 10000) / 10000 + '</option>';
-    }
-
-    for (var i = c; i >= 0; i--) {
-        var f = Math.round(min * 10000 + (i * step * 10000)) / 10000;
-        var selected = '';
-
-        if (selectedValue == f) {
-            selected = ' selected="selected"';
-        }
-
-        option += '<option value="' + f + '"' + selected + '>' + f + '</option>';
-    }
-
-    return option;
 }
 
 function checkPT(el, sub_id, max) {
@@ -1078,6 +941,7 @@ function checkMinMaxPT(sub_id) {
 }
 
 function PTChanging(el, sub_id, max) {
+/*
     var ptByGameType = Fanex.CustomerSetting.Casino.customer.casinoInfo.pTByGameType;
     var isChangedGroupRnG = sub_id == '' && ptByGameType;
     var isChangedGroupMini = sub_id == '_1' && ptByGameType;
@@ -1164,7 +1028,7 @@ function PTChanging(el, sub_id, max) {
     }
     if (document.getElementById("pt_4" + sub_id)) {
         PT_RenderCombo2(document.getElementById("pt_4" + sub_id), 0, cur, 0.01, sub_id);
-    }
+    }*/
 }
 
 function PT_RenderCombo2(combo, min, max, step, sub_id) {
@@ -1214,5 +1078,5 @@ function PT_RenderCombo2(combo, min, max, step, sub_id) {
 }
 
 $(document).ready(function () {
-    //Fanex.CustomerSetting.Casino.Init();
+    Fanex.CustomerSetting.Casino.Init();
 });

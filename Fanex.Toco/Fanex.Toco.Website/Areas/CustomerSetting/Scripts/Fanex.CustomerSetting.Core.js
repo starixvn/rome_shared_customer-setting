@@ -60,6 +60,23 @@ Fanex.CustomerSetting.Core = {
     }
 }
 
+String.prototype.toFixed = function (precision, optionals) {
+    var value = parseFloat(this);
+
+    var power = Math.pow(10, precision),
+            output;
+
+    // Multiply up by precision, round accurately, then divide and use native toFixed():
+    output = (Math.round(value * power) / power).toFixed(precision);
+
+    if (optionals) {
+        var optionalsRegExp = new RegExp('0{1,' + optionals + '}$');
+        output = output.replace(optionalsRegExp, '');
+    }
+
+    return output;
+}
+
 String.prototype.formatErrorMessage = function () {
     var msg = this;
 

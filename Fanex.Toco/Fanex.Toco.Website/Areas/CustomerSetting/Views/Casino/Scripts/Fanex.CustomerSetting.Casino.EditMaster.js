@@ -1,0 +1,330 @@
+﻿/// <reference path="../../../Scripts/_references.js" />
+if (typeof $ == 'undefined' || typeof jQuery == 'undefined') {
+    alert("Require jQuery.js");
+}
+
+if (typeof Fanex == 'undefined' || typeof Fanex.CustomerSetting == 'undefined') {
+    alert("Require Fanex.CustomerSetting.Core.js");
+};
+
+if (typeof Fanex.CustomerSetting.Casino == 'undefined') {
+    alert("Require Fanex.CustomerSetting.Casino.js");
+};
+
+Fanex.CustomerSetting.Casino.EditMaster = {
+    Init: function () {
+        var selects = $('select');
+        var checkboxes = $('input[name=chkAutoPT]');
+        var isPtByGameType = Fanex.CustomerSetting.Casino.customer.isPtByGameType;
+
+        for (var i = 0; i < checkboxes.length; i++) {
+            $(checkboxes[i]).click(function () {
+                var checkbox = this;
+                var subid = checkbox.id.substring(9);
+
+                if (checkbox.checked) {
+                    $('#pt_1' + subid).attr('disabled', true);
+                    $('#pt_2' + subid).attr('disabled', false);
+
+                    var combo = $('#pt_2' + subid)[0];
+                }
+                else {
+                    $('#pt_1' + subid).attr('disabled', false);
+                    $('#pt_2' + subid).attr('disabled', true);
+                }
+
+                if (subid.length == 2 && isPtByGameType) {
+                    // Process checking for each game type
+                    for (var j = 0; j < checkboxes.length; j++) {
+                        var chk = checkboxes[j];
+                        var curSubId = chk.id.substring(9);
+
+                        if (curSubId.length > 2 && curSubId.substring(0, 2) == subid && checkbox.checked) {
+                            chk.checked = true;
+                            $('#pt_1' + curSubId).attr('disabled', true);
+                            $('#pt_2' + curSubId).attr('disabled', false);
+                        }
+                        else if (curSubId.length > 2 && curSubId.substring(0, 2) == subid && !checkbox.checked) {
+                            chk.checked = false;
+                            $('#pt_1' + curSubId).attr('disabled', false);
+                            $('#pt_2' + curSubId).attr('disabled', true);
+                        }
+                    }
+                }
+            });
+        }
+
+        for (var i = 0; i < selects.length; i++) {
+            $(selects[i]).mouseenter(function () {
+                var select = this;
+                var min = parseFloat(select.getAttribute('min'));
+                var max = parseFloat(select.getAttribute('max'));
+                var step = parseFloat(select.getAttribute('step'));
+
+                if (this.id.indexOf('pt') != -1 && select.options.length == 1) {
+                    PT_RenderCombo(select, min, max, step, parseFloat(this.value));
+                }
+                else if (select.options.length == 1) {
+                    Comm_RenderCombo(select, min, max, step, parseFloat(this.value));
+                }
+            });
+
+            $(selects[i]).click(function () {
+                var select = this;
+                var subid = select.id.substring(4);
+                var value = parseFloat(select.value);
+
+                if (select.id.indexOf('pt_1') != -1) {
+                    // Change master max pt                    
+                    var comboMax = $('#pt_3' + subid)[0];
+                    var maxMax = parseFloat(select.getAttribute('max')) - value;
+                    var curMax = parseFloat(comboMax.value);
+
+                    curMax = curMax > maxMax ? maxMax : curMax;
+                    curMax = parseFloat(curMax.toFixed(2)) * 100 / 100;
+
+                    PT_RenderCombo(comboMax, curMax, curMax, 0.01, curMax);
+                    comboMax.setAttribute('max', maxMax.toFixed(2));
+
+                    var comboMin = $('#pt_4' + subid)[0];
+                    var maxMin = parseFloat(comboMax.getAttribute('max'));
+                    var curMin = parseFloat(comboMin.value);
+
+                    curMin = curMin > maxMin ? maxMin : curMin;
+                    curMin = parseFloat(curMin.toFixed(2)) * 100 / 100;
+
+                    PT_RenderCombo(comboMin, curMin, curMin, 0.01, curMin);
+                    comboMin.setAttribute('max', maxMin.toFixed(2));
+                }
+                else if (select.id.indexOf('pt_3') != -1) {
+                    // Master max pt is changing then change master min pt also
+                    var combo = $('#pt_4' + subid)[0];
+                    var max = parseFloat(select.value); // M3
+                    var curMin = parseFloat(combo.value); // N3
+                    curMin = curMin > max ? max : curMin;
+
+                    PT_RenderCombo(combo, curMin, curMin, 0.01, curMin);
+                    combo.setAttribute('max', max.toFixed(2));
+                }
+            });
+
+            $(selects[i]).change(function () {
+                var select = this;
+                var value = parseFloat(select.value);
+                var subid = select.id.substring(4);
+
+                if (select.id.indexOf('pt_1') != -1) {
+                    // Change master max pt                    
+                    var comboMax = $('#pt_3' + subid)[0];
+                    var maxMax = parseFloat(select.getAttribute('max')) - value;
+                    var curMax = parseFloat(comboMax.value);
+
+                    curMax = curMax > maxMax ? maxMax : curMax;
+                    curMax = parseFloat(curMax.toFixed(2)) * 100 / 100;
+
+                    PT_RenderCombo(comboMax, curMax, curMax, 0.01, curMax);
+                    comboMax.setAttribute('max', maxMax.toFixed(2));
+
+                    var comboMin = $('#pt_4' + subid)[0];
+                    var maxMin = parseFloat(comboMax.getAttribute('max'));
+                    var curMin = parseFloat(comboMin.value);
+
+                    curMin = curMin > maxMin ? maxMin : curMin;
+                    curMin = parseFloat(curMin.toFixed(2)) * 100 / 100;
+
+                    PT_RenderCombo(comboMin, curMin, curMin, 0.01, curMin);
+                    comboMin.setAttribute('max', maxMin.toFixed(2));
+
+                    if (isPtByGameType) {
+                        // Change pt (S3, M3, N3) for each game type
+                        for (var j = 0; j < selects.length; j++) {
+                            Fanex.CustomerSetting.Casino.EditMaster.ChangeSuperPtByGameType(selects[j], subid);
+                            Fanex.CustomerSetting.Casino.EditMaster.ChangeMasterMaxPtByGameType(selects[j], subid);
+                            Fanex.CustomerSetting.Casino.EditMaster.ChangeMasterMinPtByGameType(selects[j], subid);
+                        }
+                    }
+                }
+                else if (select.id.indexOf('pt_2') != -1) {
+                    // Super auto pt is changing
+                    if (isPtByGameType) {
+                        // Change pt (Us3) for each game type
+                        for (var j = 0; j < selects.length; j++) {
+                            Fanex.CustomerSetting.Casino.EditMaster.ChangeSuperAutoPtByGameType(selects[j], subid);
+                        }
+                    }
+                }
+                else if (select.id.indexOf('pt_3') != -1) {
+                    // Master max pt is changing then change master min pt also
+                    var combo = $('#pt_4' + subid)[0];
+                    var max = parseFloat(select.value); // M3
+                    var curMin = parseFloat(combo.value); // N3
+                    curMin = curMin > max ? max : curMin;
+
+                    PT_RenderCombo(combo, curMin, curMin, 0.01, curMin);
+                    combo.setAttribute('max', max.toFixed(2));
+
+                    if (isPtByGameType) {
+                        for (var j = 0; j < selects.length; j++) {
+                            Fanex.CustomerSetting.Casino.EditMaster.ChangeMasterMaxPtByGameType(selects[j], subid);
+                            Fanex.CustomerSetting.Casino.EditMaster.ChangeMasterMinPtByGameType(selects[j], subid);
+                        }
+                    }
+                }
+                else if (select.id.indexOf('pt_4') != -1) {
+                    if (isPtByGameType) {
+                        for (var j = 0; j < selects.length; j++) {
+                            Fanex.CustomerSetting.Casino.EditMaster.ChangeMasterMinPtByGameType(selects[j], subid);
+                        }
+                    }
+                }
+                else if (select.id.indexOf('comm_5') != -1) {
+                    if (isPtByGameType) {
+                        subid = select.id.substring(6);
+
+                        for (var j = 0; j < selects.length; j++) {
+                            Fanex.CustomerSetting.Casino.EditMaster.ChangeMasterCommByGameType(selects[j], subid);
+                        }
+                    }
+                }
+            });
+
+            $(selects[i]).blur(function () {
+                var value = this.value;
+                this.options.length = 0;
+                var opt = document.createElement('option');
+                opt.text = opt.value = value;
+                this.options.add(opt);
+            });
+        }
+    },
+
+    ChangeSuperPtByGameType: function (select, subid) {
+        if (select.id.indexOf('pt_1' + subid) != -1) {
+            // Change all S3
+            var curSubid = select.id.substring(4);
+            var cur = parseFloat($('#pt_1' + subid).val());
+            var min = parseFloat(select.getAttribute('min'));
+            var max = parseFloat(select.getAttribute('max'));
+            var isWarning = cur > max;
+            cur = cur > max ? max : cur;
+
+            if (curSubid.length > 2) {
+                PT_RenderCombo(select, cur, cur, 0.01, cur);
+
+                document.getElementById('pt_1' + curSubid).click();
+
+                // Check to show warning asterisk for S3
+                if (isWarning) {
+                    $('#lbl_pt_1' + curSubid).attr('class', 'showWarningPT');
+                }
+                else {
+                    $('#lbl_pt_1' + curSubid).attr('class', 'hideWarningPT');
+                }
+            }
+        }
+    },
+
+    ChangeSuperAutoPtByGameType: function (select, subid) {
+        if (select.id.indexOf('pt_2' + subid) != -1) {
+            // Change all Us3
+            var curSubid = select.id.substring(4);
+            var cur = parseFloat($('#pt_2' + subid).val());
+            var min = parseFloat(select.getAttribute('min'));
+            var max = parseFloat(select.getAttribute('max'));
+            var isWarning = cur > max;
+            cur = cur > max ? max : cur;
+
+            if (curSubid.length > 2) {
+                PT_RenderCombo(select, cur, cur, 0.01, cur);
+
+                document.getElementById('pt_2' + curSubid).click();
+
+                // Check to show warning asterisk for Us3
+                if (isWarning) {
+                    $('#lbl_pt_2' + curSubid).attr('class', 'showWarningPT');
+                }
+                else {
+                    $('#lbl_pt_2' + curSubid).attr('class', 'hideWarningPT');
+                }
+            }
+        }
+    },
+
+    ChangeMasterMaxPtByGameType: function (select, subid) {
+        if (select.id.indexOf('pt_3' + subid) != -1) {
+            // Change all M3
+            var curSubid = select.id.substring(4);
+            var cur = parseFloat($('#pt_3' + subid).val());
+            var min = parseFloat(select.getAttribute('min'));
+            var max = parseFloat(select.getAttribute('max'));
+            var isWarning = cur > max;
+            cur = cur > max ? max : cur;
+
+            if (curSubid.length > 2) {
+                PT_RenderCombo(select, cur, cur, 0.01, cur);
+
+                document.getElementById('pt_3' + curSubid).click();
+
+                // Check to show warning asterisk for M3
+                if (isWarning) {
+                    $('#lbl_pt_3' + curSubid).attr('class', 'showWarningPT');
+                }
+                else {
+                    $('#lbl_pt_3' + curSubid).attr('class', 'hideWarningPT');
+                }
+            }
+        }
+    },
+
+    ChangeMasterMinPtByGameType: function (select, subid) {
+        if (select.id.indexOf('pt_4' + subid) != -1) {
+            // Change all N3
+            var curSubid = select.id.substring(4);
+            var cur = parseFloat($('#pt_4' + subid).val());
+            var min = parseFloat(select.getAttribute('min'));
+            var max = parseFloat(select.getAttribute('max'));
+            var isWarning = cur > max;
+            cur = cur > max ? max : cur;
+
+            if (curSubid.length > 2) {
+                PT_RenderCombo(select, cur, cur, 0.01, cur);
+
+                // Check to show warning asterisk for N3
+                if (isWarning) {
+                    $('#lbl_pt_4' + curSubid).attr('class', 'showWarningPT');
+                }
+                else {
+                    $('#lbl_pt_4' + curSubid).attr('class', 'hideWarningPT');
+                }
+            }
+        }
+    },
+
+    ChangeMasterCommByGameType: function (select, subid) {
+        if (select.id.indexOf('comm_5' + subid) != -1) {
+            // Change all N3
+            var curSubid = select.id.substring(6);
+            var cur = parseFloat($('#comm_5' + subid).val());
+            var min = parseFloat(select.getAttribute('min'));
+            var max = parseFloat(select.getAttribute('max'));
+            var isWarning = cur > max;
+            cur = cur > max ? max : cur;
+
+            if (curSubid.length > 2) {
+                Comm_RenderCombo(select, cur, cur, 0.0005, cur);
+
+                // Check to show warning asterisk for Master commission
+                if (isWarning) {
+                    $('#lbl_comm_5' + curSubid).attr('class', 'showWarningPT');
+                }
+                else {
+                    $('#lbl_comm_5' + curSubid).attr('class', 'hideWarningPT');
+                }
+            }
+        }
+    }
+};
+
+$(document).ready(function () {
+    Fanex.CustomerSetting.Casino.EditMaster.Init();
+});

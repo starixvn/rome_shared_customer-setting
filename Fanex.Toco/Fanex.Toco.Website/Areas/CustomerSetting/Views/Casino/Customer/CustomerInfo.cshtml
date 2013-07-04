@@ -1,13 +1,13 @@
-﻿@model Fanex.ExternalAccount.DTO.Customer.Casino.CasinoCustomer
+﻿@using Fanex.ExternalAccount.Utilities
+@model Fanex.ExternalAccount.DTO.Customer.Casino.CasinoCustomer
 @{
     var check = Model.IsAutoReset ? " checked=\"checked=\"" : string.Empty;
     var enable = !Model.CasinoDisabled && Model.CasinoSync ? " checked=\"checked\"" : string.Empty;
-    var isPtByGameType = Model.PTByGameType;
 }
 <div id="custInfo">
     <div class="headerPositionTaking noneBorderLR" style="border-bottom: 0; border-top: 1px solid #ccc">
         General Information</div>
-    <table border="1" cellpadding="1" cellspacing="2" class="tableInfo" style="border-collapse: collapse">
+    <table border="1" cellpadding="0" cellspacing="0" class="tableInfo">
         <tr>
             <td class="tdTitleLeft">Username</td>
             <td style="width: 35%"><span>@Model.UserName</span></td>
@@ -45,21 +45,21 @@
     </table>
     <div style="border-bottom: none" class="headerPositionTaking noneBorderLR">
         Bet Setting</div>
-    <table border="1" cellpadding="1" cellspacing="2" class="tableInfo">
+    <table border="1" cellpadding="0" cellspacing="0" class="tableInfo">
         <tr>
             <td style="border-left: none; width: 40%" class="tdTitleRight">Accumulated transferable amount</td>
-            <td style="width: 60%; border-right: none"><span style="margin-left: 6px">@Model.TotalWinLoss</span></td>
+            <td style="width: 60%; border-right: none"><span style="margin-left: 5px">@Utils.ToStringFormat(@Model.TotalWinLoss)</span></td>
         </tr>
         <tr>
             <td style="border-left: none" class="tdTitleRight">Member Max Transfer Credit</td>
             <td style="border-right: none">
-                <div style="float: left; height: 24px"><input id="maxTransfer" style="height: 20px !important" onpaste="return false;" onkeypress="return Fanex.CustomerSetting.Core.CheckNumber(event, this)" onkeyup="return Fanex.CustomerSetting.Core.CheckNumber(event, this)" maxlength="13" type="text" value="@Model.MaxTransferCredit" /></div>
+                <div style="float: left; height: 24px"><input id="maxTransfer" style="height: 20px !important" onpaste="return false;" onkeypress="return Fanex.CustomerSetting.Core.CheckNumber(event, this)" onkeyup="return Fanex.CustomerSetting.Core.CheckNumber(event, this)" maxlength="13" type="text" value="@Utils.ToStringFormat(@Model.MaxTransferCredit, 2)" /></div>
                 <div style="float: left; height: 24px;"><input style="margin-top: 5px" id="isAutoReset" type="checkbox" @check /><label for="isAutoReset">Daily auto reset limit (at 12 noon GMT+8)</label></div>
             </td>           
         </tr>
         <tr>
             <td style="border-left: none"></td>
-            <td style="border-right: none">(<span id="minCredit">@Model.MinTransferCreditLimit</span>&nbsp;-&nbsp;<span id="maxCredit">@Model.MaxTransferCreditLimit</span>)</td>                    
+            <td style="border-right: none">(<span id="minCredit">@Utils.ToStringFormat(@Model.MinTransferCreditLimit)</span>&nbsp;-&nbsp;<span id="maxCredit">@Utils.ToStringFormat(@Model.MaxTransferCreditLimit)</span>)</td>                    
         </tr>
     </table>
 </div>
