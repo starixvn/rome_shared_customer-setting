@@ -747,6 +747,8 @@ function PT_Reduce(id, f) {
     option.text = option.value = value * roundPrec / roundPrec;
     combo.length = 0;
     combo.options.add(option);
+
+    $(combo).change();
 }
 
 function PT_Increase(id, f) {
@@ -766,6 +768,8 @@ function PT_Increase(id, f) {
     option.text = option.value = value * roundPrec / roundPrec;
     combo.length = 0;
     combo.options.add(option);
+
+    $(combo).change();
 }
 
 function PT_RenderCombo(combo, min, max, step, selectedValue) {
@@ -853,228 +857,6 @@ function Comm_RenderCombo(combo, min, max, step, selectedValue) {
         else
             combo.value = selectedValue;
     }
-}
-
-function checkPT(el, sub_id, max) {
-    var ptByGameType = Fanex.CustomerSetting.Casino.customer.casinoInfo.pTByGameType;
-    var isChangedGroupRnG = sub_id == '' && ptByGameType;
-    var isChangedGroupMini = sub_id == '_1' && ptByGameType;
-
-    if (el.checked) {
-        if (isChangedGroupRnG) {
-            var chkRnGs = $('input[name=_rng]');
-            for (var i = 0; i < chkRnGs.length; i++) {
-                chkRnGs[i].checked = true;
-                chkRnGs[i].onclick();
-            }
-        }
-        else if (isChangedGroupMini) {
-            var chkMinis = $('input[name=_mini]');
-            for (var i = 0; i < chkMinis.length; i++) {
-                chkMinis[i].checked = true;
-                chkMinis[i].onclick();
-            }
-        }
-
-        var synced = Fanex.CustomerSetting.Casino.customer.customerInfo.casinoSync;
-        if (document.getElementById('pt_1' + sub_id))
-            document.getElementById('pt_1' + sub_id).disabled = true;
-        if (document.getElementById('pt_2' + sub_id))
-            document.getElementById('pt_2' + sub_id).disabled = false;
-
-        var pt1 = document.getElementById('pt_1' + sub_id);
-        var pt3 = document.getElementById("pt_3" + sub_id);
-        var pt4 = document.getElementById("pt_4" + sub_id);
-        var maxPT = !max ? Fanex.CustomerSetting.Casino.customer.pts[sub_id != '' ? 1 : 0].maxPositionTakingUpline : max;
-
-        if (!synced) {
-            maxPT = !max ? Fanex.CustomerSetting.Casino.customer.pts[sub_id != '' ? 1 : 0].maxPositionTaking : max;
-        }
-
-        if (pt3)
-            PT_RenderCombo(pt3, 0, (maxPT - parseFloat(pt1.options[pt1.selectedIndex].value).toFixed(2)), 0.01, pt3.options[pt3.selectedIndex].value);
-        if (pt4)
-            PT_RenderCombo(pt4, 0, pt3.options[pt3.selectedIndex].value, 0.01, pt4.options[pt4.selectedIndex].value);
-    }
-    else {
-        if (isChangedGroupRnG) {
-            var chkRnGs = $('input[name=_rng]');
-            for (var i = 0; i < chkRnGs.length; i++) {
-                chkRnGs[i].checked = false;
-                chkRnGs[i].onclick();
-            }
-        }
-        else if (isChangedGroupMini) {
-            var chkMinis = $('input[name=_mini]');
-            for (var i = 0; i < chkMinis.length; i++) {
-                chkMinis[i].checked = false;
-                chkMinis[i].onclick();
-            }
-        }
-
-        if (document.getElementById('pt_1' + sub_id)) {
-            document.getElementById('pt_1' + sub_id).disabled = false;
-            PTChanging(document.getElementById('pt_1' + sub_id));
-        }
-        if (document.getElementById('pt_2' + sub_id))
-            document.getElementById('pt_2' + sub_id).disabled = true;
-    }
-}
-
-function checkMaxPT(sub_id) {
-    if (document.getElementById('pt_3' + sub_id) && document.getElementById('pt_4' + sub_id)) {
-        PT_RenderCombo2(document.getElementById("pt_4" + sub_id), 0, document.getElementById('pt_3' + sub_id).value, 0.01, sub_id);
-        if (parseFloat(document.getElementById('pt_3' + sub_id).value) < parseFloat(document.getElementById('pt_4' + sub_id).value)) {
-            document.getElementById('pt_4' + sub_id).value = document.getElementById('pt_3' + sub_id).value;
-        }
-    }
-
-    return true;
-}
-
-function checkMinMaxPT(sub_id) {
-    if (document.getElementById('pt_3' + sub_id) && document.getElementById('pt_4' + sub_id)) {
-        document.getElementById('pt_3' + sub_id).onchange = function () {
-            checkMaxPT(sub_id);
-        }
-    }
-}
-
-function PTChanging(el, sub_id, max) {
-/*
-    var ptByGameType = Fanex.CustomerSetting.Casino.customer.casinoInfo.pTByGameType;
-    var isChangedGroupRnG = sub_id == '' && ptByGameType;
-    var isChangedGroupMini = sub_id == '_1' && ptByGameType;
-    var sel = parseFloat(el.value);
-    var id = el.id;
-    var cur = 0;
-    var synced = Fanex.CustomerSetting.Casino.customer.customerInfo.casinoSync;
-    var maxPT = !max ? (synced ? Fanex.CustomerSetting.Casino.customer.pts[sub_id != '' ? 1 : 0].maxPositionTakingUpline : Fanex.CustomerSetting.Casino.customer.pts[sub_id != '' ? 1 : 0].maxPositionTaking) : max;
-
-    if (isChangedGroupRnG) {
-        // Render comboboxes for game type setting PT of RnG game
-        var chkRnGs = $('select[name=' + id + '_rng]');
-        for (var i = 0; i < chkRnGs.length; i++) {
-            if (document.getElementById("pt_3" + sub_id)) {
-                cur = document.getElementById("pt_3" + sub_id) ? parseFloat(document.getElementById("pt_3" + sub_id).value) : 0;
-
-                if (document.getElementById("pt_1" + sub_id)) {
-                    sel = document.getElementById("pt_1" + sub_id).value;
-                }
-
-                if (cur == 'undefined' || cur == 'NaN') {
-                    cur = 0;
-                }
-
-                if (cur > maxPT - sel) {
-                    cur = maxPT - sel;
-                }
-
-                PT_RenderCombo(document.getElementById("pt_3_1_" + i + "_rng"), 0, maxPT - sel, 0.01, cur != 0 ? (cur.toFixed(2) * 100) / 100 : 0);
-            }
-            if (document.getElementById("pt_4" + sub_id)) {
-                PT_RenderCombo2(document.getElementById("pt_4_1_" + i + "_rng"), 0, cur, 0.01, sub_id);
-            }
-
-            chkRnGs[i].value = el.value;
-        }
-    }
-    else if (isChangedGroupMini) {
-        // Render comboboxes for game type setting PT of mini game
-        var chkMinis = $('select[name=' + id.substring(0, id.length - 2) + '_mini]');
-        for (var i = 0; i < chkMinis.length; i++) {
-            if (document.getElementById("pt_3" + sub_id)) {
-                cur = document.getElementById("pt_3" + sub_id) ? parseFloat(document.getElementById("pt_3" + sub_id).value) : 0;
-
-                if (document.getElementById("pt_1" + sub_id)) {
-                    sel = document.getElementById("pt_1" + sub_id).value;
-                }
-
-                if (cur == 'undefined' || cur == 'NaN') {
-                    cur = 0;
-                }
-
-                if (cur > maxPT - sel) {
-                    cur = maxPT - sel;
-                }
-
-                PT_RenderCombo(document.getElementById("pt_3_1_" + i + "_mini"), 0, maxPT - sel, 0.01, cur != 0 ? (cur.toFixed(2) * 100) / 100 : 0);
-            }
-            if (document.getElementById("pt_4" + sub_id)) {
-                PT_RenderCombo2(document.getElementById("pt_4_1_" + i + "_mini"), 0, cur, 0.01, sub_id);
-            }
-
-            chkMinis[i].value = el.value;
-        }
-    }
-
-    // Render comboboxes for game group setting PT
-    if (document.getElementById("pt_3" + sub_id)) {
-        cur = document.getElementById("pt_3" + sub_id) ? parseFloat(document.getElementById("pt_3" + sub_id).value) : 0;
-
-        if (document.getElementById("pt_1" + sub_id)) {
-            sel = document.getElementById("pt_1" + sub_id).value;
-        }
-
-        if (cur == 'undefined' || cur == 'NaN') {
-            cur = 0;
-        }
-
-        if (cur > maxPT - sel) {
-            cur = maxPT - sel;
-        }
-
-        PT_RenderCombo(document.getElementById("pt_3" + sub_id), 0, maxPT - sel, 0.01, cur != 0 ? (cur.toFixed(2) * 100) / 100 : 0);
-    }
-    if (document.getElementById("pt_4" + sub_id)) {
-        PT_RenderCombo2(document.getElementById("pt_4" + sub_id), 0, cur, 0.01, sub_id);
-    }*/
-}
-
-function PT_RenderCombo2(combo, min, max, step, sub_id) {
-    min = min > max ? max : min;
-
-    var index = 0;
-    var itemIndex = 0;
-    var selectedValue = combo.value;
-
-    if (!combo) return;
-    combo.options.length = 0;
-
-    if (combo.id == 'pt_4' + sub_id)
-        max = document.getElementById('pt_3' + sub_id).value;
-
-    if (selectedValue > max) {
-        selectedValue = max;
-    }
-
-    var c = Math.round((max * 100 - min * 100) / (step * 100));
-
-    if (c <= 0) {
-        var opt = document.createElement("option");
-        opt.text = opt.value = Math.round(min * 100) / 100;
-        combo.options.add(opt);
-        return;
-    }
-
-    for (var i = c; i >= 0; i--) {
-        var f = Math.round(min * 100 + (i * step * 100)) / 100;
-        var opt = document.createElement("option");
-
-        if (parseFloat(selectedValue) == parseFloat(f)) {
-            index = itemIndex;
-            opt.selected = true;
-        }
-
-        opt.text = opt.value = f;
-        combo.options.add(opt);
-        itemIndex++;
-    }
-
-    if (document.all)
-        combo.options[index].selected = true;
-    else
-        combo.value = selectedValue;
 }
 
 $(document).ready(function () {
