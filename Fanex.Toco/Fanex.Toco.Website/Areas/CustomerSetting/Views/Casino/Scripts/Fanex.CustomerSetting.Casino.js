@@ -1,10 +1,14 @@
 ﻿/// <reference path="../../../Scripts/_references.js" />
+if (typeof $ == 'undefined' || typeof jQuery == 'undefined') {
+    alert("Require jQuery.js");
+}
 
 if (typeof Fanex == 'undefined' || typeof Fanex.CustomerSetting == 'undefined') {
     alert("Require Fanex.CustomerSetting.Core.js");
 };
 
 Fanex.CustomerSetting.Casino = {
+    model: null,
     customer: null,
     colspan: 1,
     uplineId: 1373389,

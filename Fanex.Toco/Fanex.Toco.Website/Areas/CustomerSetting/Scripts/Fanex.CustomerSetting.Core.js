@@ -1,4 +1,10 @@
-﻿if (typeof Fanex == 'undefined') {
+﻿/// <reference path="_references.js" />
+
+if (typeof $ == 'undefined' || typeof jQuery == 'undefined') {
+    alert("Require jQuery.js");
+}
+
+if (typeof Fanex == 'undefined') {
     Fanex = {};
 }
 

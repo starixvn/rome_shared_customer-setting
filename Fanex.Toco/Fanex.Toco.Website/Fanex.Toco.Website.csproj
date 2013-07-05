@@ -336,7 +336,6 @@
     <Content Include="Areas\CustomerSetting\Views\Web.config" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Sample\Index.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Casino\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Master\EditMaster.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Customer\CustomerInfo.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Agent\EditAgent.cshtml" />

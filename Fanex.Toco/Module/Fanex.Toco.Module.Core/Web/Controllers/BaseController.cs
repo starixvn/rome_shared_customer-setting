@@ -28,12 +28,6 @@ namespace Fanex.CustomerSetting.Module.Core.Web.Controllers
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class BaseController : Controller
     {
-        protected readonly ICurrentContext CurrentContext;
-
-        protected readonly ICurrentSession CurrentSession;
-
-        protected readonly IServiceContext ServiceContext;
-
         public const int Super = 4;
 
         public const int Master = 3;
@@ -44,44 +38,8 @@ namespace Fanex.CustomerSetting.Module.Core.Web.Controllers
 
         public const int FromSystem = 4;
 
-        protected ViewFlags _viewFlags;
-
-        protected ViewFlags ViewFlags
-        {
-            get
-            {
-                return ViewBag.ViewFlags;
-            }
-
-            set
-            {
-                ViewBag.ViewFlags = this._viewFlags = value;
-            }
-        }
-
-        private MenuService _menuService;
-
         public BaseController()
-        {
-            /*
-              this.CurrentContext = new CurrentContext();
-              ViewBag.Session = this.CurrentSession = new CurrentSession();
-              this.ServiceContext = new ServiceContext
-              {
-                  UserId = this.CurrentSession.UserId,
-                  SiteId = 1,
-                  Ip = this.CurrentContext.IP
-              };
-
-              ViewFlags = new ViewFlags
-              {
-                  IsLive = true,
-                  // IsNapAdminSite = _siteId == NapAdminId,
-                  HasEditRight = false
-              };
-
-              this._menuService = new MenuService();
-             * */
+        {           
         }
 
         /// <summary>

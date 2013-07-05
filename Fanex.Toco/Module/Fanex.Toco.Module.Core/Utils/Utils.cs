@@ -1,9 +1,7 @@
-﻿namespace Fanex.ExternalAccount.Utilities
+﻿namespace Fanex.CustomerSetting.Module.Core
 {
     using System;
-    using System.Collections.Generic;
     using System.Data;
-    using System.Text;
 
     public static class Utils
     {

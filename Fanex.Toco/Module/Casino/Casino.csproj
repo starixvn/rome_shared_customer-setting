@@ -172,38 +172,20 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\ControllerRegistrator.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="Controllers\CasinoController.cs" />
     <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
-    <Compile Include="Controllers\ReportRequestTicketController.cs" />
-    <Compile Include="Criteria\LicenseeSettlement\IMS_Rpt_LicenseeSettlementCriteria.cs" />
-    <Compile Include="Criteria\ReportRequestTicket\AddNewRequestTicketCriteria.cs" />
-    <Compile Include="Criteria\ReportRequestTicket\DeleteRequestTicketCriteria.cs" />
-    <Compile Include="Criteria\ReportRequestTicket\GetMaxRequestNoCriteria.cs" />
-    <Compile Include="Criteria\ReportRequestTicket\GetRequestTicketReportCriteria.cs" />
-    <Compile Include="Criteria\ReportRequestTicket\UpdateRequestTicketCriteria.cs" />
-    <Compile Include="Entities\BaseTicketInfo.cs" />
     <Compile Include="Entities\CasinoCustomer.cs" />
-    <Compile Include="Entities\CasinoObject.cs" />
-    <Compile Include="Entities\GameKindDetail.cs" />
-    <Compile Include="Entities\GameTypeDetail.cs" />
-    <Compile Include="Entities\ReportRequestTicket\RequestTicketInfo.cs" />
     <Compile Include="Entities\Result.cs" />
-    <Compile Include="Entities\StakeLevelDetail.cs" />
-    <Compile Include="Entities\Stakes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Impl\CasinoDao.cs" />
-    <Compile Include="Repositories\Impl\ReportRequestTicketRepository.cs" />
-    <Compile Include="Repositories\Interface\IReportRequestTicketRepository.cs" />
-    <Compile Include="Services\Implement\CasinoManager.cs" />
-    <Compile Include="Services\Implement\ReportRequestTicketService.cs" />
-    <Compile Include="Services\Interface\IReportRequestTicketService.cs" />
-    <Compile Include="ViewModels\ExchangeRate.cs" />
+    <Compile Include="Services\Impl\CasinoManager.cs" />
     <Compile Include="ViewModels\GameSettingModel.cs" />
-    <Compile Include="ViewModels\LicenseeInformation.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Criteria\" />
+    <Folder Include="Repositories\Interface\" />
+    <Folder Include="Services\Interface\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.Toco.Module.Core\_Core.csproj">

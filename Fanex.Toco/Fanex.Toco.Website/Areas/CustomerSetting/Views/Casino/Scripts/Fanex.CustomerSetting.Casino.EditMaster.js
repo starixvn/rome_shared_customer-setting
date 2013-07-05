@@ -12,25 +12,38 @@ if (typeof Fanex.CustomerSetting.Casino == 'undefined') {
 };
 
 Fanex.CustomerSetting.Casino.EditMaster = {
+    Model: {},
+    Customer: {},
+
     Init: function () {
+        var model = this.Model = Fanex.CustomerSetting.Casino.model;
+        this.Customer = Fanex.CustomerSetting.Casino.customer;
         var selects = $('select');
         var checkboxes = $('input[name=chkAutoPT]');
-        var isPtByGameType = Fanex.CustomerSetting.Casino.customer.isPtByGameType;
+        var isPtByGameType = model.isPtByGameType;
 
+        // Add events for is auto pt
         for (var i = 0; i < checkboxes.length; i++) {
             $(checkboxes[i]).click(function () {
                 var checkbox = this;
                 var subid = checkbox.id.substring(9);
+                var comboSuperPrest = $('#pt_1' + subid);
+                var comboSuperAutoPreset = $('#pt_2' + subid);
+                var comboMasterMax = $('#pt_3' + subid);
+                var max = parseFloat(comboSuperPrest.attr('max')) - parseFloat(comboSuperPrest.val());
 
                 if (checkbox.checked) {
-                    $('#pt_1' + subid).attr('disabled', true);
-                    $('#pt_2' + subid).attr('disabled', false);
+                    comboSuperPrest.attr('disabled', true);
+                    comboSuperAutoPreset.attr('disabled', false);
 
-                    var combo = $('#pt_2' + subid)[0];
+                    comboMasterMax.attr('max', comboSuperAutoPreset.attr('max'));
                 }
                 else {
-                    $('#pt_1' + subid).attr('disabled', false);
-                    $('#pt_2' + subid).attr('disabled', true);
+                    comboSuperPrest.attr('disabled', false);
+                    comboSuperAutoPreset.attr('disabled', true);
+
+                    comboMasterMax.attr('max', max.toFixed(2));
+                    comboSuperPrest.click();
                 }
 
                 if (subid.length == 2 && isPtByGameType) {
@@ -39,22 +52,35 @@ Fanex.CustomerSetting.Casino.EditMaster = {
                         var chk = checkboxes[j];
                         var curSubId = chk.id.substring(9);
 
+                        comboSuperPrest = $('#pt_1' + curSubId);
+                        comboSuperAutoPreset = $('#pt_2' + curSubId);
+                        comboMasterMax = $('#pt_3' + curSubId);
+
                         if (curSubId.length > 2 && curSubId.substring(0, 2) == subid && checkbox.checked) {
                             chk.checked = true;
-                            $('#pt_1' + curSubId).attr('disabled', true);
-                            $('#pt_2' + curSubId).attr('disabled', false);
+
+                            comboSuperPrest.attr('disabled', true);
+                            comboSuperAutoPreset.attr('disabled', false);
+
+                            comboMasterMax.attr('max', comboSuperAutoPreset.attr('max'));
                         }
                         else if (curSubId.length > 2 && curSubId.substring(0, 2) == subid && !checkbox.checked) {
                             chk.checked = false;
-                            $('#pt_1' + curSubId).attr('disabled', false);
-                            $('#pt_2' + curSubId).attr('disabled', true);
+                            comboSuperPrest.attr('disabled', false);
+                            comboSuperAutoPreset.attr('disabled', true);
+
+                            max = parseFloat(comboSuperPrest.attr('max')) - parseFloat(comboSuperPrest.val())
+                            comboMasterMax.attr('max', max.toFixed(2));
+                            comboSuperPrest.click();
                         }
                     }
                 }
             });
         }
 
+        // Add events for comboboxes
         for (var i = 0; i < selects.length; i++) {
+            // Preload pt values when mouse is entered into comboboxes
             $(selects[i]).mouseenter(function () {
                 var select = this;
                 var min = parseFloat(select.getAttribute('min'));
@@ -69,6 +95,7 @@ Fanex.CustomerSetting.Casino.EditMaster = {
                 }
             });
 
+            // Rerender pt values constraint when comboboxes is clicked
             $(selects[i]).click(function () {
                 var select = this;
                 var subid = select.id.substring(4);
@@ -108,6 +135,7 @@ Fanex.CustomerSetting.Casino.EditMaster = {
                 }
             });
 
+            // Handle changing pt and comm values
             $(selects[i]).change(function () {
                 var select = this;
                 var value = parseFloat(select.value);
@@ -188,6 +216,7 @@ Fanex.CustomerSetting.Casino.EditMaster = {
                 }
             });
 
+            // Set only selected value into comboboxes when it is blurred
             $(selects[i]).blur(function () {
                 var value = this.value;
                 this.options.length = 0;
@@ -322,6 +351,45 @@ Fanex.CustomerSetting.Casino.EditMaster = {
                 }
             }
         }
+    },
+
+    Update: function () {
+        var gameGroups = this.Model.gameGroups;
+        var customer = this.Customer;
+
+        // Assign customer info
+        customer.casinoDisabled = !$('#chkEnable').is(':checked');
+        customer.maxTransferCredit = $('#maxTransfer').val();
+        customer.isAutoReset = $('#isAutoReset').is(':checked');
+
+        // Assign setting values
+        $(gameGroups).each(function (i, gameGroup) {
+            // Assign game group pt and commission
+            gameGroup.s3 = $('#pt_1_' + i).val();
+            gameGroup.is3 = $('#chkAutoPT_' + i).is(':checked');
+            gameGroup.us3 = $('#pt_2_' + i).val();
+            gameGroup.m3 = $('#pt_3_' + i).val();
+            gameGroup.n3 = $('#pt_4_' + i).val();
+            gameGroup.masterCommission = $('#comm_5_' + i).val();
+
+            // Assign game type pt and commission
+            var gameTypes = gameGroup.gameTypes;
+            $(gameTypes).each(function (j, gameType) {
+                gameType.s3 = $('#pt_1_' + i + '_' + j).val();
+                gameType.is3 = $('#chkAutoPT_' + i + '_' + j).is(':checked');
+                gameType.us3 = $('#pt_2_' + i + '_' + j).val();
+                gameType.m3 = $('#pt_3_' + i + '_' + j).val();
+                gameType.n3 = $('#pt_4_' + i + '_' + j).val();
+                gameType.masterCommission = $('#comm_5_' + i + '_' + j).val();
+
+                // Assign betting limit
+                var bettingLimits = gameType.bettingLimits;
+                $(bettingLimits).each(function (k, stakeLevel) {
+                    var id = '#stake-' + stakeLevel.stakeLevelID;
+                    stakeLevel.isChecked = $(id).is(':checked');
+                });
+            });
+        });
     }
 };
 

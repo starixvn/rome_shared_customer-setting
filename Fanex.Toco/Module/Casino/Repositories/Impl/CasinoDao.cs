@@ -7,14 +7,14 @@
 //   <change who="Andy.Nguyen" date="2013.4.11">Created</change>
 // </history>
 
-namespace Fanex.ExternalAccount.DataAccess.Impl.Customer.Casino
+namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
 {
     using System.Collections;
     using System.Data;
     using CasinoLibrary.SBAgent;
     using Fanex.Data.DNAide;
-    using Fanex.ExternalAccount.DTO.Customer.Casino;
     using System;
+    using Fanex.CustomerSetting.Module.Casino.Entities;
 
     /// <summary>
     /// TODO: Update summary.

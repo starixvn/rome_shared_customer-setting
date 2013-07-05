@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Fanex.CustomerSetting.Module.Core.Web.Controllers;
-using Fanex.ExternalAccount.DTO.Customer.Casino;
-using Fanex.ExternalAccount.Service.Impl.Customer.Casino;
-
-namespace Fanex.CustomerSetting.Module.Casino.Controllers
+﻿namespace Fanex.CustomerSetting.Module.Casino.Controllers
 {
+    using System.Web.Mvc;
+    using Fanex.CustomerSetting.Module.Casino.Services.Impl;
+    using Fanex.CustomerSetting.Module.Core.Web.Controllers;
+
     public class CustomerController : BaseController
     {
         public ActionResult CustomerInfo(int id, int uplineId)

@@ -1,4 +1,4 @@
-﻿namespace Fanex.CustomerSetting.Module.Core.Utils
+﻿namespace Fanex.CustomerSetting.Module.Core
 {
     public class FormatKey
     {

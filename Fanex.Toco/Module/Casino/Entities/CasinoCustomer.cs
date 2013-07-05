@@ -7,7 +7,7 @@
 //   <change who="Andy.Nguyen" date="2013.4.11">Created</change>
 // </history>
 
-namespace Fanex.ExternalAccount.DTO.Customer.Casino
+namespace Fanex.CustomerSetting.Module.Casino.Entities
 {
     /// <summary>
     /// TODO: Update summary.

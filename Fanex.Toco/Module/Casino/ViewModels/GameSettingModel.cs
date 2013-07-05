@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Fanex.CustomerSetting.Module.Casino.ViewModels
+﻿namespace Fanex.CustomerSetting.Module.Casino.ViewModels
 {
+    using System.Collections.Generic;
+
     public class CasinoSettingModel
     {
         public CasinoSettingModel()
