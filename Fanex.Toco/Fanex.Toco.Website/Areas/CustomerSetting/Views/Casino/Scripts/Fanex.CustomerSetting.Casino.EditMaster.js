@@ -354,6 +354,8 @@ Fanex.CustomerSetting.Casino.EditMaster = {
     },
 
     Update: function () {
+        Fanex.CustomerSetting.Core.BlockUI();
+
         var gameGroups = this.Model.gameGroups;
         var customer = this.Customer;
 
@@ -389,6 +391,40 @@ Fanex.CustomerSetting.Casino.EditMaster = {
                     stakeLevel.isChecked = $(id).is(':checked');
                 });
             });
+        });
+
+        var data = {
+            id: 1373580, uplineId: 1373389, roleId: 3, uplineRoleId: 4,
+            ip: '',
+            userId: 1373389,
+            username: 'pgmAndy',
+            settingModel: JSON.stringify(this.Model),
+            customerModel: JSON.stringify(this.Customer)
+        };
+
+        $.ajax({
+            url: toUrl('Master/UpdateMasterPost'),
+            data: data,
+            type: 'post',
+            dataType: 'json'
+        })
+        .success(function (result) {
+            if (result.isSuccess) {
+                $('#errMsg').html('Updated successfully');
+                $('#errMsg').show();
+            }
+            else {
+                $('#errMsg').html(result.errorMessage.formatErrorMessage());
+                $('#errMsg').show();
+            }
+
+            Fanex.CustomerSetting.Core.UnBlockUI();
+        })
+        .error(function (data) {
+            if (typeof console != 'undefined')
+                console.log(data.responseText);
+
+            Fanex.CustomerSetting.Core.BlockUI();
         });
     }
 };

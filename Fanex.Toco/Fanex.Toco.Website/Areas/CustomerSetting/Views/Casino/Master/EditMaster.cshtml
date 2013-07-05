@@ -18,6 +18,7 @@
 <link href="@Url.Content("~/Areas/CustomerSetting/Styles/Common.css")" rel="stylesheet" type="text/css" />
 <link href="@Url.Content("~/Areas/CustomerSetting/Views/Casino/Styles/Casino.css")" rel="stylesheet" type="text/css" />
 <script src="@Url.Content("~/Scripts/_Libs/jQuery/Core/jquery.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/_Libs/BlockUI/jquery.blockUI.1.33.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Areas/CustomerSetting/Scripts/Fanex.CustomerSetting.Core.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Areas/CustomerSetting/Views/Casino/Scripts/Fanex.CustomerSetting.Casino.js")" type="text/javascript"></script>
 <div id="product" style="width: 1024px">
@@ -28,7 +29,7 @@
     <div id="names" style="display: none;" class="names">
     </div>
     <div style="text-align: right">
-        <input class="buttonPopup" type="button" value="Submit" data-bind='click: saveCustomer' />
+        <input class="buttonPopup" type="button" value="Submit" onclick = "Fanex.CustomerSetting.Casino.EditMaster.Update()" />
     </div>
     <div id="info">
         @Html.Action("CustomerInfo", "Customer", new { area = string.Empty, id = Utils.ToInt32(Request.RequestContext.RouteData.Values["id"]), uplineId = Utils.ToInt32(Request.RequestContext.RouteData.Values["uplineId"]) })
@@ -203,7 +204,7 @@
         }    
         </div>        
     <div style="text-align: right">
-        <input class="buttonPopup btnTop" type="button" value="Submit" data-bind='click: saveCustomer' />
+        <input class="buttonPopup btnTop" type="button" value="Submit" onclick = "Fanex.CustomerSetting.Casino.EditMaster.Update()" />
     </div>
 </div>    
 <script src="@Url.Content("~/Areas/CustomerSetting/Views/Casino/Scripts/Fanex.CustomerSetting.Casino.EditMaster.js")" type="text/javascript"></script>

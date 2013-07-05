@@ -44,8 +44,8 @@
                     <label for="chkEnable" id="downline">Master</label>
                     @if (Model.CasinoDisabled && @Model.CasinoSync)
                     {
-                    <input type="checkbox" id="chkEnableDownline" @enable style="margin-top: 5px" />                    
-                    <label for="chkEnableDownline" id="enableDownlineText">Previous enabled downlines</label>
+                    <input type="checkbox" id="chkEnableDownline" @enable style="margin-top: 5px; display: none" />                    
+                    <label for="chkEnableDownline" id="enableDownlineText" style="display: none">Previous enabled downlines</label>
                     }
                 </div>                
             </td>

@@ -13,11 +13,39 @@ if (typeof Fanex.CustomerSetting == 'undefined') {
 }
 
 Fanex.CustomerSetting.Core = {
+    $this: null,
+    BlockedUI: false,
+
+    Init: function () {
+        $this = this;
+        $.blockUI.defaults.css.border = '0px solid #aaa';
+        $.blockUI.defaults.css.backgroundColor = "transparent";
+        $.blockUI.defaults.overlayCSS.backgroundColor = "transparent";
+    },
+
+    BlockUI: function () {
+        if (!$this.BlockedUI) {
+            $.blockUI({
+                message: '<img src="/Areas/CustomerSetting/Images/Loading.gif" />',
+                onBlock: function () {
+                    $this.BlockedUI = true;
+                },
+                onUnblock: function () {
+                    $this.BlockedUI = false;
+                }
+            });
+        }
+    },
+
+    UnBlockUI: function () {
+        $.unblockUI(document);
+    },
+
     DecodeHtml: function (str) {
         return $("<div/>").html(str).text();
     },
 
-    EncodeHtml: function(str){
+    EncodeHtml: function (str) {
         return $('<div/>').text(str).html();
     },
 
@@ -116,3 +144,7 @@ String.prototype.formatErrorMessage = function () {
 
     return ret;
 };
+
+$(document).ready(function () {
+    Fanex.CustomerSetting.Core.Init();
+});

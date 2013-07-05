@@ -14,7 +14,7 @@ Fanex.CustomerSetting.Casino = {
     uplineId: 1373389,
     IsMultiple: false,
     ErrorMessage: '',
-    custInfo: { custId: 1373580, uplineId: 1373389, roleId: 3, uplineRoleId: 4 },
+    custInfo: { id: 1373580, uplineId: 1373389, roleId: 3, uplineRoleId: 4 },
     enabled: false,
 
     Init: function () {
@@ -34,17 +34,27 @@ Fanex.CustomerSetting.Casino = {
         var timeout = setTimeout(function () {
             clearTimeout(timeout);
             Fanex.CustomerSetting.Casino.enabled = $('#chkEnable').is(':checked');
-
-            $('#chkEnable').bind('click', function () {
-                if (this.checked) {
-                    $('#downline').html(level);
-                }
-                else {
-                    $('#downline').html(level + ' (<font color="Red">Casino downlines will be disabled as well</font>)');
-                }
-            });
-
+            Fanex.CustomerSetting.Core.UnBlockUI();
         }, 2000);
+
+        $('#chkEnable').bind('click', function () {
+            if (this.checked) {
+                if (!Fanex.CustomerSetting.Casino.enabled) {
+                    $('#chkEnableDownline').show();
+                    $('#enableDownlineText').show();
+                }
+
+                $('#downline').html(level);
+            }
+            else {
+                $('#chkEnableDownline').hide();
+                $('#enableDownlineText').hide();
+
+                if (Fanex.CustomerSetting.Casino.enabled) {
+                    $('#downline').html(level + '&nbsp;' + "<font color='Red'>(Casino downlines will be disabled as well)</font>");
+                }
+            }
+        });
     },
 
     RenderPT: function (pts) {

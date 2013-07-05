@@ -13,7 +13,7 @@
         {
             var customerSetting = CasinoManager.Instance.MasterCasinoModel(id, uplineId);
 
-            return PartialView("~/Areas/CustomerSetting/Views/Casino/Master/EditMaster.cshtml", customerSetting);
+            return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Master/EditMaster.cshtml", customerSetting);
         }
 
         public ActionResult UpdateMasterPost(int id, int roleId, int uplineId, int uplineRoleId, string ip, int userId, string username, string settingModel, string customerModel)
