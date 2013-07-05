@@ -372,7 +372,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 {
                                     custId,
                                     gameType.GameTypeID,
-                                    this.SelectedStakeLevels(this.GetStakeLevels(custId, gameType.GameTypeID)),
+                                    this.SelectedStakeLevels(gameType.BettingLimits),
                                     roleId,
                                     ip,
                                     modifiedId, 
@@ -432,7 +432,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                     roleId != Master ? null : (object)gameType.MasterCommission,
                                     roleId != Agent ? null : (object)gameType.AgentCommission,
                                     roleId != Member ? null : (object)gameType.MemberCommission,
-                                    this.SelectedStakeLevels(this.GetStakeLevels(custId, gameType.GameTypeID)),
+                                    this.SelectedStakeLevels(gameType.BettingLimits),
                                     roleId,
                                     ip,
                                     modifiedId, 
@@ -445,7 +445,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 {
                                     custId,
                                     gameType.GameTypeID,
-                                    this.GetStakeLevels(custId, gameType.GameTypeID),
+                                    this.SelectedStakeLevels(gameType.BettingLimits),
                                     roleId,
                                     ip,
                                     modifiedId, 
@@ -454,60 +454,66 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 });
                         }
                     }
-                }
-                
-                var resultKind = new DataTable();
-                var resultType = new DataTable();
-                var resultStake = new DataTable();
+                }                
+            }
 
-                if (uplineRoleId - roleId == 1)
-                {
-                    // Update direct downline
-                    resultKind = customer.UpdateCustGameKind(gameKindTable);
+            var resultKind = new DataTable();
+            var resultType = new DataTable();
+            var resultStake = new DataTable();
 
-                    if (model.IsPtByGameType)
-                    {
-                        resultType = customer.UpdateCustGameType(gameTypeTable);
-                    }
-                }
-                else
-                {
-                    // Update indirect downline
-                    resultKind = customer.UpdateCustGameKind_EditMember(gameKindTable);
-
-                    if (model.IsPtByGameType)
-                    {
-                        resultType = customer.UpdateCustGameType_EditMember(gameTypeTable);
-                    }
-                }
-
-                resultStake = customer.UpdateCustGameTypeStakeLevel(gameStakeTable);
-
-                // Process error messages
-                foreach (DataRow item in resultKind.Rows)
-                {
-                    msg += item.Field<string>("ErrMsg") + "<br />";
-                }
+            if (uplineRoleId - roleId == 1)
+            {
+                // Update direct downline
+                resultKind = customer.UpdateCustGameKind(gameKindTable);
 
                 if (model.IsPtByGameType)
                 {
-                    foreach (DataRow item in resultType.Rows)
-                    {
-                        msg += item.Field<string>("ErrMsg") + "<br />";
-                    }
+                    resultType = customer.UpdateCustGameType(gameTypeTable);
                 }
+                else
+                {
+                    resultStake = customer.UpdateCustGameTypeStakeLevel(gameStakeTable);
+                }
+            }
+            else
+            {
+                // Update indirect downline
+                resultKind = customer.UpdateCustGameKind_EditMember(gameKindTable);
 
+                if (model.IsPtByGameType)
+                {
+                    resultType = customer.UpdateCustGameType_EditMember(gameTypeTable);
+                }
+                else
+                {
+                    resultStake = customer.UpdateCustGameTypeStakeLevel(gameStakeTable);
+                }
+            }            
+
+            // Process error messages
+            foreach (DataRow item in resultKind.Rows)
+            {
+                msg += item.Field<string>("ErrMsg") + "<br />";
+            }
+
+            if (model.IsPtByGameType)
+            {
+                foreach (DataRow item in resultType.Rows)
+                {
+                    msg += item.Field<string>("ErrMsg") + "<br />";
+                }
+            }
+            else
+            {
                 foreach (DataRow item in resultStake.Rows)
                 {
                     msg += item.Field<string>("ErrMsg") + "<br />";
                 }
-                
-                msg = msg.EndsWith("<br />") ? msg.Substring(0, msg.IndexOf("<br />")) : msg;
-
-                return new Result(msg == string.Empty || (resultKind.Rows.Count == 0 && resultType.Rows.Count == 0 && resultStake.Rows.Count == 0) ? 0 : 1, msg);
             }
-            
-            return new Result(1, "Invalid data input");
+
+            msg = msg.EndsWith("<br />") ? msg.Substring(0, msg.LastIndexOf("<br />")) : msg;
+
+            return new Result(msg == string.Empty || (resultKind.Rows.Count == 0 && resultType.Rows.Count == 0 && resultStake.Rows.Count == 0) ? 0 : 1, msg);
         }
         
         private string SelectedStakeLevels(List<StakeLevel> stakes)

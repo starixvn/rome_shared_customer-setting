@@ -12,12 +12,12 @@ if (typeof Fanex.CustomerSetting.Casino == 'undefined') {
 };
 
 Fanex.CustomerSetting.Casino.EditMaster = {
-    Model: {},
-    Customer: {},
+    SettingModel: {},
+    CustomerModel: {},
 
     Init: function () {
-        var model = this.Model = Fanex.CustomerSetting.Casino.model;
-        this.Customer = Fanex.CustomerSetting.Casino.customer;
+        var model = this.SettingModel = Fanex.CustomerSetting.Casino.SettingModel;
+        this.CustomerModel = Fanex.CustomerSetting.Casino.CustomerModel;
         var selects = $('select');
         var checkboxes = $('input[name=chkAutoPT]');
         var isPtByGameType = model.isPtByGameType;
@@ -356,8 +356,8 @@ Fanex.CustomerSetting.Casino.EditMaster = {
     Update: function () {
         Fanex.CustomerSetting.Core.BlockUI();
 
-        var gameGroups = this.Model.gameGroups;
-        var customer = this.Customer;
+        var gameGroups = this.SettingModel.gameGroups;
+        var customer = this.CustomerModel;
 
         // Assign customer info
         customer.casinoDisabled = !$('#chkEnable').is(':checked');
@@ -373,7 +373,7 @@ Fanex.CustomerSetting.Casino.EditMaster = {
             gameGroup.m3 = $('#pt_3_' + i).val();
             gameGroup.n3 = $('#pt_4_' + i).val();
             gameGroup.masterCommission = $('#comm_5_' + i).val();
-
+            console.log(gameGroup.is3);
             // Assign game type pt and commission
             var gameTypes = gameGroup.gameTypes;
             $(gameTypes).each(function (j, gameType) {
@@ -393,12 +393,21 @@ Fanex.CustomerSetting.Casino.EditMaster = {
             });
         });
 
+        if (Fanex.CustomerSetting.Casino.IsMultiple) {
+            this.ProcessUpdate(0);
+        }
+        else {
+            this.ProcessUpdate(null);
+        }
+    },
+
+    ProcessUpdate: function (custIdIndex) {
         var data = {
-            id: 1373580, uplineId: 1373389, roleId: 3, uplineRoleId: 4,
+            id: custIdIndex == null ? 1373580 : Fanex.CustomerSetting.Casino.CustIds[custIdIndex], uplineId: 1373389, roleId: 3, uplineRoleId: 4,
             userId: 1373389,
             username: 'pgmAndy',
-            settingModel: JSON.stringify(this.Model),
-            customerModel: JSON.stringify(this.Customer)
+            settingModel: JSON.stringify(this.SettingModel),
+            customerModel: JSON.stringify(this.CustomerModel)
         };
 
         $.ajax({
@@ -408,22 +417,35 @@ Fanex.CustomerSetting.Casino.EditMaster = {
             dataType: 'json'
         })
         .success(function (result) {
-            if (result.isSuccess) {
-                $('#errMsg').html('Updated successfully');
+            if (!result.isSuccess) {
+                Fanex.CustomerSetting.Casino.ErrorMessage += result.errorMessage.formatErrorMessage() + '<br />';
+            }
+
+            if (!Fanex.CustomerSetting.Casino.IsMultiple) {
+                $('#errMsg').html(Fanex.CustomerSetting.Casino.ErrorMessage);
                 $('#errMsg').show();
+                Fanex.CustomerSetting.Casino.ErrorMessage = '';
+                Fanex.CustomerSetting.Core.UnBlockUI();
             }
             else {
-                $('#errMsg').html(result.errorMessage.formatErrorMessage());
+                if (custIdIndex == Fanex.CustomerSetting.Casino.CustIds.length - 1) {
+                    $('#errMsg').html(Fanex.CustomerSetting.Casino.ErrorMessage);
+                    $('#errMsg').show();
+                    Fanex.CustomerSetting.Casino.ErrorMessage = '';
+                    Fanex.CustomerSetting.Core.UnBlockUI();
+                }
+                else {
+                    Fanex.CustomerSetting.Casino.EditMaster.ProcessUpdate(custIdIndex++);
+                }
+            }
+        })
+        .error(function (data) {
+            if (typeof console != 'undefined') {
+                $('#errMsg').html(data.responseText);
                 $('#errMsg').show();
             }
 
             Fanex.CustomerSetting.Core.UnBlockUI();
-        })
-        .error(function (data) {
-            if (typeof console != 'undefined')
-                console.log(data.responseText);
-
-            Fanex.CustomerSetting.Core.BlockUI();
         });
     }
 };

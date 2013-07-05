@@ -138,6 +138,8 @@
   <ItemGroup>
     <Content Include="Areas\Common\Views\Shared\Images\Loading.gif" />
     <Content Include="Areas\Common\Views\Shared\Scripts\Fanex.CustomerSetting.js" />
+    <Content Include="Areas\CustomerSetting\Images\Loading.gif" />
+    <Content Include="Areas\CustomerSetting\Images\warning-icn.png" />
     <Content Include="Areas\CustomerSetting\Scripts\Fanex.CustomerSetting.Core.js" />
     <Content Include="Areas\CustomerSetting\Scripts\_references.js" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\Fanex.CustomerSetting.Casino.EditMaster.js" />
