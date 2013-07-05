@@ -92,7 +92,7 @@
 <script src="@Url.Content("~/Areas/CustomerSetting/Views/Casino/Scripts/Fanex.CustomerSetting.Casino.js")" type="text/javascript"></script>
 <script type="text/javascript">
     var customerInfo = Fanex.CustomerSetting.Casino.CustomerModel = $.parseJSON(Fanex.CustomerSetting.Core.DecodeHtml('@customer'));
-    if(typeof console != undefined){
+    if(typeof console != 'undefined'){
         console.log(customerInfo);
     }
 </script>
