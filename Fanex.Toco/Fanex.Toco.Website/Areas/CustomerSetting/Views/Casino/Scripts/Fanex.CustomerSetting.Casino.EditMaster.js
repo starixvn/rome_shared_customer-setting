@@ -395,7 +395,6 @@ Fanex.CustomerSetting.Casino.EditMaster = {
 
         var data = {
             id: 1373580, uplineId: 1373389, roleId: 3, uplineRoleId: 4,
-            ip: '',
             userId: 1373389,
             username: 'pgmAndy',
             settingModel: JSON.stringify(this.Model),
