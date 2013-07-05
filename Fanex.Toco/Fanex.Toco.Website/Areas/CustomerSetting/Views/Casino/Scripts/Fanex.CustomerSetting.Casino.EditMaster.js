@@ -59,6 +59,7 @@ Fanex.CustomerSetting.Casino.EditMaster = {
             });
 
             $('#names').html(usernames);
+            $('#names').show();
         }
         else {
             $('#arrowUpDown').remove();
@@ -478,7 +479,7 @@ Fanex.CustomerSetting.Casino.EditMaster = {
         var data = {
             id: custIdIndex == null ? this.CustomerInfo.id : Fanex.CustomerSetting.Casino.EditMaster.CustIds[custIdIndex],
             uplineId: this.CustomerInfo.uplineId,
-            roleId: this.CustomerInfo.roleId, 
+            roleId: this.CustomerInfo.roleId,
             uplineRoleId: this.CustomerInfo.uplineRoleId,
             userId: this.CustomerInfo.userId,
             username: this.CustomerInfo.username,
