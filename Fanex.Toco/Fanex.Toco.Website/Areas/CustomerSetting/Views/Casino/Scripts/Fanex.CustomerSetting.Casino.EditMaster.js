@@ -49,7 +49,7 @@ Fanex.CustomerSetting.Casino.EditMaster = {
         }
 
         if (this.IsMultiple) {
-            $('#custInfo').remove();
+            $('#userInfo').remove();
 
             var usernames = '';
             $(this.Usernames).each(function (index, username) {

@@ -15,6 +15,7 @@
 <div id="custInfo">
     <div class="headerPositionTaking noneBorderLR custInfoHeader">
         General Information</div>
+    <div id="userInfo">
     <table cellpadding="0" cellspacing="0" class="tableInfo">
         <tr>
             <td class="tdTitleLeft">Username</td>
@@ -51,6 +52,20 @@
             </td>
         </tr>         
     </table>
+    </div>
+    <div id="statusInfo" class="statusInfo">Enable Casino:
+        <span style="font-weight: normal; margin-right: 5px">
+            <input type="checkbox" id="chkEnable" style="margin-top: 5px" @enable/>                    
+            <label for="chkEnable" id="downline">Master</label>
+        </span>
+        <span>
+        @if (Model.CasinoDisabled && @Model.CasinoSync)
+        {
+        <input type="checkbox" id="chkEnableDownline" @enable style="margin-top: 5px; display: none" />                    
+        <label for="chkEnableDownline" id="enableDownlineText" style="display: none">Previous enabled downlines</label>
+        }
+        </span>
+    </div>
     <div class="headerPositionTaking noneBorderLR noneBorderBottom">
         Bet Setting</div>
     <table cellpadding="0" cellspacing="0" class="tableInfo">
