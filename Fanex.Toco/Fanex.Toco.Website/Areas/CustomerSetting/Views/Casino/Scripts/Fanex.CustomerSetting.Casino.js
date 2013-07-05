@@ -8,61 +8,10 @@ if (typeof Fanex == 'undefined' || typeof Fanex.CustomerSetting == 'undefined') 
 };
 
 Fanex.CustomerSetting.Casino = {
-    SettingModel: null,
-    CustomerModel: null,
-    IsMultiple: false,
-    CustomerInfo: { id: 1373580, uplineId: 1373389, roleId: 3, uplineRoleId: 4, userId: 1373389, username: 'pgmAndy' },
-    Enabled: false,
-    CustIds: [],
-    Usernames: [],
-    ErrorMessage: '',
+    CustomerModel: {},
 
     Init: function () {
-        this.LoadData();
-    },
-
-    LoadData: function () {
-        if (this.IsMultiple) {
-            $('#custInfo').remove();
-
-            var usernames = '';
-            $(this.Usernames).each(function (index, username) {
-                usernames += username + ', ';
-
-                usernames = usernames.substring(0, usernames.length - 2);
-            });
-
-            $('#names').html(usernames);
-        }
-        else {
-            $('#arrowUpDown').remove();
-            $('#statusInfo').remove();
-        }
-
-        var level = $('#downline').html();
-        var timeout = setTimeout(function () {
-            clearTimeout(timeout);
-            Fanex.CustomerSetting.Casino.Enabled = $('#chkEnable').is(':checked');
-        }, 2000);
-
-        $('#chkEnable').bind('click', function () {
-            if (this.checked) {
-                if (!Fanex.CustomerSetting.Casino.Enabled) {
-                    $('#chkEnableDownline').show();
-                    $('#enableDownlineText').show();
-                }
-
-                $('#downline').html(level);
-            }
-            else {
-                $('#chkEnableDownline').hide();
-                $('#enableDownlineText').hide();
-
-                if (Fanex.CustomerSetting.Casino.Enabled) {
-                    $('#downline').html(level + '&nbsp;' + "<font color='Red'>(Casino downlines will be disabled as well)</font>");
-                }
-            }
-        });
+        
     },
 
     RenderPT: function (pts) {

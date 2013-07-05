@@ -345,14 +345,13 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 fromSystem
                             });
 
-                    if (model.IsPtByGameType)
-                    {
-                        var gameTypes = gameGroup.GameTypes;
 
-                        foreach (var gameType in gameTypes)
-                        {
-                            gameTypeTable.Rows.Add(
-                               new object[] 
+                    var gameTypes = gameGroup.GameTypes;
+
+                    foreach (var gameType in gameTypes)
+                    {
+                        gameTypeTable.Rows.Add(
+                           new object[] 
                                 {
                                     custId,
                                     gameType.GameTypeID,
@@ -367,8 +366,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                     fromSystem
                                 });
 
-                            gameStakeTable.Rows.Add(
-                                new object[] 
+                        gameStakeTable.Rows.Add(
+                            new object[] 
                                 {
                                     custId,
                                     gameType.GameTypeID,
@@ -379,8 +378,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                     modifiedBy, 
                                     fromSystem
                                 });
-                        }                        
-                    }                    
+                    }
                 }
                 else
                 {
@@ -409,50 +407,47 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 fromSystem
                             });
 
-                    if (model.IsPtByGameType)
+                    var gameTypes = gameGroup.GameTypes;
+
+                    foreach (var gameType in gameTypes)
                     {
-                        var gameTypes = gameGroup.GameTypes;
+                        gameTypeTable.Rows.Add(
+                            new object[]
+                            {
+                                custId,
+                                gameType.GameTypeID,
+                                null,
+                                !(roleId == Super || roleId == Master) || gameType.Is3 == true ? null : (object)gameType.S3,
+                                !(roleId == Master || roleId == Agent) ? null : (object)gameType.M3,
+                                !(roleId == Agent || roleId == Member) ? null : (object)gameType.N3,
+                                gameType.Is3 == true ? 1 : 0,
+                                !gameType.Is3 == true ? null : (object)gameType.Us3,
+                                !(roleId == Super || roleId == Master || roleId == Member) ? null : (object)gameType.N3,
+                                0,
+                                roleId != Super ? null : (object)gameType.SuperCommission,
+                                roleId != Master ? null : (object)gameType.MasterCommission,
+                                roleId != Agent ? null : (object)gameType.AgentCommission,
+                                roleId != Member ? null : (object)gameType.MemberCommission,
+                                this.SelectedStakeLevels(gameType.BettingLimits),
+                                roleId,
+                                ip,
+                                modifiedId, 
+                                modifiedBy, 
+                                fromSystem
+                            });
 
-                        foreach (var gameType in gameTypes)
-                        {
-                            gameTypeTable.Rows.Add(
-                                new object[]
-                                {
-                                    custId,
-                                    gameType.GameTypeID,
-                                    null,
-                                    !(roleId == Super || roleId == Master) || gameType.Is3 == true ? null : (object)gameType.S3,
-                                    !(roleId == Master || roleId == Agent) ? null : (object)gameType.M3,
-                                    !(roleId == Agent || roleId == Member) ? null : (object)gameType.N3,
-                                    gameType.Is3 == true ? 1 : 0,
-                                    !gameType.Is3 == true ? null : (object)gameType.Us3,
-                                    !(roleId == Super || roleId == Master || roleId == Member) ? null : (object)gameType.N3,
-                                    0,
-                                    roleId != Super ? null : (object)gameType.SuperCommission,
-                                    roleId != Master ? null : (object)gameType.MasterCommission,
-                                    roleId != Agent ? null : (object)gameType.AgentCommission,
-                                    roleId != Member ? null : (object)gameType.MemberCommission,
-                                    this.SelectedStakeLevels(gameType.BettingLimits),
-                                    roleId,
-                                    ip,
-                                    modifiedId, 
-                                    modifiedBy, 
-                                    fromSystem
-                                });
-
-                            gameStakeTable.Rows.Add(
-                                new object[] 
-                                {
-                                    custId,
-                                    gameType.GameTypeID,
-                                    this.SelectedStakeLevels(gameType.BettingLimits),
-                                    roleId,
-                                    ip,
-                                    modifiedId, 
-                                    modifiedBy, 
-                                    fromSystem
-                                });
-                        }
+                        gameStakeTable.Rows.Add(
+                            new object[] 
+                            {
+                                custId,
+                                gameType.GameTypeID,
+                                this.SelectedStakeLevels(gameType.BettingLimits),
+                                roleId,
+                                ip,
+                                modifiedId, 
+                                modifiedBy, 
+                                fromSystem
+                            });
                     }
                 }                
             }

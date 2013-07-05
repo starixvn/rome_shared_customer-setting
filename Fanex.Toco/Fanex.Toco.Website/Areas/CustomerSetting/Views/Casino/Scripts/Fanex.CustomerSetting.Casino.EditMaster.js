@@ -14,10 +14,83 @@ if (typeof Fanex.CustomerSetting.Casino == 'undefined') {
 Fanex.CustomerSetting.Casino.EditMaster = {
     SettingModel: {},
     CustomerModel: {},
+    IsMultiple: false,
+    CustomerInfo: { id: 1373580, uplineId: 1373389, roleId: 3, uplineRoleId: 4, userId: 1373389, username: 'pgmAndy' },
+    CustIds: [],
+    Usernames: [],
+    Enabled: false,
+    ErrorMessage: '',
 
-    Init: function () {
-        var model = this.SettingModel = Fanex.CustomerSetting.Casino.SettingModel;
+    Init: function (id, uplineId, roleId, uplineRoleId, userId, username, isMultiple, custIds, usernames) {
+        this.CustomerInfo.id = id;
+        this.CustomerInfo.uplineId = uplineId;
+        this.CustomerInfo.roleId = roleId;
+        this.CustomerInfo.uplineRoleId = uplineRoleId;
+        this.CustomerInfo.userId = userId;
+        this.CustomerInfo.username = username;
         this.CustomerModel = Fanex.CustomerSetting.Casino.CustomerModel;
+
+        if (isMultiple) {
+            this.IsMultiple = true;
+
+            if (!custIds) {
+                alert('Please input custIds parameter is array');
+            }
+            else {
+                this.CustIds = custIds;
+            }
+
+            if (!usernames) {
+                alert('Please input usernames parameter is array');
+            }
+            else {
+                this.Usernames = usernames;
+            }
+        }
+
+        if (this.IsMultiple) {
+            $('#custInfo').remove();
+
+            var usernames = '';
+            $(this.Usernames).each(function (index, username) {
+                usernames += username + ', ';
+
+                usernames = usernames.substring(0, usernames.length - 2);
+            });
+
+            $('#names').html(usernames);
+        }
+        else {
+            $('#arrowUpDown').remove();
+            $('#statusInfo').remove();
+        }
+
+        var level = $('#downline').html();
+        var timeout = setTimeout(function () {
+            clearTimeout(timeout);
+            Fanex.CustomerSetting.Casino.EditMaster.Enabled = $('#chkEnable').is(':checked');
+        }, 2000);
+
+        $('#chkEnable').bind('click', function () {
+            if (this.checked) {
+                if (!Fanex.CustomerSetting.Casino.EditMaster.Enabled) {
+                    $('#chkEnableDownline').show();
+                    $('#enableDownlineText').show();
+                }
+
+                $('#downline').html(level);
+            }
+            else {
+                $('#chkEnableDownline').hide();
+                $('#enableDownlineText').hide();
+
+                if (Fanex.CustomerSetting.Casino.EditMaster.Enabled) {
+                    $('#downline').html(level + '&nbsp;' + "<font color='Red'>(Casino downlines will be disabled as well)</font>");
+                }
+            }
+        });
+
+        var model = this.SettingModel;
         var selects = $('select');
         var checkboxes = $('input[name=chkAutoPT]');
         var isPtByGameType = model.isPtByGameType;
@@ -373,7 +446,7 @@ Fanex.CustomerSetting.Casino.EditMaster = {
             gameGroup.m3 = $('#pt_3_' + i).val();
             gameGroup.n3 = $('#pt_4_' + i).val();
             gameGroup.masterCommission = $('#comm_5_' + i).val();
-            console.log(gameGroup.is3);
+
             // Assign game type pt and commission
             var gameTypes = gameGroup.gameTypes;
             $(gameTypes).each(function (j, gameType) {
@@ -393,7 +466,7 @@ Fanex.CustomerSetting.Casino.EditMaster = {
             });
         });
 
-        if (Fanex.CustomerSetting.Casino.IsMultiple) {
+        if (this.IsMultiple) {
             this.ProcessUpdate(0);
         }
         else {
@@ -403,9 +476,12 @@ Fanex.CustomerSetting.Casino.EditMaster = {
 
     ProcessUpdate: function (custIdIndex) {
         var data = {
-            id: custIdIndex == null ? 1373580 : Fanex.CustomerSetting.Casino.CustIds[custIdIndex], uplineId: 1373389, roleId: 3, uplineRoleId: 4,
-            userId: 1373389,
-            username: 'pgmAndy',
+            id: custIdIndex == null ? this.CustomerInfo.id : Fanex.CustomerSetting.Casino.EditMaster.CustIds[custIdIndex],
+            uplineId: this.CustomerInfo.uplineId,
+            roleId: this.CustomerInfo.roleId, 
+            uplineRoleId: this.CustomerInfo.uplineRoleId,
+            userId: this.CustomerInfo.userId,
+            username: this.CustomerInfo.username,
             settingModel: JSON.stringify(this.SettingModel),
             customerModel: JSON.stringify(this.CustomerModel)
         };
@@ -418,20 +494,20 @@ Fanex.CustomerSetting.Casino.EditMaster = {
         })
         .success(function (result) {
             if (!result.isSuccess) {
-                Fanex.CustomerSetting.Casino.ErrorMessage += result.errorMessage.formatErrorMessage() + '<br />';
+                Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage += result.errorMessage.formatErrorMessage() + '<br />';
             }
 
-            if (!Fanex.CustomerSetting.Casino.IsMultiple) {
-                $('#errMsg').html(Fanex.CustomerSetting.Casino.ErrorMessage);
+            if (!Fanex.CustomerSetting.Casino.EditMaster.IsMultiple) {
+                $('#errMsg').html(Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage);
                 $('#errMsg').show();
-                Fanex.CustomerSetting.Casino.ErrorMessage = '';
+                Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage = '';
                 Fanex.CustomerSetting.Core.UnBlockUI();
             }
             else {
-                if (custIdIndex == Fanex.CustomerSetting.Casino.CustIds.length - 1) {
-                    $('#errMsg').html(Fanex.CustomerSetting.Casino.ErrorMessage);
+                if (custIdIndex == Fanex.CustomerSetting.Casino.EditMaster.CustIds.length - 1) {
+                    $('#errMsg').html(Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage);
                     $('#errMsg').show();
-                    Fanex.CustomerSetting.Casino.ErrorMessage = '';
+                    Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage = '';
                     Fanex.CustomerSetting.Core.UnBlockUI();
                 }
                 else {
@@ -451,5 +527,6 @@ Fanex.CustomerSetting.Casino.EditMaster = {
 };
 
 $(document).ready(function () {
-    Fanex.CustomerSetting.Casino.EditMaster.Init();
+    //This line is for testing only, if called in another project, please call as below
+    Fanex.CustomerSetting.Casino.EditMaster.Init(1373580, 1373389, 3, 4, 1373389, 'pgmAndy');
 });
