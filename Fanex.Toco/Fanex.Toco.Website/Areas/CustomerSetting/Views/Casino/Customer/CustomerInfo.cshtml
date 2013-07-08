@@ -76,8 +76,8 @@
         <tr>
             <td class="noneBorderLeft tdTitleRight">Member Max Transfer Credit</td>
             <td class="noneBorderRight">
-                <div style="float: left; height: 24px"><input id="maxTransfer" style="height: 20px !important" oncut="return false;" onpaste="return false;" onkeypress="return Fanex.CustomerSetting.Core.CheckNumber(event, this)" onkeyup="return Fanex.CustomerSetting.Core.CheckNumber(event, this)" maxlength="13" type="text" value="@Utils.ToStringFormat(@Model.MaxTransferCredit, 2)" /></div>
-                <div style="float: left; height: 24px;"><input style="margin-top: 5px" id="isAutoReset" type="checkbox" @check /><label for="isAutoReset">Daily auto reset limit (at 12 noon GMT+8)</label></div>
+                <div style="float: left; height: 24px"><input id="maxTransfer" oncut="return false;" onpaste="return false;" onkeypress="return Fanex.CustomerSetting.Core.CheckNumber(event, this)" onkeyup="return Fanex.CustomerSetting.Core.CheckNumber(event, this)" maxlength="13" type="text" value="@Utils.ToStringFormat(@Model.MaxTransferCredit, 2)" /></div>
+                <div style="float: left; height: 24px;"><input id="isAutoReset" type="checkbox" @check /><label for="isAutoReset">Daily auto reset limit (at 12 noon GMT+8)</label></div>
             </td>           
         </tr>
         <tr>
