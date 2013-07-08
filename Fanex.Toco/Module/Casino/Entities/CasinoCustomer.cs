@@ -278,6 +278,12 @@ namespace Fanex.CustomerSetting.Module.Casino.Entities
             set;
         }
 
+        public int UplineRoleId
+        {
+            get;
+            set;
+        }
+
         public int UpperCustID
         {
             get;

@@ -46,7 +46,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var custInfo = this.GetCustInfoIBC(custId, uplineId);
             var synced = custInfo.CasinoSync;
             var id = synced ? custId : uplineId;
-
+            
             var cust = new Customer();
             var dt = cust.GetCustGameKind(id);
 
@@ -56,8 +56,13 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             casinoSettingUpline.IBCCustID = uplineId;
             CasinoManager.Instance.GetCustSettingCS(ref casinoSettingUpline);
 
-            gameModel.IsPtByGameType = casinoSettingUpline.PTByGameType;
+            if (casinoSettingUpline.RoleId - custInfo.RoleId != 1 || casinoSettingUpline.RoleId != 4 || custInfo.RoleId != 3)
+            {
+                throw new Exception("Invalid custId and uplineId");
+            }
 
+            gameModel.IsPtByGameType = casinoSettingUpline.PTByGameType;
+            
             foreach (DataRow row in dt.Rows)
             {
                 var gameGroup = new GameGroup();
@@ -183,11 +188,10 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             }
         }
 
-        public Result UpdateMaster(int custId, int roleId, int uplineId, int uplineRoleId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel settingModel, CasinoCustomer customerModel)
+        public Result UpdateMaster(int custId, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel settingModel, CasinoCustomer customerModel)
         {
             var errMsg = string.Empty;
             var customer = new Customer();
-            var customerInfo = customerModel;
             var messages = string.Empty;
             var settingsInserted = true;
             var statusUpdated = true;
@@ -195,68 +199,73 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var casinoPTResult = new Result();
             var enablePTUpdated = false;
 
+            if (customerModel.UplineRoleId != 4 || customerModel.RoleId != 3)
+            {
+                return new Result(1, "Invalid customer information");
+            }
+
             // Check whether casino is synced or not to insert customer settings for direct downline only
-            if (!customerInfo.CasinoSync && uplineRoleId - roleId == 1)
+            if (!customerModel.CasinoSync)
             {
                 settingsInserted = customer.InsertCustSetting(
                     "01", 
-                    customerInfo.IBCCustID, 
-                    customerInfo.UserName, 
-                    customerInfo.UserName2, 
-                    customerInfo.FirstName, 
-                    customerInfo.LastName, 
-                    customerInfo.UserPwd, 
-                    customerInfo.Phone, 
-                    customerInfo.MobilePhone, 
-                    customerInfo.Currency, 
-                    customerInfo.Fax, 
-                    customerInfo.Closed, 
-                    customerInfo.Suspend, 
-                    customerInfo.IsEnablePT, 
-                    (decimal)customerInfo.MaxWin, 
-                    (decimal)customerInfo.MaxLose, 
+                    customerModel.IBCCustID, 
+                    customerModel.UserName, 
+                    customerModel.UserName2, 
+                    customerModel.FirstName, 
+                    customerModel.LastName, 
+                    customerModel.UserPwd, 
+                    customerModel.Phone, 
+                    customerModel.MobilePhone, 
+                    customerModel.Currency, 
+                    customerModel.Fax, 
+                    customerModel.Closed, 
+                    customerModel.Suspend, 
+                    customerModel.IsEnablePT, 
+                    (decimal)customerModel.MaxWin, 
+                    (decimal)customerModel.MaxLose, 
                     true, 
-                    (decimal)customerInfo.MaxTransferCredit, 
-                    customerInfo.SIBCCustID, 
-                    customerInfo.MIBCCustID, 
-                    customerInfo.AIBCCustID, 
-                    customerInfo.PTByGameType, 
-                    roleId.ToString(), 
+                    (decimal)customerModel.MaxTransferCredit, 
+                    customerModel.SIBCCustID, 
+                    customerModel.MIBCCustID, 
+                    customerModel.AIBCCustID, 
+                    customerModel.PTByGameType, 
+                    customerModel.RoleId.ToString(), 
                     DateTime.Now, 
                     ip, 
                     modifiedId, 
                     modifiedBy, 
                     fromSystem, 
-                    customerInfo.IsAutoReset);
+                    customerModel.IsAutoReset);
             }
 
             // Update Status for direct downline only
-            if (((settingsInserted && !customerInfo.CasinoSync) || customerInfo.CasinoSync) && uplineRoleId - roleId == 1)
+            if (settingsInserted && !customerModel.CasinoSync || customerModel.CasinoSync)
             {                
                 statusUpdated = this.UpdateCSStatus(
                     custId, 
                     true, 
-                    customerInfo.CasinoDisabled, 
-                    customerInfo.EnableDownline, 
+                    customerModel.CasinoDisabled, 
+                    customerModel.EnableDownline, 
                     uplineId, 
                     string.Empty, 
                     0, 
                     "en", 
-                    customerInfo.UserName, 
+                    customerModel.UserName, 
                     string.Empty, 
                     out errMsg);
             }
 
             // Enable PT/Update max transfer for direct downline only
-            if (statusUpdated && uplineRoleId - roleId == 1)
+            if (statusUpdated)
             {
                 enablePTUpdated = customer.UpdateCustEnablePT(custId, true);
 
                 maxTransferUpdated = customer.UpdateMaxTransfer(
                     custId, 
                     true, 
-                    (decimal)customerInfo.MaxTransferCredit,
-                    customerInfo.IsAutoReset, 
+                    (decimal)customerModel.MaxTransferCredit,
+                    customerModel.IsAutoReset, 
                     ip, 
                     uplineId, 
                     modifiedBy, 
@@ -266,9 +275,9 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             // Update PT/Betting limit settings
             casinoPTResult = this.UpdateMasterSettings(
                 custId, 
-                roleId, 
+                customerModel.RoleId, 
                 uplineId, 
-                uplineRoleId, 
+                customerModel.UplineRoleId, 
                 ip, 
                 modifiedId, 
                 modifiedBy, 

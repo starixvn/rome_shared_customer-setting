@@ -9,12 +9,12 @@
 
 namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
 {
+    using System;
     using System.Collections;
     using System.Data;
     using CasinoLibrary.SBAgent;
-    using Fanex.Data.DNAide;
-    using System;
     using Fanex.CustomerSetting.Module.Casino.Entities;
+    using Fanex.Data.DNAide;
 
     /// <summary>
     /// TODO: Update summary.

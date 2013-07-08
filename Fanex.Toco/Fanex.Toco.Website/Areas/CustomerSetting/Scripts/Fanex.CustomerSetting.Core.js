@@ -231,6 +231,7 @@ Fanex.CustomerSetting.Core = {
 
     Init: function () {
         $this = this;
+        $.blockUI.defaults.css.position = 'absolute';
         $.blockUI.defaults.css.border = '0px solid #aaa';
         $.blockUI.defaults.css.backgroundColor = "transparent";
         $.blockUI.defaults.overlayCSS.backgroundColor = "transparent";
@@ -304,6 +305,42 @@ Fanex.CustomerSetting.Core = {
         }
 
         return ret;
+    },
+
+    ProcessDisplayMultiple: function (length, usernames) {
+        $('#arrowUpDown').bind('click', function () {
+            Fanex.CustomerSetting.Core.ToggleUsernames(length);
+        });
+
+        $('#names').css('display', 'block');
+
+        if (usernames.length < (length ? length : 98)) {
+            $('#names').css('cursor', 'default');
+            $('#names').html(usernames.substring(0, usernames.length - 2));
+            $('#arrowUpDown').css('display', 'none');
+        }
+        else {
+            $('#names').css('cursor', 'pointer');
+            $('#names').bind('click', function () {
+                Fanex.CustomerSetting.Core.ToggleUsernames(length);
+            });
+            $('#names').html(usernames.substring(0, (length ? length : 98)) + '...');
+            $('#names').attr('title', usernames.substring(0, usernames.length - 2));
+            $('#arrowUpDown').css('display', 'block');
+        }
+    },
+
+    ToggleUsernames: function (length, usernames) {
+        if ($('#arrowUpDown').hasClass('collapse')) {
+            $('#arrowUpDown').attr('class', 'expand');
+            $('#names').html(usernames.substring(0, usernames.length - 2));
+            $('#names').attr('title', '');
+        }
+        else {
+            $('#arrowUpDown').attr('class', 'collapse');
+            $('#names').html(usernames.substring(0, (length ? length : 98)) + '...');
+            $('#names').attr('title', usernames.substring(0, usernames.length - 2));
+        }
     }
 }
 

@@ -15,17 +15,15 @@ Fanex.CustomerSetting.Casino.EditMaster = {
     SettingModel: {},
     CustomerModel: {},
     IsMultiple: false,
-    CustomerInfo: { id: 1373580, uplineId: 1373389, roleId: 3, uplineRoleId: 4, userId: 1373389, username: 'pgmAndy' },
+    CustomerInfo: { id: 1373580, uplineId: 1373389, userId: 1373389, username: 'pgmAndy' },
     CustIds: [],
     Usernames: [],
     Enabled: false,
     ErrorMessage: '',
 
-    Init: function (id, uplineId, roleId, uplineRoleId, userId, username, isMultiple, custIds, usernames) {
+    Init: function (id, uplineId, userId, username, isMultiple, custIds, usernames) {
         this.CustomerInfo.id = id;
         this.CustomerInfo.uplineId = uplineId;
-        this.CustomerInfo.roleId = roleId;
-        this.CustomerInfo.uplineRoleId = uplineRoleId;
         this.CustomerInfo.userId = userId;
         this.CustomerInfo.username = username;
         this.CustomerModel = Fanex.CustomerSetting.Casino.CustomerModel;
@@ -33,14 +31,14 @@ Fanex.CustomerSetting.Casino.EditMaster = {
         if (isMultiple) {
             this.IsMultiple = true;
 
-            if (!custIds) {
+            if (!custIds || !(custIds instanceof Array)) {
                 alert('Please input custIds parameter is array');
             }
             else {
                 this.CustIds = custIds;
             }
 
-            if (!usernames) {
+            if (!usernames || !(usernames instanceof Array)) {
                 alert('Please input usernames parameter is array');
             }
             else {
@@ -51,14 +49,15 @@ Fanex.CustomerSetting.Casino.EditMaster = {
         if (this.IsMultiple) {
             $('#userInfo').remove();
 
-            var usernames = '';
+            var names = "";
             $(this.Usernames).each(function (index, username) {
-                usernames += username + ', ';
-
-                usernames = usernames.substring(0, usernames.length - 2);
+                names += username + ", ";
             });
 
-            $('#names').html(usernames);
+            Fanex.CustomerSetting.Core.ProcessDisplayMultiple(125, names);
+            names = names.substring(0, names.length - 2);
+
+            $('#names').html(names);
             $('#names').show();
         }
         else {
@@ -479,8 +478,6 @@ Fanex.CustomerSetting.Casino.EditMaster = {
         var data = {
             id: custIdIndex == null ? this.CustomerInfo.id : Fanex.CustomerSetting.Casino.EditMaster.CustIds[custIdIndex],
             uplineId: this.CustomerInfo.uplineId,
-            roleId: this.CustomerInfo.roleId,
-            uplineRoleId: this.CustomerInfo.uplineRoleId,
             userId: this.CustomerInfo.userId,
             username: this.CustomerInfo.username,
             settingModel: JSON.stringify(this.SettingModel),
@@ -516,18 +513,35 @@ Fanex.CustomerSetting.Casino.EditMaster = {
                 }
             }
         })
-        .error(function (data) {
+        .error(function (response) {
             if (typeof console != 'undefined') {
-                $('#errMsg').html(data.responseText);
-                $('#errMsg').show();
+                console.log(response);
             }
 
-            Fanex.CustomerSetting.Core.UnBlockUI();
+            Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage += ('Not casino user: ' + Fanex.CustomerSetting.Casino.EditMaster.Usernames[custIdIndex]).formatErrorMessage() + '<br />';
+
+            if (!Fanex.CustomerSetting.Casino.EditMaster.IsMultiple) {
+                $('#errMsg').html(Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage);
+                $('#errMsg').show();
+                Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage = '';
+                Fanex.CustomerSetting.Core.UnBlockUI();
+            }
+            else {
+                if (custIdIndex == Fanex.CustomerSetting.Casino.EditMaster.CustIds.length - 1) {
+                    $('#errMsg').html(Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage);
+                    $('#errMsg').show();
+                    Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage = '';
+                    Fanex.CustomerSetting.Core.UnBlockUI();
+                }
+                else {
+                    Fanex.CustomerSetting.Casino.EditMaster.ProcessUpdate(++custIdIndex);
+                }
+            }
         });
     }
 };
 
 $(document).ready(function () {
     //This line is for testing only, if called in another project, please call as below
-    Fanex.CustomerSetting.Casino.EditMaster.Init(1373580, 1373389, 3, 4, 1373389, 'pgmAndy');
+    Fanex.CustomerSetting.Casino.EditMaster.Init(1373580, 1373389, 1373389, 'pgmAndy'/*, true, [1, 2], ['a', 'b']*/);
 });

@@ -16,9 +16,9 @@
             return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Master/EditMaster.cshtml", customerSetting);
         }
 
-        public ActionResult UpdateMasterPost(int id, int roleId, int uplineId, int uplineRoleId, int userId, string username, string settingModel, string customerModel)
+        public ActionResult UpdateMasterPost(int id, int uplineId, int userId, string username, string settingModel, string customerModel)
         {
-            var ret = CasinoManager.Instance.UpdateMaster(id, roleId, uplineId, uplineRoleId, Request.UserHostAddress, userId, username, BaseController.FromSystem, JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
+            var ret = CasinoManager.Instance.UpdateMaster(id, uplineId, Request.UserHostAddress, userId, username, BaseController.FromSystem, JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
 
             return this.JsonBase(new { ErrorCode = ret.IsSuccess ? 0 : 1, ErrorMessage = ret.ErrorMessage });
         }
