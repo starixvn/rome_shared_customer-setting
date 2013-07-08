@@ -427,12 +427,21 @@ Fanex.CustomerSetting.Casino.EditMaster = {
     },
 
     Update: function () {
-        Fanex.CustomerSetting.Core.BlockUI();
-
         var gameGroups = this.SettingModel.gameGroups;
         var customer = this.CustomerModel;
 
         // Assign customer info
+        var min = parseFloat(Fanex.CustomerSetting.Core.ReplaceAll($('#minCredit').html(), ',', ''));
+        var max = parseFloat(Fanex.CustomerSetting.Core.ReplaceAll($('#maxCredit').html(), ',', ''));
+        var cur = parseFloat(Fanex.CustomerSetting.Core.ReplaceAll($('#maxTransfer').val(), ',', ''));
+
+        if (cur < min || cur > max) {
+            Validators.show($('#maxTransfer').get(0), 'Member Max Transfer Credit must be between ' + $('#minCredit').html() + ' and ' + $('#maxCredit').html(), null, null, 1500);
+            return;
+        }
+
+        Fanex.CustomerSetting.Core.BlockUI();
+
         customer.casinoDisabled = !$('#chkEnable').is(':checked');
         customer.maxTransferCredit = $('#maxTransfer').val();
         customer.isAutoReset = $('#isAutoReset').is(':checked');

@@ -253,9 +253,7 @@ Fanex.CustomerSetting.Core = {
     },
 
     UnBlockUI: function () {
-        if ($this.BlockedUI) {
-            $.unblockUI(document);
-        }
+        $.unblockUI(document);
     },
 
     DecodeHtml: function (str) {
