@@ -436,7 +436,7 @@ Fanex.CustomerSetting.Casino.EditMaster = {
         var cur = parseFloat(Fanex.CustomerSetting.Core.ReplaceAll($('#maxTransfer').val(), ',', ''));
 
         if (isNaN(cur) || cur < min || cur > max) {
-            Validators.show($('#maxTransfer').get(0), 'Member Max Transfer Credit must be between ' + $('#minCredit').html() + ' and ' + $('#maxCredit').html(), null, null, 1500);
+            Validators.show($('#maxTransfer').get(0), 'Member Max Transfer Credit must be between ' + $('#minCredit').html() + ' and ' + $('#maxCredit').html(), undefined, undefined, 1500);
             return;
         }
 
