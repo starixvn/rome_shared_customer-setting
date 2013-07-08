@@ -231,6 +231,7 @@ Fanex.CustomerSetting.Core = {
 
     Init: function () {
         $this = this;
+        $.blockUI.defaults.css.zIndex = '9999999';
         $.blockUI.defaults.css.position = 'absolute';
         $.blockUI.defaults.css.border = '0px solid #aaa';
         $.blockUI.defaults.css.backgroundColor = "transparent";
@@ -252,7 +253,9 @@ Fanex.CustomerSetting.Core = {
     },
 
     UnBlockUI: function () {
-        $.unblockUI(document);
+        if ($this.BlockedUI) {
+            $.unblockUI(document);
+        }
     },
 
     DecodeHtml: function (str) {
