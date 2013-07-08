@@ -1,4 +1,8 @@
-﻿.statusInfo
+﻿input[type=text]
+{
+    font-size: 11px;
+}
+.statusInfo
 {
     border: 1px solid #ccc;
     border-left: 0;
