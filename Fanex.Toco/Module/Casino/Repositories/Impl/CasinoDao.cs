@@ -26,9 +26,16 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
             Hashtable param = new Hashtable();
             param.Add("custid", ibcCustId);
 
+            var uplineParam = new Hashtable();
+            uplineParam.Add("custid", uplineId);
+
             DbResult dr = DbHelper.ExecuteDbResult("Age_CustomerSelUserInfo", param, 300);
+            var upline = DbHelper.ExecuteDbResult("Age_CustomerSelUserInfo", uplineParam, 300);
+
             DataRow row = null;
             CasinoCustomer customerDetail = new CasinoCustomer();
+            customerDetail.UplineDisabledCasino = (bool)upline.ResultSet.Tables[0].Rows[0]["disablecasino"];
+
             if (dr.ResultSet.Tables[0].Rows.Count > 0)
             {
                 row = dr.ResultSet.Tables[0].Rows[0];

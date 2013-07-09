@@ -6,7 +6,7 @@
 @{
     var check = Model.IsAutoReset ? " checked=\"checked=\"" : string.Empty;
     var enable = !Model.CasinoDisabled && Model.CasinoSync ? " checked=\"checked\"" : string.Empty;
-    var disable = Model.CasinoDisabled && Model.CasinoSync ? " disabled=\"disabled\"" : string.Empty;
+    var disable = Model.UplineDisabledCasino && Model.CasinoDisabled && Model.CasinoSync ? " disabled=\"disabled\"" : string.Empty;
     var customer = JsonConvert.SerializeObject(Model, new JsonSerializerSettings
     {
         ContractResolver = new CamelCasePropertyNamesContractResolver(),
