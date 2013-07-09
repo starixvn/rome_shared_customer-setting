@@ -147,6 +147,8 @@
     <Content Include="Areas\CustomerSetting\Scripts\jquery.js" />
     <Content Include="Areas\CustomerSetting\Scripts\Validators.js" />
     <Content Include="Areas\CustomerSetting\Scripts\_references.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\Fanex.CustomerSetting.Casino.EditMember.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\Fanex.CustomerSetting.Casino.EditAgent.js" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\Fanex.CustomerSetting.Casino.EditMaster.js" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\Fanex.CustomerSetting.Casino.js" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Styles\Casino.css" />

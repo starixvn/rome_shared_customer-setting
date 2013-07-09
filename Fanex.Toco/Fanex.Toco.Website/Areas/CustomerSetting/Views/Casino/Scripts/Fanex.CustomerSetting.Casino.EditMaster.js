@@ -66,10 +66,12 @@ Fanex.CustomerSetting.Casino.EditMaster = {
         }
 
         var level = $('#downline').html();
-        var timeout = setTimeout(function () {
-            clearTimeout(timeout);
-            Fanex.CustomerSetting.Casino.EditMaster.Enabled = $('#chkEnable').is(':checked');
-        }, 2000);
+        var timeout = setInterval(function () {
+            if ($('#chkEnable').get(0)) {
+                clearInterval(timeout);
+                Fanex.CustomerSetting.Casino.EditMaster.Enabled = $('#chkEnable').is(':checked');
+            }
+        }, 100);
 
         $('#chkEnable').bind('click', function () {
             if (this.checked) {
@@ -445,6 +447,7 @@ Fanex.CustomerSetting.Casino.EditMaster = {
         customer.casinoDisabled = !$('#chkEnable').is(':checked');
         customer.maxTransferCredit = $('#maxTransfer').val();
         customer.isAutoReset = $('#isAutoReset').is(':checked');
+        Fanex.CustomerSetting.Casino.EditMaster.Enabled = customer.enableDownline = $('#chkEnableDownline').is(':checked');
 
         // Assign setting values
         $(gameGroups).each(function (i, gameGroup) {
@@ -500,22 +503,44 @@ Fanex.CustomerSetting.Casino.EditMaster = {
             dataType: 'json'
         })
         .success(function (result) {
-            if (!result.isSuccess) {
+            if (result.errorCode != 0) {
                 Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage += result.errorMessage.formatErrorMessage() + '<br />';
             }
 
             if (!Fanex.CustomerSetting.Casino.EditMaster.IsMultiple) {
-                $('#errMsg').html(Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage);
-                $('#errMsg').show();
-                Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage = '';
-                Fanex.CustomerSetting.Core.UnBlockUI();
+                if (Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage != '') {
+                    $('#errMsg').html(Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage);
+                    $('#errMsg').show();
+
+                    Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage = '';
+                    Fanex.CustomerSetting.Core.UnBlockUI();
+
+                    return false;
+                }
+                else {
+                    Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage = '';
+                    Fanex.CustomerSetting.Core.UnBlockUI();
+
+                    return true;
+                }                
             }
             else {
                 if (custIdIndex == Fanex.CustomerSetting.Casino.EditMaster.CustIds.length - 1) {
-                    $('#errMsg').html(Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage);
-                    $('#errMsg').show();
-                    Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage = '';
-                    Fanex.CustomerSetting.Core.UnBlockUI();
+                    if (Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage != '') {
+                        $('#errMsg').html(Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage);
+                        $('#errMsg').show();
+
+                        Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage = '';
+                        Fanex.CustomerSetting.Core.UnBlockUI();
+
+                        return false;
+                    }
+                    else {
+                        Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage = '';
+                        Fanex.CustomerSetting.Core.UnBlockUI();
+
+                        return true;
+                    }
                 }
                 else {
                     Fanex.CustomerSetting.Casino.EditMaster.ProcessUpdate(custIdIndex++);
@@ -530,17 +555,39 @@ Fanex.CustomerSetting.Casino.EditMaster = {
             Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage += ('Not casino user: ' + Fanex.CustomerSetting.Casino.EditMaster.Usernames[custIdIndex]).formatErrorMessage() + '<br />';
 
             if (!Fanex.CustomerSetting.Casino.EditMaster.IsMultiple) {
-                $('#errMsg').html(Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage);
-                $('#errMsg').show();
-                Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage = '';
-                Fanex.CustomerSetting.Core.UnBlockUI();
+                if (Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage != '') {
+                    $('#errMsg').html(Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage);
+                    $('#errMsg').show();
+
+                    Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage = '';
+                    Fanex.CustomerSetting.Core.UnBlockUI();
+
+                    return false;
+                }
+                else {
+                    Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage = '';
+                    Fanex.CustomerSetting.Core.UnBlockUI();
+
+                    return true;
+                } 
             }
             else {
                 if (custIdIndex == Fanex.CustomerSetting.Casino.EditMaster.CustIds.length - 1) {
-                    $('#errMsg').html(Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage);
-                    $('#errMsg').show();
-                    Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage = '';
-                    Fanex.CustomerSetting.Core.UnBlockUI();
+                    if (Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage != '') {
+                        $('#errMsg').html(Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage);
+                        $('#errMsg').show();
+
+                        Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage = '';
+                        Fanex.CustomerSetting.Core.UnBlockUI();
+
+                        return false;
+                    }
+                    else {
+                        Fanex.CustomerSetting.Casino.EditMaster.ErrorMessage = '';
+                        Fanex.CustomerSetting.Core.UnBlockUI();
+
+                        return true;
+                    } 
                 }
                 else {
                     Fanex.CustomerSetting.Casino.EditMaster.ProcessUpdate(++custIdIndex);

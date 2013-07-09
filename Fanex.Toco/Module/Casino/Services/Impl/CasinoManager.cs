@@ -130,22 +130,22 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 var gameGroup = new GameGroup();
 
                 // Commission
-                gameGroup.Aco = synced ? Utils.ToDecimal(row["AgentRollingRate"]) : Utils.ToDecimal(row["UplineAgentRollingRate"]);
-                gameGroup.Mco = synced ? Utils.ToDecimal(row["MAgentRollingRate"]) : Utils.ToDecimal(row["UplineMAgentRollingRate"]);
+                gameGroup.Aco = synced ? Utils.ToDecimal(row["AgentRollingRate"]).Format(4) : Utils.ToDecimal(row["UplineAgentRollingRate"]).Format(4);
+                gameGroup.Mco = synced ? Utils.ToDecimal(row["UplineMAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["MAgentRollingRate"]).Format(4);
 
                 // Game Group Info
                 gameGroup.GameGroupID = Utils.ToInt32(row["GameKind"]);
                 gameGroup.GameGroupName = Utils.ToString(row[Lang("GameKindName")]);
 
                 // Master preset PT
-                gameGroup.M3 = synced ? Utils.ToDecimal(row["MPositionTaking"]) : Utils.ToDecimal(row["UplineMPositionTaking"]);
-                gameGroup.M2 = synced ? Utils.ToDecimal(row["APositionTaking"]) : Utils.ToDecimal(row["UplineAPositionTaking"]);
+                gameGroup.M3 = !synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
+                gameGroup.M2 = synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
                                 
                 // Agent Max PT
-                gameGroup.A2 = synced ? Utils.ToDecimal(row["APositionTaking"]) : Utils.ToDecimal(row["UplineAPositionTaking"]);
+                gameGroup.A2 = synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
 
                 // Agent Min PT
-                gameGroup.N2 = synced ? Utils.ToDecimal(row["MinPositionTaking"]) : Utils.ToDecimal(row["UplineMinPositionTaking"]);
+                gameGroup.N2 = synced ? Utils.ToDecimal(row["MinPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMinPositionTaking"]).Format(2);
 
                 // Assign game types
                 var gameTypes = this.GetGameTypeAgent(id, gameGroup.GameGroupID, synced);
@@ -246,19 +246,19 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 var gameGroup = new GameGroup();
 
                 // Commission
-                gameGroup.co = synced ? Utils.ToDecimal(row["MemberRollingRate"]) : Utils.ToDecimal(row["UplineMemberRollingRate"]);
-                gameGroup.Aco = synced ? Utils.ToDecimal(row["AgentRollingRate"]) : Utils.ToDecimal(row["UplineAgentRollingRate"]);
+                gameGroup.co = synced ? Utils.ToDecimal(row["MemberRollingRate"]).Format(4) : Utils.ToDecimal(row["UplineMemberRollingRate"]).Format(4);
+                gameGroup.Aco = synced ? Utils.ToDecimal(row["UplineAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["AgentRollingRate"]).Format(4);
 
                 // Game type info
-                gameGroup.GameGroupID = Utils.ToInt32(row["GameKindID"]);
+                gameGroup.GameGroupID = Utils.ToInt32(row["GameKind"]);
                 gameGroup.GameGroupName = Utils.ToString(row[Lang("GameKindName")]);
 
                 // Agent preset PT
-                gameGroup.M2 = synced ? Utils.ToDecimal(row["APositionTaking"]) : Utils.ToDecimal(row["UplineMPositionTaking"]);
-                gameGroup.M1 = synced ? Utils.ToDecimal(row["PositionTaking"]) : Utils.ToDecimal(row["UplinePositionTaking"]);
-
+                gameGroup.M2 = synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
+                gameGroup.M1 = synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
+                
                 // Assign game types
-                var gameTypes = this.GetGameTypeAgent(id, gameGroup.GameGroupID, synced);
+                var gameTypes = this.GetGameTypeMember(id, gameGroup.GameGroupID, synced);
                 gameGroup.GameTypes = gameTypes;
 
                 gameGroups.Add(gameGroup);
@@ -302,7 +302,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 gameGroup.Aco = synced ? Utils.ToDecimal(row["AgentRollingRate"]) : Utils.ToDecimal(row["UplineAgentRollingRate"]);
 
                 // Game type info
-                gameGroup.GameGroupID = Utils.ToInt32(row["GameKindID"]);
+                gameGroup.GameGroupID = Utils.ToInt32(row["GameKind"]);
                 gameGroup.GameGroupName = Utils.ToString(row[Lang("GameKindName")]);
 
                 // Agent preset PT
@@ -354,7 +354,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 gameGroup.Aco = synced ? Utils.ToDecimal(row["AgentRollingRate"]) : Utils.ToDecimal(row["UplineAgentRollingRate"]);
 
                 // Game type info
-                gameGroup.GameGroupID = Utils.ToInt32(row["GameKindID"]);
+                gameGroup.GameGroupID = Utils.ToInt32(row["GameKind"]);
                 gameGroup.GameGroupName = Utils.ToString(row[Lang("GameKindName")]);
 
                 // Agent preset PT
@@ -525,6 +525,226 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             return new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
         }
 
+        public Result UpdateAgent(int custId, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel settingModel, CasinoCustomer customerModel)
+        {
+            var errMsg = string.Empty;
+            var customer = new Customer();
+            var messages = string.Empty;
+            var settingsInserted = true;
+            var statusUpdated = true;
+            var maxTransferUpdated = false;
+            var casinoPTResult = new Result();
+            var enablePTUpdated = false;
+
+            if (customerModel.UplineRoleId != 3 || customerModel.RoleId != 2)
+            {
+                return new Result(1, "Invalid customer information");
+            }
+
+            // Check whether casino is synced or not to insert customer settings for direct downline only
+            if (!customerModel.CasinoSync)
+            {
+                settingsInserted = customer.InsertCustSetting(
+                    "01",
+                    customerModel.IBCCustID,
+                    customerModel.UserName,
+                    customerModel.UserName2,
+                    customerModel.FirstName,
+                    customerModel.LastName,
+                    customerModel.UserPwd,
+                    customerModel.Phone,
+                    customerModel.MobilePhone,
+                    customerModel.Currency,
+                    customerModel.Fax,
+                    customerModel.Closed,
+                    customerModel.Suspend,
+                    customerModel.IsEnablePT,
+                    (decimal)customerModel.MaxWin,
+                    (decimal)customerModel.MaxLose,
+                    true,
+                    (decimal)customerModel.MaxTransferCredit,
+                    customerModel.SIBCCustID,
+                    customerModel.MIBCCustID,
+                    customerModel.AIBCCustID,
+                    customerModel.PTByGameType,
+                    customerModel.RoleId.ToString(),
+                    DateTime.Now,
+                    ip,
+                    modifiedId,
+                    modifiedBy,
+                    fromSystem,
+                    customerModel.IsAutoReset);
+            }
+
+            // Update Status for direct downline only
+            if ((settingsInserted && !customerModel.CasinoSync) || customerModel.CasinoSync)
+            {
+                statusUpdated = this.UpdateCSStatus(
+                    custId,
+                    true,
+                    customerModel.CasinoDisabled,
+                    customerModel.EnableDownline,
+                    uplineId,
+                    string.Empty,
+                    0,
+                    "en",
+                    customerModel.UserName,
+                    string.Empty,
+                    out errMsg);
+            }
+
+            // Enable PT/Update max transfer for direct downline only
+            if (statusUpdated)
+            {
+                enablePTUpdated = customer.UpdateCustEnablePT(custId, true);
+
+                maxTransferUpdated = customer.UpdateMaxTransfer(
+                    custId,
+                    true,
+                    (decimal)customerModel.MaxTransferCredit,
+                    customerModel.IsAutoReset,
+                    ip,
+                    uplineId,
+                    modifiedBy,
+                    fromSystem);
+            }
+
+            // Update PT/Betting limit settings
+            casinoPTResult = this.UpdateAgentSettings(
+                custId,
+                customerModel.RoleId,
+                uplineId,
+                customerModel.UplineRoleId,
+                ip,
+                modifiedId,
+                modifiedBy,
+                fromSystem,
+                settingModel);
+
+            // Gets error messages
+            messages += string.IsNullOrWhiteSpace(errMsg) && casinoPTResult.IsSuccess ? string.Empty : !string.IsNullOrWhiteSpace(errMsg) ? errMsg + "<br />" + casinoPTResult.ErrorMessage : casinoPTResult.ErrorMessage;
+
+            var msgs = messages.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            var retMsg = string.Empty;
+
+            foreach (var item in msgs)
+            {
+                retMsg += string.Format("{0}{1}", item, ", ");
+            }
+
+            return new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
+        }
+
+        public Result UpdateMember(int custId, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel settingModel, CasinoCustomer customerModel)
+        {
+            var errMsg = string.Empty;
+            var customer = new Customer();
+            var messages = string.Empty;
+            var settingsInserted = true;
+            var statusUpdated = true;
+            var maxTransferUpdated = false;
+            var casinoPTResult = new Result();
+            var enablePTUpdated = false;
+
+            if (customerModel.UplineRoleId != 2 || customerModel.RoleId != 1)
+            {
+                return new Result(1, "Invalid customer information");
+            }
+
+            // Check whether casino is synced or not to insert customer settings for direct downline only
+            if (!customerModel.CasinoSync)
+            {
+                settingsInserted = customer.InsertCustSetting(
+                    "01",
+                    customerModel.IBCCustID,
+                    customerModel.UserName,
+                    customerModel.UserName2,
+                    customerModel.FirstName,
+                    customerModel.LastName,
+                    customerModel.UserPwd,
+                    customerModel.Phone,
+                    customerModel.MobilePhone,
+                    customerModel.Currency,
+                    customerModel.Fax,
+                    customerModel.Closed,
+                    customerModel.Suspend,
+                    customerModel.IsEnablePT,
+                    (decimal)customerModel.MaxWin,
+                    (decimal)customerModel.MaxLose,
+                    true,
+                    (decimal)customerModel.MaxTransferCredit,
+                    customerModel.SIBCCustID,
+                    customerModel.MIBCCustID,
+                    customerModel.AIBCCustID,
+                    customerModel.PTByGameType,
+                    customerModel.RoleId.ToString(),
+                    DateTime.Now,
+                    ip,
+                    modifiedId,
+                    modifiedBy,
+                    fromSystem,
+                    customerModel.IsAutoReset);
+            }
+
+            // Update Status for direct downline only
+            if ((settingsInserted && !customerModel.CasinoSync) || customerModel.CasinoSync)
+            {
+                statusUpdated = this.UpdateCSStatus(
+                    custId,
+                    true,
+                    customerModel.CasinoDisabled,
+                    customerModel.EnableDownline,
+                    uplineId,
+                    string.Empty,
+                    0,
+                    "en",
+                    customerModel.UserName,
+                    string.Empty,
+                    out errMsg);
+            }
+
+            // Enable PT/Update max transfer for direct downline only
+            if (statusUpdated)
+            {
+                enablePTUpdated = customer.UpdateCustEnablePT(custId, true);
+
+                maxTransferUpdated = customer.UpdateMaxTransfer(
+                    custId,
+                    true,
+                    (decimal)customerModel.MaxTransferCredit,
+                    customerModel.IsAutoReset,
+                    ip,
+                    uplineId,
+                    modifiedBy,
+                    fromSystem);
+            }
+
+            // Update PT/Betting limit settings
+            casinoPTResult = this.UpdateMemberSettings(
+                custId,
+                customerModel.RoleId,
+                uplineId,
+                customerModel.UplineRoleId,
+                ip,
+                modifiedId,
+                modifiedBy,
+                fromSystem,
+                settingModel);
+
+            // Gets error messages
+            messages += string.IsNullOrWhiteSpace(errMsg) && casinoPTResult.IsSuccess ? string.Empty : !string.IsNullOrWhiteSpace(errMsg) ? errMsg + "<br />" + casinoPTResult.ErrorMessage : casinoPTResult.ErrorMessage;
+
+            var msgs = messages.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            var retMsg = string.Empty;
+
+            foreach (var item in msgs)
+            {
+                retMsg += string.Format("{0}{1}", item, ", ");
+            }
+
+            return new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
+        }
+
         private static string Lang(string original)
         {
             return original + "_En";
@@ -552,74 +772,16 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
         {
             var customer = new Customer();
             var msg = string.Empty;
-            var gameKindTable = (uplineRoleId == Super || uplineRoleId == Master) && roleId == Member ? 
-                this.GameKindsDataTableMember() : this.GameKindsDataTable();
-            var gameTypeTable = (uplineRoleId == Super || uplineRoleId == Master) && roleId == Member ? 
-                this.GameTypesDataTableMember() : this.GameTypesDataTable();
+            var gameKindTable = this.GameKindsDataTable();
+            var gameTypeTable = this.GameTypesDataTable();
             var gameStakeTable = this.GameTypesStakesDataTable();
 
             foreach (var gameGroup in model.GameGroups)
             {
                 var gameGroupID = gameGroup.GameGroupID;
 
-                if (uplineRoleId - roleId != 1)
-                {
-                    // Assign data for indirect downline
-                    gameKindTable.Rows.Add(
-                        new object[] 
-                            {
-                                custId,
-                                gameGroupID,
-                                !(uplineRoleId == Super || uplineRoleId == Master) || gameGroup.Is3 == true ? null : (object)gameGroup.S3,
-                                !(uplineRoleId == Master || uplineRoleId == Agent) ? null : (object)gameGroup.M3,
-                                gameGroup.Is3 == true ? 1 : 0,
-                                !gameGroup.Is3 == true ? null : (object)gameGroup.Us3,
-                                uplineRoleId,
-                                ip,
-                                modifiedId, 
-                                modifiedBy, 
-                                fromSystem
-                            });
-
-                    var gameTypes = gameGroup.GameTypes;
-
-                    foreach (var gameType in gameTypes)
-                    {
-                        gameTypeTable.Rows.Add(
-                           new object[] 
-                                {
-                                    custId,
-                                    gameType.GameTypeID,
-                                    !(uplineRoleId == Super || uplineRoleId == Master) || gameType.Is3 == true ? null : (object)gameType.S3,
-                                    !(uplineRoleId == Master || uplineRoleId == Agent) ? null : (object)gameType.M3,
-                                    gameType.Is3 == true ? 1 : 0,
-                                    !gameType.Is3 == true ? null : (object)gameType.Us3,
-                                    roleId,
-                                    ip,
-                                    modifiedId, 
-                                    modifiedBy, 
-                                    fromSystem
-                                });
-
-                        gameStakeTable.Rows.Add(
-                            new object[] 
-                                {
-                                    custId,
-                                    gameType.GameTypeID,
-                                    this.SelectedStakeLevels(gameType.BettingLimits),
-                                    roleId,
-                                    ip,
-                                    modifiedId, 
-                                    modifiedBy, 
-                                    fromSystem
-                                });
-                    }
-                }
-                else
-                {
-                    // Assign data for direct downline
-                    gameKindTable.Rows.Add(
-                        new object[]
+                gameKindTable.Rows.Add(
+                    new object[]
                             {
                                 custId,
                                 gameGroupID,
@@ -642,12 +804,12 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 fromSystem
                             });
 
-                    var gameTypes = gameGroup.GameTypes;
+                var gameTypes = gameGroup.GameTypes;
 
-                    foreach (var gameType in gameTypes)
-                    {
-                        gameTypeTable.Rows.Add(
-                            new object[]
+                foreach (var gameType in gameTypes)
+                {
+                    gameTypeTable.Rows.Add(
+                        new object[]
                             {
                                 custId,
                                 gameType.GameTypeID,
@@ -671,8 +833,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 fromSystem
                             });
 
-                        gameStakeTable.Rows.Add(
-                            new object[] 
+                    gameStakeTable.Rows.Add(
+                        new object[] 
                             {
                                 custId,
                                 gameType.GameTypeID,
@@ -683,42 +845,23 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 modifiedBy, 
                                 fromSystem
                             });
-                    }
-                }                
+                }
             }
 
             var resultKind = new DataTable();
             var resultType = new DataTable();
             var resultStake = new DataTable();
 
-            if (uplineRoleId - roleId == 1)
-            {
-                // Update direct downline
-                resultKind = customer.UpdateCustGameKind(gameKindTable);
+            resultKind = customer.UpdateCustGameKind(gameKindTable);
 
-                if (model.IsPtByGameType)
-                {
-                    resultType = customer.UpdateCustGameType(gameTypeTable);
-                }
-                else
-                {
-                    resultStake = customer.UpdateCustGameTypeStakeLevel(gameStakeTable);
-                }
+            if (model.IsPtByGameType)
+            {
+                resultType = customer.UpdateCustGameType(gameTypeTable);
             }
             else
             {
-                // Update indirect downline
-                resultKind = customer.UpdateCustGameKind_EditMember(gameKindTable);
-
-                if (model.IsPtByGameType)
-                {
-                    resultType = customer.UpdateCustGameType_EditMember(gameTypeTable);
-                }
-                else
-                {
-                    resultStake = customer.UpdateCustGameTypeStakeLevel(gameStakeTable);
-                }
-            }            
+                resultStake = customer.UpdateCustGameTypeStakeLevel(gameStakeTable);
+            }     
 
             // Process error messages
             foreach (DataRow item in resultKind.Rows)
@@ -745,7 +888,249 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
             return new Result(msg == string.Empty || (resultKind.Rows.Count == 0 && resultType.Rows.Count == 0 && resultStake.Rows.Count == 0) ? 0 : 1, msg);
         }
-        
+
+        private Result UpdateAgentSettings(int custId, int roleId, int uplineId, int uplineRoleId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel model)
+        {
+            var customer = new Customer();
+            var msg = string.Empty;
+            var gameKindTable = this.GameKindsDataTable();
+            var gameTypeTable = this.GameTypesDataTable();
+            var gameStakeTable = this.GameTypesStakesDataTable();
+
+            foreach (var gameGroup in model.GameGroups)
+            {
+                var gameGroupID = gameGroup.GameGroupID;
+
+                gameKindTable.Rows.Add(
+                    new object[]
+                            {
+                                custId,
+                                gameGroupID,
+                                null,
+                                !(roleId == Super || roleId == Master) || gameGroup.Is1 == true ? null : (object)gameGroup.M3,
+                                !(roleId == Master || roleId == Agent) ? null : (object)gameGroup.M2,
+                                !(roleId == Agent || roleId == Member) ? null : (object)gameGroup.A2,
+                                gameGroup.Is1 == true ? 1 : 0,
+                                !gameGroup.Is1 == true ? null : (object)gameGroup.Us1,
+                                !(roleId == Super || roleId == Master || roleId == Agent) ? null : (object)gameGroup.N2,
+                                0,
+                                roleId != Super ? null : (object)gameGroup.Sco,
+                                roleId != Master ? null : (object)gameGroup.Mco,
+                                roleId != Agent ? null : (object)gameGroup.Aco,
+                                roleId != Member ? null : (object)gameGroup.co,
+                                roleId,
+                                ip,
+                                modifiedId, 
+                                modifiedBy, 
+                                fromSystem
+                            });
+
+                var gameTypes = gameGroup.GameTypes;
+
+                foreach (var gameType in gameTypes)
+                {
+                    gameTypeTable.Rows.Add(
+                        new object[]
+                            {
+                                custId,
+                                gameType.GameTypeID,
+                                null,
+                                !(roleId == Super || roleId == Master) || gameType.Is1 == true ? null : (object)gameType.M3,
+                                !(roleId == Master || roleId == Agent) ? null : (object)gameType.M2,
+                                !(roleId == Agent || roleId == Member) ? null : (object)gameType.A2,
+                                gameType.Is1 == true ? 1 : 0,
+                                !gameType.Is1 == true ? null : (object)gameType.Us1,
+                                !(roleId == Super || roleId == Master || roleId == Member) ? null : (object)gameType.N2,
+                                0,
+                                roleId != Super ? null : (object)gameType.Sco,
+                                roleId != Master ? null : (object)gameType.Mco,
+                                roleId != Agent ? null : (object)gameType.Aco,
+                                roleId != Member ? null : (object)gameType.co,
+                                this.SelectedStakeLevels(gameType.BettingLimits),
+                                roleId,
+                                ip,
+                                modifiedId, 
+                                modifiedBy, 
+                                fromSystem
+                            });
+
+                    gameStakeTable.Rows.Add(
+                        new object[] 
+                            {
+                                custId,
+                                gameType.GameTypeID,
+                                this.SelectedStakeLevels(gameType.BettingLimits),
+                                roleId,
+                                ip,
+                                modifiedId, 
+                                modifiedBy, 
+                                fromSystem
+                            });
+                }
+            }
+
+            var resultKind = new DataTable();
+            var resultType = new DataTable();
+            var resultStake = new DataTable();
+
+            resultKind = customer.UpdateCustGameKind(gameKindTable);
+
+            if (model.IsPtByGameType)
+            {
+                resultType = customer.UpdateCustGameType(gameTypeTable);
+            }
+            else
+            {
+                resultStake = customer.UpdateCustGameTypeStakeLevel(gameStakeTable);
+            }
+            
+            // Process error messages
+            foreach (DataRow item in resultKind.Rows)
+            {
+                msg += item.Field<string>("ErrMsg") + "<br />";
+            }
+
+            if (model.IsPtByGameType)
+            {
+                foreach (DataRow item in resultType.Rows)
+                {
+                    msg += item.Field<string>("ErrMsg") + "<br />";
+                }
+            }
+            else
+            {
+                foreach (DataRow item in resultStake.Rows)
+                {
+                    msg += item.Field<string>("ErrMsg") + "<br />";
+                }
+            }
+
+            msg = msg.EndsWith("<br />") ? msg.Substring(0, msg.LastIndexOf("<br />")) : msg;
+
+            return new Result(msg == string.Empty || (resultKind.Rows.Count == 0 && resultType.Rows.Count == 0 && resultStake.Rows.Count == 0) ? 0 : 1, msg);
+        }
+
+        private Result UpdateMemberSettings(int custId, int roleId, int uplineId, int uplineRoleId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel model)
+        {
+            var customer = new Customer();
+            var msg = string.Empty;
+            var gameKindTable = this.GameKindsDataTable();
+            var gameTypeTable = this.GameTypesDataTable();
+            var gameStakeTable = this.GameTypesStakesDataTable();
+
+            foreach (var gameGroup in model.GameGroups)
+            {
+                var gameGroupID = gameGroup.GameGroupID;
+
+                gameKindTable.Rows.Add(
+                    new object[]
+                            {
+                                custId,
+                                gameGroupID,
+                                null,
+                                null,
+                                !(roleId == Master || roleId == Agent) ? null : (object)gameGroup.M2,
+                                !(roleId == Agent || roleId == Member) ? null : (object)gameGroup.M1,
+                                0,
+                                null,
+                                null,
+                                0,
+                                roleId != Super ? null : (object)gameGroup.Sco,
+                                roleId != Master ? null : (object)gameGroup.Mco,
+                                roleId != Agent ? null : (object)gameGroup.Aco,
+                                roleId != Member ? null : (object)gameGroup.co,
+                                roleId,
+                                ip,
+                                modifiedId, 
+                                modifiedBy, 
+                                fromSystem
+                            });
+
+                var gameTypes = gameGroup.GameTypes;
+
+                foreach (var gameType in gameTypes)
+                {
+                    gameTypeTable.Rows.Add(
+                        new object[]
+                            {
+                                custId,
+                                gameType.GameTypeID,
+                                null,
+                                null,
+                                !(roleId == Master || roleId == Agent) ? null : (object)gameType.M2,
+                                !(roleId == Agent || roleId == Member) ? null : (object)gameType.M1,
+                                0,
+                                null,
+                                null,
+                                0,
+                                roleId != Super ? null : (object)gameType.Sco,
+                                roleId != Master ? null : (object)gameType.Mco,
+                                roleId != Agent ? null : (object)gameType.Aco,
+                                roleId != Member ? null : (object)gameType.co,
+                                this.SelectedStakeLevels(gameType.BettingLimits),
+                                roleId,
+                                ip,
+                                modifiedId, 
+                                modifiedBy, 
+                                fromSystem
+                            });
+
+                    gameStakeTable.Rows.Add(
+                        new object[] 
+                            {
+                                custId,
+                                gameType.GameTypeID,
+                                this.SelectedStakeLevels(gameType.BettingLimits),
+                                roleId,
+                                ip,
+                                modifiedId, 
+                                modifiedBy, 
+                                fromSystem
+                            });
+                }
+            }
+
+            var resultKind = new DataTable();
+            var resultType = new DataTable();
+            var resultStake = new DataTable();
+
+            resultKind = customer.UpdateCustGameKind(gameKindTable);
+
+            if (model.IsPtByGameType)
+            {
+                resultType = customer.UpdateCustGameType(gameTypeTable);
+            }
+            else
+            {
+                resultStake = customer.UpdateCustGameTypeStakeLevel(gameStakeTable);
+            }
+
+            // Process error messages
+            foreach (DataRow item in resultKind.Rows)
+            {
+                msg += item.Field<string>("ErrMsg") + "<br />";
+            }
+
+            if (model.IsPtByGameType)
+            {
+                foreach (DataRow item in resultType.Rows)
+                {
+                    msg += item.Field<string>("ErrMsg") + "<br />";
+                }
+            }
+            else
+            {
+                foreach (DataRow item in resultStake.Rows)
+                {
+                    msg += item.Field<string>("ErrMsg") + "<br />";
+                }
+            }
+
+            msg = msg.EndsWith("<br />") ? msg.Substring(0, msg.LastIndexOf("<br />")) : msg;
+
+            return new Result(msg == string.Empty || (resultKind.Rows.Count == 0 && resultType.Rows.Count == 0 && resultStake.Rows.Count == 0) ? 0 : 1, msg);
+        }
+
         private string SelectedStakeLevels(List<StakeLevel> stakes)
         {
             var selectedLevels = string.Empty;
@@ -933,23 +1318,23 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             {
                 var gameType = new GameType();
 
-                // Commission
-                gameType.Aco = synced ? Utils.ToDecimal(row["AgentRollingRate"]) : Utils.ToDecimal(row["UplineAgentRollingRate"]);
-                gameType.Mco = synced ? Utils.ToDecimal(row["MAgentRollingRate"]) : Utils.ToDecimal(row["UplineMAgentRollingRate"]);
-
-                // Game type info
+                // Game Group Info
                 gameType.GameTypeID = Utils.ToInt32(row["GameTypeID"]);
                 gameType.GameTypeName = Utils.ToString(row[Lang("GameTypeName")]);
 
+                // Commission
+                gameType.Aco = synced ? Utils.ToDecimal(row["AgentRollingRate"]).Format(4) : Utils.ToDecimal(row["UplineAgentRollingRate"]).Format(4);
+                gameType.Mco = synced ? Utils.ToDecimal(row["UplineMAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["MAgentRollingRate"]).Format(4);
+
                 // Master preset PT
-                gameType.M3 = synced ? Utils.ToDecimal(row["MPositionTaking"]) : Utils.ToDecimal(row["UplineMPositionTaking"]);
-                gameType.M2 = synced ? Utils.ToDecimal(row["APositionTaking"]) : Utils.ToDecimal(row["UplineAPositionTaking"]);
+                gameType.M3 = !synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
+                gameType.M2 = synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
 
                 // Agent Max PT
-                gameType.A2 = synced ? Utils.ToDecimal(row["APositionTaking"]) : Utils.ToDecimal(row["UplineAPositionTaking"]);
+                gameType.A2 = synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
 
                 // Agent Min PT
-                gameType.N2 = synced ? Utils.ToDecimal(row["MinPositionTaking"]) : Utils.ToDecimal(row["UplineMinPositionTaking"]);
+                gameType.N2 = synced ? Utils.ToDecimal(row["MinPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMinPositionTaking"]).Format(2);
 
                 // Betting limits
                 var stakes = this.GetStakeLevels(custId, gameType.GameTypeID);
@@ -1010,16 +1395,16 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 var gameType = new GameType();
 
                 // Commission
-                gameType.co = synced ? Utils.ToDecimal(row["MemberRollingRate"]) : Utils.ToDecimal(row["UplineMemberRollingRate"]);
-                gameType.Aco = synced ? Utils.ToDecimal(row["AgentRollingRate"]) : Utils.ToDecimal(row["UplineAgentRollingRate"]);                
+                gameType.co = synced ? Utils.ToDecimal(row["MemberRollingRate"]).Format(4) : Utils.ToDecimal(row["UplineMemberRollingRate"]).Format(4);
+                gameType.Aco = synced ? Utils.ToDecimal(row["UplineAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["AgentRollingRate"]).Format(4);
 
                 // Game type info
                 gameType.GameTypeID = Utils.ToInt32(row["GameTypeID"]);
                 gameType.GameTypeName = Utils.ToString(row[Lang("GameTypeName")]);
 
                 // Agent preset PT
-                gameType.M2 = synced ? Utils.ToDecimal(row["APositionTaking"]) : Utils.ToDecimal(row["UplineMPositionTaking"]);
-                gameType.M1 = synced ? Utils.ToDecimal(row["PositionTaking"]) : Utils.ToDecimal(row["UplinePositionTaking"]);
+                gameType.M2 = synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
+                gameType.M1 = synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
 
                 // Betting limits
                 var stakes = this.GetStakeLevels(custId, gameType.GameTypeID);

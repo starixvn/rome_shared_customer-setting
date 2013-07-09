@@ -6,6 +6,7 @@
 @{
     var check = Model.IsAutoReset ? " checked=\"checked=\"" : string.Empty;
     var enable = !Model.CasinoDisabled && Model.CasinoSync ? " checked=\"checked\"" : string.Empty;
+    var disable = Model.CasinoDisabled && Model.CasinoSync ? " disabled=\"disabled\"" : string.Empty;
     var customer = JsonConvert.SerializeObject(Model, new JsonSerializerSettings
     {
         ContractResolver = new CamelCasePropertyNamesContractResolver(),
@@ -41,7 +42,7 @@
             <td class="tdTitleRight">Enable Casino</td>
             <td class="noneBorderRight">                
                 <div style="float: left; height: 24px">
-                    <input type="checkbox" id="chkEnable" style="margin-top: 5px" @enable/>                    
+                    <input type="checkbox" id="chkEnable" style="margin-top: 5px" @enable @disable/>                    
                     <label for="chkEnable" id="downline">Master</label>
                     @if (Model.CasinoDisabled && @Model.CasinoSync)
                     {

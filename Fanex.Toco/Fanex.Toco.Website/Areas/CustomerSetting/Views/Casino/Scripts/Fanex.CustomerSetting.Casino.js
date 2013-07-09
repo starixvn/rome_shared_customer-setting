@@ -331,18 +331,32 @@ function PT_Increase(id, f) {
 
 function PT_RenderCombo(combo, min, max, step, selectedValue) {
     min = min > max ? max : min;
+    combo.options.length = 0;
 
-    if (selectedValue > max) {
+    if (selectedValue > max || combo.getAttribute('breakpt')) {
+        if (!combo.getAttribute('breakpt')) {
+            combo.setAttribute('breakpt', selectedValue);
+        }
+        else {
+            selectedValue = combo.getAttribute('breakpt');
+        }
+
         var opt = document.createElement("option");
         opt.text = opt.value = (selectedValue * 100) / 100;
         combo.options.add(opt);
-    }
 
+        var opt = document.createElement("option");
+        opt.text = opt.value = 0;
+
+        combo.options.add(opt);
+
+        return;
+    }
+    
     var index = 0;
     var itemIndex = 0;
 
-    if (!combo) return;
-    combo.options.length = 0;
+    if (!combo) return;    
 
     var c = Math.round((max * 100 - min * 100) / (step * 100));
 
