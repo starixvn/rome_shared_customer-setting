@@ -6,9 +6,9 @@
 @{
     var i = 0;
     var j = 0;
-    //var isPtByGameType = true;// For testing purpose only
-    var isPtByGameType = Model.IsPtByGameType;
-    //Model.IsPtByGameType = isPtByGameType;// For testing purpose only
+    var isPtByGameType = true;// For testing purpose only
+    //var isPtByGameType = Model.IsPtByGameType;
+    Model.IsPtByGameType = isPtByGameType;// For testing purpose only
     var settingModel = JsonConvert.SerializeObject(Model, new JsonSerializerSettings
         {
             ContractResolver = new CamelCasePropertyNamesContractResolver(),
@@ -17,6 +17,7 @@
 }
 <html>
 <head>
+    <title>Super Edit Master Casino Setting</title>
     <link href="@Url.Content("~/Areas/CustomerSetting/Styles/Validators.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Areas/CustomerSetting/Styles/Common.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Areas/CustomerSetting/Views/Casino/Styles/Casino.css")" rel="stylesheet" type="text/css" />
@@ -106,8 +107,8 @@
                 </td>
                 <td class="noneBorderR C">
                     <span class="spanPT">
-                        <select min = "0" max = "@gameSetting.SuperCommission" step="0.0005" id="comm_5_@i" name="comm_5_@i"  style="position: relative;">
-                            <option value="@gameSetting.MasterCommission">@gameSetting.MasterCommission</option>
+                        <select min = "0" max = "@gameSetting.Sco" step="0.0005" id="comm_5_@i" name="comm_5_@i"  style="position: relative;">
+                            <option value="@gameSetting.Mco">@gameSetting.Mco</option>
                         </select>
                         <input type="button" class="btnPTDown" onclick="PT_Reduce('comm_5_@i', 1);" />
                         <input type="button" class="btnPTUp" onclick="PT_Increase('comm_5_@i', 1);" />
@@ -164,8 +165,8 @@
                 </td>
                 <td class="noneBorderR C">
                     <span class="spanPT">
-                        <select min = "0" max = "@gameType.SuperCommission" step="0.0005" id="comm_5_@subid" name="comm_5_@subid" style="position: relative;">
-                            <option value="@gameType.MasterCommission">@gameType.MasterCommission</option>
+                        <select min = "0" max = "@gameType.Sco" step="0.0005" id="comm_5_@subid" name="comm_5_@subid" style="position: relative;">
+                            <option value="@gameType.Mco">@gameType.Mco</option>
                         </select>
                     </span><span id="lbl_comm_5_@subid" class="hideWarningPT">*</span>
                 </td>                

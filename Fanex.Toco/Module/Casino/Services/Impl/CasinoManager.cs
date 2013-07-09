@@ -68,8 +68,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 var gameGroup = new GameGroup();
                 
                 // Commission
-                gameGroup.MasterCommission = synced ? Utils.ToDecimal(row["MAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["UplineMAgentRollingRate"]).Format(4);
-                gameGroup.SuperCommission = synced ? Utils.ToDecimal(row["UplineSMAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["SMAgentRollingRate"]).Format(4);
+                gameGroup.Mco = synced ? Utils.ToDecimal(row["MAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["UplineMAgentRollingRate"]).Format(4);
+                gameGroup.Sco = synced ? Utils.ToDecimal(row["UplineSMAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["SMAgentRollingRate"]).Format(4);
 
                 // Game Group Info
                 gameGroup.GameGroupID = Utils.ToInt32(row["GameKind"]);
@@ -130,8 +130,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 var gameGroup = new GameGroup();
 
                 // Commission
-                gameGroup.AgentCommission = synced ? Utils.ToDecimal(row["AgentRollingRate"]) : Utils.ToDecimal(row["UplineAgentRollingRate"]);
-                gameGroup.MasterCommission = synced ? Utils.ToDecimal(row["MAgentRollingRate"]) : Utils.ToDecimal(row["UplineMAgentRollingRate"]);
+                gameGroup.Aco = synced ? Utils.ToDecimal(row["AgentRollingRate"]) : Utils.ToDecimal(row["UplineAgentRollingRate"]);
+                gameGroup.Mco = synced ? Utils.ToDecimal(row["MAgentRollingRate"]) : Utils.ToDecimal(row["UplineMAgentRollingRate"]);
 
                 // Game Group Info
                 gameGroup.GameGroupID = Utils.ToInt32(row["GameKind"]);
@@ -188,8 +188,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 var gameGroup = new GameGroup();
 
                 // Commission
-                gameGroup.AgentCommission = synced ? Utils.ToDecimal(row["AgentRollingRate"]) : Utils.ToDecimal(row["UplineAgentRollingRate"]);
-                gameGroup.MasterCommission = synced ? Utils.ToDecimal(row["MAgentRollingRate"]) : Utils.ToDecimal(row["UplineMAgentRollingRate"]);
+                gameGroup.Aco = synced ? Utils.ToDecimal(row["AgentRollingRate"]) : Utils.ToDecimal(row["UplineAgentRollingRate"]);
+                gameGroup.Mco = synced ? Utils.ToDecimal(row["MAgentRollingRate"]) : Utils.ToDecimal(row["UplineMAgentRollingRate"]);
 
                 // Game Group Info
                 gameGroup.GameGroupID = Utils.ToInt32(row["GameKind"]);
@@ -246,8 +246,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 var gameGroup = new GameGroup();
 
                 // Commission
-                gameGroup.MemberCommission = synced ? Utils.ToDecimal(row["MemberRollingRate"]) : Utils.ToDecimal(row["UplineMemberRollingRate"]);
-                gameGroup.AgentCommission = synced ? Utils.ToDecimal(row["AgentRollingRate"]) : Utils.ToDecimal(row["UplineAgentRollingRate"]);
+                gameGroup.co = synced ? Utils.ToDecimal(row["MemberRollingRate"]) : Utils.ToDecimal(row["UplineMemberRollingRate"]);
+                gameGroup.Aco = synced ? Utils.ToDecimal(row["AgentRollingRate"]) : Utils.ToDecimal(row["UplineAgentRollingRate"]);
 
                 // Game type info
                 gameGroup.GameGroupID = Utils.ToInt32(row["GameKindID"]);
@@ -298,8 +298,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 var gameGroup = new GameGroup();
 
                 // Commission
-                gameGroup.MemberCommission = synced ? Utils.ToDecimal(row["MemberRollingRate"]) : Utils.ToDecimal(row["UplineMemberRollingRate"]);
-                gameGroup.AgentCommission = synced ? Utils.ToDecimal(row["AgentRollingRate"]) : Utils.ToDecimal(row["UplineAgentRollingRate"]);
+                gameGroup.co = synced ? Utils.ToDecimal(row["MemberRollingRate"]) : Utils.ToDecimal(row["UplineMemberRollingRate"]);
+                gameGroup.Aco = synced ? Utils.ToDecimal(row["AgentRollingRate"]) : Utils.ToDecimal(row["UplineAgentRollingRate"]);
 
                 // Game type info
                 gameGroup.GameGroupID = Utils.ToInt32(row["GameKindID"]);
@@ -350,8 +350,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 var gameGroup = new GameGroup();
 
                 // Commission
-                gameGroup.MemberCommission = synced ? Utils.ToDecimal(row["MemberRollingRate"]) : Utils.ToDecimal(row["UplineMemberRollingRate"]);
-                gameGroup.AgentCommission = synced ? Utils.ToDecimal(row["AgentRollingRate"]) : Utils.ToDecimal(row["UplineAgentRollingRate"]);
+                gameGroup.co = synced ? Utils.ToDecimal(row["MemberRollingRate"]) : Utils.ToDecimal(row["UplineMemberRollingRate"]);
+                gameGroup.Aco = synced ? Utils.ToDecimal(row["AgentRollingRate"]) : Utils.ToDecimal(row["UplineAgentRollingRate"]);
 
                 // Game type info
                 gameGroup.GameGroupID = Utils.ToInt32(row["GameKindID"]);
@@ -631,10 +631,10 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 !gameGroup.Is3 == true ? null : (object)gameGroup.Us3,
                                 !(roleId == Super || roleId == Master || roleId == Agent) ? null : (object)gameGroup.N3,
                                 0,
-                                roleId != Super ? null : (object)gameGroup.SuperCommission,
-                                roleId != Master ? null : (object)gameGroup.MasterCommission,
-                                roleId != Agent ? null : (object)gameGroup.AgentCommission,
-                                roleId != Member ? null : (object)gameGroup.MemberCommission,
+                                roleId != Super ? null : (object)gameGroup.Sco,
+                                roleId != Master ? null : (object)gameGroup.Mco,
+                                roleId != Agent ? null : (object)gameGroup.Aco,
+                                roleId != Member ? null : (object)gameGroup.co,
                                 roleId,
                                 ip,
                                 modifiedId, 
@@ -659,10 +659,10 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 !gameType.Is3 == true ? null : (object)gameType.Us3,
                                 !(roleId == Super || roleId == Master || roleId == Member) ? null : (object)gameType.N3,
                                 0,
-                                roleId != Super ? null : (object)gameType.SuperCommission,
-                                roleId != Master ? null : (object)gameType.MasterCommission,
-                                roleId != Agent ? null : (object)gameType.AgentCommission,
-                                roleId != Member ? null : (object)gameType.MemberCommission,
+                                roleId != Super ? null : (object)gameType.Sco,
+                                roleId != Master ? null : (object)gameType.Mco,
+                                roleId != Agent ? null : (object)gameType.Aco,
+                                roleId != Member ? null : (object)gameType.co,
                                 this.SelectedStakeLevels(gameType.BettingLimits),
                                 roleId,
                                 ip,
@@ -892,8 +892,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             {
                 var gameType = new GameType();
 
-                gameType.MasterCommission = synced ? Utils.ToDecimal(row["MAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["UplineMAgentRollingRate"]).Format(4);
-                gameType.SuperCommission = synced ? Utils.ToDecimal(row["UplineSMAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["SMAgentRollingRate"]).Format(4);
+                gameType.Mco = synced ? Utils.ToDecimal(row["MAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["UplineMAgentRollingRate"]).Format(4);
+                gameType.Sco = synced ? Utils.ToDecimal(row["UplineSMAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["SMAgentRollingRate"]).Format(4);
 
                 // Game type Info
                 gameType.GameTypeID = Utils.ToInt32(row["GameTypeID"]);
@@ -934,8 +934,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 var gameType = new GameType();
 
                 // Commission
-                gameType.AgentCommission = synced ? Utils.ToDecimal(row["AgentRollingRate"]) : Utils.ToDecimal(row["UplineAgentRollingRate"]);
-                gameType.MasterCommission = synced ? Utils.ToDecimal(row["MAgentRollingRate"]) : Utils.ToDecimal(row["UplineMAgentRollingRate"]);
+                gameType.Aco = synced ? Utils.ToDecimal(row["AgentRollingRate"]) : Utils.ToDecimal(row["UplineAgentRollingRate"]);
+                gameType.Mco = synced ? Utils.ToDecimal(row["MAgentRollingRate"]) : Utils.ToDecimal(row["UplineMAgentRollingRate"]);
 
                 // Game type info
                 gameType.GameTypeID = Utils.ToInt32(row["GameTypeID"]);
@@ -972,8 +972,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 var gameType = new GameType();
 
                 // Commission
-                gameType.AgentCommission = synced ? Utils.ToDecimal(row["AgentRollingRate"]) : Utils.ToDecimal(row["UplineAgentRollingRate"]);
-                gameType.MasterCommission = synced ? Utils.ToDecimal(row["MAgentRollingRate"]) : Utils.ToDecimal(row["UplineMAgentRollingRate"]);
+                gameType.Aco = synced ? Utils.ToDecimal(row["AgentRollingRate"]) : Utils.ToDecimal(row["UplineAgentRollingRate"]);
+                gameType.Mco = synced ? Utils.ToDecimal(row["MAgentRollingRate"]) : Utils.ToDecimal(row["UplineMAgentRollingRate"]);
 
                 // Game type info
                 gameType.GameTypeID = Utils.ToInt32(row["GameTypeID"]);
@@ -1010,8 +1010,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 var gameType = new GameType();
 
                 // Commission
-                gameType.MemberCommission = synced ? Utils.ToDecimal(row["MemberRollingRate"]) : Utils.ToDecimal(row["UplineMemberRollingRate"]);
-                gameType.AgentCommission = synced ? Utils.ToDecimal(row["AgentRollingRate"]) : Utils.ToDecimal(row["UplineAgentRollingRate"]);                
+                gameType.co = synced ? Utils.ToDecimal(row["MemberRollingRate"]) : Utils.ToDecimal(row["UplineMemberRollingRate"]);
+                gameType.Aco = synced ? Utils.ToDecimal(row["AgentRollingRate"]) : Utils.ToDecimal(row["UplineAgentRollingRate"]);                
 
                 // Game type info
                 gameType.GameTypeID = Utils.ToInt32(row["GameTypeID"]);
@@ -1042,8 +1042,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 var gameType = new GameType();
 
                 // Commission
-                gameType.MemberCommission = synced ? Utils.ToDecimal(row["MemberRollingRate"]) : Utils.ToDecimal(row["UplineMemberRollingRate"]);
-                gameType.AgentCommission = synced ? Utils.ToDecimal(row["AgentRollingRate"]) : Utils.ToDecimal(row["UplineAgentRollingRate"]);
+                gameType.co = synced ? Utils.ToDecimal(row["MemberRollingRate"]) : Utils.ToDecimal(row["UplineMemberRollingRate"]);
+                gameType.Aco = synced ? Utils.ToDecimal(row["AgentRollingRate"]) : Utils.ToDecimal(row["UplineAgentRollingRate"]);
 
                 // Game type info
                 gameType.GameTypeID = Utils.ToInt32(row["GameTypeID"]);
@@ -1074,8 +1074,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 var gameType = new GameType();
 
                 // Commission
-                gameType.MemberCommission = synced ? Utils.ToDecimal(row["MemberRollingRate"]) : Utils.ToDecimal(row["UplineMemberRollingRate"]);
-                gameType.AgentCommission = synced ? Utils.ToDecimal(row["AgentRollingRate"]) : Utils.ToDecimal(row["UplineAgentRollingRate"]);
+                gameType.co = synced ? Utils.ToDecimal(row["MemberRollingRate"]) : Utils.ToDecimal(row["UplineMemberRollingRate"]);
+                gameType.Aco = synced ? Utils.ToDecimal(row["AgentRollingRate"]) : Utils.ToDecimal(row["UplineAgentRollingRate"]);
 
                 // Game type info
                 gameType.GameTypeID = Utils.ToInt32(row["GameTypeID"]);

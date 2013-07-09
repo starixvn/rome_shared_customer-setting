@@ -454,7 +454,7 @@ Fanex.CustomerSetting.Casino.EditMaster = {
             gameGroup.us3 = $('#pt_2_' + i).val();
             gameGroup.m3 = $('#pt_3_' + i).val();
             gameGroup.n3 = $('#pt_4_' + i).val();
-            gameGroup.masterCommission = $('#comm_5_' + i).val();
+            gameGroup.mco = $('#comm_5_' + i).val();
 
             // Assign game type pt and commission
             var gameTypes = gameGroup.gameTypes;
@@ -464,7 +464,7 @@ Fanex.CustomerSetting.Casino.EditMaster = {
                 gameType.us3 = $('#pt_2_' + i + '_' + j).val();
                 gameType.m3 = $('#pt_3_' + i + '_' + j).val();
                 gameType.n3 = $('#pt_4_' + i + '_' + j).val();
-                gameType.masterCommission = $('#comm_5_' + i + '_' + j).val();
+                gameType.mco = $('#comm_5_' + i + '_' + j).val();
 
                 // Assign betting limit
                 var bettingLimits = gameType.bettingLimits;

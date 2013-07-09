@@ -44,10 +44,10 @@
 
     public class Commission
     {
-        public decimal? SuperCommission { get; set; }
-        public decimal? MasterCommission { get; set; }
-        public decimal? AgentCommission { get; set; }
-        public decimal? MemberCommission { get; set; }
+        public decimal? Sco { get; set; }
+        public decimal? Mco { get; set; }
+        public decimal? Aco { get; set; }
+        public decimal? co { get; set; }
     }
 
     public class GameGroup : Pt
