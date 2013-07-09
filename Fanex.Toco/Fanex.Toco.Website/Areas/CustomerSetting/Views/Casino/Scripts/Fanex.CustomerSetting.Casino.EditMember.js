@@ -20,6 +20,7 @@ Fanex.CustomerSetting.Casino.EditMember = {
     Usernames: [],
     Enabled: false,
     ErrorMessage: '',
+    Data: {},
 
     Init: function (id, uplineId, userId, username, isMultiple, custIds, usernames) {
         this.CustomerInfo.id = id;
@@ -222,6 +223,15 @@ Fanex.CustomerSetting.Casino.EditMember = {
             });
         });
 
+        this.Data = {
+            id: this.CustomerInfo.id,
+            uplineId: this.CustomerInfo.uplineId,
+            userId: this.CustomerInfo.userId,
+            username: this.CustomerInfo.username,
+            settingModel: JSON.stringify(this.SettingModel),
+            customerModel: JSON.stringify(this.CustomerModel)
+        };
+
         if (this.IsMultiple) {
             this.ProcessUpdate(0);
         }
@@ -230,15 +240,9 @@ Fanex.CustomerSetting.Casino.EditMember = {
         }
     },
 
-    ProcessUpdate: function (custIdIndex) {
-        var data = {
-            id: custIdIndex == null ? this.CustomerInfo.id : Fanex.CustomerSetting.Casino.EditMember.CustIds[custIdIndex],
-            uplineId: this.CustomerInfo.uplineId,
-            userId: this.CustomerInfo.userId,
-            username: this.CustomerInfo.username,
-            settingModel: JSON.stringify(this.SettingModel),
-            customerModel: JSON.stringify(this.CustomerModel)
-        };
+    ProcessUpdate: function (custIdIndex) {        
+        var data = this.Data;
+        data.id = custIdIndex == null ? this.CustomerInfo.id : Fanex.CustomerSetting.Casino.EditMember.CustIds[custIdIndex];
 
         $.ajax({
             url: toUrl('Member/UpdateMemberPost'),
@@ -262,6 +266,9 @@ Fanex.CustomerSetting.Casino.EditMember = {
                     return false;
                 }
                 else {
+                    $('#errMsg').html('<font color="Blue">Updated successfully</font>');
+                    $('#errMsg').show();
+
                     Fanex.CustomerSetting.Casino.EditMember.ErrorMessage = '';
                     Fanex.CustomerSetting.Core.UnBlockUI();
 
@@ -280,6 +287,9 @@ Fanex.CustomerSetting.Casino.EditMember = {
                         return false;
                     }
                     else {
+                        $('#errMsg').html('<font color="Blue">Updated successfully</font>');
+                        $('#errMsg').show();
+
                         Fanex.CustomerSetting.Casino.EditMember.ErrorMessage = '';
                         Fanex.CustomerSetting.Core.UnBlockUI();
 
@@ -309,6 +319,9 @@ Fanex.CustomerSetting.Casino.EditMember = {
                     return false;
                 }
                 else {
+                    $('#errMsg').html('<font color="Blue">Updated successfully</font>');
+                    $('#errMsg').show();
+
                     Fanex.CustomerSetting.Casino.EditMember.ErrorMessage = '';
                     Fanex.CustomerSetting.Core.UnBlockUI();
 
@@ -327,6 +340,9 @@ Fanex.CustomerSetting.Casino.EditMember = {
                         return false;
                     }
                     else {
+                        $('#errMsg').html('<font color="Blue">Updated successfully</font>');
+                        $('#errMsg').show();
+
                         Fanex.CustomerSetting.Casino.EditMember.ErrorMessage = '';
                         Fanex.CustomerSetting.Core.UnBlockUI();
 
