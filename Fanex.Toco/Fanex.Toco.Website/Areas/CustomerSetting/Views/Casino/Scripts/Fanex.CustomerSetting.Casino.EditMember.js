@@ -204,13 +204,13 @@ Fanex.CustomerSetting.Casino.EditMember = {
         // Assign setting values
         $(gameGroups).each(function (i, gameGroup) {
             // Assign game group pt and commission
-            gameGroup.a2 = $('#pt_1_' + i).val();
+            gameGroup.m1 = $('#pt_1_' + i).val();
             gameGroup.co = $('#comm_2_' + i).val();
 
             // Assign game type pt and commission
             var gameTypes = gameGroup.gameTypes;
             $(gameTypes).each(function (j, gameType) {
-                gameType.a2 = $('#pt_1_' + i + '_' + j).val();
+                gameType.m1 = $('#pt_1_' + i + '_' + j).val();
                 gameType.co = $('#comm_2_' + i + '_' + j).val();
 
                 // Assign betting limit
