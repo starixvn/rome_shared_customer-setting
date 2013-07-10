@@ -147,6 +147,7 @@
     <Content Include="Areas\CustomerSetting\Scripts\jquery.js" />
     <Content Include="Areas\CustomerSetting\Scripts\Validators.js" />
     <Content Include="Areas\CustomerSetting\Scripts\_references.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\CustomerSettingController.js" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\Fanex.CustomerSetting.Casino.EditMemberByMaster.js" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\Fanex.CustomerSetting.Casino.EditMemberBySuper.js" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\Fanex.CustomerSetting.Casino.EditMember.js" />
@@ -354,6 +355,7 @@
     <Content Include="Areas\CustomerSetting\Views\Casino\Member\EditMember.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Member\EditMemberBySuper.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Member\EditMemberByMaster.cshtml" />
+    <None Include="Areas\CustomerSetting\Views\Casino\Master\EditMaster.cshtml.01" />
     <None Include="Content\Site.less" />
     <Content Include="Scripts\Common\Message.Helper.js" />
     <Content Include="Scripts\Common\Message.Validator.js" />
