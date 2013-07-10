@@ -287,6 +287,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 // Super preset PT
                 gameGroup.S4 = Utils.ToDecimal(row["SuperMaxPositionTaking"]).Format(2);
                 gameGroup.S3 = Utils.ToDecimal(row["SPositionTaking"]).Format(2);
+                gameGroup.N4 = Utils.ToDecimal(row["SuperMinPositionTaking"]).Format(2);
 
                 // Super Auto PT
                 gameGroup.Is3 = Utils.ToBoolean(row["IsAutoPositionTaking"]);
@@ -297,6 +298,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
                 // Agent preset PT                
                 gameGroup.M2 = Utils.ToDecimal(row["APositionTaking"]).Format(2);
+                gameGroup.N3 = gameGroup.Is3 == true ? gameGroup.N4 - gameGroup.M3 - gameGroup.M2 : 0;
 
                 // Assign game types
                 var gameTypes = this.GetGameTypeMemberBySuper(custId, gameGroup.GameGroupID);
@@ -1693,16 +1695,18 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 // Super preset PT
                 gameType.S4 = Utils.ToDecimal(row["SuperMaxPositionTaking"]).Format(2);
                 gameType.S3 = Utils.ToDecimal(row["SPositionTaking"]).Format(2);
-
+                gameType.N4 = Utils.ToDecimal(row["SuperMinPositionTaking"]).Format(2);
+                
                 // Super Auto PT
                 gameType.Is3 = Utils.ToBoolean(row["IsAutoPositionTaking"]);
                 gameType.Us3 = Utils.ToDecimal(row["AutoPositionTaking"]).Format(2);
-
+                
                 // Master preset PT
                 gameType.M3 = Utils.ToDecimal(row["MPositionTaking"]).Format(2);
 
                 // Agent preset PT                
                 gameType.M2 = Utils.ToDecimal(row["APositionTaking"]).Format(2);
+                gameType.N3 = gameType.Is3 == true ? gameType.N4 - gameType.M3 - gameType.M2 : 0;
 
                 // Betting limits
                 var stakes = this.GetStakeLevels(custId, gameType.GameTypeID);

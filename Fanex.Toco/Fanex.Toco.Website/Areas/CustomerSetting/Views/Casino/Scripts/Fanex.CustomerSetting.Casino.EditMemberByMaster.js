@@ -69,6 +69,7 @@ Fanex.CustomerSetting.Casino.EditMemberByMaster = {
         $('#chkEnable').attr('disabled', true);
         $('#isAutoReset').attr('disabled', true);
         $('#maxTransfer').attr('disabled', true);
+        $('#downline').html('');
 
         var model = this.SettingModel;
         var selects = $('select');
