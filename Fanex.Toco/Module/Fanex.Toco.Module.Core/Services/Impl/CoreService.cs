@@ -26,11 +26,8 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class CoreService : ServiceBase, ICoreService
     {
-        private readonly BaseRepository _repository;
-
         public CoreService()
         {
-            _repository = new BaseRepository();
         }
 
         public IList<Bettypes> GetBettypes(GetBettypeCriteria criteria)
@@ -69,8 +66,5 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
             DataTable dt = _repository.Fetch(new TestCriteria());
             int c = dt.Rows.Count;
         }
-
-
-        
     }
 }

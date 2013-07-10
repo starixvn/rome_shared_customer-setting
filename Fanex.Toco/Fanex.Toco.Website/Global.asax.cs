@@ -21,20 +21,6 @@ namespace Fanex.CustomerSetting.Website
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
-            RegisterRoutes(RouteTable.Routes);
-        }
-
-        public static void RegisterRoutes(RouteCollection routes)
-        {
-            routes.MapRoute(
-                name: "CustomerSetting_Master",
-                url: "CustomerSetting/Casino/{controller}/{action}/{id}/{uplineId}/{roleId}/{uplineRoleId}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional, uplineId = UrlParameter.Optional, roleId = UrlParameter.Optional, uplineRoleId = UrlParameter.Optional });
-
-            routes.MapRoute(
-                name: "CustomerSetting_Customer",
-                url: "CustomerSetting/Casino/{controller}/{action}/{id}/{uplineId}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional, uplineId = UrlParameter.Optional });
         }
     }
 }

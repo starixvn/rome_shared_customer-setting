@@ -1,91 +1,118 @@
-﻿@using Fanex.CustomerSetting.Module.Casino.Controllers
+﻿@using Fanex.CustomerSetting.Module.Core
+@using Fanex.CustomerSetting.Module.Casino.ViewModels
+@using Newtonsoft.Json
+@using Newtonsoft.Json.Serialization
+@model CasinoSettingModel
 @{
-    var games = new List<int>(){ 0, 1 };
-}
-<div id="product">
-    <div id="errMsg" style="display: none;" class="errMsg">
-    </div>
-    <div id="arrowUpDown" class="collapse">
-    </div>
-    <div id="names" style="display: none;" class="names">
-    </div>
-    <div style="text-align: right">
-        <input class="buttonPopup btnTop" type="button" value="Submit" data-bind='click: saveCustomer' />
-    </div>
-    <div id="info">
-        @Html.Action("CustomerInfo", "Customer")
-    </div>
-    <div id="settingContainer">
-        @for (int i = 0; i < games.Count; i++)
+    var i = 0;
+    var j = 0;
+    //var isPtByGameType = true;// For testing purpose only
+    var isPtByGameType = Model.IsPtByGameType;
+    //Model.IsPtByGameType = isPtByGameType;// For testing purpose only
+    var settingModel = JsonConvert.SerializeObject(Model, new JsonSerializerSettings
         {
-        <table id="casinoGame_@i" class="tableInfo" border="1" cellpadding="1" cellspacing="2">
+            ContractResolver = new CamelCasePropertyNamesContractResolver(),
+            NullValueHandling = NullValueHandling.Ignore
+        });    
+}
+<html>
+<head>
+    <title>Super View Agent Casino Setting</title>
+    <link href="@Url.Content("~/Areas/CustomerSetting/Styles/Common.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Areas/CustomerSetting/Views/Casino/Styles/Casino.css")" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="product" style="width: 1024px">
+    <div id="info">
+        @Html.Action("CustomerInfo", "Customer", new { area = string.Empty, id = Utils.ToInt32(Request.RequestContext.RouteData.Values["id"]), uplineId = Utils.ToInt32(Request.RequestContext.RouteData.Values["uplineId"]) })
+    </div>    
+        <div id="settingContainer">    
+        <div class="headerPositionTaking" style="border-bottom: 1px solid #ccc">
+        Postition Taking</div>
+        @foreach (var gameSetting in Model.GameGroups)
+        {
+            var rowSpan = isPtByGameType ? gameSetting.GameTypes.Count * 2 + 1 : gameSetting.GameTypes.Count + 1;
+            var gameTypes = gameSetting.GameTypes;
+            
+        <table id="casinoGame_@i" class="tableInfo" border="1" cellpadding="0" cellspacing="0">
             <tr>
-                <td colspan="2" class="noneBorderL">&nbsp;</td>
-                <td class="ptTitle">Super Preset PT</td>
-                <td class="ptTitle">Super Auto PT</td>
-                <td class="ptTitle">Master Max PT</td>
-                <td class="ptTitle">Master Min PT</td>
-                <td class="ptTitle noneBorderR">Master Commission</td>
+                <td style="width: 230px" colspan="2" class="noneBorderL noneBorderTop">&nbsp;</td>
+                <td class="ptTitle noneBorderTop">Master Preset PT</td>
+                <td class="ptTitle noneBorderR noneBorderTop">Agent Preset PT</td>
             </tr>
             <tr>
-                <td id="rowspanCasino_@i" rowspan="1" class="gameTitle"></td>                
-                <td class="ptTitle R" style="width: 135px">Group Setting</td>
+                <td id="rowspanCasino_@i" rowspan="@rowSpan" class="gameTitle" style="width: 80px">@gameSetting.GameGroupName</td>                
+                <td class="ptTitle R" style="width: 150px">Group Setting</td>
                 <td class="C">
-                    <span class="spanPT">
-                        <select id="pt_1" name="pt_1" onchange="PTChanging(this, '')" style="position: relative;">
-                        </select>
-                        <input type="button" class="btnPTDown" onclick="PT_Reduce('pt_1', 1);" />
-                        <input type="button" class="btnPTUp" onclick="PT_Increase('pt_1', 1);" />
-                        <input type="button" class="btnPTSub" onclick="PT_Reduce('pt_1', 10);" />
-                        <input type="button" class="btnPTAdd" onclick="PT_Increase('pt_1', 10);" />
-                    </span>
+                    <span>@gameSetting.M3</span>
+                </td>                
+                <td class="noneBorderR C">
+                    <span>@gameSetting.M2</span>                        
                 </td>
-                <td class="C">
-                    <span class="spanPT">
-                        <input type="checkbox" name="chkAutoPT" id="chkAutoPT" onclick="checkPT(this, '');" style="vertical-align: middle;" />
-                        <select id="pt_2" name="pt_2" style="position: relative;" onchange="PTChanging(this, '')">
-                        </select>
-                        <input type="button" class="btnPTDown" onclick="PT_Reduce('pt_2', 1);" />
-                        <input type="button" class="btnPTUp" onclick="PT_Increase('pt_2', 1);" />
-                        <input type="button" class="btnPTSub" onclick="PT_Reduce('pt_2', 10);" />
-                        <input type="button" class="btnPTAdd" onclick="PT_Increase('pt_2', 10);" />
-                    </span>
+            </tr>
+        @foreach (var gameType in gameTypes)
+        {
+            var stakes = gameType.BettingLimits;
+            var subid = i + "_" + j;
+                        
+            if (isPtByGameType)
+            {
+            <tr>
+                <td rowspan="2" class="R">
+                    @gameType.GameTypeName
                 </td>
                 <td class="C">
-                    <span class="spanPT">
-                        <select id="pt_3" name="pt_3" onchange="PTChanging(this, '')" style="position: relative;">
-                        </select>
-                        <input type="button" class="btnPTDown" onclick="PT_Reduce('pt_3', 1);" />
-                        <input type="button" class="btnPTUp" onclick="PT_Increase('pt_3', 1);" />
-                        <input type="button" class="btnPTSub" onclick="PT_Reduce('pt_3', 10);" />
-                        <input type="button" class="btnPTAdd" onclick="PT_Increase('pt_3', 10);" />
-                    </span>
+                    <span>@gameType.M3</span>
+                </td>                
+                <td class="noneBorderR C">
+                    <span>@gameType.M2</span>
+                </td>                
+            </tr>
+            <tr>
+                <td colspan="2" class="noneBorderR"><span>Betting Limit: </span>
+                    @foreach (var stake in stakes)
+                    {
+                        var isChecked = stake.IsChecked ? "checked=\"checked\"" : string.Empty;
+                        
+                        <input id="stake-@stake.StakeLevelID" type="checkbox" @isChecked /><span>@stake.StakeLevelName</span>
+                    }
+                </td>                
+            </tr>
+            }
+            else
+            {
+		    <tr>
+                <td class="R">
+                    @gameType.GameTypeName
                 </td>
-                <td class="C">
-                    <span class="spanPT">
-                        <select id="pt_4" name="pt_4" onchange="PTChanging(this, '')" style="position: relative;">
-                        </select>
-                        <input type="button" class="btnPTDown" onclick="PT_Reduce('pt_4', 1);" />
-                        <input type="button" class="btnPTUp" onclick="PT_Increase('pt_4', 1);" />
-                        <input type="button" class="btnPTSub" onclick="PT_Reduce('pt_4', 10);" />
-                        <input type="button" class="btnPTAdd" onclick="PT_Increase('pt_4', 10);" />
-                    </span>
+                <td colspan="2" class="noneBorderR"><span>Betting Limit: </span>
+                    @foreach (var stake in stakes)
+                    {
+                        var isChecked = stake.IsChecked ? "checked=\"checked\"" : string.Empty;
+                        
+                        <input id="stake-@stake.StakeLevelID" type="checkbox" @isChecked /><span>@stake.StakeLevelName</span>
+                    }
                 </td>
-                <td class="noneBorderR">
-                    <span class="spanPT">
-                        <select id="comm_5" name="comm_5" onchange="PTChanging(this, '')" style="position: relative;">
-                        </select>
-                        <input type="button" class="btnPTDown" onclick="PT_Reduce('comm_5', 1);" />
-                        <input type="button" class="btnPTUp" onclick="PT_Increase('comm_5', 1);" />
-                        <input type="button" class="btnPTSub" onclick="PT_Reduce('comm_5', 10);" />
-                        <input type="button" class="btnPTAdd" onclick="PT_Increase('comm_5', 10);" />
-                    </span>
-                </td>
-            </tr>            
-        </table>   
+            </tr>
+            }
+            j++;
+        }            
+        </table>
+        i++;
+        j = 0;
         }    
-    </div>
-    <div style="text-align: right">
-        <input class="buttonPopup btnTop" type="button" value="Submit" data-bind='click: saveCustomer' />
-    </div>
+        </div>        
 </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#statusInfo').remove();
+
+        var inputs = $('input');
+
+        $(inputs).each(function (index, input) {
+            input.disabled = true;
+        });
+    });
+</script>
+</body>
+</html>
