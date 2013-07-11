@@ -318,7 +318,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var gameGroups = new List<GameGroup>();
             var custInfo = this.GetCustInfoIBC(custId, uplineId);
             var cust = new Customer();
-            var dt = cust.GetCustGameKind_EditMember(custId);
+            var dt = cust.GetCustGameKind(custId);
 
             var casinoSettingUpline = new CasinoCustomer();
 
@@ -342,7 +342,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 gameGroup.GameGroupName = Utils.ToString(row[Lang("GameKindName")]);
 
                 // Super preset PT
-                gameGroup.S4 = Utils.ToDecimal(row["SuperMaxPositionTaking"]).Format(2);
+                gameGroup.S4 = Utils.ToDecimal(row["MasterMaxPositionTalking"]).Format(2);
                 gameGroup.S3 = Utils.ToDecimal(row["SPositionTaking"]).Format(2);
 
                 // Agent preset PT
@@ -1733,7 +1733,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 gameType.GameTypeName = Utils.ToString(row[Lang("GameTypeName")]);
 
                 // Super preset PT
-                gameType.S4 = Utils.ToDecimal(row["SuperMaxPositionTaking"]).Format(2);
+                gameType.S4 = Utils.ToDecimal(row["MasterMaxPositionTalking"]).Format(2);
                 gameType.S3 = Utils.ToDecimal(row["SPositionTaking"]).Format(2);
 
                 // Agent preset PT

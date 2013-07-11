@@ -46,6 +46,8 @@
             var disabled = gameSetting.Is3 == true ? "disabled=\"disabled\"" : string.Empty;
             var disabledIsAuto = gameSetting.Is3 == false ? "disabled=\"disabled\"" : string.Empty;
             var maxPtSuper = gameSetting.S4 - gameSetting.M3 - gameSetting.M2;
+            var s3 = gameSetting.S3 + gameSetting.M3 + gameSetting.M2 < gameSetting.N4 ? gameSetting.S4 - gameSetting.M3 - gameSetting.M2 : gameSetting.S3;
+            var min = gameSetting.S3 + gameSetting.M3 + gameSetting.M2 < gameSetting.N4 ? gameSetting.N4 : 0;
             
         <table id="casinoGame_@i" class="tableInfo" border="1" cellpadding="0" cellspacing="0">
             <tr>
@@ -60,8 +62,8 @@
                 <td class="ptTitle R" style="width: 150px">Group Setting</td>
                 <td class="C">
                     <span class="spanPT">
-                        <select min = "@gameSetting.N3" max = "@maxPtSuper" step="0.01" @disabled id="pt_1_@i" name="pt_1_@i"  style="position: relative;">
-                            <option value="@gameSetting.S3">@gameSetting.S3</option>
+                        <select min = "@min" max = "@maxPtSuper" step="0.01" @disabled id="pt_1_@i" name="pt_1_@i"  style="position: relative;">
+                            <option value="@s3">@s3</option>
                         </select>
                         <input type="button" class="btnPTDown" onclick="PT_Reduce('pt_1_@i', 1);" />
                         <input type="button" class="btnPTUp" onclick="PT_Increase('pt_1_@i', 1);" />
@@ -96,7 +98,9 @@
             disabled = gameType.Is3 == true ? "disabled=\"disabled\"" : string.Empty;
             disabledIsAuto = gameType.Is3 == false ? "disabled=\"disabled\"" : string.Empty;
             maxPtSuper = gameType.S4 - gameType.M3 - gameType.M2;
-                        
+            s3 = gameType.S3 + gameType.M3 + gameType.M2 < gameType.N4 ? gameType.S4 - gameType.M3 - gameType.M2 : gameType.S3;
+            min = gameType.S3 + gameType.M3 + gameType.M2 < gameType.N4 ? gameType.N4 : 0;
+                                    
             if (isPtByGameType)
             {
             <tr>
@@ -105,8 +109,8 @@
                 </td>
                 <td class="C">
                     <span class="spanPT">
-                        <select min = "0" max = "@gameType.S4" step="0.01" @disabled id="pt_1_@subid" name="pt_1_@subid" style="position: relative;">
-                            <option value="@gameType.S3">@gameType.S3</option>
+                        <select min = "@min" max = "@gameType.S4" step="0.01" @disabled id="pt_1_@subid" name="pt_1_@subid" style="position: relative;">
+                            <option value="@s3">@s3</option>
                         </select>
                     </span><span id="lbl_pt_1_@subid" class="hideWarningPT">*</span>
                 </td>
