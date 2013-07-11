@@ -141,6 +141,8 @@
     <Content Include="Areas\CustomerSetting\Images\arrowblue-icn.png" />
     <Content Include="Areas\CustomerSetting\Images\arrowdown-icn.png" />
     <Content Include="Areas\CustomerSetting\Images\Loading.gif" />
+    <Content Include="Areas\CustomerSetting\Images\pointer.png" />
+    <Content Include="Areas\CustomerSetting\Images\pointerDown.png" />
     <Content Include="Areas\CustomerSetting\Images\warning-icn.png" />
     <Content Include="Areas\CustomerSetting\Scripts\angular.min.js" />
     <Content Include="Areas\CustomerSetting\Scripts\Fanex.CustomerSetting.Core.js" />
@@ -148,6 +150,7 @@
     <Content Include="Areas\CustomerSetting\Scripts\jquery.js" />
     <Content Include="Areas\CustomerSetting\Scripts\Validators.js" />
     <Content Include="Areas\CustomerSetting\Scripts\_references.js" />
+    <Content Include="Areas\CustomerSetting\Styles\Validators.css" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\CustomerSettingController.js" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\Fanex.CustomerSetting.Casino.EditMemberByMaster.js" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\Fanex.CustomerSetting.Casino.EditMemberBySuper.js" />
