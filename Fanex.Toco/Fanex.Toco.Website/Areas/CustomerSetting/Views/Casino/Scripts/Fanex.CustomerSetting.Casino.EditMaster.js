@@ -314,6 +314,14 @@ Fanex.CustomerSetting.Casino.EditMaster = {
                 opt.text = opt.value = value;
                 this.options.add(opt);
             });
+
+            $(selects[i]).focusout(function () {
+                var value = this.value;
+                this.options.length = 0;
+                var opt = document.createElement('option');
+                opt.text = opt.value = value;
+                this.options.add(opt);
+            });
         }
     },
 
@@ -627,7 +635,7 @@ Fanex.CustomerSetting.Casino.EditMaster = {
     }
 };
 
-$(document).ready(function () {
+//$(document).ready(function () {
     //This line is for testing only, if called in another project, please call as below
-    Fanex.CustomerSetting.Casino.EditMaster.Init(1373580, 1373389, 1373389, 'pgmAndy'/*, true, [1, 2], ['a', 'b']*/);
-});
+    //Fanex.CustomerSetting.Casino.EditMaster.Init(1373580, 1373389, 1373389, 'pgmAndy'/*, true, [1, 2], ['a', 'b']*/);
+//});

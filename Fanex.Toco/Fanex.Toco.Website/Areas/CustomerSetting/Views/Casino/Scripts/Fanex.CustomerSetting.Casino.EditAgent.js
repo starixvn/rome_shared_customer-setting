@@ -15,7 +15,7 @@ Fanex.CustomerSetting.Casino.EditAgent = {
     SettingModel: {},
     CustomerModel: {},
     IsMultiple: false,
-    CustomerInfo: { id: 1373580, uplineId: 1373389, userId: 1373389, username: 'pgmAndy' },
+    CustomerInfo: { id: 1374738, uplineId: 1373580, userId: 1373580, username: 'pgmAndy' },
     CustIds: [],
     Usernames: [],
     Enabled: false,
@@ -244,6 +244,14 @@ Fanex.CustomerSetting.Casino.EditAgent = {
 
             // Set only selected value into comboboxes when it is blurred
             $(selects[i]).blur(function () {
+                var value = this.value;
+                this.options.length = 0;
+                var opt = document.createElement('option');
+                opt.text = opt.value = value;
+                this.options.add(opt);
+            });
+
+            $(selects[i]).focusout(function () {
                 var value = this.value;
                 this.options.length = 0;
                 var opt = document.createElement('option');
@@ -533,7 +541,7 @@ Fanex.CustomerSetting.Casino.EditAgent = {
     }
 };
 
-$(document).ready(function () {
+//$(document).ready(function () {
     //This line is for testing only, if called in another project, please call as below
-    Fanex.CustomerSetting.Casino.EditAgent.Init(1374738, 1373580, 1373580, 'pgmAndy'/*, true, [1, 2], ['a', 'b']*/);
-});
+    //Fanex.CustomerSetting.Casino.EditAgent.Init(1374738, 1373580, 1373580, 'pgmAndy'/*, true, [1, 2], ['a', 'b']*/);
+//});
