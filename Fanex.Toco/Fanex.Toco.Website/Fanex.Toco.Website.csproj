@@ -352,14 +352,13 @@
     <Content Include="Areas\CustomerSetting\Views\Web.config" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Sample\Index.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Casino\Master\EditMaster.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Customer\CustomerInfo.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Agent\EditAgent.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Agent\ViewAgentBySuper.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Member\EditMember.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Member\EditMemberBySuper.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Member\EditMemberByMaster.cshtml" />
-    <None Include="Areas\CustomerSetting\Views\Casino\Master\EditMaster.cshtml.01" />
+    <None Include="Areas\CustomerSetting\Views\Casino\Master\EditMaster.cshtml" />
     <None Include="Content\Site.less" />
     <Content Include="Scripts\Common\Message.Helper.js" />
     <Content Include="Scripts\Common\Message.Validator.js" />
