@@ -171,6 +171,20 @@ Fanex.CustomerSetting.Casino.EditMaster = {
                 }
             });
 
+            $(selects[i]).focusin(function () {
+                var select = this;
+                var min = parseFloat(select.getAttribute('min'));
+                var max = parseFloat(select.getAttribute('max'));
+                var step = parseFloat(select.getAttribute('step'));
+
+                if (this.id.indexOf('pt') != -1 && select.options.length == 1) {
+                    PT_RenderCombo(select, min, max, step, parseFloat(this.value));
+                }
+                else if (select.options.length == 1) {
+                    Comm_RenderCombo(select, min, max, step, parseFloat(this.value));
+                }
+            });
+
             // Rerender pt values constraint when comboboxes is clicked
             $(selects[i]).click(function () {
                 var select = this;

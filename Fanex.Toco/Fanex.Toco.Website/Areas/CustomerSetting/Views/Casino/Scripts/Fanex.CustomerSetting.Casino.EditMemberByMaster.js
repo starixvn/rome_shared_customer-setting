@@ -92,6 +92,20 @@ Fanex.CustomerSetting.Casino.EditMemberByMaster = {
                 }
             });
 
+            $(selects[i]).focusin(function () {
+                var select = this;
+                var min = parseFloat(select.getAttribute('min'));
+                var max = parseFloat(select.getAttribute('max'));
+                var step = parseFloat(select.getAttribute('step'));
+
+                if (this.id.indexOf('pt') != -1 && select.options.length == 1) {
+                    PT_RenderCombo(select, min, max, step, parseFloat(this.value));
+                }
+                else if (select.options.length == 1) {
+                    Comm_RenderCombo(select, min, max, step, parseFloat(this.value));
+                }
+            });
+
             // Handle changing pt and comm values
             $(selects[i]).change(function () {
                 var select = this;

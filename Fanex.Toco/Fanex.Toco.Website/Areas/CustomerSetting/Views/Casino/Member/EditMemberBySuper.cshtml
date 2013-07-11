@@ -160,7 +160,14 @@
         <input class="buttonPopup btnTop" type="button" value="Submit" onclick = "Fanex.CustomerSetting.Casino.EditMemberBySuper.Update()" />
     </div>
 </div>    
-<script src="@BundleTable.Bundles.ResolveBundleUrl("~/member/super/js")" type="text/javascript"></script>
+@if (Request.RequestContext.HttpContext.IsDebuggingEnabled)
+{
+    <script src="@Url.Content("~/Areas/CustomerSetting/Views/Casino/Scripts/Fanex.CustomerSetting.Casino.EditMemberBySuper.js")" type="text/javascript"></script>
+}
+else
+{
+    <script src="@BundleTable.Bundles.ResolveBundleUrl("~/member/super/js")" type="text/javascript"></script>
+}
 <script type="text/javascript">
     var model = Fanex.CustomerSetting.Casino.EditMemberBySuper.SettingModel = $.parseJSON(Fanex.CustomerSetting.Core.DecodeHtml('@settingModel'));
 

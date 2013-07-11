@@ -286,9 +286,11 @@ Fanex.CustomerSetting.Core = {
     },
 
     CheckNumber: function (evt, ele) {
+        if (!evt) return false;
+
         ele.value = Fanex.CustomerSetting.Core.FormatNumber(Fanex.CustomerSetting.Core.ReplaceAll(ele.value, ',', ''));
 
-        var charCode = (evt.which) ? evt.which : event.keyCode;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
         var ret = true;
 
         if (charCode > 31 && (charCode < 48 || charCode > 57)) {
