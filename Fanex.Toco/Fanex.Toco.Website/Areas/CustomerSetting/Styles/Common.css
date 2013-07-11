@@ -29,7 +29,7 @@
 	vertical-align: top;
 	cursor: pointer;
 	border: 1px solid #ccc;
-	background-image: url("../Images/arrowblue-icn.png");
+	background-image: url("../Areas/CustomerSetting/Images/arrowblue-icn.png");
 	background-repeat: no-repeat;
 	background-position: center center;
 	width: 16px;
@@ -43,7 +43,7 @@
 	vertical-align: top;
 	cursor: pointer;
 	border: 1px solid #ccc;
-	background-image: url("../Images/arrowdown-icn.png");
+	background-image: url("../Areas/CustomerSetting/Images/arrowdown-icn.png");
 	background-repeat: no-repeat;
 	background-position: center center;
 	width: 16px;
@@ -57,7 +57,7 @@
 	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
-	background-image: url("../Images/warning-icn.png");
+	background-image: url("../Areas/CustomerSetting/Images/warning-icn.png");
 	background-repeat: no-repeat;
 	background-position: 5px 5px;
 	line-height: 1.5;
@@ -76,7 +76,7 @@
 }
 .buttonPopup, .ui-button, button[type=button]
 {
-	background: url(../Images/btn-bgsubmit-original.png) repeat-x scroll 5px center !important;
+	background: url(../Areas/CustomerSetting/Images/btn-bgsubmit-original.png) repeat-x scroll 5px center !important;
 	color: #fff !important;
 	cursor: pointer;
 	width: 80px;
@@ -92,14 +92,14 @@
 }
 .buttonPopup:hover, .ui-button:hover
 {
-	background: url(../Images/btn-bgsubmit-hover.png) repeat-x scroll 5px center !important;
+	background: url(../Areas/CustomerSetting/Images/btn-bgsubmit-hover.png) repeat-x scroll 5px center !important;
 	color: #fff !important;
 	border: none !important;
 	cursor: pointer;
 }
 .btnPTDown
 {
-	background: url(../Images/b_down.jpg) repeat-x scroll center top transparent;
+	background: url(../Areas/CustomerSetting/Images/b_down.jpg) repeat-x scroll center top transparent;
 	border: 0 solid #000000;
 	height: 17px;
 	width: 17px;
@@ -108,7 +108,7 @@
 
 .btnPTUp
 {
-	background: url(../Images/b_up.jpg) repeat-x scroll center top transparent;
+	background: url(../Areas/CustomerSetting/Images/b_up.jpg) repeat-x scroll center top transparent;
 	border: 0 solid #000000;
 	height: 17px;
 	width: 17px;
@@ -117,7 +117,7 @@
 
 .btnPTSub
 {
-	background: url(../Images/b_sub.jpg) repeat-x scroll center top transparent;
+	background: url(../Areas/CustomerSetting/Images/b_sub.jpg) repeat-x scroll center top transparent;
 	border: 0 solid #000000;
 	height: 17px;
 	width: 17px;
@@ -126,7 +126,7 @@
 
 .btnPTAdd
 {
-	background: url(../Images/b_add.jpg) repeat-x scroll center top transparent;
+	background: url(../Areas/CustomerSetting/Images/b_add.jpg) repeat-x scroll center top transparent;
 	border: 0 solid #000000;
 	height: 17px;
 	width: 17px;

@@ -13,6 +13,7 @@
         NullValueHandling = NullValueHandling.Ignore
     });     
 }
+<link href="@BundleTable.Bundles.ResolveBundleUrl("~/common/css")" rel="stylesheet" type="text/css" />
 <div id="custInfo">
     <div class="headerPositionTaking noneBorderLR custInfoHeader">
         General Information</div>
@@ -87,11 +88,7 @@
         </tr>
     </table>
 </div>
-<script src="@Url.Content("~/Areas/CustomerSetting/Scripts/jquery.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Areas/CustomerSetting/Scripts/jquery.blockUI.1.33.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Areas/CustomerSetting/Scripts/Validators.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Areas/CustomerSetting/Scripts/Fanex.CustomerSetting.Core.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Areas/CustomerSetting/Views/Casino/Scripts/Fanex.CustomerSetting.Casino.js")" type="text/javascript"></script>
+<script src="@BundleTable.Bundles.ResolveBundleUrl("~/common/js")" type="text/javascript"></script>
 <script type="text/javascript">
     var customerInfo = Fanex.CustomerSetting.Casino.CustomerModel = $.parseJSON(Fanex.CustomerSetting.Core.DecodeHtml('@customer'));
     if(typeof console != 'undefined'){

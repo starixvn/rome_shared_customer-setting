@@ -1722,7 +1722,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
         {
             var cust = new Customer();
             var gameTypes = new List<GameType>();
-            var dt = cust.GetCustGameType_EditMember(custId, gameKindID);
+            var dt = cust.GetCustGameType(custId, gameKindID);
 
             foreach (DataRow row in dt.Rows)
             {

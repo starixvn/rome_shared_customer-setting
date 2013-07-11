@@ -15,13 +15,6 @@
             NullValueHandling = NullValueHandling.Ignore
         });    
 }
-<html>
-<head>
-    <title>Super View Agent Casino Setting</title>
-    <link href="@Url.Content("~/Areas/CustomerSetting/Styles/Common.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Areas/CustomerSetting/Views/Casino/Styles/Casino.css")" rel="stylesheet" type="text/css" />
-</head>
-<body>
 <div id="product" style="width: 1024px">
     <div id="info">
         @Html.Action("CustomerInfo", "Customer", new { area = string.Empty, id = Utils.ToInt32(Request.RequestContext.RouteData.Values["id"]), uplineId = Utils.ToInt32(Request.RequestContext.RouteData.Values["uplineId"]) })
@@ -114,5 +107,3 @@
         });
     });
 </script>
-</body>
-</html>
