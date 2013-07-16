@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Fanex.CustomerSetting.Module.Core.Exceptions;
 using Fanex.CustomerSetting.Module.Core.Security;
 
 namespace Fanex.CustomerSetting.Module.SampleModule.Controllers
@@ -8,7 +9,7 @@ namespace Fanex.CustomerSetting.Module.SampleModule.Controllers
         //
         // GET: /Home/
 
-       
+        [HandleActionError]
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "index")]
         public ActionResult Index()
         {

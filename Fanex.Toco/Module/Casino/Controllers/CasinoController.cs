@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
+using Fanex.CustomerSetting.Module.Core.Exceptions;
 using Fanex.CustomerSetting.Module.Core.Security;
 
 namespace Fanex.CustomerSetting.Module.Casino.Controllers
@@ -8,11 +10,14 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
         //
         // GET: /Home/
 
-       
+
+        [HandleActionError]
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "index")]
         public ActionResult Index()
         {
+            //throw new Exception("go to hell");
             return View();
+
         }
 
         //

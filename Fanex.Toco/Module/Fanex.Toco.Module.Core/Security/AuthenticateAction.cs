@@ -1,5 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
+using Fanex.CustomerSetting.Module.Core.Extensions;
+using Fanex.CustomerSetting.Module.Core.Models;
 
 namespace Fanex.CustomerSetting.Module.Core.Security
 {
@@ -56,19 +58,41 @@ namespace Fanex.CustomerSetting.Module.Core.Security
 
             //ActionDenied(filterContext);
            // return;
+           
             base.OnActionExecuting(filterContext);
         }
 
         private static void ActionDenied(ActionExecutingContext filterContext)
         {
 
-            filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new
+            var request = filterContext.HttpContext.Request;
+            if (request.Headers["X-Requested-With"] != null && request.Headers["X-Requested-With"].Equals("XMLHttpRequest"))
             {
-                area = "common",
-                controller = "authenticate",
-                action = "accessdenied"
+                filterContext.Result = new JsonResult
+                {
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+                    Data = new Result
+                    {
+                        ErrorCode = 500,
+                        Message = ResourceExtension.GetResource("Error", "AccessDenied")
+                    }
+                };
 
-            }));
+
+                filterContext.HttpContext.Response.Clear();
+                filterContext.HttpContext.Response.StatusCode = 500;
+                filterContext.HttpContext.Response.TrySkipIisCustomErrors = true;
+
+
+            }
+            else
+            {
+                filterContext.Result = new ViewResult// new RedirectToRouteResult(new RouteValueDictionary(new
+                {
+                    ViewName = "~/Views/Shared/AccessDenied.cshtml"
+
+                };
+            }
         }
 
 

@@ -12,7 +12,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Web;
 using ExcelUtil.Spreadsheet;
-using Fanex.CustomerSetting.Module.Core.Resources;
+
 
 namespace Fanex.CustomerSetting.Module.Core.Extensions
 {
@@ -384,7 +384,7 @@ namespace Fanex.CustomerSetting.Module.Core.Extensions
             var currentColumn = startColumn;
             var currentCellRange = ws.Cells.GetSubrangeAbsolute(currentRow, currentColumn, currentRow, endColumn);
             currentCellRange.Merged = true;
-            currentCellRange.Value = Labels.EmptyReportMessage;
+            currentCellRange.Value = ResourceExtension.GetResource("Labels","EmptyReportMessage");
             currentCellRange.Style.FormatCellText(Color.White, true);
             currentCellRange.Style.HorizontalAlignment = HorizontalAlignmentStyle.Center;
             currentRow++;

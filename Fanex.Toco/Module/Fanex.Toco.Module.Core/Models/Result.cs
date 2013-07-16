@@ -9,14 +9,14 @@ namespace Fanex.CustomerSetting.Module.Core.Models
     {
         public int ErrorCode { get; set; }
 
-        public string ErrorMessage { get; set; }
+        public string Message { get; set; }
 
        // public dynamic ExtendContent { get; set; }
 
         public Result()
         {
             ErrorCode = 0;
-            ErrorMessage = string.Empty;
+            Message = string.Empty;
         }
     }
 }
