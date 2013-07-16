@@ -215,6 +215,7 @@
     <Content Include="Areas\CustomerSetting\Views\Casino\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\ProgressiveBonus\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\ProgressiveBonus\Casino\Index.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\ProgressiveBonus\Shared\_Layout.cshtml" />
     <None Include="Content\Site.less" />
     <Content Include="Scripts\Common\Message.Helper.js" />
     <Content Include="Scripts\Common\Message.Validator.js" />
@@ -456,10 +457,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Common\Views\Authenticate\AccessDenied.cshtml" />
-    <Content Include="Areas\Common\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Common\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Common\Views\Web.config" />
     <None Include="Content\themes\Honolulu\less\accordion.less" />
     <None Include="Content\themes\Honolulu\less\alerts.less" />
     <None Include="Content\themes\Honolulu\less\breadcrumbs.less" />

@@ -4,7 +4,7 @@ using Fanex.CustomerSetting.Module.Core.Web.App_Start;
 
 namespace Fanex.CustomerSetting.Module.Racebook.App_Start
 {
-    public class ControllerRegistrator : AppAreaRegistrator 
+    public class ModuleRegistrator : AppAreaRegistrator 
     {
 
         protected override string ControllerName
