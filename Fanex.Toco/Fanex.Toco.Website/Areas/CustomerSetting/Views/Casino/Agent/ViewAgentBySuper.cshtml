@@ -1,0 +1,109 @@
+﻿@using Fanex.CustomerSetting.Module.Core
+@using Fanex.CustomerSetting.Module.Casino.ViewModels
+@using Newtonsoft.Json
+@using Newtonsoft.Json.Serialization
+@model CasinoSettingModel
+@{
+    var i = 0;
+    var j = 0;
+    //var isPtByGameType = true;// For testing purpose only
+    var isPtByGameType = Model.IsPtByGameType;
+    //Model.IsPtByGameType = isPtByGameType;// For testing purpose only
+    var settingModel = JsonConvert.SerializeObject(Model, new JsonSerializerSettings
+        {
+            ContractResolver = new CamelCasePropertyNamesContractResolver(),
+            NullValueHandling = NullValueHandling.Ignore
+        });    
+}
+<div id="product" style="width: 1024px">
+    <div id="info">
+        @Html.Action("CustomerInfo", "Customer", new { area = string.Empty, id = Utils.ToInt32(Request.RequestContext.RouteData.Values["id"]), uplineId = Utils.ToInt32(Request.RequestContext.RouteData.Values["uplineId"]) })
+    </div>    
+        <div id="settingContainer">    
+        <div class="headerPositionTaking" style="border-bottom: 1px solid #ccc">
+        Postition Taking</div>
+        @foreach (var gameSetting in Model.GameGroups)
+        {
+            var rowSpan = isPtByGameType ? gameSetting.GameTypes.Count * 2 + 1 : gameSetting.GameTypes.Count + 1;
+            var gameTypes = gameSetting.GameTypes;
+            
+        <table id="casinoGame_@i" class="tableInfo" border="1" cellpadding="0" cellspacing="0">
+            <tr>
+                <td style="width: 230px" colspan="2" class="noneBorderL noneBorderTop">&nbsp;</td>
+                <td class="ptTitle noneBorderTop">Master Preset PT</td>
+                <td class="ptTitle noneBorderR noneBorderTop">Agent Preset PT</td>
+            </tr>
+            <tr>
+                <td id="rowspanCasino_@i" rowspan="@rowSpan" class="gameTitle" style="width: 80px">@gameSetting.GameGroupName</td>                
+                <td class="ptTitle R" style="width: 150px">Group Setting</td>
+                <td class="C">
+                    <span>@gameSetting.M3</span>
+                </td>                
+                <td class="noneBorderR C">
+                    <span>@gameSetting.M2</span>                        
+                </td>
+            </tr>
+        @foreach (var gameType in gameTypes)
+        {
+            var stakes = gameType.BettingLimits;
+            var subid = i + "_" + j;
+                        
+            if (isPtByGameType)
+            {
+            <tr>
+                <td rowspan="2" class="R">
+                    @gameType.GameTypeName
+                </td>
+                <td class="C">
+                    <span>@gameType.M3</span>
+                </td>                
+                <td class="noneBorderR C">
+                    <span>@gameType.M2</span>
+                </td>                
+            </tr>
+            <tr>
+                <td colspan="2" class="noneBorderR"><span>Betting Limit: </span>
+                    @foreach (var stake in stakes)
+                    {
+                        var isChecked = stake.IsChecked ? "checked=\"checked\"" : string.Empty;
+                        
+                        <input id="stake-@stake.StakeLevelID" type="checkbox" @isChecked /><span>@stake.StakeLevelName</span>
+                    }
+                </td>                
+            </tr>
+            }
+            else
+            {
+		    <tr>
+                <td class="R">
+                    @gameType.GameTypeName
+                </td>
+                <td colspan="2" class="noneBorderR"><span>Betting Limit: </span>
+                    @foreach (var stake in stakes)
+                    {
+                        var isChecked = stake.IsChecked ? "checked=\"checked\"" : string.Empty;
+                        
+                        <input id="stake-@stake.StakeLevelID" type="checkbox" @isChecked /><span>@stake.StakeLevelName</span>
+                    }
+                </td>
+            </tr>
+            }
+            j++;
+        }            
+        </table>
+        i++;
+        j = 0;
+        }    
+        </div>        
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#statusInfo').remove();
+
+        var inputs = $('input');
+
+        $(inputs).each(function (index, input) {
+            input.disabled = true;
+        });
+    });
+</script>

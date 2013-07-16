@@ -67,6 +67,9 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>..\_Dependency\FanexLibs\Excel\Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\_Dependencies\Web\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="RemotingRef">
       <HintPath>..\..\_Dependencies\RemotingRef.dll</HintPath>
     </Reference>
@@ -88,6 +91,8 @@
   <ItemGroup>
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Controllers\Base\ControllerExtentions.cs" />
+    <Compile Include="Controllers\Base\JsonBase.cs" />
     <Compile Include="Criteria\GetBettypeCriteria.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -127,6 +132,7 @@
     <Compile Include="Services\Interface\IMessageService.cs" />
     <Compile Include="Services\Interface\IServiceBase.cs" />
     <Compile Include="Utils\FormatKey.cs" />
+    <Compile Include="Utils\Utils.cs" />
     <Compile Include="Web\AppSession.cs" />
     <Compile Include="Web\App_Start\AppAreaRegistrator.cs" />
     <Compile Include="Web\App_Start\FilterConfig.cs" />
@@ -142,7 +148,7 @@
     <Compile Include="Web\ViewEngine\CustomViewEngine.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

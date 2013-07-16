@@ -1,0 +1,26 @@
+﻿namespace Fanex.CustomerSetting.Module.Casino.Controllers
+{
+    using System.Web.Mvc;
+    using Fanex.CustomerSetting.Module.Casino.Entities;
+    using Fanex.CustomerSetting.Module.Casino.Services.Impl;
+    using Fanex.CustomerSetting.Module.Casino.ViewModels;
+    using Fanex.CustomerSetting.Module.Core.Web.Controllers;
+    using Newtonsoft.Json;
+
+    public class MasterController : BaseController
+    {
+        public ActionResult EditMaster(int id, int uplineId)
+        {
+            var customerSetting = CasinoManager.Instance.MasterCasinoModel(id, uplineId);
+
+            return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Master/EditMaster.cshtml", customerSetting);
+        }
+
+        public ActionResult UpdateMasterPost(int id, int uplineId, int userId, string username, string settingModel, string customerModel)
+        {
+            var ret = CasinoManager.Instance.UpdateMaster(id, uplineId, Request.UserHostAddress, userId, username, BaseController.FromSystem, JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
+
+            return this.JsonBase(new { ErrorCode = ret.IsSuccess ? 0 : 1, ErrorMessage = ret.ErrorMessage });
+        }
+    }
+}

@@ -18,61 +18,28 @@ using Fanex.NAP.Core.Service.Interface;
 using Fanex.NAP.Core.Web;
 using Fanex.NAP.Core.Web.Context;
 using Fanex.NAP.Core.Web.Session;
+using Newtonsoft.Json;
+using Fanex.ExternalAccount.Controllers.Base;
+using Fanex.NAP.Core.Service.Impl;
+using Newtonsoft.Json.Serialization;
 
 namespace Fanex.CustomerSetting.Module.Core.Web.Controllers
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class BaseController : Controller
     {
-        protected readonly ICurrentContext CurrentContext;
+        public const int Super = 4;
 
-        protected readonly ICurrentSession CurrentSession;
+        public const int Master = 3;
 
-        protected readonly IServiceContext ServiceContext;
+        public const int Agent = 2;
 
+        public const int Member = 1;
 
-
-
-
-
-
-        protected ViewFlags _viewFlags;
-
-        protected ViewFlags ViewFlags
-        {
-            get
-            {
-                return ViewBag.ViewFlags;
-            }
-
-            set
-            {
-                ViewBag.ViewFlags = this._viewFlags = value;
-            }
-        }
-
-        private MenuService _menuService;
+        public const int FromSystem = 4;
 
         public BaseController()
-        {
-            /*  this.CurrentContext = new CurrentContext();
-              ViewBag.Session = this.CurrentSession = new CurrentSession();
-              this.ServiceContext = new ServiceContext
-              {
-                  UserId = this.CurrentSession.UserId,
-                  SiteId = 1,
-                  Ip = this.CurrentContext.IP
-              };
-
-              ViewFlags = new ViewFlags
-              {
-                  IsLive = true,
-                  // IsNapAdminSite = _siteId == NapAdminId,
-                  HasEditRight = false
-              };
-
-              this._menuService = new MenuService();
-             * */
+        {           
         }
 
         /// <summary>
@@ -146,6 +113,19 @@ namespace Fanex.CustomerSetting.Module.Core.Web.Controllers
 
             return listAction;
 
+        }
+
+        public virtual ActionResult JsonBase(object data, JsonSerializerSettings settings = null)
+        {
+            if (settings == null)
+            {
+                settings = new JsonSerializerSettings();
+                settings.NullValueHandling = NullValueHandling.Ignore;
+                settings.Formatting = Formatting.Indented;
+                settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            }
+
+            return new JsonBase(data, settings);
         }
     }
 }

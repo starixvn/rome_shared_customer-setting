@@ -18,7 +18,9 @@ namespace Fanex.CustomerSetting.Website
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            Fanex.CustomerSetting.Module.Casino.App_Start.BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
         }
     }
 }

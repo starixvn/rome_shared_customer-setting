@@ -5,10 +5,7 @@ namespace Fanex.CustomerSetting.Module.Core.Web.App_Start
 {
     public class AppAreaRegistrator : AreaRegistration
     {
-
         private List<string> _controllers = new List<string>();
-
-        
 
         public override string AreaName
         {
@@ -17,7 +14,6 @@ namespace Fanex.CustomerSetting.Module.Core.Web.App_Start
                 return "CustomerSetting";
             }
         }
-
 
         protected virtual string ControllerName { get { return string.Empty; } }
 
@@ -41,10 +37,9 @@ namespace Fanex.CustomerSetting.Module.Core.Web.App_Start
         {
             context.MapRoute(
                 AreaName + "_" + ControllerName,
-                AreaName + "/" + ControllerName + "/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional },
+                AreaName + "/" + ControllerName + "/{controller}/{action}/{id}/{uplineId}",
+                new { action = "Index", id = UrlParameter.Optional, uplineId = UrlParameter.Optional },
                 new[] { ControllerNameSpace });
-            
         }
     }
 }

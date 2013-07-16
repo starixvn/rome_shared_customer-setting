@@ -1,0 +1,146 @@
+﻿@using Fanex.CustomerSetting.Module.Core
+@using Fanex.CustomerSetting.Module.Casino.ViewModels
+@using Newtonsoft.Json
+@using Newtonsoft.Json.Serialization
+@model CasinoSettingModel
+@{
+    var i = 0;
+    var j = 0;
+    //var isPtByGameType = true;// For testing purpose only
+    var isPtByGameType = Model.IsPtByGameType;
+    //Model.IsPtByGameType = isPtByGameType;// For testing purpose only
+    var settingModel = JsonConvert.SerializeObject(Model, new JsonSerializerSettings
+        {
+            ContractResolver = new CamelCasePropertyNamesContractResolver(),
+            NullValueHandling = NullValueHandling.Ignore
+        });    
+}
+<div id="product" style="width: 1024px">
+    <div id="errMsg" style="display: none;" class="errMsg">
+    </div>
+    <div id="arrowUpDown" class="collapse">
+    </div>
+    <div id="names" style="display: none;" class="names">
+    </div>
+    <div style="text-align: right">
+        <input class="buttonPopup" type="button" value="Submit" onclick = "Fanex.CustomerSetting.Casino.EditMemberByMaster.Update()" />
+    </div>
+    <div id="info">
+        @Html.Action("CustomerInfo", "Customer", new { area = string.Empty, id = Utils.ToInt32(Request.RequestContext.RouteData.Values["id"]), uplineId = Utils.ToInt32(Request.RequestContext.RouteData.Values["uplineId"]) })
+    </div>    
+        <div id="settingContainer">    
+        <div class="headerPositionTaking" style="border-bottom: 1px solid #ccc">
+        Postition Taking</div>
+        @foreach (var gameSetting in Model.GameGroups)
+        {
+            var rowSpan = isPtByGameType ? gameSetting.GameTypes.Count * 2 + 1 : gameSetting.GameTypes.Count + 1;
+            var gameTypes = gameSetting.GameTypes;
+            var masterMaxPT = gameSetting.S4 - gameSetting.S3 - gameSetting.M2;
+            
+        <table id="casinoGame_@i" class="tableInfo" border="1" cellpadding="0" cellspacing="0">
+            <tr>
+                <td style="width: 230px" colspan="2" class="noneBorderL noneBorderTop">&nbsp;</td>
+                <td class="ptTitle noneBorderTop">Master Preset PT</td>
+                <td class="ptTitle noneBorderR noneBorderTop">Agent Preset PT</td>
+            </tr>
+            <tr>
+                <td id="rowspanCasino_@i" rowspan="@rowSpan" class="gameTitle" style="width: 80px">@gameSetting.GameGroupName</td>                
+                <td class="ptTitle R" style="width: 150px">Group Setting</td>
+                <td class="C">
+                    <span class="spanPT">
+                        <select min = "0" max = "@masterMaxPT" step="0.01" id="pt_1_@i" name="pt_1_@i"  style="position: relative;">
+                            <option value="@gameSetting.M3">@gameSetting.M3</option>
+                        </select>
+                        <input type="button" class="btnPTDown" onclick="PT_Reduce('pt_1_@i', 1);" />
+                        <input type="button" class="btnPTUp" onclick="PT_Increase('pt_1_@i', 1);" />
+                        <input type="button" class="btnPTSub" onclick="PT_Reduce('pt_1_@i', 10);" />
+                        <input type="button" class="btnPTAdd" onclick="PT_Increase('pt_1_@i', 10);" />
+                    </span>
+                </td>                
+                <td class="noneBorderR C">
+                    <span>@gameSetting.M2</span>                        
+                </td>
+            </tr>
+        @foreach (var gameType in gameTypes)
+        {
+            var stakes = gameType.BettingLimits;
+            var subid = i + "_" + j;
+            masterMaxPT = gameType.S4 - gameType.S3 - gameType.M2;
+                        
+            if (isPtByGameType)
+            {
+            <tr>
+                <td rowspan="2" class="R">
+                    @gameType.GameTypeName
+                </td>
+                <td class="C">
+                    <span class="spanPT">
+                        <select min = "0" max = "@masterMaxPT" step="0.01" id="pt_1_@subid" name="pt_1_@subid"  style="position: relative;">
+                            <option value="@gameType.M3">@gameType.M3</option>
+                        </select>
+                        <input type="button" class="btnPTDown" onclick="PT_Reduce('pt_1_@subid', 1);" />
+                        <input type="button" class="btnPTUp" onclick="PT_Increase('pt_1_@subid', 1);" />
+                        <input type="button" class="btnPTSub" onclick="PT_Reduce('pt_1_@subid', 10);" />
+                        <input type="button" class="btnPTAdd" onclick="PT_Increase('pt_1_@subid', 10);" />
+                    </span>
+                </td>                
+                <td class="noneBorderR C">
+                    <span>@gameType.M2</span>
+                </td>                
+            </tr>
+            <tr>
+                <td colspan="2" class="noneBorderR"><span>Betting Limit: </span>
+                    @foreach (var stake in stakes)
+                    {
+                        var isChecked = stake.IsChecked ? "checked=\"checked\"" : string.Empty;
+                        
+                        <input id="stake-@stake.StakeLevelID" type="checkbox" @isChecked /><span>@stake.StakeLevelName</span>
+                    }
+                </td>                
+            </tr>
+            }
+            else
+            {
+		    <tr>
+                <td class="R">
+                    @gameType.GameTypeName
+                </td>
+                <td colspan="2" class="noneBorderR"><span>Betting Limit: </span>
+                    @foreach (var stake in stakes)
+                    {
+                        var isChecked = stake.IsChecked ? "checked=\"checked\"" : string.Empty;
+                        
+                        <input id="stake-@stake.StakeLevelID" type="checkbox" @isChecked /><span>@stake.StakeLevelName</span>
+                    }
+                </td>
+            </tr>
+            }
+            j++;
+        }            
+        </table>
+        i++;
+        j = 0;
+        }    
+        </div>        
+    <div style="text-align: right">
+        <input class="buttonPopup btnTop" type="button" value="Submit" onclick = "Fanex.CustomerSetting.Casino.EditMemberByMaster.Update()" />
+    </div>
+</div>
+@if (Request.RequestContext.HttpContext.IsDebuggingEnabled)
+{
+    <script src="@Url.Content("~/Areas/CustomerSetting/Views/Casino/Scripts/Fanex.CustomerSetting.Casino.EditMemberByMaster.js")" type="text/javascript"></script>
+}
+else
+{
+    <script src="@BundleTable.Bundles.ResolveBundleUrl("~/member/master/js")" type="text/javascript"></script>
+}
+<script type="text/javascript">
+    var model = Fanex.CustomerSetting.Casino.EditMemberByMaster.SettingModel = $.parseJSON(Fanex.CustomerSetting.Core.DecodeHtml('@settingModel'));
+
+    if (typeof console != 'undefined')
+        console.log(model);
+
+    function toUrl(relativeUrl) {
+        return '@Url.Content("~/CustomerSetting/Casino/")' + relativeUrl;
+    }
+</script>
