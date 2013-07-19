@@ -8,11 +8,11 @@
 // </history>
 
 using System.Diagnostics.CodeAnalysis;
-using Fanex.CustomerSetting.Module.SampleModule.Criteria.ReportRequestTicket;
-using Fanex.CustomerSetting.Module.SampleModule.Entities;
-using Fanex.CustomerSetting.Module.SampleModule.Entities.ReportRequestTicket;
+using Fanex.CustomerSetting.Module.ProgressiveModule.Criteria.ReportRequestTicket;
+using Fanex.CustomerSetting.Module.ProgressiveModule.Entities;
+using Fanex.CustomerSetting.Module.ProgressiveModule.Entities.ReportRequestTicket;
 
-namespace Fanex.CustomerSetting.Module.SampleModule.Services.Interface
+namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Interface
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public interface IReportRequestTicketService

@@ -190,9 +190,9 @@
     <Folder Include="Services\Interface\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fanex.Toco.Module.Core\_Core.csproj">
+    <ProjectReference Include="..\Fanex.Toco.Module.Core\Fanex.CustomerSetting.Module.Core.csproj">
       <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
-      <Name>_Core</Name>
+      <Name>Fanex.CustomerSetting.Module.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

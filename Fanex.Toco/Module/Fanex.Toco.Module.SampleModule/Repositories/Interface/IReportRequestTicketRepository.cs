@@ -9,9 +9,9 @@
 
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
-using Fanex.CustomerSetting.Module.SampleModule.Criteria.ReportRequestTicket;
+using Fanex.CustomerSetting.Module.ProgressiveModule.Criteria.ReportRequestTicket;
 
-namespace Fanex.CustomerSetting.Module.SampleModule.Repositories.Interface
+namespace Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Interface
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public interface IReportRequestTicketRepository

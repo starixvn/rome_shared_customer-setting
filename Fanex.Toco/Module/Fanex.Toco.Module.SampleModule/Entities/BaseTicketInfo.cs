@@ -4,7 +4,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace Fanex.CustomerSetting.Module.SampleModule.Entities
+namespace Fanex.CustomerSetting.Module.ProgressiveModule.Entities
 {
     /// <summary>
     /// TODO: Update summary.

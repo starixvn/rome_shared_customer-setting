@@ -15,14 +15,14 @@ using System.Diagnostics.CodeAnalysis;
 using Fanex.Common;
 using Fanex.CustomerSetting.Module.Core.Extensions;
 using Fanex.CustomerSetting.Module.Core.Services.Impl;
-using Fanex.CustomerSetting.Module.SampleModule.Criteria.ReportRequestTicket;
-using Fanex.CustomerSetting.Module.SampleModule.Entities;
-using Fanex.CustomerSetting.Module.SampleModule.Entities.ReportRequestTicket;
-using Fanex.CustomerSetting.Module.SampleModule.Repositories.Impl;
-using Fanex.CustomerSetting.Module.SampleModule.Repositories.Interface;
-using Fanex.CustomerSetting.Module.SampleModule.Services.Interface;
+using Fanex.CustomerSetting.Module.ProgressiveModule.Criteria.ReportRequestTicket;
+using Fanex.CustomerSetting.Module.ProgressiveModule.Entities;
+using Fanex.CustomerSetting.Module.ProgressiveModule.Entities.ReportRequestTicket;
+using Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Impl;
+using Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Interface;
+using Fanex.CustomerSetting.Module.ProgressiveModule.Services.Interface;
 
-namespace Fanex.CustomerSetting.Module.SampleModule.Services.Implement
+namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ReportRequestTicketService : ServiceBase, IReportRequestTicketService

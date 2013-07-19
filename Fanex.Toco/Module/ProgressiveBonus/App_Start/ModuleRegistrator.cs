@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using Fanex.CustomerSetting.Module.Core.Web.App_Start;
 
-namespace Fanex.CustomerSetting.Module.SampleModule.App_Start
+namespace Fanex.CustomerSetting.Module.ProgressiveModule.App_Start
 {
     public class ModuleRegistrator : AppAreaRegistrator 
     {

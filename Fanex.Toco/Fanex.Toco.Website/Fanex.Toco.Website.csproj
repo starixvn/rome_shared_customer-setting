@@ -141,6 +141,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\CustomerSetting\Views\ProgressiveBonus\Scripts\Progressive.js" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -220,6 +221,11 @@
     <Content Include="Areas\CustomerSetting\Views\ProgressiveBonus\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\ProgressiveBonus\Casino\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\ProgressiveBonus\Shared\_Layout.cshtml" />
+    <Content Include="Configurations\ProgressiveSection.config" />
+    <None Include="Areas\CustomerSetting\Views\ProgressiveBonus\Styles\bootstrap.less" />
+    <None Include="Areas\CustomerSetting\Views\ProgressiveBonus\Styles\responsive.less" />
+    <None Include="Areas\CustomerSetting\Views\ProgressiveBonus\Styles\style.less" />
+    <None Include="Areas\CustomerSetting\Views\ProgressiveBonus\Styles\variables.less" />
     <None Include="Content\Site.less" />
     <Content Include="Scripts\Common\Message.Helper.js" />
     <Content Include="Scripts\Common\Message.Validator.js" />
@@ -452,8 +458,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\CustomerSetting\Views\Casino\Scripts\" />
     <Folder Include="Areas\CustomerSetting\Views\Casino\Styles\" />
-    <Folder Include="Areas\CustomerSetting\Views\ProgressiveBonus\Scripts\" />
-    <Folder Include="Areas\CustomerSetting\Views\ProgressiveBonus\Styles\" />
     <Folder Include="Models\" />
     <Folder Include="Scripts\_Libs\BlockUI\img\" />
   </ItemGroup>
@@ -470,10 +474,6 @@
     <None Include="Content\themes\Honolulu\less\close.less" />
     <None Include="Content\themes\Honolulu\less\code.less" />
     <None Include="Content\themes\Honolulu\less\component-animations.less" />
-    <None Include="Content\themes\Honolulu\less\customersetting\bootstrap.less" />
-    <None Include="Content\themes\Honolulu\less\customersetting\responsive.less" />
-    <None Include="Content\themes\Honolulu\less\customersetting\style.less" />
-    <None Include="Content\themes\Honolulu\less\customersetting\variables.less" />
     <None Include="Content\themes\Honolulu\less\dropdowns.less" />
     <None Include="Content\themes\Honolulu\less\forms.less" />
     <None Include="Content\themes\Honolulu\less\grid.less" />
@@ -516,21 +516,13 @@
     <None Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3-custom.less" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Module\Casino\Casino.csproj">
-      <Project>{5F8F3877-90E3-48A3-BAD7-4207DCBA088D}</Project>
-      <Name>Casino</Name>
+    <ProjectReference Include="..\Module\Fanex.Toco.Module.Core\Fanex.CustomerSetting.Module.Core.csproj">
+      <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
+      <Name>Fanex.CustomerSetting.Module.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Module\Fanex.Toco.Module.SampleModule\_SampleModule.csproj">
-      <Project>{0B2FC4E3-FEED-4849-BA9B-36D077679F32}</Project>
-      <Name>_SampleModule</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Module\ProgressiveBonus\ProgressiveBonus.csproj">
+    <ProjectReference Include="..\Module\ProgressiveBonus\Fanex.CustomerSetting.Module.ProgressiveModule.csproj">
       <Project>{5EFF254F-0DEE-41BD-9D90-3FF4489D077F}</Project>
-      <Name>ProgressiveBonus</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Module\Racebook\Racebook.csproj">
-      <Project>{63D0DC31-9FEF-4BEE-9D43-E1E3A3BE42A5}</Project>
-      <Name>Racebook</Name>
+      <Name>Fanex.CustomerSetting.Module.ProgressiveModule</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

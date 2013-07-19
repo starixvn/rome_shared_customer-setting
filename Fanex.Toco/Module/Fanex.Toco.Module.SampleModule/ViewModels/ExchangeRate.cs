@@ -6,7 +6,7 @@
 
 using System;
 
-namespace Fanex.CustomerSetting.Module.SampleModule.ViewModels
+namespace Fanex.CustomerSetting.Module.ProgressiveModule.ViewModels
 {
     /// <summary>
     /// TODO: Update summary.
