@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Module", "Module", "{35597B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Toco.Website", "Fanex.Toco.Website\Fanex.Toco.Website.csproj", "{CBE64DA9-6FA3-438E-8D49-79A0D63D3D70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.CustomerSetting.Module.Core", "Module\Fanex.Toco.Module.Core\Fanex.CustomerSetting.Module.Core.csproj", "{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_Core", "Module\Fanex.Toco.Module.Core\_Core.csproj", "{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_SampleModule", "Module\Fanex.Toco.Module.SampleModule\_SampleModule.csproj", "{0B2FC4E3-FEED-4849-BA9B-36D077679F32}"
 EndProject

@@ -35,7 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CasinoLibrary, Version=1.0.1.10, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="CasinoLibrary">
+      <HintPath>..\..\_Dependencies\Casino\CasinoLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="dotless.Core">
       <HintPath>..\..\_Dependencies\Web\dotless.Core.dll</HintPath>
     </Reference>
@@ -51,13 +53,17 @@
     <Reference Include="Fanex.NAP.Framework, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\_Dependencies\_FanexLib\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="ILogger, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="ILogger">
+      <HintPath>..\..\_Dependencies\Casino\ILogger.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\_Dependencies\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Sunplus.Libraries.AOP, Version=1.0.3891.29745, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Sunplus.Libraries.AOP">
+      <HintPath>..\..\_Dependencies\Casino\Sunplus.Libraries.AOP.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -155,15 +161,10 @@
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fanex.Toco.Module.Core\Fanex.CustomerSetting.Module.Core.csproj">
+    <ProjectReference Include="..\Fanex.Toco.Module.Core\_Core.csproj">
       <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
-      <Name>Fanex.CustomerSetting.Module.Core</Name>
+      <Name>_Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="dll\CasinoLibrary.dll" />
-    <Content Include="dll\ILogger.dll" />
-    <Content Include="dll\Sunplus.Libraries.AOP.dll" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
