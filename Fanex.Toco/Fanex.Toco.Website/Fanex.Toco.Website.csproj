@@ -148,15 +148,18 @@
     <Content Include="Areas\CustomerSetting\Scripts\Fanex.CustomerSetting.Core.js" />
     <Content Include="Areas\CustomerSetting\Scripts\jquery.blockUI.1.33.js" />
     <Content Include="Areas\CustomerSetting\Scripts\jquery.js" />
+    <Content Include="Areas\CustomerSetting\Scripts\ptarea.js" />
     <Content Include="Areas\CustomerSetting\Scripts\Validators.js" />
     <Content Include="Areas\CustomerSetting\Scripts\_references.js" />
     <Content Include="Areas\CustomerSetting\Styles\Validators.css" />
-    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\Fanex.CustomerSetting.Casino.EditMemberByMaster.js" />
-    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\Fanex.CustomerSetting.Casino.EditMemberBySuper.js" />
-    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\Fanex.CustomerSetting.Casino.EditMember.js" />
-    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\Fanex.CustomerSetting.Casino.EditAgent.js" />
-    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\Fanex.CustomerSetting.Casino.EditMaster.js" />
-    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\Fanex.CustomerSetting.Casino.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\CasinoController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditAgentController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditMemberBySuperController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditMemberByMasterController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditMemberController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\CustomerController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditMasterController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\ViewAgentController.js" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Styles\Casino.css" />
     <Content Include="Areas\CustomerSetting\Images\btn-bgsubmit-hover.png" />
     <Content Include="Areas\CustomerSetting\Images\btn-bgsubmit-original.png" />
@@ -345,19 +348,18 @@
     <Content Include="Content\themes\Honolulu\js\bootstrap.js" />
     <Content Include="Content\themes\Honolulu\js\bootstrap.min.js" />
     <Content Include="Global.asax" />
-    <Content Include="Areas\CustomerSetting\Views\Foo\Index.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\SampleModule\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Web.config" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Index.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Sample\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Customer\CustomerInfo.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Agent\EditAgent.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Agent\ViewAgentBySuper.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Member\EditMember.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Member\EditMemberBySuper.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Member\EditMemberByMaster.cshtml" />
-    <None Include="Areas\CustomerSetting\Views\Casino\Master\EditMaster.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Master\EditMaster.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <None Include="Content\Site.less" />
     <Content Include="Scripts\Common\Message.Helper.js" />
     <Content Include="Scripts\Common\Message.Validator.js" />

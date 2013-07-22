@@ -6,7 +6,7 @@
     using CasinoLibrary.SBAgent;
     using Fanex.CustomerSetting.Module.Casino.Entities;
 
-    public class CustomerController : BaseController
+    public class CasinoCustomerController : BaseController
     {
         public ActionResult CustomerInfo(int id, int uplineId)
         {

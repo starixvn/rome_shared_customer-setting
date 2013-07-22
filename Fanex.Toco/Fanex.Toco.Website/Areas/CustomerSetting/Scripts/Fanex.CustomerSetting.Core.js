@@ -230,12 +230,13 @@ Fanex.CustomerSetting.Core = {
     BlockedUI: false,
 
     Init: function () {
+        $ = jQuery;
         $this = this;
-        $.blockUI.defaults.css.zIndex = '9999999';
-        $.blockUI.defaults.css.position = 'absolute';
-        $.blockUI.defaults.css.border = '0px solid #aaa';
-        $.blockUI.defaults.css.backgroundColor = "transparent";
-        $.blockUI.defaults.overlayCSS.backgroundColor = "transparent";
+        jQuery.blockUI.defaults.css.zIndex = '9999999';
+        jQuery.blockUI.defaults.css.position = 'absolute';
+        jQuery.blockUI.defaults.css.border = '0px solid #aaa';
+        jQuery.blockUI.defaults.css.backgroundColor = "transparent";
+        jQuery.blockUI.defaults.overlayCSS.backgroundColor = "transparent";
     },
 
     BlockUI: function () {
@@ -253,7 +254,7 @@ Fanex.CustomerSetting.Core = {
     },
 
     UnBlockUI: function () {
-        $.unblockUI(document);
+        jQuery.unblockUI(document);
     },
 
     DecodeHtml: function (str) {
