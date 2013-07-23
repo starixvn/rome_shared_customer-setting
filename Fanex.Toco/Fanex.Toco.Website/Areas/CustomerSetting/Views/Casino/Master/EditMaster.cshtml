@@ -72,14 +72,14 @@
                                                 {{gameType.gameTypeName}}
                                             </td>
                                             <td class="C noneBorderT tdWidth">
-                                                <span enable="gameType.is3" class="spanPT" showbutton="false" ptarea="true" min="0" max="s4" selected="s3" ng-model="setting"></span>
+                                                <span ng-init="gameType.l4 = gameType.s4 - gameType.s3" ng-click="gameType.l4 = gameType.s4 - gameType.s3" enable="gameType.is3" class="spanPT" showbutton="false" ptarea="true" min="0" max="s4" selected="s3" ng-model="setting"></span>
                                             </td>
                                             <td class="C noneBorderT autoPtWidth">
                                                 <input type="checkbox" ng-model="gameType.is3" />
                                                     <span enable="gameType.is3 == false" class="spanPT" showbutton="false" ptarea="true" min="0" max="s4" selected="us3" ng-model="setting"></span>
                                             </td>
                                             <td class="C noneBorderT tdWidth">
-                                                <span class="spanPT" showbutton="false" ptarea="true" min="0" max="setting.s4 - setting.s3" selected="m3" ng-model="setting"></span>
+                                                <span ng-init="gameType.l4 = gameType.s4 - gameType.s3" ng-click="gameType.l4 = gameType.s4 - gameType.s3" class="spanPT" showbutton="false" ptarea="true" min="0" max="l4" selected="m3" ng-model="setting"></span>
                                             </td>
                                             <td class="C noneBorderT tdWidth">
                                                 <span class="spanPT" showbutton="false" ptarea="true" min="0" max="m3" selected="n3" ng-model="setting"></span>
