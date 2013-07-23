@@ -72,9 +72,10 @@ function GameGroupController($scope) {
             var selected = gameGroup.s3;
 
             if (!newValue && selected >= min && selected <= max) {
+                $scope.gameGroup.$s3.min = 0;
                 $scope.gameGroup.$s3.max = $scope.gameGroup.s4;
                 toPTSource($scope.gameGroup.$s3);
-            }                       
+            }
 
             // Update new is3 for game type            
             if ($scope.customer.isPtByGameType) {
