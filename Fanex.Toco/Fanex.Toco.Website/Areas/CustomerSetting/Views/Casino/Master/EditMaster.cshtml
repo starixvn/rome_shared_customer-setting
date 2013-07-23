@@ -46,14 +46,14 @@
                     <td colspan="6" class="noneBorderBottom noneBorderTop">
                         <table class="tableInfo" border="1" cellpadding="0" cellspacing="0">
                             <tr>                                <td class="gameTypeWidth ptTitle R noneBorderTop noneBorderL">Group Setting</td>                                <td class="C ptTitle noneBorderTop tdWidth">
-                                    <span enable="gameGroup.is3" class="spanPT" ptarea="true" min="0" max="{{gameGroup.s4}}" selected="s3" ng-model="setting"></span>
+                                    <span ng-init="gameGroup.l4 = gameGroup.s4 - gameGroup.s3" ng-click="gameGroup.l4 = gameGroup.s4 - gameGroup.s3" enable="gameGroup.is3" class="spanPT" ptarea="true" min="0" max="s4" selected="s3" ng-model="setting"></span>
                                 </td>
                                 <td class="C ptTitle noneBorderTop autoPtWidth">
                                     <input type="checkbox" ng-model="gameGroup.is3" />
                                     <span enable="gameGroup.is3 == false" class="spanPT" ptarea="true" min="0" max="s4" selected="us3" ng-model="setting"></span>
                                 </td>
                                 <td class="C ptTitle noneBorderTop tdWidth">
-                                    <span class="spanPT" ptarea="true" min="0" max="{{gameGroup.s4 - gameGroup.s3}}" selected="m3" ng-model="setting"></span>
+                                    <span ng-init="gameGroup.l4 = gameGroup.s4 - gameGroup.s3" ng-click="gameGroup.l4 = gameGroup.s4 - gameGroup.s3" class="spanPT" ptarea="true" min="0" max="l4" selected="m3" ng-model="setting"></span>
                                 </td>
                                 <td class="C ptTitle noneBorderTop tdWidth">
                                     <span class="spanPT" ptarea="true" min="0" max="m3" selected="n3" ng-model="setting"></span>
@@ -79,7 +79,7 @@
                                                     <span enable="gameType.is3 == false" class="spanPT" showbutton="false" ptarea="true" min="0" max="s4" selected="us3" ng-model="setting"></span>
                                             </td>
                                             <td class="C noneBorderT tdWidth">
-                                                <span class="spanPT" showbutton="false" ptarea="true" min="0" max="{{gameType.s4 - gameType.s3}}" selected="m3" ng-model="setting"></span>
+                                                <span class="spanPT" showbutton="false" ptarea="true" min="0" max="setting.s4 - setting.s3" selected="m3" ng-model="setting"></span>
                                             </td>
                                             <td class="C noneBorderT tdWidth">
                                                 <span class="spanPT" showbutton="false" ptarea="true" min="0" max="m3" selected="n3" ng-model="setting"></span>
