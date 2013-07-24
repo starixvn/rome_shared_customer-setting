@@ -17,6 +17,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
     using Fanex.CustomerSetting.Module.Casino.Repositories.Impl;
     using Fanex.CustomerSetting.Module.Casino.ViewModels;
     using Fanex.CustomerSetting.Module.Core;
+    using Fanex.CustomerSetting.Module.Core.Models;
     
     /// <summary>
     /// TODO: Update summary.

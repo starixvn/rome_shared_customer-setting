@@ -177,7 +177,6 @@
     <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\CasinoCustomerController.cs" />
     <Compile Include="Entities\CasinoCustomer.cs" />
-    <Compile Include="Entities\Result.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Impl\CasinoDao.cs" />
     <Compile Include="Services\Impl\CasinoManager.cs" />
