@@ -7,7 +7,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{5EFF254F-0DEE-41BD-9D90-3FF4489D077F}</ProjectGuid>
+    <ProjectGuid>{3664F493-F1E6-4C81-8B8C-692A3FFE3A65}</ProjectGuid>
     <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -35,7 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CasinoLibrary, Version=1.0.1.10, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="CasinoLibrary, Version=1.0.1.10, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\accountingsite-applyprogressivebonus\Dependency\CasinoLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="dotless.Core">
       <HintPath>..\..\_Dependencies\Web\dotless.Core.dll</HintPath>
     </Reference>
@@ -45,11 +47,9 @@
     <Reference Include="Fanex.Data">
       <HintPath>..\..\_Dependencies\Fanex\Fanex.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.NAP.Core, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\_Dependencies\Fanex\Fanex.NAP.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Fanex.NAP.Framework, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\_Dependencies\_FanexLib\Fanex.NAP.Framework.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\NAP – New Accounting Portal\kan-nguyens-accountingreports-totalsmamemberactive\_Dependencies\Fanex.NAP.Framework\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
     <Reference Include="ILogger, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
@@ -142,19 +142,24 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="Configurations\ProgressiveSection.cs" />
     <Compile Include="Controllers\CasinoController.cs" />
+    <Compile Include="Criteria\GetAccProductCriteria.cs" />
+    <Compile Include="Criteria\UpdateProgressiveCriteria.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Impl\ProgressiveRepository.cs" />
+    <Compile Include="Repositories\Interface\IProgressiveRepository.cs" />
     <Compile Include="Services\Implement\ProgressiveService.cs" />
     <Compile Include="Services\Interface\IProgressiveService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Criteria\" />
-    <Folder Include="Repositories\Impl\" />
-    <Folder Include="Repositories\Interface\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\accountingsite-applyprogressivebonus\Sunplus.Accounting.Core\Sunplus.Accounting.Core.csproj">
+      <Project>{09B74F02-6C21-4C5E-A52C-B6D56595A262}</Project>
+      <Name>Sunplus.Accounting.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fanex.Toco.Module.Core\Fanex.CustomerSetting.Module.Core.csproj">
       <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
       <Name>Fanex.CustomerSetting.Module.Core</Name>

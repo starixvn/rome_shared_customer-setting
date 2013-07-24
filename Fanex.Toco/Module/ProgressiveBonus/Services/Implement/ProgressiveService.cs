@@ -1,94 +1,181 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Fanex.CustomerSetting.Module.ProgressiveModule.Services.Interface;
-using Fanex.CustomerSetting.Module.ProgressiveModule.Entities;
-using Fanex.CustomerSetting.Module.Core.Services.Impl;
-using Fanex.CustomerSetting.Module.ProgressiveModule.Configurations;
+using Fanex.Common;
+using Fanex.CustomerSetting.Module.Core;
 using Fanex.CustomerSetting.Module.Core.Models;
+using Fanex.CustomerSetting.Module.Core.Services.Impl;
+using Fanex.CustomerSetting.Module.Core.Web;
+using Fanex.CustomerSetting.Module.ProgressiveModule.Configurations;
+using Fanex.CustomerSetting.Module.ProgressiveModule.Criteria;
+using Fanex.CustomerSetting.Module.ProgressiveModule.Entities;
+using Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Impl;
+using Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Interface;
+using Fanex.CustomerSetting.Module.ProgressiveModule.Services.Interface;
+using Fanex.NAP.Framework.Data;
 
 namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement
 {
-    public class ProgressiveService : IProgressiveService
-    {
-        public Progressive GetProducts()
-        {
-            Progressive progressive = new Progressive();
-            progressive.CustId = 1234;
-            progressive.UserName = "IT-IBC";
-            progressive.RoleId = 4;
+	public class ProgressiveService : IProgressiveService
+	{
+		private readonly IProgressiveRepository _progressiveRepository;
 
-            List<Product> listProducts = new List<Product>();          
+		public ProgressiveService()
+			: this(null)
+		{ }
 
-            try
-            {
-                var products = ProgressiveSection.Instance.Product;
-                foreach (ProgressiveElement product in products)
-                {
-                    if (product.Active)
-                    {
-                        listProducts.Add(new Product() 
-                        { 
-                            Id = product.Id,
-                            Name = product.Name,
-                            Enable = true,
-                            EnableDownlines = false
-                        });
-                    }
-                }
+		private bool enableProgressiveBonus = ProgressiveSection.Instance.Active;
 
-               
-            }
-            catch (Exception ex)
-            {
-                LoggingHandler.Log(ex);
-            }
+		public ProgressiveService(IProgressiveRepository progressiveRepository)
+		{
+			_progressiveRepository = progressiveRepository ?? new ProgressiveRepository();
+		}
 
-            progressive.Products = listProducts;
+		public Progressive GetProducts()
+		{
+			if (!enableProgressiveBonus)
+			{
+				return null;
+			}
 
-            return progressive;
-        }
+			Progressive progressive = null;
+			List<Product> listProducts = new List<Product>();
+			try
+			{
+				int adminId, requestRoleId;
+				string adminUsername, requestUsername;
 
+				adminId = AppSession.AdminId;
+				adminUsername = AppSession.AdminUsername;
 
-        public List<Result> UpdateProgressive(Progressive progressive, string ip, int userId, string userName, int fromSystem)
-        {
-            List<Result> results = new List<Result>();
-            try
-            {
-                foreach (Product product in progressive.Products)
-                {
-                    if (product.Id == 72)//Progressive Bonus
-                    {
-                        try
-                        {
-                            var casinoLibray = new CasinoLibrary.SBAgent.Customer();
-                            bool rs = casinoLibray.UpdateCustEnableBonus(progressive.CustId, product.Enable, product.EnableDownlines, ip, userId, userName, fromSystem);
-                        }
-                        catch (Exception ex)
-                        {
-                            LoggingHandler.Log(ex);
+				requestUsername = AppSession.RequestUsername;
+				requestRoleId = AppSession.RequestRoleId;
 
-                            results.Add(new Result()
-                            {
-                                ErrorCode = product.Id,
-                                ErrorMessage = ex.Message
-                            });
-                        }
-                    }                    
-                }
-            }
-            catch (Exception ex)
-            {
-                LoggingHandler.Log(ex);
+				ICriteria criteria = null;
+				if (ProgressiveSection.Instance.System == 3) // Acc
+				{
+					criteria = new GetAccProductCriteria
+					{
+						Username = requestUsername
+					};
+				}
+				else // Age
+				{
+					criteria = new GetAgeProductCriteria
+					{
+						Username = requestUsername,
+						UplineId = adminId,
+						IsInternalAgent = AppSession.IsInternalAgent
+					};
+				}
 
-                results.Add(new Result()
-                {
-                    ErrorCode = 100,
-                    ErrorMessage = ex.Message
-                });
-            }
-            return results;
-        }
-    }
+				// Get status from Db
+				dynamic rawData = this._progressiveRepository.GetStatusOfProgressiveBonus(criteria);
+
+				progressive = new Progressive
+				{
+					AdminId = adminId,
+					AdminUserName = adminUsername,
+					CustId = Converter.ToInt(rawData.custid),
+					UserName = requestUsername,
+					RoleId = requestRoleId,
+					Products = listProducts
+				};
+
+				var products = ProgressiveSection.Instance.Product;
+				foreach (ProgressiveElement product in products)
+				{
+					if (product.Active && product.Id == 72)
+					{
+						listProducts.Add(new Product()
+						{
+							Id = product.Id,
+							Name = product.Name,
+							Enable = !Converter.ToBool(rawData.DisableCasinoBonus),
+							EnableDownlines = false
+						});
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				LoggingHandler.Log(ex);
+			}
+
+			return progressive;
+		}
+
+		public List<Result> UpdateProgressive(Progressive progressive)
+		{
+			if (!enableProgressiveBonus)
+			{
+				return null;
+			}
+
+			List<Result> results = new List<Result>();
+			Hashtable outputParams = null;
+			try
+			{
+				string ip = Utils.GetClientIP();
+				string language = "E";
+
+				int userId = AppSession.AdminId;
+				int subAccId = ProgressiveSection.Instance.System == 3 // Acc
+					? userId
+					: AppSession.SubAccountId;
+
+				foreach (Product product in progressive.Products)
+				{
+					if (product.Id == 72) //Progressive Bonus
+					{
+						try
+						{
+							ICriteria criteria = new UpdateProgressiveCriteria
+							{
+								CustId = progressive.CustId,
+								Disable = !product.Enable,
+								DisableDownlines = !product.EnableDownlines,
+								UserId = userId,
+								SubAccId = subAccId,
+								IP = ip,
+								Language = language
+							};
+							outputParams = this._progressiveRepository.UpdateStatusOfProgressiveBonus(criteria);
+							if (outputParams != null)
+							{
+								int errCode = Convert.ToInt32(outputParams["errcode"]);
+								results.Add(new Result
+								{
+									ErrorCode = errCode,
+									ErrorMessage = errCode == 0 ? "Progessive Bonus updated successfully" : outputParams["errmsg"].ToString()
+								});
+							}
+						}
+						catch (Exception ex)
+						{
+							LoggingHandler.Log(ex);
+
+							results.Add(new Result()
+							{
+								ErrorCode = product.Id,
+								ErrorMessage = ex.Message
+							});
+						}
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				LoggingHandler.Log(ex);
+
+				results.Add(new Result()
+				{
+					ErrorCode = 100,
+					ErrorMessage = ex.Message
+				});
+			}
+
+			return results;
+		}
+	}
 }
