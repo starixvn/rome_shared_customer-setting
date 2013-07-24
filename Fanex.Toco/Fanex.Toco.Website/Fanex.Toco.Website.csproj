@@ -608,8 +608,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\CustomerSetting\Views\Casino\Scripts\" />
-    <Folder Include="Areas\CustomerSetting\Views\Casino\Styles\" />
     <Folder Include="Models\" />
     <Folder Include="Scripts\_Libs\BlockUI\img\" />
   </ItemGroup>
@@ -668,6 +666,10 @@
     <None Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3-custom.less" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Module\Casino\Casino.csproj">
+      <Project>{5F8F3877-90E3-48A3-BAD7-4207DCBA088D}</Project>
+      <Name>Casino</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Module\Fanex.Toco.Module.Core\_Core.csproj">
       <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
       <Name>_Core</Name>
