@@ -82,6 +82,8 @@ function GameGroupController($scope) {
             // Update min, max for m3
             gameGroup.$m3.min = 0;
             var selected = gameGroup.$m3.selected;
+            var max = newValue ? gameGroup.s4.ptRound() : (gameGroup.s4 - gameGroup.s3).ptRound();
+            selected = selected > max ? max : selected;
             gameGroup.m3 = gameGroup.$m3.min = gameGroup.$m3.max = gameGroup.$m3.selected = selected.ptRound();
 
             if (newValue) {
