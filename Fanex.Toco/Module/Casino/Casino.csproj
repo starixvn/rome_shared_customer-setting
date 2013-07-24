@@ -175,7 +175,7 @@
     <Compile Include="Controllers\AgentController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\MasterController.cs" />
-    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\CasinoCustomerController.cs" />
     <Compile Include="Entities\CasinoCustomer.cs" />
     <Compile Include="Entities\Result.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

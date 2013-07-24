@@ -141,7 +141,153 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Content Include="Areas\CustomerSetting\Views\ProgressiveBonus\Scripts\Progressive.js" />
+=======
+    <Content Include="Areas\Common\Views\Shared\Images\Loading.gif" />
+    <Content Include="Areas\Common\Views\Shared\Scripts\Fanex.CustomerSetting.js" />
+    <Content Include="Areas\CustomerSetting\Images\arrowblue-icn.png" />
+    <Content Include="Areas\CustomerSetting\Images\arrowdown-icn.png" />
+    <Content Include="Areas\CustomerSetting\Images\Loading.gif" />
+    <Content Include="Areas\CustomerSetting\Images\pointer.png" />
+    <Content Include="Areas\CustomerSetting\Images\pointerDown.png" />
+    <Content Include="Areas\CustomerSetting\Images\warning-icn.png" />
+    <Content Include="Areas\CustomerSetting\Scripts\angular.min.js" />
+    <Content Include="Areas\CustomerSetting\Scripts\Fanex.CustomerSetting.Core.js" />
+    <Content Include="Areas\CustomerSetting\Scripts\jquery.blockUI.1.33.js" />
+    <Content Include="Areas\CustomerSetting\Scripts\jquery.js" />
+    <Content Include="Areas\CustomerSetting\Scripts\ptarea.js" />
+    <Content Include="Areas\CustomerSetting\Scripts\Validators.js" />
+    <Content Include="Areas\CustomerSetting\Scripts\_references.js" />
+    <Content Include="Areas\CustomerSetting\Styles\Validators.css" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\CasinoController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditAgentController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditMemberBySuperController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditMemberByMasterController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditMemberController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\CustomerController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditMasterController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\ViewAgentController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Styles\Casino.css" />
+    <Content Include="Areas\CustomerSetting\Images\btn-bgsubmit-hover.png" />
+    <Content Include="Areas\CustomerSetting\Images\btn-bgsubmit-original.png" />
+    <Content Include="Areas\CustomerSetting\Images\b_add.jpg" />
+    <Content Include="Areas\CustomerSetting\Images\b_down.jpg" />
+    <Content Include="Areas\CustomerSetting\Images\b_sub.jpg" />
+    <Content Include="Areas\CustomerSetting\Images\b_up.jpg" />
+    <Content Include="Areas\CustomerSetting\Styles\Common.css" />
+    <Content Include="Content\base\img\1350530947_page_excel.png" />
+    <Content Include="Content\base\img\actions\add-user.png" />
+    <Content Include="Content\base\img\actions\chgpwd-ico.png" />
+    <Content Include="Content\base\img\actions\dd\action-ico.png" />
+    <Content Include="Content\base\img\actions\dd\chgpwd-ico.png" />
+    <Content Include="Content\base\img\actions\dd\edit-ico.png" />
+    <Content Include="Content\base\img\actions\dd\permission-ico.png" />
+    <Content Include="Content\base\img\actions\dd\site-ico.png" />
+    <Content Include="Content\base\img\actions\dd\user-info-ico.png" />
+    <Content Include="Content\base\img\actions\edit-ico.png" />
+    <Content Include="Content\base\img\actions\permission-ico.png" />
+    <Content Include="Content\base\img\actions\site-ico.png" />
+    <Content Include="Content\base\img\actions\url-ico.png" />
+    <Content Include="Content\base\img\actions\user-info-ico.png" />
+    <Content Include="Content\base\img\arrow-down.png" />
+    <Content Include="Content\base\img\arrow-up.png" />
+    <Content Include="Content\base\img\bg-menu.png" />
+    <Content Include="Content\base\img\bg-submenu-more.png" />
+    <Content Include="Content\base\img\bgmenu-hover.png" />
+    <Content Include="Content\base\img\bgmenu-more.png" />
+    <Content Include="Content\base\img\bg_body.png" />
+    <Content Include="Content\base\img\bg_footer.jpg" />
+    <Content Include="Content\base\img\bg_header.png" />
+    <Content Include="Content\base\img\blank.png" />
+    <Content Include="Content\base\img\btn-edit.png" />
+    <Content Include="Content\base\img\chosen-sprite.png" />
+    <Content Include="Content\base\img\collapse-small.png" />
+    <Content Include="Content\base\img\collapsed.png" />
+    <Content Include="Content\base\img\combo-pickr\bottom.png" />
+    <Content Include="Content\base\img\combo-pickr\closebutton.png" />
+    <Content Include="Content\base\img\combo-pickr\inner.png" />
+    <Content Include="Content\base\img\combo-pickr\link-overlay.png" />
+    <Content Include="Content\base\img\combo-pickr\mainbg.png" />
+    <Content Include="Content\base\img\combo-pickr\openbutton.png" />
+    <Content Include="Content\base\img\Controls.png" />
+    <Content Include="Content\base\img\edit-icon.png" />
+    <Content Include="Content\base\img\expand-small.png" />
+    <Content Include="Content\base\img\expanded.png" />
+    <Content Include="Content\base\img\favorite-icon.png" />
+    <Content Include="Content\base\img\grid-view.png" />
+    <Content Include="Content\base\img\hub.png" />
+    <Content Include="Content\base\img\icon-calendar.png" />
+    <Content Include="Content\base\img\info-square-blue.png" />
+    <Content Include="Content\base\img\information-icon.png" />
+    <Content Include="Content\base\img\information-icon2.png" />
+    <Content Include="Content\base\img\info_blue.png" />
+    <Content Include="Content\base\img\invoice.png" />
+    <Content Include="Content\base\img\lnk-white.png" />
+    <Content Include="Content\base\img\loading.gif" />
+    <Content Include="Content\base\img\logo.png" />
+    <Content Include="Content\base\img\logo1.png" />
+    <Content Include="Content\base\img\logo2.png" />
+    <Content Include="Content\base\img\logo3.png" />
+    <Content Include="Content\base\img\moreinfo.png" />
+    <Content Include="Content\base\img\report-icon.png" />
+    <Content Include="Content\base\img\seperation.png" />
+    <Content Include="Content\base\img\setting.png" />
+    <Content Include="Content\base\img\small-arrow-down.png" />
+    <Content Include="Content\base\img\sort-icon.png" />
+    <Content Include="Content\base\img\sprites-image.png" />
+    <Content Include="Content\base\img\sprites.png" />
+    <Content Include="Content\base\img\textures\fabric.png" />
+    <Content Include="Content\base\img\textures\grid.png" />
+    <Content Include="Content\base\img\textures\scratches.png" />
+    <Content Include="Content\base\img\tick-ico-16.png" />
+    <Content Include="Content\base\img\tree-view.png" />
+    <Content Include="Content\base\img\ui-modal-btn.png" />
+    <Content Include="Content\base\img\user.png" />
+    <Content Include="Content\base\jquery\images\ui-bg_flat_60_4264ac_40x100.png" />
+    <Content Include="Content\base\jquery\images\ui-bg_flat_75_5476bb_40x100.png" />
+    <Content Include="Content\base\jquery\images\ui-bg_flat_90_466bb9_40x100.png" />
+    <Content Include="Content\base\jquery\images\ui-bg_flat_90_aaaaaa_40x100.png" />
+    <Content Include="Content\base\jquery\images\ui-bg_glass_45_f4f3f1_1x400.png" />
+    <Content Include="Content\base\jquery\images\ui-bg_glass_55_f8da4e_1x400.png" />
+    <Content Include="Content\base\jquery\images\ui-bg_gloss-wave_45_e14f1c_500x100.png" />
+    <Content Include="Content\base\jquery\images\ui-bg_highlight-soft_90_999999_1x100.png" />
+    <Content Include="Content\base\jquery\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="Content\base\jquery\images\ui-icons_4264ac_256x240.png" />
+    <Content Include="Content\base\jquery\images\ui-icons_c6cddc_256x240.png" />
+    <Content Include="Content\base\jquery\images\ui-icons_cbd4e6_256x240.png" />
+    <Content Include="Content\base\jquery\images\ui-icons_d0d9ec_256x240.png" />
+    <Content Include="Content\base\jquery\images\ui-icons_f7a50d_256x240.png" />
+    <Content Include="Content\base\jquery\images\ui-icons_fcd113_256x240.png" />
+    <Content Include="Content\base\jquery\jquery-ui-1.9.1.custom.css" />
+    <Content Include="Content\base\jquery\jquery-ui-1.9.1.custom.min.css" />
+    <Content Include="Content\base\style.css" />
+    <Content Include="Content\img\BetList.png" />
+    <Content Include="Content\img\bgHeader.jpg" />
+    <Content Include="Content\img\firstGoal.gif" />
+    <Content Include="Content\img\green-star.gif" />
+    <Content Include="Content\img\lastGoal.gif" />
+    <Content Include="Content\img\loader.gif" />
+    <Content Include="Content\img\q_Icon2_1.png" />
+    <Content Include="Content\img\q_Icon_2.png" />
+    <Content Include="Content\jquery-ui\images\ui-bg_flat_60_4264ac_40x100.png" />
+    <Content Include="Content\jquery-ui\images\ui-bg_flat_75_5476bb_40x100.png" />
+    <Content Include="Content\jquery-ui\images\ui-bg_flat_90_466bb9_40x100.png" />
+    <Content Include="Content\jquery-ui\images\ui-bg_flat_90_aaaaaa_40x100.png" />
+    <Content Include="Content\jquery-ui\images\ui-bg_glass_45_f4f3f1_1x400.png" />
+    <Content Include="Content\jquery-ui\images\ui-bg_glass_55_f8da4e_1x400.png" />
+    <Content Include="Content\jquery-ui\images\ui-bg_gloss-wave_45_e14f1c_500x100.png" />
+    <Content Include="Content\jquery-ui\images\ui-bg_highlight-soft_90_999999_1x100.png" />
+    <Content Include="Content\jquery-ui\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="Content\jquery-ui\images\ui-icons_4264ac_256x240.png" />
+    <Content Include="Content\jquery-ui\images\ui-icons_c6cddc_256x240.png" />
+    <Content Include="Content\jquery-ui\images\ui-icons_cbd4e6_256x240.png" />
+    <Content Include="Content\jquery-ui\images\ui-icons_d0d9ec_256x240.png" />
+    <Content Include="Content\jquery-ui\images\ui-icons_f7a50d_256x240.png" />
+    <Content Include="Content\jquery-ui\images\ui-icons_fcd113_256x240.png" />
+    <Content Include="Content\jquery-ui\jquery-ui-1.9.1.custom.css" />
+    <Content Include="Content\jquery-ui\jquery-ui-1.9.1.custom.min.css" />
+>>>>>>> 4e8548df73dbd2655f3bd846509de7c0f523e996
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -211,11 +357,10 @@
     <Content Include="Content\themes\Honolulu\js\bootstrap.js" />
     <Content Include="Content\themes\Honolulu\js\bootstrap.min.js" />
     <Content Include="Global.asax" />
-    <Content Include="Areas\CustomerSetting\Views\Foo\Index.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\SampleModule\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Web.config" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Index.cshtml" />
+<<<<<<< HEAD
     <Content Include="Areas\CustomerSetting\Views\Sample\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\ProgressiveBonus\Index.cshtml" />
@@ -226,6 +371,17 @@
     <None Include="Areas\CustomerSetting\Views\ProgressiveBonus\Styles\responsive.less" />
     <None Include="Areas\CustomerSetting\Views\ProgressiveBonus\Styles\style.less" />
     <None Include="Areas\CustomerSetting\Views\ProgressiveBonus\Styles\variables.less" />
+=======
+    <Content Include="Areas\CustomerSetting\Views\Casino\Customer\CustomerInfo.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Agent\EditAgent.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Agent\ViewAgentBySuper.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Member\EditMember.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Member\EditMemberBySuper.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Member\EditMemberByMaster.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Master\EditMaster.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+>>>>>>> 4e8548df73dbd2655f3bd846509de7c0f523e996
     <None Include="Content\Site.less" />
     <Content Include="Scripts\Common\Message.Helper.js" />
     <Content Include="Scripts\Common\Message.Validator.js" />
@@ -520,9 +676,15 @@
       <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
       <Name>_Core</Name>
     </ProjectReference>
+<<<<<<< HEAD
     <ProjectReference Include="..\Module\ProgressiveBonus\Fanex.CustomerSetting.Module.ProgressiveModule.csproj">
       <Project>{5EFF254F-0DEE-41BD-9D90-3FF4489D077F}</Project>
       <Name>Fanex.CustomerSetting.Module.ProgressiveModule</Name>
+=======
+    <ProjectReference Include="..\Module\Racebook\Racebook.csproj">
+      <Project>{63D0DC31-9FEF-4BEE-9D43-E1E3A3BE42A5}</Project>
+      <Name>Racebook</Name>
+>>>>>>> 4e8548df73dbd2655f3bd846509de7c0f523e996
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

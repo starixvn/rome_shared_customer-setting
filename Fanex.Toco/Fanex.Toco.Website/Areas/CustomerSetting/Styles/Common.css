@@ -2,6 +2,7 @@
 {
     font-size: 11px;
     margin-top: 1px;
+    font-family: Tahoma;
 }
 .statusInfo
 {
@@ -29,7 +30,7 @@
 	vertical-align: top;
 	cursor: pointer;
 	border: 1px solid #ccc;
-	background-image: url("../Areas/CustomerSetting/Images/arrowblue-icn.png");
+	background-image: url("../Images/arrowblue-icn.png");
 	background-repeat: no-repeat;
 	background-position: center center;
 	width: 16px;
@@ -43,7 +44,7 @@
 	vertical-align: top;
 	cursor: pointer;
 	border: 1px solid #ccc;
-	background-image: url("../Areas/CustomerSetting/Images/arrowdown-icn.png");
+	background-image: url("../Images/arrowdown-icn.png");
 	background-repeat: no-repeat;
 	background-position: center center;
 	width: 16px;
@@ -57,7 +58,7 @@
 	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
-	background-image: url("../Areas/CustomerSetting/Images/warning-icn.png");
+	background-image: url("../Images/warning-icn.png");
 	background-repeat: no-repeat;
 	background-position: 5px 5px;
 	line-height: 1.5;
@@ -76,7 +77,7 @@
 }
 .buttonPopup, .ui-button, button[type=button]
 {
-	background: url(../Areas/CustomerSetting/Images/btn-bgsubmit-original.png) repeat-x scroll 5px center !important;
+	background: url(../Images/btn-bgsubmit-original.png) repeat-x scroll 5px center !important;
 	color: #fff !important;
 	cursor: pointer;
 	width: 80px;
@@ -92,14 +93,14 @@
 }
 .buttonPopup:hover, .ui-button:hover
 {
-	background: url(../Areas/CustomerSetting/Images/btn-bgsubmit-hover.png) repeat-x scroll 5px center !important;
+	background: url(../Images/btn-bgsubmit-hover.png) repeat-x scroll 5px center !important;
 	color: #fff !important;
 	border: none !important;
 	cursor: pointer;
 }
 .btnPTDown
 {
-	background: url(../Areas/CustomerSetting/Images/b_down.jpg) repeat-x scroll center top transparent;
+	background: url(../Images/b_down.jpg) repeat-x scroll center top transparent;
 	border: 0 solid #000000;
 	height: 17px;
 	width: 17px;
@@ -108,7 +109,7 @@
 
 .btnPTUp
 {
-	background: url(../Areas/CustomerSetting/Images/b_up.jpg) repeat-x scroll center top transparent;
+	background: url(../Images/b_up.jpg) repeat-x scroll center top transparent;
 	border: 0 solid #000000;
 	height: 17px;
 	width: 17px;
@@ -117,7 +118,7 @@
 
 .btnPTSub
 {
-	background: url(../Areas/CustomerSetting/Images/b_sub.jpg) repeat-x scroll center top transparent;
+	background: url(../Images/b_sub.jpg) repeat-x scroll center top transparent;
 	border: 0 solid #000000;
 	height: 17px;
 	width: 17px;
@@ -126,7 +127,7 @@
 
 .btnPTAdd
 {
-	background: url(../Areas/CustomerSetting/Images/b_add.jpg) repeat-x scroll center top transparent;
+	background: url(../Images/b_add.jpg) repeat-x scroll center top transparent;
 	border: 0 solid #000000;
 	height: 17px;
 	width: 17px;
@@ -138,13 +139,15 @@ html, body
 	color: #444;
 	font-family: Tahoma, Helvetica, Arial, sans-serif;
 }
-div#settingContainer,div#custInfo
+div#settingContainer,div.custInfo
 {
     border: 1px solid #ccc;
     border-bottom:0px;
     border-top: none;
     border-left: 1px solid #ccc;
     border-right: 1px solid #ccc;
+    padding: 0;
+    margin: 0;
 }
 td
 {
@@ -172,6 +175,8 @@ td
     border-collapse: collapse;
     border-style: none; 
     width: 100%;
+    table-layout: fixed;
+    
 }
 .tableInfo tr
 {
@@ -235,6 +240,7 @@ select,.select
 {
     height: 18px !important;
     width: 65px !important;    
+    font-size: 11px;
 }
 .noneBorderTop
 {
@@ -251,4 +257,42 @@ select,.select
 .noneBorderBottom
 {
     border-bottom: 0;
+}
+.innerTD
+{
+    border-top: 0;
+    border-right: 1px !important;
+    border-bottom: 0;
+    border-left: 0;
+}
+.tdWidth
+{
+    width: 154px;
+}
+.autoPtWidth
+{
+    width: 169px;
+}
+.gameGroupWidth
+{
+    width: 80px;
+}
+.gameTypeWidth
+{
+    width: 150px;
+}
+.maxPtAgentWidth
+{
+    width: 170px;
+}.memberWidth
+{
+    width: 395px;
+}
+.superAutoPtWidth
+{
+    width: 166px;
+}
+.spanPT
+{
+    line-height: 20px;
 }

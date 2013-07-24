@@ -1271,10 +1271,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             {
                 resultType = cust.UpdateCustGameType_EditMember(gameTypeTable);
             }
-            else
-            {
-                resultStake = cust.UpdateCustGameTypeStakeLevel(gameStakeTable);
-            }
+
+            resultStake = cust.UpdateCustGameTypeStakeLevel(gameStakeTable);
 
             // Process error messages
             foreach (DataRow item in resultKind.Rows)
@@ -1375,10 +1373,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             {
                 resultType = cust.UpdateCustGameType_EditMember(gameTypeTable);
             }
-            else
-            {
-                resultStake = cust.UpdateCustGameTypeStakeLevel(gameStakeTable);
-            }
+            
+            resultStake = cust.UpdateCustGameTypeStakeLevel(gameStakeTable);
 
             // Process error messages
             foreach (DataRow item in resultKind.Rows)
