@@ -12,14 +12,14 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Fanex.CustomerSetting.Module.Core.Configurations
 {
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
-    public static class AppSettings
-    {
-        public static bool IsLocalTest { get; private set; }
+	[SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
+	public static class AppSettings
+	{
+		public static bool IsLocalTest { get; private set; }
 
-        static AppSettings()
-        {
-            IsLocalTest = ConfigurationManager.AppSettings["IsLocalTest"] == "1";
-        }
-    }
+		static AppSettings()
+		{
+			IsLocalTest = ConfigurationManager.AppSettings["IsLocalTest"] == "1";
+		}
+	}
 }

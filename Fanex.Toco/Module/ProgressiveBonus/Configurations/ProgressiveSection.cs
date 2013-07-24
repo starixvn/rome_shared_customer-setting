@@ -8,7 +8,6 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Configurations
 {
     public class ProgressiveSection : ConfigurationSection
     {
-
         public static ProgressiveSection Instance
         {
             get
@@ -18,6 +17,23 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Configurations
             }
         }
 
+		[ConfigurationPropertyAttribute("active", IsRequired = true)]
+		public bool Active
+		{
+			get
+			{
+				return (bool)this["active"];
+			}
+		}
+
+		[ConfigurationPropertyAttribute("system", IsRequired = true)]
+		public int System
+		{
+			get
+			{
+				return (int)this["system"];
+			}
+		}
 
         [ConfigurationProperty("Product", IsDefaultCollection = false)]
         [ConfigurationCollection(typeof(ProgressiveCollection),
@@ -33,12 +49,10 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Configurations
                 return spCollection;
             }
         }
-
     }
 
     public class ProgressiveCollection : ConfigurationElementCollection
     {
-
         public ProgressiveCollection()
         {
         }
@@ -82,7 +96,6 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Configurations
             BaseClear();
         }
 
-
         public ProgressiveElement this[int index]
         {
             get
@@ -111,7 +124,6 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Configurations
         {
             return BaseIndexOf(ProgressiveElement);
         }
-
 
         protected override sealed ConfigurationElement CreateNewElement()
         {

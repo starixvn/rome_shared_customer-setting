@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CasinoLibrary, Version=1.0.1.10, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\_Dependencies\Casino\CasinoLibrary.dll</HintPath>
+      <HintPath>..\..\..\..\accountingsite-applyprogressivebonus\Dependency\CasinoLibrary.dll</HintPath>
     </Reference>
     <Reference Include="dotless.Core">
       <HintPath>..\..\_Dependencies\Web\dotless.Core.dll</HintPath>
@@ -47,23 +47,17 @@
     <Reference Include="Fanex.Data">
       <HintPath>..\..\_Dependencies\Fanex\Fanex.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.NAP.Core, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\_Dependencies\Fanex\Fanex.NAP.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Fanex.NAP.Framework, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\_Dependencies\_FanexLib\Fanex.NAP.Framework.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\NAP – New Accounting Portal\kan-nguyens-accountingreports-totalsmamemberactive\_Dependencies\Fanex.NAP.Framework\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="ILogger, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\_Dependencies\Casino\ILogger.dll</HintPath>
-    </Reference>
+    <Reference Include="ILogger, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\_Dependencies\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Sunplus.Libraries.AOP">
-      <HintPath>..\..\_Dependencies\Casino\Sunplus.Libraries.AOP.dll</HintPath>
-    </Reference>
+    <Reference Include="Sunplus.Libraries.AOP, Version=1.0.3891.29745, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -148,28 +142,33 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="Configurations\ProgressiveSection.cs" />
     <Compile Include="Controllers\CasinoController.cs" />
+    <Compile Include="Criteria\GetAccProductCriteria.cs" />
+    <Compile Include="Criteria\UpdateProgressiveCriteria.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Impl\ProgressiveRepository.cs" />
+    <Compile Include="Repositories\Interface\IProgressiveRepository.cs" />
     <Compile Include="Services\Implement\ProgressiveService.cs" />
     <Compile Include="Services\Interface\IProgressiveService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Criteria\" />
-    <Folder Include="Repositories\Impl\" />
-    <Folder Include="Repositories\Interface\" />
     <Folder Include="ViewModels\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\accountingsite-applyprogressivebonus\Sunplus.Accounting.Core\Sunplus.Accounting.Core.csproj">
+      <Project>{09B74F02-6C21-4C5E-A52C-B6D56595A262}</Project>
+      <Name>Sunplus.Accounting.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Toco.Module.Core\Fanex.CustomerSetting.Module.Core.csproj">
+      <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
+      <Name>Fanex.CustomerSetting.Module.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="dll\CasinoLibrary.dll" />
     <Content Include="dll\ILogger.dll" />
     <Content Include="dll\Sunplus.Libraries.AOP.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Fanex.Toco.Module.Core\_Core.csproj">
-      <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
-      <Name>_Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
