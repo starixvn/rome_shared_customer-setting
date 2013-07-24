@@ -516,9 +516,9 @@
     <None Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3-custom.less" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Module\Fanex.Toco.Module.Core\Fanex.CustomerSetting.Module.Core.csproj">
+    <ProjectReference Include="..\Module\Fanex.Toco.Module.Core\_Core.csproj">
       <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
-      <Name>Fanex.CustomerSetting.Module.Core</Name>
+      <Name>_Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Module\ProgressiveBonus\Fanex.CustomerSetting.Module.ProgressiveModule.csproj">
       <Project>{5EFF254F-0DEE-41BD-9D90-3FF4489D077F}</Project>

@@ -153,9 +153,9 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fanex.Toco.Module.Core\Fanex.CustomerSetting.Module.Core.csproj">
+    <ProjectReference Include="..\Fanex.Toco.Module.Core\_Core.csproj">
       <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
-      <Name>Fanex.CustomerSetting.Module.Core</Name>
+      <Name>_Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fanex.Toco.Module.SampleModule\_SampleModule.csproj">
       <Project>{0B2FC4E3-FEED-4849-BA9B-36D077679F32}</Project>

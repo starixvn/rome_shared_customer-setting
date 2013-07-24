@@ -451,7 +451,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     modifiedId, 
                     modifiedBy, 
                     fromSystem, 
-                    customerModel.IsAutoReset);
+                    customerModel.IsAutoReset,
+                    false, false);
             }
 
             // Update Status for direct downline only
@@ -561,7 +562,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     modifiedId,
                     modifiedBy,
                     fromSystem,
-                    customerModel.IsAutoReset);
+                    customerModel.IsAutoReset,
+                    false, false);
             }
 
             // Update Status for direct downline only
@@ -671,7 +673,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     modifiedId,
                     modifiedBy,
                     fromSystem,
-                    customerModel.IsAutoReset);
+                    customerModel.IsAutoReset,
+                    false, false);
             }
 
             // Update Status for direct downline only
