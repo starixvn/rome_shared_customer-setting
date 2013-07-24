@@ -221,7 +221,9 @@
     <Content Include="Areas\CustomerSetting\Views\ProgressiveBonus\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\ProgressiveBonus\Casino\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\ProgressiveBonus\Shared\_Layout.cshtml" />
-    <Content Include="Configurations\ProgressiveSection.config" />
+    <Content Include="Configurations\ProgressiveSection.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Areas\CustomerSetting\Views\ProgressiveBonus\Styles\bootstrap.less" />
     <None Include="Areas\CustomerSetting\Views\ProgressiveBonus\Styles\responsive.less" />
     <None Include="Areas\CustomerSetting\Views\ProgressiveBonus\Styles\style.less" />
