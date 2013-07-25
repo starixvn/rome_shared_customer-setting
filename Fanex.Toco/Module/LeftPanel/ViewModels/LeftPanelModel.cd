@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Fanex.CustomerSetting.Module.LeftPanel.ViewModels.CustomerModel">
+    <Position X="6.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAEAAAAAAAAQAAAAAEAEABAAAAAQAABAgAA=</HashCode>
+      <FileName>ViewModels\CustomerInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fanex.CustomerSetting.Module.LeftPanel.ViewModels.PersonalInfo">
+    <Position X="1.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAAAAAAAQAAAAAAACBAAAAIAAAAAA=</HashCode>
+      <FileName>ViewModels\CustomerInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fanex.CustomerSetting.Module.LeftPanel.ViewModels.CustomerList" Collapsed="true">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\CustomerInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fanex.CustomerSetting.Module.LeftPanel.ViewModels.BetList" Collapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\CustomerInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fanex.CustomerSetting.Module.LeftPanel.ViewModels.BetItem" Collapsed="true">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAEAEAAgAAAAACAAAQAAAAAAACADAAAAAABAAAAA=</HashCode>
+      <FileName>ViewModels\CustomerInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fanex.CustomerSetting.Module.LeftPanel.ViewModels.Statement" Collapsed="true">
+    <Position X="11.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAACAAAAAQAABAAAAAAAAAQA=</HashCode>
+      <FileName>ViewModels\CustomerInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fanex.CustomerSetting.Module.LeftPanel.ViewModels.StatementList" Collapsed="true">
+    <Position X="8.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\CustomerInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fanex.CustomerSetting.Module.LeftPanel.ViewModels.BalanceInfo" Collapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAEAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\CustomerInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fanex.CustomerSetting.Module.LeftPanel.ViewModels.Status" Collapsed="true">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAQAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\CustomerInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fanex.CustomerSetting.Module.LeftPanel.ViewModels.DownlineList">
+    <Position X="1.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\CustomerInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fanex.CustomerSetting.Module.LeftPanel.ViewModels.Setting">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\CustomerInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fanex.CustomerSetting.Module.LeftPanel.ViewModels.Login" Collapsed="true">
+    <Position X="8.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAACAAAAAAAAAAAAAAAQAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\CustomerInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fanex.CustomerSetting.Module.LeftPanel.ViewModels.OnlineList" Collapsed="true">
+    <Position X="10" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\CustomerInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fanex.CustomerSetting.Module.LeftPanel.ViewModels.BasicInfo">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\CustomerInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

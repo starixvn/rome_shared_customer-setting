@@ -154,7 +154,7 @@ namespace Fanex.CustomerSetting.Module.LeftPanel.ViewModels
         public int TotalSuspended { get; set; }
     }
 
-    public class DownlineList
+    public class DownlineList : BasicInfo
     {
         public DownlineList()
         {
@@ -164,17 +164,17 @@ namespace Fanex.CustomerSetting.Module.LeftPanel.ViewModels
         public List<Dictionary<int, Dictionary<string, string>>> Downlines { get; set; }
     }
 
-    public class Setting
+    public class Setting : BasicInfo
     {
         public Setting()
         {
-            this.EnableItems = new List<Dictionary<string, bool>>();
-            this.EditItems = new List<Dictionary<string, string>>();
+            this.EnableItems = new List<Dictionary<int, Dictionary<string, bool>>>();
+            this.EditItems = new List<Dictionary<int, Dictionary<string, string>>>();
         }
+        
+        public List<Dictionary<int, Dictionary<string, bool>>> EnableItems { get; set; }
 
-        public List<Dictionary<string, bool>> EnableItems { get; set; }
-
-        public List<Dictionary<string, string>> EditItems { get; set; }
+        public List<Dictionary<int, Dictionary<string, string>>> EditItems { get; set; }
     }
 
     public class Login
@@ -193,5 +193,12 @@ namespace Fanex.CustomerSetting.Module.LeftPanel.ViewModels
         public string IP { get; set; }
 
         public DateTime LoginTime { get; set; }
+    }
+
+    public class BasicInfo
+    {
+        public int RoleId { get; set; }
+
+        public int UplineRoleId { get; set; }
     }
 }
