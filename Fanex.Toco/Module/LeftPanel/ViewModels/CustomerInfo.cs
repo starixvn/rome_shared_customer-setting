@@ -78,8 +78,11 @@ namespace Fanex.CustomerSetting.Module.LeftPanel.ViewModels
     {
         public BetList()
         {
+            this.Filters = new List<Dictionary<string, bool>>();
             this.Bets = new List<BetItem>();
         }
+
+        public List<Dictionary<string, bool>> Filters { get; set; }
 
         public List<BetItem> Bets { get; set; }
     }
