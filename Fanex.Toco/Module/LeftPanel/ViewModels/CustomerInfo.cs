@@ -47,15 +47,12 @@ namespace Fanex.CustomerSetting.Module.LeftPanel.ViewModels
         public OnlineList OnlineList { get; set; }
     }
     
-    public class PersonalInfo
+    public class PersonalInfo : DownlineList
     {
-        public PersonalInfo()
-        {
-            this.Usernames = new DownlineList();
+        public PersonalInfo() : base()
+        {            
         }
-
-        public DownlineList Usernames { get; set; }
-
+                
         public string Level { get; set; }
 
         public string Name { get; set; }
