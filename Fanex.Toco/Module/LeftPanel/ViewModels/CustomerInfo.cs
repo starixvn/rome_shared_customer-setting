@@ -1,8 +1,11 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="CustomerInfo.cs" company="Nexcel Co.Ltd">
-// TODO: Defines left panel model info.
+﻿// --------------------------------------------------------------------------
+// <copyright file="CustomerModel.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Andy.Nguyen" date="2013.07.25">Created</change>
+// </history>
 
 namespace Fanex.CustomerSetting.Module.LeftPanel.ViewModels
 {
