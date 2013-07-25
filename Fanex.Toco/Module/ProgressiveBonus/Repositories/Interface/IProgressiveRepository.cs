@@ -8,10 +8,11 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Interface
 {
 	using System.Collections;
 	using Fanex.NAP.Framework.Data;
+    using Fanex.CustomerSetting.Module.ProgressiveModule.Entities;
 
 	public interface IProgressiveRepository
 	{
-		dynamic GetStatusOfProgressiveBonus(ICriteria criteria);
+        ProgressiveStatus GetStatusOfProgressiveBonus(ICriteria criteria);
 
 		Hashtable UpdateStatusOfProgressiveBonus(ICriteria criteria);
 	}

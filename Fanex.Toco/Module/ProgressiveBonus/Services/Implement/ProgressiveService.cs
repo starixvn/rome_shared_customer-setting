@@ -38,6 +38,8 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement
 				return null;
 			}
 
+            
+
 			Progressive progressive = null;
 			List<Product> listProducts = new List<Product>();
 			try
@@ -70,13 +72,13 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement
 				}
 
 				// Get status from Db
-				dynamic rawData = this._progressiveRepository.GetStatusOfProgressiveBonus(criteria);
+                ProgressiveStatus status = this._progressiveRepository.GetStatusOfProgressiveBonus(criteria);
 
 				progressive = new Progressive
 				{
 					AdminId = adminId,
 					AdminUserName = adminUsername,
-					CustId = Converter.ToInt(rawData.custid),
+					CustId = Converter.ToInt(status.CustId),
 					UserName = requestUsername,
 					RoleId = requestRoleId,
 					Products = listProducts
@@ -87,13 +89,30 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement
 				{
 					if (product.Active && product.Id == 72)
 					{
-						listProducts.Add(new Product()
-						{
-							Id = product.Id,
-							Name = product.Name,
-							Enable = !Converter.ToBool(rawData.DisableCasinoBonus),
-							EnableDownlines = false
-						});
+                        var p = new Product()
+                        {
+                            Id = product.Id,
+                            Name = product.Name,
+                        };
+
+                        if (status.DisableCasinoBonus)//1:Disable
+                        {
+                            p.Enable = false;
+                            p.EnableButton = true;
+
+                            p.EnableDownlines = false;
+                            p.EnableDownlinesButton = false;                            
+                        }
+                        else//0: Enable
+                        {
+                            p.Enable = true;
+                            p.EnableButton = true;
+
+                            p.EnableDownlines = false;
+                            p.EnableDownlinesButton = false;
+                        }
+
+						listProducts.Add(p);
 					}
 				}
 			}
