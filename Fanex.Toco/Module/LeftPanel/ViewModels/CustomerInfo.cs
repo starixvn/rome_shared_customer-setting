@@ -168,27 +168,33 @@ namespace Fanex.CustomerSetting.Module.LeftPanel.ViewModels
     {
         public Setting()
         {
-            this.EnableItems = new List<Dictionary<int, Dictionary<string, bool>>>();
-            this.EditItems = new List<Dictionary<int, Dictionary<string, string>>>();
+            this.EnableItems = new List<Dictionary<string, bool>>();
+            this.EditItems = new List<Dictionary<string, string>>();
         }
         
-        public List<Dictionary<int, Dictionary<string, bool>>> EnableItems { get; set; }
+        public List<Dictionary<string, bool>> EnableItems { get; set; }
 
-        public List<Dictionary<int, Dictionary<string, string>>> EditItems { get; set; }
+        public List<Dictionary<string, string>> EditItems { get; set; }
     }
 
-    public class Login
+    public class Login : OnlineInfo
     {
         public DateTime CreatedDate { get; set; }
 
-        public DateTime LastLogin { get; set; }
-
         public DateTime LastTrans { get; set; }
-
-        public string LoginIP { get; set; }
     }
 
     public class OnlineList
+    {
+        public OnlineList()
+        {
+            this.Onlines = new List<OnlineInfo>();
+        }
+
+        public List<OnlineInfo> Onlines { get; set; }
+    }
+
+    public class OnlineInfo : BasicInfo
     {
         public string IP { get; set; }
 
@@ -197,6 +203,8 @@ namespace Fanex.CustomerSetting.Module.LeftPanel.ViewModels
 
     public class BasicInfo
     {
+        public int CustId { get; set; }
+
         public int RoleId { get; set; }
 
         public int UplineRoleId { get; set; }
