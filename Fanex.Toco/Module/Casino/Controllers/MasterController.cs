@@ -11,7 +11,16 @@
     {
         public ActionResult EditMaster(int id, int uplineId)
         {
-            var customerSetting = CasinoManager.Instance.MasterCasinoModel(id, uplineId);
+            var customerSetting = new CasinoSettingModel();
+
+            try
+            {
+                customerSetting = CasinoManager.Instance.MasterCasinoModel(id, uplineId);
+            }
+            catch
+            {
+                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml");
+            }
 
             return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Master/EditMaster.cshtml", customerSetting);
         }

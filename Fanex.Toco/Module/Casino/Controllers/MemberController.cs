@@ -11,21 +11,48 @@
     {
         public ActionResult EditMember(int id, int uplineId)
         {
-            var customerSetting = CasinoManager.Instance.MemberCasinoModel(id, uplineId);
+            var customerSetting = new CasinoSettingModel();
+
+            try
+            {
+                customerSetting = CasinoManager.Instance.MemberCasinoModel(id, uplineId);
+            }
+            catch
+            {
+                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml");
+            }
 
             return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Member/EditMember.cshtml", customerSetting);
         }
 
         public ActionResult EditMemberByMaster(int id, int uplineId)
         {
-            var customerSetting = CasinoManager.Instance.MemberCasinoModelByMaster(id, uplineId);
+            var customerSetting = new CasinoSettingModel();
+
+            try
+            {
+                customerSetting = CasinoManager.Instance.MemberCasinoModelByMaster(id, uplineId);
+            }
+            catch
+            {
+                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml");
+            }
 
             return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Member/EditMemberByMaster.cshtml", customerSetting);
         }
 
         public ActionResult EditMemberBySuper(int id, int uplineId)
         {
-            var customerSetting = CasinoManager.Instance.MemberCasinoModelBySuper(id, uplineId);
+            var customerSetting = new CasinoSettingModel();
+
+            try
+            {
+                customerSetting = CasinoManager.Instance.MemberCasinoModelBySuper(id, uplineId);
+            }
+            catch
+            {
+                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml");
+            }
 
             return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Member/EditMemberBySuper.cshtml", customerSetting);
         }

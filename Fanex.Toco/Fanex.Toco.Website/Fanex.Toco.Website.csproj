@@ -365,6 +365,8 @@
     <Content Include="Configurations\ProgressiveSection.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Areas\CustomerSetting\Views\LeftPanel\Index.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Error.cshtml" />
     <None Include="Areas\CustomerSetting\Views\ProgressiveBonus\Styles\bootstrap.less" />
     <None Include="Areas\CustomerSetting\Views\ProgressiveBonus\Styles\responsive.less" />
     <None Include="Areas\CustomerSetting\Views\ProgressiveBonus\Styles\style.less" />
@@ -608,7 +610,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\CustomerSetting\Views\LeftPanel\" />
     <Folder Include="Models\" />
     <Folder Include="Scripts\_Libs\BlockUI\img\" />
   </ItemGroup>
