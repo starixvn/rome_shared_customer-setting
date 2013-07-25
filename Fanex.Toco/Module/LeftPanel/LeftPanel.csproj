@@ -48,6 +48,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\ModuleRegistrator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\CustomerInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.Toco.Module.Core\_Core.csproj">
@@ -63,7 +64,6 @@
     <Folder Include="Repositories\Interface\" />
     <Folder Include="Services\Impl\" />
     <Folder Include="Services\Interface\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
