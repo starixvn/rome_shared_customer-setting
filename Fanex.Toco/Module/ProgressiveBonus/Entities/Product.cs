@@ -14,6 +14,10 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Entities
         public bool Enable { get; set; }
 
         public bool EnableDownlines { get; set; }
+
+        public bool EnableButton { get; set; }
+
+        public bool EnableDownlinesButton { get; set; }
     }
     
     public class Progressive

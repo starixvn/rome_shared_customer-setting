@@ -116,7 +116,7 @@ namespace Fanex.CustomerSetting.Module.Core.Web.Controllers
             {
                 settings = new JsonSerializerSettings();
                 settings.NullValueHandling = NullValueHandling.Ignore;
-                settings.Formatting = Formatting.Indented;
+                //settings.Formatting = Formatting.Indented;
                 settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             }
 
