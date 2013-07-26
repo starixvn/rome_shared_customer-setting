@@ -1665,7 +1665,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 gameType.GameTypeName = Utils.ToString(row[Lang("GameTypeName")]);
 
                 // Agent preset PT
-                gameType.M2 = synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
+                gameType.M2 = synced ? Utils.ToDecimal(row["UplineMaxPositionTaking"]).Format(2) : Utils.ToDecimal(row["MaxPositionTaking"]).Format(2);
                 gameType.M1 = synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
 
                 // Betting limits
