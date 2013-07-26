@@ -6,21 +6,22 @@
 // <history>
 //   <change who="Anders.Le" date="2012.10.12">Created</change>
 //   <change who="Ricky.Nguyen" date="2012.11.14">Update Maintenance Time</change>
+//   <change who="Andy.Nguyen" date="2013.06.16">Define constants and JsonBase method</change>
 // </history>
-
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.Reflection;
-using System.Threading;
-using System.Web.Mvc;
-using Fanex.ExternalAccount.Controllers.Base;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 namespace Fanex.CustomerSetting.Module.Core.Web.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+    using System.Reflection;
+using System.Threading;
+    using System.Web.Mvc;
+    using Fanex.ExternalAccount.Controllers.Base;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Serialization;
+
 	[SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
 	public class BaseController : Controller
 	{
@@ -115,7 +116,7 @@ namespace Fanex.CustomerSetting.Module.Core.Web.Controllers
 			{
 				settings = new JsonSerializerSettings();
 				settings.NullValueHandling = NullValueHandling.Ignore;
-				settings.Formatting = Formatting.Indented;
+                //settings.Formatting = Formatting.Indented;
 				settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 			}
 

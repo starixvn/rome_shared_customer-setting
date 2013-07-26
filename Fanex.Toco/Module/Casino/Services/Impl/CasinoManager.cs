@@ -17,6 +17,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
     using Fanex.CustomerSetting.Module.Casino.Repositories.Impl;
     using Fanex.CustomerSetting.Module.Casino.ViewModels;
     using Fanex.CustomerSetting.Module.Core;
+    using Fanex.CustomerSetting.Module.Core.Models;
     
     /// <summary>
     /// TODO: Update summary.
@@ -1271,10 +1272,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             {
                 resultType = cust.UpdateCustGameType_EditMember(gameTypeTable);
             }
-            else
-            {
-                resultStake = cust.UpdateCustGameTypeStakeLevel(gameStakeTable);
-            }
+
+            resultStake = cust.UpdateCustGameTypeStakeLevel(gameStakeTable);
 
             // Process error messages
             foreach (DataRow item in resultKind.Rows)
@@ -1375,10 +1374,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             {
                 resultType = cust.UpdateCustGameType_EditMember(gameTypeTable);
             }
-            else
-            {
-                resultStake = cust.UpdateCustGameTypeStakeLevel(gameStakeTable);
-            }
+            
+            resultStake = cust.UpdateCustGameTypeStakeLevel(gameStakeTable);
 
             // Process error messages
             foreach (DataRow item in resultKind.Rows)

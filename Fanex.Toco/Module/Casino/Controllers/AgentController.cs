@@ -11,14 +11,32 @@
     {
         public ActionResult EditAgent(int id, int uplineId)
         {
-            var customerSetting = CasinoManager.Instance.AgentCasinoModel(id, uplineId);
+            var customerSetting = new CasinoSettingModel();
+
+            try
+            {
+                customerSetting = CasinoManager.Instance.AgentCasinoModel(id, uplineId);
+            }
+            catch
+            {
+                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml");
+            }
 
             return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Agent/EditAgent.cshtml", customerSetting);
         }
 
         public ActionResult ViewAgentBySuper(int id, int uplineId)
         {
-            var customerSetting = CasinoManager.Instance.AgentCasinoModelBySuper(id, uplineId);
+            var customerSetting = new CasinoSettingModel();
+
+            try
+            {
+                customerSetting = CasinoManager.Instance.AgentCasinoModelBySuper(id, uplineId);
+            }
+            catch
+            {
+                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml");
+            }
 
             return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Agent/ViewAgentBySuper.cshtml", customerSetting);
         }

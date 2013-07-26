@@ -6,7 +6,7 @@
     using CasinoLibrary.SBAgent;
     using Fanex.CustomerSetting.Module.Casino.Entities;
 
-    public class CustomerController : BaseController
+    public class CasinoCustomerController : BaseController
     {
         public ActionResult CustomerInfo(int id, int uplineId)
         {
@@ -20,6 +20,11 @@
             CasinoManager.Instance.GetCustSettingCS(ref customerInfo);
 
             customerInfo.UplineRoleId = customerUpline.RoleId;
+
+            if (customerUpline.RoleId == customerInfo.RoleId)
+            {
+                customerInfo.RoleId = customerUpline.RoleId - 1;
+            }
 
             return PartialView("~/Areas/CustomerSetting/Views/Casino/Customer/CustomerInfo.cshtml", customerInfo);
         }

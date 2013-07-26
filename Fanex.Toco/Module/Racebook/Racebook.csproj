@@ -157,10 +157,6 @@
       <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
       <Name>_Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fanex.Toco.Module.SampleModule\_SampleModule.csproj">
-      <Project>{0B2FC4E3-FEED-4849-BA9B-36D077679F32}</Project>
-      <Name>_SampleModule</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

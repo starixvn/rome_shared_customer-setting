@@ -12,10 +12,12 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Impl
 	using Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Interface;
 	using Fanex.Data;
 	using Fanex.NAP.Framework.Data;
+    using Fanex.CustomerSetting.Module.ProgressiveModule.Entities;
+    using System;
 
 	public class ProgressiveRepository : IProgressiveRepository
 	{
-		public dynamic GetStatusOfProgressiveBonus(ICriteria criteria)
+        public ProgressiveStatus GetStatusOfProgressiveBonus(ICriteria criteria)
 		{
 			using (ObjectDb db = new ObjectDb(criteria.GetSettingKey()))
 			{
@@ -29,10 +31,10 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Impl
 					if (dtTable.Rows.Count > 0)
 					{
 						DataRow drow = dtTable.Rows[0];
-						return new
+                        return new ProgressiveStatus
 						{
-							custid = drow["custid"],
-							DisableCasinoBonus = drow["DisableCasinoBonus"]
+							CustId = Convert.ToInt32(drow["custid"]),
+							DisableCasinoBonus = Convert.ToBoolean(drow["DisableCasinoBonus"])
 						};
 					}
 				}
