@@ -92,7 +92,7 @@ module.directive("ptarea", function ($compile, $timeout, $rootScope) {
                 var max = source == "$m3" && scope[attrs.ngModel].is3 ? scope[attrs.ngModel].s4 : (source == "$m3" && scope[attrs.ngModel]["n3"] ? scope[attrs.ngModel].s4 - scope[attrs.ngModel].s3 : getValue(attrs.max));
                 var selected = getValue(attrs.selected).ptRound();
                 max = max.ptRound();
-
+               
                 // $ + 'selected' attribute
                 var warned = obj.warning;
                 var curWarn = selected > max || selected < min;
@@ -131,7 +131,7 @@ module.directive("ptarea", function ($compile, $timeout, $rootScope) {
                 if (attrs.max == "l4" && scope[attrs.ngModel]["is3"]) {
                     attrs.l4 = scope[attrs.ngModel]["l4"] = scope[attrs.ngModel]["s4"].ptRound();
                 }
-
+                
                 var newValue = (source.selected + (isComm ? 5 * step : step) / (isComm ? 10000 : 100)).ptRound();
                 var max = getValue(attrs.max).ptRound();
                 var min = getValue(attrs.min).ptRound();
