@@ -19,5 +19,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Interface
 		/// <param name="FromSystem">2:update from agent site, 3:update from account site</param>
 		/// <returns></returns>
 		List<Result> UpdateProgressive(Progressive progressive);
+
+		bool IsDisableProgessiveBonus(string username, int uplineId, bool isInternal);
 	}
 }

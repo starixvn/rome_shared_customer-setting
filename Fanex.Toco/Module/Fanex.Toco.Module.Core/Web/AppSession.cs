@@ -151,6 +151,18 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 			}
 		}
 
+		public static bool IsAllowProgressiveBonus
+		{
+			get
+			{
+				return SessionManager.Get<bool>(Constants.IS_ALLOW_PROGRESSIVE_BONUS);
+			}
+			set
+			{
+				SessionManager.Set<bool>(Constants.IS_ALLOW_PROGRESSIVE_BONUS, value);
+			}
+		}
+
 		public static int RequestRoleId
 		{
 			get
@@ -184,6 +196,18 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 			set
 			{
 				SessionManager.Set<int>(Constants.SUB_ACCOUNT_ID, value);
+			}
+		}
+
+		public static string Language
+		{
+			get
+			{
+				return SessionManager.Get<string>(Constants.LANGUAGE);
+			}
+			set
+			{
+				SessionManager.Set<string>(Constants.LANGUAGE, value);
 			}
 		}
 	}

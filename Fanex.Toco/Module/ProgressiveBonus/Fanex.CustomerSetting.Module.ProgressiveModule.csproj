@@ -141,6 +141,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="Configurations\ProgressiveSection.cs" />
+    <Compile Include="Configurations\FromSystem.cs" />
     <Compile Include="Controllers\CasinoController.cs" />
     <Compile Include="Criteria\GetAccProductCriteria.cs" />
     <Compile Include="Criteria\UpdateProgressiveCriteria.cs" />
@@ -156,19 +157,15 @@
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\accountingsite-applyprogressivebonus\Sunplus.Accounting.Core\Sunplus.Accounting.Core.csproj">
-      <Project>{09B74F02-6C21-4C5E-A52C-B6D56595A262}</Project>
-      <Name>Sunplus.Accounting.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fanex.Toco.Module.Core\Fanex.CustomerSetting.Module.Core.csproj">
-      <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
-      <Name>Fanex.CustomerSetting.Module.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="dll\CasinoLibrary.dll" />
     <Content Include="dll\ILogger.dll" />
     <Content Include="dll\Sunplus.Libraries.AOP.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fanex.Toco.Module.Core\Fanex.CustomerSetting.Module.Core.csproj">
+      <Project>{5EFF254F-0DEE-41BD-9D90-3FF4489D077F}</Project>
+      <Name>Fanex.CustomerSetting.Module.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -186,7 +183,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>62067</DevelopmentServerPort>
+          <DevelopmentServerPort>55430</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

@@ -22,7 +22,8 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Impl
 				DataSet ds = db.ExecuteDataSet(criteria.GetSpParams());
 				if (ds != null && ds.Tables != null && ds.Tables.Count > 0)
 				{
-					DataTable dtTable = ProgressiveSection.Instance.System == 3 // Acc
+					FromSystem fromSystem = (FromSystem)ProgressiveSection.Instance.System;
+					DataTable dtTable = fromSystem == FromSystem.Accounting // Acc
 							? ds.Tables[0]
 							: ds.Tables[1];
 					if (dtTable.Rows.Count > 0)
