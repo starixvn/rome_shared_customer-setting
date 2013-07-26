@@ -24,6 +24,7 @@
             if (customerUpline.RoleId == customerInfo.RoleId)
             {
                 customerInfo.RoleId = customerUpline.RoleId - 1;
+                customerInfo.IBCCustID = id;
             }
 
             return PartialView("~/Areas/CustomerSetting/Views/Casino/Customer/CustomerInfo.cshtml", customerInfo);
