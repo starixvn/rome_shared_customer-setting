@@ -93,22 +93,17 @@ module.directive("ptarea", function ($compile, $timeout, $rootScope) {
                 var selected = getValue(attrs.selected).ptRound();
                 max = max.ptRound();
 
-                if (min !== scope[attrs.ngModel][source].min ||
-                    max !== scope[attrs.ngModel][source].max ||
-                    selected !== scope[attrs.ngModel][source].selected
-                    ) {
-                    // $ + 'selected' attribute
-                    var warned = obj.warning;
-                    var curWarn = selected > max || selected < min;
+                // $ + 'selected' attribute
+                var warned = obj.warning;
+                var curWarn = selected > max || selected < min;
 
-                    var obj = toPTSource(scope[attrs.ngModel][source] = {
-                        name: attrs.selected,
-                        min: min,
-                        max: max,
-                        selected: selected,
-                        warning: warned || curWarn
-                    }, false, isComm);
-                }
+                toPTSource(scope[attrs.ngModel][source] = {
+                    name: attrs.selected,
+                    min: min,
+                    max: max,
+                    selected: selected,
+                    warning: warned || curWarn
+                }, false, isComm);
             }
 
             var template = "<select ng-blur=\"" + source + "blur($event)\" ng-touchstart=\"" + source + "focus($event)\" ng-mouseenter=\"" + source + "focus($event)\" ng-change=\"" + source + "change($event, setting." + source + ")\" class='input-small' ng-disabled='" + attrs.enable + "' ng-model='setting." + source + ".selected' ng-options='pt for pt in setting." + source + ".pts'>" +
