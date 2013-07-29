@@ -7,8 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Module", "Module", "{35597B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Toco.Website", "Fanex.Toco.Website\Fanex.Toco.Website.csproj", "{CBE64DA9-6FA3-438E-8D49-79A0D63D3D70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.CustomerSetting.Module.Core", "Module\Fanex.Toco.Module.Core\Fanex.CustomerSetting.Module.Core.csproj", "{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_SampleModule", "Module\Fanex.Toco.Module.SampleModule\_SampleModule.csproj", "{0B2FC4E3-FEED-4849-BA9B-36D077679F32}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Racebook", "Module\Racebook\Racebook.csproj", "{63D0DC31-9FEF-4BEE-9D43-E1E3A3BE42A5}"
@@ -16,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Casino", "Module\Casino\Casino.csproj", "{5F8F3877-90E3-48A3-BAD7-4207DCBA088D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.CustomerSetting.Module.ProgressiveModule", "Module\ProgressiveBonus\Fanex.CustomerSetting.Module.ProgressiveModule.csproj", "{5EFF254F-0DEE-41BD-9D90-3FF4489D077F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_Core", "Module\Fanex.Toco.Module.Core\_Core.csproj", "{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,10 +27,6 @@ Global
 		{CBE64DA9-6FA3-438E-8D49-79A0D63D3D70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CBE64DA9-6FA3-438E-8D49-79A0D63D3D70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CBE64DA9-6FA3-438E-8D49-79A0D63D3D70}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0B2FC4E3-FEED-4849-BA9B-36D077679F32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0B2FC4E3-FEED-4849-BA9B-36D077679F32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B2FC4E3-FEED-4849-BA9B-36D077679F32}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -47,15 +43,19 @@ Global
 		{5EFF254F-0DEE-41BD-9D90-3FF4489D077F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5EFF254F-0DEE-41BD-9D90-3FF4489D077F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5EFF254F-0DEE-41BD-9D90-3FF4489D077F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7} = {35597BDC-D8EC-4E5C-BDEC-DB5C273D5D00}
 		{0B2FC4E3-FEED-4849-BA9B-36D077679F32} = {35597BDC-D8EC-4E5C-BDEC-DB5C273D5D00}
 		{63D0DC31-9FEF-4BEE-9D43-E1E3A3BE42A5} = {35597BDC-D8EC-4E5C-BDEC-DB5C273D5D00}
 		{5F8F3877-90E3-48A3-BAD7-4207DCBA088D} = {35597BDC-D8EC-4E5C-BDEC-DB5C273D5D00}
 		{5EFF254F-0DEE-41BD-9D90-3FF4489D077F} = {35597BDC-D8EC-4E5C-BDEC-DB5C273D5D00}
+		{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7} = {35597BDC-D8EC-4E5C-BDEC-DB5C273D5D00}
 	EndGlobalSection
 EndGlobal
