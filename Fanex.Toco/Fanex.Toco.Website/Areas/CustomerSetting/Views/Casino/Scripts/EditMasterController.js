@@ -36,7 +36,7 @@ function GameGroupController($scope) {
             var m3Group = Math.min(maxM3, m3).ptRound();
             m3 = Math.min(maxM3, m3).ptRound();
 
-            gameGroup.$m3.l4 = gameGroup.is3 ? gameGroup.s4 : (gameGroup.s4 - gameGroup.s3).ptRound();
+            gameGroup.$m3.l4 = gameGroup.l4 = gameGroup.is3 ? gameGroup.s4 : (gameGroup.s4 - gameGroup.s3).ptRound();
             gameGroup.m3 = m3;
             gameGroup.$m3.min = gameGroup.$m3.max = gameGroup.$m3.selected = m3;
             gameGroup.$m3 = toPTSource(gameGroup.$m3);
@@ -296,9 +296,12 @@ function GameTypeController($scope) {
             m3 = gameType.$m3.selected;
 
             m3 = Math.min(maxM3, m3).ptRound();
+
+            gameType.$m3.l4 = gameType.is3 ? gameType.s4 : (gameType.s4 - gameType.s3).ptRound();
             gameType.m3 = m3;
             gameType.$m3.min = gameType.$m3.max = gameType.$m3.selected = m3;
             gameType.$m3 = toPTSource(gameType.$m3);
+            gameType.$m3.max = gameType.$m3.l4;
 
             maxN3 = m3;
             n3 = gameType.$n3.selected;
