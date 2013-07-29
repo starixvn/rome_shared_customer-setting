@@ -7,7 +7,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{3664F493-F1E6-4C81-8B8C-692A3FFE3A65}</ProjectGuid>
+    <ProjectGuid>{5EFF254F-0DEE-41BD-9D90-3FF4489D077F}</ProjectGuid>
     <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -146,6 +146,8 @@
     <Compile Include="Criteria\GetAccProductCriteria.cs" />
     <Compile Include="Criteria\UpdateProgressiveCriteria.cs" />
     <Compile Include="Entities\Product.cs" />
+    <Compile Include="Entities\ProgressiveStatus.cs" />
+    <Compile Include="Permission\UserPermission.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Impl\ProgressiveRepository.cs" />
     <Compile Include="Repositories\Interface\IProgressiveRepository.cs" />

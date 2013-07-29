@@ -13,15 +13,21 @@ using Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Impl;
 using Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Interface;
 using Fanex.CustomerSetting.Module.ProgressiveModule.Services.Interface;
 using Fanex.NAP.Framework.Data;
+using Fanex.CustomerSetting.Module.ProgressiveModule.Permission;
 
 namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement
 {
 	public class ProgressiveService : IProgressiveService
 	{
 		private readonly IProgressiveRepository _progressiveRepository;
-
 		private readonly FromSystem _fromSystem = (FromSystem)ProgressiveSection.Instance.System;
-		private readonly bool _enableProgressiveBonus = ProgressiveSection.Instance.Active;
+		private bool EnabledProgressiveBonus
+		{
+			get
+			{
+				return UserPermission.CheckProgressiveBonusPermission();
+			}
+		}
 
 		public ProgressiveService()
 			: this(null)
@@ -34,12 +40,10 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement
 
 		public Progressive GetProducts()
 		{
-			if (!_enableProgressiveBonus)
+			if (!EnabledProgressiveBonus)
 			{
 				return null;
 			}
-
-            
 
 			Progressive progressive = null;
 			List<Product> listProducts = new List<Product>();
@@ -127,7 +131,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement
 
 		public List<Result> UpdateProgressive(Progressive progressive)
 		{
-			if (!_enableProgressiveBonus)
+			if (!EnabledProgressiveBonus)
 			{
 				return null;
 			}
@@ -200,11 +204,6 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement
 
 		public bool IsDisableProgessiveBonus(string username, int uplineId, bool isInternal)
 		{
-			if (!_enableProgressiveBonus)
-			{
-				return false;
-			}
-
 			ICriteria criteria = null;
 			if (_fromSystem == FromSystem.Accounting) // Acc
 			{

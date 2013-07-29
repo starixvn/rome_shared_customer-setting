@@ -32,6 +32,7 @@ namespace Fanex.CustomerSetting.Module.Core
 
 		public const string ADMIN_ID = "Contants.AppSession.AdminId";
 		public const string ADMIN_USERNAME = "Contants.AppSession.AdminUsername";
+		public const string ADMIN_ROLEID = "Contants.AppSession.AdminRoleId";
 		public const string IS_ALLOW_PROGRESSIVE_BONUS = "Contants.AppSession.IsAllowProgressiveBonus";
 
 		public const string REQUEST_USERNAME = "Contants.AppSession.RequestUsername";

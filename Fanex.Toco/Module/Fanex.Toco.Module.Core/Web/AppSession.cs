@@ -139,6 +139,18 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 			}
 		}
 
+		public static int AdminRoleId
+		{
+			get
+			{
+				return SessionManager.Get<int>(Constants.ADMIN_ROLEID);
+			}
+			set
+			{
+				SessionManager.Set<int>(Constants.ADMIN_ROLEID, value);
+			}
+		}
+
 		public static string RequestUsername
 		{
 			get
