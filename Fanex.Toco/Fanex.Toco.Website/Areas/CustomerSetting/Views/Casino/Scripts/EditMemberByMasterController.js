@@ -68,7 +68,7 @@ function GameGroupController($scope) {
 function GameTypeController($scope) {
     $scope.gameType = $scope.$parent.gameType;
     var gameType = $scope.setting = $scope.gameType;
-
+    
     /* 
     Watch changing of s3, m3, is3 
     Control position taking logic here, each bet type have it's own scope
