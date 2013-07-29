@@ -113,7 +113,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement
                             p.Enable = true;
                             p.EnableButton = true;
 
-                            p.EnableDownlines = false;
+                            p.EnableDownlines = !status.DisableDownlinesCasinoBonus;
                             p.EnableDownlinesButton = false;
                         }
 

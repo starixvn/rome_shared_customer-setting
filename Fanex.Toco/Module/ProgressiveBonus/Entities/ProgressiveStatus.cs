@@ -12,5 +12,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Entities
         public bool DisableCasinoBonus { get; set; }
 
         public bool DisableCasinoJackpot { get; set; }
+
+        public bool DisableDownlinesCasinoBonus { get; set; }
     }
 }

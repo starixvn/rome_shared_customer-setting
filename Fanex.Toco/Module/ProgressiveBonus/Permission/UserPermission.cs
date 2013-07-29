@@ -12,9 +12,15 @@
 			bool active = ProgressiveSection.Instance.Active;
 			if (active)
 			{
+                FromSystem system = (FromSystem)ProgressiveSection.Instance.System;
+                int roleId = AppSession.AdminRoleId;
+                if (roleId == 0 && system == FromSystem.Accounting)
+                {
+                    return true;
+                }
+
 				int adminId = AppSession.AdminId;
 				string adminUsename = AppSession.AdminUsername;
-				int roleId = AppSession.AdminRoleId;
 
 				string requestUsername = AppSession.RequestUsername;
 				int requestRoleId = AppSession.RequestRoleId;
@@ -23,7 +29,7 @@
 					!string.IsNullOrEmpty(requestUsername) &&
 					roleId - 1 == requestRoleId /* direct downline */)
 				{
-					FromSystem system = (FromSystem)ProgressiveSection.Instance.System;
+					
 					if (system == FromSystem.Agency)
 					{
 						IProgressiveService progressiveService = new ProgressiveService();

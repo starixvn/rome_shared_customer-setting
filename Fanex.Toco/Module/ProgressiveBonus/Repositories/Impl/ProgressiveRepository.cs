@@ -34,7 +34,8 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Impl
                         return new ProgressiveStatus
 						{
 							CustId = Convert.ToInt32(drow["custid"]),
-							DisableCasinoBonus = Convert.ToBoolean(drow["DisableCasinoBonus"])
+							DisableCasinoBonus = Convert.ToBoolean(drow["DisableCasinoBonus"]),
+                            DisableDownlinesCasinoBonus = Convert.ToBoolean(drow["DisableDownlinesCasinoBonus"])
 						};
 					}
 				}
