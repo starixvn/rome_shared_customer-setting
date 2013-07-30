@@ -26,7 +26,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Criteria
 
 		public override string GetSettingKey()
 		{
-			return "UpdateStatusOfProgressiveBonus";
+            return "CustomerUpdDisableCasinoBonus";
 		}
 
 		public override bool IsValid()

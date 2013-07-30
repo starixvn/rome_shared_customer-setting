@@ -2,18 +2,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using Fanex.Common;
+using Fanex.CustomerSetting.Module.Core;
+using Fanex.CustomerSetting.Module.Core.Models;
+using Fanex.CustomerSetting.Module.Core.Services.Impl;
+using Fanex.CustomerSetting.Module.Core.Web;
 using Fanex.CustomerSetting.Module.ProgressiveModule.Configurations;
 using Fanex.CustomerSetting.Module.ProgressiveModule.Criteria;
 using Fanex.CustomerSetting.Module.ProgressiveModule.Entities;
-using Fanex.CustomerSetting.Module.ProgressiveModule.Permission;
 using Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Impl;
 using Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Interface;
 using Fanex.CustomerSetting.Module.ProgressiveModule.Services.Interface;
 using Fanex.NAP.Framework.Data;
-using Fanex.CustomerSetting.Module.Core.Models;
-using Fanex.CustomerSetting.Module.Core.Web;
-using Fanex.CustomerSetting.Module.Core.Services.Impl;
-using Fanex.CustomerSetting.Module.Core;
+using Fanex.CustomerSetting.Module.ProgressiveModule.Permission;
 
 namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement
 {
@@ -29,14 +29,6 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement
 			}
 		}
 
-		private bool EnabledProgressiveBonusWithRoles
-		{
-			get
-			{
-				return UserPermission.CheckProgressiveBonusPermissionWithRoles();
-			}
-		}
-
 		public ProgressiveService()
 			: this(null)
 		{ }
@@ -46,7 +38,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement
 			_progressiveRepository = progressiveRepository ?? new ProgressiveRepository();
 		}
 
-		public Progressive GetProducts()
+		public Progressive GetProducts(int CustId)
 		{
 			if (!EnabledProgressiveBonus)
 			{
@@ -57,43 +49,29 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement
 			List<Product> listProducts = new List<Product>();
 			try
 			{
-				int adminId, adminRoleId, requestRoleId;
+				int adminId, requestRoleId;
 				string adminUsername, requestUsername;
 
 				adminId = AppSession.AdminId;
-				adminRoleId = AppSession.AdminRoleId;
 				adminUsername = AppSession.AdminUsername;
 
 				requestUsername = AppSession.RequestUsername;
 				requestRoleId = AppSession.RequestRoleId;
 
-				ICriteria criteria = null;
-				if (_fromSystem == FromSystem.Accounting) // Acc
-				{
-					criteria = new GetAccProductCriteria
-					{
-						Username = requestUsername
-					};
-				}
-				else // Age
-				{
-					criteria = new GetAgeProductCriteria
-					{
-						Username = requestUsername,
-						UplineId = adminId,
-						IsInternalAgent = AppSession.IsInternalAgent
-					};
-				}
+                GetProductCriteria criteria = null;
+                criteria = new GetProductCriteria
+                {
+                    CustId = CustId
+                };
 
 				// Get status from Db
-                ProgressiveStatus status = this._progressiveRepository.GetStatusOfProgressiveBonus(criteria);
+                ProgressiveStatus status = this._progressiveRepository.GetStatusProgressiveBonus(criteria);
 
 				progressive = new Progressive
 				{
 					AdminId = adminId,
 					AdminUserName = adminUsername,
-					AdminRoleId = adminRoleId,
-					CustId = Converter.ToInt(status.CustId),
+					CustId = CustId,
 					UserName = requestUsername,
 					RoleId = requestRoleId,
 					Products = listProducts
@@ -116,7 +94,9 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement
                             p.EnableButton = true;
 
                             p.EnableDownlines = false;
-                            p.EnableDownlinesButton = false;                            
+                            p.EnableDownlinesButton = false;    
+                        
+                            
                         }
                         else//0: Enable
                         {
@@ -141,7 +121,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement
 
 		public List<Result> UpdateProgressive(Progressive progressive)
 		{
-			if (!EnabledProgressiveBonusWithRoles)
+			if (!EnabledProgressiveBonus)
 			{
 				return null;
 			}
@@ -151,7 +131,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement
 			try
 			{
 				string ip = Utils.GetClientIP();
-				string language = AppSession.Language;
+				string language = "E";
 
 				int userId = AppSession.AdminId;
 				int subAccId = _fromSystem == FromSystem.Accounting // Acc
@@ -174,7 +154,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement
 								IP = ip,
 								Language = language
 							};
-							outputParams = this._progressiveRepository.UpdateStatusOfProgressiveBonus(criteria);
+							outputParams = this._progressiveRepository.UpdateStatusProgressiveBonus(criteria);
 							if (outputParams != null)
 							{
 								int errCode = Convert.ToInt32(outputParams["errcode"]);
@@ -212,33 +192,6 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement
 			return results;
 		}
 
-		public bool IsDisableProgessiveBonus(string username, int uplineId, bool isInternal)
-		{
-			ICriteria criteria = null;
-			if (_fromSystem == FromSystem.Accounting) // Acc
-			{
-				criteria = new GetAccProductCriteria
-				{
-					Username = username
-				};
-			}
-			else // Age
-			{
-				criteria = new GetAgeProductCriteria
-				{
-					Username = username,
-					UplineId = uplineId,
-					IsInternalAgent = isInternal
-				};
-			}
-
-			var rawData = this._progressiveRepository.GetStatusOfProgressiveBonus(criteria);
-			if (rawData != null)
-			{
-				return Converter.ToBool(rawData.DisableCasinoBonus);
-			}
-
-			return false;
-		}
+		
 	}
 }

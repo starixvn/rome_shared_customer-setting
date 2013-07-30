@@ -7,7 +7,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Interface
 {
 	public interface IProgressiveService
 	{
-		Progressive GetProducts();
+		Progressive GetProducts(int custId);
 
 		/// <summary>
 		/// 2:update from agent site, 3:update from account site
@@ -20,6 +20,6 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Interface
 		/// <returns></returns>
 		List<Result> UpdateProgressive(Progressive progressive);
 
-		bool IsDisableProgessiveBonus(string username, int uplineId, bool isInternal);
+		
 	}
 }

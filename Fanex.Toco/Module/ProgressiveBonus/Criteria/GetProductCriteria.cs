@@ -8,13 +8,13 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Criteria
 {
 	using Fanex.NAP.Framework.Data;
 
-	public class GetAccProductCriteria : CriteriaBase, ICriteria
+	public class GetProductCriteria : CriteriaBase, ICriteria
 	{
-		public string Username { get; set; }
+		public int CustId { get; set; }
 
 		public override string GetSettingKey()
 		{
-			return "GetStatusOfProgressiveBonus";
+            return "CustomerSelCasinoBonusStatus";
 		}
 
 		public override bool IsValid()
@@ -23,10 +23,5 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Criteria
 		}
 	}
 
-	public class GetAgeProductCriteria : GetAccProductCriteria, ICriteria
-	{
-		public int UplineId { get; set; }
-
-		public bool IsInternalAgent { get; set; }
-	}
+	
 }

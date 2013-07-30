@@ -1,9 +1,8 @@
 ﻿using System.Web.Mvc;
+using Fanex.CustomerSetting.Module.Core.Web.Controllers;
 using Fanex.CustomerSetting.Module.ProgressiveModule.Entities;
 using Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement;
 using Fanex.CustomerSetting.Module.ProgressiveModule.Services.Interface;
-using Fanex.CustomerSetting.Module.Core.Web.Controllers;
-using Fanex.CustomerSetting.Module.Core.Web;
 
 namespace Fanex.CustomerSetting.Module.ProgressiveModule.Controllers
 {
@@ -26,20 +25,10 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Controllers
 			return View("~/Areas/CustomerSetting/Views/ProgressiveBonus/Casino/Index.cshtml");
 		}
 
-		/*[HttpPost]
-		public JsonResult GetProducts()
-		{
-			var products = _progressiveService.GetProducts();
-			return this.Json(products);
-		}*/
-
 		[HttpPost]
-		public JsonResult GetProducts(string username, int roleid)
+		public JsonResult GetProducts(int CustId)
 		{
-			AppSession.RequestUsername = username;
-			AppSession.RequestRoleId = roleid;
-
-			var products = _progressiveService.GetProducts();
+            var products = _progressiveService.GetProducts(CustId);
 			return this.Json(products);
 		}
 
