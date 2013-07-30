@@ -6,6 +6,7 @@
 	using Fanex.CustomerSetting.Module.ProgressiveModule.Services.Interface;
 	using Fanex.NAP.Framework.Data;
 	using Fanex.CustomerSetting.Module.ProgressiveModule.Criteria;
+	using Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Impl;
 
 	public static class UserPermission
 	{
@@ -25,11 +26,13 @@
 						bool? isAllow = AppSession.IsAllowProgressiveBonus;
 						if (!isAllow.HasValue)
 						{
-							IProgressiveService progressiveService = new ProgressiveService();
+							var progressiveService = new ProgressiveRepository();
 							bool isInternal = AppSession.IsInternalAgent;
-							bool isDisabled = progressiveService.IsDisableProgessiveBonus(adminUsename, adminId, isInternal);
+							var progressiveStatus = progressiveService.GetStatusProgressiveBonus(new GetProductCriteria {
+								CustId = adminId
+							});
 
-							isAllow = !isDisabled;
+							isAllow = !progressiveStatus.DisableCasinoBonus;
 							AppSession.IsAllowProgressiveBonus = isAllow;
 						}
 

@@ -20,9 +20,9 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Controllers
 		//[HandleActionError]
 		//[AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "index")]
 		[HttpGet]
-		public ActionResult Index()
+		public ActionResult Index(int? custId)
 		{
-			return View("~/Areas/CustomerSetting/Views/ProgressiveBonus/Casino/Index.cshtml");
+			return View("~/Areas/CustomerSetting/Views/ProgressiveBonus/Casino/Index.cshtml", custId);
 		}
 
 		[HttpPost]
