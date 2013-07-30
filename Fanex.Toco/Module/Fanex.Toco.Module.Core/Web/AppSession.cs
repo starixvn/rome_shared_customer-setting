@@ -127,18 +127,6 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 			}
 		}
 
-		public static string AdminUsername
-		{
-			get
-			{
-				return SessionManager.Get<string>(Constants.ADMIN_USERNAME);
-			}
-			set
-			{
-				SessionManager.Set<string>(Constants.ADMIN_USERNAME, value);
-			}
-		}
-
 		public static int AdminRoleId
 		{
 			get
@@ -148,18 +136,6 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 			set
 			{
 				SessionManager.Set<int>(Constants.ADMIN_ROLEID, value);
-			}
-		}
-
-		public static string RequestUsername
-		{
-			get
-			{
-				return SessionManager.Get<string>(Constants.REQUEST_USERNAME);
-			}
-			set
-			{
-				SessionManager.Set<string>(Constants.REQUEST_USERNAME, value);
 			}
 		}
 
@@ -178,30 +154,6 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 			set
 			{
 				SessionManager.Set<bool?>(Constants.IS_ALLOW_PROGRESSIVE_BONUS, value);
-			}
-		}
-
-		public static int RequestRoleId
-		{
-			get
-			{
-				return SessionManager.Get<int>(Constants.REQUEST_ROLEID);
-			}
-			set
-			{
-				SessionManager.Set<int>(Constants.REQUEST_ROLEID, value);
-			}
-		}
-
-		public static bool IsInternalAgent
-		{
-			get
-			{
-				return SessionManager.Get<bool>(Constants.IS_INTERNAL_AGENT);
-			}
-			set
-			{
-				SessionManager.Set<bool>(Constants.IS_INTERNAL_AGENT, value);
 			}
 		}
 

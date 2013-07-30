@@ -31,14 +31,9 @@ namespace Fanex.CustomerSetting.Module.Core
         public const string VIEW_IP_VN = "ViewIPVN";
 
 		public const string ADMIN_ID = "Contants.AppSession.AdminId";
-		public const string ADMIN_USERNAME = "Contants.AppSession.AdminUsername";
 		public const string ADMIN_ROLEID = "Contants.AppSession.AdminRoleId";
 		public const string IS_ALLOW_PROGRESSIVE_BONUS = "Contants.AppSession.IsAllowProgressiveBonus";
 
-		public const string REQUEST_USERNAME = "Contants.AppSession.RequestUsername";
-		public const string REQUEST_ROLEID = "Contants.AppSession.RequestRoleId";
-		public const string IS_INTERNAL_AGENT = "Contants.AppSession.IsInternalAgent";
-		public const string FROM_SYSTEM = "Contants.AppSession.FromSystem";
 		public const string SUB_ACCOUNT_ID = "Contants.AppSession.SubAccountId";
 		public const string LANGUAGE = "Contants.AppSession.Language";
     }

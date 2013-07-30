@@ -17,9 +17,8 @@
 			{
 				FromSystem system = (FromSystem)ProgressiveSection.Instance.System;
 				int adminId = AppSession.AdminId;
-				string adminUsename = AppSession.AdminUsername;
 
-				if (adminId > 0 && !string.IsNullOrEmpty(adminUsename))
+				if (adminId > 0)
 				{
 					if (system == FromSystem.Agency)
 					{
@@ -27,7 +26,6 @@
 						if (!isAllow.HasValue)
 						{
 							var progressiveService = new ProgressiveRepository();
-							bool isInternal = AppSession.IsInternalAgent;
 							var progressiveStatus = progressiveService.GetStatusProgressiveBonus(new GetProductCriteria {
 								CustId = adminId
 							});
@@ -40,33 +38,6 @@
 					}
 
 					return true;
-				}
-			}
-
-			return false;
-		}
-
-		public static bool CheckProgressiveBonusPermissionWithRoles()
-		{
-			bool active = CheckProgressiveBonusPermission();
-			if (active)
-			{
-				int roleId = AppSession.AdminRoleId;
-				int requestRoleId = AppSession.RequestRoleId;
-				if (roleId == 0)
-				{
-					return true;
-				}
-				else
-				{
-					if (roleId - 1 == requestRoleId /* direct downline */)
-					{
-						return true;
-					}
-					else
-					{
-						return false;
-					}
 				}
 			}
 
