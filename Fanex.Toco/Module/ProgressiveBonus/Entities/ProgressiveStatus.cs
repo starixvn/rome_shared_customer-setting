@@ -9,6 +9,10 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Entities
     {
         public int CustId { get; set; }
 
+		public string Username { get; set; }
+
+		public int RoleId { get; set; }
+
         public bool DisableCasinoBonus { get; set; }
 
         public bool DisableCasinoJackpot { get; set; }

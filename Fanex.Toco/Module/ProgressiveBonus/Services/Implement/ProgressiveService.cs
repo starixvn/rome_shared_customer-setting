@@ -49,15 +49,6 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement
 			List<Product> listProducts = new List<Product>();
 			try
 			{
-				int adminId, requestRoleId;
-				string adminUsername, requestUsername;
-
-				adminId = AppSession.AdminId;
-				adminUsername = AppSession.AdminUsername;
-
-				requestUsername = AppSession.RequestUsername;
-				requestRoleId = AppSession.RequestRoleId;
-
                 GetProductCriteria criteria = null;
                 criteria = new GetProductCriteria
                 {
@@ -69,11 +60,9 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement
 
 				progressive = new Progressive
 				{
-					AdminId = adminId,
-					AdminUserName = adminUsername,
 					CustId = CustId,
-					UserName = requestUsername,
-					RoleId = requestRoleId,
+					UserName = status.Username,
+					RoleId = status.RoleId,
 					Products = listProducts
 				};
 

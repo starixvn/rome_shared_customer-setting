@@ -15,6 +15,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Impl
     using Fanex.CustomerSetting.Module.ProgressiveModule.Entities;
     using System;
     using Fanex.CustomerSetting.Module.ProgressiveModule.Criteria;
+	using Fanex.Common;
 
 	public class ProgressiveRepository : IProgressiveRepository
 	{
@@ -33,6 +34,8 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Impl
                         return new ProgressiveStatus
 						{
                             CustId = criteria.CustId,
+							Username = Converter.ToString2(drow["Username"]),
+							RoleId = Converter.ToInt(drow["RoleId"]),
 							DisableCasinoBonus = Convert.ToBoolean(drow["DisableCasinoBonus"]),
                             DisableDownlinesCasinoBonus = Convert.ToBoolean(drow["DisableDownlinesCasinoBonus"]),
                             DisableUplinesCasinoBonus = Convert.ToBoolean(drow["DisableUplinesCasinoBonus"]),
