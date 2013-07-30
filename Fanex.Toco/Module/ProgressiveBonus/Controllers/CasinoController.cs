@@ -26,9 +26,9 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Controllers
 		}
 
 		[HttpPost]
-		public JsonResult GetProducts()
+		public JsonResult GetProducts(int CustId)
 		{
-			var products = _progressiveService.GetProducts();
+            var products = _progressiveService.GetProducts(CustId);
 			return this.Json(products);
 		}
 

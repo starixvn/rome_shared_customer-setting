@@ -142,7 +142,7 @@
     <Compile Include="Configurations\ProgressiveSection.cs" />
     <Compile Include="Configurations\FromSystem.cs" />
     <Compile Include="Controllers\CasinoController.cs" />
-    <Compile Include="Criteria\GetAccProductCriteria.cs" />
+    <Compile Include="Criteria\GetProductCriteria.cs" />
     <Compile Include="Criteria\UpdateProgressiveCriteria.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\ProgressiveStatus.cs" />

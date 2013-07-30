@@ -34,7 +34,7 @@
 					{
 						IProgressiveService progressiveService = new ProgressiveService();
 						bool isInternal = AppSession.IsInternalAgent;
-						bool hasPermission = progressiveService.IsDisableProgessiveBonus(adminUsename, adminId, isInternal);
+                        bool hasPermission = false;//implement later
 						return !hasPermission;
 					}
 
