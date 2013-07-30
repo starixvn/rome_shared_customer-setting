@@ -8,16 +8,16 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Impl
 {
 	using System.Collections;
 	using System.Data;
+	using Fanex.Common;
 	using Fanex.CustomerSetting.Module.ProgressiveModule.Configurations;
+	using Fanex.CustomerSetting.Module.ProgressiveModule.Entities;
 	using Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Interface;
 	using Fanex.Data;
 	using Fanex.NAP.Framework.Data;
-    using Fanex.CustomerSetting.Module.ProgressiveModule.Entities;
-    using System;
 
 	public class ProgressiveRepository : IProgressiveRepository
 	{
-        public ProgressiveStatus GetStatusOfProgressiveBonus(ICriteria criteria)
+		public ProgressiveStatus GetStatusOfProgressiveBonus(ICriteria criteria)
 		{
 			using (ObjectDb db = new ObjectDb(criteria.GetSettingKey()))
 			{
@@ -33,9 +33,11 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Impl
 						DataRow drow = dtTable.Rows[0];
                         return new ProgressiveStatus
 						{
-							CustId = Convert.ToInt32(drow["custid"]),
-							DisableCasinoBonus = Convert.ToBoolean(drow["DisableCasinoBonus"]),
-                            DisableDownlinesCasinoBonus = Convert.ToBoolean(drow["DisableDownlinesCasinoBonus"])
+							CustId = Converter.ToInt(drow["custid"]),
+							DisableCasinoBonus = Converter.ToBool(drow["DisableCasinoBonus"]),
+							DisableDownlinesCasinoBonus = fromSystem == FromSystem.Accounting
+								? Converter.ToBool(drow["DisableDownlinesCasinoBonus"])
+								: true
 						};
 					}
 				}

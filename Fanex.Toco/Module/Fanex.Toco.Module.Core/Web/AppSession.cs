@@ -163,15 +163,21 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 			}
 		}
 
-		public static bool IsAllowProgressiveBonus
+		public static bool? IsAllowProgressiveBonus
 		{
 			get
 			{
-				return SessionManager.Get<bool>(Constants.IS_ALLOW_PROGRESSIVE_BONUS);
+				object value = SessionManager.Get(Constants.IS_ALLOW_PROGRESSIVE_BONUS);
+				if (value != null)
+				{
+					return Convert.ToBoolean(value);
+				}
+
+				return null;
 			}
 			set
 			{
-				SessionManager.Set<bool>(Constants.IS_ALLOW_PROGRESSIVE_BONUS, value);
+				SessionManager.Set<bool?>(Constants.IS_ALLOW_PROGRESSIVE_BONUS, value);
 			}
 		}
 

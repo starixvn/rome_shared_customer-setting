@@ -137,7 +137,7 @@ using System.Threading;
 			if (string.IsNullOrEmpty(cultureName))
 			{
 				cultureName = "en-US"; // default
-				
+				AppSession.Language = cultureName;
 			}
 
 			// Modify current thread's cultures

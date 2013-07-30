@@ -38,6 +38,8 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Entities
 
         public int AdminId { get; set; }
 
+		public int AdminRoleId { get; set; }
+
         public string AdminUserName { get; set; }
 
         public List<Product> Products { get; set; }
