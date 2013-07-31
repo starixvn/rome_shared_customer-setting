@@ -4,32 +4,34 @@
 // </copyright>
 // -----------------------------------------------------------------------
 // <summary>
-//  ProgressiveRepository
+//  Progressive Repository.
 // </summary>
-
 namespace Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Impl
 {
-	using System;
-	using System.Collections;
-	using System.Data;
-	using Fanex.Common;
-	using Fanex.CustomerSetting.Module.ProgressiveModule.Configurations;
-	using Fanex.CustomerSetting.Module.ProgressiveModule.Criteria;
-	using Fanex.CustomerSetting.Module.ProgressiveModule.Entities;
-	using Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Interface;
-	using Fanex.Data;
-	using Fanex.NAP.Framework.Data;
+    using System;
+    using System.Collections;
+    using System.Data;
+    using System.Diagnostics.CodeAnalysis;
+    using Fanex.Common;
+    using Fanex.CustomerSetting.Module.ProgressiveModule.Configurations;
+    using Fanex.CustomerSetting.Module.ProgressiveModule.Criteria;
+    using Fanex.CustomerSetting.Module.ProgressiveModule.Entities;
+    using Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Interface;
+    using Fanex.Data;
+    using Fanex.NAP.Framework.Data;
 
-	/// <summary>
-	/// ProgressiveRepository
-	/// </summary>
+    /// <summary>
+    /// Progressive repository.
+    /// </summary>
+    [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1027:TabsMustNotBeUsed", Justification = "Reviewed.")]
 	public class ProgressiveRepository : IProgressiveRepository
 	{
 		/// <summary>
-		/// Get Progressive Bonus
+		/// Get Progressive Bonus.
 		/// </summary>
-		/// <param name="criteria">Parameters of stored procedure</param>
-		/// <returns>Progressive Status object</returns>
+		/// <param name="criteria">Parameters of stored procedure.</param>
+		/// <returns>Progressive status object.</returns>
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Reviewed.")]
         public ProgressiveStatus GetStatusProgressiveBonus(GetProductCriteria criteria)
 		{
 			using (ObjectDb db = new ObjectDb(criteria.GetSettingKey()))
@@ -59,10 +61,10 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Impl
 		}
 
 		/// <summary>
-		/// Update Progressive Bonus
+		/// Update Progressive Bonus.
 		/// </summary>
-		/// <param name="criteria">Parameter of stored procedure</param>
-		/// <returns>Result code of DB</returns>
+		/// <param name="criteria">Parameter of stored procedure.</param>
+		/// <returns>Result code of DB.</returns>
 		public Hashtable UpdateStatusProgressiveBonus(ICriteria criteria)
 		{
 			using (ObjectDb db = new ObjectDb(criteria.GetSettingKey()))
