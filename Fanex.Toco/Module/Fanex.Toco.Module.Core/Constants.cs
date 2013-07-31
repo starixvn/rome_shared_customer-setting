@@ -33,6 +33,7 @@ namespace Fanex.CustomerSetting.Module.Core
 		public const string ADMIN_ID = "Contants.AppSession.AdminId";
 		public const string ADMIN_ROLEID = "Contants.AppSession.AdminRoleId";
 		public const string IS_ALLOW_PROGRESSIVE_BONUS = "Contants.AppSession.IsAllowProgressiveBonus";
+		public const string USER_ROLEID = "Contants.AppSession.UserRoleId";
 
 		public const string SUB_ACCOUNT_ID = "Contants.AppSession.SubAccountId";
 		public const string LANGUAGE = "Contants.AppSession.Language";

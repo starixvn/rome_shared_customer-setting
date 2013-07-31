@@ -43,5 +43,21 @@
 
 			return false;
 		}
+
+		public static bool CheckProgressiveBonusPermissionWithRole()
+		{
+			FromSystem system = (FromSystem)ProgressiveSection.Instance.System;
+
+			bool isActive = CheckProgressiveBonusPermission();
+			if (isActive && system == FromSystem.Agency)
+			{
+				int adminRoleid = AppSession.AdminId;
+				int userRoleId = AppSession.UserRoleId;
+
+				isActive = adminRoleid - 1 == userRoleId; // direct downline
+			}
+
+			return isActive;
+		}
 	}
 }

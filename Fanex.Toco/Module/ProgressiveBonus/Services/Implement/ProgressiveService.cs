@@ -29,6 +29,14 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement
 			}
 		}
 
+		private bool EnabledProgressiveBonusWithRole
+		{
+			get
+			{
+				return UserPermission.CheckProgressiveBonusPermissionWithRole();
+			}
+		}
+
 		public ProgressiveService()
 			: this(null)
 		{ }
@@ -110,7 +118,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement
 
 		public List<Result> UpdateProgressive(Progressive progressive)
 		{
-			if (!EnabledProgressiveBonus)
+			if (!EnabledProgressiveBonusWithRole)
 			{
 				return null;
 			}

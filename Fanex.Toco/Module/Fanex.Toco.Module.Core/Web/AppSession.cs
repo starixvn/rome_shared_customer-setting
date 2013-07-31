@@ -139,6 +139,18 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 			}
 		}
 
+		public static int UserRoleId
+		{
+			get
+			{
+				return SessionManager.Get<int>(Constants.USER_ROLEID);
+			}
+			set
+			{
+				SessionManager.Set<int>(Constants.USER_ROLEID, value);
+			}
+		}
+
 		public static bool? IsAllowProgressiveBonus
 		{
 			get
