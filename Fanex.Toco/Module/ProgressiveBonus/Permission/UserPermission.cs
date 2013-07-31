@@ -1,10 +1,10 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="Product.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="UserPermission.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
 // <summary>
-//  Product
+//  UserPermission
 // </summary>
 
 namespace Fanex.CustomerSetting.Module.ProgressiveModule.Permission
@@ -13,6 +13,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Permission
 	using Fanex.CustomerSetting.Module.ProgressiveModule.Configurations;
 	using Fanex.CustomerSetting.Module.ProgressiveModule.Criteria;
 	using Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Impl;
+    using System.Diagnostics.CodeAnalysis;
 
 	/// <summary>
 	/// Check user permission of Progressive Bonus
@@ -63,6 +64,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Permission
 		/// User permission with configuration file, permission of logged in user and role
 		/// </summary>
 		/// <returns></returns>
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Reviewed.")]
 		public static bool CheckProgressiveBonusPermissionWithRole()
 		{
 			FromSystem system = (FromSystem)ProgressiveSection.Instance.System;
