@@ -1,27 +1,44 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="GetProductCriteria.cs" company="">
-// TODO: Update copyright text.
+// <copyright file="GetProductCriteria.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
+// <summary>
+//  GetProductCriteria
+// </summary>
 
 namespace Fanex.CustomerSetting.Module.ProgressiveModule.Criteria
 {
-	using Fanex.NAP.Framework.Data;
+    using System.Diagnostics.CodeAnalysis;
+    using Fanex.NAP.Framework.Data;
 
-	public class GetProductCriteria : CriteriaBase, ICriteria
-	{
-		public int CustId { get; set; }
+    /// <summary>
+    /// Get product criteria
+    /// </summary>
+    [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1027:TabsMustNotBeUsed", Justification = "Reviewed.")]
+    public class GetProductCriteria : CriteriaBase, ICriteria
+    {
+        /// <summary>
+        /// Gets or sets the Id of the customer. 
+        /// </summary>
+        public int CustId { get; set; }
 
-		public override string GetSettingKey()
-		{
+        /// <summary>
+        /// Get store procedure name by key
+        /// </summary>
+        /// <returns>store procedure name</returns>
+        public override string GetSettingKey()
+        {
             return "CustomerSelCasinoBonusStatus";
-		}
+        }
 
-		public override bool IsValid()
-		{
-			return true;
-		}
-	}
-
-	
+        /// <summary>
+        /// Check is valid or not
+        /// </summary>
+        /// <returns>return true</returns>
+        public override bool IsValid()
+        {
+            return true;
+        }
+    }
 }
