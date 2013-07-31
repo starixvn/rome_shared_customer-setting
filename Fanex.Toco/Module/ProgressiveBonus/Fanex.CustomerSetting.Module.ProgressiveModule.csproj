@@ -159,11 +159,6 @@
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="dll\CasinoLibrary.dll" />
-    <Content Include="dll\ILogger.dll" />
-    <Content Include="dll\Sunplus.Libraries.AOP.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Resources\Language.resx" />
   </ItemGroup>
   <ItemGroup>
