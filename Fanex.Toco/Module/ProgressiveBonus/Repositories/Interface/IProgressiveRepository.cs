@@ -20,17 +20,17 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Interface
 	public interface IProgressiveRepository
 	{
 		/// <summary>
-		/// 
+		/// Get Progressive Bonus
 		/// </summary>
 		/// <param name="criteria"></param>
 		/// <returns></returns>
         ProgressiveStatus GetStatusProgressiveBonus(GetProductCriteria criteria);
 
 		/// <summary>
-		/// 
+		/// Update Progressive Bonus
 		/// </summary>
-		/// <param name="criteria"></param>
-		/// <returns></returns>
+		/// <param name="criteria">Parameter of stored procedure</param>
+		/// <returns>Result code of DB</returns>
 		Hashtable UpdateStatusProgressiveBonus(ICriteria criteria);
 	}
 }
