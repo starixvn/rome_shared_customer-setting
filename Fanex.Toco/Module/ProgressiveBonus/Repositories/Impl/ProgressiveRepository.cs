@@ -1,11 +1,15 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="ProgressiveRepository.cs" company="">
-// TODO: Update copyright text.
+// <copyright file="ProgressiveRepository.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
+// <summary>
+//  ProgressiveRepository
+// </summary>
 
 namespace Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Impl
 {
+	using System;
 	using System.Collections;
 	using System.Data;
 	using Fanex.Common;
@@ -15,10 +19,17 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Impl
 	using Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Interface;
 	using Fanex.Data;
 	using Fanex.NAP.Framework.Data;
-	using System;
 
+	/// <summary>
+	/// ProgressiveRepository
+	/// </summary>
 	public class ProgressiveRepository : IProgressiveRepository
 	{
+		/// <summary>
+		/// Get Progressive Bonus
+		/// </summary>
+		/// <param name="criteria">Parameters of stored procedure</param>
+		/// <returns>Progressive Status object</returns>
         public ProgressiveStatus GetStatusProgressiveBonus(GetProductCriteria criteria)
 		{
 			using (ObjectDb db = new ObjectDb(criteria.GetSettingKey()))
@@ -47,6 +58,11 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Impl
 			return null;
 		}
 
+		/// <summary>
+		/// Update Progressive Bonus
+		/// </summary>
+		/// <param name="criteria">Parameter of stored procedure</param>
+		/// <returns>Result code of DB</returns>
 		public Hashtable UpdateStatusProgressiveBonus(ICriteria criteria)
 		{
 			using (ObjectDb db = new ObjectDb(criteria.GetSettingKey()))
