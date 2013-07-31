@@ -9,27 +9,29 @@
 
 namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Interface
 {
-	using System.Collections.Generic;
-	using Fanex.CustomerSetting.Module.Core.Models;
-	using Fanex.CustomerSetting.Module.ProgressiveModule.Entities;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using Fanex.CustomerSetting.Module.Core.Models;
+    using Fanex.CustomerSetting.Module.ProgressiveModule.Entities;
 
-	/// <summary>
-	/// Progressive Service
-	/// </summary>
+    /// <summary>
+    /// Progressive Service.
+    /// </summary>
+    [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1027:TabsMustNotBeUsed", Justification = "Reviewed.")]
 	public interface IProgressiveService
 	{
 		/// <summary>
-		/// Get Progressive Bonus
+		/// Get Progressive Bonus.
 		/// </summary>
-		/// <param name="custId"></param>
-		/// <returns></returns>
+		/// <param name="custId">Customer Id.</param>
+        /// <returns>Return progressive.</returns>
 		Progressive GetProducts(int custId);
 
 		/// <summary>
-		/// Update Progressive Bonus
+		/// Update Progressive Bonus.
 		/// </summary>
-		/// <param name="progressive"></param>
-		/// <returns></returns>
+		/// <param name="progressive">Progressive value.</param>
+		/// <returns>Return action result.</returns>
 		List<Result> UpdateProgressive(Progressive progressive);
 	}
 }
