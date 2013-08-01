@@ -106,7 +106,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement
                         var p = new Product()
                         {
                             Id = product.Id,
-                            Name = product.Name,
+							Name = Resources.Language.ResourceManager.GetString(product.Name)
                         };
 
                         if (status.DisableCasinoBonus)//1:Disable
