@@ -11,14 +11,14 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.App_Start
     using System.Web.Mvc;
 
     /// <summary>
-    /// Filter config
+    /// Filter config.
     /// </summary>
     public class FilterConfig
     {
         /// <summary>
-        /// Register global filters
+        /// Register global filters.
         /// </summary>
-        /// <param name="filters">filters collection</param>
+        /// <param name="filters">Filters collection.</param>
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());

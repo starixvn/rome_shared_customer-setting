@@ -1,28 +1,31 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="Product.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="UserPermission.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
 // <summary>
-//  Product
+//  UserPermission
 // </summary>
 
 namespace Fanex.CustomerSetting.Module.ProgressiveModule.Permission
 {
-	using Fanex.CustomerSetting.Module.Core.Web;
-	using Fanex.CustomerSetting.Module.ProgressiveModule.Configurations;
-	using Fanex.CustomerSetting.Module.ProgressiveModule.Criteria;
-	using Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Impl;
-
-	/// <summary>
-	/// Check user permission of Progressive Bonus
-	/// </summary>
+    using System.Diagnostics.CodeAnalysis;
+    using Fanex.CustomerSetting.Module.Core.Web;
+    using Fanex.CustomerSetting.Module.ProgressiveModule.Configurations;
+    using Fanex.CustomerSetting.Module.ProgressiveModule.Criteria;
+    using Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Impl;
+    
+    /// <summary>
+    /// Check user permission of progressive bonus.
+    /// </summary>	
+    [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1027:TabsMustNotBeUsed", Justification = "Reviewed.")]
 	public static class UserPermission
 	{
 		/// <summary>
-		/// User permission with configuration file and permission of logged in user
+		/// User permission with configuration file and permission of logged in user.
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>Return true or false.</returns>
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Reviewed.")]
 		public static bool CheckProgressiveBonusPermission()
 		{
 			bool active = ProgressiveSection.Instance.Active;
@@ -60,9 +63,10 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Permission
 		}
 
 		/// <summary>
-		/// User permission with configuration file, permission of logged in user and role
+		/// User permission with configuration file, permission of logged in user and role.
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>Return true or false.</returns>
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Reviewed.")]
 		public static bool CheckProgressiveBonusPermissionWithRole()
 		{
 			FromSystem system = (FromSystem)ProgressiveSection.Instance.System;

@@ -13,7 +13,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Entities
     using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
-    /// Product progressive
+    /// Product progressive.
     /// </summary>
     [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1027:TabsMustNotBeUsed", Justification = "Reviewed.")]
     public class Product
@@ -21,38 +21,44 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Entities
         /// <summary>
         /// Gets or sets the Id of the product. 
         /// </summary>
+        /// <value>The id of the product.</value>
         public int Id { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the product. 
         /// </summary>
+        /// <value>The name of the product.</value>
         public string Name { get; set; }
         
         /// <summary>
-        /// Gets or sets a value indicating whether enable or not for a customer
+        /// Gets or sets a value indicating whether enable or not for a customer.
         /// </summary>
+        /// <value>The status of the product.</value>
         public bool Enable { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether enable or not for a downline customer 
+        /// Gets or sets a value indicating whether enable or not for a downline customer .
         /// </summary>
+        /// <value>The status of the downlines.</value>
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed.")]
         public bool EnableDownlines { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether enable button or not
+        /// Gets or sets a value indicating whether enable button or not.
         /// </summary>
+        /// <value>The status of the button.</value>
         public bool EnableButton { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether enable button downline or not
+        /// Gets or sets a value indicating whether enable button downline or not.
         /// </summary>
+        /// <value>The status of the button downlines.</value>
          [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed.")]
         public bool EnableDownlinesButton { get; set; }
     }
     
     /// <summary>
-    /// Progressive module
+    /// Progressive module.
     /// </summary>
     [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass", Justification = "Reviewed.")]
     public class Progressive
@@ -69,39 +75,46 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Entities
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether customer id
+        /// Gets or sets a value indicating whether customer id.
         /// </summary>
+        /// <value>The id of the customer.</value>
         public int CustId { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether customer username
+        /// Gets or sets a value indicating whether customer username.
         /// </summary>
+        /// <value>The username of the customer.</value>
         public string UserName { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether customer role id
+        /// Gets or sets a value indicating whether customer role id.
         /// </summary>
+        /// <value>The role id of the customer.</value>
         public int RoleId { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether admin id
+        /// Gets or sets a value indicating whether admin id.
         /// </summary>
+        /// <value>The id of the admin.</value>
         public int AdminId { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether admin role id
+        /// Gets or sets a value indicating whether admin role id.
         /// </summary>
+        /// <value>The role id of the admin.</value>
         [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1027:TabsMustNotBeUsed", Justification = "Reviewed.")]
 		public int AdminRoleId { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether admin username
+        /// Gets or sets a value indicating whether admin username.
         /// </summary>
+        /// <value>The username of the admin.</value>
         public string AdminUserName { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether product list
+        /// Gets or sets a value indicating whether product list.
         /// </summary>
+        /// <value>The product list.</value>
         public List<Product> Products { get; set; }
     }
 }

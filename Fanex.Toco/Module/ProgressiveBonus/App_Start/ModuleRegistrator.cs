@@ -14,13 +14,14 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.App_Start
     using Fanex.CustomerSetting.Module.Core.Web.App_Start;
 
     /// <summary>
-    /// Module registration
+    /// Module registration.
     /// </summary>
     public class ModuleRegistrator : AppAreaRegistrator 
     {
         /// <summary>
-        /// Controller name
+        /// Controller name.
         /// </summary>
+        /// <value>The controller name.</value>
         protected override string ControllerName
         {
             get
@@ -30,8 +31,9 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.App_Start
         }
 
         /// <summary>
-        /// Controller name space
+        /// Controller name space.
         /// </summary>
+        /// <value>The controller name space.</value>
         protected override string ControllerNameSpace
         {
             get
@@ -42,9 +44,9 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.App_Start
         }
 
         /// <summary>
-        /// Register area
+        /// Register area.
         /// </summary>
-        /// <param name="context">Area registration context</param>
+        /// <param name="context">Area registration context.</param>
         public override void RegisterArea(AreaRegistrationContext context)
         {
             this.RegisterController(context);

@@ -4,7 +4,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 // <summary>
-//  GetProductCriteria
+//  GetProductCriteria.
 // </summary>
 
 namespace Fanex.CustomerSetting.Module.ProgressiveModule.Criteria
@@ -13,7 +13,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Criteria
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// Get product criteria
+    /// Get product criteria.
     /// </summary>
     [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1027:TabsMustNotBeUsed", Justification = "Reviewed.")]
     public class GetProductCriteria : CriteriaBase, ICriteria
@@ -21,21 +21,22 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Criteria
         /// <summary>
         /// Gets or sets the Id of the customer. 
         /// </summary>
+        /// <value>The id of the customer.</value>
         public int CustId { get; set; }
 
         /// <summary>
-        /// Get store procedure name by key
+        /// Get store procedure name by key.
         /// </summary>
-        /// <returns>store procedure name</returns>
+        /// <returns>Store procedure name.</returns>
         public override string GetSettingKey()
         {
             return "CustomerSelCasinoBonusStatus";
         }
 
         /// <summary>
-        /// Check is valid or not
+        /// Check is valid or not.
         /// </summary>
-        /// <returns>return true</returns>
+        /// <returns>Return true.</returns>
         public override bool IsValid()
         {
             return true;

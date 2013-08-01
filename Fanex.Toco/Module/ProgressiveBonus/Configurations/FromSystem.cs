@@ -12,7 +12,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Configurations
     using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
-    /// From system
+    /// From system.
     /// </summary>
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1602:EnumerationItemsMustBeDocumented", Justification = "Names of enums are based on platform documentation.")]
     public enum FromSystem

@@ -13,14 +13,15 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Configurations
     using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
-    /// Progressive Section Configuration
+    /// Progressive Section Configuration.
     /// </summary>
     [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Reviewed.")]
     public class ProgressiveSection : ConfigurationSection
     {
         /// <summary>
-        /// Gets Progressive Instance
+        /// Gets Progressive Instance.
         /// </summary>
+        /// <value>The instance of the progressive section.</value>
         public static ProgressiveSection Instance
         {
             get
@@ -33,6 +34,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Configurations
         /// <summary>
         /// Gets a value indicating whether the item is enabled.
         /// </summary>
+        /// <value>True or false.</value>
         [ConfigurationPropertyAttribute("active", IsRequired = true)]
         public bool Active
         {
@@ -45,6 +47,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Configurations
         /// <summary>
         /// Gets a value indicating whether the item is accessed.
         /// </summary>
+        /// <value>System value 3 (accounting) or 4 (agent).</value>
         [ConfigurationPropertyAttribute("system", IsRequired = true)]
         public int System
         {
@@ -57,6 +60,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Configurations
         /// <summary>
         /// Gets a value indicating whether the item is product collection.
         /// </summary>
+        /// <value>Return product collection.</value>
         [ConfigurationProperty("Product", IsDefaultCollection = false)]
         [ConfigurationCollection(typeof(ProgressiveCollection),
             AddItemName = "add",
@@ -73,15 +77,16 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Configurations
     }
 
     /// <summary>
-    /// Progressive Collection
+    /// Progressive Collection.
     /// </summary>
     [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass", Justification = "Reviewed."),
     SuppressMessage("StyleCop.CSharp.OrderingRules", "SA1201:ElementsMustAppearInTheCorrectOrder", Justification = "Reviewed.")]
     public class ProgressiveCollection : ConfigurationElementCollection
     {
         /// <summary>
-        /// Collection type
+        /// Collection type.
         /// </summary>
+        /// <value>Return collection type.</value>
         public override ConfigurationElementCollectionType CollectionType
         {
             get
@@ -91,18 +96,19 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Configurations
         }
 
         /// <summary>
-        /// Add an element
+        /// Add an element.
         /// </summary>
-        /// <param name="progressiveElement">Progressive element </param>
+        /// <param name="progressiveElement">Progressive element.</param>
+        /// <value>Void method, no return.</value>
         public void Add(ProgressiveElement progressiveElement)
         {
             this.BaseAdd(progressiveElement);
         }        
 
         /// <summary>
-        /// Remove element
+        /// Remove element.
         /// </summary>
-        /// <param name="progressiveElement">Progressive element</param>
+        /// <param name="progressiveElement">Progressive element.</param>
         public void Remove(ProgressiveElement progressiveElement)
         {
             if (this.BaseIndexOf(progressiveElement) >= 0)
@@ -112,25 +118,25 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Configurations
         }
 
         /// <summary>
-        /// Remove at index
+        /// Remove at index.
         /// </summary>
-        /// <param name="index">Index of a collection</param>
+        /// <param name="index">Index of a collection.</param>
         public void RemoveAt(int index)
         {
             this.BaseRemoveAt(index);
         }
 
         /// <summary>
-        /// Remove by Id
+        /// Remove by Id.
         /// </summary>
-        /// <param name="id">Id of a collection</param>
+        /// <param name="id">Id of a collection.</param>
         public void Remove(string id)
         {
             this.BaseRemove(id);
         }
 
         /// <summary>
-        /// Clear all item in collection
+        /// Clear all item in collection.
         /// </summary>
         public void Clear()
         {
@@ -140,8 +146,8 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Configurations
         /// <summary>
         /// Gets a value indicating whether the item is product element.
         /// </summary>
-        /// <param name="index">Index of a collection</param>
-        /// <returns>Return progressive element</returns>
+        /// <param name="index">Index of a collection.</param>
+        /// <returns>Return progressive element.</returns>
         public ProgressiveElement this[int index]
         {
             get
@@ -163,8 +169,8 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Configurations
         /// <summary>
         /// Gets a value indicating whether the item is product element.
         /// </summary>
-        /// <param name="alias">Alias name</param>
-        /// <returns>Progressive element</returns>
+        /// <param name="alias">Alias name.</param>
+        /// <returns>Progressive element.</returns>
         public new ProgressiveElement this[string alias]
         {
             get
@@ -174,38 +180,38 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Configurations
         }
 
         /// <summary>
-        /// Index of progressive element
+        /// Index of progressive element.
         /// </summary>
-        /// <param name="progressiveElement">progressive element value</param>
-        /// <returns>return progressive element</returns>
+        /// <param name="progressiveElement">Progressive element value.</param>
+        /// <returns>Return progressive element.</returns>
         public int IndexOf(ProgressiveElement progressiveElement)
         {
             return this.BaseIndexOf(progressiveElement);
         }
 
         /// <summary>
-        /// Create new element
+        /// Create new element.
         /// </summary>
-        /// <returns>new element</returns>
+        /// <returns>New element.</returns>
         protected override sealed ConfigurationElement CreateNewElement()
         {
             return new ProgressiveElement();
         }
 
         /// <summary>
-        /// Get element Id
+        /// Get element Id.
         /// </summary>
-        /// <param name="element">element value</param>
-        /// <returns>return id</returns>
+        /// <param name="element">Element value.</param>
+        /// <returns>Return id.</returns>
         protected override object GetElementKey(ConfigurationElement element)
         {
             return ((ProgressiveElement)element).Id;
         }
 
         /// <summary>
-        /// Add an element
+        /// Add an element.
         /// </summary>
-        /// <param name="element">Configuration element</param>
+        /// <param name="element">Configuration element.</param>
         protected override void BaseAdd(ConfigurationElement element)
         {
             this.BaseAdd(element, false);
@@ -213,13 +219,14 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Configurations
     }
 
     /// <summary>
-    /// Progressive element
+    /// Progressive element.
     /// </summary>
     public class ProgressiveElement : ConfigurationElement
     {       
         /// <summary>
         /// Gets or sets the name of the Id. 
         /// </summary>
+        /// <value>The Id of the progressive element.</value>
         [ConfigurationProperty("id", IsRequired = true, IsKey = true)]
         public int Id
         {
@@ -237,7 +244,8 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Configurations
         /// <summary>
         /// Gets or sets the name of the Name. 
         /// </summary>
-        [ConfigurationProperty("name", IsRequired = true)]
+        /// <value>The Name of the progressive element.</value>
+        [ConfigurationProperty("name", IsRequired = true)]        
         public string Name
         {
             get
@@ -254,6 +262,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Configurations
         /// <summary>
         /// Gets or sets a value indicating whether the item is Active.
         /// </summary>
+        /// <value>The active of the progressive element.</value>
         [ConfigurationProperty("active", IsRequired = true)]
         public bool Active
         {
@@ -269,8 +278,9 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Configurations
         }
 
         /// <summary>
-        /// Gets a value indicating whether the item is stores collection
+        /// Gets a value indicating whether the item is stores collection.
         /// </summary>
+        /// <value>The stores of the progressive element.</value>
         [ConfigurationProperty("stores", IsDefaultCollection = false)]
         [ConfigurationCollection(typeof(ProgressiveCollection),
             AddItemName = "add",

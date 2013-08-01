@@ -17,15 +17,15 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Controllers
     using Fanex.CustomerSetting.Module.ProgressiveModule.Services.Interface;
 
     /// <summary>
-    /// Casino controller
+    /// Casino controller.
     /// </summary>
     [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1027:TabsMustNotBeUsed", Justification = "Reviewed.")]
 	public class CasinoController : BaseController
 	{
         /// <summary>
-        /// Progressive Service
+        /// Progressive Service.
         /// </summary>
-		private IProgressiveService progressiveService;
+		private IProgressiveService _progressiveService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CasinoController"/> class.
@@ -33,14 +33,14 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Controllers
         [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1126:PrefixCallsCorrectly", Justification = "Reviewed.")]
 		public CasinoController()
 		{
-			progressiveService = new ProgressiveService();
+			_progressiveService = new ProgressiveService();
 		}
 
         /// <summary>
-        /// Load view of progressive bonus
+        /// Load view of progressive bonus.
         /// </summary>
-        /// <param name="custId">Customer Id need to load progressive bonus</param>
-        /// <returns>return the view</returns>
+        /// <param name="custId">Customer Id need to load progressive bonus.</param>
+        /// <returns>Return the view.</returns>
 		[HttpGet]
 		public ActionResult Index(int? custId)
 		{
@@ -50,25 +50,25 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Controllers
         /// <summary>
         /// Gets a value indicating whether the item of product.
         /// </summary>
-        /// <param name="CustId">Customer Id</param>
-        /// <returns>Product of customer</returns>
+        /// <param name="CustId">Customer Id.</param>
+        /// <returns>Product of customer.</returns>
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1306:FieldNamesMustBeginWithLowerCaseLetter", Justification = "Reviewed.")]
         [HttpPost]
 		public JsonResult GetProducts(int CustId)
 		{
-            var products = this.progressiveService.GetProducts(CustId);
+            var products = this._progressiveService.GetProducts(CustId);
 			return this.Json(products);
 		}
 
         /// <summary>
-        /// Update progressive status
+        /// Update progressive status.
         /// </summary>
-        /// <param name="progressive">Progressive product</param>
-        /// <returns>Return of action update</returns>
+        /// <param name="progressive">Progressive product.</param>
+        /// <returns>Return of action update.</returns>
 		[HttpPost]
 		public JsonResult UpdateProgressive(Progressive progressive)
 		{
-			var results = this.progressiveService.UpdateProgressive(progressive);
+			var results = this._progressiveService.UpdateProgressive(progressive);
 			return this.Json(results);
 		}
 	}

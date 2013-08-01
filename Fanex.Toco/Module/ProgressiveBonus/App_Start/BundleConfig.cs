@@ -4,21 +4,21 @@
 // </copyright>
 // -----------------------------------------------------------------------
 // <summary>
-//  BundleConfig
+//  BundleConfig.
 // </summary>
 namespace Fanex.CustomerSetting.Module.ProgressiveModule.App_Start
 {
     using System.Web.Optimization;
 
     /// <summary>
-    /// Bundle config
+    /// Bundle config.
     /// </summary>
     public class BundleConfig
     {
         /// <summary>
-        /// Register bundles
+        /// Register bundles.
         /// </summary>
-        /// <param name="bundles">bundles collection</param>
+        /// <param name="bundles">Bundles collection.</param>
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/areas/CustomerSetting/ProgressiveBonus").Include(
