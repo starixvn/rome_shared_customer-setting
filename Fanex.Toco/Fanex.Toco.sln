@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Racebook", "Module\Racebook
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Casino", "Module\Casino\Casino.csproj", "{5F8F3877-90E3-48A3-BAD7-4207DCBA088D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.CustomerSetting.Module.ProgressiveModule", "Module\ProgressiveBonus\Fanex.CustomerSetting.Module.ProgressiveModule.csproj", "{5EFF254F-0DEE-41BD-9D90-3FF4489D077F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.CustomerSetting.Module.ProgressiveBonus", "Module\ProgressiveBonus\Fanex.CustomerSetting.Module.ProgressiveBonus.csproj", "{5EFF254F-0DEE-41BD-9D90-3FF4489D077F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

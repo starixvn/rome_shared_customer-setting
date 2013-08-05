@@ -132,6 +132,9 @@
   <data name="Progressive" xml:space="preserve">
     <value>Progressive</value>
   </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
   <data name="Update" xml:space="preserve">
     <value>Update</value>
   </data>

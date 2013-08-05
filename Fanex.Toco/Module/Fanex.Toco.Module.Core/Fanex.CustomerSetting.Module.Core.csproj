@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</ProjectGuid>
+    <ProjectGuid>{347A714D-0C12-4FA4-A3A7-AE4CAD2FE664}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Fanex.CustomerSetting.Module.Core</RootNamespace>
