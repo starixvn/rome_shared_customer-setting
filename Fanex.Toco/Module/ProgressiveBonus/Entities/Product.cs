@@ -7,7 +7,7 @@
 //  Product
 // </summary>
 
-namespace Fanex.CustomerSetting.Module.ProgressiveModule.Entities
+namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Entities
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;

@@ -7,7 +7,7 @@
 //  ProgressiveService
 // </summary>
 
-namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement
+namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Services.Implement
 {
 	using System;
 	using System.Collections;
@@ -16,13 +16,13 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement
 	using Fanex.CustomerSetting.Module.Core.Models;
 	using Fanex.CustomerSetting.Module.Core.Services.Impl;
 	using Fanex.CustomerSetting.Module.Core.Web;
-	using Fanex.CustomerSetting.Module.ProgressiveModule.Configurations;
-	using Fanex.CustomerSetting.Module.ProgressiveModule.Criteria;
-	using Fanex.CustomerSetting.Module.ProgressiveModule.Entities;
-	using Fanex.CustomerSetting.Module.ProgressiveModule.Permission;
-	using Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Impl;
-	using Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Interface;
-	using Fanex.CustomerSetting.Module.ProgressiveModule.Services.Interface;
+	using Fanex.CustomerSetting.Module.ProgressiveBonus.Configurations;
+	using Fanex.CustomerSetting.Module.ProgressiveBonus.Criteria;
+	using Fanex.CustomerSetting.Module.ProgressiveBonus.Entities;
+	using Fanex.CustomerSetting.Module.ProgressiveBonus.Permission;
+	using Fanex.CustomerSetting.Module.ProgressiveBonus.Repositories.Impl;
+	using Fanex.CustomerSetting.Module.ProgressiveBonus.Repositories.Interface;
+	using Fanex.CustomerSetting.Module.ProgressiveBonus.Services.Interface;
 	using Fanex.NAP.Framework.Data;
 
 	/// <summary>

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fanex.CustomerSetting.Module.ProgressiveModule.Resources {
+namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Fanex.CustomerSetting.Module.ProgressiveModule.Resources.Language", typeof(Language).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Fanex.CustomerSetting.Module.ProgressiveBonus.Resources.Language", typeof(Language).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

@@ -6,7 +6,7 @@
 // <summary>
 //  BundleConfig.
 // </summary>
-namespace Fanex.CustomerSetting.Module.ProgressiveModule.App_Start
+namespace Fanex.CustomerSetting.Module.ProgressiveBonus.App_Start
 {
     using System.Web.Optimization;
 

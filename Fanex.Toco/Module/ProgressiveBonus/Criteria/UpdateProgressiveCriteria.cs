@@ -7,7 +7,7 @@
 //  Update Progressive Criteria
 // </summary>
 
-namespace Fanex.CustomerSetting.Module.ProgressiveModule.Criteria
+namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Criteria
 {
     using System.Diagnostics.CodeAnalysis;
     using Fanex.NAP.Framework.Data;

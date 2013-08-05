@@ -6,17 +6,17 @@
 // <summary>
 //  Progressive Repository.
 // </summary>
-namespace Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Impl
+namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Repositories.Impl
 {
     using System;
     using System.Collections;
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using Fanex.Common;
-    using Fanex.CustomerSetting.Module.ProgressiveModule.Configurations;
-    using Fanex.CustomerSetting.Module.ProgressiveModule.Criteria;
-    using Fanex.CustomerSetting.Module.ProgressiveModule.Entities;
-    using Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Interface;
+    using Fanex.CustomerSetting.Module.ProgressiveBonus.Configurations;
+    using Fanex.CustomerSetting.Module.ProgressiveBonus.Criteria;
+    using Fanex.CustomerSetting.Module.ProgressiveBonus.Entities;
+    using Fanex.CustomerSetting.Module.ProgressiveBonus.Repositories.Interface;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
 

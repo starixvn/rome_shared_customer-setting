@@ -7,7 +7,7 @@
 //  ProgressiveStatus
 // </summary>
 
-namespace Fanex.CustomerSetting.Module.ProgressiveModule.Entities
+namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Entities
 {
     using System.Diagnostics.CodeAnalysis;
 

@@ -7,13 +7,13 @@
 //  UserPermission
 // </summary>
 
-namespace Fanex.CustomerSetting.Module.ProgressiveModule.Permission
+namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Permission
 {
     using System.Diagnostics.CodeAnalysis;
     using Fanex.CustomerSetting.Module.Core.Web;
-    using Fanex.CustomerSetting.Module.ProgressiveModule.Configurations;
-    using Fanex.CustomerSetting.Module.ProgressiveModule.Criteria;
-    using Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Impl;
+    using Fanex.CustomerSetting.Module.ProgressiveBonus.Configurations;
+    using Fanex.CustomerSetting.Module.ProgressiveBonus.Criteria;
+    using Fanex.CustomerSetting.Module.ProgressiveBonus.Repositories.Impl;
     
     /// <summary>
     /// Check user permission of progressive bonus.

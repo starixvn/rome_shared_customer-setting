@@ -7,14 +7,14 @@
 //  CasinoController
 // </summary>
 
-namespace Fanex.CustomerSetting.Module.ProgressiveModule.Controllers
+namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Controllers
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
-    using Fanex.CustomerSetting.Module.ProgressiveModule.Entities;
-    using Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement;
-    using Fanex.CustomerSetting.Module.ProgressiveModule.Services.Interface;
+    using Fanex.CustomerSetting.Module.ProgressiveBonus.Entities;
+    using Fanex.CustomerSetting.Module.ProgressiveBonus.Services.Implement;
+    using Fanex.CustomerSetting.Module.ProgressiveBonus.Services.Interface;
 
     /// <summary>
     /// Casino controller.

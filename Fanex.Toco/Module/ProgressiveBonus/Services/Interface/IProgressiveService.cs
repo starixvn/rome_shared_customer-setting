@@ -7,12 +7,12 @@
 //  IProgressiveService
 // </summary>
 
-namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Interface
+namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Services.Interface
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using Fanex.CustomerSetting.Module.Core.Models;
-    using Fanex.CustomerSetting.Module.ProgressiveModule.Entities;
+    using Fanex.CustomerSetting.Module.ProgressiveBonus.Entities;
 
     /// <summary>
     /// Progressive Service.

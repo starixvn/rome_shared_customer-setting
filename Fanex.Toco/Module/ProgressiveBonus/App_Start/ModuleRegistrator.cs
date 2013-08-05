@@ -7,7 +7,7 @@
 //  Module registrator
 // </summary>
 
-namespace Fanex.CustomerSetting.Module.ProgressiveModule.App_Start
+namespace Fanex.CustomerSetting.Module.ProgressiveBonus.App_Start
 {
     using System.Reflection;
     using System.Web.Mvc;

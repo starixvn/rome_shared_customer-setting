@@ -7,11 +7,11 @@
 //  IProgressiveRepository
 // </summary>
 
-namespace Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Interface
+namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Repositories.Interface
 {
 	using System.Collections;
-	using Fanex.CustomerSetting.Module.ProgressiveModule.Criteria;
-	using Fanex.CustomerSetting.Module.ProgressiveModule.Entities;
+	using Fanex.CustomerSetting.Module.ProgressiveBonus.Criteria;
+	using Fanex.CustomerSetting.Module.ProgressiveBonus.Entities;
 	using Fanex.NAP.Framework.Data;
 
 	/// <summary>

@@ -7,7 +7,7 @@
 //  FromSystem
 // </summary>
 
-namespace Fanex.CustomerSetting.Module.ProgressiveModule.Configurations
+namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Configurations
 {
     using System.Diagnostics.CodeAnalysis;
 
