@@ -134,6 +134,7 @@
                     return false;
                 }
                 else {
+                    $('#errMsg').attr('class', 'successMsg');
                     $('#errMsg').html('<font color="Blue">Updated successfully</font>');
                     $('#errMsg').show();
 
@@ -163,6 +164,7 @@
                         return false;
                     }
                     else {
+                        $('#errMsg').attr('class', 'successMsg');
                         $('#errMsg').html('<font color="Blue">Updated successfully</font>');
                         $('#errMsg').show();
 
@@ -203,6 +205,7 @@
                     return false;
                 }
                 else {
+                    $('#errMsg').attr('class', 'successMsg');
                     $('#errMsg').html('<font color="Blue">Updated successfully</font>');
                     $('#errMsg').show();
 
@@ -232,6 +235,7 @@
                         return false;
                     }
                     else {
+                        $('#errMsg').attr('class', 'successMsg');
                         $('#errMsg').html('<font color="Blue">Updated successfully</font>');
                         $('#errMsg').show();
 
