@@ -13,9 +13,10 @@ ProgressiveBonus.controller(
         });
 
         $scope.load = function () {
+        	var custId = $('#txtCustId').val();
             $.ajax({
                 type: "POST",
-                url: "Casino/GetProducts",
+                url: "Casino/GetProducts?custId=" + custId,
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 data: '',

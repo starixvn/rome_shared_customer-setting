@@ -1,16 +1,28 @@
-﻿using System.Web.Optimization;
-
-namespace Fanex.CustomerSetting.Module.ProgressiveModule.App_Start
+﻿// -----------------------------------------------------------------------
+// <copyright file="BundleConfig.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
+// <summary>
+//  BundleConfig.
+// </summary>
+namespace Fanex.CustomerSetting.Module.ProgressiveBonus.App_Start
 {
+    using System.Web.Optimization;
+
+    /// <summary>
+    /// Bundle config.
+    /// </summary>
     public class BundleConfig
     {
+        /// <summary>
+        /// Register bundles.
+        /// </summary>
+        /// <param name="bundles">Bundles collection.</param>
         public static void RegisterBundles(BundleCollection bundles)
         {
-
             bundles.Add(new ScriptBundle("~/areas/CustomerSetting/ProgressiveBonus").Include(
-                "~/Areas/CustomerSetting/Views/ProgressiveBonus/Scripts/Progressive.js"
-            ));
-          
+                "~/Areas/CustomerSetting/Views/ProgressiveBonus/Scripts/Progressive.js"));
         }
     }
 }

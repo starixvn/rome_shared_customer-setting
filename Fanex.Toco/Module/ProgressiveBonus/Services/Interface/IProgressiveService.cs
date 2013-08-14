@@ -1,25 +1,37 @@
-﻿using System.Collections.Generic;
-using Fanex.CustomerSetting.Module.Core.Models;
-using Fanex.CustomerSetting.Module.ProgressiveModule.Criteria;
-using Fanex.CustomerSetting.Module.ProgressiveModule.Entities;
+﻿// -----------------------------------------------------------------------
+// <copyright file="IProgressiveService.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
+// <summary>
+//  IProgressiveService
+// </summary>
 
-namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Interface
+namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Services.Interface
 {
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using Fanex.CustomerSetting.Module.Core.Models;
+    using Fanex.CustomerSetting.Module.ProgressiveBonus.Entities;
+
+    /// <summary>
+    /// Progressive Service.
+    /// </summary>
+    [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1027:TabsMustNotBeUsed", Justification = "Reviewed.")]
 	public interface IProgressiveService
 	{
-		Progressive GetProducts();
+		/// <summary>
+		/// Get Progressive Bonus.
+		/// </summary>
+		/// <param name="custId">Customer Id.</param>
+        /// <returns>Return progressive.</returns>
+		Progressive GetProducts(int custId);
 
 		/// <summary>
-		/// 2:update from agent site, 3:update from account site
+		/// Update Progressive Bonus.
 		/// </summary>
-		/// <param name="progressive"></param>
-		/// <param name="ip"></param>
-		/// <param name="userId"></param>
-		/// <param name="userName"></param>
-		/// <param name="FromSystem">2:update from agent site, 3:update from account site</param>
-		/// <returns></returns>
+		/// <param name="progressive">Progressive value.</param>
+		/// <returns>Return action result.</returns>
 		List<Result> UpdateProgressive(Progressive progressive);
-
-		bool IsDisableProgessiveBonus(string username, int uplineId, bool isInternal);
 	}
 }

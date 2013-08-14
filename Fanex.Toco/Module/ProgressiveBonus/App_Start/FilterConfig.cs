@@ -1,9 +1,24 @@
-﻿using System.Web.Mvc;
-
-namespace Fanex.CustomerSetting.Module.ProgressiveModule.App_Start
+﻿// -----------------------------------------------------------------------
+// <copyright file="FilterConfig.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
+// <summary>
+//  Filter Config
+// </summary>
+namespace Fanex.CustomerSetting.Module.ProgressiveBonus.App_Start
 {
+    using System.Web.Mvc;
+
+    /// <summary>
+    /// Filter config.
+    /// </summary>
     public class FilterConfig
     {
+        /// <summary>
+        /// Register global filters.
+        /// </summary>
+        /// <param name="filters">Filters collection.</param>
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());

@@ -1,19 +1,36 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="IProgressiveRepository.cs" company="">
-// TODO: Update copyright text.
+// <copyright file="IProgressiveRepository.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
+// <summary>
+//  IProgressiveRepository
+// </summary>
 
-namespace Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Interface
+namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Repositories.Interface
 {
 	using System.Collections;
+	using Fanex.CustomerSetting.Module.ProgressiveBonus.Criteria;
+	using Fanex.CustomerSetting.Module.ProgressiveBonus.Entities;
 	using Fanex.NAP.Framework.Data;
-    using Fanex.CustomerSetting.Module.ProgressiveModule.Entities;
 
+	/// <summary>
+	/// IProgressiveRepository
+	/// </summary>
 	public interface IProgressiveRepository
 	{
-        ProgressiveStatus GetStatusOfProgressiveBonus(ICriteria criteria);
+		/// <summary>
+		/// Get Progressive Bonus
+		/// </summary>
+		/// <param name="criteria"></param>
+		/// <returns></returns>
+        ProgressiveStatus GetStatusProgressiveBonus(GetProductCriteria criteria);
 
-		Hashtable UpdateStatusOfProgressiveBonus(ICriteria criteria);
+		/// <summary>
+		/// Update Progressive Bonus
+		/// </summary>
+		/// <param name="criteria">Parameter of stored procedure</param>
+		/// <returns>Result code of DB</returns>
+		Hashtable UpdateStatusProgressiveBonus(ICriteria criteria);
 	}
 }

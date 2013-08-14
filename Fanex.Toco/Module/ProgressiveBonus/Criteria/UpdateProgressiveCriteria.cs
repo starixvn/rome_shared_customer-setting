@@ -1,34 +1,79 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="UpdateProgressiveCriteria.cs" company="">
-// TODO: Update copyright text.
+// <copyright file="UpdateProgressiveCriteria.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
+// <summary>
+//  Update Progressive Criteria
+// </summary>
 
-namespace Fanex.CustomerSetting.Module.ProgressiveModule.Criteria
+namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Criteria
 {
-	using Fanex.NAP.Framework.Data;
+    using System.Diagnostics.CodeAnalysis;
+    using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Update progressive status.
+    /// </summary>
+    [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1027:TabsMustNotBeUsed", Justification = "Reviewed.")]
 	public class UpdateProgressiveCriteria : CriteriaBase, ICriteria
 	{
+        /// <summary>
+        /// Gets or sets the Id of the customer. 
+        /// </summary>
+        /// <value>The id of the customer.</value>
 		public int CustId { get; set; }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether disable status.
+        /// </summary>
+        /// <value>The id of the customer.</value>
 		public bool Disable { get; set; }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether disable status.
+        /// </summary>
+        /// <value>The true of false status of the customer.</value>
 		public bool DisableDownlines { get; set; }
 
+        /// <summary>
+        /// Gets or sets the Id of the Sub account. 
+        /// </summary>
+        /// <value>The sub account id of a customer.</value>
 		public int SubAccId { get; set; }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether User Id.
+        /// </summary>
+        /// <value>The account id of an admin.</value>
 		public int UserId { get; set; }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether language.
+        /// </summary>
+        /// <value>The language of system is using.</value>
 		public string Language { get; set; }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether ip address.
+        /// </summary>
+        /// <value>The ip of client is using.</value>
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed.")]
 		public string IP { get; set; }
 
+        /// <summary>
+        /// Gets a value indicating whether store procedure.
+        /// </summary>
+        /// <returns>Store procedure name.</returns>
 		public override string GetSettingKey()
 		{
-			return "UpdateStatusOfProgressiveBonus";
+            return "CustomerUpdDisableCasinoBonus";
 		}
 
+        /// <summary>
+        /// Check is valid or not.
+        /// </summary>
+        /// <returns>Return true.</returns>
 		public override bool IsValid()
 		{
 			return true;

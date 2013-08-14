@@ -1,23 +1,38 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="ProgressiveRepository.cs" company="">
-// TODO: Update copyright text.
+// <copyright file="ProgressiveRepository.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
-
-namespace Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Impl
+// <summary>
+//  Progressive Repository.
+// </summary>
+namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Repositories.Impl
 {
-	using System.Collections;
-	using System.Data;
-	using Fanex.CustomerSetting.Module.ProgressiveModule.Configurations;
-	using Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Interface;
-	using Fanex.Data;
-	using Fanex.NAP.Framework.Data;
-    using Fanex.CustomerSetting.Module.ProgressiveModule.Entities;
     using System;
+    using System.Collections;
+    using System.Data;
+    using System.Diagnostics.CodeAnalysis;
+    using Fanex.Common;
+    using Fanex.CustomerSetting.Module.ProgressiveBonus.Configurations;
+    using Fanex.CustomerSetting.Module.ProgressiveBonus.Criteria;
+    using Fanex.CustomerSetting.Module.ProgressiveBonus.Entities;
+    using Fanex.CustomerSetting.Module.ProgressiveBonus.Repositories.Interface;
+    using Fanex.Data;
+    using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Progressive repository.
+    /// </summary>
+    [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1027:TabsMustNotBeUsed", Justification = "Reviewed.")]
 	public class ProgressiveRepository : IProgressiveRepository
 	{
-        public ProgressiveStatus GetStatusOfProgressiveBonus(ICriteria criteria)
+		/// <summary>
+		/// Get Progressive Bonus.
+		/// </summary>
+		/// <param name="criteria">Parameters of stored procedure.</param>
+		/// <returns>Progressive status object.</returns>
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Reviewed.")]
+        public ProgressiveStatus GetStatusProgressiveBonus(GetProductCriteria criteria)
 		{
 			using (ObjectDb db = new ObjectDb(criteria.GetSettingKey()))
 			{
@@ -25,16 +40,18 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Impl
 				if (ds != null && ds.Tables != null && ds.Tables.Count > 0)
 				{
 					FromSystem fromSystem = (FromSystem)ProgressiveSection.Instance.System;
-					DataTable dtTable = fromSystem == FromSystem.Accounting // Acc
-							? ds.Tables[0]
-							: ds.Tables[1];
+                    DataTable dtTable = ds.Tables[0];							
 					if (dtTable.Rows.Count > 0)
 					{
 						DataRow drow = dtTable.Rows[0];
                         return new ProgressiveStatus
 						{
-							CustId = Convert.ToInt32(drow["custid"]),
-							DisableCasinoBonus = Convert.ToBoolean(drow["DisableCasinoBonus"])
+                            CustId = criteria.CustId,
+							Username = Converter.ToString2(drow["Username"]),
+							RoleId = Converter.ToInt(drow["RoleId"]),
+							DisableCasinoBonus = drow["DisableCasinoBonus"] == DBNull.Value ? true : Converter.ToBool(drow["DisableCasinoBonus"]),
+							DisableDownlinesCasinoBonus = drow["DisableDownlinesCasinoBonus"] == DBNull.Value ? true : Converter.ToBool(drow["DisableDownlinesCasinoBonus"]),
+							DisableUplinesCasinoBonus = drow["DisableUplinesCasinoBonus"] == DBNull.Value ? true : Converter.ToBool(drow["DisableUplinesCasinoBonus"]),
 						};
 					}
 				}
@@ -43,7 +60,12 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Impl
 			return null;
 		}
 
-		public Hashtable UpdateStatusOfProgressiveBonus(ICriteria criteria)
+		/// <summary>
+		/// Update Progressive Bonus.
+		/// </summary>
+		/// <param name="criteria">Parameter of stored procedure.</param>
+		/// <returns>Result code of DB.</returns>
+		public Hashtable UpdateStatusProgressiveBonus(ICriteria criteria)
 		{
 			using (ObjectDb db = new ObjectDb(criteria.GetSettingKey()))
 			{
