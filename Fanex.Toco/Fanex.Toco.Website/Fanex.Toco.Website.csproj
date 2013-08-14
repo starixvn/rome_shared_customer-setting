@@ -143,6 +143,18 @@
   <ItemGroup>
     <Content Include="Areas\CustomerSetting\Images\glyphicons-halflings-white.png" />
     <Content Include="Areas\CustomerSetting\Images\glyphicons-halflings.png" />
+    <Content Include="Areas\CustomerSetting\Images\Success.gif" />
+    <Content Include="Areas\CustomerSetting\Scripts\jquery-ui-1.9.1.min.js" />
+    <Content Include="Areas\CustomerSetting\Styles\images\copied.png" />
+    <Content Include="Areas\CustomerSetting\Styles\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Areas\CustomerSetting\Styles\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Areas\CustomerSetting\Styles\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Areas\CustomerSetting\Styles\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Areas\CustomerSetting\Styles\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Areas\CustomerSetting\Styles\images\uncopied.png" />
+    <Content Include="Areas\CustomerSetting\Styles\jquery-ui.css" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Sportsbook\Scripts\SportsbookController.js" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Sportsbook\Styles\Sportsbook.css" />
     <Content Include="Areas\CustomerSetting\Views\ProgressiveBonus\Scripts\Progressive.js" />
     <Content Include="Areas\Common\Views\Shared\Images\Loading.gif" />
     <Content Include="Areas\Common\Views\Shared\Scripts\Fanex.CustomerSetting.js" />
@@ -472,6 +484,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\CustomerSetting\Views\BetSetting\Bingo\" />
+    <Folder Include="Areas\CustomerSetting\Views\BetSetting\LiveCasino\" />
+    <Folder Include="Areas\CustomerSetting\Views\BetSetting\Racing\" />
+    <Folder Include="Areas\CustomerSetting\Views\BetSetting\RngCasino\" />
+    <Folder Include="Areas\CustomerSetting\Views\BetSetting\VirtualSports\" />
     <Folder Include="Models\" />
     <Folder Include="Scripts\_Libs\BlockUI\img\" />
   </ItemGroup>
@@ -480,6 +497,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\_Libs\FanexGrid\images.zip" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Shared\_Layout.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Sportsbook\Index.cshtml" />
     <None Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3-custom.less" />
   </ItemGroup>
   <ItemGroup>
