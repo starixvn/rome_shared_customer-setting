@@ -49,8 +49,8 @@ namespace Fanex.CustomerSetting.Module.ProgressiveBonus.App_Start
         /// <param name="context">Area registration context.</param>
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            this.RegisterController(context);
-            base.RegisterArea(context);
+			this.RegisterController(context);
+			base.RegisterArea(context);
         }       
     }
 }

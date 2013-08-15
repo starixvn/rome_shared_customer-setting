@@ -35,8 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CasinoLibrary, Version=1.0.1.10, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\accountingsite-applyprogressivebonus\Dependency\CasinoLibrary.dll</HintPath>
+    <Reference Include="CasinoLibrary">
+      <HintPath>..\..\_Dependencies\Casino\CasinoLibrary.dll</HintPath>
     </Reference>
     <Reference Include="dotless.Core">
       <HintPath>..\..\_Dependencies\Web\dotless.Core.dll</HintPath>
@@ -150,7 +150,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Impl\ProgressiveRepository.cs" />
     <Compile Include="Repositories\Interface\IProgressiveRepository.cs" />
-    <Compile Include="Resources\Language.Designer.cs" />
+    <Compile Include="Resources\Language1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Language.resx</DependentUpon>
+    </Compile>
     <Compile Include="Services\Implement\ProgressiveService.cs" />
     <Compile Include="Services\Interface\IProgressiveService.cs" />
   </ItemGroup>
@@ -159,7 +163,10 @@
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Language.resx" />
+    <EmbeddedResource Include="Resources\Language.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Language1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.Toco.Module.Core\_Core.csproj">

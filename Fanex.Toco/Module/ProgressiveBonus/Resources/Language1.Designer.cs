@@ -97,6 +97,24 @@ namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Updated failed, please try again.
+        /// </summary>
+        public static string FailUpdatingProgressiveBonusInAPI {
+            get {
+                return ResourceManager.GetString("FailUpdatingProgressiveBonusInAPI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to disable Progressive Bonus on this customer?.
+        /// </summary>
+        public static string MemberUpdateConfirm {
+            get {
+                return ResourceManager.GetString("MemberUpdateConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Progressive.
         /// </summary>
         public static string Progressive {
@@ -106,11 +124,11 @@ namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Progessive Bonus updated successfully.
         /// </summary>
-        public static string String1 {
+        public static string SuccessUpdatingProgressiveBonus {
             get {
-                return ResourceManager.GetString("String1", resourceCulture);
+                return ResourceManager.GetString("SuccessUpdatingProgressiveBonus", resourceCulture);
             }
         }
         
