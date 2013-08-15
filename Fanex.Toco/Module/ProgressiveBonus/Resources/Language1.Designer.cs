@@ -97,6 +97,15 @@ namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Updated failed, please try again..
+        /// </summary>
+        public static string FailUpdatingProgressiveBonusInAPI {
+            get {
+                return ResourceManager.GetString("FailUpdatingProgressiveBonusInAPI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Progressive.
         /// </summary>
         public static string Progressive {

@@ -12,6 +12,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Services.Implement
 	using System;
 	using System.Collections;
 	using System.Collections.Generic;
+	using CasinoLibrary.SBAgent;
 	using Fanex.CustomerSetting.Module.Core;
 	using Fanex.CustomerSetting.Module.Core.Models;
 	using Fanex.CustomerSetting.Module.Core.Services.Impl;
@@ -22,6 +23,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Services.Implement
 	using Fanex.CustomerSetting.Module.ProgressiveBonus.Permission;
 	using Fanex.CustomerSetting.Module.ProgressiveBonus.Repositories.Impl;
 	using Fanex.CustomerSetting.Module.ProgressiveBonus.Repositories.Interface;
+	using Fanex.CustomerSetting.Module.ProgressiveBonus.Resources;
 	using Fanex.CustomerSetting.Module.ProgressiveBonus.Services.Interface;
 	using Fanex.NAP.Framework.Data;
 
@@ -169,24 +171,44 @@ namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Services.Implement
 					{
 						try
 						{
-							ICriteria criteria = new UpdateProgressiveCriteria
+							// 1. call function in CasinoLibrary first
+							bool result = this.UpdateCustEnableBonusCasinoLibrary(progressive.CustId,
+								product.Enable,
+								product.EnableDownlines,
+								ip,
+								userId,
+								progressive.AdminUserName,
+								(int)this._fromSystem);
+							if (result)
 							{
-								CustId = progressive.CustId,
-								Disable = !product.Enable,
-								DisableDownlines = !product.EnableDownlines,
-								UserId = userId,
-								SubAccId = subAccId,
-								IP = ip,
-								Language = language
-							};
-							outputParams = this._progressiveRepository.UpdateStatusProgressiveBonus(criteria);
-							if (outputParams != null)
+								ICriteria criteria = new UpdateProgressiveCriteria
+								{
+									CustId = progressive.CustId,
+									Disable = !product.Enable,
+									DisableDownlines = !product.EnableDownlines,
+									UserId = userId,
+									SubAccId = subAccId,
+									IP = ip,
+									Language = language
+								};
+								// 2. update ProgressiveBonus
+								outputParams = this._progressiveRepository.UpdateStatusProgressiveBonus(criteria);
+								if (outputParams != null)
+								{
+									int errCode = Convert.ToInt32(outputParams["errcode"]);
+									results.Add(new Result
+									{
+										ErrorCode = errCode,
+										ErrorMessage = errCode == 0 ? "Progessive Bonus updated successfully" : outputParams["errmsg"].ToString()
+									});
+								}
+							}
+							else // update fail in CasinoLibrary
 							{
-								int errCode = Convert.ToInt32(outputParams["errcode"]);
 								results.Add(new Result
 								{
-									ErrorCode = errCode,
-									ErrorMessage = errCode == 0 ? "Progessive Bonus updated successfully" : outputParams["errmsg"].ToString()
+									ErrorCode = -1,
+									ErrorMessage = Language.FailUpdatingProgressiveBonusInAPI
 								});
 							}
 						}
@@ -215,6 +237,25 @@ namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Services.Implement
 			}
 
 			return results;
+		}
+
+		
+		private bool UpdateCustEnableBonusCasinoLibrary(int custId,
+			bool enable,
+			bool enableDownlines,
+			string ip,
+			int modifiedBy,
+			string modifiedUsername,
+			int fromSystem)
+		{
+			Customer customerService = new Customer();
+			return customerService.UpdateCustEnableBonus(custId,
+				enable,
+				enableDownlines,
+				ip,
+				modifiedBy,
+				modifiedUsername,
+				fromSystem);
 		}
 	}
 }

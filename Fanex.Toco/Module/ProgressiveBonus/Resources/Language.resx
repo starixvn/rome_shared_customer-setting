@@ -129,6 +129,9 @@
   <data name="EnableBonus" xml:space="preserve">
     <value>Enable Bonus</value>
   </data>
+  <data name="FailUpdatingProgressiveBonusInAPI" xml:space="preserve">
+    <value>Updated failed, please try again.</value>
+  </data>
   <data name="Progressive" xml:space="preserve">
     <value>Progressive</value>
   </data>
