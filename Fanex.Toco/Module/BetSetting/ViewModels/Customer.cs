@@ -1,0 +1,79 @@
+﻿// -----------------------------------------------------------------------
+// <copyright file="Customer.cs" company="">
+// TODO: Update copyright text.
+// </copyright>
+// -----------------------------------------------------------------------
+
+namespace Fanex.CustomerSetting.Module.BetSetting.ViewModels
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public class Customer
+    {
+        public int CustId
+        {
+            get;
+            set;
+        }
+
+        public string Username
+        {
+            get;
+            set;
+        }
+
+        public string FirstName
+        {
+            get;
+            set;
+        }
+
+        public string LastName
+        {
+            get;
+            set;
+        }
+
+        public string MobilePhone
+        {
+            get;
+            set;
+        }
+
+        public string HomePhone
+        {
+            get;
+            set;
+        }
+
+        public string Email
+        {
+            get;
+            set;
+        }
+
+        public string Fax
+        {
+            get;
+            set;
+        }
+
+        public int RoleId
+        {
+            get;
+            set;
+        }
+
+        public int GroupId
+        {
+            get;
+            set;
+        }
+    }
+}

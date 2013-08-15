@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6ED9BED7-1BCE-4991-B425-740DB8C56BBD}</ProjectGuid>
+    <ProjectGuid>{F9261CF3-913A-436F-AD9D-6607C190367E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Fanex.CustomerSetting.Module.LeftPanel</RootNamespace>
-    <AssemblyName>Fanex.CustomerSetting.Module.LeftPanel</AssemblyName>
+    <RootNamespace>Fanex.CustomerSetting.Module.BetSetting</RootNamespace>
+    <AssemblyName>Fanex.CustomerSetting.Module.BetSetting</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,12 +31,26 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Fanex.Common, Version=1.0.404.97, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_Dependencies\Fanex\Fanex.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Data">
+      <HintPath>..\..\_Dependencies\Fanex\Fanex.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
+      <HintPath>..\..\_Dependencies\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
+      <HintPath>..\..\_Dependencies\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\_Dependencies\Web\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Optimization">
       <HintPath>..\..\_Dependencies\Web\System.Web.Optimization.dll</HintPath>
@@ -51,26 +65,27 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\ModuleRegistrator.cs" />
-    <Compile Include="Controllers\LeftPanelController.cs" />
+    <Compile Include="Controllers\SportsbookController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\CustomerInfo.cs" />
+    <Compile Include="Repositories\Impl\CustomerDao.cs" />
+    <Compile Include="Repositories\Interface\ICustomerDao.cs" />
+    <Compile Include="Services\Impl\CustomerService.cs" />
+    <Compile Include="Services\Interface\ICustomerService.cs" />
+    <Compile Include="ViewModels\Customer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Criteria\" />
+    <Folder Include="Entities\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.Toco.Module.Core\_Core.csproj">
       <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
       <Name>_Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Criteria\" />
-    <Folder Include="Entities\" />
-    <Folder Include="Repositories\Impl\" />
-    <Folder Include="Repositories\Interface\" />
-    <Folder Include="Services\Impl\" />
-    <Folder Include="Services\Interface\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ViewModels\LeftPanelModel.cd" />
+    <ProjectReference Include="..\_Security\Security.csproj">
+      <Project>{91E16AE3-1209-4BF2-8846-7E36363167B3}</Project>
+      <Name>Security</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

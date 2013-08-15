@@ -1,0 +1,44 @@
+﻿// -----------------------------------------------------------------------
+// <copyright file="AuthenticateFactory.cs" company="Nexcel">
+// @Steven.Nguyen
+// </copyright>
+// -----------------------------------------------------------------------
+
+using System;
+using Fanex.CustomerSetting.Security.Configurations;
+
+namespace Fanex.CustomerSetting.Security.Authenticate
+{
+    /// <summary>
+    /// Authenticate factory
+    /// </summary>
+    public class AuthenticateFactory
+    {
+        private static IAuthenticate _authenticateFactory;
+
+        /// <summary>
+        /// Create authenticate factory
+        /// </summary>
+        /// <returns></returns>
+        public static IAuthenticate Create(AuthenticateAction.AuthenticationType actionType = AuthenticateAction.AuthenticationType.Read, string functionName = null)
+        {
+            var customerSetting = CustomerSettingSection.Instance;
+            var authenticateFactory = (customerSetting == null ||
+                                       string.IsNullOrEmpty(customerSetting.AuthenticateFactory))
+                                          ? "Fanex.CustomerSetting.Security.Authenticate.DefaultAuthenticate, Fanex.CustomerSetting.Security"
+                                          : customerSetting.AuthenticateFactory;
+            
+            var item = Activator.CreateInstance(Type.GetType(authenticateFactory));
+            if (item is IAuthenticate)
+            {
+                _authenticateFactory = item as IAuthenticate;
+                _authenticateFactory.Policy = actionType;
+                _authenticateFactory.Function = functionName;
+
+                return _authenticateFactory;
+            }
+
+            throw new TypeLoadException(_authenticateFactory + " is not a type of Fanex.CustomerSetting.Security.Authenticate.IAuthenticate");
+        }
+    }
+}

@@ -43,6 +43,10 @@
       <HintPath>..\_Dependencies\Fanex\Fanex.Data.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dependencies\Web\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -68,9 +72,6 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http">
       <Private>True</Private>
@@ -143,6 +144,18 @@
   <ItemGroup>
     <Content Include="Areas\CustomerSetting\Images\glyphicons-halflings-white.png" />
     <Content Include="Areas\CustomerSetting\Images\glyphicons-halflings.png" />
+    <Content Include="Areas\CustomerSetting\Images\Success.gif" />
+    <Content Include="Areas\CustomerSetting\Scripts\jquery-ui-1.9.1.min.js" />
+    <Content Include="Areas\CustomerSetting\Styles\images\copied.png" />
+    <Content Include="Areas\CustomerSetting\Styles\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Areas\CustomerSetting\Styles\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Areas\CustomerSetting\Styles\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Areas\CustomerSetting\Styles\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Areas\CustomerSetting\Styles\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Areas\CustomerSetting\Styles\images\uncopied.png" />
+    <Content Include="Areas\CustomerSetting\Styles\jquery-ui.css" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Sportsbook\Scripts\SportsbookController.js" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Sportsbook\Styles\Sportsbook.css" />
     <Content Include="Areas\CustomerSetting\Views\ProgressiveBonus\Scripts\Progressive.js" />
     <Content Include="Areas\Common\Views\Shared\Images\Loading.gif" />
     <Content Include="Areas\Common\Views\Shared\Scripts\Fanex.CustomerSetting.js" />
@@ -243,6 +256,8 @@
     <Content Include="Areas\CustomerSetting\Views\Casino\Master\EditMaster.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="PTEngine\BettingLimit.xml" />
+    <Content Include="PTEngine\PTGrid.xml" />
     <Content Include="Scripts\Common\Message.Helper.js" />
     <Content Include="Scripts\Common\Message.Validator.js" />
     <Content Include="Scripts\Common\ValidateMessage.js" />
@@ -456,6 +471,7 @@
     <Content Include="Scripts\_Libs\Validation\jquery.validationEngine-en.js" />
     <Content Include="Scripts\_Libs\Validation\jquery.validationEngine.js" />
     <Content Include="Scripts\_Libs\Validation\validationEngine.jquery.css" />
+    <Content Include="SpNames.xml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -472,6 +488,24 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\CustomerSetting\Views\BetSetting\Bingo\" />
+    <Folder Include="Areas\CustomerSetting\Views\BetSetting\LiveCasino\" />
+    <Folder Include="Areas\CustomerSetting\Views\BetSetting\Racing\" />
+    <Folder Include="Areas\CustomerSetting\Views\BetSetting\RngCasino\" />
+    <Folder Include="Areas\CustomerSetting\Views\BetSetting\VirtualSports\" />
+    <Folder Include="Content\base\img\actions\dd\" />
+    <Folder Include="Content\base\img\combo-pickr\" />
+    <Folder Include="Content\base\img\textures\" />
+    <Folder Include="Content\base\jquery\images\" />
+    <Folder Include="Content\img\" />
+    <Folder Include="Content\jquery-ui\images\" />
+    <Folder Include="Content\themes\base\images\" />
+    <Folder Include="Content\themes\base\minified\images\" />
+    <Folder Include="Content\themes\Honolulu\css\" />
+    <Folder Include="Content\themes\Honolulu\ico\" />
+    <Folder Include="Content\themes\Honolulu\img\" />
+    <Folder Include="Content\themes\Honolulu\js\" />
+    <Folder Include="Content\themes\Honolulu\less\report\" />
     <Folder Include="Models\" />
     <Folder Include="Scripts\_Libs\BlockUI\img\" />
   </ItemGroup>
@@ -480,9 +514,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\_Libs\FanexGrid\images.zip" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Shared\_Layout.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Sportsbook\Index.cshtml" />
+    <Content Include="PTEngine\BettingLimitMappingSection.config" />
+    <Content Include="PTEngine\PTMappingSection.config" />
+    <Content Include="Areas\CustomerSetting\Views\Security\AccessDenied.cshtml" />
     <None Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3-custom.less" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Module\BetSetting\BetSetting.csproj">
+      <Project>{F9261CF3-913A-436F-AD9D-6607C190367E}</Project>
+      <Name>BetSetting</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Module\Casino\Casino.csproj">
       <Project>{5F8F3877-90E3-48A3-BAD7-4207DCBA088D}</Project>
       <Name>Casino</Name>
@@ -490,10 +533,6 @@
     <ProjectReference Include="..\Module\Fanex.Toco.Module.Core\_Core.csproj">
       <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
       <Name>_Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Module\ProgressiveBonus\Fanex.CustomerSetting.Module.ProgressiveBonus.csproj">
-      <Project>{5EFF254F-0DEE-41BD-9D90-3FF4489D077F}</Project>
-      <Name>Fanex.CustomerSetting.Module.ProgressiveBonus</Name>
     </ProjectReference>
     <ProjectReference Include="..\Module\Racebook\Racebook.csproj">
       <Project>{63D0DC31-9FEF-4BEE-9D43-E1E3A3BE42A5}</Project>
