@@ -161,6 +161,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Services.Implement
 				string language = "E";
 
 				int userId = AppSession.AdminId;
+				string username = AppSession.AdminUsername;
 				int subAccId = this._fromSystem == FromSystem.Accounting // Acc
 					? userId
 					: AppSession.SubAccountId;
@@ -177,7 +178,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Services.Implement
 								product.EnableDownlines,
 								ip,
 								userId,
-								progressive.AdminUserName,
+								username,
 								(int)this._fromSystem);
 							if (result)
 							{
@@ -199,7 +200,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Services.Implement
 									results.Add(new Result
 									{
 										ErrorCode = errCode,
-										ErrorMessage = errCode == 0 ? "Progessive Bonus updated successfully" : outputParams["errmsg"].ToString()
+										ErrorMessage = errCode == 0 ? Language.SuccessUpdatingProgressiveBonus : outputParams["errmsg"].ToString()
 									});
 								}
 							}
@@ -239,7 +240,18 @@ namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Services.Implement
 			return results;
 		}
 
-		
+
+		/// <summary>
+		/// Updates the cust enable bonus casino library.
+		/// </summary>
+		/// <param name="custId">The cust id.</param>
+		/// <param name="enable">if set to <c>true</c> [enable].</param>
+		/// <param name="enableDownlines">if set to <c>true</c> [enable downlines].</param>
+		/// <param name="ip">The ip.</param>
+		/// <param name="modifiedBy">The modified by.</param>
+		/// <param name="modifiedUsername">The modified username.</param>
+		/// <param name="fromSystem">From system.</param>
+		/// <returns></returns>
 		private bool UpdateCustEnableBonusCasinoLibrary(int custId,
 			bool enable,
 			bool enableDownlines,
