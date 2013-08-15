@@ -560,7 +560,7 @@ Fanex.CustomerSetting.Core = {
         return src;
     },
 
-    CheckNumber: function (event, ele) {
+    CheckNumber: function (event, ele, isFloat) {
         var value = ele.value;
 
         var evt = event ? event : window.event; // Fix for IE7
