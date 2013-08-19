@@ -38,5 +38,6 @@ namespace Fanex.CustomerSetting.Module.Core
 
 		public const string SUB_ACCOUNT_ID = "Contants.AppSession.SubAccountId";
 		public const string LANGUAGE = "Contants.AppSession.Language";
+		public const string PROGRESSIVE_BONUS_OLD_VALUE = "Contants.AppSession.ProgressiveBonusOldValue";
     }
 }

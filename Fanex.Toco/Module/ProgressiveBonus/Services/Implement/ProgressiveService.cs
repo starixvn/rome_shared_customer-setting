@@ -118,7 +118,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Services.Implement
                             p.EnableButton = true;
 
                             p.EnableDownlines = false;
-                            p.EnableDownlinesButton = false;    
+                            p.EnableDownlinesButton = false;
                         }
                         else//0: Enable
                         {
@@ -130,6 +130,8 @@ namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Services.Implement
                         }
 
 						listProducts.Add(p);
+						// save old value into Session
+						AppSession.ProgressiveBonusOldValue = p;
 					}
 				}
 			}
@@ -193,7 +195,17 @@ namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Services.Implement
 									Language = language
 								};
 								// 2. update ProgressiveBonus
-								outputParams = this._progressiveRepository.UpdateStatusProgressiveBonus(criteria);
+								try
+								{
+									outputParams = this._progressiveRepository.UpdateStatusProgressiveBonus(criteria);
+								}
+								catch
+								{
+									// failed
+									outputParams = new Hashtable();
+									outputParams.Add("errcode", -1);
+								}
+								
 								if (outputParams != null)
 								{
 									int errCode = Convert.ToInt32(outputParams["errcode"]);
@@ -202,6 +214,26 @@ namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Services.Implement
 										ErrorCode = errCode,
 										ErrorMessage = errCode == 0 ? Language.SuccessUpdatingProgressiveBonus : outputParams["errmsg"].ToString()
 									});
+
+									// failed when updating db
+									if (errCode != 0) // rollback
+									{
+										// get old value
+										Product oldValue = AppSession.ProgressiveBonusOldValue as Product;
+										if (oldValue != null)
+										{
+											this.UpdateCustEnableBonusCasinoLibrary(progressive.CustId,
+												!oldValue.Enable,
+												!oldValue.EnableDownlines,
+												ip,
+												userId,
+												username,
+												(int)this._fromSystem);
+											
+											// dispose Session
+											AppSession.ProgressiveBonusOldValue = null;
+										}
+									}
 								}
 							}
 							else // update fail in CasinoLibrary
@@ -239,7 +271,6 @@ namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Services.Implement
 
 			return results;
 		}
-
 
 		/// <summary>
 		/// Updates the cust enable bonus casino library.

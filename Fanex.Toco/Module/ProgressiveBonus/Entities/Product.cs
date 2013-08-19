@@ -9,13 +9,15 @@
 
 namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Entities
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
+	using System;
+	using System.Collections.Generic;
+	using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// Product progressive.
     /// </summary>
     [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1027:TabsMustNotBeUsed", Justification = "Reviewed.")]
+	[Serializable]
     public class Product
     {
         /// <summary>
