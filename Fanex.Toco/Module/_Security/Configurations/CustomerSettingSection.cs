@@ -59,7 +59,7 @@ namespace Fanex.CustomerSetting.Security.Configurations
                     }
                     catch (Exception e)
                     {
-                        throw new ConfigurationErrorsException("Error when parsing configuration section SpamFilterConfiguration.", e);
+                        throw new ConfigurationErrorsException("Error when parsing configuration section CustomerSetting.", e);
                     }
                 }
 
