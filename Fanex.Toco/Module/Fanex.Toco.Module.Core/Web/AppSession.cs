@@ -115,6 +115,7 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 			}
 		}
 
+		// Progressive Bonus
 		public static int AdminId
 		{
 			get
@@ -202,6 +203,18 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 			set
 			{
 				SessionManager.Set<string>(Constants.LANGUAGE, value);
+			}
+		}
+
+		public static object ProgressiveBonusOldValue
+		{
+			get
+			{
+				return SessionManager.Get<object>(Constants.PROGRESSIVE_BONUS_OLD_VALUE);
+			}
+			set
+			{
+				SessionManager.Set<object>(Constants.PROGRESSIVE_BONUS_OLD_VALUE, value);
 			}
 		}
 	}
