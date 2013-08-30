@@ -167,43 +167,43 @@ Fanex.CustomerSetting.Betting.Racing.Update = function (ondone) {
 
     this.IsValid = function (min, max, maxPerMatch, minMin, bet, betting) {
         if (isNaN(min)) {
-            Validators.show($('#txt' + bet.id + betting.id + 'Min').get(0), betting.name + ' - Min Bet should be a value', undefined, undefined, 3000);
+            Validators.show($('#txt' + bet.id + betting.id + 'Min').get(0), bet.name + ' ' + betting.name + ' - Min Bet should be a value', undefined, undefined, 3000);
 
             return false;
         }
 
         if (isNaN(max)) {
-            Validators.show($('#txt' + bet.id + betting.id + 'Max').get(0), betting.name + ' - Max Bet should be a value', undefined, undefined, 3000);
+            Validators.show($('#txt' + bet.id + betting.id + 'Max').get(0), bet.name + ' ' + betting.name + ' - Max Bet should be a value', undefined, undefined, 3000);
 
             return false;
         }
 
         if (isNaN(maxPerMatch)) {
-            Validators.show($('#txt' + bet.id + betting.id + 'MaxPerMatch').get(0), betting.name + ' - Max Per Match should be a value', undefined, undefined, 3000);
+            Validators.show($('#txt' + bet.id + betting.id + 'MaxPerMatch').get(0), bet.name + ' ' + betting.name + ' - Max Per Match should be a value', undefined, undefined, 3000);
 
             return false;
         }
 
         if (minMin != 0 && min < minMin) {
-            Validators.show($('#txt' + bet.id + betting.id + 'Min').get(0), betting.name + ' - Min Bet should be greater than or equals to ' + minMin.formatNumber(), undefined, undefined, 3000);
+            Validators.show($('#txt' + bet.id + betting.id + 'Min').get(0), bet.name + ' ' + betting.name + ' - Min Bet should be greater than or equals to ' + minMin.formatNumber(), undefined, undefined, 3000);
 
             return false;
         }
 
         if (min > max) {
-            Validators.show($('#txt' + bet.id + betting.id + 'Min').get(0), betting.name + ' - Min Bet should be less than or equals to Max Bet', undefined, undefined, 3000);
+            Validators.show($('#txt' + bet.id + betting.id + 'Min').get(0), bet.name + ' ' + betting.name + ' - Min Bet should be less than or equals to Max Bet', undefined, undefined, 3000);
 
             return false;
         }
 
         if (min > maxPerMatch) {
-            Validators.show($('#txt' + bet.id + betting.id + 'Min').get(0), betting.name + ' - Min Bet should be less than or equals to Max Per Match', undefined, undefined, 3000);
+            Validators.show($('#txt' + bet.id + betting.id + 'Min').get(0), bet.name + ' ' + betting.name + ' - Min Bet should be less than or equals to Max Per Match', undefined, undefined, 3000);
 
             return false;
         }
 
         if (max > maxPerMatch) {
-            Validators.show($('#txt' + bet.id + betting.id + 'Max').get(0), betting.name + ' - Max Bet should be less than or equals to Max Per Match', undefined, undefined, 3000);
+            Validators.show($('#txt' + bet.id + betting.id + 'Max').get(0), bet.name + ' ' + betting.name + ' - Max Bet should be less than or equals to Max Per Match', undefined, undefined, 3000);
 
             return false;
         }
