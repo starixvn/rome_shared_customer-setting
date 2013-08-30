@@ -383,3 +383,8 @@ select,.select
 {
     display: none;
 }
+#tabs
+{
+    min-width: 819px;
+    min-height: 223px;
+}

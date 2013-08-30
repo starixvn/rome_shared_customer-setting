@@ -18,7 +18,7 @@ namespace Fanex.CustomerSetting.Security.Authenticate
     /// </summary>
     public static class GroupConfigurations
     {
-        public static IList<int> AllowEditSportsbookBettingGroups 
+        public static IList<int> AllowBettingGroups 
         {
             get
             {

@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="SportsbookBetSettingController.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="SportsbookController.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -9,28 +9,25 @@
 
 namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
 {
-    using System.Linq;
     using System.Web.Mvc;
-    using Fanex.CustomerSetting.Module.Core.Web.Controllers;
+    using Fanex.CustomerSetting.Module.BetSetting.Base;
     using Fanex.CustomerSetting.Security.Authenticate;
     using Fanex.PTEngine.BusinessObjects;
     using Fanex.PTEngine.Services;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
-    using Fanex.CustomerSetting.Module.Core;
-    using Fanex.CustomerSetting.Security.Configurations;
 
     /// <summary>
     /// All Bet Settings
     /// </summary>
-    public class SportsbookController : BaseController
+    public class SportsbookController : BettingControllerBase
     {
         #region Sportsbook Bet Setting
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "SportsbookBetting")]
         public ActionResult Index(int id, int uplineId, int userId, string siteName)
         {
-            var groups = GroupConfigurations.AllowEditSportsbookBettingGroups;
+            var groups = GroupConfigurations.AllowBettingGroups;
 
             var customer = this.CustomerInfo(id, userId);
 
@@ -57,14 +54,14 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
 
             var bettingLimit = bettingLimitService.GetBettingForEdit(currentContext);
 
-            return this.View("~/Areas/CustomerSetting/Views/BetSetting/Sportsbook/Index.cshtml", bettingLimit);
+            return this.PartialView("~/Areas/CustomerSetting/Views/BetSetting/Sportsbook/Index.cshtml", bettingLimit);
         }
 
         [HttpPost]
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "SportsbookBetting")]
         public ActionResult EditBetSettingPost(int id, int uplineId, int userId, string txtCustomerObject)
         {
-            var groups = GroupConfigurations.AllowEditSportsbookBettingGroups;
+            var groups = GroupConfigurations.AllowBettingGroups;
 
             var customer = this.CustomerInfo(id, userId);
 
@@ -95,17 +92,6 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
             var result = bettingLimitService.UpdateBetting(bettingLimit, requestContext);
 
             return this.JsonBase(new { ErrorCode = result.ErrorCode, ErrorMessage = result.ErrorMessage }, settings);
-        }
-
-        private Fanex.CustomerSetting.Module.BetSetting.ViewModels.Customer CustomerInfo(int id, int userId)
-        {
-            Fanex.CustomerSetting.Module.BetSetting.Services.Interface.ICustomerService customerService =
-                new Fanex.CustomerSetting.Module.BetSetting.Services.Impl.CustomerService();
-
-            var customer = customerService.UserInfo(id);
-            customer.GroupId = customerService.UserGroupId(userId);
-
-            return customer;
         }
 
         #endregion Sportsbook Bet Setting

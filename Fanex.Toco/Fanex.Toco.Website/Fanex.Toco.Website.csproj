@@ -154,8 +154,12 @@
     <Content Include="Areas\CustomerSetting\Styles\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
     <Content Include="Areas\CustomerSetting\Styles\images\uncopied.png" />
     <Content Include="Areas\CustomerSetting\Styles\jquery-ui.css" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Racing\Scripts\RacingController.js" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Racing\Styles\Racing.css" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Scripts\BetSetting.js" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Sportsbook\Scripts\SportsbookController.js" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Sportsbook\Styles\Sportsbook.css" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditSuperController.js" />
     <Content Include="Areas\CustomerSetting\Views\ProgressiveBonus\Scripts\Progressive.js" />
     <Content Include="Areas\Common\Views\Shared\Images\Loading.gif" />
     <Content Include="Areas\Common\Views\Shared\Scripts\Fanex.CustomerSetting.js" />
@@ -258,6 +262,7 @@
     </Content>
     <Content Include="PTEngine\BettingLimit.xml" />
     <Content Include="PTEngine\PTGrid.xml" />
+    <Content Include="PTEngine\PTRacingGrid.xml" />
     <Content Include="Scripts\Common\Message.Helper.js" />
     <Content Include="Scripts\Common\Message.Validator.js" />
     <Content Include="Scripts\Common\ValidateMessage.js" />
@@ -490,7 +495,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\CustomerSetting\Views\BetSetting\Bingo\" />
     <Folder Include="Areas\CustomerSetting\Views\BetSetting\LiveCasino\" />
-    <Folder Include="Areas\CustomerSetting\Views\BetSetting\Racing\" />
     <Folder Include="Areas\CustomerSetting\Views\BetSetting\RngCasino\" />
     <Folder Include="Areas\CustomerSetting\Views\BetSetting\VirtualSports\" />
     <Folder Include="Content\base\img\actions\dd\" />
@@ -519,6 +523,10 @@
     <Content Include="PTEngine\BettingLimitMappingSection.config" />
     <Content Include="PTEngine\PTMappingSection.config" />
     <Content Include="Areas\CustomerSetting\Views\Security\AccessDenied.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Super\EditSuper.cshtml" />
+    <Content Include="PTEngine\PTRacingMappingSection.config" />
+    <Content Include="PTEngine\RacingBettingCommSettingMappingSection.config" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Racing\Index.cshtml" />
     <None Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3-custom.less" />
   </ItemGroup>
   <ItemGroup>

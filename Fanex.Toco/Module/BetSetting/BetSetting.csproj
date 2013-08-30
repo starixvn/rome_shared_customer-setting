@@ -41,6 +41,9 @@
     <Reference Include="Fanex.PTEngine">
       <HintPath>..\..\_Dependencies\Fanex\Fanex.PTEngine.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.PTRacing">
+      <HintPath>..\..\_Dependencies\Fanex\Fanex.PTRacing.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
       <HintPath>..\..\_Dependencies\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
     </Reference>
@@ -71,6 +74,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\ModuleRegistrator.cs" />
+    <Compile Include="Base\BettingControllerBase.cs" />
+    <Compile Include="Controllers\RacingController.cs" />
     <Compile Include="Controllers\SportsbookController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Impl\CustomerDao.cs" />

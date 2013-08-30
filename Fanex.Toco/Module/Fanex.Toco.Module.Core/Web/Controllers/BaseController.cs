@@ -14,9 +14,9 @@ namespace Fanex.CustomerSetting.Module.Core.Web.Controllers
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
+    using System.Globalization;
     using System.Reflection;
-using System.Threading;
+    using System.Threading;
     using System.Web.Mvc;
     using Fanex.ExternalAccount.Controllers.Base;
     using Newtonsoft.Json;

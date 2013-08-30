@@ -173,6 +173,7 @@
     <Compile Include="App_Start\ModuleRegistrator.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="Controllers\AgentController.cs" />
+    <Compile Include="Controllers\SuperController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\CasinoCustomerController.cs" />
