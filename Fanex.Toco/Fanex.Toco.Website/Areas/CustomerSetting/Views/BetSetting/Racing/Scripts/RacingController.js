@@ -16,8 +16,6 @@ Fanex.CustomerSetting.Betting.Racing = function ($scope, $http) {
     };
 
     $scope.Copy = function (scope) {
-        var tmp = scope;
-
         if (scope.betting.id == 151 && scope.bet.id == 41) {
             if (scope.bet.className == true && scope.bet.bgClass == '') {
                 scope.bet.className = 'copied';
