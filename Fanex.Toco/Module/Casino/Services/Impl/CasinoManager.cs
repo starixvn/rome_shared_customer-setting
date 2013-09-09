@@ -438,7 +438,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             {
                 row = dt.Rows[0];
                 custIBC.IsEnablePT = Utils.ToBoolean(row["IsEnablePT"]);
-                custIBC.TotalWinLoss = Utils.ToDouble(row["ActualMaxTransfer"]);
+                custIBC.TotalWinLoss = custIBC.CasinoSync ? Utils.ToDouble(row["ActualMaxTransfer"]) : 0;
                 custIBC.MaxWin = Utils.ToDouble(row["MaxWin"]);
                 custIBC.MaxLose = Utils.ToDouble(row["MaxLose"]);
 
