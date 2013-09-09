@@ -9,14 +9,14 @@
 
 namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
 {
+    using System.Collections;
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.BetSetting.Base;
     using Fanex.CustomerSetting.Security.Authenticate;
-    using Fanex.PTRacing.Services;
     using Fanex.PTRacing.BusinessObjects;
+    using Fanex.PTRacing.Services;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
-    using System.Collections;
 
     /// <summary>
     /// Racing controller for bet setting
@@ -30,7 +30,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
 
             var customer = this.CustomerInfo(id, userId);
 
-            if (customer.RoleId != 4 || !groups.Contains(customer.GroupId))
+            if (customer.RoleId != 4 || groups == null || !groups.Contains(customer.GroupId))
             {
                 return this.PartialView("~/Areas/CustomerSetting/Views/Security/AccessDenied.cshtml");
             }
@@ -69,7 +69,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
             settings.NullValueHandling = NullValueHandling.Ignore;
             settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
-            if (customer.RoleId != 4 || !groups.Contains(customer.GroupId))
+            if (customer.RoleId != 4 || groups == null || !groups.Contains(customer.GroupId))
             {
                 return this.JsonBase(new { ErrorCode = 1, ErrorMessage = "You're not authorized on this function" }, settings);
             }

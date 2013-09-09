@@ -1,10 +1,9 @@
-﻿using System.Reflection;
-using System.Web.Mvc;
-using Fanex.CustomerSetting.Module.Core.Web.App_Start;
-
-
-namespace Fanex.CustomerSetting.Module.LeftPanel.App_Start
+﻿namespace Fanex.CustomerSetting.Module.LeftPanel.App_Start
 {
+    using System.Reflection;
+    using System.Web.Mvc;
+    using Fanex.CustomerSetting.Module.Core.Web.App_Start;
+
     public class ModuleRegistrator : AppAreaRegistrator 
     {
 

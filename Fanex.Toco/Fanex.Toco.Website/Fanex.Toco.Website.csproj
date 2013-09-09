@@ -145,6 +145,7 @@
     <Content Include="Areas\CustomerSetting\Images\glyphicons-halflings-white.png" />
     <Content Include="Areas\CustomerSetting\Images\glyphicons-halflings.png" />
     <Content Include="Areas\CustomerSetting\Images\Success.gif" />
+    <Content Include="Areas\CustomerSetting\Scripts\angular.full.js" />
     <Content Include="Areas\CustomerSetting\Scripts\jquery-ui-1.9.1.min.js" />
     <Content Include="Areas\CustomerSetting\Styles\images\copied.png" />
     <Content Include="Areas\CustomerSetting\Styles\images\ui-bg_flat_75_ffffff_40x100.png" />
