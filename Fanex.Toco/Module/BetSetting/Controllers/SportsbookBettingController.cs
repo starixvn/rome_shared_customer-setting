@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="SportsbookController.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="SportsbookBettingController.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -20,7 +20,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
     /// <summary>
     /// All Bet Settings
     /// </summary>
-    public class SportsbookController : BettingControllerBase
+    public class SportsbookBettingController : BettingControllerBase
     {
         #region Sportsbook Bet Setting
 

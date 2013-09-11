@@ -44,6 +44,12 @@
     <Reference Include="Fanex.PTRacing">
       <HintPath>..\..\_Dependencies\Fanex\Fanex.PTRacing.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.PTVirtualSports">
+      <HintPath>..\..\_Dependencies\Fanex\Fanex.PTVirtualSports.dll</HintPath>
+    </Reference>
+    <Reference Include="IBCFile">
+      <HintPath>..\..\_Dependencies\IBCFile.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
       <HintPath>..\..\_Dependencies\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
     </Reference>
@@ -55,6 +61,10 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\_Dependencies\Web\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RemotingRef, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_Dependencies\RemotingRef.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -75,8 +85,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\ModuleRegistrator.cs" />
     <Compile Include="Base\BettingControllerBase.cs" />
-    <Compile Include="Controllers\RacingController.cs" />
-    <Compile Include="Controllers\SportsbookController.cs" />
+    <Compile Include="Controllers\RacingBettingController.cs" />
+    <Compile Include="Controllers\SportsbookBettingController.cs" />
+    <Compile Include="Controllers\VirtualSportsBettingController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Impl\CustomerDao.cs" />
     <Compile Include="Repositories\Interface\ICustomerDao.cs" />

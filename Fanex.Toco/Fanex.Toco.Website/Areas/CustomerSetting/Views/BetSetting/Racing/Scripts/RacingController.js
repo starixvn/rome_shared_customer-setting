@@ -231,7 +231,7 @@ Fanex.CustomerSetting.Betting.Racing.Update = function (ondone) {
     $.ajax({
         dataType: 'json',
         type: 'post',
-        url: toUrl('Racing/EditBetSettingPost'),
+        url: toUrl('RacingBetting/EditBetSettingPost'),
         data: {
             id: custId,
             uplineId: uplineId,
@@ -255,6 +255,7 @@ Fanex.CustomerSetting.Betting.Racing.Update = function (ondone) {
             $('#errMsg').show();
         }
         else {
+            $('#errMsg').attr('class', 'errMsg');
             $('#errMsg').html(data.errorMessage.formatErrorMessage());
             $('#errMsg').show();
         }
@@ -270,6 +271,7 @@ Fanex.CustomerSetting.Betting.Racing.Update = function (ondone) {
             console.log(data);
 
         if (JSON.parse(data.responseText).ErrorCode) {
+            $('#errMsg').attr('class', 'errMsg');
             $('#errMsg').html(JSON.parse(data.responseText).ErrorMessage.formatErrorMessage());
             $('#errMsg').show();
         }

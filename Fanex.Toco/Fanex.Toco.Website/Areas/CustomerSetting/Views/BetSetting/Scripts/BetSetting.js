@@ -1,9 +1,14 @@
 ﻿function LoadSB() {
     Fanex.CustomerSetting.Core.BlockUI();
-    document.location.href = toUrl('Sportsbook/Index/' + custId + '/' + uplineId + '/' + userId + '/' + siteName);
+    document.location.href = toUrl('SportsbookBetting/Index/' + custId + '/' + uplineId + '/' + userId + '/' + siteName);
 };
 
 function LoadRacing() {
     Fanex.CustomerSetting.Core.BlockUI();
-    document.location.href = toUrl('Racing/Index/' + custId + '/' + uplineId + '/' + userId + '/' + siteName);
+    document.location.href = toUrl('RacingBetting/Index/' + custId + '/' + uplineId + '/' + userId + '/' + siteName);
+};
+
+function LoadVirtualSports() {
+    Fanex.CustomerSetting.Core.BlockUI();
+    document.location.href = toUrl('VirtualSportsBetting/Index/' + custId + '/' + uplineId + '/' + userId + '/' + siteName);
 };

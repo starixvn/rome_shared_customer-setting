@@ -1,10 +1,10 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="RacingController.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="VirtualSportsBettingController.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Andy.Nguyen" date="2013.8.28">Created</change>
+//   <change who="Andy.Nguyen" date="2013.9.11">Created</change>
 // </history>
 
 namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
@@ -13,17 +13,17 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.BetSetting.Base;
     using Fanex.CustomerSetting.Security.Authenticate;
-    using Fanex.PTRacing.BusinessObjects;
-    using Fanex.PTRacing.Services;
+    using Fanex.PTEngine.BusinessObjects;
+    using Fanex.PTVirtualSports.Services;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
 
     /// <summary>
-    /// Racing controller for bet setting
+    /// TODO: Update summary.
     /// </summary>
-    public class RacingController : BettingControllerBase
+    public class VirtualSportsBettingController : BettingControllerBase
     {
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "RacingBetting")]
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "VirtualSportsBetting")]
         public ActionResult Index(int id, int uplineId, int userId, string siteName)
         {
             var groups = GroupConfigurations.AllowBettingGroups;
@@ -40,25 +40,25 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
             var bettingLimitService = new CustomerService();
             var model = bettingLimitService.GetCustomer(new RequestContext
             {
-                CustId = uplineId,//upline id
-                AgentId = 0,//unknow
-                UserName = string.Empty,
-                TargetCustId = id,
                 AdminId = userId,
-                SubAccId = 0,
-                RoleId = 5,
-                CurrencyId = 0,
-                TargetRoleId = customer.RoleId,
-                IsNeutralSite = false,
+                TargetCustId = id,
+                CustId = 0,
                 FormId = FormType.EditPT,
-                IP = HttpContext.Request.UserHostAddress
+                IP = Request.UserHostAddress,
+                Language = "En",
+                LangKey = "E",
+                RoleId = 5,
+                TargetRoleId = customer.RoleId,
+                SiteName = siteName,
+                SubAccId = 0,
+                UserName = string.Empty
             });
 
-            return this.View("~/Areas/CustomerSetting/Views/BetSetting/Racing/Index.cshtml", model);
+            return this.PartialView("~/Areas/CustomerSetting/Views/BetSetting/VirtualSports/Index.cshtml", model);
         }
 
         [HttpPost]
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "RacingBetting")]
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "VirtualSportsBetting")]
         public ActionResult EditBetSettingPost(int id, int uplineId, int userId, string txtCustomerObject)
         {
             var groups = GroupConfigurations.AllowBettingGroups;
@@ -96,7 +96,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
             var oldSetting = bettingLimitService.GetCustomer(requestContext);
             var result = bettingLimitService.SaveCustomer(oldSetting, newSetting, requestContext, new Hashtable());
 
-            return this.JsonBase(new { ErrorCode = result.ErrorCode, ErrorMessage = result.ErrorMessage }, settings);
+            return this.JsonBase(result, settings);
         }
     }
 }
