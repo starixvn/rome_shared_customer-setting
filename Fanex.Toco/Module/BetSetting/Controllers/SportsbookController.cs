@@ -20,7 +20,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
     /// <summary>
     /// All Bet Settings
     /// </summary>
-    public class SportsbookBettingController : BettingControllerBase
+    public class SportsbookController : BettingControllerBase
     {
         #region Sportsbook Bet Setting
 
