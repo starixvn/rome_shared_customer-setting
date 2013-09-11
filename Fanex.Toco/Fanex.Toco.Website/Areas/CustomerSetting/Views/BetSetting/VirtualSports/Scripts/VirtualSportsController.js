@@ -35,7 +35,7 @@ Fanex.CustomerSetting.Betting.VirtualSports.Update = function (ondone) {
             return false;
         }
 
-        if (minMin != 0 && min  < minMin) {
+        if (minMin != 0 && min < minMin) {
             Validators.show($('#txt' + betting.id + 'Min').get(0), betting.name + ' - Min Bet should be greater than or equals to ' + minMin.formatNumber(), undefined, undefined, 3000);
 
             return false;
@@ -69,7 +69,7 @@ Fanex.CustomerSetting.Betting.VirtualSports.Update = function (ondone) {
             Validators.show($('#txt' + betting.id + 'MaxPerMatch').get(0), betting.name + ' - Max Per Match should be less than or equals to ' + maxPerMatchMax.formatNumber(), undefined, undefined, 3000);
 
             return false;
-        }               
+        }
 
         return true;
     };
@@ -118,17 +118,23 @@ Fanex.CustomerSetting.Betting.VirtualSports.Update = function (ondone) {
             $('#errMsg').attr('class', 'successMsg');
             $('#errMsg').html('<font color="Blue">Updated successfully</font>');
             $('#errMsg').show();
+
+            Fanex.CustomerSetting.Core.UnBlockUI();
+
+            if (typeof ondone == 'function') {
+                ondone({ errorCode: "0" });
+            }
         }
         else {
             $('#errMsg').attr('class', 'errMsg');
             $('#errMsg').html(errorMessage.formatErrorMessage());
             $('#errMsg').show();
-        }
 
-        Fanex.CustomerSetting.Core.UnBlockUI();
+            Fanex.CustomerSetting.Core.UnBlockUI();
 
-        if (typeof ondone == 'function') {
-            ondone(data);
+            if (typeof ondone == 'function') {
+                ondone({ errorCode: "1" });
+            }
         }
     })
     .error(function (data) {
