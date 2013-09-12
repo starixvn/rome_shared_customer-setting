@@ -19,7 +19,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
     using Newtonsoft.Json.Serialization;
 
     /// <summary>
-    /// Racing controller for bet setting
+    /// Racing controller for bet setting.
     /// </summary>
     public class RacingBettingController : BettingControllerBase
     {
@@ -40,8 +40,8 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
             var bettingLimitService = this.RacingService;
             var model = bettingLimitService.GetCustomer(new RequestContext
             {
-                CustId = uplineId,//upline id
-                AgentId = 0,//unknow
+                CustId = uplineId, // upline id
+                AgentId = 0, // unknow
                 UserName = string.Empty,
                 TargetCustId = id,
                 AdminId = userId,
@@ -78,8 +78,8 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
 
             var requestContext = new RequestContext
             {
-                CustId = uplineId,//upline id
-                AgentId = 0,//unknow
+                CustId = uplineId, // upline id
+                AgentId = 0, // unknow
                 UserName = string.Empty,
                 TargetCustId = id,
                 AdminId = userId,

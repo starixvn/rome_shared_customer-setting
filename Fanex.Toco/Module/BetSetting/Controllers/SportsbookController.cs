@@ -18,7 +18,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
     using Newtonsoft.Json.Serialization;
 
     /// <summary>
-    /// Sportsbook Bet Settings
+    /// Sportsbook Bet Settings.
     /// </summary>
     public class SportsbookController : BettingControllerBase
     {

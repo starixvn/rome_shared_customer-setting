@@ -78,8 +78,8 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
 
             var requestContext = new RequestContext
             {
-                CustId = uplineId,//upline id
-                AgentId = 0,//unknow
+                CustId = uplineId, // upline id
+                AgentId = 0, // unknow
                 UserName = string.Empty,
                 TargetCustId = id,
                 AdminId = userId,

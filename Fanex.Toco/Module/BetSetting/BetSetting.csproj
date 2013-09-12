@@ -81,8 +81,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\ModuleRegistrator.cs" />
     <Compile Include="Base\BettingControllerBase.cs" />
     <Compile Include="Controllers\LiveCasinoBettingController.cs" />
@@ -104,6 +102,10 @@
     <ProjectReference Include="..\Bingo\Bingo.csproj">
       <Project>{8B0CB9F3-0D8F-4B0B-8F66-931BFE44B40A}</Project>
       <Name>Bingo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Casino\Casino.csproj">
+      <Project>{5F8F3877-90E3-48A3-BAD7-4207DCBA088D}</Project>
+      <Name>Casino</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fanex.Toco.Module.Core\_Core.csproj">
       <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
