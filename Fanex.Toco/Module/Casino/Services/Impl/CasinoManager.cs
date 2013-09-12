@@ -144,7 +144,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
                 // Super preset PT
                 gameGroup.S4 = synced ? Utils.ToDecimal(row["UplineMaxPositionTaking"]).Format(2) : Utils.ToDecimal(row["MaxPositionTaking"]).Format(2);
-                gameGroup.S3 = synced ? Utils.ToDecimal(row["UplineSPositionTaking"]).Format(2) : Utils.ToDecimal(row["SPositionTaking"]).Format(2);
+                gameGroup.S3 = Utils.ToDecimal(row["SPositionTaking"]).Format(2);//synced ? Utils.ToDecimal(row["UplineSPositionTaking"]).Format(2) : Utils.ToDecimal(row["SPositionTaking"]).Format(2);
                 
                 // Super Auto PT
                 gameGroup.Is3 = Utils.ToBoolean(row["IsAutoPositionTaking"]);
@@ -1681,7 +1681,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
                 // Super preset PT
                 gameType.S4 = synced ? Utils.ToDecimal(row["UplineMaxPositionTaking"]).Format(2) : Utils.ToDecimal(row["MaxPositionTaking"]).Format(2);
-                gameType.S3 = synced ? Utils.ToDecimal(row["UplineSPositionTaking"]).Format(2) : Utils.ToDecimal(row["SPositionTaking"]).Format(2);
+                gameType.S3 = Utils.ToDecimal(row["SPositionTaking"]).Format(2);//synced ? Utils.ToDecimal(row["UplineSPositionTaking"]).Format(2) : Utils.ToDecimal(row["SPositionTaking"]).Format(2);
 
                 // Super Auto PT
                 gameType.Is3 = Utils.ToBoolean(row["IsAutoPositionTaking"]);
