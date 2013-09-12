@@ -37,7 +37,11 @@ namespace Fanex.CustomerSetting.Module.LeftPanel.App_Start
             context.MapRoute(
                 this.AreaName + "_" + this.ControllerName,
                 this.AreaName + "/" + this.ControllerName + "/{controller}/{action}/{id}/{uplineId}/{userId}/{siteName}",
-                new { action = "Index", id = UrlParameter.Optional, uplineId = UrlParameter.Optional, userId = UrlParameter.Optional, siteName = UrlParameter.Optional },
+                new 
+                { 
+                    action = "Index", id = UrlParameter.Optional, uplineId = UrlParameter.Optional, 
+                    userId = UrlParameter.Optional, siteName = UrlParameter.Optional 
+                },
                 new[] { this.ControllerNameSpace });
         }       
     }

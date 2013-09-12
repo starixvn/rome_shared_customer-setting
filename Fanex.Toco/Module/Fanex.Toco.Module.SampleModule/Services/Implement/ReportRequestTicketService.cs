@@ -24,7 +24,6 @@ using Fanex.CustomerSetting.Module.ProgressiveModule.Services.Interface;
 
 namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement
 {
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ReportRequestTicketService : ServiceBase, IReportRequestTicketService
     {
         private IReportRequestTicketRepository _reportRepository;

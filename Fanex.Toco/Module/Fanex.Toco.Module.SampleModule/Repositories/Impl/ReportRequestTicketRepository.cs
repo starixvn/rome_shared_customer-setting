@@ -16,7 +16,6 @@ using Fanex.Data;
 
 namespace Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Impl
 {
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ReportRequestTicketRepository : IReportRequestTicketRepository
     {
         public void GetMaxRequestNo(GetMaxRequestNoCriteria criteria, ref Hashtable outputParams)

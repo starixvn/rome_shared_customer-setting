@@ -26,7 +26,6 @@ namespace Fanex.CustomerSetting.Module.Racebook.App_Start
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            RegisterController(context);
             base.RegisterArea(context);
         }
        

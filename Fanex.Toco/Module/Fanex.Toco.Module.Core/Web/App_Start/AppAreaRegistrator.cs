@@ -25,21 +25,22 @@ namespace Fanex.CustomerSetting.Module.Core.Web.App_Start
             if(string.IsNullOrEmpty(controllerName))
                 return;
             _controllers.Add(controllerName);
-        }
+        }                
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            //RegisterController();
+            if (!string.IsNullOrWhiteSpace(this.ControllerName) && !string.IsNullOrWhiteSpace(this.ControllerNameSpace))
+            {
+                context.MapRoute(
+                    AreaName + "_" + ControllerName,
+                    AreaName + "/" + ControllerName + "/{controller}/{action}/{id}/{uplineId}",
+                    new { action = "Index", id = UrlParameter.Optional, uplineId = UrlParameter.Optional },
+                    new[] { ControllerNameSpace });
+            }
         }
 
         protected void RegisterController(AreaRegistrationContext context)
         {
-            context.MapRoute(
-                AreaName + "_" + ControllerName,
-                AreaName + "/" + ControllerName + "/{controller}/{action}/{id}/{uplineId}",
-                new { action = "Index", id = UrlParameter.Optional, uplineId = UrlParameter.Optional },
-                new[] { ControllerNameSpace });
         }
     }
 }

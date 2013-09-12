@@ -26,7 +26,6 @@ namespace Fanex.CustomerSetting.Module.ProgressiveModule.App_Start
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            RegisterController(context);
             base.RegisterArea(context);
         }
        

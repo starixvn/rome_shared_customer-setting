@@ -1,7 +1,7 @@
-﻿using System.Web.Mvc;
-
-namespace Fanex.CustomerSetting.Module.Common.App_Start
+﻿namespace Fanex.CustomerSetting.Module.Common.App_Start
 {
+    using System.Web.Mvc;
+
     public class FilterConfig
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)

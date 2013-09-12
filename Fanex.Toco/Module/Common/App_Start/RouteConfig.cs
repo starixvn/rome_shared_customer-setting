@@ -1,8 +1,8 @@
-﻿using System.Reflection;
-using System.Web.Mvc;
-
-namespace Fanex.CustomerSetting.Module.Common.App_Start
+﻿namespace Fanex.CustomerSetting.Module.Common.App_Start
 {
+    using System.Reflection;
+    using System.Web.Mvc;
+
     public class RouteConfig
     {
         public static void RegisterRoutes(string areaName, AreaRegistrationContext context)
@@ -12,7 +12,7 @@ namespace Fanex.CustomerSetting.Module.Common.App_Start
                areaName  "_Default",
                 "/{action}/{id}",
                 new { controller = "Home", action = "Index", apiId = UrlParameter.Optional }, new[] { controllerName });
-             * 
+             *
              * */
 
             context.MapRoute(
@@ -21,7 +21,5 @@ namespace Fanex.CustomerSetting.Module.Common.App_Start
                 new { action = "Index", id = UrlParameter.Optional },
                 new[] { controllerName });
         }
-
-        
     }
 }

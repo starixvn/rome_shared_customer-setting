@@ -34,8 +34,7 @@ namespace Fanex.CustomerSetting.Security.App_Start
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            this.RegisterController(context);
-            this.RegisterArea(context);
+            base.RegisterArea(context);
         }       
     }
 }

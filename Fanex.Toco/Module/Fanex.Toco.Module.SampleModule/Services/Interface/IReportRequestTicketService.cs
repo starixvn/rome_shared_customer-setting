@@ -14,7 +14,6 @@ using Fanex.CustomerSetting.Module.ProgressiveModule.Entities.ReportRequestTicke
 
 namespace Fanex.CustomerSetting.Module.ProgressiveModule.Services.Interface
 {
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public interface IReportRequestTicketService
     {
         RequestTicketInfo GetRequestTicketReport(GetRequestTicketReportCriteria criteria);

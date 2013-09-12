@@ -13,7 +13,6 @@ using Fanex.CustomerSetting.Module.ProgressiveModule.Criteria.ReportRequestTicke
 
 namespace Fanex.CustomerSetting.Module.ProgressiveModule.Repositories.Interface
 {
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public interface IReportRequestTicketRepository
     {
         void GetMaxRequestNo(GetMaxRequestNoCriteria criteria, ref Hashtable outputParams);

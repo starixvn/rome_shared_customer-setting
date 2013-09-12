@@ -58,12 +58,12 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Base
             }
         }
 
-        public Fanex.CustomerSetting.Module.Casino.Services.Impl.CasinoManager CasinoService
-        {
-            get
-            {
-                return Fanex.CustomerSetting.Module.Casino.Services.Impl.CasinoManager.Instance;
-            }
-        }
+        //public Fanex.CustomerSetting.Module.Casino.Services.Impl.CasinoManager CasinoService
+        //{
+        //    get
+        //    {
+        //        return Fanex.CustomerSetting.Module.Casino.Services.Impl.CasinoManager.Instance;
+        //    }
+        //}
     }
 }
