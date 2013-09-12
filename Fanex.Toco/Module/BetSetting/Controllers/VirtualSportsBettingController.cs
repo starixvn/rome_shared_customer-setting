@@ -37,7 +37,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
 
             ViewBag.Username = customer.Username;
 
-            var bettingLimitService = new CustomerService();
+            var bettingLimitService = this.VirtualSportsService;
             var model = bettingLimitService.GetCustomer(new RequestContext
             {
                 AdminId = userId,
@@ -92,7 +92,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
                 IP = HttpContext.Request.UserHostAddress
             };
 
-            var bettingLimitService = new CustomerService();
+            var bettingLimitService = this.VirtualSportsService;
             var oldSetting = bettingLimitService.GetCustomer(requestContext);
             var result = bettingLimitService.SaveCustomer(oldSetting, newSetting, requestContext, new Hashtable());
 

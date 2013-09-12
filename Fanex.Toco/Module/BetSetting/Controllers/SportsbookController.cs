@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="SportsbookBettingController.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="SportsbookController.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -18,7 +18,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
     using Newtonsoft.Json.Serialization;
 
     /// <summary>
-    /// All Bet Settings
+    /// Sportsbook Bet Settings
     /// </summary>
     public class SportsbookController : BettingControllerBase
     {
@@ -38,7 +38,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
 
             ViewBag.Username = customer.Username;
 
-            var bettingLimitService = new BettingLimitService();
+            var bettingLimitService = this.SportsbookService;
 
             var currentContext = new RequestContext()
             {
@@ -87,7 +87,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
                 Language = "En"
             };
 
-            var bettingLimitService = new BettingLimitService();
+            var bettingLimitService = this.SportsbookService;
 
             var result = bettingLimitService.UpdateBetting(bettingLimit, requestContext);
 

@@ -100,9 +100,21 @@
     <Folder Include="Entities\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bingo\Bingo.csproj">
+      <Project>{8B0CB9F3-0D8F-4B0B-8F66-931BFE44B40A}</Project>
+      <Name>Bingo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Casino\Casino.csproj">
+      <Project>{5F8F3877-90E3-48A3-BAD7-4207DCBA088D}</Project>
+      <Name>Casino</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fanex.Toco.Module.Core\_Core.csproj">
       <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
       <Name>_Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LiveCasino\LiveCasino.csproj">
+      <Project>{A2FACB19-D836-4662-A763-3559CD563C9E}</Project>
+      <Name>LiveCasino</Name>
     </ProjectReference>
     <ProjectReference Include="..\_Security\Security.csproj">
       <Project>{91E16AE3-1209-4BF2-8846-7E36363167B3}</Project>

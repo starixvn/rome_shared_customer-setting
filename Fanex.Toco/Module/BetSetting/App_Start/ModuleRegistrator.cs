@@ -1,4 +1,13 @@
-﻿namespace Fanex.CustomerSetting.Module.LeftPanel.App_Start
+﻿// --------------------------------------------------------------------------
+// <copyright file="ModuleRegistrator.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Andy.Nguyen" date="2013.9.12">StyleCop</change>
+// </history>
+
+namespace Fanex.CustomerSetting.Module.LeftPanel.App_Start
 {
     using System.Reflection;
     using System.Web.Mvc;
@@ -6,7 +15,6 @@
 
     public class ModuleRegistrator : AppAreaRegistrator 
     {
-
         protected override string ControllerName
         {
             get
@@ -27,10 +35,10 @@
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                AreaName + "_" + ControllerName,
-                AreaName + "/" + ControllerName + "/{controller}/{action}/{id}/{uplineId}/{userId}/{siteName}",
+                this.AreaName + "_" + this.ControllerName,
+                this.AreaName + "/" + this.ControllerName + "/{controller}/{action}/{id}/{uplineId}/{userId}/{siteName}",
                 new { action = "Index", id = UrlParameter.Optional, uplineId = UrlParameter.Optional, userId = UrlParameter.Optional, siteName = UrlParameter.Optional },
-                new[] { ControllerNameSpace });
+                new[] { this.ControllerNameSpace });
         }       
     }
 }
