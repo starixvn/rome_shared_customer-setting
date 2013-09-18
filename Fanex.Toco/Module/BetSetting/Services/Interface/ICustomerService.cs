@@ -1,9 +1,16 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="ICustomerService.cs" company="">
-// TODO: Update copyright text.
+﻿// ************************************************************************************
+// <copyright file="ICustomerService.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// ************************************************************************************
+// <history>
+//     <change who="Andy.Nguyen">Create/Run StyleCop.</change>
+// </history>
+// ************************************************************************************
 
+/// <summary>
+/// The Interface namespace.
+/// </summary>
 namespace Fanex.CustomerSetting.Module.BetSetting.Services.Interface
 {
     using Fanex.CustomerSetting.Module.BetSetting.ViewModels;
@@ -13,8 +20,18 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Services.Interface
     /// </summary>
     public interface ICustomerService
     {
+        /// <summary>
+        /// Users the information.
+        /// </summary>
+        /// <param name="custId">The customer identifier.</param>
+        /// <returns>Customer object.</returns>
         Customer UserInfo(int custId);
 
+        /// <summary>
+        /// Users the group identifier.
+        /// </summary>
+        /// <param name="custId">The customer identifier.</param>
+        /// <returns>System.Int32 object.</returns>
         int UserGroupId(int custId);
     }
 }

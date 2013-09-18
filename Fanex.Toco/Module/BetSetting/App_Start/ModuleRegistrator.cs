@@ -1,20 +1,31 @@
-﻿// --------------------------------------------------------------------------
+﻿// ************************************************************************************
 // <copyright file="ModuleRegistrator.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// --------------------------------------------------------------------------
+// ************************************************************************************
 // <history>
-//   <change who="Andy.Nguyen" date="2013.9.12">StyleCop</change>
+//     <change who="Andy.Nguyen">Create/Run StyleCop.</change>
 // </history>
+// ************************************************************************************
 
+/// <summary>
+/// The App_Start namespace.
+/// </summary>
 namespace Fanex.CustomerSetting.Module.LeftPanel.App_Start
 {
     using System.Reflection;
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.Core.Web.App_Start;
 
+    /// <summary>
+    /// Class Module Registration.
+    /// </summary>
     public class ModuleRegistrator : AppAreaRegistrator 
     {
+        /// <summary>
+        /// Gets the name of the controller.
+        /// </summary>
+        /// <value>The name of the controller.</value>
         protected override string ControllerName
         {
             get
@@ -23,6 +34,10 @@ namespace Fanex.CustomerSetting.Module.LeftPanel.App_Start
             }
         }
 
+        /// <summary>
+        /// Gets the controller name space.
+        /// </summary>
+        /// <value>The controller name space.</value>
         protected override string ControllerNameSpace
         {
             get
@@ -32,6 +47,10 @@ namespace Fanex.CustomerSetting.Module.LeftPanel.App_Start
             }
         }
 
+        /// <summary>
+        /// Registers the area.
+        /// </summary>
+        /// <param name="context">The context.</param>
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(

@@ -1,9 +1,16 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="CustomerDao.cs" company="">
-// TODO: Update copyright text.
+﻿// ************************************************************************************
+// <copyright file="CustomerDao.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// ************************************************************************************
+// <history>
+//     <change who="Andy.Nguyen">Create/Run StyleCop.</change>
+// </history>
+// ************************************************************************************
 
+/// <summary>
+/// The Impl namespace.
+/// </summary>
 namespace Fanex.CustomerSetting.Module.BetSetting.Repositories.Impl
 {
     using System.Collections;
@@ -17,6 +24,11 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Repositories.Impl
     /// </summary>
     public class CustomerDao : ICustomerDao
     {
+        /// <summary>
+        /// Users the information.
+        /// </summary>
+        /// <param name="custId">The customer identifier.</param>
+        /// <returns>Customer object.</returns>
         public Customer UserInfo(int custId)
         {
             var param = new Hashtable();
@@ -24,7 +36,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Repositories.Impl
 
             using (var objDb = new ObjectDb("Age_CustomerSelUserInfo"))
             {
-                using (var reader =  objDb.ExecuteReader(param))
+                using (var reader = objDb.ExecuteReader(param))
                 {
                     if (reader != null)
                     {
@@ -40,7 +52,10 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Repositories.Impl
                                 HomePhone = reader.ToString("phone"),
                                 Email = reader.ToString("email"),
                                 Fax = reader.ToString("fax"),
-                                RoleId = reader.ToInt("roleid")
+                                RoleId = reader.ToInt("roleid"),
+                                SyncBingo = reader.ToBool("syncBingo"),
+                                SyncCasino = reader.ToBool("syncCasino"),
+                                SyncLiveCasino = reader.ToBool("syncLiveCasino")
                             };
                         }
                     }
@@ -50,6 +65,11 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Repositories.Impl
             }
         }
 
+        /// <summary>
+        /// Users the group identifier.
+        /// </summary>
+        /// <param name="custId">The customer identifier.</param>
+        /// <returns>System.Int32 object.</returns>
         public int UserGroupId(int custId)
         {
             var param = new Hashtable();

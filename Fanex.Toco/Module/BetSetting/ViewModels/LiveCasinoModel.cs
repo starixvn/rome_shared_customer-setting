@@ -1,0 +1,36 @@
+﻿// ************************************************************************************
+// <copyright file="LiveCasinoModel.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// ************************************************************************************
+// <history>
+//     <change who="Andy.Nguyen">Create/Run StyleCop.</change>
+// </history>
+// ************************************************************************************
+
+/// <summary>
+/// The ViewModels namespace.
+/// </summary>
+namespace Fanex.CustomerSetting.Module.BetSetting.ViewModels
+{
+    using System.Collections.Generic;
+    using Fanex.LiveCasinoSetting.Model;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public class LiveCasinoModel
+    {
+        public MemberWinLimit MemberWinLimit
+        {
+            get;
+            set;
+        }
+
+        public List<GameType> BettingLimits
+        {
+            get;
+            set;
+        }
+    }
+}

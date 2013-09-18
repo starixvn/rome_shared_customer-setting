@@ -78,5 +78,23 @@ namespace Fanex.CustomerSetting.Module.BetSetting.ViewModels
             get;
             set;
         }
+
+        public bool SyncCasino
+        {
+            get;
+            set;
+        }
+
+        public bool SyncBingo
+        {
+            get;
+            set;
+        }
+
+        public bool SyncLiveCasino
+        {
+            get;
+            set;
+        }
     }
 }

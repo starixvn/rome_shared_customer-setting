@@ -23,6 +23,14 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
     /// </summary>
     public class RacingBettingController : BettingControllerBase
     {
+        /// <summary>
+        /// Indexes the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="uplineId">The up-line identifier.</param>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="siteName">Name of the site.</param>
+        /// <returns>ActionResult object.</returns>
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "RacingBetting")]
         public ActionResult Index(int id, int uplineId, int userId, string siteName)
         {
@@ -57,6 +65,14 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
             return this.View("~/Areas/CustomerSetting/Views/BetSetting/Racing/Index.cshtml", model);
         }
 
+        /// <summary>
+        /// Edits the bet setting post.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="uplineId">The up-line identifier.</param>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="txtCustomerObject">The text customer object.</param>
+        /// <returns>ActionResult object.</returns>
         [HttpPost]
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "RacingBetting")]
         public ActionResult EditBetSettingPost(int id, int uplineId, int userId, string txtCustomerObject)

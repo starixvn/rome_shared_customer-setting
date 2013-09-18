@@ -1,9 +1,16 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="CustomerService.cs" company="">
-// TODO: Update copyright text.
+﻿// ************************************************************************************
+// <copyright file="CustomerService.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// ************************************************************************************
+// <history>
+//     <change who="Andy.Nguyen">Create/Run StyleCop.</change>
+// </history>
+// ************************************************************************************
 
+/// <summary>
+/// The Impl namespace.
+/// </summary>
 namespace Fanex.CustomerSetting.Module.BetSetting.Services.Impl
 {
     using Fanex.CustomerSetting.Module.BetSetting.Repositories.Impl;
@@ -16,6 +23,11 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Services.Impl
     /// </summary>
     public class CustomerService : ICustomerService
     {
+        /// <summary>
+        /// Users the information.
+        /// </summary>
+        /// <param name="custId">The customer identifier.</param>
+        /// <returns>Customer object.</returns>
         public Customer UserInfo(int custId)
         {
             ICustomerDao dao = new CustomerDao();
@@ -23,7 +35,11 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Services.Impl
             return dao.UserInfo(custId);
         }
 
-
+        /// <summary>
+        /// Users the group identifier.
+        /// </summary>
+        /// <param name="custId">The customer identifier.</param>
+        /// <returns>System.Int32 object.</returns>
         public int UserGroupId(int custId)
         {
             ICustomerDao dao = new CustomerDao();

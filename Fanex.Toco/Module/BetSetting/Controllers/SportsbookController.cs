@@ -1,12 +1,16 @@
-﻿// --------------------------------------------------------------------------
+﻿// ************************************************************************************
 // <copyright file="SportsbookController.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// --------------------------------------------------------------------------
+// ************************************************************************************
 // <history>
-//   <change who="Andy.Nguyen" date="2013.8.2">Created</change>
+//     <change who="Andy.Nguyen">Create/Run StyleCop.</change>
 // </history>
+// ************************************************************************************
 
+/// <summary>
+/// The Controllers namespace.
+/// </summary>
 namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
 {
     using System.Web.Mvc;
@@ -18,12 +22,20 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
     using Newtonsoft.Json.Serialization;
 
     /// <summary>
-    /// Sportsbook Bet Settings.
+    /// Sports book Bet Settings.
     /// </summary>
     public class SportsbookController : BettingControllerBase
     {
         #region Sportsbook Bet Setting
 
+        /// <summary>
+        /// Indexes the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="uplineId">The up-line identifier.</param>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="siteName">Name of the site.</param>
+        /// <returns>ActionResult object.</returns>
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "SportsbookBetting")]
         public ActionResult Index(int id, int uplineId, int userId, string siteName)
         {
@@ -38,7 +50,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
 
             ViewBag.Username = customer.Username;
 
-            var bettingLimitService = this.SportsbookService;
+            var bettingLimitService = this.SportsBookService;
 
             var currentContext = new RequestContext()
             {
@@ -57,6 +69,14 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
             return this.PartialView("~/Areas/CustomerSetting/Views/BetSetting/Sportsbook/Index.cshtml", bettingLimit);
         }
 
+        /// <summary>
+        /// Edits the bet setting post.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="uplineId">The up-line identifier.</param>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="txtCustomerObject">The text customer object.</param>
+        /// <returns>ActionResult object.</returns>
         [HttpPost]
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "SportsbookBetting")]
         public ActionResult EditBetSettingPost(int id, int uplineId, int userId, string txtCustomerObject)
@@ -87,7 +107,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
                 Language = "En"
             };
 
-            var bettingLimitService = this.SportsbookService;
+            var bettingLimitService = this.SportsBookService;
 
             var result = bettingLimitService.UpdateBetting(bettingLimit, requestContext);
 

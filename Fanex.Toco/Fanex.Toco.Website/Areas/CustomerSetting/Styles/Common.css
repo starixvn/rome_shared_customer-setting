@@ -388,3 +388,7 @@ select,.select
     min-width: 819px;
     min-height: 223px;
 }
+.floatLeft
+{
+    float: left;
+}

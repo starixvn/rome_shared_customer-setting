@@ -1,12 +1,16 @@
-﻿// --------------------------------------------------------------------------
+﻿// ************************************************************************************
 // <copyright file="BettingControllerBase.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// --------------------------------------------------------------------------
+// ************************************************************************************
 // <history>
-//   <change who="Andy.Nguyen" date="2013.8.28">Created</change>
+//     <change who="Andy.Nguyen">Create/Run StyleCop.</change>
 // </history>
+// ************************************************************************************
 
+/// <summary>
+/// The Base namespace.
+/// </summary>
 namespace Fanex.CustomerSetting.Module.BetSetting.Base
 {
     using Fanex.CustomerSetting.Module.BetSetting.Services.Impl;
@@ -14,24 +18,88 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Base
     using Fanex.CustomerSetting.Module.BetSetting.ViewModels;
     using Fanex.CustomerSetting.Module.Casino.Services.Impl;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
+    using Fanex.LiveCasinoSetting.Business;
 
     /// <summary>
-    /// Base class for getting customer info.
+    /// Base class for getting customer info and services.
     /// </summary>
     public class BettingControllerBase : BaseController
     {
-        private Fanex.PTEngine.Services.IBettingLimitService _sportsbookService = new Fanex.PTEngine.Services.BettingLimitService();
+        /// <summary>
+        /// The _sports book service.
+        /// </summary>
+        private Fanex.PTEngine.Services.IBettingLimitService _sportsBookService = new Fanex.PTEngine.Services.BettingLimitService();
+        
+        /// <summary>
+        /// The _racing service.
+        /// </summary>
         private Fanex.PTRacing.Services.ICustomerService _racingService = new Fanex.PTRacing.Services.CustomerService();
+        
+        /// <summary>
+        /// The _virtual sports service.
+        /// </summary>
         private Fanex.PTVirtualSports.Services.ICustomerService _virtualSportsService = new Fanex.PTVirtualSports.Services.CustomerService();
+        
+        /// <summary>
+        /// The _member win limit service.
+        /// </summary>
+        private IMemberWinLimitService _memberWinLimitService = new MemberWinLimitService();
+        
+        /// <summary>
+        /// The _game setting service.
+        /// </summary>
+        private IGameSettingService _gameSettingService = new GameSettingService();
 
-        public Fanex.PTEngine.Services.IBettingLimitService SportsbookService
+        /// <summary>
+        /// The _setting service.
+        /// </summary>
+        private ISettingService _settingService = new SettingService();
+
+        /// <summary>
+        /// The _log service.
+        /// </summary>
+        private ILogWriterService _logService = new LogWriterService();
+
+        /// <summary>
+        /// Gets the log service.
+        /// </summary>
+        /// <value>The log service.</value>
+        public ILogWriterService LogService
         {
             get
             {
-                return this._sportsbookService ?? new Fanex.PTEngine.Services.BettingLimitService();
+                return this._logService ?? new LogWriterService();
             }
         }
 
+        /// <summary>
+        /// Gets the setting service.
+        /// </summary>
+        /// <value>The setting service.</value>
+        public ISettingService SettingService
+        {
+            get
+            {
+                return this._settingService ?? new SettingService();
+            }
+        }
+
+        /// <summary>
+        /// Gets the sports book service.
+        /// </summary>
+        /// <value>The sports book service.</value>
+        public Fanex.PTEngine.Services.IBettingLimitService SportsBookService
+        {
+            get
+            {
+                return this._sportsBookService ?? new Fanex.PTEngine.Services.BettingLimitService();
+            }
+        }
+
+        /// <summary>
+        /// Gets the racing service.
+        /// </summary>
+        /// <value>The racing service.</value>
         public Fanex.PTRacing.Services.ICustomerService RacingService
         {
             get
@@ -40,6 +108,10 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Base
             }
         }
 
+        /// <summary>
+        /// Gets the virtual sports service.
+        /// </summary>
+        /// <value>The virtual sports service.</value>
         public Fanex.PTVirtualSports.Services.ICustomerService VirtualSportsService
         {
             get
@@ -48,6 +120,10 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Base
             }
         }
 
+        /// <summary>
+        /// Gets the casino service.
+        /// </summary>
+        /// <value>The casino service.</value>
         public CasinoManager CasinoService
         {
             get
@@ -56,6 +132,36 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Base
             }
         }
 
+        /// <summary>
+        /// Gets the member win limit service.
+        /// </summary>
+        /// <value>The member win limit service.</value>
+        public IMemberWinLimitService MemberWinLimitService
+        {
+            get
+            {
+                return this._memberWinLimitService ?? new MemberWinLimitService();
+            }
+        }
+
+        /// <summary>
+        /// Gets the game setting service.
+        /// </summary>
+        /// <value>The game setting service.</value>
+        public IGameSettingService GameSettingService
+        {
+            get
+            {
+                return this._gameSettingService ?? new GameSettingService();
+            }
+        }
+
+        /// <summary>
+        /// Customer information.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="userId">The user identifier.</param>
+        /// <returns>Customer object.</returns>
         public Customer CustomerInfo(int id, int userId)
         {
             ICustomerService customerService = new CustomerService();
