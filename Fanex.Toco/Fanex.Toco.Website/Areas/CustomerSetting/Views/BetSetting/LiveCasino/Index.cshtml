@@ -37,7 +37,7 @@
                 <td class="bold R">Maximum Win</td>
                 <td class="bold">
                     <select id="winLimit" style="width: 80px !important">
-                        <option ng-repeat="limit in model.memberWinLimit.limits" ng-init="isUnlimited = limit == 0; limitText = (isUnlimited ? 'Unlimited' : limit + 'X')" ng-selected="limit == model.memberWinLimit.maxWinLimit" ng-click="model.memberWinLimit.maxWinLimit = limit">{{limitText}}</option>
+                        <option ng-repeat="limit in model.memberWinLimit.limits" ng-init="isUnlimited = limit == 0; limitText = isUnlimited ? 'Unlimited' : limit + 'X'" ng-selected="limit == model.memberWinLimit.maxWinLimit" ng-click="model.memberWinLimit.maxWinLimit = limit">{{limitText}}</option>
                     </select>
                     &nbsp;<span class="normal">on given credit</span>
                 </td>
@@ -75,13 +75,28 @@
         var custId = parseInt('@id');
         var uplineId = parseInt('@uplineId');
         var userId = parseInt('@userId');
-        var siteName = '@siteName';      
+        var siteName = '@siteName';
+        var syncCasino = '@ViewBag.SyncCasino';
+        var syncBingo = '@ViewBag.SyncBingo';
+        var syncLiveCasino = '@ViewBag.SyncLiveCasino';
 
         function toUrl(relativeUrl) {
             return '@Url.Content("~/CustomerSetting/BetSetting/")' + relativeUrl;
         }
 
         $(document).ready(function () {
+            if (syncBingo == 'False') {
+                $('#tab6').remove();
+            }
+
+            if (syncCasino == 'False') {
+                $('#tab5').remove();
+            }
+
+            if (syncLiveCasino == 'False') {
+                $('#tab4').remove();
+            }
+
             $('#tab4').addClass('ui-tabs-active ui-state-active');
             $('#tab1').removeClass('ui-tabs-active ui-state-active');
             $('#tab2').removeClass('ui-tabs-active ui-state-active');

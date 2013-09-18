@@ -44,6 +44,9 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
             }
 
             ViewBag.Username = customer.Username;
+            ViewBag.SyncCasino = customer.SyncCasino;
+            ViewBag.SyncBingo = customer.SyncBingo;
+            ViewBag.SyncLiveCasino = customer.SyncLiveCasino;
 
             var bettingLimitService = this.VirtualSportsService;
             var model = bettingLimitService.GetCustomer(new RequestContext

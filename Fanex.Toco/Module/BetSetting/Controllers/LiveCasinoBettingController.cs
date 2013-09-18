@@ -51,6 +51,10 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
             }
 
             ViewBag.Username = customer.Username;
+            ViewBag.SyncCasino = customer.SyncCasino;
+            ViewBag.SyncBingo = customer.SyncBingo;
+            ViewBag.SyncLiveCasino = customer.SyncLiveCasino;
+
             IMemberWinLimit winLimit = this.MemberWinLimitService.GetMemberWinLimit(id);
             List<GameType> bettingLimit = this.GameSettingService.GetByCustomerId(id);
             CustomerInfo customerInfo = this.SettingService.GetCustomerInfo(id);
