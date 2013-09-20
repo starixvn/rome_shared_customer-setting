@@ -96,5 +96,11 @@ namespace Fanex.CustomerSetting.Module.BetSetting.ViewModels
             get;
             set;
         }
+
+        public string CurrencyName
+        {
+            get;
+            set;
+        }
     }
 }

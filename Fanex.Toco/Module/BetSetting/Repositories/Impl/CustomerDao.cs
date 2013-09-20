@@ -55,7 +55,8 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Repositories.Impl
                                 RoleId = reader.ToInt("roleid"),
                                 SyncBingo = reader.ToBool("syncBingo"),
                                 SyncCasino = reader.ToBool("syncCasino"),
-                                SyncLiveCasino = reader.ToBool("syncLiveCasino")
+                                SyncLiveCasino = reader.ToBool("syncLiveCasino"),
+                                CurrencyName = reader.ToString("currencyName")
                             };
                         }
                     }
