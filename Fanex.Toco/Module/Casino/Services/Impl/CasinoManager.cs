@@ -18,6 +18,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
     using Fanex.CustomerSetting.Module.Casino.ViewModels;
     using Fanex.CustomerSetting.Module.Core;
     using Fanex.CustomerSetting.Module.Core.Models;
+    using System.Data.SqlClient;
     
     /// <summary>
     /// TODO: Update summary.
@@ -130,7 +131,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 var gameGroup = new GameGroup();
                 
                 // Commission
-                gameGroup.Mco = synced ? Utils.ToDecimal(row["UplineMAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["MAgentRollingRate"]).Format(4);
+                gameGroup.Mco = Utils.ToDecimal(row["MAgentRollingRate"]).Format(4);//synced ? Utils.ToDecimal(row["UplineMAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["MAgentRollingRate"]).Format(4);
                 gameGroup.Sco = synced ? Utils.ToDecimal(row["UplineSMAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["SMAgentRollingRate"]).Format(4);
 
                 if (!synced)
@@ -210,7 +211,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
                 // Master preset PT
                 gameGroup.M3 = !synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
-                gameGroup.M2 = !synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
+                gameGroup.M2 = Utils.ToDecimal(row["MPositionTaking"]).Format(2);//!synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
                                 
                 // Agent Max PT
                 gameGroup.A2 = synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
@@ -319,8 +320,9 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
                 // Agent preset PT
                 gameGroup.M2 = synced ? Utils.ToDecimal(row["UplineMaxPositionTaking"]).Format(2) : Utils.ToDecimal(row["MaxPositionTaking"]).Format(2);
-                gameGroup.M1 = !synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
-                
+                gameGroup.M1 = Utils.ToDecimal(row["APositionTaking"]).Format(2);//!synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
+                gameGroup.N2 = Utils.ToDecimal(row["UplineMinPositionTaking"]).Format(2);
+
                 // Assign game types
                 var gameTypes = this.GetGameTypeMember(id, gameGroup.GameGroupID, synced);
                 gameGroup.GameTypes = gameTypes;
@@ -426,6 +428,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 // Agent preset PT
                 gameGroup.M3 = Utils.ToDecimal(row["MPositionTaking"]).Format(2);
                 gameGroup.M2 = Utils.ToDecimal(row["APositionTaking"]).Format(2);
+                var min = Utils.ToDecimal(row["MasterMinPositionTaking"]).Format(2) - Utils.ToDecimal(row["APositionTaking"]).Format(2);
+                gameGroup.N2 = min < 0 ? 0 : min;
 
                 // Assign game types
                 var gameTypes = this.GetGameTypeMemberByMaster(custId, gameGroup.GameGroupID);
@@ -500,37 +504,44 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             // Check whether casino is synced or not to insert customer settings for direct downline only
             if (!customerModel.CasinoSync)
             {
-                settingsInserted = cust.InsertCustSetting(
-                    "01", 
-                    customerModel.IBCCustID, 
-                    customerModel.UserName, 
-                    customerModel.UserName2, 
-                    customerModel.FirstName, 
-                    customerModel.LastName, 
-                    customerModel.UserPwd, 
-                    customerModel.Phone, 
-                    customerModel.MobilePhone, 
-                    customerModel.Currency, 
-                    customerModel.Fax, 
-                    customerModel.Closed, 
-                    customerModel.Suspend, 
-                    customerModel.IsEnablePT, 
-                    (decimal)customerModel.MaxWin, 
-                    (decimal)customerModel.MaxLose, 
-                    true, 
-                    (decimal)customerModel.MaxTransferCredit, 
-                    customerModel.SIBCCustID, 
-                    customerModel.MIBCCustID, 
-                    customerModel.AIBCCustID, 
-                    customerModel.PTByGameType, 
-                    customerModel.RoleId.ToString(), 
-                    DateTime.Now, 
-                    ip, 
-                    modifiedId, 
-                    modifiedBy, 
-                    fromSystem, 
-                    customerModel.IsAutoReset,
-                    false, false);
+                try
+                {
+                    settingsInserted = cust.InsertCustSetting(
+                        "01",
+                        customerModel.IBCCustID,
+                        customerModel.UserName,
+                        customerModel.UserName2,
+                        customerModel.FirstName,
+                        customerModel.LastName,
+                        customerModel.UserPwd,
+                        customerModel.Phone,
+                        customerModel.MobilePhone,
+                        customerModel.Currency,
+                        customerModel.Fax,
+                        customerModel.Closed,
+                        customerModel.Suspend,
+                        customerModel.IsEnablePT,
+                        (decimal)customerModel.MaxWin,
+                        (decimal)customerModel.MaxLose,
+                        true,
+                        (decimal)customerModel.MaxTransferCredit,
+                        customerModel.SIBCCustID,
+                        customerModel.MIBCCustID,
+                        customerModel.AIBCCustID,
+                        customerModel.PTByGameType,
+                        customerModel.RoleId.ToString(),
+                        DateTime.Now,
+                        ip,
+                        modifiedId,
+                        modifiedBy,
+                        fromSystem,
+                        customerModel.IsAutoReset,
+                        false, false);
+                }
+                catch (Exception)
+                {
+                    // Bypass this exception because this customer had setting but update status failed, before.
+                }
             }
 
             // Update Status for direct downline only
@@ -538,8 +549,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             {                
                 statusUpdated = this.UpdateCSStatus(
                     custId, 
-                    true, 
-                    customerModel.CasinoDisabled, 
+                    true,
+                    customerModel.UplineDisabledCasino ? true : customerModel.CasinoDisabled, 
                     customerModel.EnableDownline, 
                     uplineId, 
                     string.Empty, 
@@ -611,37 +622,44 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             // Check whether casino is synced or not to insert customer settings for direct downline only
             if (!customerModel.CasinoSync)
             {
-                settingsInserted = cust.InsertCustSetting(
-                    "01",
-                    customerModel.IBCCustID,
-                    customerModel.UserName,
-                    customerModel.UserName2,
-                    customerModel.FirstName,
-                    customerModel.LastName,
-                    customerModel.UserPwd,
-                    customerModel.Phone,
-                    customerModel.MobilePhone,
-                    customerModel.Currency,
-                    customerModel.Fax,
-                    customerModel.Closed,
-                    customerModel.Suspend,
-                    customerModel.IsEnablePT,
-                    (decimal)customerModel.MaxWin,
-                    (decimal)customerModel.MaxLose,
-                    true,
-                    (decimal)customerModel.MaxTransferCredit,
-                    customerModel.SIBCCustID,
-                    customerModel.MIBCCustID,
-                    customerModel.AIBCCustID,
-                    customerModel.PTByGameType,
-                    customerModel.RoleId.ToString(),
-                    DateTime.Now,
-                    ip,
-                    modifiedId,
-                    modifiedBy,
-                    fromSystem,
-                    customerModel.IsAutoReset,
-                    false, false);
+                try
+                {
+                    settingsInserted = cust.InsertCustSetting(
+                        "01",
+                        customerModel.IBCCustID,
+                        customerModel.UserName,
+                        customerModel.UserName2,
+                        customerModel.FirstName,
+                        customerModel.LastName,
+                        customerModel.UserPwd,
+                        customerModel.Phone,
+                        customerModel.MobilePhone,
+                        customerModel.Currency,
+                        customerModel.Fax,
+                        customerModel.Closed,
+                        customerModel.Suspend,
+                        customerModel.IsEnablePT,
+                        (decimal)customerModel.MaxWin,
+                        (decimal)customerModel.MaxLose,
+                        true,
+                        (decimal)customerModel.MaxTransferCredit,
+                        customerModel.SIBCCustID,
+                        customerModel.MIBCCustID,
+                        customerModel.AIBCCustID,
+                        customerModel.PTByGameType,
+                        customerModel.RoleId.ToString(),
+                        DateTime.Now,
+                        ip,
+                        modifiedId,
+                        modifiedBy,
+                        fromSystem,
+                        customerModel.IsAutoReset,
+                        false, false);
+                }
+                catch (Exception)
+                {
+                    // Bypass this exception because this customer had setting but update status failed, before.
+                }
             }
 
             // Update Status for direct downline only
@@ -650,7 +668,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 statusUpdated = this.UpdateCSStatus(
                     custId,
                     true,
-                    customerModel.CasinoDisabled,
+                    customerModel.UplineDisabledCasino ? true : customerModel.CasinoDisabled,
                     customerModel.EnableDownline,
                     uplineId,
                     string.Empty,
@@ -722,37 +740,44 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             // Check whether casino is synced or not to insert customer settings for direct downline only
             if (!customerModel.CasinoSync)
             {
-                settingsInserted = cust.InsertCustSetting(
-                    "01",
-                    customerModel.IBCCustID,
-                    customerModel.UserName,
-                    customerModel.UserName2,
-                    customerModel.FirstName,
-                    customerModel.LastName,
-                    customerModel.UserPwd,
-                    customerModel.Phone,
-                    customerModel.MobilePhone,
-                    customerModel.Currency,
-                    customerModel.Fax,
-                    customerModel.Closed,
-                    customerModel.Suspend,
-                    customerModel.IsEnablePT,
-                    (decimal)customerModel.MaxWin,
-                    (decimal)customerModel.MaxLose,
-                    true,
-                    (decimal)customerModel.MaxTransferCredit,
-                    customerModel.SIBCCustID,
-                    customerModel.MIBCCustID,
-                    customerModel.AIBCCustID,
-                    customerModel.PTByGameType,
-                    customerModel.RoleId.ToString(),
-                    DateTime.Now,
-                    ip,
-                    modifiedId,
-                    modifiedBy,
-                    fromSystem,
-                    customerModel.IsAutoReset,
-                    false, false);
+                try
+                {
+                    settingsInserted = cust.InsertCustSetting(
+                        "01",
+                        customerModel.IBCCustID,
+                        customerModel.UserName,
+                        customerModel.UserName2,
+                        customerModel.FirstName,
+                        customerModel.LastName,
+                        customerModel.UserPwd,
+                        customerModel.Phone,
+                        customerModel.MobilePhone,
+                        customerModel.Currency,
+                        customerModel.Fax,
+                        customerModel.Closed,
+                        customerModel.Suspend,
+                        customerModel.IsEnablePT,
+                        (decimal)customerModel.MaxWin,
+                        (decimal)customerModel.MaxLose,
+                        true,
+                        (decimal)customerModel.MaxTransferCredit,
+                        customerModel.SIBCCustID,
+                        customerModel.MIBCCustID,
+                        customerModel.AIBCCustID,
+                        customerModel.PTByGameType,
+                        customerModel.RoleId.ToString(),
+                        DateTime.Now,
+                        ip,
+                        modifiedId,
+                        modifiedBy,
+                        fromSystem,
+                        customerModel.IsAutoReset,
+                        false, false);
+                }
+                catch (Exception)
+                {
+                    // Bypass this exception because this customer had setting but update status failed, before.
+                }
             }
 
             // Update Status for direct downline only
@@ -761,7 +786,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 statusUpdated = this.UpdateCSStatus(
                     custId,
                     true,
-                    customerModel.CasinoDisabled,
+                    customerModel.UplineDisabledCasino ? true : customerModel.CasinoDisabled,
                     customerModel.EnableDownline,
                     uplineId,
                     string.Empty,
@@ -1667,7 +1692,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             {
                 var gameType = new GameType();
 
-                gameType.Mco = synced ? Utils.ToDecimal(row["UplineMAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["MAgentRollingRate"]).Format(4);
+                gameType.Mco = Utils.ToDecimal(row["MAgentRollingRate"]).Format(4);//synced ? Utils.ToDecimal(row["UplineMAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["MAgentRollingRate"]).Format(4);
                 gameType.Sco = synced ? Utils.ToDecimal(row["UplineSMAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["SMAgentRollingRate"]).Format(4);
 
                 if (!synced)
@@ -1728,7 +1753,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
                 // Master preset PT
                 gameType.M3 = !synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
-                gameType.M2 = !synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
+                gameType.M2 = Utils.ToDecimal(row["MPositionTaking"]).Format(2);//!synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
 
                 // Agent Max PT
                 gameType.A2 = synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
@@ -1799,7 +1824,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
                 // Agent preset PT
                 gameType.M2 = synced ? Utils.ToDecimal(row["UplineMaxPositionTaking"]).Format(2) : Utils.ToDecimal(row["MaxPositionTaking"]).Format(2);
-                gameType.M1 = !synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
+                gameType.M1 = Utils.ToDecimal(row["APositionTaking"]).Format(2);//!synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
+                gameType.N2 = Utils.ToDecimal(row["UplineMinPositionTaking"]).Format(2);
 
                 // Betting limits
                 var stakes = this.GetStakeLevels(custId, gameType.GameTypeID);
@@ -1872,6 +1898,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 // Agent preset PT
                 gameType.M3 = Utils.ToDecimal(row["MPositionTaking"]).Format(2);
                 gameType.M2 = Utils.ToDecimal(row["APositionTaking"]).Format(2);
+                var min = Utils.ToDecimal(row["MasterMinPositionTaking"]).Format(2) - Utils.ToDecimal(row["APositionTaking"]).Format(2);
+                gameType.N2 = min < 0 ? 0 : min;
 
                 // Betting limits
                 var stakes = this.GetStakeLevels(custId, gameType.GameTypeID);

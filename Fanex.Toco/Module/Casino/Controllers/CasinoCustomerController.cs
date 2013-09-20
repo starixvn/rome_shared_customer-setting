@@ -20,6 +20,7 @@
             CasinoManager.Instance.GetCustSettingCS(ref customerInfo);
 
             customerInfo.UplineRoleId = customerUpline.RoleId;
+            customerInfo.IsAutoReset = !customerInfo.CasinoSync ? true : customerInfo.IsAutoReset;
 
             if (customerUpline.RoleId == customerInfo.RoleId)
             {
