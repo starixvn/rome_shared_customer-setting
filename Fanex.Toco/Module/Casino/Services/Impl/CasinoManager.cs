@@ -321,7 +321,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 // Agent preset PT
                 gameGroup.M2 = synced ? Utils.ToDecimal(row["UplineMaxPositionTaking"]).Format(2) : Utils.ToDecimal(row["MaxPositionTaking"]).Format(2);
                 gameGroup.M1 = Utils.ToDecimal(row["APositionTaking"]).Format(2);//!synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
-                gameGroup.N2 = Utils.ToDecimal(row["UplineMinPositionTaking"]).Format(2);
+                gameGroup.N2 = synced ? Utils.ToDecimal(row["UplineMinPositionTaking"]).Format(2) : Utils.ToDecimal(row["MinPositionTaking"]).Format(2);
 
                 // Assign game types
                 var gameTypes = this.GetGameTypeMember(id, gameGroup.GameGroupID, synced);
@@ -1825,7 +1825,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 // Agent preset PT
                 gameType.M2 = synced ? Utils.ToDecimal(row["UplineMaxPositionTaking"]).Format(2) : Utils.ToDecimal(row["MaxPositionTaking"]).Format(2);
                 gameType.M1 = Utils.ToDecimal(row["APositionTaking"]).Format(2);//!synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
-                gameType.N2 = Utils.ToDecimal(row["UplineMinPositionTaking"]).Format(2);
+                gameType.N2 = synced ? Utils.ToDecimal(row["UplineMinPositionTaking"]).Format(2) : Utils.ToDecimal(row["MinPositionTaking"]).Format(2);
 
                 // Betting limits
                 var stakes = this.GetStakeLevels(custId, gameType.GameTypeID);

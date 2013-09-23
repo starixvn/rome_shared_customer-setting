@@ -58,8 +58,23 @@
     <Reference Include="Fanex.PTVirtualSports">
       <HintPath>..\..\_Dependencies\Fanex\Fanex.PTVirtualSports.dll</HintPath>
     </Reference>
-    <Reference Include="IBCFile">
-      <HintPath>..\..\_Dependencies\IBCFile.dll</HintPath>
+    <Reference Include="IBCCrypt, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_Dependencies\Casino\IBCCrypt.dll</HintPath>
+    </Reference>
+    <Reference Include="IBCDBLibrary">
+      <HintPath>..\..\_Dependencies\Casino\IBCDBLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="ILogger, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_Dependencies\Casino\ILogger.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCasinoLibrary">
+      <HintPath>..\..\_Dependencies\Bingo\LiveCasinoLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.9.0, Culture=neutral, PublicKeyToken=b32731d11ce58905">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_Dependencies\Casino\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
       <HintPath>..\..\_Dependencies\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
@@ -67,8 +82,15 @@
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
       <HintPath>..\..\_Dependencies\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Unity">
+    <Reference Include="Microsoft.Practices.ObjectBuilder2">
+      <HintPath>..\..\_Dependencies\Microsoft.Practices.ObjectBuilder2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\_Dependencies\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration">
+      <HintPath>..\..\_Dependencies\Microsoft.Practices.Unity.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\_Dependencies\Web\Newtonsoft.Json.dll</HintPath>
@@ -83,6 +105,27 @@
     <Reference Include="SPSRemoting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\_Dependencies\SPSRemoting.dll</HintPath>
+    </Reference>
+    <Reference Include="Sunplus.Bingo.Core">
+      <HintPath>..\..\_Dependencies\Bingo\Sunplus.Bingo.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Sunplus.Bingo.Data">
+      <HintPath>..\..\_Dependencies\Bingo\Sunplus.Bingo.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Sunplus.Bingo.Data.LinqToSql">
+      <HintPath>..\..\_Dependencies\Bingo\Sunplus.Bingo.Data.LinqToSql.dll</HintPath>
+    </Reference>
+    <Reference Include="Sunplus.Bingo.Entities">
+      <HintPath>..\..\_Dependencies\Bingo\Sunplus.Bingo.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="Sunplus.Bingo.Services">
+      <HintPath>..\..\_Dependencies\Bingo\Sunplus.Bingo.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="Sunplus.Core.LoggingLib">
+      <HintPath>..\..\_Dependencies\Bingo\Sunplus.Core.LoggingLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Sunplus.Libraries.AOP">
+      <HintPath>..\..\_Dependencies\Casino\Sunplus.Libraries.AOP.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -101,6 +144,7 @@
   <ItemGroup>
     <Compile Include="App_Start\ModuleRegistrator.cs" />
     <Compile Include="Base\BettingControllerBase.cs" />
+    <Compile Include="Controllers\BingoBettingController.cs" />
     <Compile Include="Controllers\LiveCasinoBettingController.cs" />
     <Compile Include="Controllers\RacingBettingController.cs" />
     <Compile Include="Controllers\SportsbookController.cs" />
@@ -118,10 +162,6 @@
     <Folder Include="Entities\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bingo\Bingo.csproj">
-      <Project>{8B0CB9F3-0D8F-4B0B-8F66-931BFE44B40A}</Project>
-      <Name>Bingo</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Casino\Casino.csproj">
       <Project>{5F8F3877-90E3-48A3-BAD7-4207DCBA088D}</Project>
       <Name>Casino</Name>

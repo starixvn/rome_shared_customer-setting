@@ -155,6 +155,8 @@
     <Content Include="Areas\CustomerSetting\Styles\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
     <Content Include="Areas\CustomerSetting\Styles\images\uncopied.png" />
     <Content Include="Areas\CustomerSetting\Styles\jquery-ui.css" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Bingo\Scripts\BingoController.js" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Bingo\Styles\Bingo.css" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\LiveCasino\Scripts\LiveCasinoController.js" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\LiveCasino\Styles\LiveCasino.css" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Racing\Scripts\RacingController.js" />
@@ -498,7 +500,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\CustomerSetting\Views\BetSetting\Bingo\" />
     <Folder Include="Areas\CustomerSetting\Views\BetSetting\RngCasino\" />
     <Folder Include="Content\base\img\actions\dd\" />
     <Folder Include="Content\base\img\combo-pickr\" />
@@ -532,6 +533,7 @@
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Racing\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\VirtualSports\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\LiveCasino\Index.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Bingo\Index.cshtml" />
     <None Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3-custom.less" />
   </ItemGroup>
   <ItemGroup>
