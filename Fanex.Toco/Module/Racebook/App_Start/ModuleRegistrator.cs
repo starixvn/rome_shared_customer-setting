@@ -1,12 +1,26 @@
-﻿using System.Reflection;
-using System.Web.Mvc;
-using Fanex.CustomerSetting.Module.Core.Web.App_Start;
-
+﻿// ************************************************************************************
+// <copyright file="ModuleRegistrator.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) ModuleRegistrator.cs. All rights reserved.
+// </copyright>
+// ************************************************************************************
+// <history>
+//     <change who="steven.nguyen">Create/Run StyleCop.</change>
+// </history>
+// ************************************************************************************
 namespace Fanex.CustomerSetting.Module.Racebook.App_Start
 {
-    public class ModuleRegistrator : AppAreaRegistrator 
-    {
+    using System.Reflection;
+    using Core.Web.App_Start;
 
+    /// <summary>
+    /// Register racing module.
+    /// </summary>
+    public class ModuleRegistrator : AppAreaRegistrator
+    {
+        /// <summary>
+        /// Gets the name of the controller.
+        /// </summary>
+        /// <value>The name of the controller.</value>
         protected override string ControllerName
         {
             get
@@ -15,6 +29,10 @@ namespace Fanex.CustomerSetting.Module.Racebook.App_Start
             }
         }
 
+        /// <summary>
+        /// Gets the controller name space.
+        /// </summary>
+        /// <value>The controller name space.</value>
         protected override string ControllerNameSpace
         {
             get
@@ -24,10 +42,14 @@ namespace Fanex.CustomerSetting.Module.Racebook.App_Start
             }
         }
 
-        public override void RegisterArea(AreaRegistrationContext context)
+        /// <summary>
+        /// Registers the area.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        public override void RegisterArea(System.Web.Mvc.AreaRegistrationContext context)
         {
             base.RegisterArea(context);
+            BundleConfig.RegisterBundles(System.Web.Optimization.BundleTable.Bundles);
         }
-       
     }
 }
