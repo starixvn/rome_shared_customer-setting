@@ -157,6 +157,8 @@
     <Content Include="Areas\CustomerSetting\Styles\jquery-ui.css" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Bingo\Scripts\BingoController.js" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Bingo\Styles\Bingo.css" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Casino\Scripts\CasinoController.js" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Casino\Styles\Casino.css" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\LiveCasino\Scripts\LiveCasinoController.js" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\LiveCasino\Styles\LiveCasino.css" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Racing\Scripts\RacingController.js" />
@@ -200,10 +202,63 @@
     <Content Include="Areas\CustomerSetting\Images\b_sub.jpg" />
     <Content Include="Areas\CustomerSetting\Images\b_up.jpg" />
     <Content Include="Areas\CustomerSetting\Styles\Common.css" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\CommonPT.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Libs\BlockUI.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Libs\Functions.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Libs\jquery.blockUI.1.33.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Libs\jquery.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Libs\json2.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Libs\jquery.tmpl.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Racing.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\RacingData.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\common.css" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\back.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\btUpdateL.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\btUpdateR.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Buttons\bgred1_btn.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Buttons\bgred_btn.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Buttons\bg_btn.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Buttons\check.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Buttons\checked-icon.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Buttons\check_hover.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Buttons\icn_date.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Buttons\uncheck.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Buttons\uncheck_hover.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Buttons\unverify-icon.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\calendar1.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\close.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\dec1.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\dec1_disable.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\dec2.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\dec2_disable.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\dec3.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\dec3_disable.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\dec4.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\dec4_disable.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\email.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\excel.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\folder.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\help.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\icn_add.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\icn_del.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\icn_edit.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\opened_folder.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\ptL.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\ptR.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\ptRp.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\ptR_down.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\refresh_icon.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Save.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\undo.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\input.css" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Message.css" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\RacingSetting.css" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\table.css" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Super\Scripts\SuperUpdate.js" />
     <Content Include="Global.asax" />
     <Content Include="Areas\CustomerSetting\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Web.config" />
-    <Content Include="Areas\CustomerSetting\Views\Racebook\Index.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Super\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Sample\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\ProgressiveBonus\Index.cshtml" />
@@ -500,7 +555,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\CustomerSetting\Views\BetSetting\RngCasino\" />
     <Folder Include="Content\base\img\actions\dd\" />
     <Folder Include="Content\base\img\combo-pickr\" />
     <Folder Include="Content\base\img\textures\" />
@@ -534,6 +588,11 @@
     <Content Include="Areas\CustomerSetting\Views\BetSetting\VirtualSports\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\LiveCasino\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Bingo\Index.cshtml" />
+<<<<<<< HEAD
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Shared\_Layout.cshtml" />
+=======
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Casino\Index.cshtml" />
+>>>>>>> 5881193dbb7f74450eb09f66c8ba513b6292e37b
     <None Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3-custom.less" />
   </ItemGroup>
   <ItemGroup>
@@ -545,15 +604,9 @@
       <Project>{5F8F3877-90E3-48A3-BAD7-4207DCBA088D}</Project>
       <Name>Casino</Name>
     </ProjectReference>
-<<<<<<< HEAD
-    <ProjectReference Include="..\Module\Fanex.Toco.Module.SampleModule\_SampleModule.csproj">
-      <Project>{0B2FC4E3-FEED-4849-BA9B-36D077679F32}</Project>
-      <Name>_SampleModule</Name>
-=======
     <ProjectReference Include="..\Module\Fanex.Toco.Module.Core\_Core.csproj">
       <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
       <Name>_Core</Name>
->>>>>>> 04f9f499377f11a0c9aea6fc646785bb9acbf10c
     </ProjectReference>
     <ProjectReference Include="..\Module\Racebook\Racebook.csproj">
       <Project>{63D0DC31-9FEF-4BEE-9D43-E1E3A3BE42A5}</Project>

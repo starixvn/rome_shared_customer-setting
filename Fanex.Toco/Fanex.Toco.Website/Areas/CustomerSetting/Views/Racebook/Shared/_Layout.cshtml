@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/bundles/racingstyle")
+
+</head>
+    <body>
+        <div>
+            @RenderBody()
+        </div>
+    </body>
+    
+@Scripts.Render("~/bundles/racingsetting")
+@RenderSection("scripts", required: false)
+<script type="text/javascript">var Roles=@ViewBag.PageRole;</script>
+</html>

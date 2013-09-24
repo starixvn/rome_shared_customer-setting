@@ -47,6 +47,9 @@
     <Reference Include="Fanex.NAP.Framework, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\_Dependencies\_FanexLib\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="IBCCrypt">
+      <HintPath>..\..\_Dependencies\IBCCrypt.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -130,7 +133,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\ModuleRegistrator.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="Controllers\RacebookController.cs" />
+    <Compile Include="Controllers\BaseRacingController.cs" />
+    <Compile Include="Controllers\SuperController.cs" />
     <Compile Include="Controllers\ReportRequestTicketController.cs" />
     <Compile Include="Criteria\LicenseeSettlement\IMS_Rpt_LicenseeSettlementCriteria.cs" />
     <Compile Include="Criteria\ReportRequestTicket\AddNewRequestTicketCriteria.cs" />
@@ -139,6 +143,7 @@
     <Compile Include="Criteria\ReportRequestTicket\GetRequestTicketReportCriteria.cs" />
     <Compile Include="Criteria\ReportRequestTicket\UpdateRequestTicketCriteria.cs" />
     <Compile Include="Entities\BaseTicketInfo.cs" />
+    <Compile Include="Entities\PageRole.cs" />
     <Compile Include="Entities\ReportRequestTicket\RequestTicketInfo.cs" />
     <Compile Include="Entities\Result.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -157,6 +162,19 @@
       <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
       <Name>_Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
