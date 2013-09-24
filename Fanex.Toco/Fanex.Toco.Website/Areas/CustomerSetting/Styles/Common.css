@@ -355,7 +355,6 @@ select,.select
 .ui-tabs .ui-tabs-panel
 {
     padding: 2px;
-    max-height: 300px;
     border: 1px solid #ccc;
 }
 .ui-tabs-anchor
@@ -386,7 +385,6 @@ select,.select
 #tabs
 {
     min-width: 819px;
-    min-height: 223px;
 }
 .floatLeft
 {
