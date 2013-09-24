@@ -4,8 +4,8 @@
 @using Newtonsoft.Json.Serialization
 @model CasinoSettingModel
 @{
-    var isPtByGameType = true;// For testing purpose only
-    //var isPtByGameType = Model.IsPtByGameType;
+    //var isPtByGameType = true;// For testing purpose only
+    var isPtByGameType = Model.IsPtByGameType;
     //Model.IsPtByGameType = isPtByGameType;// For testing purpose only
     var settingModel = JsonConvert.SerializeObject(Model, Formatting.None, new JsonSerializerSettings
         {
