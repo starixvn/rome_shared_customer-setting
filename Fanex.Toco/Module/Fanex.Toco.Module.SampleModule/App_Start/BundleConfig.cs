@@ -1,6 +1,6 @@
 ﻿using System.Web.Optimization;
 
-namespace Fanex.CustomerSetting.Module.SampleModule.App_Start
+namespace Fanex.CustomerSetting.Module.ProgressiveModule.App_Start
 {
     public class BundleConfig
     {

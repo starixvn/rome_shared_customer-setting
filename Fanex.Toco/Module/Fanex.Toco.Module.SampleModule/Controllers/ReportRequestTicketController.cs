@@ -12,11 +12,11 @@ using System.Diagnostics.CodeAnalysis;
 using System.Web.Mvc;
 using Fanex.CustomerSetting.Module.Core.Security;
 using Fanex.CustomerSetting.Module.Core.Web.Controllers;
-using Fanex.CustomerSetting.Module.SampleModule.Criteria.ReportRequestTicket;
-using Fanex.CustomerSetting.Module.SampleModule.Services.Implement;
-using Fanex.CustomerSetting.Module.SampleModule.Services.Interface;
+using Fanex.CustomerSetting.Module.ProgressiveModule.Criteria.ReportRequestTicket;
+using Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement;
+using Fanex.CustomerSetting.Module.ProgressiveModule.Services.Interface;
 
-namespace Fanex.CustomerSetting.Module.SampleModule.Controllers
+namespace Fanex.CustomerSetting.Module.ProgressiveModule.Controllers
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ReportRequestTicketController : BaseController

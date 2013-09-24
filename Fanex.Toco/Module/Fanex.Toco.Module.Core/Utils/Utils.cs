@@ -2,6 +2,8 @@
 {
     using System;
     using System.Data;
+    using System.Web;
+    using Fanex.CustomerSetting.Module.Core.Services.Impl;
 
     public static class Utils
     {
@@ -406,6 +408,23 @@
         public static string CasinoArea
         {
             get { return "~/CustomerSetting/Casino/"; }
+        }
+
+        public static string GetClientIP()
+        {
+            string ip = string.Empty;
+            try
+            {
+                if (HttpContext.Current.Request.IsLocal)
+                    ip = "127.0.0.1";
+                else
+                    ip = Convert.ToString(HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"]);
+            }
+            catch (Exception ex)
+            {
+                LoggingHandler.Log(ex);
+            }
+            return ip;
         }
     }
 }

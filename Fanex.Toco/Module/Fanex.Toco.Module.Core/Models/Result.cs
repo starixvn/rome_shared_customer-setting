@@ -7,16 +7,23 @@ namespace Fanex.CustomerSetting.Module.Core.Models
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class Result
     {
-        public int ErrorCode { get; set; }
-
-        public string Message { get; set; }
-
-       // public dynamic ExtendContent { get; set; }
-
         public Result()
         {
             ErrorCode = 0;
-            Message = string.Empty;
+            ErrorMessage = string.Empty;
         }
+
+        public Result(int errorCode, string errorMessage)
+        {
+            ErrorCode = errorCode;
+            ErrorMessage = errorMessage;
+            IsSuccess = ErrorCode == 0 || ErrorMessage == string.Empty;
+        }
+
+        public int ErrorCode { get; set; }
+
+        public string ErrorMessage { get; set; }
+
+        public bool IsSuccess { get; private set; }
     }
 }

@@ -56,7 +56,7 @@
       <HintPath>..\..\_Dependencies\Fanex\Fanex.NAP.Core.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.NAP.Framework, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\_Dependencies\_FanexLib\Fanex.NAP.Framework.dll</HintPath>
+      <HintPath>..\..\_Dependencies\Fanex\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
     <Reference Include="GotDotNet.ApplicationBlocks.Data">
       <HintPath>..\..\_Dependencies\Casino\GotDotNet.ApplicationBlocks.Data.dll</HintPath>
@@ -78,10 +78,10 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
-      <HintPath>..\..\_Dependencies\Fanex\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+      <HintPath>..\..\_Dependencies\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
-      <HintPath>..\..\_Dependencies\Fanex\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+      <HintPath>..\..\_Dependencies\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
     </Reference>
     <Reference Include="NetUtility">
       <HintPath>..\..\_Dependencies\Casino\NetUtility.dll</HintPath>
@@ -169,15 +169,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\ModuleRegistrator.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="Controllers\AgentController.cs" />
+    <Compile Include="Controllers\SuperController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\MasterController.cs" />
-    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\CasinoCustomerController.cs" />
     <Compile Include="Entities\CasinoCustomer.cs" />
-    <Compile Include="Entities\Result.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Impl\CasinoDao.cs" />
     <Compile Include="Services\Impl\CasinoManager.cs" />

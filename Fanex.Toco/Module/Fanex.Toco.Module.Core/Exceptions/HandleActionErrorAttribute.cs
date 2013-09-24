@@ -18,7 +18,7 @@ namespace Fanex.CustomerSetting.Module.Core.Exceptions
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet,
                     Data = new Result{
                         ErrorCode = 500,
-                        Message = ResourceExtension.GetResource("Errors", "AjaxCallError")
+                        ErrorMessage = ResourceExtension.GetResource("Errors", "AjaxCallError")
                     }
                 };
                 

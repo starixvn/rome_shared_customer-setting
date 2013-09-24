@@ -29,7 +29,15 @@ namespace Fanex.CustomerSetting.Module.Core
         public const string FOUR_DECIMAL_DIGIT_FORMAT = ".0000";
         public const string SP_PARAMS_SEPERATOR = ",";
         public const string VIEW_IP_VN = "ViewIPVN";
-      
-    }
 
+        public const string ADMIN_ID = "Contants.AppSession.AdminId";
+        public const string ADMIN_USERNAME = "Contants.AppSession.AdminUsername";
+        public const string ADMIN_ROLEID = "Contants.AppSession.AdminRoleId";
+        public const string IS_ALLOW_PROGRESSIVE_BONUS = "Contants.AppSession.IsAllowProgressiveBonus";
+        public const string USER_ROLEID = "Contants.AppSession.UserRoleId";
+
+        public const string SUB_ACCOUNT_ID = "Contants.AppSession.SubAccountId";
+        public const string LANGUAGE = "Contants.AppSession.Language";
+        public const string PROGRESSIVE_BONUS_OLD_VALUE = "Contants.AppSession.ProgressiveBonusOldValue";
+    }
 }

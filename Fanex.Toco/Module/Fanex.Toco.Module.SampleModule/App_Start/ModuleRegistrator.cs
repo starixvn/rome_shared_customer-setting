@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using Fanex.CustomerSetting.Module.Core.Web.App_Start;
 
-namespace Fanex.CustomerSetting.Module.SampleModule.App_Start
+namespace Fanex.CustomerSetting.Module.ProgressiveModule.App_Start
 {
     public class ModuleRegistrator : AppAreaRegistrator 
     {
@@ -26,7 +26,6 @@ namespace Fanex.CustomerSetting.Module.SampleModule.App_Start
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            RegisterController(context);
             base.RegisterArea(context);
         }
        

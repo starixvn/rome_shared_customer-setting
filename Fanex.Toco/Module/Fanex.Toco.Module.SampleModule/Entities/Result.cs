@@ -9,7 +9,7 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-namespace Fanex.CustomerSetting.Module.SampleModule.Entities
+namespace Fanex.CustomerSetting.Module.ProgressiveModule.Entities
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class Result

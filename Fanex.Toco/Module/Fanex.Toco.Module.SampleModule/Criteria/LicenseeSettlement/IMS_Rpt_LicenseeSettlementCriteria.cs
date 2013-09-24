@@ -10,7 +10,7 @@
 using System;
 using Fanex.NAP.Framework.Data;
 
-namespace Fanex.CustomerSetting.Module.SampleModule.Criteria.LicenseeSettlement
+namespace Fanex.CustomerSetting.Module.ProgressiveModule.Criteria.LicenseeSettlement
 {
     [Serializable]
     public class IMS_Rpt_LicenseeSettlementCriteria : CriteriaBase

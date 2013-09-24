@@ -74,7 +74,7 @@ namespace Fanex.CustomerSetting.Module.Core.Security
                     Data = new Result
                     {
                         ErrorCode = 500,
-                        Message = ResourceExtension.GetResource("Error", "AccessDenied")
+                        ErrorMessage = ResourceExtension.GetResource("Error", "AccessDenied")
                     }
                 };
 

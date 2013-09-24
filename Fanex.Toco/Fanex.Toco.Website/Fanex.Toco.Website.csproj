@@ -43,6 +43,10 @@
       <HintPath>..\_Dependencies\Fanex\Fanex.Data.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dependencies\Web\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -68,9 +72,6 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http">
       <Private>True</Private>
@@ -141,77 +142,65 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
-    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Content\themes\base\jquery-ui.css" />
-    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
-    <Content Include="Content\themes\base\jquery.ui.all.css" />
-    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
-    <Content Include="Content\themes\base\jquery.ui.base.css" />
-    <Content Include="Content\themes\base\jquery.ui.button.css" />
-    <Content Include="Content\themes\base\jquery.ui.core.css" />
-    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
-    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
-    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
-    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
-    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
-    <Content Include="Content\themes\base\jquery.ui.slider.css" />
-    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
-    <Content Include="Content\themes\base\jquery.ui.theme.css" />
-    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
-    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
-    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
-    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
-    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
-    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
-    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
-    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
-    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
-    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
-    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
-    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
-    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
-    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
-    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
-    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
-    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
-    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
-    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
-    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
-    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
-    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
-    <Content Include="Content\themes\Honolulu\css\bootstrap-responsive.css" />
-    <Content Include="Content\themes\Honolulu\css\bootstrap-responsive.min.css" />
-    <Content Include="Content\themes\Honolulu\css\bootstrap.css" />
-    <Content Include="Content\themes\Honolulu\css\bootstrap.min.css" />
-    <Content Include="Content\themes\Honolulu\ico\apple-touch-icon-114-precomposed.png" />
-    <Content Include="Content\themes\Honolulu\ico\apple-touch-icon-144-precomposed.png" />
-    <Content Include="Content\themes\Honolulu\ico\apple-touch-icon-57-precomposed.png" />
-    <Content Include="Content\themes\Honolulu\ico\apple-touch-icon-72-precomposed.png" />
-    <Content Include="Content\themes\Honolulu\ico\favicon.ico" />
-    <Content Include="Content\themes\Honolulu\ico\favicon.png" />
-    <Content Include="Content\themes\Honolulu\img\glyphicons-halflings-white.png" />
-    <Content Include="Content\themes\Honolulu\img\glyphicons-halflings.png" />
-    <Content Include="Content\themes\Honolulu\js\bootstrap.js" />
-    <Content Include="Content\themes\Honolulu\js\bootstrap.min.js" />
+    <Content Include="Areas\CustomerSetting\Images\glyphicons-halflings-white.png" />
+    <Content Include="Areas\CustomerSetting\Images\glyphicons-halflings.png" />
+    <Content Include="Areas\CustomerSetting\Images\Success.gif" />
+    <Content Include="Areas\CustomerSetting\Scripts\angular.full.js" />
+    <Content Include="Areas\CustomerSetting\Scripts\jquery-ui-1.9.1.min.js" />
+    <Content Include="Areas\CustomerSetting\Styles\images\copied.png" />
+    <Content Include="Areas\CustomerSetting\Styles\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Areas\CustomerSetting\Styles\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Areas\CustomerSetting\Styles\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Areas\CustomerSetting\Styles\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Areas\CustomerSetting\Styles\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Areas\CustomerSetting\Styles\images\uncopied.png" />
+    <Content Include="Areas\CustomerSetting\Styles\jquery-ui.css" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Bingo\Scripts\BingoController.js" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Bingo\Styles\Bingo.css" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\LiveCasino\Scripts\LiveCasinoController.js" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\LiveCasino\Styles\LiveCasino.css" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Racing\Scripts\RacingController.js" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Racing\Styles\Racing.css" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Scripts\BetSetting.js" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Sportsbook\Scripts\SportsbookController.js" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Sportsbook\Styles\Sportsbook.css" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\VirtualSports\Scripts\VirtualSportsController.js" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\VirtualSports\Styles\VirtualSports.css" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditSuperController.js" />
+    <Content Include="Areas\CustomerSetting\Views\ProgressiveBonus\Scripts\Progressive.js" />
+    <Content Include="Areas\Common\Views\Shared\Images\Loading.gif" />
+    <Content Include="Areas\Common\Views\Shared\Scripts\Fanex.CustomerSetting.js" />
+    <Content Include="Areas\CustomerSetting\Images\arrowblue-icn.png" />
+    <Content Include="Areas\CustomerSetting\Images\arrowdown-icn.png" />
+    <Content Include="Areas\CustomerSetting\Images\Loading.gif" />
+    <Content Include="Areas\CustomerSetting\Images\pointer.png" />
+    <Content Include="Areas\CustomerSetting\Images\pointerDown.png" />
+    <Content Include="Areas\CustomerSetting\Images\warning-icn.png" />
+    <Content Include="Areas\CustomerSetting\Scripts\angular.min.js" />
+    <Content Include="Areas\CustomerSetting\Scripts\Fanex.CustomerSetting.Core.js" />
+    <Content Include="Areas\CustomerSetting\Scripts\jquery.blockUI.1.33.js" />
+    <Content Include="Areas\CustomerSetting\Scripts\jquery.js" />
+    <Content Include="Areas\CustomerSetting\Scripts\ptarea.js" />
+    <Content Include="Areas\CustomerSetting\Scripts\Validators.js" />
+    <Content Include="Areas\CustomerSetting\Scripts\_references.js" />
+    <Content Include="Areas\CustomerSetting\Styles\Validators.css" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\CasinoController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditAgentController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditMemberBySuperController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditMemberByMasterController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditMemberController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\CustomerController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditMasterController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\ViewAgentController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Styles\Casino.css" />
+    <Content Include="Areas\CustomerSetting\Images\btn-bgsubmit-hover.png" />
+    <Content Include="Areas\CustomerSetting\Images\btn-bgsubmit-original.png" />
+    <Content Include="Areas\CustomerSetting\Images\b_add.jpg" />
+    <Content Include="Areas\CustomerSetting\Images\b_down.jpg" />
+    <Content Include="Areas\CustomerSetting\Images\b_sub.jpg" />
+    <Content Include="Areas\CustomerSetting\Images\b_up.jpg" />
+    <Content Include="Areas\CustomerSetting\Styles\Common.css" />
     <Content Include="Global.asax" />
-    <Content Include="Areas\CustomerSetting\Views\Foo\Index.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\SampleModule\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Web.config" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Index.cshtml" />
@@ -220,7 +209,67 @@
     <Content Include="Areas\CustomerSetting\Views\ProgressiveBonus\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\ProgressiveBonus\Casino\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\ProgressiveBonus\Shared\_Layout.cshtml" />
-    <None Include="Content\Site.less" />
+    <Content Include="Configurations\ProgressiveSection.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\CustomerSetting\Views\LeftPanel\Index.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Error.cshtml" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\accordion.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\alerts.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\bootstrap.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\breadcrumbs.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\button-groups.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\buttons.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\carousel.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\close.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\code.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\component-animations.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\dropdowns.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\forms.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\grid.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\hero-unit.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\labels-badges.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\layouts.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\media.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\mixins.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\modals.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\navbar.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\navs.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\pager.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\pagination.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\popovers.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\progress-bars.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\reset.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\responsive-1200px-min.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\responsive-767px-max.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\responsive-768px-979px.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\responsive-navbar.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\responsive-utilities.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\responsive.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\scaffolding.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\sprites.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\style.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\tables.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\thumbnails.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\tooltip.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\type.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\utilities.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\variables.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\wells.less" />
+    <None Include="Areas\CustomerSetting\Styles\ProgressiveBonus\Color.less" />
+    <None Include="Areas\CustomerSetting\Styles\ProgressiveBonus\ProgressiveBonus.less" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Customer\CustomerInfo.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Agent\EditAgent.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Agent\ViewAgentBySuper.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Member\EditMember.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Member\EditMemberBySuper.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Member\EditMemberByMaster.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Master\EditMaster.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="PTEngine\BettingLimit.xml" />
+    <Content Include="PTEngine\PTGrid.xml" />
+    <Content Include="PTEngine\PTRacingGrid.xml" />
     <Content Include="Scripts\Common\Message.Helper.js" />
     <Content Include="Scripts\Common\Message.Validator.js" />
     <Content Include="Scripts\Common\ValidateMessage.js" />
@@ -434,6 +483,7 @@
     <Content Include="Scripts\_Libs\Validation\jquery.validationEngine-en.js" />
     <Content Include="Scripts\_Libs\Validation\jquery.validationEngine.js" />
     <Content Include="Scripts\_Libs\Validation\validationEngine.jquery.css" />
+    <Content Include="SpNames.xml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -450,10 +500,20 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\CustomerSetting\Views\Casino\Scripts\" />
-    <Folder Include="Areas\CustomerSetting\Views\Casino\Styles\" />
-    <Folder Include="Areas\CustomerSetting\Views\ProgressiveBonus\Scripts\" />
-    <Folder Include="Areas\CustomerSetting\Views\ProgressiveBonus\Styles\" />
+    <Folder Include="Areas\CustomerSetting\Views\BetSetting\RngCasino\" />
+    <Folder Include="Content\base\img\actions\dd\" />
+    <Folder Include="Content\base\img\combo-pickr\" />
+    <Folder Include="Content\base\img\textures\" />
+    <Folder Include="Content\base\jquery\images\" />
+    <Folder Include="Content\img\" />
+    <Folder Include="Content\jquery-ui\images\" />
+    <Folder Include="Content\themes\base\images\" />
+    <Folder Include="Content\themes\base\minified\images\" />
+    <Folder Include="Content\themes\Honolulu\css\" />
+    <Folder Include="Content\themes\Honolulu\ico\" />
+    <Folder Include="Content\themes\Honolulu\img\" />
+    <Folder Include="Content\themes\Honolulu\js\" />
+    <Folder Include="Content\themes\Honolulu\less\report\" />
     <Folder Include="Models\" />
     <Folder Include="Scripts\_Libs\BlockUI\img\" />
   </ItemGroup>
@@ -461,68 +521,33 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\themes\Honolulu\less\accordion.less" />
-    <None Include="Content\themes\Honolulu\less\alerts.less" />
-    <None Include="Content\themes\Honolulu\less\breadcrumbs.less" />
-    <None Include="Content\themes\Honolulu\less\button-groups.less" />
-    <None Include="Content\themes\Honolulu\less\buttons.less" />
-    <None Include="Content\themes\Honolulu\less\carousel.less" />
-    <None Include="Content\themes\Honolulu\less\close.less" />
-    <None Include="Content\themes\Honolulu\less\code.less" />
-    <None Include="Content\themes\Honolulu\less\component-animations.less" />
-    <None Include="Content\themes\Honolulu\less\customersetting\bootstrap.less" />
-    <None Include="Content\themes\Honolulu\less\customersetting\responsive.less" />
-    <None Include="Content\themes\Honolulu\less\customersetting\style.less" />
-    <None Include="Content\themes\Honolulu\less\customersetting\variables.less" />
-    <None Include="Content\themes\Honolulu\less\dropdowns.less" />
-    <None Include="Content\themes\Honolulu\less\forms.less" />
-    <None Include="Content\themes\Honolulu\less\grid.less" />
-    <None Include="Content\themes\Honolulu\less\hero-unit.less" />
-    <None Include="Content\themes\Honolulu\less\home\bootstrap.less" />
-    <None Include="Content\themes\Honolulu\less\home\responsive.less" />
-    <None Include="Content\themes\Honolulu\less\home\style.less" />
-    <None Include="Content\themes\Honolulu\less\home\variables.less" />
-    <None Include="Content\themes\Honolulu\less\labels-badges.less" />
-    <None Include="Content\themes\Honolulu\less\layouts.less" />
-    <None Include="Content\themes\Honolulu\less\media.less" />
-    <None Include="Content\themes\Honolulu\less\mixins.less" />
-    <None Include="Content\themes\Honolulu\less\modals.less" />
-    <None Include="Content\themes\Honolulu\less\navbar.less" />
-    <None Include="Content\themes\Honolulu\less\navs.less" />
-    <None Include="Content\themes\Honolulu\less\pager.less" />
-    <None Include="Content\themes\Honolulu\less\pagination.less" />
-    <None Include="Content\themes\Honolulu\less\popovers.less" />
-    <None Include="Content\themes\Honolulu\less\progress-bars.less" />
-    <None Include="Content\themes\Honolulu\less\report\bootstrap.less" />
-    <None Include="Content\themes\Honolulu\less\report\responsive.less" />
-    <None Include="Content\themes\Honolulu\less\report\style.less" />
-    <None Include="Content\themes\Honolulu\less\report\variables.less" />
-    <None Include="Content\themes\Honolulu\less\reset.less" />
-    <None Include="Content\themes\Honolulu\less\responsive-1200px-min.less" />
-    <None Include="Content\themes\Honolulu\less\responsive-767px-max.less" />
-    <None Include="Content\themes\Honolulu\less\responsive-768px-979px.less" />
-    <None Include="Content\themes\Honolulu\less\responsive-navbar.less" />
-    <None Include="Content\themes\Honolulu\less\responsive-utilities.less" />
-    <None Include="Content\themes\Honolulu\less\scaffolding.less" />
-    <None Include="Content\themes\Honolulu\less\sprites.less" />
-    <None Include="Content\themes\Honolulu\less\style.less" />
-    <None Include="Content\themes\Honolulu\less\tables.less" />
-    <None Include="Content\themes\Honolulu\less\thumbnails.less" />
-    <None Include="Content\themes\Honolulu\less\tooltip.less" />
-    <None Include="Content\themes\Honolulu\less\type.less" />
-    <None Include="Content\themes\Honolulu\less\utilities.less" />
-    <None Include="Content\themes\Honolulu\less\wells.less" />
     <Content Include="Scripts\_Libs\FanexGrid\images.zip" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Shared\_Layout.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Sportsbook\Index.cshtml" />
+    <Content Include="PTEngine\BettingLimitMappingSection.config" />
+    <Content Include="PTEngine\PTMappingSection.config" />
+    <Content Include="Areas\CustomerSetting\Views\Security\AccessDenied.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Super\EditSuper.cshtml" />
+    <Content Include="PTEngine\PTRacingMappingSection.config" />
+    <Content Include="PTEngine\RacingBettingCommSettingMappingSection.config" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Racing\Index.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\VirtualSports\Index.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\LiveCasino\Index.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Bingo\Index.cshtml" />
     <None Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3-custom.less" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Module\BetSetting\BetSetting.csproj">
+      <Project>{F9261CF3-913A-436F-AD9D-6607C190367E}</Project>
+      <Name>BetSetting</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Module\Casino\Casino.csproj">
       <Project>{5F8F3877-90E3-48A3-BAD7-4207DCBA088D}</Project>
       <Name>Casino</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Module\Fanex.Toco.Module.SampleModule\_SampleModule.csproj">
-      <Project>{0B2FC4E3-FEED-4849-BA9B-36D077679F32}</Project>
-      <Name>_SampleModule</Name>
+    <ProjectReference Include="..\Module\Fanex.Toco.Module.Core\_Core.csproj">
+      <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
+      <Name>_Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Module\Racebook\Racebook.csproj">
       <Project>{63D0DC31-9FEF-4BEE-9D43-E1E3A3BE42A5}</Project>

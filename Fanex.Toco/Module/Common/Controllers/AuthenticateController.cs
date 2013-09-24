@@ -1,43 +1,29 @@
-﻿using System.Web.Mvc;
-
-namespace Fanex.CustomerSetting.Module.Common.Controllers
+﻿namespace Fanex.CustomerSetting.Module.Common.Controllers
 {
+    using System.Web.Mvc;
+
     public class AuthenticateController : Controller
     {
-        //
-        // GET: /Authenticate/
-
         public ActionResult AccessDenied()
         {
             return View();
         }
-
-        //
-        // GET: /Authenticate/Details/5
 
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        //
-        // GET: /Authenticate/Create
-
         public ActionResult Create()
         {
             return View();
         }
-
-        //
-        // POST: /Authenticate/Create
 
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
             try
             {
-                // TODO: Add insert logic here
-
                 return RedirectToAction("Index");
             }
             catch
@@ -45,25 +31,17 @@ namespace Fanex.CustomerSetting.Module.Common.Controllers
                 return View();
             }
         }
-
-        //
-        // GET: /Authenticate/Edit/5
 
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        //
-        // POST: /Authenticate/Edit/5
-
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
             try
             {
-                // TODO: Add update logic here
-
                 return RedirectToAction("Index");
             }
             catch
@@ -72,24 +50,16 @@ namespace Fanex.CustomerSetting.Module.Common.Controllers
             }
         }
 
-        //
-        // GET: /Authenticate/Delete/5
-
         public ActionResult Delete(int id)
         {
             return View();
         }
-
-        //
-        // POST: /Authenticate/Delete/5
 
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
-
                 return RedirectToAction("Index");
             }
             catch

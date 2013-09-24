@@ -1,0 +1,124 @@
+﻿// ************************************************************************************
+// <copyright file="BingoBettingController.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// ************************************************************************************
+// <history>
+//     <change who="Andy.Nguyen">Create/Run StyleCop.</change>
+// </history>
+// ************************************************************************************
+
+/// <summary>
+/// The Controllers namespace.
+/// </summary>
+namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
+{
+    using System;
+    using System.Web.Mvc;
+    using Fanex.CustomerSetting.Module.BetSetting.Base;
+    using Fanex.CustomerSetting.Security.Authenticate;
+    using Microsoft.Practices.Unity;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Serialization;
+    using Sunplus.Bingo.Core;
+    using Sunplus.Bingo.Entities;
+    using Sunplus.Bingo.Services;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public class BingoBettingController : BettingControllerBase
+    {
+        /// <summary>
+        /// Indexes the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="uplineId">The up-line identifier.</param>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="siteName">Name of the site.</param>
+        /// <returns>ActionResult object.</returns>
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "BingoBetting")]
+        public ActionResult Index(int id, int uplineId, int userId, string siteName)
+        {
+            var groups = GroupConfigurations.AllowBettingGroups;
+
+            var customer = this.CustomerInfo(id, userId);
+
+            if (customer.RoleId != 4 || groups == null || !groups.Contains(customer.GroupId) || !customer.SyncBingo || !siteName.Substring(3).ToUpper().Contains(customer.CurrencyName.ToUpper()))
+            {
+                return this.PartialView("~/Areas/CustomerSetting/Views/Security/AccessDenied.cshtml");
+            }
+
+            var customerInfo = new Sunplus.Bingo.Entities.Customer();
+
+            try
+            {
+                var customerService = BingoContainer.Current.Resolve<ICustomerService>();
+
+                IResult result = new Result();
+
+                customerInfo = customerService.GetCustomerSetting(id, 5, ref result) as Sunplus.Bingo.Entities.Customer;
+
+                if (customer != null)
+                {
+                    customerInfo.Result = result as Result;
+                }
+            }
+            catch (Exception ex)
+            {
+                customerInfo.Result = new Result(1, ex.Message);
+            }
+
+            ViewBag.Username = customer.Username;
+            ViewBag.SyncCasino = customer.SyncCasino;
+            ViewBag.SyncBingo = customer.SyncBingo;
+            ViewBag.SyncLiveCasino = customer.SyncLiveCasino;
+
+            return this.View("~/Areas/CustomerSetting/Views/BetSetting/Bingo/Index.cshtml", customerInfo);
+        }
+
+        /// <summary>
+        /// Edits the bet setting post.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="uplineId">The up-line identifier.</param>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="txtCustomerObject">The text customer object.</param>
+        /// <param name="siteName">Name of the site.</param>
+        /// <returns>ActionResult object.</returns>
+        [HttpPost]
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "BingoBetting")]
+        public ActionResult EditBetSettingPost(int id, int uplineId, int userId, string txtCustomerObject, string siteName = "ACCUT")
+        {
+            var groups = GroupConfigurations.AllowBettingGroups;
+
+            var customer = this.CustomerInfo(id, userId);
+
+            var settings = new JsonSerializerSettings();
+            settings.NullValueHandling = NullValueHandling.Ignore;
+            settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
+            if (customer.RoleId != 4 || groups == null || !groups.Contains(customer.GroupId) || !customer.SyncBingo || !siteName.Substring(3).ToUpper().Contains(customer.CurrencyName.ToUpper()))
+            {
+                return this.JsonBase(new { ErrorCode = 1, ErrorMessage = "You're not authorized on this function" }, settings);
+            }
+
+            Customer model = JsonConvert.DeserializeObject<Customer>(txtCustomerObject);
+            IResult result = new Result();
+
+            try
+            {
+                ICustomerService customerService = BingoContainer.Current.Resolve<ICustomerService>();
+                string ip = Request.UserHostAddress;
+
+                result = customerService.UpdateCustomerSetting(model, 5, ip == "::1" ? "127.0.0.1" : ip, userId, "Admin", 3);                            
+            }
+            catch (Exception ex)
+            {
+                result = new Result(1, ex.Message);
+            }
+
+            return this.JsonBase(result, settings);
+        }
+    }
+}

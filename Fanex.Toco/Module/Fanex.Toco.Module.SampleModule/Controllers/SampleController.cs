@@ -2,7 +2,7 @@
 using Fanex.CustomerSetting.Module.Core.Exceptions;
 using Fanex.CustomerSetting.Module.Core.Security;
 
-namespace Fanex.CustomerSetting.Module.SampleModule.Controllers
+namespace Fanex.CustomerSetting.Module.ProgressiveModule.Controllers
 {
     public class SampleController : Controller
     {

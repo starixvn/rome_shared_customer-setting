@@ -10,7 +10,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Fanex.NAP.Framework.Data;
 
-namespace Fanex.CustomerSetting.Module.SampleModule.Criteria.ReportRequestTicket
+namespace Fanex.CustomerSetting.Module.ProgressiveModule.Criteria.ReportRequestTicket
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class AddNewRequestTicketCriteria : CriteriaBase
