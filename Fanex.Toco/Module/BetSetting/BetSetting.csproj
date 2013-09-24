@@ -145,6 +145,7 @@
     <Compile Include="App_Start\ModuleRegistrator.cs" />
     <Compile Include="Base\BettingControllerBase.cs" />
     <Compile Include="Controllers\BingoBettingController.cs" />
+    <Compile Include="Controllers\CasinoBettingController.cs" />
     <Compile Include="Controllers\LiveCasinoBettingController.cs" />
     <Compile Include="Controllers\RacingBettingController.cs" />
     <Compile Include="Controllers\SportsbookController.cs" />
@@ -154,6 +155,7 @@
     <Compile Include="Repositories\Interface\ICustomerDao.cs" />
     <Compile Include="Services\Impl\CustomerService.cs" />
     <Compile Include="Services\Interface\ICustomerService.cs" />
+    <Compile Include="ViewModels\CasinoModel.cs" />
     <Compile Include="ViewModels\Customer.cs" />
     <Compile Include="ViewModels\LiveCasinoModel.cs" />
   </ItemGroup>

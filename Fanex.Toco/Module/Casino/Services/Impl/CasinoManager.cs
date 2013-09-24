@@ -58,9 +58,9 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             casinoSettingUpline.IBCCustID = uplineId;
             this.GetCustSettingCS(ref casinoSettingUpline);
 
-            if (casinoSettingUpline.RoleId - custInfo.RoleId != 1 || casinoSettingUpline.RoleId != Admin || custInfo.RoleId != Super)
+            if (custInfo.RoleId != Super)
             {
-                throw new Exception("Invalid custId and uplineId");
+                throw new Exception("Invalid custId");
             }
 
             gameModel.IsPtByGameType = casinoSettingUpline.PTByGameType;
@@ -913,6 +913,49 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             }
 
             return new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
+        }
+
+        public Result UpdateSuperBettingLimit(int custId, int roleId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel model, CasinoCustomer customer)
+        {
+            var msg = string.Empty;
+            var gameStakeTable = this.GameTypesStakesDataTable();
+
+            foreach (var gameGroup in model.GameGroups)
+            {
+                var gameGroupID = gameGroup.GameGroupID;
+
+                foreach (var gameType in gameGroup.GameTypes)
+                {                   
+                    gameStakeTable.Rows.Add(
+                        new object[] 
+                            {
+                                custId,
+                                gameType.GameTypeID,
+                                this.SelectedStakeLevels(gameType.BettingLimits),
+                                roleId,
+                                ip,
+                                modifiedId, 
+                                modifiedBy, 
+                                fromSystem
+                            });
+                }
+            }
+
+            var resultStake = new DataTable();
+            var cust = new Customer();      
+      
+            resultStake = cust.UpdateCustGameTypeStakeLevel(gameStakeTable);
+            var success = cust.UpdateMaxTransfer(custId, customer.IsMaxWin, Utils.ToDecimal(customer.MaxTransferCredit), customer.IsAutoReset, ip, modifiedId, modifiedBy, fromSystem);
+
+            // Process error messages
+            foreach (DataRow item in resultStake.Rows)
+            {
+                msg += item.Field<string>("ErrMsg") + "<br />";
+            }
+
+            msg = msg.EndsWith("<br />") ? msg.Substring(0, msg.LastIndexOf("<br />")) : msg;
+
+            return new Result((msg == string.Empty || resultStake.Rows.Count == 0) && success  ? 0 : 1, msg);
         }
 
         private static string Lang(string original)
