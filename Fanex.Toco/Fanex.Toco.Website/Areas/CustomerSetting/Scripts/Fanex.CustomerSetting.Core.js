@@ -609,7 +609,7 @@ Fanex.CustomerSetting.Core = {
 
     ProcessDisplayMultiple: function (length, usernames) {
         $('#arrowUpDown').bind('click', function () {
-            Fanex.CustomerSetting.Core.ToggleUsernames(length);
+            Fanex.CustomerSetting.Core.ToggleUsernames(length, usernames);
         });
 
         $('#names').css('display', 'block');
@@ -622,7 +622,7 @@ Fanex.CustomerSetting.Core = {
         else {
             $('#names').css('cursor', 'pointer');
             $('#names').bind('click', function () {
-                Fanex.CustomerSetting.Core.ToggleUsernames(length);
+                Fanex.CustomerSetting.Core.ToggleUsernames(length, usernames);
             });
             $('#names').html(usernames.substring(0, (length ? length : 98)) + '...');
             $('#names').attr('title', usernames.substring(0, usernames.length - 2));
