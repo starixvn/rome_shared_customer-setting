@@ -1375,8 +1375,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 gameGroupID,
                                 !(uplineRoleId == Super || uplineRoleId == Master) || gameGroup.Is3 == true ? null : (object)gameGroup.S3,
                                 !(uplineRoleId == Master || uplineRoleId == Agent) ? null : (object)gameGroup.M3,
-                                gameGroup.Is3 == true ? 1 : 0,
-                                !gameGroup.Is3 == true ? null : (object)gameGroup.Us3,
+                                gameGroup.Is1 == true ? 1 : 0,
+                                !gameGroup.Is1 == true ? null : (object)gameGroup.Us3,
                                 uplineRoleId,
                                 ip,
                                 modifiedId, 
@@ -1395,8 +1395,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 gameType.GameTypeID,
                                 !(uplineRoleId == Super || uplineRoleId == Master) || gameType.Is3 == true ? null : (object)gameType.S3,
                                 !(uplineRoleId == Master || uplineRoleId == Agent) ? null : (object)gameType.M3,
-                                gameType.Is3 == true ? 1 : 0,
-                                !gameType.Is3 == true ? null : (object)gameType.Us3,
+                                gameType.Is1 == true ? 1 : 0,
+                                !gameType.Is1 == true ? null : (object)gameType.Us3,
                                 uplineRoleId,
                                 ip,
                                 modifiedId, 
@@ -1908,7 +1908,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 {
                     if (row["GameTypeID"].Equals(dtRow["GameTypeID"]))
                     {
-                        isAutoOnMember = Utils.ToBoolean(dtRow["UplineIsAutoPositionTaking"]);
+                        isAutoOnMember = Utils.ToBoolean(dtRow["SuperIsAutoPositionTaking"]);
                         break;
                     }
                 }
