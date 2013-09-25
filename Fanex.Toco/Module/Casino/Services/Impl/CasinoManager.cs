@@ -342,6 +342,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var custInfo = this.GetCustInfoIBC(custId, uplineId);
             var cust = new Customer();
             var dt = cust.GetCustGameKind_EditMember(custId);
+            var dtSuper = cust.GetCustGameKind(custId);
 
             var casinoSettingUpline = new CasinoCustomer();
 
@@ -359,7 +360,17 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             foreach (DataRow row in dt.Rows)
             {
                 var gameGroup = new GameGroup();
+                var isAutoOnMember = false;
 
+                foreach (DataRow dtRow in dtSuper.Rows)
+                {
+                    if (row["GameKind"].Equals(dtRow["GameKind"]))
+                    {
+                        isAutoOnMember = Utils.ToBoolean(dtRow["SuperIsAutoPositionTaking"]);
+                        break;
+                    }    
+                }
+                
                 // Game type info
                 gameGroup.GameGroupID = Utils.ToInt32(row["GameKind"]);
                 gameGroup.GameGroupName = Utils.ToString(row[Lang("GameKindName")]);
@@ -370,7 +381,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 gameGroup.N4 = Utils.ToDecimal(row["SuperMinPositionTaking"]).Format(2);
 
                 // Super Auto PT
-                gameGroup.Is3 = Utils.ToBoolean(row["IsAutoPositionTaking"]);
+                gameGroup.Is1 = Utils.ToBoolean(row["IsAutoPositionTaking"]);
+                gameGroup.Is3 = isAutoOnMember;
                 gameGroup.Us3 = Utils.ToDecimal(row["AutoPositionTaking"]).Format(2);
 
                 // Master preset PT
