@@ -6,6 +6,7 @@
 • Fanex.CustomerSetting.Security.dll
 • Fanex.NAP.Framework.dll
 • Fanex.CustomerSettting.Module.Core.dll
+• Fanex.CustomerSetting.Module.Racebook.Resources.dll
 2. Configuration 
 • Setting
 - Additional below config inner configuration tag.
