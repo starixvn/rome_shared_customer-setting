@@ -202,7 +202,7 @@
     <Content Include="Areas\CustomerSetting\Images\b_sub.jpg" />
     <Content Include="Areas\CustomerSetting\Images\b_up.jpg" />
     <Content Include="Areas\CustomerSetting\Styles\Common.css" />
-    <Content Include="Areas\CustomerSetting\Views\Racebook\Config\Racing.xml" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Config\Store\RacingSpNames.xml" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\common.js" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\CommonPT.js" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Libs\knockout-2.0.0.js" />
@@ -652,7 +652,8 @@
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Bingo\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Casino\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Shared\_Layout.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Racebook\Config\RacingSection.config" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Config\PTRacingMappingSection.config" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Config\RacingBettingCommSettingMappingSection.config" />
     <None Include="Areas\CustomerSetting\Views\Racebook\Document.doc" />
     <Content Include="Web.Configuration\RacingSection.config" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\RacingSetting.cshtml" />
