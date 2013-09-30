@@ -199,13 +199,13 @@ span.cannotchangeinternal:hover
 {
     height: 23px;
     width: 24px;
-    background: url(../images/L_content_tab.png) no-repeat right bottom;
+    background: url(images/L_content_tab.png) no-repeat right bottom;
 }
 .maincontent_headerR
 {
     height: 23px;
     width: 5px;
-    background: url(../images/R_content_tab.png) no-repeat right bottom;
+    background: url(images/R_content_tab.png) no-repeat right bottom;
 }
 .maincontent_headerC
 {
@@ -213,12 +213,12 @@ span.cannotchangeinternal:hover
     min-width: 120px;
     font-weight: bold;
     color: #fff;
-    background: url(../images/C_content_tab.png) repeat-x bottom;
+    background: url(images/C_content_tab.png) repeat-x bottom;
     text-align: left;
 }
 .maincontent_box
 {
-    background: #FFF url(../images/banner/bg_head_tb.jpg) repeat-x left bottom;
+    background: #FFF url(images/banner/bg_head_tb.jpg) repeat-x left bottom;
     border: solid 1px #7c98a4;
     padding: 4px 2px;
     display: table;
@@ -274,12 +274,12 @@ span.cannotchangeinternal:hover
 {
     height: 100px;
     width: 100px;
-    background: url(../images/loading51.gif) no-repeat center center;
+    background: url(images/loading51.gif) no-repeat center center;
 }
 
 .viewicon
 {
-    background: url("../Images/icn_view.png") no-repeat scroll right top transparent;
+    background: url("Images/icn_view.png") no-repeat scroll right top transparent;
     cursor: pointer;
     height: 18px;
     margin: 0 0px 0 0;

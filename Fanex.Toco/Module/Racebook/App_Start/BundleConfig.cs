@@ -23,15 +23,17 @@ namespace Fanex.CustomerSetting.Module.Racebook.App_Start
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/racingsetting").Include(
-                "~/Areas/CustomerSetting/Views/Racebook/Scripts/*.js",
-                "~/Areas/CustomerSetting/Views/Racebook/Scripts/libs/*.js"));
+                "~/Areas/CustomerSetting/Views/Racebook/Scripts/libs/*.js",
+                "~/Areas/CustomerSetting/Views/Racebook/Scripts/libs/ToolTip/wz_tooltip/wz_tooltip.js",
+                "~/Areas/CustomerSetting/Views/Racebook/Scripts/common.js",
+                "~/Areas/CustomerSetting/Views/Racebook/Scripts/CommonPT.js",
+                "~/Areas/CustomerSetting/Views/Racebook/Scripts/Setting/RacingHelper.js",
+                "~/Areas/CustomerSetting/Views/Racebook/Scripts/Setting/RacingSetting.js"));
 
             bundles.Add(new StyleBundle("~/bundles/racingstyle").Include(
                 "~/Areas/CustomerSetting/Views/Racebook/Styles/*.css"));
 
-            bundles.Add(
-                new ScriptBundle("~/bundles/racingsetting/super").Include(
-                    "~/Areas/CustomerSetting/Views/Racebook/Super/Scripts/*.js"));
+           
         }
     }
 }

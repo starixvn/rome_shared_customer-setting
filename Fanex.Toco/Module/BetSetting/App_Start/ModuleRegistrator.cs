@@ -26,7 +26,7 @@ namespace Fanex.CustomerSetting.Module.LeftPanel.App_Start
         /// Gets the name of the controller.
         /// </summary>
         /// <value>The name of the controller.</value>
-        protected override string ControllerName
+        protected override string ModuleName
         {
             get
             {
@@ -38,7 +38,7 @@ namespace Fanex.CustomerSetting.Module.LeftPanel.App_Start
         /// Gets the controller name space.
         /// </summary>
         /// <value>The controller name space.</value>
-        protected override string ControllerNameSpace
+        protected override string ModuleNameSpace
         {
             get
             {
@@ -54,14 +54,14 @@ namespace Fanex.CustomerSetting.Module.LeftPanel.App_Start
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                this.AreaName + "_" + this.ControllerName,
-                this.AreaName + "/" + this.ControllerName + "/{controller}/{action}/{id}/{uplineId}/{userId}/{siteName}",
+                this.AreaName + "_" + this.ModuleName,
+                this.AreaName + "/" + this.ModuleName + "/{controller}/{action}/{id}/{uplineId}/{userId}/{siteName}",
                 new 
                 { 
                     action = "Index", id = UrlParameter.Optional, uplineId = UrlParameter.Optional, 
                     userId = UrlParameter.Optional, siteName = UrlParameter.Optional 
                 },
-                new[] { this.ControllerNameSpace });
+                new[] { this.ModuleNameSpace });
         }       
     }
 }

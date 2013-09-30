@@ -15,9 +15,9 @@ namespace Fanex.CustomerSetting.Module.Core.Web.App_Start
             }
         }
 
-        protected virtual string ControllerName { get { return string.Empty; } }
+        protected virtual string ModuleName { get { return string.Empty; } }
 
-        protected virtual string ControllerNameSpace { get { return string.Empty; } }
+        protected virtual string ModuleNameSpace { get { return string.Empty; } }
 
 
         protected void RegisterController(string controllerName)
@@ -29,13 +29,13 @@ namespace Fanex.CustomerSetting.Module.Core.Web.App_Start
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            if (!string.IsNullOrWhiteSpace(this.ControllerName) && !string.IsNullOrWhiteSpace(this.ControllerNameSpace))
+            if (!string.IsNullOrWhiteSpace(this.ModuleName) && !string.IsNullOrWhiteSpace(this.ModuleNameSpace))
             {
                 context.MapRoute(
-                    AreaName + "_" + ControllerName,
-                    AreaName + "/" + ControllerName + "/{controller}/{action}/{id}/{uplineId}",
+                    AreaName + "_" + ModuleName,
+                    AreaName + "/" + ModuleName + "/{controller}/{action}/{id}/{uplineId}",
                     new { action = "Index", id = UrlParameter.Optional, uplineId = UrlParameter.Optional },
-                    new[] { ControllerNameSpace });
+                    new[] { ModuleNameSpace });
             }
         }
 

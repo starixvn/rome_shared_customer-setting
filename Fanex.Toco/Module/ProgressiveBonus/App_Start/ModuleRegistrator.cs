@@ -22,7 +22,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveBonus.App_Start
         /// Controller name.
         /// </summary>
         /// <value>The controller name.</value>
-        protected override string ControllerName
+        protected override string ModuleName
         {
             get
             {
@@ -34,7 +34,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveBonus.App_Start
         /// Controller name space.
         /// </summary>
         /// <value>The controller name space.</value>
-        protected override string ControllerNameSpace
+        protected override string ModuleNameSpace
         {
             get
             {

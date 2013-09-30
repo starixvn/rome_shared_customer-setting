@@ -1,28 +1,24 @@
-﻿/*--Global variable*/
-/*--End global variable declaration--*/
-
-
-/*--Global function--*/
-function AllowNumber(e) {
-    var code = "";
-    if (e.which)
-        code = e.which;
-    else if (e.keyCode)
-        code = e.keyCode;
-    if (code == 37 || code == 39)
-        return true;
-    if ((code < 48 || code > 57) && code != 8 && code != 13 && code != 0 && code != 46 && code != 9) {
-        return false;
-    }
-    if (code == 13) {
-       BtnOnClick();
-    }
-    return true;
-}
+﻿/*Alert message*/
+var lblPasswordRequire = 'Password must have at least 6 characters, including at least 2 numbers and at least 2 digits. (e.g:pass22)';
+var alertPasswordEmpty = 'Sorry, password can not be empty!!!'; 
+var alertUserName = 'Please Enter User Name.';
+var alertCompare3 = 'Min Bet cannot be greater than Max Bet'; 
+var alertMinbet = 'Incorrect Min Bet';
+var alertMaxbet = 'Incorrect Max Bet'; 
+var alertMaxpermatch = 'Incorrect Max Per Match';
+var alertCompare = 'Max Bet cannot be greater than Max Per Match';
+var alertIncorrectCredit = 'Incorrect Max Credit';
+var alertMinLessCredit = 'Max credit must be more than or equal to ';
+var alertSite = 'Please Select Site'; 
+var alertCurrency = 'Please Select Currency';
+var alertCreditInvalid = 'Member Max Credit must be between {1} and {2}';
+/*Alert message*/
+/*Global function*/
 function roundNumber(num, dec) {
     var result = Math.round(Math.round(num * Math.pow(10, dec + 1)) / Math.pow(10, 1)) / Math.pow(10, dec);
     return result;
 }
+
 function toString(obj) {
     if (obj == null)
         return "";
@@ -43,86 +39,26 @@ function gup(name) {
     else
         return results[1];
 }
-var t1, t2 = null;
-function clearMessage(containerid) {
-    document.getElementById(containerid).innerHTML = "";
-    clearTimeout(t1);
-    clearTimeout(t2);
-}
-function clearSuccessMessages() {
-    $("#err .msgcorrect").remove();
-    clearTimeout(t2);
-}
+// Success=0, Error=1, Warning=2
 function showAlertMessage(containerid, msg, type) {
-    // Success=0, Error=1, Warning=2
-    if (document.getElementById(containerid)!=null)
-    {
-        switch (type) {
-            case 0:
-                document.getElementById(containerid).innerHTML = "<div class='alertboxscc'><div>" + msg + "</div></div>";
-                var t = setTimeout("clearMessage('" + containerid + "')", 6000);
-                break;
-            case 1:
-                document.getElementById(containerid).innerHTML = "<div class='alertboxerr'><div>" + msg + "</div></div>";
-                break;
-            case 2:
-                document.getElementById(containerid).innerHTML = "<div class='alertboxwrn'><div>" + msg + "</div></div>";
-                break;
-            default:
-                break
-        }
-        window.scroll(0, 0);
-        parent.scroll(0, 0);
-        
-    }
-}
-function formatAlertMessage(msg, type) {
-    // Success=0, Error=1, Warning=2
+
     switch (type) {
         case 0:
-            return "<div class='msgcorrect'>" + msg + "</div>";
+            document.getElementById(containerid).innerHTML = "<div class='alertboxscc'><div>" + msg + "</div></div>";
             break;
         case 1:
-            return "<div class='msgerror'>" + msg + "</div>";
+            document.getElementById(containerid).innerHTML = "<div class='alertboxerr'><div>" + msg + "</div></div>";
             break;
         case 2:
-            return "<div class='msgwarning'>" + msg + "</div>";
+            document.getElementById(containerid).innerHTML = "<div class='alertboxwrn'><div>" + msg + "</div></div>"; ;
             break;
         default:
-            return "";
-            break;
+            break
     }
+    window.scroll(0, 0);
+    parent.scroll(0, 0);
 }
-function showEnrichMessage(containerid, ErrorHandler) {
-    var isSuccess = true;
-    var result = '';
-     if (ErrorHandler != null && ErrorHandler.length > 0) {
-         $.each(ErrorHandler, function (index, value) {
-             if (value.Key > 0) {
-                 result += formatAlertMessage(value.Value, 1);
-                 isSuccess = false;
-             }
-             else {
-                 result += formatAlertMessage(value.Value, 0);
-             }
-         });
-     }
-     
-     if (isSuccess) {
-         result = '<div class="boxscc">' + result + '</div>';
-         t1 = setTimeout("clearMessage('" + containerid + "')", 8000);
-     }
-     else {
-         result = '<div class="boxerr">' + result + '</div>';
-         t2 = setTimeout("clearSuccessMessages()", 8000);
-     }
-     $("#".concat(containerid)).html(result);
-     window.scroll(0, 0);
-     parent.scroll(0, 0);
-     return isSuccess;
-}
-
-/*--End Global Funtions--*/
+/*Global function*/
 
 
 
@@ -144,8 +80,54 @@ function CreateOption(obj, curr, max, min, step, round) {
     if (curr < min) obj.append('<option selected value="' + curr + '">' + curr + '</option>');
 }
 
+
+function MenuItemClick(divControl, divpanel) {
+    var btn = $("#" + divControl);
+    var panel = $("#" + divpanel);
+    if (panel.is(":hidden")) {
+        btn.removeClass("md3").addClass("md2");
+        panel.removeClass("hidden").addClass("show");
+
+    } else {
+        btn.removeClass("md2").addClass("md3");
+        panel.removeClass("show").addClass("hidden");
+    }
+}
+
+function AssignSite() {
+    var obj = $("#listSite");
+    $.ajax({
+        type: "POST",
+        url: "../../Handlers/PT/GetSiteList.ashx",
+        dataType: "text",
+        success: function(data) {
+            data = $.evalJSON(data);
+            var SiteData = $.evalJSON(data.SiteData);
+            for (var i in SiteData) {
+                obj.append('<option value="' + SiteData[i].Value + '">' + SiteData[i].Value + '</option>');
+            }
+        }
+    });
+}
+
+function AssignCurrency() {
+    var obj = $("#listCurrency");
+    $.ajax({
+        type: "POST",
+        url: "../../Handlers/PT/GetCurrencyList.ashx",
+        dataType: "text",
+        success: function(data) {
+            data = $.evalJSON(data);
+            var CurrencyData = $.evalJSON(data.CurrencyData);
+            for (var i in CurrencyData) {
+                obj.append('<option value="' + CurrencyData[i].Value + '">' + CurrencyData[i].Text + '</option>');
+            }
+        }
+    });
+}
+
 function AssignCommission() {
-    jQuery.each($(".select-comm"), function() {
+    jQuery.each($(".commlist"), function() {
         if ($("#" + $(this).attr("id") + " option").size() <= 1) {
             var curr = $(this).val();
             var max = roundNumber($(this).attr("max"), 4);
@@ -155,82 +137,12 @@ function AssignCommission() {
 }
 
 function AssignPT() {
-    jQuery.each($(".pt"), function() {
+    jQuery.each($(".select-pt"), function() {
             if ($("#" + $(this).attr("id") + " option").size() <= 1) {
                 var curr = $(this).val();
                 var max = $(this).attr("max");
                 var min = $(this).attr("min");
-                CreateOption($(this), curr, max, min, 0.1, 2);
+                CreateOption($(this), curr, max, min, 0.01, 2);
             }
     });
-}
-
-function isNumber(n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
-}
-
-function getRoleName(id) {
-    name = "";
-    switch (parseInt(id)) {
-        case 4:
-        case -3:
-            name = "Super";
-            break;
-        case 3:
-        case -4:
-            name = "Master";
-            break;
-        case 2:
-        case -5:
-            name = "Agent";
-            break;
-        case 1:
-        case -1:
-        case -2:
-            name = "Member";
-            break;
-        default:
-            name = "Member";
-            break;
-    }
-    return name;
-}
-
-function PTBlockUI() {
-
-    if (parent.BlockUI) {
-        try { parent.BlockUI(); } catch (e) { }
-    }
-    //Called inside a frame set (#centerFr)
-    else {
-        if (parent.parent.BlockUI) {
-            parent.parent.BlockUI();
-        }
-    }
-    //Called from popup
-    if (opener) {
-        if (opener.BlockUI) {
-            opener.BlockUI();
-        }
-        opener.parent.BlockUI();
-    }
-}
-function PTUnBlockUI() {
-    
-    if (parent.jQuery && parent.jQuery.unblockUI) {
-        parent.jQuery.unblockUI();
-    }
-    //Called inside a frame set (#centerFr)
-    if (parent.parent.jQuery && parent.parent.jQuery.unblockUI) {
-       
-        parent.parent.jQuery.unblockUI();
-    }
-    //Called from popup
-
-    if (opener) {
-        if (opener.parent.jQuery.unblockUI) {
-            opener.parent.jQuery.unblockUI();
-        }
-        //parent.jQuery.unblockUI();
-    }
 }

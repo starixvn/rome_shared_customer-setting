@@ -55,7 +55,7 @@ namespace Fanex.CustomerSetting.Security.Configurations
                 {
                     try
                     {
-                        _instance = (CustomerSettingSection)ConfigurationManager.GetSection("CustomerSetting");
+                        _instance = (CustomerSettingSection)ConfigurationManager.GetSection("CustomerSetting/Security");
                     }
                     catch (Exception e)
                     {
