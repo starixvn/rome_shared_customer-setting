@@ -15,7 +15,7 @@ namespace Fanex.CustomerSetting.Module.Casino.App_Start
 
     public class ModuleRegistrator : AppAreaRegistrator 
     {
-        protected override string ControllerName
+        protected override string ModuleName
         {
             get
             {
@@ -23,7 +23,7 @@ namespace Fanex.CustomerSetting.Module.Casino.App_Start
             }
         }
 
-        protected override string ControllerNameSpace
+        protected override string ModuleNameSpace
         {
             get
             {

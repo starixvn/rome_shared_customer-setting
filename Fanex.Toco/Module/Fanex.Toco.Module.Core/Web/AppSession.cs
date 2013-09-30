@@ -11,6 +11,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Web;
 using Fanex.NAP.Core.Model;
 
 namespace Fanex.CustomerSetting.Module.Core.Web
@@ -18,6 +19,22 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 	[SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
 	public static class AppSession
 	{
+        public static int AccId
+        {
+            get
+            {
+                try
+                {
+                    return Fanex.Common.Converter.ToInt(HttpContext.Current.Session["AccId"]);
+                }
+                catch (Exception ex)
+                {
+                    return 0;
+                }
+            }
+            set { HttpContext.Current.Session["AccId"] = value; }
+        }
+
 		/// <summary>
 		/// Gets or sets current login user
 		/// </summary>

@@ -1,0 +1,38 @@
+﻿// ************************************************************************************
+// <copyright file="Setting.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// ************************************************************************************
+// <history>
+//     <change who="steven.nguyen">Create/Run StyleCop.</change>
+// </history>
+// ************************************************************************************
+namespace Fanex.CustomerSetting.Module.Racebook.Entities
+{
+    using System;
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// Class Setting.
+    /// </summary>
+    public class Setting
+    {
+        public List<Sport> RacingSportType { get; set; }
+       
+        public CustInfo CustInfo { get; set; }
+       
+        public decimal MaxPosition { get; set; }
+       
+        public bool IsHideCopyBetSetting { get; set; }
+       
+        public string DefaultRacingSportType { get; set; }
+       
+        public string DefaultRacingSportTypeId { get; set; }
+       
+        public bool IsUpdateAllMember { get; set; }
+       
+        public decimal NewPt { get; set; }
+       
+        public string Crypting { get; set; }
+    }
+}

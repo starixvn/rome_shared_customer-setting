@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Functions>
+
+  <Function SpName="Racing Setting">
+
+    <Setting Key="GetRacingStatus" SpName="Acc_CustomerSelRBStatus" DbName="db053"/>
+    <Setting Key="GetSuperSetting" SpName="Acc_CustomerSelHRSuper_All" DbName="db053"/>
+    <Setting Key="GetMasterSetting" SpName="Acc_CustomerSelHRMaster_All" DbName="db053"/>
+    <Setting Key="GetAgentSetting" SpName="Acc_CustomerSelHRAgent_All" DbName="db053"/>
+    <Setting Key="GetMemberSetting" SpName="Acc_CustomerSelHRMember_All" DbName="db053"/>
+
+    <Setting Key="UpdateStatus" SpName="Acc_CustomerUpdRBStatus" DbName="main"/>
+    <Setting Key="UpdateSuperSetting" SpName="Acc_CustomerUpdSuperHR_All" DbName="main"/>
+    <Setting Key="UpdateMasterSetting" SpName="Acc_CustomerUpdMasterHR_All" DbName="main"/>
+    <Setting Key="UpdateAgentSetting" SpName="Acc_CustomerUpdAgentHR_All" DbName="main"/>
+    <Setting Key="UpdateMemberSetting" SpName="Acc_CustomerUpdMemberHR_All" DbName="main"/>
+
+    <Setting Key="GetSuperMin" SpName="Acc_CustomerSelHRComEditOverride_SAg" DbName="db053"/>
+    <Setting Key="GetMasterMinMax" SpName="Acc_CustomerSelHRComEditOverride_MAg" DbName="db053"/>
+    <Setting Key="GetAgentMinMax" SpName="Acc_CustomerSelHRComEditOverride_Ag" DbName="db053"/>
+
+    <Setting Key="UpdateMinMaxPt" SpName="Acc_CustOverrideUpdHR" DbName="main"/>
+
+    <Setting Key="GetSuperOnMember" SpName="Acc_CustomerSelHREditMember_SAg" DbName="db053"/>
+    <Setting Key="GetMasterOnMember" SpName="Acc_CustomerSelHREditMember_MAg" DbName="db053"/>
+    <Setting Key="UpdateSuperOnMember" SpName="Acc_CustomerUpdMemberHR_SAg" DbName="main"/>
+    <Setting Key="UpdateMasterOnMember" SpName="Acc_CustomerUpdMemberHR_MAg" DbName="main"/>
+    
+  </Function>
+  
+</Functions>

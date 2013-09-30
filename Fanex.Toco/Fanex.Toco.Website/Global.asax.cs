@@ -1,4 +1,6 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Globalization;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -13,12 +15,14 @@ namespace Fanex.CustomerSetting.Website
     {
         protected void Application_Start()
         {
+            Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
             AreaRegistration.RegisterAllAreas();
 
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
+            
         }
+       
     }
 }

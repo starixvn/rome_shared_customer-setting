@@ -17,15 +17,18 @@ namespace Fanex.CustomerSetting.Module.Racebook.App_Start
     /// </summary>
     public class ModuleRegistrator : AppAreaRegistrator
     {
+
+        public const string Module = "Racebook";
+
         /// <summary>
         /// Gets the name of the controller.
         /// </summary>
         /// <value>The name of the controller.</value>
-        protected override string ControllerName
+        protected override string ModuleName
         {
             get
             {
-                return "Racebook";
+                return Module;
             }
         }
 
@@ -33,7 +36,7 @@ namespace Fanex.CustomerSetting.Module.Racebook.App_Start
         /// Gets the controller name space.
         /// </summary>
         /// <value>The controller name space.</value>
-        protected override string ControllerNameSpace
+        protected override string ModuleNameSpace
         {
             get
             {
