@@ -684,10 +684,6 @@
       <Project>{63D0DC31-9FEF-4BEE-9D43-E1E3A3BE42A5}</Project>
       <Name>Racebook</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Racebook.Resources\Racebook.Resources.csproj">
-      <Project>{12AF9E40-FCCD-4570-9035-607C7E4E8C27}</Project>
-      <Name>Racebook.Resources</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_GlobalResources\Error.resx">
