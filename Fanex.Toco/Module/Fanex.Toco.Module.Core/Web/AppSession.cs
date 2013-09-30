@@ -25,7 +25,7 @@ namespace Fanex.CustomerSetting.Module.Core.Web
             {
                 try
                 {
-                    return Fanex.Common.Converter.ToInt(HttpContext.Current.Session["AccId"]);
+                    return Fanex.Common.Converter.ToInt(HttpContext.Current.Session["EASUserId"]);
                 }
                 catch (Exception ex)
                 {
