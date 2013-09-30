@@ -390,7 +390,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
                 // Agent preset PT                
                 gameGroup.M2 = Utils.ToDecimal(row["APositionTaking"]).Format(2);
-                gameGroup.N3 = gameGroup.Is3 == true ? gameGroup.N4 - gameGroup.M3 - gameGroup.M2 : 0;
+                gameGroup.N3 = gameGroup.Is3 == true ? gameGroup.N4 - gameGroup.M3 - gameGroup.M2 : gameGroup.N4;
 
                 // Assign game types
                 var gameTypes = this.GetGameTypeMemberBySuper(custId, gameGroup.GameGroupID);
@@ -1920,7 +1920,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
                 // Agent preset PT                
                 gameType.M2 = Utils.ToDecimal(row["APositionTaking"]).Format(2);
-                gameType.N3 = gameType.Is3 == true ? gameType.N4 - gameType.M3 - gameType.M2 : 0;
+                gameType.N3 = gameType.Is3 == true ? gameType.N4 - gameType.M3 - gameType.M2 : gameType.N4;
 
                 // Betting limits
                 var stakes = this.GetStakeLevels(custId, gameType.GameTypeID);
