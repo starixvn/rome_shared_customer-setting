@@ -73,16 +73,18 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
         /// Updates the agent post.
         /// </summary>
         /// <param name="id">The identifier.</param>
+        /// <param name="custName">Customer name.</param>
         /// <param name="uplineId">The upline identifier.</param>
         /// <param name="userId">The user identifier.</param>
         /// <param name="username">The username.</param>
         /// <param name="settingModel">The setting model.</param>
         /// <param name="customerModel">The customer model.</param>
         /// <returns>ActionResult object.</returns>
-        public ActionResult UpdateAgentPost(int id, int uplineId, int userId, string username, string settingModel, string customerModel)
+        public ActionResult UpdateAgentPost(int id, string custName, int uplineId, int userId, string username, string settingModel, string customerModel)
         {
             var ret = CasinoManager.Instance.UpdateAgent(
                 id, 
+                custName,
                 uplineId, 
                 Request.UserHostAddress, 
                 userId, 

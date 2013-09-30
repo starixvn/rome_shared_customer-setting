@@ -342,6 +342,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var custInfo = this.GetCustInfoIBC(custId, uplineId);
             var cust = new Customer();
             var dt = cust.GetCustGameKind_EditMember(custId);
+            var dtSuper = cust.GetCustGameKind(custId);
 
             var casinoSettingUpline = new CasinoCustomer();
 
@@ -359,7 +360,17 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             foreach (DataRow row in dt.Rows)
             {
                 var gameGroup = new GameGroup();
+                var isAutoOnMember = false;
 
+                foreach (DataRow dtRow in dtSuper.Rows)
+                {
+                    if (row["GameKind"].Equals(dtRow["GameKind"]))
+                    {
+                        isAutoOnMember = Utils.ToBoolean(dtRow["SuperIsAutoPositionTaking"]);
+                        break;
+                    }    
+                }
+                
                 // Game type info
                 gameGroup.GameGroupID = Utils.ToInt32(row["GameKind"]);
                 gameGroup.GameGroupName = Utils.ToString(row[Lang("GameKindName")]);
@@ -370,7 +381,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 gameGroup.N4 = Utils.ToDecimal(row["SuperMinPositionTaking"]).Format(2);
 
                 // Super Auto PT
-                gameGroup.Is3 = Utils.ToBoolean(row["IsAutoPositionTaking"]);
+                gameGroup.Is1 = Utils.ToBoolean(row["IsAutoPositionTaking"]);
+                gameGroup.Is3 = isAutoOnMember;
                 gameGroup.Us3 = Utils.ToDecimal(row["AutoPositionTaking"]).Format(2);
 
                 // Master preset PT
@@ -485,7 +497,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             }
         }
 
-        public Result UpdateMaster(int custId, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel settingModel, CasinoCustomer customerModel)
+        public Result UpdateMaster(int custId, string custName, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel settingModel, CasinoCustomer customerModel)
         {
             var errMsg = string.Empty;
             var messages = string.Empty;
@@ -501,48 +513,44 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 return new Result(1, "Invalid custId and uplineId");
             }
 
-            // Check whether casino is synced or not to insert customer settings for direct downline only
-            if (!customerModel.CasinoSync)
+            try
             {
-                try
-                {
-                    settingsInserted = cust.InsertCustSetting(
-                        "01",
-                        customerModel.IBCCustID,
-                        customerModel.UserName,
-                        customerModel.UserName2,
-                        customerModel.FirstName,
-                        customerModel.LastName,
-                        customerModel.UserPwd,
-                        customerModel.Phone,
-                        customerModel.MobilePhone,
-                        customerModel.Currency,
-                        customerModel.Fax,
-                        customerModel.Closed,
-                        customerModel.Suspend,
-                        customerModel.IsEnablePT,
-                        (decimal)customerModel.MaxWin,
-                        (decimal)customerModel.MaxLose,
-                        true,
-                        (decimal)customerModel.MaxTransferCredit,
-                        customerModel.SIBCCustID,
-                        customerModel.MIBCCustID,
-                        customerModel.AIBCCustID,
-                        customerModel.PTByGameType,
-                        customerModel.RoleId.ToString(),
-                        DateTime.Now,
-                        ip,
-                        modifiedId,
-                        modifiedBy,
-                        fromSystem,
-                        customerModel.IsAutoReset,
-                        false, false);
-                }
-                catch (Exception)
-                {
-                    // Bypass this exception because this customer had setting but update status failed, before.
-                }
+                settingsInserted = cust.InsertCustSetting(
+                    "01",
+                    custId,
+                    custName,
+                    customerModel.UserName2,
+                    customerModel.FirstName,
+                    customerModel.LastName,
+                    customerModel.UserPwd,
+                    customerModel.Phone,
+                    customerModel.MobilePhone,
+                    customerModel.Currency,
+                    customerModel.Fax,
+                    customerModel.Closed,
+                    customerModel.Suspend,
+                    customerModel.IsEnablePT,
+                    (decimal)customerModel.MaxWin,
+                    (decimal)customerModel.MaxLose,
+                    true,
+                    (decimal)customerModel.MaxTransferCredit,
+                    customerModel.SIBCCustID,
+                    custId,
+                    customerModel.AIBCCustID,
+                    customerModel.PTByGameType,
+                    customerModel.RoleId.ToString(),
+                    DateTime.Now,
+                    ip,
+                    modifiedId,
+                    modifiedBy,
+                    fromSystem,
+                    customerModel.IsAutoReset,
+                    false, false);
             }
+            catch (Exception)
+            {
+                // Bypass this exception because this customer had setting but update status failed, before.
+            }            
 
             // Update Status for direct downline only
             if ((settingsInserted && !customerModel.CasinoSync) || customerModel.CasinoSync)
@@ -603,7 +611,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             return new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
         }
 
-        public Result UpdateAgent(int custId, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel settingModel, CasinoCustomer customerModel)
+        public Result UpdateAgent(int custId, string custName, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel settingModel, CasinoCustomer customerModel)
         {
             var errMsg = string.Empty;
             var messages = string.Empty;
@@ -618,48 +626,44 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             {
                 return new Result(1, "Invalid custId and uplineId");
             }
-
-            // Check whether casino is synced or not to insert customer settings for direct downline only
-            if (!customerModel.CasinoSync)
+            
+            try
             {
-                try
-                {
-                    settingsInserted = cust.InsertCustSetting(
-                        "01",
-                        customerModel.IBCCustID,
-                        customerModel.UserName,
-                        customerModel.UserName2,
-                        customerModel.FirstName,
-                        customerModel.LastName,
-                        customerModel.UserPwd,
-                        customerModel.Phone,
-                        customerModel.MobilePhone,
-                        customerModel.Currency,
-                        customerModel.Fax,
-                        customerModel.Closed,
-                        customerModel.Suspend,
-                        customerModel.IsEnablePT,
-                        (decimal)customerModel.MaxWin,
-                        (decimal)customerModel.MaxLose,
-                        true,
-                        (decimal)customerModel.MaxTransferCredit,
-                        customerModel.SIBCCustID,
-                        customerModel.MIBCCustID,
-                        customerModel.AIBCCustID,
-                        customerModel.PTByGameType,
-                        customerModel.RoleId.ToString(),
-                        DateTime.Now,
-                        ip,
-                        modifiedId,
-                        modifiedBy,
-                        fromSystem,
-                        customerModel.IsAutoReset,
-                        false, false);
-                }
-                catch (Exception)
-                {
-                    // Bypass this exception because this customer had setting but update status failed, before.
-                }
+                settingsInserted = cust.InsertCustSetting(
+                    "01",
+                    custId,
+                    custName,
+                    customerModel.UserName2,
+                    customerModel.FirstName,
+                    customerModel.LastName,
+                    customerModel.UserPwd,
+                    customerModel.Phone,
+                    customerModel.MobilePhone,
+                    customerModel.Currency,
+                    customerModel.Fax,
+                    customerModel.Closed,
+                    customerModel.Suspend,
+                    customerModel.IsEnablePT,
+                    (decimal)customerModel.MaxWin,
+                    (decimal)customerModel.MaxLose,
+                    true,
+                    (decimal)customerModel.MaxTransferCredit,
+                    customerModel.SIBCCustID,
+                    customerModel.MIBCCustID,
+                    custId,
+                    customerModel.PTByGameType,
+                    customerModel.RoleId.ToString(),
+                    DateTime.Now,
+                    ip,
+                    modifiedId,
+                    modifiedBy,
+                    fromSystem,
+                    customerModel.IsAutoReset,
+                    false, false);
+            }
+            catch (Exception)
+            {
+                // Bypass this exception because this customer had setting but update status failed, before.
             }
 
             // Update Status for direct downline only
@@ -721,7 +725,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             return new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
         }
 
-        public Result UpdateMember(int custId, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel settingModel, CasinoCustomer customerModel)
+        public Result UpdateMember(int custId, string custName, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel settingModel, CasinoCustomer customerModel)
         {
             var errMsg = string.Empty;
             var messages = string.Empty;
@@ -737,48 +741,44 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 return new Result(1, "Invalid custId and uplineId");
             }
 
-            // Check whether casino is synced or not to insert customer settings for direct downline only
-            if (!customerModel.CasinoSync)
+            try
             {
-                try
-                {
-                    settingsInserted = cust.InsertCustSetting(
-                        "01",
-                        customerModel.IBCCustID,
-                        customerModel.UserName,
-                        customerModel.UserName2,
-                        customerModel.FirstName,
-                        customerModel.LastName,
-                        customerModel.UserPwd,
-                        customerModel.Phone,
-                        customerModel.MobilePhone,
-                        customerModel.Currency,
-                        customerModel.Fax,
-                        customerModel.Closed,
-                        customerModel.Suspend,
-                        customerModel.IsEnablePT,
-                        (decimal)customerModel.MaxWin,
-                        (decimal)customerModel.MaxLose,
-                        true,
-                        (decimal)customerModel.MaxTransferCredit,
-                        customerModel.SIBCCustID,
-                        customerModel.MIBCCustID,
-                        customerModel.AIBCCustID,
-                        customerModel.PTByGameType,
-                        customerModel.RoleId.ToString(),
-                        DateTime.Now,
-                        ip,
-                        modifiedId,
-                        modifiedBy,
-                        fromSystem,
-                        customerModel.IsAutoReset,
-                        false, false);
-                }
-                catch (Exception)
-                {
-                    // Bypass this exception because this customer had setting but update status failed, before.
-                }
+                settingsInserted = cust.InsertCustSetting(
+                    "01",
+                    custId,
+                    custName,
+                    customerModel.UserName2,
+                    customerModel.FirstName,
+                    customerModel.LastName,
+                    customerModel.UserPwd,
+                    customerModel.Phone,
+                    customerModel.MobilePhone,
+                    customerModel.Currency,
+                    customerModel.Fax,
+                    customerModel.Closed,
+                    customerModel.Suspend,
+                    customerModel.IsEnablePT,
+                    (decimal)customerModel.MaxWin,
+                    (decimal)customerModel.MaxLose,
+                    true,
+                    (decimal)customerModel.MaxTransferCredit,
+                    customerModel.SIBCCustID,
+                    customerModel.MIBCCustID,
+                    customerModel.AIBCCustID,
+                    customerModel.PTByGameType,
+                    customerModel.RoleId.ToString(),
+                    DateTime.Now,
+                    ip,
+                    modifiedId,
+                    modifiedBy,
+                    fromSystem,
+                    customerModel.IsAutoReset,
+                    false, false);
             }
+            catch (Exception)
+            {
+                // Bypass this exception because this customer had setting but update status failed, before.
+            }            
 
             // Update Status for direct downline only
             if ((settingsInserted && !customerModel.CasinoSync) || customerModel.CasinoSync)
@@ -1363,8 +1363,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 gameGroupID,
                                 !(uplineRoleId == Super || uplineRoleId == Master) || gameGroup.Is3 == true ? null : (object)gameGroup.S3,
                                 !(uplineRoleId == Master || uplineRoleId == Agent) ? null : (object)gameGroup.M3,
-                                gameGroup.Is3 == true ? 1 : 0,
-                                !gameGroup.Is3 == true ? null : (object)gameGroup.Us3,
+                                gameGroup.Is1 == true ? 1 : 0,
+                                !gameGroup.Is1 == true ? null : (object)gameGroup.Us3,
                                 uplineRoleId,
                                 ip,
                                 modifiedId, 
@@ -1383,8 +1383,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 gameType.GameTypeID,
                                 !(uplineRoleId == Super || uplineRoleId == Master) || gameType.Is3 == true ? null : (object)gameType.S3,
                                 !(uplineRoleId == Master || uplineRoleId == Agent) ? null : (object)gameType.M3,
-                                gameType.Is3 == true ? 1 : 0,
-                                !gameType.Is3 == true ? null : (object)gameType.Us3,
+                                gameType.Is1 == true ? 1 : 0,
+                                !gameType.Is1 == true ? null : (object)gameType.Us3,
                                 uplineRoleId,
                                 ip,
                                 modifiedId, 
@@ -1885,10 +1885,21 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var cust = new Customer();
             var gameTypes = new List<GameType>();
             var dt = cust.GetCustGameType_EditMember(custId, gameKindID);
+            var dtSuper = cust.GetCustGameType(custId, gameKindID);
 
             foreach (DataRow row in dt.Rows)
             {
                 var gameType = new GameType();
+                var isAutoOnMember = false;
+
+                foreach (DataRow dtRow in dtSuper.Rows)
+                {
+                    if (row["GameTypeID"].Equals(dtRow["GameTypeID"]))
+                    {
+                        isAutoOnMember = Utils.ToBoolean(dtRow["SuperIsAutoPositionTaking"]);
+                        break;
+                    }
+                }
 
                 // Game type info
                 gameType.GameTypeID = Utils.ToInt32(row["GameTypeID"]);
@@ -1900,7 +1911,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 gameType.N4 = Utils.ToDecimal(row["SuperMinPositionTaking"]).Format(2);
                 
                 // Super Auto PT
-                gameType.Is3 = Utils.ToBoolean(row["IsAutoPositionTaking"]);
+                gameType.Is1 = Utils.ToBoolean(row["IsAutoPositionTaking"]);
+                gameType.Is3 = isAutoOnMember;
                 gameType.Us3 = Utils.ToDecimal(row["AutoPositionTaking"]).Format(2);
                 
                 // Master preset PT

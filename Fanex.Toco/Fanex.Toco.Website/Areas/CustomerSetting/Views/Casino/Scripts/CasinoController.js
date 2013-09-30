@@ -107,6 +107,7 @@
         };
 
         data.id = custIdIndex == null ? CustomerInfo.id : CustIds[custIdIndex];
+        data.custName = custIdIndex == null ? CustomerModel.userName : Usernames[custIdIndex];
 
         $.ajax({
             url: toUrl(actionName),

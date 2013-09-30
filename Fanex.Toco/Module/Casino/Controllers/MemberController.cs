@@ -57,9 +57,9 @@
             return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Member/EditMemberBySuper.cshtml", customerSetting);
         }
 
-        public ActionResult UpdateMemberPost(int id, int uplineId, int userId, string username, string settingModel, string customerModel)
+        public ActionResult UpdateMemberPost(int id, string custName, int uplineId, int userId, string username, string settingModel, string customerModel)
         {
-            var ret = CasinoManager.Instance.UpdateMember(id, uplineId, Request.UserHostAddress, userId, username, BaseController.FromSystem, JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
+            var ret = CasinoManager.Instance.UpdateMember(id, custName, uplineId, Request.UserHostAddress, userId, username, BaseController.FromSystem, JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
 
             return this.JsonBase(new { ErrorCode = ret.IsSuccess ? 0 : 1, ErrorMessage = ret.ErrorMessage });
         }
