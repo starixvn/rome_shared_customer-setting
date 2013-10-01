@@ -680,6 +680,10 @@
       <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
       <Name>_Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Module\ProgressiveBonus\Fanex.CustomerSetting.Module.ProgressiveBonus.csproj">
+      <Project>{5EFF254F-0DEE-41BD-9D90-3FF4489D077F}</Project>
+      <Name>Fanex.CustomerSetting.Module.ProgressiveBonus</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Module\Racebook\Racebook.csproj">
       <Project>{63D0DC31-9FEF-4BEE-9D43-E1E3A3BE42A5}</Project>
       <Name>Racebook</Name>

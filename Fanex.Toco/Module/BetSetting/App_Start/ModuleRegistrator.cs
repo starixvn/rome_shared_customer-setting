@@ -11,7 +11,7 @@
 /// <summary>
 /// The App_Start namespace.
 /// </summary>
-namespace Fanex.CustomerSetting.Module.LeftPanel.App_Start
+namespace Fanex.CustomerSetting.Module.BetSetting.App_Start
 {
     using System.Reflection;
     using System.Web.Mvc;
