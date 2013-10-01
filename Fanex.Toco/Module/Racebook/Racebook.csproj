@@ -164,13 +164,13 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Racebook.Resources\Racebook.Resources.csproj">
-      <Project>{12AF9E40-FCCD-4570-9035-607C7E4E8C27}</Project>
-      <Name>Racebook.Resources</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Fanex.Toco.Module.Core\_Core.csproj">
       <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
       <Name>_Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Racebook.Resources\Racebook.Resources.csproj">
+      <Project>{12AF9E40-FCCD-4570-9035-607C7E4E8C27}</Project>
+      <Name>Racebook.Resources</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
