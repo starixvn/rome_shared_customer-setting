@@ -141,7 +141,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="Configurations\ProgressiveSection.cs" />
     <Compile Include="Configurations\FromSystem.cs" />
-    <Compile Include="Controllers\CasinoController.cs" />
+    <Compile Include="Controllers\CasinoBonusController.cs" />
     <Compile Include="Criteria\GetProductCriteria.cs" />
     <Compile Include="Criteria\UpdateProgressiveCriteria.cs" />
     <Compile Include="Entities\Product.cs" />

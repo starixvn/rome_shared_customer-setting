@@ -20,7 +20,7 @@ namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Controllers
     /// Casino controller.
     /// </summary>
     [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1027:TabsMustNotBeUsed", Justification = "Reviewed.")]
-	public class CasinoController : BaseController
+	public class CasinoBonusController : BaseController
 	{
         /// <summary>
         /// Progressive Service.
@@ -28,10 +28,10 @@ namespace Fanex.CustomerSetting.Module.ProgressiveBonus.Controllers
 		private IProgressiveService _progressiveService;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CasinoController"/> class.
+        /// Initializes a new instance of the <see cref="CasinoBonusController"/> class.
         /// </summary>
         [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1126:PrefixCallsCorrectly", Justification = "Reviewed.")]
-		public CasinoController()
+		public CasinoBonusController()
 		{
 			_progressiveService = new ProgressiveService();
 		}
