@@ -2,15 +2,110 @@
 
 @{
     ViewBag.Title = "Member Racing Setting";
-    Layout = "~/Areas/CustomerSetting/Views/Racebook/Shared/_Layout.cshtml";
+    Layout = "~/Areas/CustomerSetting/Views/OpusCasino/Shared/_Layout.cshtml";
 }
-
+<tr>
+    <td colspan="5" class="header l b">
+        <span class="textHeader">Postion Talking/Commission</span>
+        <i id="btnUpdateComm" class="btnSave"></i></td>
+</tr>
+<tr>
+    <td class="col120 formatCol c b">Master PT</td>
+    <td class="col120 formatCol c b">Master Auto PT</td>
+    <td class="col120 formatCol c b">Agent PT</td>
+    <td colspan="2"></td>
+</tr> 
+<tr>
+    <td class="formatCol c b">
+        <select></select>
+    </td>
+    <td class="formatCol c b">
+        <input type="checkbox" class="chb"/>
+        <select></select>
+    </td>
+    <td class="formatCol c b">
+        <select></select>
+    </td>
+    <td colspan="2" class="formatCol c b">
+      
+    </td>
+</tr>   
+<tr>
+    <td colspan="5" class="header l b ">
+        <span class="textHeader">Bet Setting</span>
+        <i id="btnUpdateBetSetting" class="btnSave"></i>
+    </td>
+</tr>
+<tr>
+    <td colspan="5">
+        <span class="base-font b">Member Max Transfer Credit</span>
+        <input type="text" maxlength="20" />
+        <label class="base-font">
+            <input type="checkbox" class="chb"/>Daily auto reset limit (at 12 noon GMT+8)
+        </label>
+        <br />
+        <span id="numberLimit" class="base-font">(1 - 25,000)</span>
+    </td>
+</tr>
+<tr>
+    <td colspan="5" class="header l b">
+        <span class="textHeader">Game Setting</span>
+        <i id="btnUpdateGameSetting" class="btnSave"></i>
+    </td>
+</tr>
+<tr>
+    <td class="col120 formatCol r b">Game Type</td>
+    <td colspan="4" class="formatCol l b">Betting Limit</td>
+</tr>
+<tr>
+    <td class="col120 formatCol r">Barccarat</td>
+    <td colspan="4" class="formatCol">
+        
+    </td>
+</tr>
+<tr>
+    <td class="col120 formatCol r">Roulette</td>
+    <td colspan="4"  class="formatCol">
+        
+    </td>
+</tr>
+<tr>
+    <td class="col120 formatCol r">3 Pictures</td>
+    <td colspan="4"  class="formatCol">
+         
+    </td>
+</tr>
+<tr>
+    <td class="col120 formatCol r">7 Up Baccarat</td>
+    <td colspan="4"  class="formatCol">
+    </td>
+</tr>
+<tr>
+    <td class="col120 formatCol r">Dragon/Tiger</td>
+    <td colspan="4"  class="formatCol">
+    </td>
+</tr>
+<tr>
+    <td class="col120 formatCol r">Poker Bonus</td>
+    <td colspan="4"  class="formatCol">
+    </td>
+</tr>
+<tr>
+    <td class="col120 formatCol r">Dice</td>
+    <td colspan="4"  class="formatCol">
+    </td>
+</tr>
+<tr>
+    <td class="col120 formatCol r">Blacjack</td>
+    <td colspan="4"  class="formatCol">
+    </td>
+</tr>
 @section scripts
 {
     @*@Scripts.Render("~/bundles/racingsetting/super")*@
     <script type="text/javascript">
-        window.pageRole = ptRacingCommon.masterRoleId;
-        window.targetRoleId = ptRacingCommon.memberRoleId;
+        /*window.pageRole = ptRacingCommon.masterRoleId;
+        window.targetRoleId = ptRacingCommon.memberRoleId;*/
             
     </script>
 }

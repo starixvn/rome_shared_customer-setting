@@ -174,6 +174,7 @@
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\CommonPT.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\BlockUI.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\Functions.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\head.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\jquery.blockUI.1.33.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\jquery.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\jquery.tmpl.js" />
@@ -197,6 +198,12 @@
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\ToolTip\wz_tooltip\wz_tooltip.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Setting\RacingHelper.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Setting\RacingSetting.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Accounting\Images\Update.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Accounting\Images\bgHeader.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Agent\Images\Update.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Agent\Images\bgHeader.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Agent\Images\b_left.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Agent\Images\b_right.gif" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\common.css" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\accessDenied.gif" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\back.png" />
@@ -271,7 +278,8 @@
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\ptR_down.gif" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\refresh_icon.gif" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\R_content_tab.png" />
-    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Save.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\save.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Save1.png" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\sorting_asc.gif" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\sorting_bg.gif" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\sorting_desc.gif" />
@@ -779,7 +787,18 @@
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Setting\Super.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Setting\SuperEditMember.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Shared\_Layout.cshtml" />
+    <None Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Agent\ThemeColor.less">
+      <Compile>True</Compile>
+      <Minify>True</Minify>
+    </None>
+    <None Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Accounting\ThemeColor.less">
+      <Compile>True</Compile>
+      <Minify>True</Minify>
+    </None>
+    <None Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Common.less" />
     <None Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Buttons\AntiXss.msi" />
+    <None Include="Areas\CustomerSetting\Views\OpusCasino\Styles\OpusCasinoSetting.less" />
+    <None Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Variables.less" />
     <None Include="Areas\CustomerSetting\Views\Racebook\Document.doc" />
     <Content Include="Web.Configuration\RacingSection.config" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\RacingSetting.cshtml" />
