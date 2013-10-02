@@ -12,17 +12,17 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
     using System;
     using System.Collections.Generic;
     using System.Data;
+    using System.Linq;
     using CasinoLibrary.SBAgent;
     using Fanex.CustomerSetting.Module.Casino.Entities;
     using Fanex.CustomerSetting.Module.Casino.Repositories.Impl;
     using Fanex.CustomerSetting.Module.Casino.ViewModels;
     using Fanex.CustomerSetting.Module.Core;
     using Fanex.CustomerSetting.Module.Core.Models;
-    using System.Data.SqlClient;
-    
+
     /// <summary>
     /// TODO: Update summary.
-    /// </summary>    
+    /// </summary>
     public class CasinoManager
     {
         private const int Super = 4;
@@ -32,7 +32,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
         private const int Admin = 5;
 
         private static CasinoManager instance = new CasinoManager();
-        private readonly CasinoDao casino = new CasinoDao();
+        private readonly CasinoDao _casino = new CasinoDao();
 
         public static CasinoManager Instance
         {
@@ -125,13 +125,13 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             }
 
             gameModel.IsPtByGameType = casinoSettingUpline.PTByGameType;
-            
+
             foreach (DataRow row in dt.Rows)
             {
                 var gameGroup = new GameGroup();
-                
+
                 // Commission
-                gameGroup.Mco = Utils.ToDecimal(row["MAgentRollingRate"]).Format(4);//synced ? Utils.ToDecimal(row["UplineMAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["MAgentRollingRate"]).Format(4);
+                gameGroup.Mco = Utils.ToDecimal(row["MAgentRollingRate"]).Format(4); // synced ? Utils.ToDecimal(row["UplineMAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["MAgentRollingRate"]).Format(4);
                 gameGroup.Sco = synced ? Utils.ToDecimal(row["UplineSMAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["SMAgentRollingRate"]).Format(4);
 
                 if (!synced)
@@ -145,20 +145,20 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
                 // Super preset PT
                 gameGroup.S4 = synced ? Utils.ToDecimal(row["UplineMaxPositionTaking"]).Format(2) : Utils.ToDecimal(row["MaxPositionTaking"]).Format(2);
-                gameGroup.S3 = Utils.ToDecimal(row["SPositionTaking"]).Format(2);//synced ? Utils.ToDecimal(row["UplineSPositionTaking"]).Format(2) : Utils.ToDecimal(row["SPositionTaking"]).Format(2);
-                
+                gameGroup.S3 = Utils.ToDecimal(row["SPositionTaking"]).Format(2); // synced ? Utils.ToDecimal(row["UplineSPositionTaking"]).Format(2) : Utils.ToDecimal(row["SPositionTaking"]).Format(2);
+
                 // Super Auto PT
                 gameGroup.Is3 = Utils.ToBoolean(row["IsAutoPositionTaking"]);
                 gameGroup.Us3 = Utils.ToDecimal(row["AutoPositionTaking"]).Format(2);
 
                 // Master Max PT
                 gameGroup.M3 = synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
-                
+
                 // Master Min PT
                 gameGroup.N3 = synced ? Utils.ToDecimal(row["MinPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMinPositionTaking"]).Format(2);
-                                
+
                 // Assign game types
-                var gameTypes = this.GetGameTypeMaster(id, gameGroup.GameGroupID, synced);
+                var gameTypes = this.GetGameTypeMaster(id, gameGroup.GameGroupID, synced, ref gameGroup, gameModel.IsPtByGameType);
                 gameGroup.GameTypes = gameTypes;
 
                 gameGroups.Add(gameGroup);
@@ -211,8 +211,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
                 // Master preset PT
                 gameGroup.M3 = !synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
-                gameGroup.M2 = Utils.ToDecimal(row["MPositionTaking"]).Format(2);//!synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
-                                
+                gameGroup.M2 = Utils.ToDecimal(row["MPositionTaking"]).Format(2); // !synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
+
                 // Agent Max PT
                 gameGroup.A2 = synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
 
@@ -220,7 +220,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 gameGroup.N2 = !synced ? 0 : Utils.ToDecimal(row["MinPositionTaking"]).Format(2);
 
                 // Assign game types
-                var gameTypes = this.GetGameTypeAgent(id, gameGroup.GameGroupID, synced);
+                var gameTypes = this.GetGameTypeAgent(id, gameGroup.GameGroupID, synced, ref gameGroup, gameModel.IsPtByGameType);
                 gameGroup.GameTypes = gameTypes;
 
                 gameGroups.Add(gameGroup);
@@ -257,7 +257,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             foreach (DataRow row in dt.Rows)
             {
                 var gameGroup = new GameGroup();
-                                
+
                 // Game Group Info
                 gameGroup.GameGroupID = Utils.ToInt32(row["GameKind"]);
                 gameGroup.GameGroupName = Utils.ToString(row[Lang("GameKindName")]);
@@ -265,7 +265,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 // Master preset PT
                 gameGroup.M3 = synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
                 gameGroup.M2 = synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
-                                
+
                 // Assign game types
                 var gameTypes = this.GetGameTypeAgentBySuper(id, gameGroup.GameGroupID, synced);
                 gameGroup.GameTypes = gameTypes;
@@ -320,11 +320,11 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
                 // Agent preset PT
                 gameGroup.M2 = synced ? Utils.ToDecimal(row["UplineMaxPositionTaking"]).Format(2) : Utils.ToDecimal(row["MaxPositionTaking"]).Format(2);
-                gameGroup.M1 = Utils.ToDecimal(row["APositionTaking"]).Format(2);//!synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
+                gameGroup.M1 = Utils.ToDecimal(row["APositionTaking"]).Format(2); // !synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
                 gameGroup.N2 = synced ? Utils.ToDecimal(row["UplineMinPositionTaking"]).Format(2) : Utils.ToDecimal(row["MinPositionTaking"]).Format(2);
 
                 // Assign game types
-                var gameTypes = this.GetGameTypeMember(id, gameGroup.GameGroupID, synced);
+                var gameTypes = this.GetGameTypeMember(id, gameGroup.GameGroupID, synced, ref gameGroup, gameModel.IsPtByGameType);
                 gameGroup.GameTypes = gameTypes;
 
                 gameGroups.Add(gameGroup);
@@ -342,7 +342,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var custInfo = this.GetCustInfoIBC(custId, uplineId);
             var cust = new Customer();
             var dt = cust.GetCustGameKind_EditMember(custId);
-            var dtSuper = cust.GetCustGameKind(custId);
+            var dtsuper = cust.GetCustGameKind(custId);
 
             var casinoSettingUpline = new CasinoCustomer();
 
@@ -362,15 +362,15 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 var gameGroup = new GameGroup();
                 var isAutoOnMember = false;
 
-                foreach (DataRow dtRow in dtSuper.Rows)
+                foreach (DataRow dtrow in dtsuper.Rows)
                 {
-                    if (row["GameKind"].Equals(dtRow["GameKind"]))
+                    if (row["GameKind"].Equals(dtrow["GameKind"]))
                     {
-                        isAutoOnMember = Utils.ToBoolean(dtRow["SuperIsAutoPositionTaking"]);
+                        isAutoOnMember = Utils.ToBoolean(dtrow["SuperIsAutoPositionTaking"]);
                         break;
-                    }    
+                    }
                 }
-                
+
                 // Game type info
                 gameGroup.GameGroupID = Utils.ToInt32(row["GameKind"]);
                 gameGroup.GameGroupName = Utils.ToString(row[Lang("GameKindName")]);
@@ -388,12 +388,12 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 // Master preset PT
                 gameGroup.M3 = Utils.ToDecimal(row["MPositionTaking"]).Format(2);
 
-                // Agent preset PT                
+                // Agent preset PT
                 gameGroup.M2 = Utils.ToDecimal(row["APositionTaking"]).Format(2);
                 gameGroup.N3 = gameGroup.Is3 == true ? gameGroup.N4 - gameGroup.M3 - gameGroup.M2 : gameGroup.N4;
 
                 // Assign game types
-                var gameTypes = this.GetGameTypeMemberBySuper(custId, gameGroup.GameGroupID);
+                var gameTypes = this.GetGameTypeMemberBySuper(custId, gameGroup.GameGroupID, ref gameGroup, gameModel.IsPtByGameType);
                 gameGroup.GameTypes = gameTypes;
 
                 gameGroups.Add(gameGroup);
@@ -444,7 +444,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 gameGroup.N2 = min < 0 ? 0 : min;
 
                 // Assign game types
-                var gameTypes = this.GetGameTypeMemberByMaster(custId, gameGroup.GameGroupID);
+                var gameTypes = this.GetGameTypeMemberByMaster(custId, gameGroup.GameGroupID, ref gameGroup, gameModel.IsPtByGameType);
                 gameGroup.GameTypes = gameTypes;
 
                 gameGroups.Add(gameGroup);
@@ -456,8 +456,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
         }
 
         public CasinoCustomer GetCustInfoIBC(int custid, int uplineId)
-        {            
-            return this.casino.GetCustInfoIBC(custid, uplineId);
+        {
+            return this._casino.GetCustInfoIBC(custid, uplineId);
         }
 
         public void GetCustSettingCS(ref CasinoCustomer custIBC)
@@ -545,27 +545,28 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     modifiedBy,
                     fromSystem,
                     customerModel.IsAutoReset,
-                    false, false);
+                    false,
+                    false);
             }
             catch (Exception)
             {
                 // Bypass this exception because this customer had setting but update status failed, before.
-            }            
+            }
 
             // Update Status for direct downline only
             if ((settingsInserted && !customerModel.CasinoSync) || customerModel.CasinoSync)
-            {                
+            {
                 statusUpdated = this.UpdateCSStatus(
-                    custId, 
+                    custId,
                     true,
-                    customerModel.UplineDisabledCasino ? true : customerModel.CasinoDisabled, 
-                    customerModel.EnableDownline, 
-                    uplineId, 
-                    string.Empty, 
-                    0, 
-                    "en", 
-                    customerModel.UserName, 
-                    string.Empty, 
+                    customerModel.UplineDisabledCasino ? true : customerModel.CasinoDisabled,
+                    customerModel.EnableDownline,
+                    uplineId,
+                    string.Empty,
+                    0,
+                    "en",
+                    customerModel.UserName,
+                    string.Empty,
                     out errMsg);
             }
 
@@ -575,26 +576,26 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 enablePTUpdated = cust.UpdateCustEnablePT(custId, true);
 
                 maxTransferUpdated = cust.UpdateMaxTransfer(
-                    custId, 
-                    true, 
+                    custId,
+                    true,
                     (decimal)customerModel.MaxTransferCredit,
-                    customerModel.IsAutoReset, 
-                    ip, 
-                    uplineId, 
-                    modifiedBy, 
+                    customerModel.IsAutoReset,
+                    ip,
+                    uplineId,
+                    modifiedBy,
                     fromSystem);
             }
 
             // Update PT/Betting limit settings
             casinoPTResult = this.UpdateMasterSettings(
-                custId, 
-                customerModel.RoleId, 
-                uplineId, 
-                customerModel.UplineRoleId, 
-                ip, 
-                modifiedId, 
-                modifiedBy, 
-                fromSystem, 
+                custId,
+                customerModel.RoleId,
+                uplineId,
+                customerModel.UplineRoleId,
+                ip,
+                modifiedId,
+                modifiedBy,
+                fromSystem,
                 settingModel);
 
             // Gets error messages
@@ -626,7 +627,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             {
                 return new Result(1, "Invalid custId and uplineId");
             }
-            
+
             try
             {
                 settingsInserted = cust.InsertCustSetting(
@@ -659,7 +660,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     modifiedBy,
                     fromSystem,
                     customerModel.IsAutoReset,
-                    false, false);
+                    false,
+                    false);
             }
             catch (Exception)
             {
@@ -773,12 +775,13 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     modifiedBy,
                     fromSystem,
                     customerModel.IsAutoReset,
-                    false, false);
+                    false,
+                    false);
             }
             catch (Exception)
             {
                 // Bypass this exception because this customer had setting but update status failed, before.
-            }            
+            }
 
             // Update Status for direct downline only
             if ((settingsInserted && !customerModel.CasinoSync) || customerModel.CasinoSync)
@@ -850,7 +853,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             {
                 return new Result(1, "Invalid custId and uplineId");
             }
-            
+
             // Update PT/Betting limit settings
             casinoPTResult = this.UpdateMemberSettingsBySuper(
                 custId,
@@ -925,25 +928,25 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 var gameGroupID = gameGroup.GameGroupID;
 
                 foreach (var gameType in gameGroup.GameTypes)
-                {                   
+                {
                     gameStakeTable.Rows.Add(
-                        new object[] 
+                        new object[]
                             {
                                 custId,
                                 gameType.GameTypeID,
                                 this.SelectedStakeLevels(gameType.BettingLimits),
                                 roleId,
                                 ip,
-                                modifiedId, 
-                                modifiedBy, 
+                                modifiedId,
+                                modifiedBy,
                                 fromSystem
                             });
                 }
             }
 
             var resultStake = new DataTable();
-            var cust = new Customer();      
-      
+            var cust = new Customer();
+
             resultStake = cust.UpdateCustGameTypeStakeLevel(gameStakeTable);
             var success = cust.UpdateMaxTransfer(custId, customer.IsMaxWin, Utils.ToDecimal(customer.MaxTransferCredit), customer.IsAutoReset, ip, modifiedId, modifiedBy, fromSystem);
 
@@ -955,19 +958,19 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
             msg = msg.EndsWith("<br />") ? msg.Substring(0, msg.LastIndexOf("<br />")) : msg;
 
-            return new Result((msg == string.Empty || resultStake.Rows.Count == 0) && success  ? 0 : 1, msg);
+            return new Result((msg == string.Empty || resultStake.Rows.Count == 0) && success ? 0 : 1, msg);
         }
 
         private static string Lang(string original)
         {
             return original + "_En";
         }
-         
+
         private bool UpdateCSStatus(int custid, bool syncCS, bool disabledCS, bool isUpdDownline, int userId, string ip, int subAccId, string lang, string username, string subUsername, out string errMsg)
         {
             var cust = new Customer();
             var status = this.DoUpdateCSStatusWithoutSync(custid, syncCS, disabledCS, isUpdDownline, userId, ip, subAccId, lang, out errMsg);
-            
+
             if (!status)
             {
                 return false;
@@ -975,10 +978,10 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
             return cust.UpdateCustEnableCasino(custid, !disabledCS, isUpdDownline, ip, custid, subAccId == 0 ? username : subUsername, 2);
         }
-       
+
         private bool DoUpdateCSStatusWithoutSync(int custid, bool syncCS, bool disabledCS, bool isUpdDownline, int userId, string ip, int subAccId, string lang, out string errMsg)
         {
-            return this.casino.DoUpdateCSStatusWithoutSync(custid, syncCS, disabledCS, isUpdDownline, userId, ip, subAccId, lang, out errMsg);
+            return this._casino.DoUpdateCSStatusWithoutSync(custid, syncCS, disabledCS, isUpdDownline, userId, ip, subAccId, lang, out errMsg);
         }
 
         private Result UpdateMasterSettings(int custId, int roleId, int uplineId, int uplineRoleId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel model)
@@ -1011,8 +1014,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 roleId != Member ? null : (object)gameGroup.co,
                                 roleId,
                                 ip,
-                                modifiedId, 
-                                modifiedBy, 
+                                modifiedId,
+                                modifiedBy,
                                 fromSystem
                             });
 
@@ -1040,21 +1043,21 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 this.SelectedStakeLevels(gameType.BettingLimits),
                                 roleId,
                                 ip,
-                                modifiedId, 
-                                modifiedBy, 
+                                modifiedId,
+                                modifiedBy,
                                 fromSystem
                             });
 
                     gameStakeTable.Rows.Add(
-                        new object[] 
+                        new object[]
                             {
                                 custId,
                                 gameType.GameTypeID,
                                 this.SelectedStakeLevels(gameType.BettingLimits),
                                 roleId,
                                 ip,
-                                modifiedId, 
-                                modifiedBy, 
+                                modifiedId,
+                                modifiedBy,
                                 fromSystem
                             });
                 }
@@ -1074,7 +1077,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             else
             {
                 resultStake = cust.UpdateCustGameTypeStakeLevel(gameStakeTable);
-            }     
+            }
 
             // Process error messages
             foreach (DataRow item in resultKind.Rows)
@@ -1133,8 +1136,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 roleId != Member ? null : (object)gameGroup.co,
                                 roleId,
                                 ip,
-                                modifiedId, 
-                                modifiedBy, 
+                                modifiedId,
+                                modifiedBy,
                                 fromSystem
                             });
 
@@ -1162,21 +1165,21 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 this.SelectedStakeLevels(gameType.BettingLimits),
                                 roleId,
                                 ip,
-                                modifiedId, 
-                                modifiedBy, 
+                                modifiedId,
+                                modifiedBy,
                                 fromSystem
                             });
 
                     gameStakeTable.Rows.Add(
-                        new object[] 
+                        new object[]
                             {
                                 custId,
                                 gameType.GameTypeID,
                                 this.SelectedStakeLevels(gameType.BettingLimits),
                                 roleId,
                                 ip,
-                                modifiedId, 
-                                modifiedBy, 
+                                modifiedId,
+                                modifiedBy,
                                 fromSystem
                             });
                 }
@@ -1196,7 +1199,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             {
                 resultStake = cust.UpdateCustGameTypeStakeLevel(gameStakeTable);
             }
-            
+
             // Process error messages
             foreach (DataRow item in resultKind.Rows)
             {
@@ -1254,8 +1257,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 roleId != Member ? null : (object)gameGroup.co,
                                 roleId,
                                 ip,
-                                modifiedId, 
-                                modifiedBy, 
+                                modifiedId,
+                                modifiedBy,
                                 fromSystem
                             });
 
@@ -1283,21 +1286,21 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 this.SelectedStakeLevels(gameType.BettingLimits),
                                 roleId,
                                 ip,
-                                modifiedId, 
-                                modifiedBy, 
+                                modifiedId,
+                                modifiedBy,
                                 fromSystem
                             });
 
                     gameStakeTable.Rows.Add(
-                        new object[] 
+                        new object[]
                             {
                                 custId,
                                 gameType.GameTypeID,
                                 this.SelectedStakeLevels(gameType.BettingLimits),
                                 roleId,
                                 ip,
-                                modifiedId, 
-                                modifiedBy, 
+                                modifiedId,
+                                modifiedBy,
                                 fromSystem
                             });
                 }
@@ -1357,7 +1360,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 var gameGroupID = gameGroup.GameGroupID;
 
                 gameKindTable.Rows.Add(
-                        new object[] 
+                        new object[]
                             {
                                 custId,
                                 gameGroupID,
@@ -1367,8 +1370,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 !gameGroup.Is1 == true ? null : (object)gameGroup.Us3,
                                 uplineRoleId,
                                 ip,
-                                modifiedId, 
-                                modifiedBy, 
+                                modifiedId,
+                                modifiedBy,
                                 fromSystem
                             });
 
@@ -1377,7 +1380,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 foreach (var gameType in gameTypes)
                 {
                     gameTypeTable.Rows.Add(
-                        new object[] 
+                        new object[]
                             {
                                 custId,
                                 gameType.GameTypeID,
@@ -1387,21 +1390,21 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 !gameType.Is1 == true ? null : (object)gameType.Us3,
                                 uplineRoleId,
                                 ip,
-                                modifiedId, 
-                                modifiedBy, 
+                                modifiedId,
+                                modifiedBy,
                                 fromSystem
                             });
 
                     gameStakeTable.Rows.Add(
-                        new object[] 
+                        new object[]
                             {
                                 custId,
                                 gameType.GameTypeID,
                                 this.SelectedStakeLevels(gameType.BettingLimits),
                                 roleId,
                                 ip,
-                                modifiedId, 
-                                modifiedBy, 
+                                modifiedId,
+                                modifiedBy,
                                 fromSystem
                             });
                 }
@@ -1459,7 +1462,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 var gameGroupID = gameGroup.GameGroupID;
 
                 gameKindTable.Rows.Add(
-                        new object[] 
+                        new object[]
                             {
                                 custId,
                                 gameGroupID,
@@ -1469,8 +1472,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 null,
                                 uplineRoleId,
                                 ip,
-                                modifiedId, 
-                                modifiedBy, 
+                                modifiedId,
+                                modifiedBy,
                                 fromSystem
                             });
 
@@ -1479,7 +1482,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 foreach (var gameType in gameTypes)
                 {
                     gameTypeTable.Rows.Add(
-                        new object[] 
+                        new object[]
                             {
                                 custId,
                                 gameType.GameTypeID,
@@ -1489,21 +1492,21 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 null,
                                 uplineRoleId,
                                 ip,
-                                modifiedId, 
-                                modifiedBy, 
+                                modifiedId,
+                                modifiedBy,
                                 fromSystem
                             });
 
                     gameStakeTable.Rows.Add(
-                        new object[] 
+                        new object[]
                             {
                                 custId,
                                 gameType.GameTypeID,
                                 this.SelectedStakeLevels(gameType.BettingLimits),
                                 roleId,
                                 ip,
-                                modifiedId, 
-                                modifiedBy, 
+                                modifiedId,
+                                modifiedBy,
                                 fromSystem
                             });
                 }
@@ -1519,7 +1522,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             {
                 resultType = cust.UpdateCustGameType_EditMember(gameTypeTable);
             }
-            
+
             resultStake = cust.UpdateCustGameTypeStakeLevel(gameStakeTable);
 
             // Process error messages
@@ -1564,7 +1567,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
         {
             var dt = new DataTable();
             dt.Columns.AddRange(
-                new DataColumn[] 
+                new DataColumn[]
                 {
                     new DataColumn("IBCCustID"),
                     new DataColumn("GameKind"),
@@ -1574,8 +1577,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     new DataColumn("AutoPositionTaking"),
                     new DataColumn("RoleId"),
                     new DataColumn("FromIP"),
-                    new DataColumn("ModifyBy"), 
-                    new DataColumn("ModifyUserName"), 
+                    new DataColumn("ModifyBy"),
+                    new DataColumn("ModifyUserName"),
                     new DataColumn("FromSystem")
                 });
 
@@ -1586,7 +1589,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
         {
             var dt = new DataTable();
             dt.Columns.AddRange(
-                new DataColumn[] 
+                new DataColumn[]
                 {
                     new DataColumn("IBCCustID"),
                     new DataColumn("GameTypeID"),
@@ -1596,8 +1599,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     new DataColumn("AutoPositionTaking"),
                     new DataColumn("RoleId"),
                     new DataColumn("FromIP"),
-                    new DataColumn("ModifyBy"), 
-                    new DataColumn("ModifyUserName"), 
+                    new DataColumn("ModifyBy"),
+                    new DataColumn("ModifyUserName"),
                     new DataColumn("FromSystem")
                 });
 
@@ -1608,7 +1611,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
         {
             var dt = new DataTable();
             dt.Columns.AddRange(
-                new DataColumn[] 
+                new DataColumn[]
                 {
                     new DataColumn("IBCCustID"),
                     new DataColumn("GameKind"),
@@ -1626,8 +1629,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     new DataColumn("MemberRollingRate"),
                     new DataColumn("RoleId"),
                     new DataColumn("FromIP"),
-                    new DataColumn("ModifyBy"), 
-                    new DataColumn("ModifyUserName"), 
+                    new DataColumn("ModifyBy"),
+                    new DataColumn("ModifyUserName"),
                     new DataColumn("FromSystem")
                 });
 
@@ -1657,8 +1660,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     new DataColumn("StakeLevelList"),
                     new DataColumn("RoleId"),
                     new DataColumn("FromIP"),
-                    new DataColumn("ModifyBy"), 
-                    new DataColumn("ModifyUserName"), 
+                    new DataColumn("ModifyBy"),
+                    new DataColumn("ModifyUserName"),
                     new DataColumn("FromSystem")
                 });
 
@@ -1669,15 +1672,15 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
         {
             var dt = new DataTable();
             dt.Columns.AddRange(
-                new DataColumn[] 
+                new DataColumn[]
                 {
                     new DataColumn("IBCCustID"),
                     new DataColumn("GameTypeID"),
                     new DataColumn("StakeLevelList"),
                     new DataColumn("RoleId"),
                     new DataColumn("FromIP"),
-                    new DataColumn("ModifyBy"), 
-                    new DataColumn("ModifyUserName"), 
+                    new DataColumn("ModifyBy"),
+                    new DataColumn("ModifyUserName"),
                     new DataColumn("FromSystem")
                 });
 
@@ -1725,17 +1728,19 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             return gameTypes;
         }
 
-        private List<GameType> GetGameTypeMaster(int custId, int gameKindID, bool synced)
+        private List<GameType> GetGameTypeMaster(int custId, int gameKindID, bool synced, ref GameGroup gameGroup, bool isPTByGameType = false)
         {
             var cust = new Customer();
             var gameTypes = new List<GameType>();
             var dt = cust.GetCustGameType(custId, gameKindID);
+            List<decimal?> scos = new List<decimal?>(), s4s = new List<decimal?>(),
+                us3s = new List<decimal?>(), m3s = new List<decimal?>(), n3s = new List<decimal?>();
 
             foreach (DataRow row in dt.Rows)
             {
                 var gameType = new GameType();
 
-                gameType.Mco = Utils.ToDecimal(row["MAgentRollingRate"]).Format(4);//synced ? Utils.ToDecimal(row["UplineMAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["MAgentRollingRate"]).Format(4);
+                gameType.Mco = Utils.ToDecimal(row["MAgentRollingRate"]).Format(4); // synced ? Utils.ToDecimal(row["UplineMAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["MAgentRollingRate"]).Format(4);
                 gameType.Sco = synced ? Utils.ToDecimal(row["UplineSMAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["SMAgentRollingRate"]).Format(4);
 
                 if (!synced)
@@ -1749,7 +1754,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
                 // Super preset PT
                 gameType.S4 = synced ? Utils.ToDecimal(row["UplineMaxPositionTaking"]).Format(2) : Utils.ToDecimal(row["MaxPositionTaking"]).Format(2);
-                gameType.S3 = Utils.ToDecimal(row["SPositionTaking"]).Format(2);//synced ? Utils.ToDecimal(row["UplineSPositionTaking"]).Format(2) : Utils.ToDecimal(row["SPositionTaking"]).Format(2);
+                gameType.S3 = Utils.ToDecimal(row["SPositionTaking"]).Format(2); // synced ? Utils.ToDecimal(row["UplineSPositionTaking"]).Format(2) : Utils.ToDecimal(row["SPositionTaking"]).Format(2);
 
                 // Super Auto PT
                 gameType.Is3 = Utils.ToBoolean(row["IsAutoPositionTaking"]);
@@ -1765,17 +1770,33 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 var stakes = this.GetStakeLevels(custId, gameType.GameTypeID);
                 gameType.BettingLimits = stakes;
 
+                scos.Add(gameType.Sco);
+                us3s.Add(gameType.Us3);
+                m3s.Add(gameType.M3);
+                n3s.Add(gameType.N3);
+                s4s.Add(gameType.S4);
+
                 gameTypes.Add(gameType);
+            }
+
+            if (isPTByGameType)
+            {
+                gameGroup.Sco = scos.Max();
+                gameGroup.Us3 = us3s.Max();
+                gameGroup.M3 = m3s.Max();
+                gameGroup.N3 = n3s.Max();
+                gameGroup.S4 = s4s.Max();
             }
 
             return gameTypes;
         }
 
-        private List<GameType> GetGameTypeAgent(int custId, int gameKindID, bool synced)
+        private List<GameType> GetGameTypeAgent(int custId, int gameKindID, bool synced, ref GameGroup gameGroup, bool isPTByGameType = false)
         {
             var cust = new Customer();
             var gameTypes = new List<GameType>();
             var dt = cust.GetCustGameType(custId, gameKindID);
+            List<decimal?> mcos = new List<decimal?>(), m3s = new List<decimal?>(), a2s = new List<decimal?>(), n2s = new List<decimal?>();
 
             foreach (DataRow row in dt.Rows)
             {
@@ -1796,7 +1817,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
                 // Master preset PT
                 gameType.M3 = !synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
-                gameType.M2 = Utils.ToDecimal(row["MPositionTaking"]).Format(2);//!synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
+                gameType.M2 = Utils.ToDecimal(row["MPositionTaking"]).Format(2); // !synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
 
                 // Agent Max PT
                 gameType.A2 = synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
@@ -1808,7 +1829,20 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 var stakes = this.GetStakeLevels(custId, gameType.GameTypeID);
                 gameType.BettingLimits = stakes;
 
+                mcos.Add(gameType.Mco);
+                m3s.Add(gameType.M3);
+                a2s.Add(gameType.A2);
+                n2s.Add(gameType.N2);
+
                 gameTypes.Add(gameType);
+            }
+
+            if (isPTByGameType)
+            {
+                gameGroup.Mco = mcos.Max();
+                gameGroup.M3 = m3s.Max();
+                gameGroup.A2 = a2s.Max();
+                gameGroup.N2 = n2s.Max();
             }
 
             return gameTypes;
@@ -1842,11 +1876,12 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             return gameTypes;
         }
 
-        private List<GameType> GetGameTypeMember(int custId, int gameKindID, bool synced)
+        private List<GameType> GetGameTypeMember(int custId, int gameKindID, bool synced, ref GameGroup gameGroup, bool isPTByGameType = false)
         {
             var cust = new Customer();
             var gameTypes = new List<GameType>();
             var dt = cust.GetCustGameType(custId, gameKindID);
+            List<decimal?> acos = new List<decimal?>(), m2s = new List<decimal?>(), n2s = new List<decimal?>();
 
             foreach (DataRow row in dt.Rows)
             {
@@ -1867,36 +1902,48 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
                 // Agent preset PT
                 gameType.M2 = synced ? Utils.ToDecimal(row["UplineMaxPositionTaking"]).Format(2) : Utils.ToDecimal(row["MaxPositionTaking"]).Format(2);
-                gameType.M1 = Utils.ToDecimal(row["APositionTaking"]).Format(2);//!synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
+                gameType.M1 = Utils.ToDecimal(row["APositionTaking"]).Format(2); // !synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
                 gameType.N2 = synced ? Utils.ToDecimal(row["UplineMinPositionTaking"]).Format(2) : Utils.ToDecimal(row["MinPositionTaking"]).Format(2);
 
                 // Betting limits
                 var stakes = this.GetStakeLevels(custId, gameType.GameTypeID);
                 gameType.BettingLimits = stakes;
 
+                acos.Add(gameType.Aco);
+                m2s.Add(gameType.M2);
+                n2s.Add(gameType.N2);
+
                 gameTypes.Add(gameType);
+            }
+
+            if (isPTByGameType)
+            {
+                gameGroup.Aco = acos.Max();
+                gameGroup.M2 = m2s.Max();
+                gameGroup.N2 = n2s.Max();
             }
 
             return gameTypes;
         }
 
-        private List<GameType> GetGameTypeMemberBySuper(int custId, int gameKindID)
+        private List<GameType> GetGameTypeMemberBySuper(int custId, int gameKindID, ref GameGroup gameGroup, bool isPTByGameType = false)
         {
             var cust = new Customer();
             var gameTypes = new List<GameType>();
             var dt = cust.GetCustGameType_EditMember(custId, gameKindID);
-            var dtSuper = cust.GetCustGameType(custId, gameKindID);
+            var dtsuper = cust.GetCustGameType(custId, gameKindID);
+            List<decimal?> s4s = new List<decimal?>(), us3s = new List<decimal?>(), m3s = new List<decimal?>(), n3s = new List<decimal?>();
 
             foreach (DataRow row in dt.Rows)
             {
                 var gameType = new GameType();
                 var isAutoOnMember = false;
 
-                foreach (DataRow dtRow in dtSuper.Rows)
+                foreach (DataRow dtrow in dtsuper.Rows)
                 {
-                    if (row["GameTypeID"].Equals(dtRow["GameTypeID"]))
+                    if (row["GameTypeID"].Equals(dtrow["GameTypeID"]))
                     {
-                        isAutoOnMember = Utils.ToBoolean(dtRow["SuperIsAutoPositionTaking"]);
+                        isAutoOnMember = Utils.ToBoolean(dtrow["SuperIsAutoPositionTaking"]);
                         break;
                     }
                 }
@@ -1909,16 +1956,16 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 gameType.S4 = Utils.ToDecimal(row["SuperMaxPositionTaking"]).Format(2);
                 gameType.S3 = Utils.ToDecimal(row["SPositionTaking"]).Format(2);
                 gameType.N4 = Utils.ToDecimal(row["SuperMinPositionTaking"]).Format(2);
-                
+
                 // Super Auto PT
                 gameType.Is1 = Utils.ToBoolean(row["IsAutoPositionTaking"]);
                 gameType.Is3 = isAutoOnMember;
                 gameType.Us3 = Utils.ToDecimal(row["AutoPositionTaking"]).Format(2);
-                
+
                 // Master preset PT
                 gameType.M3 = Utils.ToDecimal(row["MPositionTaking"]).Format(2);
 
-                // Agent preset PT                
+                // Agent preset PT
                 gameType.M2 = Utils.ToDecimal(row["APositionTaking"]).Format(2);
                 gameType.N3 = gameType.Is3 == true ? gameType.N4 - gameType.M3 - gameType.M2 : gameType.N4;
 
@@ -1926,17 +1973,31 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 var stakes = this.GetStakeLevels(custId, gameType.GameTypeID);
                 gameType.BettingLimits = stakes;
 
+                s4s.Add(gameType.S4);
+                us3s.Add(gameType.Us3);
+                m3s.Add(gameType.M3);
+                n3s.Add(gameType.N3);
+
                 gameTypes.Add(gameType);
+            }
+
+            if (isPTByGameType)
+            {
+                gameGroup.S4 = s4s.Max();
+                gameGroup.Us3 = us3s.Max();
+                gameGroup.M3 = m3s.Max();
+                gameGroup.N3 = n3s.Max();
             }
 
             return gameTypes;
         }
 
-        private List<GameType> GetGameTypeMemberByMaster(int custId, int gameKindID)
+        private List<GameType> GetGameTypeMemberByMaster(int custId, int gameKindID, ref GameGroup gameGroup, bool isPTByGameType = false)
         {
             var cust = new Customer();
             var gameTypes = new List<GameType>();
             var dt = cust.GetCustGameType(custId, gameKindID);
+            List<decimal?> s4s = new List<decimal?>(), m3s = new List<decimal?>(), n2s = new List<decimal?>();
 
             foreach (DataRow row in dt.Rows)
             {
@@ -1960,7 +2021,18 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 var stakes = this.GetStakeLevels(custId, gameType.GameTypeID);
                 gameType.BettingLimits = stakes;
 
+                s4s.Add(gameType.S4);
+                m3s.Add(gameType.M3);
+                n2s.Add(gameType.N2);
+
                 gameTypes.Add(gameType);
+            }
+
+            if (isPTByGameType)
+            {
+                gameGroup.S4 = s4s.Max();
+                gameGroup.M3 = m3s.Max();
+                gameGroup.N2 = n2s.Max();
             }
 
             return gameTypes;
