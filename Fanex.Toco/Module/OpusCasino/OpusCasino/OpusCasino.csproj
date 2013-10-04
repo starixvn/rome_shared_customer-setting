@@ -154,7 +154,7 @@
     <Compile Include="ViewModels\CustomerInfor.cs" />
     <Compile Include="ViewModels\GameSetting.cs" />
     <Compile Include="ViewModels\OpusSetting.cs" />
-    <Compile Include="ViewModels\PositionTakingSetting.cs" />
+    <Compile Include="ViewModels\PositionTaking.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

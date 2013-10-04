@@ -10,6 +10,7 @@
 
 using System.Web.Mvc;
 using Fanex.CustomerSetting.Module.Core.Security;
+using Fanex.CustomerSetting.OpusCasino.ViewModels;
 
 namespace Fanex.CustomerSetting.OpusCasino.Controllers
 {
@@ -22,7 +23,8 @@ namespace Fanex.CustomerSetting.OpusCasino.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "index")]
         public ActionResult Super()
         {
-            return View("~/Areas/CustomerSetting/Views/OpusCasino/Setting/Super.cshtml");
+            OpusSetting opus = new OpusSetting();
+            return View("~/Areas/CustomerSetting/Views/OpusCasino/Setting/Super.cshtml", opus);
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "index")]

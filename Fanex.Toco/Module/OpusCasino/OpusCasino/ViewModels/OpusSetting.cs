@@ -14,6 +14,36 @@ namespace Fanex.CustomerSetting.OpusCasino.ViewModels
         public CustomerInfor CustomerInformation { get; set; }
         public PositionTaking PTCommSetting { get; set; }
         public BetSetting BetLimitSetting { get; set; }
-        public GameSetting GameStakeSetting { get; set; }
+        public List<GameSetting> GameSettingList { get; set; }
+
+        public OpusSetting()
+        {
+            this.CustomerInformation = new CustomerInfor();
+
+            this.PTCommSetting = new PositionTaking();
+
+            this.BetLimitSetting = new BetSetting();
+
+            this.GameSettingList = new List<GameSetting>();
+            List<StakeLevel> stakeLevelList = new List<StakeLevel>();
+
+            for (int i = 0; i < 8; i++)
+            {
+                stakeLevelList.Add(new StakeLevel{
+                    ID = i,
+                    Value = "10-50"
+                });
+
+            }
+            for (int i = 0; i < 8; i++)
+            {
+                this.GameSettingList.Add(new GameSetting
+                {
+                    GameTypeID = i,
+                    GameTypeName = "Baccarat",
+                    BettingLimitList = stakeLevelList
+                });
+            }
+        }
     }
 }

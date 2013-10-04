@@ -20,5 +20,13 @@ namespace Fanex.CustomerSetting.OpusCasino.ViewModels
             get;
             set; 
         }
+
+        public BetSetting()
+        {
+            this.MaxTransfer = 50000;
+            this.MaxTransferAllowed = 100000;
+            this.IsLimited = true;
+            this.IsDailyAutoResetLimit = true;
+        }
     }
 }

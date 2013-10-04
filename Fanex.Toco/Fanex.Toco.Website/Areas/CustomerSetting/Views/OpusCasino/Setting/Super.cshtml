@@ -1,8 +1,10 @@
-﻿
+﻿@using Fanex.CustomerSetting.OpusCasino.ViewModels;
+@using Newtonsoft.Json
+@using Newtonsoft.Json.Serialization
 @{
     ViewBag.Title = "Super Opus Casino Setting";
     Layout = "~/Areas/CustomerSetting/Views/OpusCasino/Shared/_Layout.cshtml";
-}
+} 
 <tr>
     <td colspan="5" class="header headerColor l b">
         <span class="textHeader">Postion Talking/Commission</span>
@@ -160,10 +162,13 @@
     <td colspan="4"  class="formatCol">
     </td>
 </tr>
+
 @section scripts
 {
+  
     @*@Scripts.Render("~/bundles/racingsetting/super")*@
     <script type="text/javascript">
-            
+
     </script>
+  
 }

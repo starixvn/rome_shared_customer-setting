@@ -172,6 +172,7 @@
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Config\Store\RacingSpNames.xml" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\common.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\CommonPT.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\angular.min.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\BlockUI.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\Functions.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\head.js" />
@@ -196,6 +197,7 @@
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\ToolTip\wz_tooltip\tip_centerwindow.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\ToolTip\wz_tooltip\tip_followscroll.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\ToolTip\wz_tooltip\wz_tooltip.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\OpusAgular.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Setting\RacingHelper.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Setting\RacingSetting.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Accounting\Images\Update.png" />
