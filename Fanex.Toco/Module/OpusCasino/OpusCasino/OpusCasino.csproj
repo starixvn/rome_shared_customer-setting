@@ -149,8 +149,12 @@
     <Compile Include="Services\RacingSettingService.cs" />
     <Compile Include="Services\ResourceHelper.cs" />
     <Compile Include="Helper\SerializeHelper.cs" />
-    <Compile Include="ViewModels\ExchangeRate.cs" />
-    <Compile Include="ViewModels\LicenseeInformation.cs" />
+    <Compile Include="ViewModels\BetSetting.cs" />
+    <Compile Include="ViewModels\StakeLevel.cs" />
+    <Compile Include="ViewModels\CustomerInfor.cs" />
+    <Compile Include="ViewModels\GameSetting.cs" />
+    <Compile Include="ViewModels\OpusSetting.cs" />
+    <Compile Include="ViewModels\PositionTakingSetting.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
