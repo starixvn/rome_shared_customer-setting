@@ -1,86 +1,116 @@
 ﻿@using Fanex.CustomerSetting.OpusCasino.ViewModels;
 @using Newtonsoft.Json
 @using Newtonsoft.Json.Serialization
-
 <!DOCTYPE html>
-<html  ng-controller="customerInfoController"   ng-app='OpusCasino'  id="ng-app">
+<html ng-controller="customerInfoController" ng-app='OpusCasino' id="ng-app">
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    <link href="~/Areas/CustomerSetting/Views/OpusCasino/Styles/OpusCasinoSetting.less" rel="stylesheet"
-        type="text/css" />
-    <link href="~/Areas/CustomerSetting/Views/OpusCasino/Styles/Agent/ThemeColor.less" rel="stylesheet"
-        type="text/css" />
-
+    <link href="~/Areas/CustomerSetting/Views/OpusCasino/Styles/OpusCasinoSetting.less"
+        rel="stylesheet" type="text/css" />
+    <link href="~/Areas/CustomerSetting/Views/OpusCasino/Styles/Agent/ThemeColor.less"
+        rel="stylesheet" type="text/css" />
     @{
-    var OpusSetting = JsonConvert.SerializeObject(Model, Formatting.None, new JsonSerializerSettings
-    {
-        ContractResolver = new CamelCasePropertyNamesContractResolver(),
-        NullValueHandling = NullValueHandling.Ignore
-    }); 
+        var OpusSetting = JsonConvert.SerializeObject(Model, Formatting.None, new JsonSerializerSettings
+        {
+            ContractResolver = new CamelCasePropertyNamesContractResolver(),
+            NullValueHandling = NullValueHandling.Ignore
+        }); 
    
-} 
+    }
     @functions
     {
     }
 </head>
-    <body>
-        <div class="content">
-            <table id="customerInfo" class="tableColor">
+<body>
+    <div class="content">
+        <div id="customerInfo">
+            <table class="tableColor">
                 <tr>
-                    <td colspan="5" class="header c b">CustomerInfo
+                    <td colspan="5" class="header c b">
+                        CustomerInfo
                     </td>
                 </tr>
                 <tr>
-                    <td class="col120 formatCol r b">Username</td>
-                    <td class="col120 formatCol l">{{customerInfo.username }}</td>
-                    <td class="col120 formatCol r b">Nick Name</td>
-                    <td colspan="2" class="col240 formatCol l">{{customerInfo.nickName }}</td>
+                    <td class="col120 formatCol r b">
+                        Username
+                    </td>
+                    <td class="col120 formatCol l">
+                        {{customerInfo.username }}
+                    </td>
+                    <td class="col120 formatCol r b">
+                        Nick Name
+                    </td>
+                    <td colspan="2" class="col240 formatCol l">
+                        {{customerInfo.nickName }}
+                    </td>
                 </tr>
-               <tr>
-                    <td class="col120 formatCol r b">First Name</td>
-                    <td class="col120 formatCol l">{{customerInfo.firstName }}</td>
-                    <td class="col120 formatCol r b">Last Name</td>
-                    <td colspan="2" class="col240 formatCol l">{{customerInfo.lastName }}</td>
-               </tr>
-               <tr>
-                     <td class="col120 formatCol r b">Phone</td>
-                    <td class="col120 formatCol l">{{customerInfo.phone }}</td>
-                    <td class="col120 formatCol r b">Mobile Phone</td>
-                    <td colspan="2" class="col240 formatCol l">{{customerInfo.mobilePhone }}</td>
-               </tr>
-               <tr>
-                    <td class="col120 formatCol r b">Fax</td>
-                    <td class="col120 formatCol l">{{customerInfo.fax }}</td>
-                    <td class="col120 formatCol r b">Enable</td>
-                    <td colspan="2" class="col240 formatCol l"></td>
-               </tr>
-               @RenderBody()
+                <tr>
+                    <td class="col120 formatCol r b">
+                        First Name
+                    </td>
+                    <td class="col120 formatCol l">
+                        {{customerInfo.firstName }}
+                    </td>
+                    <td class="col120 formatCol r b">
+                        Last Name
+                    </td>
+                    <td colspan="2" class="col240 formatCol l">
+                        {{customerInfo.lastName }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col120 formatCol r b">
+                        Phone
+                    </td>
+                    <td class="col120 formatCol l">
+                        {{customerInfo.phone }}
+                    </td>
+                    <td class="col120 formatCol r b">
+                        Mobile Phone
+                    </td>
+                    <td colspan="2" class="col240 formatCol l">
+                        {{customerInfo.mobilePhone }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col120 formatCol r b">
+                        Fax
+                    </td>
+                    <td class="col120 formatCol l">
+                        {{customerInfo.fax }}
+                    </td>
+                    <td class="col120 formatCol r b">
+                        Enable
+                    </td>
+                    <td colspan="2" class="col240 formatCol l">
+                        <input type="checkbox" ng-model="customerInfo.isEnable" />
+                        Super
+                        <input type="checkbox" ng-disabled="isDownlineDisabled" ng-model="customerInfo.isDownline" />Downlines
+                    </td>
+                </tr>
             </table>
-            <div class="btnLeft">
-                <input type="button" id="btnUpdate" value="Update" class="btnUpdate b" />
-            </div>
-                
-
+            @RenderBody()
         </div>
-    </body>
-   
-    <script type="text/javascript">
+        <div class="btnLeft">
+            <input type="button" id="btnUpdate" value="Update" class="btnUpdate b" />
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
 
-    </script>
-    
-
-    @RenderSection("scripts", required: false)
-   <script src="~/Areas/CustomerSetting/Scripts/jquery.js" type="text/javascript"></script>
-    <script src="~/Areas/CustomerSetting/Scripts/jquery.blockUI.1.33.js" type="text/javascript"></script>
-     <script src="~/Areas/CustomerSetting/Scripts/jquery-ui-1.9.1.min.js" type="text/javascript"></script>
-    <script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/Libs/head.js" type="text/javascript"></script>
-    <script src="~/Areas/CustomerSetting/Scripts/angular.min.js" type="text/javascript"></script>
-    <script src="~/Areas/CustomerSetting/Scripts/Validators.js" type="text/javascript"></script>
-    <script src="~/Areas/CustomerSetting/Scripts/Fanex.CustomerSetting.Core.js" type="text/javascript"></script>
-    <script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/OpusAgular.js" type="text/javascript"></script>
-    @*@Scripts.Render("~/bundles/racingsetting/super")*@
-    <script type="text/javascript">
-        var model = JSON.parse(Fanex.CustomerSetting.Core.DecodeHtml('@OpusSetting'));
-    </script>
+</script>
+@RenderSection("scripts", required: false)
+<script src="~/Areas/CustomerSetting/Scripts/jquery.js" type="text/javascript"></script>
+<script src="~/Areas/CustomerSetting/Scripts/jquery.blockUI.1.33.js" type="text/javascript"></script>
+<script src="~/Areas/CustomerSetting/Scripts/jquery-ui-1.9.1.min.js" type="text/javascript"></script>
+<script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/Libs/head.js" type="text/javascript"></script>
+<script src="~/Areas/CustomerSetting/Scripts/angular.min.js" type="text/javascript"></script>
+<script src="~/Areas/CustomerSetting/Scripts/Validators.js" type="text/javascript"></script>
+<script src="~/Areas/CustomerSetting/Scripts/Fanex.CustomerSetting.Core.js" type="text/javascript"></script>
+<script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/OpusAgular.js" type="text/javascript"></script>
+@*@Scripts.Render("~/bundles/racingsetting/super")*@
+<script type="text/javascript">
+    var model = JSON.parse(Fanex.CustomerSetting.Core.DecodeHtml('@OpusSetting'));
+</script>
 </html>

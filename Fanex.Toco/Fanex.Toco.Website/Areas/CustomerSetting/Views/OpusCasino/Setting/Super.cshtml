@@ -4,171 +4,204 @@
 @{
     ViewBag.Title = "Super Opus Casino Setting";
     Layout = "~/Areas/CustomerSetting/Views/OpusCasino/Shared/_Layout.cshtml";
-} 
+}
+<table>
+    <tr>
+        <td colspan="5" class="header headerColor l b">
+            <span class="textHeader">Postion Talking/Commission</span> <i id="btnUpdateComm"
+                class="btnSave"></i>
+        </td>
+    </tr>
+    <tr>
+        <td class="col120 formatCol c b">
+            Super Max Position
+        </td>
+        <td class="col120 formatCol c b">
+            Super Min Position
+        </td>
+        <td class=" col361 formatCol c b">
+            Super Commission
+        </td>
+    </tr>
+    <tr>
+        <td class="col120 formatCol c b">
+            @*<select id="ddlSuperMax" class="col60"></select>*@
+            <select ng-change="changeOperator()" ng-model="operator" ng-options="value.PartyFullName for value in operators">
+            </select>
+        </td>
+        <td class="col120 formatCol c b">
+            <select id="ddlSuperMin" class="col60">
+            </select>
+        </td>
+        <td colspan="3" class="formatCol c b">
+            <select id="ddlSuperComm" class="col60">
+            </select>
+        </td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td class="header l b ">
+            <span class="textHeader">Bet Setting</span> <i id="btnUpdateBetSetting" class="btnSave">
+            </i>
+        </td>
+    </tr>
+    <tr>
+        <td class="col610">
+            <span class="base-font b">Member Max Transfer Credit</span>
+            <input type="text" maxlength="20" />
+            <label class="base-font">
+                <input type="checkbox" class="chb" />Daily auto reset limit (at 12 noon GMT+8)
+            </label>
+            <br />
+            <span id="numberLimit" class="base-font">(1 - 25,000)</span>
+        </td>
+    </tr>
+</table>
+<table>
 <tr>
-    <td colspan="5" class="header headerColor l b">
-        <span class="textHeader">Postion Talking/Commission</span>
-        <i id="btnUpdateComm" class="btnSave"></i>
-    </td>
-</tr>
-<tr>
-    <td class="col120 formatCol c b">Super Max Position</td>
-    <td class="col120 formatCol c b">Super Min Position</td>
-    <td colspan="3" class="formatCol c b">Super Commission</td>
-</tr>
-<tr>
-    <td class="col120 formatCol c b">
-        <select id="ddlSuperMax" class="col60"></select>
-    </td>
-    <td class="col120 formatCol c b">
-        <select id="ddlSuperMin" class="col60"></select>
-    </td>
-    <td colspan="3" class="formatCol c b">
-        <select id="ddlSuperComm" class="col60"></select>
-    </td>
-</tr>
-<tr>
-    <td colspan="5" class="header l b ">
-        <span class="textHeader">Bet Setting</span>
-        <i id="btnUpdateBetSetting" class="btnSave"></i>
-    </td>
-</tr>
-<tr>
-    <td colspan="5">
-        <span class="base-font b">Member Max Transfer Credit</span>
-        <input type="text" maxlength="20" />
-        <label class="base-font">
-            <input type="checkbox" class="chb"/>Daily auto reset limit (at 12 noon GMT+8)
-        </label>
-        <br />
-        <span id="numberLimit" class="base-font">(1 - 25,000)</span>
-    </td>
-</tr>
-<tr>
-    <td colspan="5" class="header l b">
-        <span class="textHeader">Game Setting</span>
-        <i id="btnUpdateGameSetting" class="btnSave"></i>
-    </td>
-</tr>
-<tr>
-    <td class="col120 formatCol r b">Game Type</td>
-    <td colspan="4" class="formatCol l b">Betting Limit</td>
-</tr>
-<tr>
-    <td class="col120 formatCol r">Barccarat</td>
-    <td colspan="4" class="formatCol">
-        <label>
-            <input id="chbBaccarat1_100" type="checkbox"/>1-100
-        </label>
-        <label>
-            <input id="chbBaccarat1_250" type="checkbox"/>1-250
-        </label>
-        <label>
-            <input id="chbBaccarat10_50" type="checkbox"/>10-50
-        </label>
-        <label>
-            <input id="chbBaccarat20_1000" type="checkbox"/>20-1,000.00
-        </label>
-        <label>
-            <input id="chbBaccarat50_3000" type="checkbox"/>50-3,000
-        </label>
-        <label>
-            <input id="chbBaccarat50_5000" type="checkbox"/>50-5,000
-        </label>
-        <br />
-        <label>
-            <input id="chbBaccarat100_300" type="checkbox"/>100-300
-        </label>
-        <label>
-            <input id="chbBaccarat100_5000" type="checkbox"/>100-5,000
-        </label>
-        <label>
-            <input id="chbBaccarat500_12000" type="checkbox"/>500-15,000
-        </label>
-                <label>
-            <input id="chbBaccarat3000_50000" type="checkbox"/>3,000-50,000
-        </label>
-    </td>
-</tr>
-<tr>
-    <td class="col120 formatCol r">Roulette</td>
-    <td colspan="4"  class="formatCol">
-        <label>
-            <input id="chbRoulette1_100" type="checkbox"/>1-100
-        </label>
-        <label>
-            <input id="chbRoulette1_250" type="checkbox"/>1-250
-        </label>
-        <label>
-            <input id="chbRoulette10_50" type="checkbox"/>10-50
-        </label>
-        <label>
-            <input id="chbRoulette20_1000" type="checkbox"/>20-1,000.00
-        </label>
-        <label>
-            <input id="chbRoulette50_3000" type="checkbox"/>50-3,000
-        </label>
-        <label>
-            <input id="chbRoulette50_5000" type="checkbox"/>50-5,000
-        </label>
-        <br />
-        <label>
-            <input id="chbRoulette100_5000" type="checkbox"/>100-5,000
-        </label>
-        <label>
-            <input id="chbRoulette500_15,000" type="checkbox"/>500-15,000
-        </label>
-    </td>
-</tr>
-<tr>
-    <td class="col120 formatCol r">3 Pictures</td>
-    <td colspan="4"  class="formatCol">
-         <label>
-            <input id="chb3Picture05_500" type="checkbox"/>0.5-500
-        </label>
-        <label>
-            <input id="chb3Picture50_100" type="checkbox"/>50-100
-        </label>
-        <label>
-            <input id="chb3Picture25_70" type="checkbox"/>2.50-70
-        </label>
-        <label>
-            <input id="chb3Picture50_1400" type="checkbox"/>50-1,400
-        </label>
-    </td>
-</tr>
-<tr>
-    <td class="col120 formatCol r">7 Up Baccarat</td>
-    <td colspan="4"  class="formatCol">
-    </td>
-</tr>
-<tr>
-    <td class="col120 formatCol r">Dragon/Tiger</td>
-    <td colspan="4"  class="formatCol">
-    </td>
-</tr>
-<tr>
-    <td class="col120 formatCol r">Poker Bonus</td>
-    <td colspan="4"  class="formatCol">
-    </td>
-</tr>
-<tr>
-    <td class="col120 formatCol r">Dice</td>
-    <td colspan="4"  class="formatCol">
-    </td>
-</tr>
-<tr>
-    <td class="col120 formatCol r">Blacjack</td>
-    <td colspan="4"  class="formatCol">
-    </td>
-</tr>
-
+        <td colspan="5" class="header l b">
+            <span class="textHeader">Game Setting</span> <i id="btnUpdateGameSetting" class="btnSave">
+            </i>
+        </td>
+    </tr>
+    <tr>
+        <td class="col120 formatCol r b">
+            Game Type
+        </td>
+        <td colspan="4" class="formatCol l b">
+            Betting Limit
+        </td>
+    </tr>
+    <tr>
+        <td class="col120 formatCol r">
+            Barccarat
+        </td>
+        <td class="formatCol">
+            <label>
+                <input id="chbBaccarat1_100" type="checkbox" />1-100
+            </label>
+            <label>
+                <input id="chbBaccarat1_250" type="checkbox" />1-250
+            </label>
+            <label>
+                <input id="chbBaccarat10_50" type="checkbox" />10-50
+            </label>
+            <label>
+                <input id="chbBaccarat20_1000" type="checkbox" />20-1,000.00
+            </label>
+            <label>
+                <input id="chbBaccarat50_3000" type="checkbox" />50-3,000
+            </label>
+            <label>
+                <input id="chbBaccarat50_5000" type="checkbox" />50-5,000
+            </label>
+            <br />
+            <label>
+                <input id="chbBaccarat100_300" type="checkbox" />100-300
+            </label>
+            <label>
+                <input id="chbBaccarat100_5000" type="checkbox" />100-5,000
+            </label>
+            <label>
+                <input id="chbBaccarat500_12000" type="checkbox" />500-15,000
+            </label>
+            <label>
+                <input id="chbBaccarat3000_50000" type="checkbox" />3,000-50,000
+            </label>
+        </td>
+    </tr>
+    <tr>
+        <td class="col120 formatCol r">
+            Roulette
+        </td>
+        <td  class="formatCol col450">
+            <label>
+                <input id="chbRoulette1_100" type="checkbox" />1-100
+            </label>
+            <label>
+                <input id="chbRoulette1_250" type="checkbox" />1-250
+            </label>
+            <label>
+                <input id="chbRoulette10_50" type="checkbox" />10-50
+            </label>
+            <label>
+                <input id="chbRoulette20_1000" type="checkbox" />20-1,000.00
+            </label>
+            <label>
+                <input id="chbRoulette50_3000" type="checkbox" />50-3,000
+            </label>
+            <label>
+                <input id="chbRoulette50_5000" type="checkbox" />50-5,000
+            </label>
+            <br />
+            <label>
+                <input id="chbRoulette100_5000" type="checkbox" />100-5,000
+            </label>
+            <label>
+                <input id="chbRoulette500_15,000" type="checkbox" />500-15,000
+            </label>
+        </td>
+    </tr>
+    <tr>
+        <td class="col120 formatCol r">
+            3 Pictures
+        </td>
+        <td  class="formatCol">
+            <label>
+                <input id="chb3Picture05_500" type="checkbox" />0.5-500
+            </label>
+            <label>
+                <input id="chb3Picture50_100" type="checkbox" />50-100
+            </label>
+            <label>
+                <input id="chb3Picture25_70" type="checkbox" />2.50-70
+            </label>
+            <label>
+                <input id="chb3Picture50_1400" type="checkbox" />50-1,400
+            </label>
+        </td>
+    </tr>
+    <tr>
+        <td class="col120 formatCol r">
+            7 Up Baccarat
+        </td>
+        <td  class="formatCol">
+        </td>
+    </tr>
+    <tr>
+        <td class="col120 formatCol r">
+            Dragon/Tiger
+        </td>
+        <td  class="formatCol">
+        </td>
+    </tr>
+    <tr>
+        <td class="col120 formatCol r">
+            Poker Bonus
+        </td>
+        <td  class="formatCol">
+        </td>
+    </tr>
+    <tr>
+        <td class="col120 formatCol r">
+            Dice
+        </td>
+        <td class="formatCol">
+        </td>
+    </tr>
+    <tr>
+        <td class="col120 formatCol r">
+            Blacjack
+        </td>
+        <td  class="formatCol">
+        </td>
+    </tr>
+</table>
 @section scripts
 {
-  
     @*@Scripts.Render("~/bundles/racingsetting/super")*@
     <script type="text/javascript">
 
     </script>
-  
 }
