@@ -38,7 +38,7 @@
         </td>
     </tr>
 </table>
-<table>
+<table ng-controller="betSettingController" >
     <tr>
         <td class="header l b ">
             <span class="textHeader">Bet Setting</span> <i id="btnUpdateBetSetting" class="btnSave">
@@ -48,9 +48,9 @@
     <tr>
         <td class="col610">
             <span class="base-font b">Member Max Transfer Credit</span>
-            <input type="text" maxlength="20" />
+             <input  onkeydown='validateNumber(event)' type="text" ng-model="betLimitSetting.maxTransfer"/>
             <label class="base-font">
-                <input type="checkbox" class="chb" />Daily auto reset limit (at 12 noon GMT+8)
+            <input class="chb" type="checkbox" ng-model="betLimitSetting.isDailyAutoResetLimit" /> Daily auto reset limit (at 12 noon GMT+8)
             </label>
             <br />
             <span id="numberLimit" class="base-font">(1 - 25,000)</span>
