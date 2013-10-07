@@ -2,7 +2,7 @@
 @using Newtonsoft.Json
 @using Newtonsoft.Json.Serialization
 <!DOCTYPE html>
-<html ng-controller="customerInfoController" ng-app='OpusCasino' id="ng-app">
+<html ng-controller="opusSettingController" ng-app='OpusCasino' id="ng-app">
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
@@ -18,14 +18,11 @@
         }); 
    
     }
-    @functions
-    {
-    }
 </head>
 <body>
     <div class="content">
         <div id="customerInfo">
-            <table class="tableColor">
+            <table class="tableColor"  ng-controller="customerInfoController">
                 <tr>
                     <td colspan="5" class="header c b">
                         CustomerInfo
@@ -108,7 +105,11 @@
 <script src="~/Areas/CustomerSetting/Scripts/angular.min.js" type="text/javascript"></script>
 <script src="~/Areas/CustomerSetting/Scripts/Validators.js" type="text/javascript"></script>
 <script src="~/Areas/CustomerSetting/Scripts/Fanex.CustomerSetting.Core.js" type="text/javascript"></script>
-<script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/OpusAgular.js" type="text/javascript"></script>
+<script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/OpusSettingAgular.js" type="text/javascript"></script>
+<script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/CustomerInfoController.js" type="text/javascript"></script>
+<script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/BetSettingController.js" type="text/javascript"></script>
+<script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/GameSettingController.js" type="text/javascript"></script>
+  <script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/SuperPositionTakingController.js" type="text/javascript"></script>
 @*@Scripts.Render("~/bundles/racingsetting/super")*@
 <script type="text/javascript">
     var model = JSON.parse(Fanex.CustomerSetting.Core.DecodeHtml('@OpusSetting'));

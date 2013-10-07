@@ -170,8 +170,8 @@
     <Content Include="Areas\CustomerSetting\Views\BetSetting\VirtualSports\Styles\VirtualSports.css" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditSuperController.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Config\Store\RacingSpNames.xml" />
-    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\common.js" />
-    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\CommonPT.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\BetSettingController.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\GameSettingController.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\angular.min.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\BlockUI.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\Functions.js" />
@@ -180,7 +180,6 @@
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\jquery.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\jquery.tmpl.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\json2.js" />
-    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\knockout-2.0.0.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\ToolTip\wz_tooltip\tip_balloon.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\ToolTip\wz_tooltip\tip_balloon2.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\ToolTip\wz_tooltip\tip_balloon\b.gif" />
@@ -198,6 +197,7 @@
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\ToolTip\wz_tooltip\tip_followscroll.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\ToolTip\wz_tooltip\wz_tooltip.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\OpusAgular.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\SuperPositionTakingController.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Setting\RacingHelper.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Setting\RacingSetting.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Accounting\Images\Update.png" />
@@ -206,7 +206,6 @@
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Agent\Images\bgHeader.jpg" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Agent\Images\b_left.gif" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Agent\Images\b_right.gif" />
-    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\common.css" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\accessDenied.gif" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\back.png" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Banner\bg_banner.jpg" />
@@ -287,10 +286,6 @@
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\sorting_desc.gif" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\sucess.gif" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\undo.png" />
-    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\input.css" />
-    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Message.css" />
-    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\RacingSetting.css" />
-    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\table.css" />
     <Content Include="Areas\CustomerSetting\Views\ProgressiveBonus\Scripts\Progressive.js" />
     <Content Include="Areas\Common\Views\Shared\Images\Loading.gif" />
     <Content Include="Areas\Common\Views\Shared\Scripts\Fanex.CustomerSetting.js" />
