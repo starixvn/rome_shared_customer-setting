@@ -13,3 +13,28 @@ app.controller('opusSettingController', function ($scope, $rootScope) {
   
 });
 
+app.directive('checkDisableElement', function () {
+    return {
+        require: 'ngModel',
+        link: function (scope, element, attrs, ctrl) {
+            scope.$watch(attrs.ngModel, function () {
+                var className = attrs.ngClassName;
+                scope.$eval(attrs.ngModel) == true ? element.attr("disabled", "disabled").addClass(className + "Disabled").removeClass(className) : element.removeAttr("disabled", "disabled").addClass(className).removeClass(className + "Disabled");
+            }, true);
+        }
+    }
+});
+
+function validateNumber(event) {
+    // Prevent shift key since its not needed
+    if (event.shiftKey == true) {
+        event.preventDefault();
+    }
+    // Allow Only: keyboard 0-9, numpad 0-9, backspace, tab, left arrow, right arrow, delete
+    if ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105) || event.keyCode == 8 || event.keyCode == 188 || event.keyCode == 190 || event.keyCode == 9 || event.keyCode == 37 || event.keyCode == 39 || event.keyCode == 46) {
+        // Allow normal operation
+    } else {
+        // Prevent the rest
+        event.preventDefault();
+    }
+}
