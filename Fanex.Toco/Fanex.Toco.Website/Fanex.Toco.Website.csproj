@@ -168,7 +168,7 @@
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Sportsbook\Styles\Sportsbook.css" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\VirtualSports\Scripts\VirtualSportsController.js" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\VirtualSports\Styles\VirtualSports.css" />
-    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditSuperController.js" />
+    <Content Include="Areas\CustomerSetting\Views\LeftPanel\Casino\Scripts\EditSuperController.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Config\Store\RacingSpNames.xml" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\common.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\CommonPT.js" />
@@ -308,15 +308,15 @@
     <Content Include="Areas\CustomerSetting\Scripts\Validators.js" />
     <Content Include="Areas\CustomerSetting\Scripts\_references.js" />
     <Content Include="Areas\CustomerSetting\Styles\Validators.css" />
-    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\CasinoController.js" />
-    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditAgentController.js" />
-    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditMemberBySuperController.js" />
-    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditMemberByMasterController.js" />
-    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditMemberController.js" />
-    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\CustomerController.js" />
-    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditMasterController.js" />
-    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\ViewAgentController.js" />
-    <Content Include="Areas\CustomerSetting\Views\Casino\Styles\Casino.css" />
+    <Content Include="Areas\CustomerSetting\Views\LeftPanel\Casino\Scripts\CasinoController.js" />
+    <Content Include="Areas\CustomerSetting\Views\LeftPanel\Casino\Scripts\EditAgentController.js" />
+    <Content Include="Areas\CustomerSetting\Views\LeftPanel\Casino\Scripts\EditMemberBySuperController.js" />
+    <Content Include="Areas\CustomerSetting\Views\LeftPanel\Casino\Scripts\EditMemberByMasterController.js" />
+    <Content Include="Areas\CustomerSetting\Views\LeftPanel\Casino\Scripts\EditMemberController.js" />
+    <Content Include="Areas\CustomerSetting\Views\LeftPanel\Casino\Scripts\CustomerController.js" />
+    <Content Include="Areas\CustomerSetting\Views\LeftPanel\Casino\Scripts\EditMasterController.js" />
+    <Content Include="Areas\CustomerSetting\Views\LeftPanel\Casino\Scripts\ViewAgentController.js" />
+    <Content Include="Areas\CustomerSetting\Views\LeftPanel\Casino\Styles\Casino.css" />
     <Content Include="Areas\CustomerSetting\Images\btn-bgsubmit-hover.png" />
     <Content Include="Areas\CustomerSetting\Images\btn-bgsubmit-original.png" />
     <Content Include="Areas\CustomerSetting\Images\b_add.jpg" />
@@ -443,7 +443,7 @@
     <Content Include="Areas\CustomerSetting\Views\Web.config" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\Super.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Sample\Index.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Casino\Index.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\LeftPanel\Casino\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\ProgressiveBonus\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\ProgressiveBonus\Casino\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\ProgressiveBonus\Shared\_Layout.cshtml" />
@@ -451,7 +451,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Areas\CustomerSetting\Views\LeftPanel\Index.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Casino\Error.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\LeftPanel\Casino\Error.cshtml" />
     <None Include="Areas\CustomerSetting\Styles\Bootstrap\accordion.less" />
     <None Include="Areas\CustomerSetting\Styles\Bootstrap\alerts.less" />
     <None Include="Areas\CustomerSetting\Styles\Bootstrap\bootstrap.less" />
@@ -496,13 +496,13 @@
     <None Include="Areas\CustomerSetting\Styles\Bootstrap\wells.less" />
     <None Include="Areas\CustomerSetting\Styles\ProgressiveBonus\Color.less" />
     <None Include="Areas\CustomerSetting\Styles\ProgressiveBonus\ProgressiveBonus.less" />
-    <Content Include="Areas\CustomerSetting\Views\Casino\Customer\CustomerInfo.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Casino\Agent\EditAgent.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Casino\Agent\ViewAgentBySuper.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Casino\Member\EditMember.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Casino\Member\EditMemberBySuper.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Casino\Member\EditMemberByMaster.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Casino\Master\EditMaster.cshtml">
+    <Content Include="Areas\CustomerSetting\Views\LeftPanel\Casino\Customer\CustomerInfo.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\LeftPanel\Casino\Agent\EditAgent.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\LeftPanel\Casino\Agent\ViewAgentBySuper.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\LeftPanel\Casino\Member\EditMember.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\LeftPanel\Casino\Member\EditMemberBySuper.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\LeftPanel\Casino\Member\EditMemberByMaster.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\LeftPanel\Casino\Master\EditMaster.cshtml">
       <SubType>Code</SubType>
     </Content>
     <Content Include="PTEngine\BettingLimit.xml" />
@@ -767,7 +767,7 @@
     <Content Include="PTEngine\BettingLimitMappingSection.config" />
     <Content Include="PTEngine\PTMappingSection.config" />
     <Content Include="Areas\CustomerSetting\Views\Security\AccessDenied.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Casino\Super\EditSuper.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\LeftPanel\Casino\Super\EditSuper.cshtml" />
     <Content Include="PTEngine\PTRacingMappingSection.config" />
     <Content Include="PTEngine\RacingBettingCommSettingMappingSection.config" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Racing\Index.cshtml" />

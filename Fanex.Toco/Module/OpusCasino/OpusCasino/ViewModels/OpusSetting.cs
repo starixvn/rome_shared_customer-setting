@@ -12,7 +12,7 @@ namespace Fanex.CustomerSetting.OpusCasino.ViewModels
     public class OpusSetting
     {
         public CustomerInfor CustomerInformation { get; set; }
-        public PositionTaking PTCommSetting { get; set; }
+        public PositionTaking PositionTaking { get; set; }
         public BetSetting BetLimitSetting { get; set; }
         public List<GameSetting> GameSettingList { get; set; }
 
@@ -20,7 +20,7 @@ namespace Fanex.CustomerSetting.OpusCasino.ViewModels
         {
             this.CustomerInformation = new CustomerInfor();
 
-            this.PTCommSetting = new PositionTaking();
+            this.PositionTaking = new PositionTaking();
 
             this.BetLimitSetting = new BetSetting();
 

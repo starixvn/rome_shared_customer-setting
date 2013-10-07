@@ -12,6 +12,8 @@ namespace Fanex.CustomerSetting.OpusCasino.ViewModels
         public double A4 { get; set; }
         public double N4 { get; set; }
         public double L4 { get; set; }
+        public double CommMax { get; set; }
+        public double Comm4 { get; set; }
 
         public double S3 { get; set; }
         public double M3 { get; set; }
@@ -19,6 +21,7 @@ namespace Fanex.CustomerSetting.OpusCasino.ViewModels
         public bool IS3 { get; set; }
         public double N3 { get; set; }
         public double L3 { get; set; }
+        public double Comm3 { get; set; }
 
         public double M2 { get; set; }
         public double A2 { get; set; }
@@ -26,6 +29,7 @@ namespace Fanex.CustomerSetting.OpusCasino.ViewModels
         public bool IM2 { get; set; }
         public double N2 { get; set; }
         public double L2 { get; set; }
+        public double Comm2 { get; set; }
 
         public double S1 { get; set; }
         public double M1 { get; set; }
@@ -42,6 +46,7 @@ namespace Fanex.CustomerSetting.OpusCasino.ViewModels
             this.A4 = 0.5;
             this.N4 = 0.3;
             this.L4 = 0.85;
+            this.CommMax = 0.01;
 
             this.S3 = 0.2;
             this.M3 = 0.65;

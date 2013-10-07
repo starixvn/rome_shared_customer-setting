@@ -5,10 +5,10 @@
     ViewBag.Title = "Super Opus Casino Setting";
     Layout = "~/Areas/CustomerSetting/Views/OpusCasino/Shared/_Layout.cshtml";
 }
-<table>
+<table  ng-controller="positionTakinglController">
     <tr>
         <td colspan="5" class="header headerColor l b">
-            <span class="textHeader">Postion Talking/Commission</span> <i id="btnUpdateComm"
+            <span class="textHeader">Position Talking/Commission</span> <i id="btnUpdateComm"
                 class="btnSave"></i>
         </td>
     </tr>
@@ -25,16 +25,15 @@
     </tr>
     <tr>
         <td class="col120 formatCol c b">
-            @*<select id="ddlSuperMax" class="col60"></select>*@
-            <select ng-change="changeOperator()" ng-model="operator" ng-options="value.PartyFullName for value in operators">
+            <select class="col60" ng-model="positionTaking.l4" ng-options="value for value in maxPTRange">
             </select>
         </td>
         <td class="col120 formatCol c b">
-            <select id="ddlSuperMin" class="col60">
+            <select class="col60" ng-model="positionTaking.n4" ng-options="value for value in minPTRange">
             </select>
         </td>
         <td colspan="3" class="formatCol c b">
-            <select id="ddlSuperComm" class="col60">
+             <select class="col60" ng-model="positionTaking.comm4" ng-options="value for value in commRange">
             </select>
         </td>
     </tr>
