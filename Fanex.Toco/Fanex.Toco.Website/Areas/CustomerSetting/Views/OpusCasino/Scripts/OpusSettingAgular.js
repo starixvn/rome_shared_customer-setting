@@ -10,7 +10,7 @@
 } ]);
 
 app.controller('opusSettingController', function ($scope, $rootScope) {
-  
+    $scope.isDisabledUpdated = true;
 });
 
 app.directive('checkDisableElement', function () {
