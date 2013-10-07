@@ -13,11 +13,13 @@
                 var newValue = $scope.gameSettingList[i].bettingLimitList[j].isChecked;
                 if (oldValue != newValue) {
                     $scope.isDisabledSaveGameSetting = false;
+                    $scope.$emit('gameSetting', $scope.isDisabledSaveGameSetting);
                     return;
                 }
             }
         }
         $scope.isDisabledSaveGameSetting = true;
+        $scope.$emit('gameSetting', $scope.isDisabledSaveGameSetting);
     };
 
     $scope.$watch(function () {

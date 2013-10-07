@@ -11,6 +11,29 @@
 
 app.controller('opusSettingController', function ($scope, $rootScope) {
     $scope.isDisabledUpdated = true;
+    $scope.isDisabledSavedPT = true;
+    $scope.isDisabledSaveBetSetting = true;
+    $scope.isDisabledSaveGameSetting = true;
+
+    $scope.$on('positionTaking', function (event, data) {
+        $scope.isDisabledSavedPT = data;
+    });
+
+    $scope.$on('betSetting', function (event, data) {
+        $scope.isDisabledSaveBetSetting = data;
+    });
+
+    $scope.$on('gameSetting', function (event, data) {
+        $scope.isDisabledSaveGameSetting = data;
+    });
+
+    $scope.$watch(function () {
+        if (!$scope.isDisabledSavedPT || !$scope.isDisabledSaveBetSetting || !$scope.isDisabledSaveGameSetting) {
+            $scope.isDisabledUpdated = false;
+            return;
+        }
+        $scope.isDisabledUpdated = true;
+    });
 });
 
 app.directive('checkDisableElement', function () {

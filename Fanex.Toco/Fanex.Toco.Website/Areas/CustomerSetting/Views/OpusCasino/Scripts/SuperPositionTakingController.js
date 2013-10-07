@@ -17,9 +17,11 @@
             || ($scope.n4 != $scope.positionTaking.n4)
             || ($scope.comm4 != $scope.positionTaking.comm4)) {
             $scope.isDisabledSavedPT = false;
+            $scope.$emit('positionTaking', $scope.isDisabledSavedPT);
             return;
         }
         $scope.isDisabledSavedPT = true;
+        $scope.$emit('positionTaking', $scope.isDisabledSavedPT);
     };
 
     $scope.$watch('positionTaking.l4', function () {

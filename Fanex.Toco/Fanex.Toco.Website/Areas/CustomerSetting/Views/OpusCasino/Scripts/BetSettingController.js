@@ -7,9 +7,11 @@
     $scope.$watch(function () {
         if (($scope.betLimitSetting.maxTransfer != $scope.orignalBetLimitSetting.maxTransfer) || ($scope.betLimitSetting.isDailyAutoResetLimit != $scope.orignalBetLimitSetting.isDailyAutoResetLimit)) {
             $scope.isDisabledSaveBetSetting = false;
+            $scope.$emit('betSetting', $scope.isDisabledSaveBetSetting);
             return;
         }
         $scope.isDisabledSaveBetSetting = true;
+        $scope.$emit('betSetting', $scope.isDisabledSaveBetSetting);
     });
 
 });

@@ -2,7 +2,7 @@
 @using Newtonsoft.Json
 @using Newtonsoft.Json.Serialization
 <!DOCTYPE html>
-<html ng-controller="opusSettingController" ng-app='OpusCasino' id="ng-app">
+<html  ng-app='OpusCasino' id="ng-app">
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
@@ -20,7 +20,7 @@
     }
 </head>
 <body>
-    <div class="content">
+    <div ng-controller="opusSettingController" class="content">
         <div id="customerInfo">
             <table class="tableColor"  ng-controller="customerInfoController">
                 <tr>
