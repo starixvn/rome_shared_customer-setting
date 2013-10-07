@@ -27,7 +27,7 @@ namespace Fanex.CustomerSetting.OpusCasino.ViewModels
             this.GameSettingList = new List<GameSetting>();
             List<StakeLevel> stakeLevelList = new List<StakeLevel>();
 
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 15; i++)
             {
                 stakeLevelList.Add(new StakeLevel{
                     ID = i,
