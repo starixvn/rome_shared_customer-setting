@@ -31,7 +31,8 @@ namespace Fanex.CustomerSetting.OpusCasino.ViewModels
             {
                 stakeLevelList.Add(new StakeLevel{
                     ID = i,
-                    Value = "10-50"
+                    Value = "10-50",
+                    IsChecked = true
                 });
 
             }

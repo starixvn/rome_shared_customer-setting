@@ -9,5 +9,6 @@ namespace Fanex.CustomerSetting.OpusCasino.ViewModels
     {
         public int ID { get; set; }
         public string Value { get; set; }
+        public bool IsChecked { get; set; }
     }
 }
