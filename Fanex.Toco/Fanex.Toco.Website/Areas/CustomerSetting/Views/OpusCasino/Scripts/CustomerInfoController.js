@@ -30,14 +30,17 @@
         $scope.isDownlineDisabled = $scope.customerInfo.isEnable == true ? true : false;
     };
 
+    $scope.broadcastOpusSetting = function (value) {
+        $scope.isSaveCustomerinfo = value;
+        $scope.$emit('customerInfo', $scope.isSaveCustomerinfo);
+    };
+
     $scope.$watch('customerInfo', function () {
         if (($scope.customerInfo.isEnable != $scope.isEnable) || (($scope.IsDownline != $scope.customerInfo.isDownline) && !$scope.customerInfo.isEnable)) {
-            $scope.isSaveCustomerinfo = false;
-            $scope.$emit('customerInfo', $scope.isSaveCustomerinfo);
+            $scope.broadcastOpusSetting(false);
             return;
         }
-        $scope.isSaveCustomerinfo = true;
-        $scope.$emit('customerInfo', $scope.isSaveCustomerinfo);
+        $scope.broadcastOpusSetting(true);
     }, true);
 
 });

@@ -79,6 +79,10 @@
         $scope.n3Constrain();
         $scope.monitorSaveButton();
     }, true);
+
+    $scope.$watch('[positionTaking.n3, positionTaking.comm3]', function () {
+        $scope.monitorSaveButton();
+    }, true)
 });
 
 
