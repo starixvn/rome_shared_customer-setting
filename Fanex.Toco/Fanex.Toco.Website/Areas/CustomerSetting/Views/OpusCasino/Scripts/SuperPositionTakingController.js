@@ -32,7 +32,11 @@
             $scope.positionTaking.n4 = $scope.positionTaking.l4;
         }
         $scope.minPTRange = $rootScope.getRangeValue($scope.positionTaking.l4, 0.01, 100);
-        return;
+        $scope.monitorSaveButton();
+    }, true);
+
+    $scope.$watch('[positionTaking.n4,positionTaking.comm4]', function () {
+        $scope.monitorSaveButton();
     }, true);
 });
 
