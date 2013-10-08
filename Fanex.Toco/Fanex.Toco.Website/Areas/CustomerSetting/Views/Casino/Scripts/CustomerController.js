@@ -44,6 +44,10 @@ function CustomerController($scope) {
             break;
     }
 
+    if ($scope.IsSuper) {
+        customerModel.maxTransferCreditLimit = 0;
+    }
+
     $('#downline').each(function (i, item) {
         $(item).html($scope.Level)
     });
