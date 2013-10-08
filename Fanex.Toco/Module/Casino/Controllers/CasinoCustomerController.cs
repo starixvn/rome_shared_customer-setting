@@ -14,15 +14,19 @@
             var customerUpline = new CasinoCustomer();
             
             customerUpline.IBCCustID = uplineId;
-            CasinoManager.Instance.GetCustSettingCS(ref customerUpline);
+
+            if (uplineId != 0)
+            {
+                CasinoManager.Instance.GetCustSettingCS(ref customerUpline);
+            }
             
             customerInfo.IBCCustID = customerInfo.CasinoSync ? id : uplineId;
             CasinoManager.Instance.GetCustSettingCS(ref customerInfo);
 
-            customerInfo.UplineRoleId = customerUpline.RoleId;
+            customerInfo.UplineRoleId = uplineId != 0 ? customerUpline.RoleId : 5;
             customerInfo.IsAutoReset = !customerInfo.CasinoSync ? true : customerInfo.IsAutoReset;
 
-            if (customerUpline.RoleId == customerInfo.RoleId)
+            if (uplineId != 0 && customerUpline.RoleId == customerInfo.RoleId)
             {
                 customerInfo.RoleId = customerUpline.RoleId - 1;
                 customerInfo.IBCCustID = id;
