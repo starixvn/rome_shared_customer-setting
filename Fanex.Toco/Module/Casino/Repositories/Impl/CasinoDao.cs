@@ -31,11 +31,11 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
             uplineParam.Add("custid", uplineId);
 
             DbResult dr = DbHelper.ExecuteDbResult("Age_CustomerSelUserInfo", param, 300);
-            var upline = DbHelper.ExecuteDbResult("Age_CustomerSelUserInfo", uplineParam, 300);
+            var upline = uplineId != 0 ? DbHelper.ExecuteDbResult("Age_CustomerSelUserInfo", uplineParam, 300) : new DbResult(new Hashtable(), new DataSet());
 
             DataRow row = null;
             CasinoCustomer customerDetail = new CasinoCustomer();
-            customerDetail.UplineDisabledCasino = (bool)upline.ResultSet.Tables[0].Rows[0]["disablecasino"];
+            customerDetail.UplineDisabledCasino = uplineId != 0 ? (bool)upline.ResultSet.Tables[0].Rows[0]["disablecasino"] : false;
 
             if (dr.ResultSet.Tables[0].Rows.Count > 0)
             {
@@ -56,7 +56,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
                 customerDetail.MIBCCustID = Utils.ToInt32(row["masterid"]);
                 customerDetail.AIBCCustID = Utils.ToInt32(row["agentid"]);
 
-                customerDetail.GivenCredit = Utils.ToInt32(row["credit"]);
+                customerDetail.GivenCredit = Utils.ToDecimal(row["credit"]).Format();
 
                 customerDetail.CasinoSync = Utils.ToBoolean(row["synccasino"]);
                 customerDetail.CasinoDisabled = Utils.ToBoolean(row["disablecasino"]);
@@ -72,9 +72,9 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
 
                 // Get max transfer information
                 CasinoLibrary.SBAgent.Customer customer = new CasinoLibrary.SBAgent.Customer();                
-                DataTable dt = customer.GetDefaultMaxTransfer(customerDetail.UpperCustID, customerDetail.Currency, false);
+                DataTable dt = customer.GetDefaultMaxTransfer(uplineId, customerDetail.Currency, uplineId == 0);
 
-                if (dt != null && dt.Rows.Count > 0)
+                if (customerDetail.RoleId != 4 && dt != null && dt.Rows.Count > 0)
                 {
                     customerDetail.MaxTransferCreditLimit = Utils.ToDouble(dt.Rows[0]["MaxLimit"]);
                     customerDetail.MinTransferCreditLimit = Utils.ToDouble(dt.Rows[0]["MinLimit"]);

@@ -20,7 +20,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Entities
             set;
         }
 
-        public int GivenCredit
+        public decimal GivenCredit
         {
             get;
             set;
