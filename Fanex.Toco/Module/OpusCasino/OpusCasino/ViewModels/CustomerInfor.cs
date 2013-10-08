@@ -28,7 +28,7 @@ namespace Fanex.CustomerSetting.OpusCasino.ViewModels
             this.Phone = "564645654";
             this.MobilePhone = "56658645465";
             this.Fax = "6589456";
-            this.IsEnable = true;
+            this.IsEnable = false;
             this.IsDownline = false;
         }
     }
