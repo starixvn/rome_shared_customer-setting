@@ -1,6 +1,6 @@
 ﻿@model dynamic
 @{
-    ViewBag.Title = "Master Racing Setting";
+    ViewBag.Title = "Master Opus Setting";
     Layout = "~/Areas/CustomerSetting/Views/OpusCasino/Shared/_Layout.cshtml";
 }
 <table ng-controller="masterPositionTakingController">
@@ -29,23 +29,24 @@
     </tr>
     <tr>
         <td class="col120 formatCol c b">
-            <select class="col60" ng-model="positionTaking.l4" ng-options="value for value in maxPTRange" ng-change="monitorSaveButton()">
+            <select ng-disabled = "positionTaking.iS3" class="col60" ng-model="positionTaking.s3" ng-options="value for value in s3Range" ng-change="changeSuperPresetPT()">
             </select>
         </td>
         <td class="col120 formatCol c b">
-            <select class="col60" ng-model="positionTaking.n4" ng-options="value for value in minPTRange" ng-change="monitorSaveButton()">
+            <input ng-change="changeIsAutoPresetPT()" class="chb" type="checkbox" ng-model="positionTaking.iS3" />
+            <select ng-disabled = "!positionTaking.iS3" class="col60" ng-model="positionTaking.uS3" ng-options="value for value in uS3Range" ng-change="monitorSaveButton()">
             </select>
         </td>
         <td class="col120 formatCol c b">
-            <select class="col60" ng-model="positionTaking.l4" ng-options="value for value in maxPTRange" ng-change="monitorSaveButton()">
+            <select class="col60" ng-model="positionTaking.l3" ng-options="value for value in maxPTRange" ng-change="changeMaxPT()">
             </select>
         </td>
         <td class="col120 formatCol c b">
-            <select class="col60" ng-model="positionTaking.n4" ng-options="value for value in minPTRange" ng-change="monitorSaveButton()">
+            <select class="col60" ng-model="positionTaking.n3" ng-options="value for value in minPTRange" ng-change="monitorSaveButton()">
             </select>
         </td>
         <td class="col120 formatCol c b">
-             <select class="col60" ng-model="positionTaking.comm4" ng-options="value for value in commRange" ng-change="monitorSaveButton()">
+             <select class="col60" ng-model="positionTaking.comm3" ng-options="value for value in commRange" ng-change="monitorSaveButton()">
             </select>
         </td>
     </tr>
