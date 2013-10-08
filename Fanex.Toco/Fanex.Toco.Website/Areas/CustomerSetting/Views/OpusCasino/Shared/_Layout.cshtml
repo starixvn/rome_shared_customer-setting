@@ -11,6 +11,8 @@
     <link href="~/Areas/CustomerSetting/Views/OpusCasino/Styles/Agent/ThemeColor.less"
         rel="stylesheet" type="text/css" />
     @{
+        string positionTakingJsName = string.Empty;
+        int roleID = Model.CustomerInformation.RoleID;
         var OpusSetting = JsonConvert.SerializeObject(Model, Formatting.None, new JsonSerializerSettings
         {
             ContractResolver = new CamelCasePropertyNamesContractResolver(),
@@ -80,9 +82,9 @@
                     <td class="formatCol r b">
                         Enable
                     </td>
-                    <td class="col243 formatCol l">
+                    <td class="col243 formatCol l" ng-init="getRoleName()">
                         <input type="checkbox" ng-model="customerInfo.isEnable" ng-change="checkDownlineButton()"/>
-                        Super
+                        {{roleName}}
                         <input type="checkbox" ng-disabled="isDownlineDisabled" ng-model="customerInfo.isDownline" ng-init="checkDownlineButton()"/>Downlines
                     </td>
                 </tr>
@@ -109,7 +111,19 @@
 <script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/CustomerInfoController.js" type="text/javascript"></script>
 <script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/BetSettingController.js" type="text/javascript"></script>
 <script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/GameSettingController.js" type="text/javascript"></script>
-  <script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/SuperPositionTakingController.js" type="text/javascript"></script>
+@switch (roleID)
+{
+    case 4:
+        positionTakingJsName = "SuperPositionTakingController.js";
+        break;
+    case 3:
+        positionTakingJsName = "MasterPositionTakingController.js";
+        break;
+}
+<script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/SuperPositionTakingController.js" type="text/javascript"></script>
+
+<script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/MasterPositionTakingController.js" type="text/javascript"></script>
+
 @*@Scripts.Render("~/bundles/racingsetting/super")*@
 <script type="text/javascript">
     var model = JSON.parse(Fanex.CustomerSetting.Core.DecodeHtml('@OpusSetting'));

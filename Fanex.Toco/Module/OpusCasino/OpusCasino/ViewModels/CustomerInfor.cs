@@ -8,6 +8,7 @@ namespace Fanex.CustomerSetting.OpusCasino.ViewModels
     public class CustomerInfor
     {
         public int CustID { get; set; }
+        public int RoleID { get; set; }
         public string Username { get; set; }
         public string NickName { get; set; }
         public string FirstName { get; set; }
@@ -21,6 +22,7 @@ namespace Fanex.CustomerSetting.OpusCasino.ViewModels
         public CustomerInfor()
         {
             this.CustID = 1373389;
+            this.RoleID = 3;
             this.Username = "testuser";
             this.NickName = "testcs";
             this.FirstName = "David";
