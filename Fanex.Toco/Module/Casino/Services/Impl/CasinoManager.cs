@@ -71,7 +71,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
                 // Commission
                 gameGroup.Sco = MaxComm;
-                gameGroup.Mco = !synced ? MaxComm : Utils.ToDecimal(row["SMAgentRollingRate"]).Format(4);
+                gameGroup.Mco = !synced ? 0 : Utils.ToDecimal(row["SMAgentRollingRate"]).Format(4);
 
                 // Game Group Info
                 gameGroup.GameGroupID = !synced ? Utils.ToInt32(row["CodeID"]) : Utils.ToInt32(row["GameKind"]);
@@ -79,14 +79,14 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
                 // Super preset PT
                 gameGroup.S4 = MaxPT;
-                gameGroup.S3 = !synced ? MaxPT : Utils.ToDecimal(row["MaxPositionTaking"]).Format();
+                gameGroup.S3 = !synced ? 0 : Utils.ToDecimal(row["MaxPositionTaking"]).Format();
 
                 // Master Min PT
                 gameGroup.N4 = gameGroup.S3;
-                gameGroup.N3 = !synced ? MinPT : Utils.ToDecimal(row["MinPositionTaking"]).Format();
+                gameGroup.N3 = !synced ? 0 : Utils.ToDecimal(row["MinPositionTaking"]).Format();
 
                 // Assign game types
-                var gameTypes = this.GetGameTypeSuper(id, gameGroup.GameGroupID, synced, ref gameGroup);
+                var gameTypes = this.GetGameTypeSuper(id, gameGroup.GameGroupID, synced, ref gameGroup, custInfo.Currency);
                 gameGroup.GameTypes = gameTypes;
 
                 gameGroups.Add(gameGroup);
@@ -457,7 +457,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
         public void GetCustSettingCS(ref CasinoCustomer custIBC)
         {
             var cust = new Customer();
-            var dt = cust.GetCustSetting(custIBC.IBCCustID);
+            var dt = custIBC.CasinoSync ? cust.GetCustSetting(custIBC.IBCCustID) : new DataTable();
             DataRow row = null;
             if (dt != null && dt.Rows.Count > 0)
             {
@@ -1796,18 +1796,18 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             return dt;
         }
 
-        private List<GameType> GetGameTypeSuper(int custId, int gameKindID, bool synced, ref GameGroup gameGroup)
+        private List<GameType> GetGameTypeSuper(int custId, int gameKindID, bool synced, ref GameGroup gameGroup, int exchangeId = 0)
         {
             var cust = new Customer();
             var gameTypes = new List<GameType>();
-            var dt = synced ? cust.GetCustGameType(custId, gameKindID) : new BasicInfo().GetGameKind(CasinoNo);
+            var dt = synced ? cust.GetCustGameType(custId, gameKindID) : new BasicInfo().GetGameType(gameKindID);
 
             foreach (DataRow row in dt.Rows)
             {
                 var gameType = new GameType();
 
                 gameType.Sco = MaxComm;
-                gameType.Mco = !synced ? MaxComm : Utils.ToDecimal(row["SMAgentRollingRate"]).Format(4);
+                gameType.Mco = !synced ? 0 : Utils.ToDecimal(row["SMAgentRollingRate"]).Format(4);
 
                 // Game type Info
                 gameType.GameTypeID = Utils.ToInt32(row["GameTypeID"]);
@@ -1815,14 +1815,14 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
                 // Super preset PT
                 gameType.S4 = MaxPT;
-                gameType.S3 = !synced ? MaxPT : Utils.ToDecimal(row["MaxPositionTaking"]).Format();
+                gameType.S3 = !synced ? 0 : Utils.ToDecimal(row["MaxPositionTaking"]).Format();
 
                 // Master Min PT
                 gameType.N4 = gameType.S3;
-                gameType.N3 = !synced ? MaxPT : Utils.ToDecimal(row["MinPositionTaking"]).Format();
+                gameType.N3 = !synced ? 0 : Utils.ToDecimal(row["MinPositionTaking"]).Format();
 
                 // Betting limits
-                var stakes = this.GetStakeLevels(custId, gameType.GameTypeID);
+                var stakes = this.GetStakeLevels(custId, gameType.GameTypeID, exchangeId);
                 gameType.BettingLimits = stakes;
 
                 gameTypes.Add(gameType);
@@ -2141,11 +2141,11 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             return gameTypes;
         }
 
-        private List<StakeLevel> GetStakeLevels(int custId, int gameTypeID)
+        private List<StakeLevel> GetStakeLevels(int custId, int gameTypeID, int exchangeId = 0)
         {
             var cust = new Customer();
             var stakeLevels = new List<StakeLevel>();
-            var dt = cust.GetCustStakeLevel(custId, gameTypeID);
+            var dt = custId != 0 ? cust.GetCustStakeLevel(custId, gameTypeID) : new BasicInfo().GetGameTypeStakeLevel(gameTypeID, exchangeId);
 
             foreach (DataRow row in dt.Rows)
             {
