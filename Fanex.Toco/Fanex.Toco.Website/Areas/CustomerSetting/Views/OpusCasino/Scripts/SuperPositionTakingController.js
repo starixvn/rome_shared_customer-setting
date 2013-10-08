@@ -12,16 +12,19 @@
     $scope.commRange = $rootScope.getRangeValue($scope.positionTaking.commMax, 0.0005, 10000);
     $scope.comm4 = $scope.positionTaking.comm4 = $scope.commRange[0];
 
+    $scope.broadcastOpusSetting = function (value) {
+        $scope.isDisabledSavedPT = value;
+        $scope.$emit('positionTaking', $scope.isDisabledSavedPT);
+    };
+
     $scope.monitorSaveButton = function () {
         if (($scope.l4 != $scope.positionTaking.l4)
             || ($scope.n4 != $scope.positionTaking.n4)
             || ($scope.comm4 != $scope.positionTaking.comm4)) {
-            $scope.isDisabledSavedPT = false;
-            $scope.$emit('positionTaking', $scope.isDisabledSavedPT);
+            $scope.broadcastOpusSetting(false);
             return;
         }
-        $scope.isDisabledSavedPT = true;
-        $scope.$emit('positionTaking', $scope.isDisabledSavedPT);
+        $scope.broadcastOpusSetting(true);
     };
 
     $scope.$watch('positionTaking.l4', function () {

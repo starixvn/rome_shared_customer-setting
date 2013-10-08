@@ -25,31 +25,31 @@
     $scope.commRange = $rootScope.getRangeValue($scope.positionTaking.commMax, 0.0005, 10000);
     $scope.comm3 = $scope.positionTaking.comm3 = $scope.commRange[0];
 
+    $scope.broadcastOpusSetting = function (value) {
+        $scope.isDisabledSavedPT = value;
+        $scope.$emit('positionTaking', $scope.isDisabledSavedPT);
+    };
+
     $scope.monitorSaveButton = function () {
         if ($scope.iS3 != $scope.positionTaking.iS3) {
-            $scope.isDisabledSavedPT = false;
-            $scope.$emit('positionTaking', $scope.isDisabledSavedPT);
+            $scope.broadcastOpusSetting(false);
             return;
         }
         else {
             if (($scope.l3 != $scope.positionTaking.l3)
                 || ($scope.n3 != $scope.positionTaking.n3)
                 || ($scope.comm3 != $scope.positionTaking.comm3)) {
-                $scope.isDisabledSavedPT = false;
-                $scope.$emit('positionTaking', $scope.isDisabledSavedPT);
+                $scope.broadcastOpusSetting(false);
                 return;
             }
             else {
-                if (($scope.positionTaking.iS3  &&  ($scope.uS3 != $scope.positionTaking.uS3)) || (!$scope.positionTaking.iS3  &&  ($scope.s3 != $scope.positionTaking.s3)))
-                {
-                 $scope.isDisabledSavedPT = false;
-                    $scope.$emit('positionTaking', $scope.isDisabledSavedPT);
+                if (($scope.positionTaking.iS3 && ($scope.uS3 != $scope.positionTaking.uS3)) || (!$scope.positionTaking.iS3 && ($scope.s3 != $scope.positionTaking.s3))) {
+                    $scope.broadcastOpusSetting(false);
                     return;
                 }
             }
         }
-        $scope.isDisabledSavedPT = true;
-        $scope.$emit('positionTaking', $scope.isDisabledSavedPT);
+        $scope.broadcastOpusSetting(true);
     };
 
     $scope.n3Constrain = function () {
