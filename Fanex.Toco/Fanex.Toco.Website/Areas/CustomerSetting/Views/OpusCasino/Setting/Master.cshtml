@@ -6,8 +6,8 @@
 <table ng-controller="superPositionTakingController">
     <tr>
         <td colspan="5" class="header l b">
-            <span class="textHeader">Postion Talking/Commission</span> <i id="btnUpdateComm"
-                class="btnSave"></i>
+            <span class="textHeader">Postion Talking/Commission</span> 
+             <input ng-class-name="btnSave" check-disable-element ng-model="isDisabledSavedPT" ng-click="" type="button"/>
         </td>
     </tr>
     <tr>
@@ -52,13 +52,13 @@
 </table>
 <table ng-controller="betSettingController">
 <tr>
-        <td class="header l b ">
+        <td class="col612 header l b ">
             <span class="textHeader">Bet Setting</span> 
              <input ng-class-name="btnSave" check-disable-element ng-model="isDisabledSaveBetSetting" ng-click="" type="button"/>
         </td>
     </tr>
     <tr>
-        <td class="col610">
+        <td>
             <span class="base-font b">Member Max Transfer Credit</span>
              <input  onkeydown='validateNumber(event)' type="text" ng-model="betLimitSetting.maxTransfer"/>
             <label class="base-font">
@@ -71,7 +71,7 @@
 </table>
 <table ng-controller="gameSettingController">
 <tr>
-        <td colspan="5" class="header l b">
+        <td colspan="2" class="header l b">
             <span class="textHeader">Game Setting</span>   
             <input ng-class-name="btnSave" check-disable-element ng-model="isDisabledSaveGameSetting" ng-click="" type="button"/>
         </td>
@@ -80,15 +80,15 @@
         <td class="col120 formatCol r b">
             Game Type
         </td>
-        <td colspan="4" class="formatCol l b">
+        <td class="col489 formatCol l b">
             Betting Limit
         </td>
     </tr>
     <tr  ng-repeat="gameSetting in gameSettingList">
-        <td class="col120 formatCol r">
+        <td class="formatCol r">
             {{gameSetting.gameTypeName}}
         </td>
-        <td class="formatCol col480" >
+        <td class="formatCol" >
             <label ng-repeat="bettingLimit in gameSetting.bettingLimitList">
                  <input  type="checkbox" ng-model="bettingLimit.isChecked" ng-click="changeStatusCheckbox()"/> {{bettingLimit.value}}
             </label>
