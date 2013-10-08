@@ -19,7 +19,7 @@
         <td class="col120 formatCol c b">
             Super Min Position
         </td>
-        <td class=" col361 formatCol c b">
+        <td class=" col366 formatCol c b">
             Super Commission
         </td>
     </tr>
@@ -46,7 +46,7 @@
         </td>
     </tr>
     <tr>
-        <td class="col610">
+        <td class="col612">
             <span class="base-font b">Member Max Transfer Credit</span>
              <input  onkeydown='validateNumber(event)' type="text" ng-model="betLimitSetting.maxTransfer"/>
             <label class="base-font">
@@ -76,7 +76,7 @@
         <td class="col120 formatCol r">
             {{gameSetting.gameTypeName}}
         </td>
-        <td class="formatCol col480" >
+        <td class="formatCol col489" >
             <label ng-repeat="bettingLimit in gameSetting.bettingLimitList">
                  <input  type="checkbox" ng-model="bettingLimit.isChecked" ng-click="changeStatusCheckbox()"/> {{bettingLimit.value}}
             </label>

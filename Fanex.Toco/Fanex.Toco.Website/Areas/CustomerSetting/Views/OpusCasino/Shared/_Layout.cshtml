@@ -24,7 +24,7 @@
         <div id="customerInfo">
             <table class="tableColor"  ng-controller="customerInfoController">
                 <tr>
-                    <td colspan="5" class="header c b">
+                    <td colspan="4" class="header c b">
                         CustomerInfo
                     </td>
                 </tr>
@@ -38,49 +38,49 @@
                     <td class="col120 formatCol r b">
                         Nick Name
                     </td>
-                    <td colspan="2" class="col240 formatCol l">
+                    <td class="col243 formatCol l">
                         {{customerInfo.nickName }}
                     </td>
                 </tr>
                 <tr>
-                    <td class="col120 formatCol r b">
+                    <td class="formatCol r b">
                         First Name
                     </td>
-                    <td class="col120 formatCol l">
+                    <td class="formatCol l">
                         {{customerInfo.firstName }}
                     </td>
-                    <td class="col120 formatCol r b">
+                    <td class="formatCol r b">
                         Last Name
                     </td>
-                    <td colspan="2" class="col240 formatCol l">
+                    <td class="col243 formatCol l">
                         {{customerInfo.lastName }}
                     </td>
                 </tr>
                 <tr>
-                    <td class="col120 formatCol r b">
+                    <td class="formatCol r b">
                         Phone
                     </td>
-                    <td class="col120 formatCol l">
+                    <td class="formatCol l">
                         {{customerInfo.phone }}
                     </td>
-                    <td class="col120 formatCol r b">
+                    <td class="formatCol r b">
                         Mobile Phone
                     </td>
-                    <td colspan="2" class="col240 formatCol l">
+                    <td class="formatCol l">
                         {{customerInfo.mobilePhone }}
                     </td>
                 </tr>
                 <tr>
-                    <td class="col120 formatCol r b">
+                    <td class="formatCol r b">
                         Fax
                     </td>
-                    <td class="col120 formatCol l">
+                    <td class="formatCol l">
                         {{customerInfo.fax }}
                     </td>
-                    <td class="col120 formatCol r b">
+                    <td class="formatCol r b">
                         Enable
                     </td>
-                    <td colspan="2" class="col240 formatCol l">
+                    <td class="col243 formatCol l">
                         <input type="checkbox" ng-model="customerInfo.isEnable" ng-change="checkDownlineButton()"/>
                         Super
                         <input type="checkbox" ng-disabled="isDownlineDisabled" ng-model="customerInfo.isDownline" ng-init="checkDownlineButton()"/>Downlines

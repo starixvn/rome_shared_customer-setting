@@ -30,19 +30,22 @@ namespace Fanex.CustomerSetting.OpusCasino.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "index")]
         public ActionResult Master()
         {
-            return View("~/Areas/CustomerSetting/Views/OpusCasino/Setting/Master.cshtml");
+            OpusSetting opus = new OpusSetting();
+            return View("~/Areas/CustomerSetting/Views/OpusCasino/Setting/Master.cshtml", opus);
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "index")]
         public ActionResult Agent()
         {
-            return View("~/Areas/CustomerSetting/Views/OpusCasino/Setting/Agent.cshtml");
+            OpusSetting opus = new OpusSetting();
+            return View("~/Areas/CustomerSetting/Views/OpusCasino/Setting/Agent.cshtml", opus);
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "index")]
         public ActionResult Member()
         {
-            return View("~/Areas/CustomerSetting/Views/OpusCasino/Setting/Member.cshtml");
+            OpusSetting opus = new OpusSetting();
+            return View("~/Areas/CustomerSetting/Views/OpusCasino/Setting/Member.cshtml", opus);
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "index")]

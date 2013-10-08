@@ -782,7 +782,6 @@
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Setting\Master.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Setting\MasterEditMember.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Setting\Member.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Setting\RacingSetting.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Setting\Super.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Setting\SuperEditMember.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Shared\_Layout.cshtml" />
