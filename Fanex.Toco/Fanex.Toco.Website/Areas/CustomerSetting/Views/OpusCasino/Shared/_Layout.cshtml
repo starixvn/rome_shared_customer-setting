@@ -81,9 +81,9 @@
                         Enable
                     </td>
                     <td colspan="2" class="col240 formatCol l">
-                        <input type="checkbox" ng-model="customerInfo.isEnable" />
+                        <input type="checkbox" ng-model="customerInfo.isEnable" ng-change="checkDownlineButton()"/>
                         Super
-                        <input type="checkbox" ng-disabled="isDownlineDisabled" ng-model="customerInfo.isDownline" />Downlines
+                        <input type="checkbox" ng-disabled="isDownlineDisabled" ng-model="customerInfo.isDownline" ng-init="checkDownlineButton()"/>Downlines
                     </td>
                 </tr>
             </table>

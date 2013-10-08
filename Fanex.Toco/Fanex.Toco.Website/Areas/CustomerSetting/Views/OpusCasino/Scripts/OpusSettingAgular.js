@@ -14,6 +14,11 @@ app.controller('opusSettingController', function ($scope, $rootScope) {
     $scope.isDisabledSavedPT = true;
     $scope.isDisabledSaveBetSetting = true;
     $scope.isDisabledSaveGameSetting = true;
+    $scope.isSaveCustomerinfo = true;
+
+    $scope.$on('customerInfo', function (event, data) {
+        $scope.isSaveCustomerinfo = data;
+    });
 
     $scope.$on('positionTaking', function (event, data) {
         $scope.isDisabledSavedPT = data;
@@ -28,7 +33,7 @@ app.controller('opusSettingController', function ($scope, $rootScope) {
     });
 
     $scope.$watch(function () {
-        if (!$scope.isDisabledSavedPT || !$scope.isDisabledSaveBetSetting || !$scope.isDisabledSaveGameSetting) {
+        if (!$scope.isDisabledSavedPT || !$scope.isDisabledSaveBetSetting || !$scope.isDisabledSaveGameSetting || !$scope.isSaveCustomerinfo) {
             $scope.isDisabledUpdated = false;
             return;
         }
