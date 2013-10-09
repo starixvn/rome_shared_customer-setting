@@ -1,4 +1,4 @@
-﻿app.controller('gameSettingController', function ($scope) {
+﻿app.controller('sMAGameSettingController', function ($scope) {
     $scope.gameSettingList = model.gameSettingList;
     $scope.orignalGameSettingList = angular.copy(model.gameSettingList); 
 

@@ -107,10 +107,10 @@
 <script src="~/Areas/CustomerSetting/Scripts/angular.min.js" type="text/javascript"></script>
 <script src="~/Areas/CustomerSetting/Scripts/Validators.js" type="text/javascript"></script>
 <script src="~/Areas/CustomerSetting/Scripts/Fanex.CustomerSetting.Core.js" type="text/javascript"></script>
-<script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/OpusSettingAgular.js" type="text/javascript"></script>
-<script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/CustomerInfoController.js" type="text/javascript"></script>
-<script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/BetSettingController.js" type="text/javascript"></script>
-<script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/GameSettingController.js" type="text/javascript"></script>
+<script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/Setting/OpusSettingAgular.js" type="text/javascript"></script>
+<script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/Setting/CustomerInfoController.js" type="text/javascript"></script>
+<script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/Setting/BetSettingController.js" type="text/javascript"></script>
+<script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/Setting/SMA_Level/SMAGameSettingController.js" type="text/javascript"></script>
 @switch (roleID)
 {
     case 4:
@@ -120,11 +120,11 @@
         positionTakingJsName = "MasterPositionTakingController.js";
         break;
 }
-<script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/SuperPositionTakingController.js" type="text/javascript"></script>
-<script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/MasterPositionTakingController.js" type="text/javascript"></script>
-<script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/AgentPositionTakingController.js" type="text/javascript"></script>
-<script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/MemberPositionTakingController.js" type="text/javascript"></script>
-<script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/MemberGameSettingController.js" type="text/javascript"></script>
+<script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/Setting/SMA_Level/SuperPositionTakingController.js" type="text/javascript"></script>
+<script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/Setting/SMA_Level/MasterPositionTakingController.js" type="text/javascript"></script>
+<script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/Setting/SMA_Level/AgentPositionTakingController.js" type="text/javascript"></script>
+<script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/Setting/Member_Level/MemberPositionTakingController.js" type="text/javascript"></script>
+<script src="~/Areas/CustomerSetting/Views/OpusCasino/Scripts/Setting/Member_Level/MemberGameSettingController.js" type="text/javascript"></script>
 @*@Scripts.Render("~/bundles/racingsetting/super")*@
 <script type="text/javascript">
     var model = JSON.parse(Fanex.CustomerSetting.Core.DecodeHtml('@OpusSetting'));
