@@ -25,19 +25,20 @@
         </td>
     </tr>
     <tr>
-        <td class="formatCol c b">
-               <select class="col60"  ng-disabled = "positionTaking.iS1"  ng-model="positionTaking.s1" ng-options="value for value in s1Range">
+        <td ng-switch on="positionTaking.iS3" class="formatCol c">
+               <select ng-switch-default class="col60"  ng-disabled = "positionTaking.iS1"  ng-model="positionTaking.s1" ng-options="value for value in s1Range">
             </select>
+            <label ng-switch-when="true">{{positionTaking.s1}}</label>
         </td>
         <td class="formatCol c b">
             <input class="chb" type="checkbox" ng-model="positionTaking.iS1" />
                <select class="col60"  ng-disabled = "!positionTaking.iS1"  ng-model="positionTaking.uS1" ng-options="value for value in uS1Range">
             </select>
         </td>
-        <td class="formatCol c b">
+        <td class="formatCol c ">
             {{positionTaking.m1}}
         </td>
-        <td colspan="2" class="formatCol c b">
+        <td colspan="2" class="formatCol c">
         {{positionTaking.a1}}
         </td>
     </tr>
