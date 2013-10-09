@@ -1,29 +1,35 @@
 ﻿@model dynamic
-
 @{
     ViewBag.Title = "Member Opus Setting";
     Layout = "~/Areas/CustomerSetting/Views/OpusCasino/Shared/_Layout.cshtml";
 }
-<table ng-controller="memberPositionTakingController"  >
-<tr>
-    <td colspan="2" class="header l b">
-        <span class="textHeader">Postion Talking/Commission</span>
-        <input ng-class-name="btnSave" check-disable-element ng-model="isDisabledSavedPT"
+<table ng-controller="memberPositionTakingController">
+    <tr>
+        <td colspan="2" class="header l b">
+            <span class="textHeader">Postion Talking/Commission</span>
+            <input ng-class-name="btnSave" check-disable-element ng-model="isDisabledSavedPT"
                 ng-click="" type="button" />
-</tr>
-<tr>
-    <td  class="col243 formatCol c b">Agent Preset PT</td>
-    <td  class="col366 formatCol c b">Member Commission</td>
-</tr> 
-<tr>
-    <td  class="formatCol c b">
-        <select></select>
-    </td>
-    <td class="formatCol c b">
-        <select></select>
-    </td>
-</tr> 
-</table>  
+        </td>
+    </tr>
+    <tr>
+        <td class="col243 formatCol c b">
+            Agent Preset PT
+        </td>
+        <td class="col366 formatCol c b">
+            Member Commission
+        </td>
+    </tr>
+    <tr>
+        <td class="formatCol c b">
+             <select class="col60" ng-model="positionTaking.a1" ng-options="value for value in a1Range">
+            </select>
+        </td>
+        <td class="formatCol c b">
+            <select class="col60" ng-model="positionTaking.comm1" ng-options="value for value in commRange">
+            </select>
+        </td>
+    </tr>
+</table>
 <table ng-controller="betSettingController">
     <tr>
         <td class="col612 header l b ">
@@ -67,7 +73,8 @@
         </td>
         <td class="formatCol">
             <label ng-repeat="bettingLimit in gameSetting.bettingLimitList">
-                <input type="radio" ng-model="gameSetting.stakeChoosen.iD" value="{{bettingLimit.iD}}" ng-click="changeStatusCheckbox()" />
+                <input type="radio" ng-model="gameSetting.stakeChoosen.iD" value="{{bettingLimit.iD}}"
+                    ng-click="changeStatusCheckbox()" />
                 {{bettingLimit.value}}
             </label>
         </td>
@@ -77,7 +84,7 @@
 {
     @*@Scripts.Render("~/bundles/racingsetting/super")*@
     <script type="text/javascript">
-       /* window.pageRole = ptRacingCommon.agentRoleId;
+        /* window.pageRole = ptRacingCommon.agentRoleId;
         window.targetRoleId = ptRacingCommon.memberRoleId;*/
             
     </script>
