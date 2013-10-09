@@ -11,7 +11,7 @@ namespace Fanex.CustomerSetting.OpusCasino.ViewModels
         public int GameTypeID { get; set; }
        
         public List<StakeLevel> BettingLimitList { get; set; }
-
+        public StakeLevel StakeChoosen { get; set; }
         public GameSetting()
         {
             this.BettingLimitList = new List<StakeLevel>();
