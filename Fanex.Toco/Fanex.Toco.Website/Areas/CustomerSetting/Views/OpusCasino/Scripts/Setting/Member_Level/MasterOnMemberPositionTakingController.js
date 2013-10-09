@@ -5,7 +5,7 @@
     $scope.iM1 = $scope.positionTaking.iM1;
     $scope.positionTaking.iM2 = true;
 
-    $scope.m1Range = $scope.uM1Range = $rootScope.getRangeValue($scope.positionTaking.s4, 0.01, 100);
+    $scope.m1Range = $scope.uM1Range = $rootScope.getRangeValue($scope.positionTaking.m4, 0.01, 100);
     $scope.m1 = $scope.positionTaking.m1 = $scope.positionTaking.iM3 == true ? $scope.positionTaking.m1 : 0;
     $scope.uM1 = $scope.positionTaking.uM1 = 0;
 
