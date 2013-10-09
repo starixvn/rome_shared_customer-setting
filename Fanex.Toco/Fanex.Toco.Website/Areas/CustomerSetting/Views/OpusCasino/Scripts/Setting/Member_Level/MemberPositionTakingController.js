@@ -22,7 +22,6 @@
         $scope.broadcastOpusSetting(true);
     };
 
-
     $scope.$watch('[positionTaking.a1,positionTaking.comm1]', function () {
         $scope.monitorSaveButton();
     }, true);

@@ -1,105 +1,97 @@
 ﻿@model dynamic
-
 @{
-    ViewBag.Title = "Member Racing Setting";
+    ViewBag.Title = "Super On Member Opus Setting";
     Layout = "~/Areas/CustomerSetting/Views/OpusCasino/Shared/_Layout.cshtml";
 }
-<tr>
-    <td colspan="5" class="header l b">
-        <span class="textHeader">Postion Talking/Commission</span>
-        <i id="btnUpdateComm" class="btnSave"></i></td>
-</tr>
-<tr>
-    <td class="col120 formatCol c b">Master PT</td>
-    <td class="col120 formatCol c b">Master Auto PT</td>
-    <td class="col120 formatCol c b">Master PT</td>
-    <td colspan="2" class="formatCol c b">Agent PT</td>
-</tr> 
-<tr>
-    <td class="formatCol c b">
-        <select></select>
-    </td>
-    <td class="formatCol c b">
-        <input type="checkbox" class="chb" id="chbComm"/>
-        <select></select>
-    </td>
-    <td class="formatCol c b">
-       
-    </td>
-    <td colspan="2" class="formatCol c b">
-        
-    </td>
-</tr>   
-<tr>
-    <td colspan="5" class="header l b ">
-        <span class="textHeader">Bet Setting</span>
-        <i id="btnUpdateBetSetting" class="btnSave"></i>
-    </td>
-</tr>
-<tr>
-    <td colspan="5">
-        <span class="base-font b">Member Max Transfer Credit</span>
-        <input type="text" maxlength="20" />
-        <label class="base-font">
-            <input type="checkbox" class="chb"/>Daily auto reset limit (at 12 noon GMT+8)
-        </label>
-        <br />
-        <span id="numberLimit" class="base-font">(1 - 25,000)</span>
-    </td>
-</tr>
-<tr>
-    <td colspan="5" class="header l b">
-        <span class="textHeader">Game Setting</span>
-        <i id="btnUpdateGameSetting" class="btnSave"></i>
-    </td>
-</tr>
-<tr>
-    <td class="col120 formatCol r b">Game Type</td>
-    <td colspan="4" class="formatCol l b">Betting Limit</td>
-</tr>
-<tr>
-    <td class="col120 formatCol r">Barccarat</td>
-    <td colspan="4" class="formatCol">
-        
-    </td>
-</tr>
-<tr>
-    <td class="col120 formatCol r">Roulette</td>
-    <td colspan="4"  class="formatCol">
-        
-    </td>
-</tr>
-<tr>
-    <td class="col120 formatCol r">3 Pictures</td>
-    <td colspan="4"  class="formatCol">
-         
-    </td>
-</tr>
-<tr>
-    <td class="col120 formatCol r">7 Up Baccarat</td>
-    <td colspan="4"  class="formatCol">
-    </td>
-</tr>
-<tr>
-    <td class="col120 formatCol r">Dragon/Tiger</td>
-    <td colspan="4"  class="formatCol">
-    </td>
-</tr>
-<tr>
-    <td class="col120 formatCol r">Poker Bonus</td>
-    <td colspan="4"  class="formatCol">
-    </td>
-</tr>
-<tr>
-    <td class="col120 formatCol r">Dice</td>
-    <td colspan="4"  class="formatCol">
-    </td>
-</tr>
-<tr>
-    <td class="col120 formatCol r">Blacjack</td>
-    <td colspan="4"  class="formatCol">
-    </td>
-</tr>
+<table ng-controller="SuperOnMemberPositionTakingController">
+    <tr>
+        <td colspan="5" class="header l b">
+            <input ng-class-name="btnSave" check-disable-element ng-model="isDisabledSavedPT"
+                ng-click="" type="button" />
+        </td>
+    </tr>
+    <tr>
+        <td class="col120 formatCol c b">
+            Master PT
+        </td>
+        <td class="col120 formatCol c b">
+            Master Auto PT
+        </td>
+        <td class="col120 formatCol c b">
+            Master PT
+        </td>
+        <td colspan="2" class="col243 formatCol c b">
+            Agent PT
+        </td>
+    </tr>
+    <tr>
+        <td class="formatCol c b">
+               <select class="col60"  ng-disabled = "positionTaking.iS1"  ng-model="positionTaking.s1" ng-options="value for value in s1Range">
+            </select>
+        </td>
+        <td class="formatCol c b">
+            <input class="chb" type="checkbox" ng-model="positionTaking.iS1" />
+               <select class="col60"  ng-disabled = "!positionTaking.iS1"  ng-model="positionTaking.uS1" ng-options="value for value in uS1Range">
+            </select>
+        </td>
+        <td class="formatCol c b">
+            {{positionTaking.m1}}
+        </td>
+        <td colspan="2" class="formatCol c b">
+        {{positionTaking.a1}}
+        </td>
+    </tr>
+</table>
+<table ng-controller="betSettingController">
+    <tr>
+        <td class="col612 header l b ">
+            <span class="textHeader">Bet Setting</span>
+            <input ng-class-name="btnSave" check-disable-element ng-model="isDisabledSaveBetSetting"
+                ng-click="" type="button" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <span class="base-font b">Member Max Transfer Credit</span>
+            <input onkeydown='validateNumber(event)' type="text" ng-model="betLimitSetting.maxTransfer" />
+            <label class="base-font">
+                <input class="chb" type="checkbox" ng-model="betLimitSetting.isDailyAutoResetLimit" />
+                Daily auto reset limit (at 12 noon GMT+8)
+            </label>
+            <br />
+            <span id="numberLimit" class="base-font">(1 - {{betLimitSetting.maxTransferAllowed}})</span>
+        </td>
+    </tr>
+</table>
+<table ng-controller="memberGameSettingController">
+    <tr>
+        <td colspan="2" class="header l b">
+            <span class="textHeader">Game Setting</span>
+            <input ng-class-name="btnSave" check-disable-element ng-model="isDisabledSaveGameSetting"
+                ng-click="" type="button" />
+        </td>
+    </tr>
+    <tr>
+        <td class="col120 formatCol r b">
+            Game Type
+        </td>
+        <td class="col489 formatCol l b">
+            Betting Limit
+        </td>
+    </tr>
+    <tr ng-repeat="gameSetting in gameSettingList">
+        <td class="formatCol r">
+            {{gameSetting.gameTypeName}}
+        </td>
+        <td class="formatCol">
+            <label ng-repeat="bettingLimit in gameSetting.bettingLimitList">
+                <input type="radio" ng-model="gameSetting.stakeChoosen.iD" value="{{bettingLimit.iD}}"
+                    ng-click="changeStatusCheckbox()" />
+                {{bettingLimit.value}}
+            </label>
+        </td>
+    </tr>
+</table>
 @section scripts
 {
     @*@Scripts.Render("~/bundles/racingsetting/super")*@

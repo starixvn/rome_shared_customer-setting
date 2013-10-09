@@ -51,13 +51,15 @@ namespace Fanex.CustomerSetting.OpusCasino.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "index")]
         public ActionResult SuperEditMember()
         {
-            return View("~/Areas/CustomerSetting/Views/OpusCasino/Setting/SuperEditMember.cshtml");
+            OpusSetting opus = new OpusSetting();
+            return View("~/Areas/CustomerSetting/Views/OpusCasino/Setting/SuperEditMember.cshtml",opus);
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "index")]
         public ActionResult MasterEditMember()
         {
-            return View("~/Areas/CustomerSetting/Views/OpusCasino/Setting/MasterEditMember.cshtml");
+            OpusSetting opus = new OpusSetting();
+            return View("~/Areas/CustomerSetting/Views/OpusCasino/Setting/MasterEditMember.cshtml", opus);
         }
     }
 }

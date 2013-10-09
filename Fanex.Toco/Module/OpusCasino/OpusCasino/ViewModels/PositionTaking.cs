@@ -64,7 +64,7 @@ namespace Fanex.CustomerSetting.OpusCasino.ViewModels
 
             this.S1 = 0.3;
             this.M1 = 0.25;
-            this.A1 = 0.25;
+            this.A1 = 0.1;
             this.US1 = 0.6;
             this.IS1 = false;
             this.UM1 = 0.6;
