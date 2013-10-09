@@ -74,5 +74,3 @@
         $scope.monitorSaveButton();
     }, true)
 });
-
-
