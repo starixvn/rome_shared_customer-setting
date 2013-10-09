@@ -1,39 +1,49 @@
 ﻿@model dynamic
-
 @{
-    ViewBag.Title = "Member Racing Setting";
+    ViewBag.Title = "Master On Member Opus Setting";
     Layout = "~/Areas/CustomerSetting/Views/OpusCasino/Shared/_Layout.cshtml";
 }
 <table ng-controller="masterOnMemberPositionTakingController">
-<tr>
-    <td colspan="4" class="header l b">
-        <span class="textHeader">Postion Talking/Commission</span>
-        <input ng-class-name="btnSave" check-disable-element ng-model="isDisabledSavedPT"
+    <tr>
+        <td colspan="4" class="header l b">
+            <span class="textHeader">Postion Talking/Commission</span>
+            <input ng-class-name="btnSave" check-disable-element ng-model="isDisabledSavedPT"
                 ng-click="" type="button" />
-</tr>
-<tr>
-    <td class="col120 formatCol c b">Master PT</td>
-    <td class="col120 formatCol c b">Master Auto PT</td>
-    <td class="col120 formatCol c b">Agent PT</td>
-    <td class="col243"></td>
-</tr> 
-<tr>
+    </tr>
+    <tr>
+        <td class="col120 formatCol c b">
+            Master PT
+        </td>
+        <td class="col120 formatCol c b">
+            Master Auto PT
+        </td>
+        <td class="col120 formatCol c b">
+            Agent PT
+        </td>
+        <td class="col243">
+        </td>
+    </tr>
+    <tr>
         <td ng-switch on="positionTaking.iM2" class="formatCol c">
-               <select ng-switch-default class="col60"  ng-disabled = "positionTaking.iM1"  ng-model="positionTaking.m1" ng-options="value for value in m1Range">
+            <select ng-switch-default class="col60" ng-disabled="positionTaking.iM1" ng-model="positionTaking.m1"
+                ng-options="value for value in m1Range">
             </select>
-            <label ng-switch-when="true">{{positionTaking.s1}}</label>
+            <label ng-switch-when="true">
+                {{positionTaking.s1}}</label>
         </td>
         <td class="formatCol c b">
             <input class="chb" type="checkbox" ng-model="positionTaking.iM1" />
-               <select class="col60"  ng-disabled = "!positionTaking.iM1"  ng-model="positionTaking.uM1" ng-options="value for value in uM1Range">
+            <select class="col60" ng-disabled="!positionTaking.iM1" ng-model="positionTaking.uM1"
+                ng-options="value for value in uM1Range">
             </select>
         </td>
         <td class="formatCol c ">
             {{positionTaking.a1}}
         </td>
-        <td  class="formatCol c">
+        <td class="formatCol c">
         </td>
-    </tr></table>
+    </tr>
+</table>
 <table ng-controller="betSettingController">
     <tr>
         <td class="col612 header l b ">
