@@ -171,6 +171,9 @@
     <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditSuperController.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Config\Store\RacingSpNames.xml" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\BetSettingController.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\AgentPositionTakingController.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\MemberGameSettingController.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\MemberPositionTakingController.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\MasterPositionTakingController.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\GameSettingController.js" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\angular.min.js" />

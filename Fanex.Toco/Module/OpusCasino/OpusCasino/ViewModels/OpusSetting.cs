@@ -42,7 +42,8 @@ namespace Fanex.CustomerSetting.OpusCasino.ViewModels
                 {
                     GameTypeID = i,
                     GameTypeName = "Baccarat",
-                    BettingLimitList = stakeLevelList
+                    BettingLimitList = stakeLevelList,
+                    StakeChoosen = stakeLevelList[0]
                 });
             }
         }

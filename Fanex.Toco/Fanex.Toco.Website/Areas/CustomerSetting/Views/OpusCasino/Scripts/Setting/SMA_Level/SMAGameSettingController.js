@@ -1,8 +1,13 @@
-﻿app.controller('gameSettingController', function ($scope) {
+﻿app.controller('sMAGameSettingController', function ($scope) {
     $scope.gameSettingList = model.gameSettingList;
     $scope.orignalGameSettingList = angular.copy(model.gameSettingList); 
 
     $scope.isDisabledSaveGameSetting = true;
+
+    $scope.broadcastOpusSetting = function (value) {
+        $scope.isDisabledSaveGameSetting = value;
+        $scope.$emit('gameSetting', $scope.isDisabledSaveGameSetting);
+    };
 
     $scope.changeStatusCheckbox = function () {
         var gameSettingLength = $scope.gameSettingList.length;
@@ -12,14 +17,12 @@
                 var oldValue = $scope.orignalGameSettingList[i].bettingLimitList[j].isChecked;
                 var newValue = $scope.gameSettingList[i].bettingLimitList[j].isChecked;
                 if (oldValue != newValue) {
-                    $scope.isDisabledSaveGameSetting = false;
-                    $scope.$emit('gameSetting', $scope.isDisabledSaveGameSetting);
+                    $scope.broadcastOpusSetting(false);
                     return;
                 }
             }
         }
-        $scope.isDisabledSaveGameSetting = true;
-        $scope.$emit('gameSetting', $scope.isDisabledSaveGameSetting);
+        $scope.broadcastOpusSetting(true);
     };
 
     $scope.$watch(function () {
