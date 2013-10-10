@@ -11,7 +11,7 @@
 using System.Web.Mvc;
 using Fanex.CustomerSetting.Module.Core.Security;
 using Fanex.CustomerSetting.OpusCasino.ViewModels;
-
+using Fanex.CustomerSetting.Module.Racebook.Services;
 namespace Fanex.CustomerSetting.OpusCasino.Controllers
 {
     /// <summary>
@@ -19,25 +19,36 @@ namespace Fanex.CustomerSetting.OpusCasino.Controllers
     /// </summary>
     public class OpusCasinoSettingController : BaseOpusCasinoSettingController
     {
-        
+        private static IOpusSettingService _opusSettingService;
+
+        public OpusCasinoSettingController()
+            : this(null)
+        {
+        }
+
+        public OpusCasinoSettingController(IOpusSettingService opusSettingService)
+        {
+            _opusSettingService = opusSettingService ?? new OpusSettingService();
+        }
+
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "index")]
         public ActionResult Super()
         {
-            OpusSetting opus = new OpusSetting();
+            OpusSetting opus = _opusSettingService.GetCustomerInfo(0, 0, 4, 0);
             return View("~/Areas/CustomerSetting/Views/OpusCasino/Setting/Super.cshtml", opus);
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "index")]
         public ActionResult Master()
         {
-            OpusSetting opus = new OpusSetting();
+            OpusSetting opus = _opusSettingService.GetCustomerInfo(0, 4, 3, 0);
             return View("~/Areas/CustomerSetting/Views/OpusCasino/Setting/Master.cshtml", opus);
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "index")]
         public ActionResult Agent()
         {
-            OpusSetting opus = new OpusSetting();
+            OpusSetting opus = _opusSettingService.GetCustomerInfo(0, 3, 2, 0);
             return View("~/Areas/CustomerSetting/Views/OpusCasino/Setting/Agent.cshtml", opus);
         }
 
