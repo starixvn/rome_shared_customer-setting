@@ -8,18 +8,9 @@
 // </history>
 // ************************************************************************************
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Web.Mvc;
-using Fanex.CustomerSetting.Module.Core.Security;
-using Fanex.CustomerSetting.Module.Core.Web;
 using Fanex.CustomerSetting.Module.Core.Web.Controllers;
 using Fanex.CustomerSetting.OpusCasino.App_Start;
-using Fanex.CustomerSetting.OpusCasino.Helper;
 using Fanex.CustomerSetting.OpusCasino.Services;
-using Newtonsoft.Json;
-using Fanex.PTRacing.BusinessObjects;
 
 namespace Fanex.CustomerSetting.OpusCasino.Controllers
 {

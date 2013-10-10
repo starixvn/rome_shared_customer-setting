@@ -5,6 +5,7 @@
     using Fanex.CustomerSetting.Module.Casino.Services.Impl;
     using Fanex.CustomerSetting.Module.Casino.ViewModels;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
+    using Fanex.CustomerSetting.Security.Authenticate;
     using Newtonsoft.Json;
 
     public class MemberController : BaseController
@@ -57,6 +58,7 @@
             return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Member/EditMemberBySuper.cshtml", customerSetting);
         }
 
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
         public ActionResult UpdateMemberPost(int id, string custName, int uplineId, int userId, string username, string settingModel, string customerModel)
         {
             var ret = CasinoManager.Instance.UpdateMember(id, custName, uplineId, Request.UserHostAddress, userId, username, BaseController.FromSystem, JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
@@ -64,6 +66,7 @@
             return this.JsonBase(new { ErrorCode = ret.IsSuccess ? 0 : 1, ErrorMessage = ret.ErrorMessage });
         }
 
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
         public ActionResult UpdateMemberBySuperPost(int id, int uplineId, int userId, string username, string settingModel, string customerModel)
         {
             var ret = CasinoManager.Instance.UpdateMemberBySuper(id, uplineId, Request.UserHostAddress, userId, username, BaseController.FromSystem, JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
@@ -71,6 +74,7 @@
             return this.JsonBase(new { ErrorCode = ret.IsSuccess ? 0 : 1, ErrorMessage = ret.ErrorMessage });
         }
 
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
         public ActionResult UpdateMemberByMasterPost(int id, int uplineId, int userId, string username, string settingModel, string customerModel)
         {
             var ret = CasinoManager.Instance.UpdateMemberByMaster(id, uplineId, Request.UserHostAddress, userId, username, BaseController.FromSystem, JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));

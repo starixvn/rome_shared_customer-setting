@@ -9,9 +9,10 @@
 // ************************************************************************************
 
 using System.Web.Mvc;
-using Fanex.CustomerSetting.Module.Core.Security;
-using Fanex.CustomerSetting.OpusCasino.ViewModels;
 using Fanex.CustomerSetting.Module.Racebook.Services;
+using Fanex.CustomerSetting.OpusCasino.ViewModels;
+using Fanex.CustomerSetting.Security.Authenticate;
+
 namespace Fanex.CustomerSetting.OpusCasino.Controllers
 {
     /// <summary>

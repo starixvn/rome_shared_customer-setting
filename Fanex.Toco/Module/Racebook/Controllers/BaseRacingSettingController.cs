@@ -14,9 +14,9 @@ namespace Fanex.CustomerSetting.Module.Racebook.Controllers
     using System.Collections.Generic;
     using System.Web.Mvc;
     using App_Start;
-    using Core.Security;
     using Core.Web;
     using Core.Web.Controllers;
+    using Fanex.CustomerSetting.Security.Authenticate;
     using Helper;
     using Newtonsoft.Json;
     using PTRacing.BusinessObjects;
@@ -90,7 +90,7 @@ namespace Fanex.CustomerSetting.Module.Racebook.Controllers
         /// <param name="otherSettings">The other settings.</param>
         /// <returns>Return JSON result.</returns>
         [HttpPost]
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "index")]
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Racing")]
         public JsonResult UpdateCustomerSetting(Customer oldSettings, Customer newSettings, RequestContext currentContext, Dictionary<object, object> otherSettings)
         {
             IList<Result> updatedResults = new List<Result>();

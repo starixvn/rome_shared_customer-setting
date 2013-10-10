@@ -5,6 +5,7 @@
     using Fanex.CustomerSetting.Module.Casino.Services.Impl;
     using Fanex.CustomerSetting.Module.Casino.ViewModels;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
+    using Fanex.CustomerSetting.Security.Authenticate;
     using Newtonsoft.Json;
 
     public class MasterController : BaseController
@@ -25,6 +26,7 @@
             return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Master/EditMaster.cshtml", customerSetting);
         }
 
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
         public ActionResult UpdateMasterPost(int id, string custName, int uplineId, int userId, string username, string settingModel, string customerModel)
         {
             var ret = CasinoManager.Instance.UpdateMaster(id, custName, uplineId, Request.UserHostAddress, userId, username, BaseController.FromSystem, JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));

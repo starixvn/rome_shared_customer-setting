@@ -1,13 +1,14 @@
 ﻿namespace Fanex.CustomerSetting.Module.Casino.Controllers
 {
     using System.Web.Mvc;
+    using Fanex.CustomerSetting.Module.Casino.Entities;
     using Fanex.CustomerSetting.Module.Casino.Services.Impl;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
-    using CasinoLibrary.SBAgent;
-    using Fanex.CustomerSetting.Module.Casino.Entities;
+    using Fanex.CustomerSetting.Security.Authenticate;
 
     public class CasinoCustomerController : BaseController
     {
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
         public ActionResult CustomerInfo(int id, int uplineId)
         {
             var customerInfo = CasinoManager.Instance.GetCustInfoIBC(id, uplineId);

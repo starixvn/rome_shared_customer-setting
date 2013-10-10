@@ -18,6 +18,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
     using Fanex.CustomerSetting.Module.Casino.Services.Impl;
     using Fanex.CustomerSetting.Module.Casino.ViewModels;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
+    using Fanex.CustomerSetting.Security.Authenticate;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -80,6 +81,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
         /// <param name="settingModel">The setting model.</param>
         /// <param name="customerModel">The customer model.</param>
         /// <returns>ActionResult object.</returns>
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
         public ActionResult UpdateAgentPost(int id, string custName, int uplineId, int userId, string username, string settingModel, string customerModel)
         {
             var ret = CasinoManager.Instance.UpdateAgent(

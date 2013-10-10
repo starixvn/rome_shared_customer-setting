@@ -160,6 +160,10 @@
       <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
       <Name>_Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\_Security\Security.csproj">
+      <Project>{91E16AE3-1209-4BF2-8846-7E36363167B3}</Project>
+      <Name>Security</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OpusCasino.Resources\OpusCasino.Resources.csproj">
       <Project>{64CE3E72-0246-4A82-8B48-AC5E5CCB8C79}</Project>
       <Name>OpusCasino.Resources</Name>

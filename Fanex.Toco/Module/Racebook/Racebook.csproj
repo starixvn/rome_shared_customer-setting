@@ -172,6 +172,10 @@
       <Project>{12AF9E40-FCCD-4570-9035-607C7E4E8C27}</Project>
       <Name>Racebook.Resources</Name>
     </ProjectReference>
+    <ProjectReference Include="..\_Security\Security.csproj">
+      <Project>{91E16AE3-1209-4BF2-8846-7E36363167B3}</Project>
+      <Name>Security</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="web.config" />

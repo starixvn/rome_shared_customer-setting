@@ -144,7 +144,6 @@
     <Compile Include="Web\CustomResults\CsvResult.cs" />
     <Compile Include="Web\CustomResults\ExcelResult.cs" />
     <Compile Include="Web\CustomResults\SpreadSheetResult.cs" />
-    <Compile Include="Security\AuthenticateAction.cs" />
     <Compile Include="Web\SessionManager.cs" />
     <Compile Include="Web\ViewEngine\CustomViewEngine.cs" />
   </ItemGroup>
@@ -156,6 +155,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
