@@ -5,10 +5,10 @@ using System.Web;
 
 namespace Fanex.CustomerSetting.OpusCasino.ViewModels
 {
-    public class CustomerInfor
+    public class CustomerInfo
     {
-        public int CustID { get; set; }
-        public int RoleID { get; set; }
+        public int CustId { get; set; }
+        public int RoleId { get; set; }
         public string Username { get; set; }
         public string NickName { get; set; }
         public string FirstName { get; set; }
@@ -19,10 +19,10 @@ namespace Fanex.CustomerSetting.OpusCasino.ViewModels
         public bool IsEnable { get; set; }
         public bool IsDownline { get; set; }
 
-        public CustomerInfor()
+        public CustomerInfo()
         {
-            this.CustID = 1373389;
-            this.RoleID = 3;
+            this.CustId = 1373389;
+            this.RoleId = 3;
             this.Username = "testuser";
             this.NickName = "testcs";
             this.FirstName = "David";

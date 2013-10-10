@@ -11,14 +11,14 @@ namespace Fanex.CustomerSetting.OpusCasino.ViewModels
 {
     public class OpusSetting
     {
-        public CustomerInfor CustomerInformation { get; set; }
+        public CustomerInfo CustomerInformation { get; set; }
         public PositionTaking PositionTaking { get; set; }
         public BetSetting BetLimitSetting { get; set; }
         public List<GameSetting> GameSettingList { get; set; }
 
         public OpusSetting()
         {
-            this.CustomerInformation = new CustomerInfor();
+            this.CustomerInformation = new CustomerInfo();
 
             this.PositionTaking = new PositionTaking();
 
@@ -27,7 +27,7 @@ namespace Fanex.CustomerSetting.OpusCasino.ViewModels
             this.GameSettingList = new List<GameSetting>();
             List<StakeLevel> stakeLevelList = new List<StakeLevel>();
 
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 6; i++)
             {
                 stakeLevelList.Add(new StakeLevel{
                     ID = i,
