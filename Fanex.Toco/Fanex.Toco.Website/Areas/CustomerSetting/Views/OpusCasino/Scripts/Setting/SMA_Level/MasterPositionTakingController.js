@@ -12,8 +12,8 @@
     $scope.l3 = $scope.positionTaking.l3 = $scope.maxPTRange[0];
     $scope.n3 = $scope.positionTaking.n3 = 0;
 
-    $scope.commRange = $rootScope.getRangeValue($scope.positionTaking.commMax, 0.0005, 10000);
-    $scope.comm3 = $scope.positionTaking.comm3 = $scope.commRange[0];
+    $scope.commRange = $rootScope.getRangeValue($scope.positionTaking.comm4, 0.0005, 10000);
+    $scope.comm3 = $scope.positionTaking.comm3;
 
     $scope.broadcastOpusSetting = function (value) {
         $scope.isDisabledSavedPT = value;

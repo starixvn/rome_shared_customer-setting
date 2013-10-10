@@ -12,7 +12,7 @@
     $scope.l2 = $scope.positionTaking.l2 = $scope.maxPTRange[0];
     $scope.n2 = $scope.positionTaking.n2 = 0;
 
-    $scope.commRange = $rootScope.getRangeValue($scope.positionTaking.commMax, 0.0005, 10000);
+    $scope.commRange = $rootScope.getRangeValue($scope.positionTaking.comm3, 0.0005, 10000);
     $scope.comm2 = $scope.positionTaking.comm2 = $scope.commRange[0];
 
     $scope.broadcastOpusSetting = function (value) {

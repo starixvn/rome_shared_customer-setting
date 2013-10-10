@@ -1,0 +1,15 @@
+﻿// -----------------------------------------------------------------------
+// <copyright file="IOpusSettingService.cs" company="Microsoft">
+// TODO: Update copyright text.
+// </copyright>
+// -----------------------------------------------------------------------
+using System.Collections;
+using Fanex.CustomerSetting.OpusCasino.ViewModels;
+namespace Fanex.CustomerSetting.Module.Racebook.Services
+{
+    public interface IOpusSettingService
+    {
+
+        OpusSetting GetCustomerInfo(int custId, int uplineRole, int downlineRole, int actionId);
+    }
+}
