@@ -1,0 +1,83 @@
+﻿// -----------------------------------------------------------------------
+// <copyright file="OpusSettingService.cs" company="Microsoft">
+// TODO: Update copyright text.
+// </copyright>
+// -----------------------------------------------------------------------
+using System.Collections;
+using Fanex.CustomerSetting.OpusCasino.ViewModels;
+namespace Fanex.CustomerSetting.Module.Racebook.Services
+{
+    public class OpusSettingService : IOpusSettingService
+    {
+        public OpusSetting GetCustomerInfo(int custId, int uplineRole, int downlineRole, int actionId)
+        {
+            OpusSetting opusModel = new OpusSetting();
+            string whatActionName = uplineRole.ToString() + "_" + actionId.ToString() + "_" + downlineRole.ToString();
+            switch (whatActionName)
+            {
+                case "0_0_4":
+                    opusModel = GetSuperSetting(custId);
+                    break;
+                case "4_0_3":
+                    opusModel = GetMasterSetting(custId);
+                    break;
+                case "3_0_2":
+                    opusModel = GetAgentSetting(custId);
+                    break;
+            }
+
+            return opusModel;
+        }
+
+        private OpusSetting GetSuperSetting(int custId)
+        {
+            OpusSetting superOpusModel = new OpusSetting();
+
+            superOpusModel.PositionTaking = new PositionTaking
+            {
+                    S4 = 0,
+                    L4 = 1,
+                    N4 = 1,
+                    Comm4Max = 0.01,
+                    Comm4 = 0.008
+           };
+
+            return superOpusModel;
+        }
+
+        private OpusSetting GetMasterSetting(int custId)
+        {
+            OpusSetting masterOpusModel = new OpusSetting();
+
+            masterOpusModel.PositionTaking = new PositionTaking
+            {
+                S4 = 0.8,
+                S3 = 0.5,
+                L3 = 0.7,
+                N3 = 0.6,
+                Comm4 = 0.06,
+                Comm3 = 0.05
+
+            };
+
+            return masterOpusModel;
+        }
+
+        private OpusSetting GetAgentSetting(int custId)
+        {
+            OpusSetting agentOpusModel = new OpusSetting();
+
+            agentOpusModel.PositionTaking = new PositionTaking
+            {
+                 M3 = 0.6,
+                 M2 = 0.5,
+                 L2 = 0.5,
+                 N2 = 0.3,
+                 Comm3 = 0.04,
+                 Comm2 = 0.025
+            };
+
+            return agentOpusModel;
+        }
+    }
+}

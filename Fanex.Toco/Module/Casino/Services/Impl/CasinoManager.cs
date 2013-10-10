@@ -454,10 +454,10 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             return this._casino.GetCustInfoIBC(custid, uplineId);
         }
 
-        public void GetCustSettingCS(ref CasinoCustomer custIBC)
+        public void GetCustSettingCS(ref CasinoCustomer custIBC, bool isSuper = false)
         {
             var cust = new Customer();
-            var dt = custIBC.UpperCustID != 0 ? cust.GetCustSetting(custIBC.IBCCustID) : new DataTable();
+            var dt = custIBC.IBCCustID != 0 && custIBC.RoleId != Super ? cust.GetCustSetting(custIBC.IBCCustID) : new DataTable();
             DataRow row = null;
             if (dt != null && dt.Rows.Count > 0)
             {

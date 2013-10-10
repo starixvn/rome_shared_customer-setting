@@ -135,23 +135,16 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="Controllers\BaseOpusCasinoSettingController.cs" />
     <Compile Include="Controllers\OpusCasinoSettingController.cs" />
-    <Compile Include="Criteria\ReportRequestTicket\AddNewRequestTicketCriteria.cs" />
-    <Compile Include="Criteria\ReportRequestTicket\DeleteRequestTicketCriteria.cs" />
-    <Compile Include="Criteria\ReportRequestTicket\GetMaxRequestNoCriteria.cs" />
-    <Compile Include="Criteria\ReportRequestTicket\GetRequestTicketReportCriteria.cs" />
-    <Compile Include="Criteria\ReportRequestTicket\UpdateRequestTicketCriteria.cs" />
     <Compile Include="Entities\Result.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\IRacingDAO.cs" />
-    <Compile Include="Repositories\RacingDAO.cs" />
-    <Compile Include="Services\IRacingSettingService.cs" />
     <Compile Include="Helper\MessageHelper.cs" />
-    <Compile Include="Services\RacingSettingService.cs" />
+    <Compile Include="Services\IOpusSettingService.cs" />
+    <Compile Include="Services\OpusSettingService.cs" />
     <Compile Include="Services\ResourceHelper.cs" />
     <Compile Include="Helper\SerializeHelper.cs" />
     <Compile Include="ViewModels\BetSetting.cs" />
     <Compile Include="ViewModels\StakeLevel.cs" />
-    <Compile Include="ViewModels\CustomerInfor.cs" />
+    <Compile Include="ViewModels\CustomerInfo.cs" />
     <Compile Include="ViewModels\GameSetting.cs" />
     <Compile Include="ViewModels\OpusSetting.cs" />
     <Compile Include="ViewModels\PositionTaking.cs" />
@@ -159,6 +152,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Configuration\" />
+    <Folder Include="Criteria\" />
+    <Folder Include="Repositories\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Fanex.Toco.Module.Core\_Core.csproj">
