@@ -1,21 +1,10 @@
-﻿angular.module('racingApp', []);
-
-if (typeof Fanex == 'undefined' || typeof Fanex.CustomerSetting == 'undefined' || typeof Fanex.CustomerSetting.Core == 'undefined') {
+﻿if (typeof Fanex == 'undefined' || typeof Fanex.CustomerSetting == 'undefined' || typeof Fanex.CustomerSetting.Core == 'undefined') {
     alert('Require Fanex.CustomerSetting.Core.js');
 };
 
 Fanex.CustomerSetting.Betting = {};
 
 Fanex.CustomerSetting.Betting.Racing = function ($scope, $element) {
-    var e = $element[0];
-
-    e.style.display = 'none';
-
-    var timeout = setTimeout(function () {
-        clearTimeout(timeout);
-        e.style.display = 'block';
-    }, 1000);
-
     $scope.model = model;
 
     $scope.bettingLimits = $scope.model.settings.sportTypes;
