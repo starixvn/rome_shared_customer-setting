@@ -71,8 +71,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
                 customerDetail.IsEnablePT = true;
 
                 // Get max transfer information
-                CasinoLibrary.SBAgent.Customer customer = new CasinoLibrary.SBAgent.Customer();                
-                DataTable dt = customer.GetDefaultMaxTransfer(uplineId, customerDetail.Currency, uplineId == 0);
+                CasinoLibrary.SBAgent.Customer customer = new CasinoLibrary.SBAgent.Customer();
+                DataTable dt = customer.GetDefaultMaxTransfer(customerDetail.UpperCustID, customerDetail.Currency, uplineId == 0);
 
                 if (customerDetail.RoleId != 4 && dt != null && dt.Rows.Count > 0)
                 {

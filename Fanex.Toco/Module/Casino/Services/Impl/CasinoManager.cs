@@ -86,7 +86,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 gameGroup.N3 = !synced ? 0 : Utils.ToDecimal(row["MinPositionTaking"]).Format();
 
                 // Assign game types
-                var gameTypes = this.GetGameTypeSuper(id, gameGroup.GameGroupID, synced, ref gameGroup, custInfo.Currency);
+                var gameTypes = this.GetGameTypeSuper(id, gameGroup.GameGroupID, synced, ref gameGroup, custInfo.Currency, gameModel.IsPtByGameType);
                 gameGroup.GameTypes = gameTypes;
 
                 gameGroups.Add(gameGroup);
@@ -457,7 +457,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
         public void GetCustSettingCS(ref CasinoCustomer custIBC)
         {
             var cust = new Customer();
-            var dt = custIBC.CasinoSync ? cust.GetCustSetting(custIBC.IBCCustID) : new DataTable();
+            var dt = custIBC.UpperCustID != 0 ? cust.GetCustSetting(custIBC.IBCCustID) : new DataTable();
             DataRow row = null;
             if (dt != null && dt.Rows.Count > 0)
             {
@@ -1796,11 +1796,12 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             return dt;
         }
 
-        private List<GameType> GetGameTypeSuper(int custId, int gameKindID, bool synced, ref GameGroup gameGroup, int exchangeId = 0)
+        private List<GameType> GetGameTypeSuper(int custId, int gameKindID, bool synced, ref GameGroup gameGroup, int exchangeId = 0, bool isPTByGameType = false)
         {
             var cust = new Customer();
             var gameTypes = new List<GameType>();
             var dt = synced ? cust.GetCustGameType(custId, gameKindID) : new BasicInfo().GetGameType(gameKindID);
+            List<decimal?> s4s = new List<decimal?>(), n4s = new List<decimal?>(), scos = new List<decimal?>();
 
             foreach (DataRow row in dt.Rows)
             {
@@ -1825,7 +1826,18 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 var stakes = this.GetStakeLevels(custId, gameType.GameTypeID, exchangeId);
                 gameType.BettingLimits = stakes;
 
+                s4s.Add(gameType.S4);
+                n4s.Add(gameType.N4);
+                scos.Add(gameType.Sco);
+
                 gameTypes.Add(gameType);
+            }
+
+            if (isPTByGameType)
+            {
+                gameGroup.S4 = s4s.Max();
+                gameGroup.N4 = n4s.Max();
+                gameGroup.Sco = scos.Max();
             }
 
             return gameTypes;
