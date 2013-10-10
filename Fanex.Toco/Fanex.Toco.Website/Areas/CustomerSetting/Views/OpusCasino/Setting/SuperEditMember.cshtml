@@ -3,6 +3,55 @@
     ViewBag.Title = "Super On Member Opus Setting";
     Layout = "~/Areas/CustomerSetting/Views/OpusCasino/Shared/_Layout.cshtml";
 }
+<table class="tableColor" ng-controller="customerInfoController">
+    <tr>
+        <td colspan="4" class="header c b">
+            CustomerInfo
+        </td>
+    </tr>
+    <tr>
+        <td class="col120 formatCol r b">
+            Username
+        </td>
+        <td class="col120 formatCol l">
+            {{customerInfo.username }}
+        </td>
+        <td class="col120 formatCol r b">
+            Nick Name
+        </td>
+        <td class="col243 formatCol l">
+            {{customerInfo.nickName }}
+        </td>
+    </tr>
+    <tr>
+        <td class="formatCol r b">
+            First Name
+        </td>
+        <td class="formatCol l">
+            {{customerInfo.firstName }}
+        </td>
+        <td class="formatCol r b">
+            Last Name
+        </td>
+        <td class="col243 formatCol l">
+            {{customerInfo.lastName }}
+        </td>
+    </tr>
+    <tr>
+        <td class="formatCol r b">
+            Phone
+        </td>
+        <td class="formatCol l">
+            {{customerInfo.phone }}
+        </td>
+        <td class="formatCol r b">
+            Mobile Phone
+        </td>
+        <td class="formatCol l">
+            {{customerInfo.mobilePhone }}
+        </td>
+    </tr>
+</table>
 <table ng-controller="SuperOnMemberPositionTakingController">
     <tr>
         <td colspan="5" class="header l b">
@@ -26,20 +75,23 @@
     </tr>
     <tr>
         <td ng-switch on="positionTaking.iS3" class="formatCol c">
-               <select ng-switch-default class="col60"  ng-disabled = "positionTaking.iS1"  ng-model="positionTaking.s1" ng-options="value for value in s1Range">
+            <select ng-switch-default class="col60" ng-disabled="positionTaking.iS1" ng-model="positionTaking.s1"
+                ng-options="value for value in s1Range">
             </select>
-            <label ng-switch-when="true">{{positionTaking.s1}}</label>
+            <label ng-switch-when="true">
+                {{positionTaking.s1}}</label>
         </td>
         <td class="formatCol c b">
             <input class="chb" type="checkbox" ng-model="positionTaking.iS1" />
-               <select class="col60"  ng-disabled = "!positionTaking.iS1"  ng-model="positionTaking.uS1" ng-options="value for value in uS1Range">
+            <select class="col60" ng-disabled="!positionTaking.iS1" ng-model="positionTaking.uS1"
+                ng-options="value for value in uS1Range">
             </select>
         </td>
         <td class="formatCol c ">
             {{positionTaking.m1}}
         </td>
-        <td  class="formatCol c">
-        {{positionTaking.a1}}
+        <td class="formatCol c">
+            {{positionTaking.a1}}
         </td>
     </tr>
 </table>

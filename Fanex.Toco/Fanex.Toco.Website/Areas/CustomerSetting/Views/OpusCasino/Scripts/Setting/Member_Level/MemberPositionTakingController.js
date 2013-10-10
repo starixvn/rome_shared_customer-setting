@@ -5,7 +5,7 @@
     $scope.a1Range = $rootScope.getRangeValue($scope.positionTaking.a2, 0.01, 100);
     $scope.a1 = $scope.positionTaking.a1 = $scope.a1Range[0];
 
-    $scope.commRange = $rootScope.getRangeValue($scope.positionTaking.commMax, 0.0005, 10000);
+    $scope.commRange = $rootScope.getRangeValue($scope.positionTaking.comm2, 0.0005, 10000);
     $scope.comm1 = $scope.positionTaking.comm1 = $scope.commRange[0];
 
     $scope.broadcastOpusSetting = function (value) {

@@ -31,6 +31,10 @@ namespace Fanex.CustomerSetting.OpusCasino.Controllers
             _opusSettingService = opusSettingService ?? new OpusSettingService();
         }
 
+        /// <summary>
+        /// Change name controller to clear.
+        /// </summary>
+        /// <returns></returns>
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "index")]
         public ActionResult Super()
         {
@@ -55,7 +59,7 @@ namespace Fanex.CustomerSetting.OpusCasino.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "index")]
         public ActionResult Member()
         {
-            OpusSetting opus = new OpusSetting();
+            OpusSetting opus = _opusSettingService.GetCustomerInfo(0, 2, 1, 0);
             return View("~/Areas/CustomerSetting/Views/OpusCasino/Setting/Member.cshtml", opus);
         }
 

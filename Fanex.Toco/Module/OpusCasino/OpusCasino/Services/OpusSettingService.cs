@@ -24,6 +24,9 @@ namespace Fanex.CustomerSetting.Module.Racebook.Services
                 case "3_0_2":
                     opusModel = GetAgentSetting(custId);
                     break;
+                case "2_0_1":
+                    opusModel = GetMemberSetting(custId);
+                    break;
             }
 
             return opusModel;
@@ -79,5 +82,31 @@ namespace Fanex.CustomerSetting.Module.Racebook.Services
 
             return agentOpusModel;
         }
+
+        private OpusSetting GetMemberSetting(int custId)
+        {
+            OpusSetting memberOpusModel = new OpusSetting();
+
+            memberOpusModel.PositionTaking = new PositionTaking
+            {
+               A2 = 0.4,
+               Comm2 = 0.003
+            };
+
+            return memberOpusModel;
+        }
+
+        //private OpusSetting GetSuperOnMemberSetting(int custId)
+        //{
+        //    OpusSetting memberOpusModel = new OpusSetting();
+
+        //    memberOpusModel.PositionTaking = new PositionTaking
+        //    {
+        //        A2 = 0.4,
+        //        Comm2 = 0.003
+        //    };
+
+        //    return memberOpusModel;
+        //}
     }
 }
