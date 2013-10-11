@@ -1,0 +1,54 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="CurrentSessionSection.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// <summary>
+// For current session info
+// </summary>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Andy.Nguyen" date="2013.10.11">Created</change>
+// </history>
+
+namespace Fanex.CustomerSetting.Module.Core.Web
+{
+    using System;
+    using System.Configuration;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public class CurrentSessionSection : ConfigurationSection
+    {
+        private static CurrentSessionSection _instance;
+
+        [ConfigurationProperty("sessionFactory", IsRequired = false)]
+        public string SessionFactory
+        {
+            get
+            {
+                return (string)base["sessionFactory"];
+            }
+        }
+
+        public static CurrentSessionSection Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    try
+                    {
+                        _instance = (CurrentSessionSection)ConfigurationManager.GetSection("CurrentSession");
+                    }
+                    catch (Exception e)
+                    {
+                        throw new ConfigurationErrorsException("Error when parsing configuration section CurrentSession.", e);
+                    }
+                }
+
+                return _instance;
+            }
+        }
+    }
+}
