@@ -56,10 +56,10 @@ namespace Fanex.CustomerSetting.Security.Authenticate
                 filterContext.Result = new JsonResult
                 {
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet,
-                    Data = new Result
+                    Data = new 
                     {
-                        ErrorCode = 500,
-                        ErrorMessage = Resource.Errors.errorNotAuthorized
+                        errorCode = 500,
+                        errorMessage = Resource.Errors.errorNotAuthorized
                     }
                 };
                 filterContext.HttpContext.Response.Clear();

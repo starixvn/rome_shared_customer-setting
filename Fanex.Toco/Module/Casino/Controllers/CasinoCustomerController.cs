@@ -8,7 +8,6 @@
 
     public class CasinoCustomerController : BaseController
     {
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
         public ActionResult CustomerInfo(int id, int uplineId)
         {
             var customerInfo = CasinoManager.Instance.GetCustInfoIBC(id, uplineId);

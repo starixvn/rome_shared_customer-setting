@@ -10,6 +10,7 @@
 
     public class MemberController : BaseController
     {
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
         public ActionResult EditMember(int id, int uplineId)
         {
             var customerSetting = new CasinoSettingModel();
@@ -26,6 +27,7 @@
             return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Member/EditMember.cshtml", customerSetting);
         }
 
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
         public ActionResult EditMemberByMaster(int id, int uplineId)
         {
             var customerSetting = new CasinoSettingModel();
@@ -42,6 +44,7 @@
             return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Member/EditMemberByMaster.cshtml", customerSetting);
         }
 
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
         public ActionResult EditMemberBySuper(int id, int uplineId)
         {
             var customerSetting = new CasinoSettingModel();
