@@ -1,0 +1,43 @@
+﻿// ************************************************************************************
+// <copyright file="ResourceHelper.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// ************************************************************************************
+// <history>
+//     <change who="kan.nguyen">Create</change>
+// </history>
+// ************************************************************************************
+
+namespace Fanex.CustomerSetting.Module.Bingo.Services
+{
+    using System;
+    using System.Globalization;
+    using System.Web;
+    using Fanex.CustomerSetting.Module.Bingo.Resources;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public static class ResourceHelper
+    {
+        /// <summary>
+        /// Sets the culture.
+        /// </summary>
+        public static void SetCulture()
+        {
+            string language = HttpContext.Current.Session["culture"] != null
+                ? (string)HttpContext.Current.Session["culture"] : "en-US";
+            Message.Culture = new CultureInfo(language);
+        }
+
+        /// <summary>
+        /// Gets the resource.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <returns>The value of the key.</returns>
+        public static string GetResource(string key)
+        {
+            return Message.ResourceManager.GetString(key);
+        }
+    }
+}

@@ -1,0 +1,61 @@
+﻿// ************************************************************************************
+// <copyright file="BingoDAO.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// ************************************************************************************
+// <history>
+//     <change who="kan.nguyen">Create</change>
+// </history>
+// ************************************************************************************
+
+namespace Fanex.CustomerSetting.Module.Bingo.Repositories
+{
+    using System.Collections;
+    using Fanex.CustomerSetting.Module.Core;
+    using Fanex.Data;
+    using Sunplus.Bingo.Entities;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public class BingoDAO : IBingoDAO
+    {
+        #region IBingoDAO Members
+
+        /// <summary>
+        /// Customers the update disabled bingo game.
+        /// </summary>
+        /// <param name="accid">The account ID.</param>
+        /// <param name="custid">The customer ID.</param>
+        /// <param name="disabledBingo">If set to <c>true</c> [disabled bingo].</param>
+        /// <param name="ip">The client IP address.</param>
+        /// <param name="isEnabledDownline">If set to <c>true</c> [is enabled down line].</param>
+        /// <param name="isSync">If set to <c>true</c> [is sync].</param>
+        /// <returns>The result value.</returns>
+        public IResult CustomerUpdateDisabledBingoGame(int accid, int custid, bool disabledBingo, string ip, bool isEnabledDownline, bool isSync)
+        {
+            int defaultTimeout = 600;
+            using (ObjectDb objDb = new ObjectDb("Acc_UpdBingoStatus", defaultTimeout))
+            {
+                Hashtable param = new Hashtable();
+                param.Add("userid", accid);
+                param.Add("custid", custid);
+                param.Add("disabledbingo", disabledBingo);
+                param.Add("syncbg", isSync);
+                param.Add("language", "E");
+                param.Add("errcode", 0);
+                param.Add("errmsg", string.Empty);
+                param.Add("loginip", ip);
+                param.Add("enabledownline", isEnabledDownline);
+                objDb.AssignParamValues(param);
+                int effectedRows = objDb.ExecuteNonQuery();
+
+                return new Result(
+                    Utils.ToInt32(objDb.GetParameterValue("errcode")),
+                    Utils.ToString(objDb.GetParameterValue("errmsg")));
+            }
+        }
+
+        #endregion
+    }
+}

@@ -1,0 +1,26 @@
+﻿// ************************************************************************************
+// <copyright file="IBingoSettingService.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// ************************************************************************************
+// <history>
+//     <change who="kan.nguyen">Create</change>
+// </history>
+// ************************************************************************************
+
+namespace Fanex.CustomerSetting.Module.Bingo.Services
+{
+    using Fanex.CustomerSetting.Module.Casino.Entities;
+    using Sunplus.Bingo.Entities;
+
+    public interface IBingoSettingService
+    {
+        Customer GetCustomerSetting(int custID, int updatedByRoleID);
+
+        IResult UpdateCustomerSetting(Customer customer, int updatedByRoleID, int fromSystem);
+
+        IResult ResetMaxTransfer(int custId, int fromSystem, int modifiedUserId, string modifiedUsername);
+
+        void AutoInsertBingoAccount(CasinoCustomer customerInfo, int userId, string userName, string ip, int fromSystem);
+    }
+}

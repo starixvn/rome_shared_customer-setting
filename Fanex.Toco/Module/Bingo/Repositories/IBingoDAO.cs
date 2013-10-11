@@ -1,0 +1,22 @@
+﻿// ************************************************************************************
+// <copyright file="IBingoDAO.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// ************************************************************************************
+// <history>
+//     <change who="kan.nguyen">Create</change>
+// </history>
+// ************************************************************************************
+
+namespace Fanex.CustomerSetting.Module.Bingo.Repositories
+{
+    using Sunplus.Bingo.Entities;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public interface IBingoDAO
+    {
+        IResult CustomerUpdateDisabledBingoGame(int accid, int custid, bool disabledBingo, string ip, bool isEnabledDownline, bool isSync);
+    }
+}

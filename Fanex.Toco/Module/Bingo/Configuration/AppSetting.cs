@@ -1,0 +1,29 @@
+﻿// ************************************************************************************
+// <copyright file="AppSetting.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// ************************************************************************************
+// <history>
+//     <change who="kan.nguyen">Create/Run StyleCop.</change>
+// </history>
+// ************************************************************************************
+
+namespace Fanex.CustomerSetting.Module.Bingo.Configuration
+{
+    using System;
+    using System.Configuration;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public static class AppSetting
+    {
+        public static readonly bool IsAllowMoveToBingo;
+
+        static AppSetting()
+        {
+            string isMoveBingo = ConfigurationManager.AppSettings["isMoveBingo"];
+            IsAllowMoveToBingo = string.Equals(isMoveBingo, "1") || string.Equals(isMoveBingo, "true", StringComparison.OrdinalIgnoreCase);
+        }
+    }
+}

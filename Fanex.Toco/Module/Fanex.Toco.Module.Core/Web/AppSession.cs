@@ -13,12 +13,47 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Web;
 using Fanex.NAP.Core.Model;
+using System.Configuration;
 
 namespace Fanex.CustomerSetting.Module.Core.Web
 {
 	[SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
 	public static class AppSession
 	{
+        public static ICurrentSession CurrentSession
+        {
+            get
+            {
+                var type = CurrentSessionSection.Instance.SessionFactory;
+
+                var currentSession = Activator.CreateInstance(Type.GetType(type));
+
+                if (currentSession is ICurrentSession)
+                {
+                    return (ICurrentSession)currentSession;
+                }
+
+                return new CurrentSession();
+            }
+        }
+
+        public static ICurrentContext CurrentContext
+        {
+            get
+            {
+                var type = CurrentContextSection.Instance.ContextFactory;
+
+                var currentSession = Activator.CreateInstance(Type.GetType(type));
+
+                if (currentSession is ICurrentContext)
+                {
+                    return (ICurrentContext)currentSession;
+                }
+
+                return new CurrentContext();
+            }
+        }
+
         public static int AccId
         {
             get

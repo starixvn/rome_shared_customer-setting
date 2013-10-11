@@ -14,6 +14,14 @@ namespace Fanex.CustomerSetting.Module.Casino.Entities
     /// </summary>
     public class CasinoCustomer
     {
+        public string CasinoNo
+        {
+            get
+            {
+                return "01";
+            }
+        }
+
         public bool EnableDownline
         {
             get;

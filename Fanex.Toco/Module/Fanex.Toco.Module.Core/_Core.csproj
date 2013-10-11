@@ -141,9 +141,15 @@
     <Compile Include="Web\App_Start\WebApiConfig.cs" />
     <Compile Include="Web\CacheManager.cs" />
     <Compile Include="Web\Controllers\BaseController.cs" />
+    <Compile Include="Web\CurrentContext\CurrentContext.cs" />
+    <Compile Include="Web\CurrentContext\CurrentContextSection.cs" />
+    <Compile Include="Web\CurrentContext\ICurrentContext.cs" />
+    <Compile Include="Web\CurrentSession\CurrentSession.cs" />
+    <Compile Include="Web\CurrentSession\CurrentSessionSection.cs" />
     <Compile Include="Web\CustomResults\CsvResult.cs" />
     <Compile Include="Web\CustomResults\ExcelResult.cs" />
     <Compile Include="Web\CustomResults\SpreadSheetResult.cs" />
+    <Compile Include="Web\CurrentSession\ICurrentSession.cs" />
     <Compile Include="Web\SessionManager.cs" />
     <Compile Include="Web\ViewEngine\CustomViewEngine.cs" />
   </ItemGroup>
