@@ -10,6 +10,7 @@
 
     public class SuperController : BaseController
     {
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
         public ActionResult EditSuper(int id, int uplineId)
         {
             var customerSetting = new CasinoSettingModel();

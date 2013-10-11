@@ -32,6 +32,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
         /// <param name="id">The identifier.</param>
         /// <param name="uplineId">The upline identifier.</param>
         /// <returns>ActionResult object.</returns>
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
         public ActionResult EditAgent(int id, int uplineId)
         {
             var customerSetting = new CasinoSettingModel();
@@ -54,6 +55,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
         /// <param name="id">The identifier.</param>
         /// <param name="uplineId">The upline identifier.</param>
         /// <returns>ActionResult object.</returns>
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
         public ActionResult ViewAgentBySuper(int id, int uplineId)
         {
             var customerSetting = new CasinoSettingModel();

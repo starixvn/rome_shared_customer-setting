@@ -10,6 +10,7 @@
 
     public class MasterController : BaseController
     {
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
         public ActionResult EditMaster(int id, int uplineId)
         {
             var customerSetting = new CasinoSettingModel();
