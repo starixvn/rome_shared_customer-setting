@@ -13,11 +13,11 @@ namespace Fanex.CustomerSetting.Module.Bingo.Controllers
     using System.Web.Mvc;
     using Bingo.Helper;
     using Bingo.Services;
+    using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
     using Fanex.CustomerSetting.Security.Authenticate;
-    using Sunplus.Bingo.Entities;
     using Newtonsoft.Json;
-    using Fanex.CustomerSetting.Module.Core.Web;
+    using Sunplus.Bingo.Entities;
 
     /// <summary>
     /// TODO: Update summary.
@@ -96,7 +96,12 @@ namespace Fanex.CustomerSetting.Module.Bingo.Controllers
             IResult result = null;
             if (updatedByRoleID.HasValue && updatedByRoleID.Value > 0)
             {
-                result = _bingoService.UpdateCustomerSetting(customer, updatedByRoleID.Value, FromSystem);
+                result = _bingoService.UpdateCustomerSetting(
+                    customer, 
+                    updatedByRoleID.Value, 
+                    FromSystem,
+                    AppSession.CurrentSession.UserId,
+                    AppSession.CurrentSession.UserName);
             }
 
             return Json(result, JsonRequestBehavior.DenyGet);

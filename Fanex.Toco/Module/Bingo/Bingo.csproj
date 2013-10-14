@@ -43,9 +43,6 @@
     <Reference Include="Fanex.Logging">
       <HintPath>..\..\_Dependencies\Fanex\Fanex.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.NAP.Core">
-      <HintPath>..\..\_Dependencies\Fanex\Fanex.NAP.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Fanex.NAP.Framework">
       <HintPath>..\..\_Dependencies\Fanex\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
@@ -73,8 +70,14 @@
     <Reference Include="Sunplus.Bingo.Data">
       <HintPath>..\..\_Dependencies\Bingo\Sunplus.Bingo.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Sunplus.Bingo.Data.Entlib">
+      <HintPath>..\..\_Dependencies\Bingo\Sunplus.Bingo.Data.Entlib.dll</HintPath>
+    </Reference>
     <Reference Include="Sunplus.Bingo.Data.LinqToSql">
       <HintPath>..\..\_Dependencies\Bingo\Sunplus.Bingo.Data.LinqToSql.dll</HintPath>
+    </Reference>
+    <Reference Include="Sunplus.Bingo.DataServices">
+      <HintPath>..\..\_Dependencies\Bingo\Sunplus.Bingo.DataServices.dll</HintPath>
     </Reference>
     <Reference Include="Sunplus.Bingo.Entities">
       <HintPath>..\..\_Dependencies\Bingo\Sunplus.Bingo.Entities.dll</HintPath>

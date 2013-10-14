@@ -81,7 +81,7 @@ namespace Fanex.CustomerSetting.Module.Bingo.Services
         /// <param name="updatedByRoleID">The updated by role ID.</param>
         /// <param name="fromSystem">From system.</param>
         /// <returns>The result object.</returns>
-        public IResult UpdateCustomerSetting(Customer customer, int updatedByRoleID, int fromSystem)
+        public IResult UpdateCustomerSetting(Customer customer, int updatedByRoleID, int fromSystem, int modifiedUserId, string modifiedUsername)
         {
             IResult result = null;
             try
@@ -89,8 +89,7 @@ namespace Fanex.CustomerSetting.Module.Bingo.Services
                 var customerService = BingoContainer.Current.Resolve<ICustomerService>();
                 string fromIP = GetClientIP();
 
-                var loginUser = AppSession.CurrentUser;
-                result = customerService.UpdateCustomerSetting(customer, updatedByRoleID, fromIP, loginUser.Id, loginUser.Username, fromSystem);
+                result = customerService.UpdateCustomerSetting(customer, updatedByRoleID, fromIP, modifiedUserId, modifiedUsername, fromSystem);
                 if (result != null && result.ErrorCode == 0 && !customer.SyncBingo)
                 {
                     bool disableBingo = false;
@@ -115,7 +114,7 @@ namespace Fanex.CustomerSetting.Module.Bingo.Services
                         disableBingo = uplineInfo.BingoDisabled;
                     }
 
-                    this._bingoDAO.CustomerUpdateDisabledBingoGame(loginUser.Id, customer.ID, disableBingo, fromIP, disableBingo, true);
+                    this._bingoDAO.CustomerUpdateDisabledBingoGame(modifiedUserId, customer.ID, disableBingo, fromIP, disableBingo, true);
                 }
             }
             catch (Exception ex)
@@ -135,8 +134,17 @@ namespace Fanex.CustomerSetting.Module.Bingo.Services
         public IResult ResetMaxTransfer(int custId, int fromSystem, int modifiedUserId, string modifiedUsername)
         {
             string fromIP = GetClientIP();
-            var customerService = BingoContainer.Current.Resolve<ICustomerService>();
-            IResult result = customerService.ResetMaxTransfer(custId, fromIP, modifiedUserId, modifiedUsername, fromSystem);
+
+            IResult result = null;
+            try
+            {
+                var customerService = BingoContainer.Current.Resolve<ICustomerService>();
+                result = customerService.ResetMaxTransfer(custId, fromIP, modifiedUserId, modifiedUsername, fromSystem);
+            }
+            catch (Exception ex)
+            {
+                result = new Sunplus.Bingo.Entities.Result(1, ex.Message);
+            }
 
             return result;
         }

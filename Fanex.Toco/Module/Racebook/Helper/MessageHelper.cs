@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Fanex.CustomerSetting.Module.Racebook.Services;
 using Fanex.PTRacing.BusinessObjects;
+using System;
 
 namespace Fanex.CustomerSetting.Module.Racebook.Helper
 {
@@ -15,8 +16,12 @@ namespace Fanex.CustomerSetting.Module.Racebook.Helper
 
             if (!string.IsNullOrEmpty(errorCode))
             {
-                var arrErrorCode = Regex.Split(errorCode, "\a");
-                var arrErrorMsgs = Regex.Split(errorMsg, "\a");
+                //var arrErrorCode = Regex.Split(errorCode, "\a");
+                //var arrErrorMsgs = Regex.Split(errorMsg, "\a");
+
+                string[] splitChars = new[] { "\a" };
+                var arrErrorCode = errorCode.Split(splitChars, StringSplitOptions.RemoveEmptyEntries);
+                var arrErrorMsgs = errorMsg.Split(splitChars, StringSplitOptions.RemoveEmptyEntries);
                 if (arrErrorCode.Length > 0)
                 {
                     var totalErrors = arrErrorCode.Length;

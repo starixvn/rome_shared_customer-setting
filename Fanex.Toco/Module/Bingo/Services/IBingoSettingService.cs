@@ -17,7 +17,7 @@ namespace Fanex.CustomerSetting.Module.Bingo.Services
     {
         Customer GetCustomerSetting(int custID, int updatedByRoleID);
 
-        IResult UpdateCustomerSetting(Customer customer, int updatedByRoleID, int fromSystem);
+        IResult UpdateCustomerSetting(Customer customer, int updatedByRoleID, int fromSystem, int modifiedUserId, string modifiedUsername);
 
         IResult ResetMaxTransfer(int custId, int fromSystem, int modifiedUserId, string modifiedUsername);
 
