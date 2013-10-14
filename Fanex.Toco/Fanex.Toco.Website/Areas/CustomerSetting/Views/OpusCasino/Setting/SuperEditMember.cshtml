@@ -9,18 +9,18 @@
             CustomerInfo
         </td>
     </tr>
-    <tr>
+       <tr>
         <td class="col120 formatCol r b">
             Username
         </td>
         <td class="col120 formatCol l">
-            {{customerInfo.username }}
+            <span ng-bind="customerInfo.username "></span>
         </td>
         <td class="col120 formatCol r b">
             Nick Name
         </td>
         <td class="col243 formatCol l">
-            {{customerInfo.nickName }}
+            <span ng-bind="customerInfo.nickName "></span>
         </td>
     </tr>
     <tr>
@@ -28,13 +28,13 @@
             First Name
         </td>
         <td class="formatCol l">
-            {{customerInfo.firstName }}
+            <span ng-bind="customerInfo.firstName "></span>
         </td>
         <td class="formatCol r b">
             Last Name
         </td>
         <td class="col243 formatCol l">
-            {{customerInfo.lastName }}
+            <span ng-bind="customerInfo.lastName "></span>
         </td>
     </tr>
     <tr>
@@ -42,13 +42,13 @@
             Phone
         </td>
         <td class="formatCol l">
-            {{customerInfo.phone }}
+            <span ng-bind="customerInfo.phone "></span>
         </td>
         <td class="formatCol r b">
             Mobile Phone
         </td>
         <td class="formatCol l">
-            {{customerInfo.mobilePhone }}
+            <span ng-bind="customerInfo.mobilePhone "></span>
         </td>
     </tr>
 </table>
@@ -79,7 +79,7 @@
                 ng-options="value for value in s1Range">
             </select>
             <label ng-switch-when="true">
-                {{positionTaking.s1}}</label>
+                 <span ng-bind="positionTaking.s1"></span></label>
         </td>
         <td class="formatCol c b">
             <input class="chb" type="checkbox" ng-model="positionTaking.iS1" />
@@ -88,10 +88,10 @@
             </select>
         </td>
         <td class="formatCol c ">
-            {{positionTaking.m1}}
+             <span ng-bind="positionTaking.m1 "></span>
         </td>
         <td class="formatCol c">
-            {{positionTaking.a1}}
+             <span ng-bind="positionTaking.a1 "></span>
         </td>
     </tr>
 </table>
@@ -132,15 +132,15 @@
             Betting Limit
         </td>
     </tr>
-    <tr ng-repeat="gameSetting in gameSettingList">
+   <tr ng-repeat="gameSetting in gameSettingList">
         <td class="formatCol r">
-            {{gameSetting.gameTypeName}}
+            <span ng-bind="gameSetting.gameTypeName"></span>
         </td>
         <td class="formatCol">
             <label ng-repeat="bettingLimit in gameSetting.bettingLimitList">
                 <input type="radio" ng-model="gameSetting.stakeChoosen.iD" value="{{bettingLimit.iD}}"
                     ng-click="changeStatusCheckbox()" />
-                {{bettingLimit.value}}
+                <span ng-bind="bettingLimit.value"></span>
             </label>
         </td>
     </tr>
