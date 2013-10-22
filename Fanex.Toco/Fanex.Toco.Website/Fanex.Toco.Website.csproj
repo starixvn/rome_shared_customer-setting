@@ -842,6 +842,12 @@
     <Content Include="Areas\CustomerSetting\Views\Bingo\Setting\Super.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Bingo\Setting\SuperEditMember.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Bingo\Shared\_Layout.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Sportsbook\Content.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\VirtualSports\Content.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Racing\Content.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\LiveCasino\Content.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Casino\Content.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Bingo\Content.cshtml" />
     <None Include="Areas\CustomerSetting\Views\OpusCasino\Document.doc" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Setting\Agent.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Setting\Master.cshtml" />

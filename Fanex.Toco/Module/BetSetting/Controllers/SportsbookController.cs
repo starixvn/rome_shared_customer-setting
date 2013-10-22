@@ -36,8 +36,21 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
         /// <param name="userId">The user identifier.</param>
         /// <param name="siteName">Name of the site.</param>
         /// <returns>ActionResult object.</returns>
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "SportsbookBetting")]
         public ActionResult Index(int id, int uplineId, int userId, string siteName)
+        {           
+            return this.PartialView("~/Areas/CustomerSetting/Views/BetSetting/Sportsbook/Index.cshtml");
+        }
+
+        /// <summary>
+        /// Indexes the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="uplineId">The up-line identifier.</param>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="siteName">Name of the site.</param>
+        /// <returns>ActionResult object.</returns>
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "SportsbookBetting")]
+        public ActionResult Content(int id, int uplineId, int userId, string siteName)
         {
             var groups = GroupConfigurations.AllowBettingGroups;
 
@@ -69,7 +82,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
 
             var bettingLimit = bettingLimitService.GetBettingForEdit(currentContext);
 
-            return this.PartialView("~/Areas/CustomerSetting/Views/BetSetting/Sportsbook/Index.cshtml", bettingLimit);
+            return this.PartialView("~/Areas/CustomerSetting/Views/BetSetting/Sportsbook/Content.cshtml", bettingLimit);
         }
 
         /// <summary>

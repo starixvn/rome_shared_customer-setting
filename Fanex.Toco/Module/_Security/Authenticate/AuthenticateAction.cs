@@ -29,7 +29,7 @@ namespace Fanex.CustomerSetting.Security.Authenticate
 
             switch (_authenticationType)
             {
-                case AuthenticationType.Read:
+                case AuthenticationType.Read:                    
                     if (!authenticateFactory.AllowRead(actionPath))
                     {
                         ActionDenied(filterContext);
@@ -37,6 +37,8 @@ namespace Fanex.CustomerSetting.Security.Authenticate
                     }
                     break;
                 case AuthenticationType.Host:
+                    ActionDenied(filterContext);
+                    return;
                     if (!authenticateFactory.AllowUpdate(actionPath))
                     {
                         ActionDenied(filterContext);
@@ -58,8 +60,8 @@ namespace Fanex.CustomerSetting.Security.Authenticate
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet,
                     Data = new 
                     {
-                        errorCode = 500,
-                        errorMessage = Resource.Errors.errorNotAuthorized
+                        ErrorCode = 500,
+                        ErrorMessage = Resource.Errors.errorNotAuthorized
                     }
                 };
                 filterContext.HttpContext.Response.Clear();

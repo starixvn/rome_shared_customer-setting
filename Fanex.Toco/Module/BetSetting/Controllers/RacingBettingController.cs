@@ -31,8 +31,21 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
         /// <param name="userId">The user identifier.</param>
         /// <param name="siteName">Name of the site.</param>
         /// <returns>ActionResult object.</returns>
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "RacingBetting")]
         public ActionResult Index(int id, int uplineId, int userId, string siteName)
+        {
+            return this.View("~/Areas/CustomerSetting/Views/BetSetting/Racing/Index.cshtml");
+        }
+
+        /// <summary>
+        /// Indexes the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="uplineId">The up-line identifier.</param>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="siteName">Name of the site.</param>
+        /// <returns>ActionResult object.</returns>
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "RacingBetting")]
+        public ActionResult Content(int id, int uplineId, int userId, string siteName)
         {
             var groups = GroupConfigurations.AllowBettingGroups;
 
@@ -65,7 +78,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
                 IP = HttpContext.Request.UserHostAddress
             });
 
-            return this.View("~/Areas/CustomerSetting/Views/BetSetting/Racing/Index.cshtml", model);
+            return this.View("~/Areas/CustomerSetting/Views/BetSetting/Racing/Content.cshtml", model);
         }
 
         /// <summary>

@@ -39,8 +39,21 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
         /// <param name="userId">The user identifier.</param>
         /// <param name="siteName">Name of the site.</param>
         /// <returns>ActionResult object.</returns>
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "LiveCasinoBetting")]
         public ActionResult Index(int id, int uplineId, int userId, string siteName)
+        {
+            return this.View("~/Areas/CustomerSetting/Views/BetSetting/LiveCasino/Index.cshtml");
+        }
+
+        /// <summary>
+        /// Indexes the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="uplineId">The up-line identifier.</param>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="siteName">Name of the site.</param>
+        /// <returns>ActionResult object.</returns>
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "LiveCasinoBetting")]
+        public ActionResult Content(int id, int uplineId, int userId, string siteName)
         {
             IList<int> groups = GroupConfigurations.AllowBettingGroups;
             Customer customer = this.CustomerInfo(id, userId);
@@ -58,7 +71,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
             IMemberWinLimit winLimit = this.MemberWinLimitService.GetMemberWinLimit(id);
             List<GameType> bettingLimit = this.GameSettingService.GetByCustomerId(id);
             CustomerInfo customerInfo = this.SettingService.GetCustomerInfo(id);
-            
+
             winLimit.IsDailyAutoReset = customerInfo.Limit.IsDailyAutoReset;
             winLimit.MaxWinLimit = customerInfo.Limit.MaxWinLimit;
 
@@ -68,7 +81,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
             });
 
             return this.View(
-                "~/Areas/CustomerSetting/Views/BetSetting/LiveCasino/Index.cshtml", 
+                "~/Areas/CustomerSetting/Views/BetSetting/LiveCasino/Content.cshtml",
                 new LiveCasinoModel
                 {
                     MemberWinLimit = winLimit as MemberWinLimit,
