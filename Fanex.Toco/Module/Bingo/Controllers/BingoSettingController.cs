@@ -79,9 +79,9 @@ namespace Fanex.CustomerSetting.Module.Bingo.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetCustomerSetting(int custId, int targetRoleId)
+        public ActionResult GetCustomerSetting(int custId, int updatedByRoleID)
         {
-            Customer customerSetting = _bingoService.GetCustomerSetting(custId, targetRoleId);
+            Customer customerSetting = _bingoService.GetCustomerSetting(custId, updatedByRoleID);
             return Json(JsonConvert.SerializeObject(customerSetting, Formatting.Indented, SerializeHelper.GetJsonSerializerSetting()), JsonRequestBehavior.DenyGet);
         }
 
