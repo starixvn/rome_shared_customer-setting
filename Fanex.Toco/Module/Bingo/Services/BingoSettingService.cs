@@ -83,46 +83,47 @@ namespace Fanex.CustomerSetting.Module.Bingo.Services
         /// <returns>The result object.</returns>
         public IResult UpdateCustomerSetting(Customer customer, int updatedByRoleID, int fromSystem, int modifiedUserId, string modifiedUsername)
         {
-            IResult result = null;
             try
             {
-                var customerService = BingoContainer.Current.Resolve<ICustomerService>();
-                string fromIP = GetClientIP();
-
-                result = customerService.UpdateCustomerSetting(customer, updatedByRoleID, fromIP, modifiedUserId, modifiedUsername, fromSystem);
-                if (result != null && result.ErrorCode == 0 && !customer.SyncBingo)
+                if ((Enumerators.Role)customer.RoleId == Enumerators.Role.Super)
                 {
-                    bool disableBingo = false;
-                    CasinoCustomer custInfo = null, uplineInfo = null;
-                    custInfo = CasinoManager.Instance.GetCustInfoIBC(customer.ID, customer.UplineID);
-                    disableBingo = custInfo.BingoDisabled;
-                    
-                    var role = (Enumerators.Role)customer.RoleId;
-                    if (role == Enumerators.Role.Member)
-                    {
-                        uplineInfo = CasinoManager.Instance.GetCustInfoIBC(custInfo.AIBCCustID, custInfo.UpperCustID);
-                        disableBingo = uplineInfo.BingoDisabled;
-                    }
-                    else if (role == Enumerators.Role.Agent)
-                    {
-                        uplineInfo = CasinoManager.Instance.GetCustInfoIBC(custInfo.MIBCCustID, custInfo.UpperCustID);
-                        disableBingo = uplineInfo.BingoDisabled;
-                    }
-                    else if (role == Enumerators.Role.Master)
-                    {
-                        uplineInfo = CasinoManager.Instance.GetCustInfoIBC(custInfo.SIBCCustID, custInfo.UpperCustID);
-                        disableBingo = uplineInfo.BingoDisabled;
-                    }
-
-                    this._bingoDAO.CustomerUpdateDisabledBingoGame(modifiedUserId, customer.ID, disableBingo, fromIP, disableBingo, true);
+                    return new Result(1, "Invalid customer");
                 }
+
+                ICustomerService customerService = BingoContainer.Current.Resolve<ICustomerService>();
+                string fromIP = AppSession.CurrentContext.Ip4Address;
+                IResult result = customerService.UpdateCustomerSetting(customer, updatedByRoleID, fromIP, modifiedUserId, modifiedUsername, fromSystem);
+                
+                if (result == null || !result.IsSuccessful || customer.SyncBingo)
+                {
+                    return result;
+                }
+                
+                CasinoCustomer custInfo = null, uplineInfo = null;
+                custInfo = CasinoManager.Instance.GetCustInfoIBC(customer.ID, customer.UplineID);
+                
+                switch ((Enumerators.Role)customer.RoleId)
+                {
+                    case Enumerators.Role.Member:
+                        uplineInfo = CasinoManager.Instance.GetCustInfoIBC(custInfo.AIBCCustID, custInfo.UpperCustID);
+                        break;
+                    case Enumerators.Role.Agent:
+                        uplineInfo = CasinoManager.Instance.GetCustInfoIBC(custInfo.MIBCCustID, custInfo.UpperCustID);
+                        break;
+                    case Enumerators.Role.Master:
+                        uplineInfo = CasinoManager.Instance.GetCustInfoIBC(custInfo.SIBCCustID, custInfo.UpperCustID);
+                        break;
+                    default:
+                        break;
+                }
+
+                return this._bingoDAO.UpdateBingoStatus(modifiedUserId, customer.ID, uplineInfo.BingoDisabled, fromIP, uplineInfo.EnableDownline, true);
             }
             catch (Exception ex)
             {
-                result = new Sunplus.Bingo.Entities.Result(1, ex.Message);
+                LogExtension.Log(ex);
+                return new Sunplus.Bingo.Entities.Result(1, ex.Message);
             }
-
-            return result;
         }
 
         /// <summary>

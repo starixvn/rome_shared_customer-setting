@@ -32,7 +32,7 @@ namespace Fanex.CustomerSetting.Module.Bingo.Repositories
         /// <param name="isEnabledDownline">If set to <c>true</c> [is enabled down line].</param>
         /// <param name="isSync">If set to <c>true</c> [is sync].</param>
         /// <returns>The result value.</returns>
-        public IResult CustomerUpdateDisabledBingoGame(int accid, int custid, bool disabledBingo, string ip, bool isEnabledDownline, bool isSync)
+        public IResult UpdateBingoStatus(int accid, int custid, bool disabledBingo, string ip, bool isEnabledDownline, bool isSync)
         {
             int defaultTimeout = 600;
             using (ObjectDb objDb = new ObjectDb("Acc_UpdBingoStatus", defaultTimeout))

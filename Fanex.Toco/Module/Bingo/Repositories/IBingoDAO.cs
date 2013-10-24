@@ -17,6 +17,6 @@ namespace Fanex.CustomerSetting.Module.Bingo.Repositories
     /// </summary>
     public interface IBingoDAO
     {
-        IResult CustomerUpdateDisabledBingoGame(int accid, int custid, bool disabledBingo, string ip, bool isEnabledDownline, bool isSync);
+        IResult UpdateBingoStatus(int accid, int custid, bool disabledBingo, string ip, bool isEnabledDownline, bool isSync);
     }
 }

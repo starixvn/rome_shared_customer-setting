@@ -37,8 +37,6 @@ namespace Fanex.CustomerSetting.Security.Authenticate
                     }
                     break;
                 case AuthenticationType.Host:
-                    ActionDenied(filterContext);
-                    return;
                     if (!authenticateFactory.AllowUpdate(actionPath))
                     {
                         ActionDenied(filterContext);
