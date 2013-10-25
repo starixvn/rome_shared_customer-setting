@@ -70,21 +70,5 @@
 3. Action in detail
 
 • Super Setting
-- customersetting/racebook/racingsetting/super?custId=1373389
-
-• Master Setting
-- customersetting/racebook/racingsetting/master?custid=1373580&uplineid=1373389
-
-• Agent Setting
-- customersetting/racebook/racingsetting/agent?custid=1374738&uplineid=1373580
-
-• Member Setting
-- customersetting/racebook/racingsetting/member?custid=4797995&uplineid=1374738
-
-• Super Edit member
-- customersetting/racebook/racingsetting/supereditmember?custid=4797995&superid=1373389
-
-• Master Edit Member
-- customersetting/racebook/racingsetting/mastereditmember?custid=4797995&uplineid=1373580
-
+- customersetting/searchcopy/super/index
 
