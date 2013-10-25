@@ -1,0 +1,20 @@
+﻿@using Fanex.PTRacing
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    
+</head>
+    <body>
+        @RenderBody()
+    </body>
+    
+    <script type="text/javascript">
+      
+        window.rootUrl = '@ViewBag.RootUrl';
+
+    </script>
+    @RenderSection("scripts", required: false)
+   
+</html>
