@@ -68,6 +68,7 @@ namespace Fanex.CustomerSetting.Module.Bingo.Services
             }
             catch (Exception ex)
             {
+                LogExtension.Log(ex);
                 customer.Result = new Sunplus.Bingo.Entities.Result(1, ex.Message);
             }
 
@@ -134,7 +135,7 @@ namespace Fanex.CustomerSetting.Module.Bingo.Services
         /// <returns>The result object.</returns>
         public IResult ResetMaxTransfer(int custId, int fromSystem, int modifiedUserId, string modifiedUsername)
         {
-            string fromIP = GetClientIP();
+            string fromIP = AppSession.CurrentContext.Ip4Address;
 
             IResult result = null;
             try
@@ -144,6 +145,7 @@ namespace Fanex.CustomerSetting.Module.Bingo.Services
             }
             catch (Exception ex)
             {
+                LogExtension.Log(ex);
                 result = new Sunplus.Bingo.Entities.Result(1, ex.Message);
             }
 
@@ -160,37 +162,37 @@ namespace Fanex.CustomerSetting.Module.Bingo.Services
         /// <param name="fromSystem">From system.</param>
         public void AutoInsertBingoAccount(CasinoCustomer customerInfo, int userId, string userName, string ip, int fromSystem)
         {
+            if (!AppSetting.IsAllowMoveToBingo)
+            {
+                return;
+            }
+
             try
             {
-                bool enabledBingo = AppSetting.IsAllowMoveToBingo;
                 Task.Factory.StartNew(() =>
                 {
-                    if (enabledBingo)
-                    {
-                        var bingoLibray = new LiveCasinoLibrary.SBAgent.Customer();
-                        bool isSuccess = true;
-                        isSuccess = bingoLibray.AutoInsertAccount(
-                            customerInfo.CasinoNo,
-                            customerInfo.IBCCustID,
-                            customerInfo.UserName,
-                            customerInfo.SIBCCustID,
-                            customerInfo.MIBCCustID,
-                            customerInfo.AIBCCustID,
-                            customerInfo.RoleId.ToString(),
-                            customerInfo.ExchangeID,
-                            DateTime.Now,
-                            ip,
-                            userId,
-                            userName,
-                            fromSystem);
+                    var bingoLibray = new LiveCasinoLibrary.SBAgent.Customer();
+                    bool isSuccess = bingoLibray.AutoInsertAccount(
+                        customerInfo.CasinoNo,
+                        customerInfo.IBCCustID,
+                        customerInfo.UserName,
+                        customerInfo.SIBCCustID,
+                        customerInfo.MIBCCustID,
+                        customerInfo.AIBCCustID,
+                        customerInfo.RoleId.ToString(),
+                        customerInfo.ExchangeID,
+                        DateTime.Now,
+                        ip,
+                        userId,
+                        userName,
+                        fromSystem);
 
-                        Thread.Sleep(2 * 1000);
-                        if (isSuccess)
-                        {
-                            IResult iResult = null;
-                            var bingoDao = BingoContainer.Current.Resolve<ICustomerDAO>();
-                            bingoDao.UpdateSyncBingo(customerInfo.IBCCustID, true, ip, userId, ref iResult);
-                        }
+                    Thread.Sleep(2 * 1000);
+                    if (isSuccess)
+                    {
+                        IResult iResult = null;
+                        var bingoDao = BingoContainer.Current.Resolve<ICustomerDAO>();
+                        bingoDao.UpdateSyncBingo(customerInfo.IBCCustID, true, ip, userId, ref iResult);
                     }
                 });
             }
@@ -201,30 +203,5 @@ namespace Fanex.CustomerSetting.Module.Bingo.Services
         }
 
         #endregion IBingoSettingService Members
-
-        /// <summary>
-        /// Gets the client IP.
-        /// </summary>
-        /// <returns>Client IP address.</returns>
-        private string GetClientIP()
-        {
-            string ip = string.Empty;
-            try
-            {
-                if (HttpContext.Current.Request.IsLocal)
-                {
-                    ip = "127.0.0.1";
-                }
-                else
-                {
-                    ip = Convert.ToString(HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"]);
-                }
-            }
-            catch (Exception)
-            {
-            }
-
-            return ip;
-        }
     }
 }
