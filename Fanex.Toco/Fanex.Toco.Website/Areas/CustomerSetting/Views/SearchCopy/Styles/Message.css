@@ -18,13 +18,13 @@
 .alertboxerr div, .alertboxscc div,.alertboxwrn div, .msgerror, .msgcorrect, .msgwarning
 {padding:2px 4px 2px 21px;margin-left:5px;text-align:left;}
 
-.alertboxerr div, .msgerror{background:#f6f5f2 url(images/error.gif) no-repeat center left;color:#f40000;  }
+.alertboxerr div, .msgerror{background:#f6f5f2 url(Styles/Images/error.gif) no-repeat center left;color:#f40000;  }
 .alertboxscc div, .msgcorrect{background:#f6f5f2 url(images/sucess.gif) no-repeat center left;color:#618e11; }
 .alertboxwrn div, .msgwarning{background:#f6f5f2 url(images/error.gif) no-repeat center left;color:#c28f06; }
 .msgdenied{position: absolute; top:50%; left:50%; margin-top:45px; margin-left:60px;}
 
-
-.alertboxerr{background:#f6f5f2; border:solid 1px #f40000; font-family: Tahoma; font-size:8pt}
+.alertboxerr{background:#f6f5f2; font-family: Tahoma; font-size:8pt}
+/*.alertboxerr{background:#f6f5f2; border:solid 1px #f40000; font-family: Tahoma; font-size:8pt}*/
 .alertboxscc{background:#f6f5f2; border:solid 1px #618e11; font-family: Tahoma; font-size:8pt}
 .alertboxwrn{background:#f6f5f2; border:solid 1px #c28f06; font-family: Tahoma; font-size:8pt}
 
@@ -58,3 +58,13 @@
     visibility: visible;
     background: url(Images/accessDenied.gif);
 }	
+
+.alert, .validation-summary-errors 
+{
+    /*background: none repeat scroll 0 0 #FBE3E4;*/
+    border: 1px solid Red !important;
+    margin-bottom: 1em;
+    padding: 0.8em;
+    color: Red;
+    font-weight:bold;
+}

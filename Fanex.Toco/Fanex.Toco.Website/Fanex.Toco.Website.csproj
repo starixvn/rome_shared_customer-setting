@@ -225,13 +225,22 @@
     <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\common.js" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\CommonPT.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Config\Store\RacingSpNames.xml" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\Libs\angular.min.js" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\ModuleSearchCopy.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\Libs\jquery.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\Libs\json2.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\Libs\knockout-2.0.0.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\common.css" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\btUpdateR.gif" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\error.gif" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\more.gif" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\not_success.png" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\success.gif" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Steps\Step2.css" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Steps\Step1.css" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\input.css" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Message.css" />
-    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\RacingSetting.css" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\style.css" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\table.css" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Config\Store\RacingSpNames.xml" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Setting\BetSettingController.js" />
@@ -499,6 +508,9 @@
     <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\sorting_desc.gif" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\RacingSetting.css" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\table.css" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Super\Index.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Web.Configuration\Store\RacingSpNames.xml" />
     <Content Include="Web.Configuration\Store\CustomerSpNames.xml" />
     <Content Include="Global.asax" />
@@ -804,7 +816,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\CustomerSetting\Views\Bingo\Scripts\Libs\" />
-    <Folder Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\" />
     <Folder Include="Content\base\img\actions\dd\" />
     <Folder Include="Content\base\img\combo-pickr\" />
     <Folder Include="Content\base\img\textures\" />
@@ -866,7 +877,6 @@
     <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\Super.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\SuperEditMember.cshtml" />
     <None Include="Areas\CustomerSetting\Views\SearchCopy\Document.doc" />
-    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Super\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Shared\_Layout.cshtml" />
     <None Include="Areas\CustomerSetting\Views\OpusCasino\Document.doc" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Setting\Agent.cshtml" />

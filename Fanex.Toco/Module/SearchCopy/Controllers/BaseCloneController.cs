@@ -1,55 +1,39 @@
 ﻿// ************************************************************************************
-// <copyright file="BaseRacingSettingController.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="BaseCloneController.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ************************************************************************************
 // <history>
-//     <change who="steven.nguyen">Create/Run StyleCop.</change>
+//     <change who="Thai.Tran date="2013.10.30"">Create/Run StyleCop.</change>
 // </history>
 // ************************************************************************************
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Web.Mvc;
-using Fanex.CustomerSetting.Module.Core.Web;
-using Fanex.CustomerSetting.Module.Core.Web.Controllers;
-using Fanex.CustomerSetting.Module.SearchCopy.App_Start;
-using Fanex.CustomerSetting.Module.SearchCopy.Helper;
-using Fanex.CustomerSetting.Module.SearchCopy.Services;
-using Fanex.CustomerSetting.Security.Authenticate;
-using Newtonsoft.Json;
-using Fanex.PTRacing.BusinessObjects;
-
 namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
 {
+    using System.Web.Mvc;
+    using Fanex.CustomerSetting.Module.Core.Web;
+    using Fanex.CustomerSetting.Module.Core.Web.Controllers;
+    using Fanex.CustomerSetting.Module.SearchCopy.App_Start;
+    using Fanex.CustomerSetting.Module.SearchCopy.Helper;
+    using Fanex.CustomerSetting.Module.SearchCopy.Services;
+    using Fanex.PTRacing.BusinessObjects;
+    using Newtonsoft.Json;
+
     /// <summary>
     /// Class BaseRacingSettingController.
     /// </summary>
     public class BaseCloneController : BaseController
     {
-        private static IRacingSettingService _racingSettingService;
+        private static ISearchCopyService _searchCopyService;
 
         public BaseCloneController()
             : this(null)
         {
         }
 
-        public BaseCloneController(IRacingSettingService racingSettingService)
+        public BaseCloneController(ISearchCopyService searchCopyService)
         {
-            _racingSettingService = racingSettingService ?? new RacingSettingService();
-        }
-
-        /// <summary>
-        /// Gets the customer information.
-        /// </summary>
-        /// <param name="requestContext">The request context.</param>
-        /// <returns>Return JSONRESULT.</returns>
-        [HttpPost]
-        public JsonResult GetCustomerInfo(RequestContext requestContext)
-        {
-            var result = _racingSettingService.GetCustomerInfo(requestContext);
-            return Json(JsonConvert.SerializeObject(result, Formatting.Indented, SerializeHelper.GetJsonSerializerSetting()));
+            _searchCopyService = searchCopyService ?? new SearchCopyService();
         }
 
         /// <summary>
@@ -80,46 +64,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             };
 
             return Json(JsonConvert.SerializeObject(currentContext, Formatting.Indented, SerializeHelper.GetJsonSerializerSetting()));
-        }
-
-        /// <summary>
-        /// Updates the customer settings.
-        /// </summary>
-        /// <param name="oldSettings">The old settings.</param>
-        /// <param name="newSettings">The new settings.</param>
-        /// <param name="currentContext">The current context.</param>
-        /// <param name="otherSettings">The other settings.</param>
-        /// <returns>Return JSON result.</returns>
-        [HttpPost]
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Racing")]
-        public JsonResult UpdateCustomerSetting(Customer oldSettings, Customer newSettings, RequestContext currentContext, Dictionary<object, object> otherSettings)
-        {
-            IList<Result> updatedResults = new List<Result>();
-            try
-            {
-                ICustomer oldSetting = oldSettings;
-                ICustomer newSetting = newSettings;
-                var hashOtherSettings = new Hashtable();
-                if (otherSettings != null && otherSettings.Count > 0)
-                {
-                    hashOtherSettings.Add("isupdateallmembers", otherSettings["isupdateallmembers"]);
-                    hashOtherSettings.Add("newmpositiontaking", otherSettings["newmpositiontaking"]);
-                }
-
-                var results = _racingSettingService.SaveCustomerSettings(oldSetting, newSetting, currentContext, hashOtherSettings);
-                updatedResults = MessageHelper.ParseError(results.ErrorCode, results.ErrorMessage);
-            }
-            catch (Exception ex)
-            {
-                updatedResults.Add(new Result()
-                {
-                    ErrorCode = "100",
-                    ErrorMessage = ex.Message
-                });
-            }
-
-            return Json(updatedResults);
-        }
+        }     
         
         /// <summary>
         /// Execute before each request, if Downtime then go to Downtime page.

@@ -207,4 +207,8 @@
 
     <Setting Key="ExchangeCurrencySel" SpName="Acc_ExchangeCurrencySel" DbName="db053"  Plain="0"/>
   </Function>
+
+  <Function Name="SearchCopy">
+    <Setting Key="GetSportsbookSettings" SpName="Acc_CustomerSelCEditCustomer" DbName="db053"  Plain="0"/>    
+  </Function>
 </Functions>
