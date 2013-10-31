@@ -778,6 +778,36 @@ String.prototype.formatErrorMessage = function () {
     return formatMsg;
 };
 
+String.prototype.formatErrMsg = function () {
+    $('#errMsg').addClass('errMsg');
+    $('#errMsg').removeClass('successMsg');
+
+    $('#err').addClass('errMsg');
+    $('#err').removeClass('successMsg');
+
+    return this;
+};
+
+String.prototype.formatSuccessMessage = function () {
+    $('#errMsg').removeClass('errMsg');
+    $('#errMsg').addClass('successMsg');
+
+    $('#err').removeClass('errMsg');
+    $('#err').addClass('successMsg');
+
+    return this;
+}
+
+String.prototype.decodeHtml = function () {
+    var str = this;
+    return $("<div/>").html(str).text();
+};
+
+String.prototype.encodeHtml = function () {
+    var str = this;
+    return $('<div/>').text(str).html();
+};
+
 $(document).ready(function () {
     Fanex.CustomerSetting.Core.Init();
 });
