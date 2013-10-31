@@ -135,7 +135,6 @@
     <Compile Include="Configuration\RacingSession.cs" />
     <Compile Include="Controllers\BaseCloneController.cs" />
     <Compile Include="Controllers\SuperController.cs" />
-    <Compile Include="Criteria\LicenseeSettlement\IMS_Rpt_LicenseeSettlementCriteria.cs" />
     <Compile Include="Criteria\ReportRequestTicket\AddNewRequestTicketCriteria.cs" />
     <Compile Include="Criteria\ReportRequestTicket\DeleteRequestTicketCriteria.cs" />
     <Compile Include="Criteria\ReportRequestTicket\GetMaxRequestNoCriteria.cs" />
@@ -150,11 +149,11 @@
     <Compile Include="Entities\Sport.cs" />
     <Compile Include="Entities\Tote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\IRacingDAO.cs" />
-    <Compile Include="Repositories\RacingDAO.cs" />
-    <Compile Include="Services\IRacingSettingService.cs" />
+    <Compile Include="Repositories\ISearchCopyDAO.cs" />
+    <Compile Include="Repositories\SearchCopyDAO.cs" />
+    <Compile Include="Services\ISearchCopyService.cs" />
     <Compile Include="Helper\MessageHelper.cs" />
-    <Compile Include="Services\RacingSettingService.cs" />
+    <Compile Include="Services\SearchCopyService.cs" />
     <Compile Include="Services\ResourceHelper.cs" />
     <Compile Include="Helper\SerializeHelper.cs" />
     <Compile Include="ViewModels\ExchangeRate.cs" />

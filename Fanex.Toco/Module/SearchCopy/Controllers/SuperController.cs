@@ -4,7 +4,7 @@
 // </copyright>
 // ************************************************************************************
 // <history>
-//     <change who="steven.nguyen">Create/Run StyleCop.</change>
+//     <change who="Thai.Tran date="2013.10.30"">Create/Run StyleCop.</change>
 // </history>
 // ************************************************************************************
 
@@ -19,12 +19,17 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
     public class SuperController : BaseCloneController
     {
 
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Racing")]
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Index")]
         public ActionResult Index()
         {
             return View("~/Areas/CustomerSetting/Views/SearchCopy/Super/Index.cshtml");
         }
 
-        
+
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Index")]
+        public ActionResult Angularjs()
+        {
+            return View("~/Areas/CustomerSetting/Views/SearchCopy/Super/Angularjs.cshtml");
+        }
     }
 }

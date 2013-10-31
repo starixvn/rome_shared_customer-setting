@@ -23,18 +23,18 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.App_Start
         /// <param name="bundles">The bundles.</param>
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/racingsetting").Include(
-                "~/Areas/CustomerSetting/Views/Racebook/Scripts/libs/*.js",
-                "~/Areas/CustomerSetting/Views/Racebook/Scripts/libs/ToolTip/wz_tooltip/wz_tooltip.js",
-                "~/Areas/CustomerSetting/Views/Racebook/Scripts/common.js",
-                "~/Areas/CustomerSetting/Views/Racebook/Scripts/CommonPT.js",
-                "~/Areas/CustomerSetting/Views/Racebook/Scripts/Setting/RacingHelper.js",
-                "~/Areas/CustomerSetting/Views/Racebook/Scripts/Setting/RacingSetting.js"));
+            /* CSS */
+            bundles.Add(new StyleBundle("~/Areas/CustomerSetting/Views/SearchCopy/CommonCss").Include(
+                "~/Areas/CustomerSetting/Views/SearchCopy/Styles/*.css"));
 
-            bundles.Add(new StyleBundle("~/bundles/racingstyle").Include(
-                "~/Areas/CustomerSetting/Views/Racebook/Styles/*.css"));
+            bundles.Add(new StyleBundle("~/Areas/CustomerSetting/Views/SearchCopy/SearchCopyCss").Include(
+                "~/Areas/CustomerSetting/Views/SearchCopy/Styles/Steps/common.css",
+                "~/Areas/CustomerSetting/Views/SearchCopy/Styles/Steps/Step1.css",
+                "~/Areas/CustomerSetting/Views/SearchCopy/Styles/Steps/Step2.css"));
 
-           
+            /* Js */
+            bundles.Add(new ScriptBundle("~/Areas/CustomerSetting/Views/SearchCopy/CommonJs").Include(                
+                "~/Areas/CustomerSetting/Views/SearchCopy/Scripts/Libs/*.js"));            
         }
     }
 }
