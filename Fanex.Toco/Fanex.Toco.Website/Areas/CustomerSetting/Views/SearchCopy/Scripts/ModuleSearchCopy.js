@@ -22,20 +22,26 @@ mySearchCopy.controller('SearchCopyController', ['$scope', function ($scope) {
         internaluser: false
     };
 
+    var customer;
+    var context;
+
     $scope.existedUser = { username: '' };
     $scope.newUser = {};
     $scope.context = {};
 
-    /* define functions*/
+    /* initialization */
     $scope.init = function () {
+        /* init GUI */
         $scope.newUser = angular.copy(user);
-        
         $("#step2").hide();
         $("#errorMsg").addClass("hidden");
-
         $scope.addEvents();
+
+        /* get data */
+        $scope.initContext();
     };
 
+    /* define functions*/
     $scope.addEvents = function () {
         $("#existedUserName").focus(function () {
             $("#errorMsg").addClass("hidden");
@@ -134,7 +140,7 @@ mySearchCopy.controller('SearchCopyController', ['$scope', function ($scope) {
 
         $("#step2 .tab-active").attr("class", "tab-inactive");
         $(tabId).attr("class", "tab-active");
-    }
+    };
 
     //Checking required fields: username, password, site and currency
     $scope.checkRequiredFields = function () {
@@ -150,9 +156,75 @@ mySearchCopy.controller('SearchCopyController', ['$scope', function ($scope) {
         }
 
         return result;
-    }
+    };
 
-    /* initialization */
+    //get context of form
+    $scope.initContext = function () {
+        $.ajax({
+            type: "POST",
+            url: "GetContextObject",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: '{"superId":' + JSON.stringify(superId) + '}',
+            success: function (stringContext) {
+                context = JSON.parse(stringContext);
+                $scope.getCustomer();
+            }
+        , error: function (e) {
+            showAlertMessage("err", "Init Context Error", 1);
+        }
+        });
+    };
+
+    //get default super value
+    $scope.getCustomer = function () {
+        $.ajax({
+            type: "POST",
+            url: "GetCustomerObject",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: '{"requestContext":' + JSON.stringify(context) + '}',
+            success: function (stringCustomer) {
+                customer = JSON.parse(stringCustomer);
+                $scope.initPtGrid();
+                //$scope.initForKnockout();
+                $scope.initCommission();
+                //set credit min
+                $('#txtCreditMin').text(''.FormatNumber(customer.minCredit));
+                $('#txtCredit').val(''.FormatNumber(customer.credit));
+            }
+        , error: function (e) {
+            showAlertMessage("err", "Init Customer Error", 1);
+        }
+        });
+    };
+
+    //init PT Object Grid
+    $scope.initPtGrid = function () {
+        Fanex.PTEngine.CURRENT_CONTEXT = context;
+        ptGrid = new Fanex.PTEngine.PTGrid(customer.ptSetting);
+        var divPtGrid = document.getElementById('divPtGrid');
+        ptGrid.Render(divPtGrid);
+
+        bettingLimitGrid = new Fanex.PTEngine.BettingLimit(customer.bettingLimit);
+        var bettingLimitContainer = document.getElementById('divBettingLimit');
+        bettingLimitContainer.innerHTML = "";
+        bettingLimitGrid.Render(bettingLimitContainer);
+    };
+
+    //render Commission combobox
+    $scope.initCommission = function () {
+        var commissionSetting = customer.commissionSetting;
+        Fanex.PTEngine.PT_SetSelect(document.getElementById('listGroupA'), 0, Math.max(commissionSetting.groupAMax, commissionSetting.groupA), Fanex.PTEngine.COMMISSION_STEP, commissionSetting.groupA);
+        Fanex.PTEngine.PT_SetSelect(document.getElementById('listGroupB'), 0, Math.max(commissionSetting.groupBMax, commissionSetting.groupB), Fanex.PTEngine.COMMISSION_STEP, commissionSetting.groupB);
+        Fanex.PTEngine.PT_SetSelect(document.getElementById('listGroupC'), 0, Math.max(commissionSetting.groupCMax, commissionSetting.groupC), Fanex.PTEngine.COMMISSION_STEP, commissionSetting.groupC);
+        Fanex.PTEngine.PT_SetSelect(document.getElementById('listGroupD'), 0, Math.max(commissionSetting.groupDMax, commissionSetting.groupD), Fanex.PTEngine.COMMISSION_STEP, commissionSetting.groupD);
+        Fanex.PTEngine.PT_SetSelect(document.getElementById('listOther'), 0, Math.max(commissionSetting.discountCSMax, commissionSetting.discountCS), Fanex.PTEngine.COMMISSION_STEP, commissionSetting.discountCS);
+        Fanex.PTEngine.PT_SetSelect(document.getElementById('listGroup1x2'), 0, Math.max(commissionSetting.discount1x2Max, commissionSetting.discount1x2), Fanex.PTEngine.COMMISSION_STEP, commissionSetting.discount1x2);
+        Fanex.PTEngine.PT_SetSelect(document.getElementById('listGameComm'), 0, Math.max(commissionSetting.discountNumberMax, commissionSetting.discountNumber), Fanex.PTEngine.COMMISSION_STEP, commissionSetting.discountNumber);
+    };
+
+    /* start */
     $scope.init();
 
 } ]);

@@ -46,7 +46,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\_Dependencies\Fanex\Fanex.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.Tarus.Customer">
+      <HintPath>..\_Dependencies\Fanex\Fanex.Tarus.Customer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Sunplus.Accounting.Business">
+      <HintPath>..\_Dependencies\SearchCopy\Sunplus.Accounting.Business.dll</HintPath>
+    </Reference>
+    <Reference Include="Sunplus.Accounting.Core, Version=1.0.12.78, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dependencies\SearchCopy\Sunplus.Accounting.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -130,6 +140,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Error.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\CustomerSetting\Views\SearchCopy\App_LocalResources\Language.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Language.resx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -226,8 +241,8 @@
     <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\CommonPT.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Config\Store\RacingSpNames.xml" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\Libs\angular.min.js" />
-    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\ModuleSearchCopy.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\Libs\jquery.js" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\ModuleSearchCopy.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\Libs\json2.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\Libs\knockout-2.0.0.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\common.css" />
@@ -901,6 +916,8 @@
     <None Include="Areas\CustomerSetting\Views\Racebook\Document.doc" />
     <Content Include="Web.Configuration\RacingSection.config" />
     <None Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Buttons\AntiXss.msi" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Shared\BettingLimitAndPositionTakingPartialView.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Shared\CustInfoPartialView.cshtml" />
     <None Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3-custom.less" />
   </ItemGroup>
   <ItemGroup>
@@ -945,6 +962,12 @@
     <Content Include="App_GlobalResources\Error.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Error.Designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\App_LocalResources\Language.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Language.designer.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <PropertyGroup>

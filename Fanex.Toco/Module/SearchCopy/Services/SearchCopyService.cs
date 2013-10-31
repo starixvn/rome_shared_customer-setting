@@ -7,31 +7,30 @@
 //   <change who="Thai.Tran" date="2013.10.30">Created</change>
 // </history>
 
-using Fanex.PTRacing.BusinessObjects;
-using Fanex.PTRacing.Services;
-using System.Collections;
-using System.Data;
-
 namespace Fanex.CustomerSetting.Module.SearchCopy.Services
 {
-    public class SearchCopyService: ISearchCopyService
+    using System.Data;
+    using Fanex.CustomerSetting.Module.SearchCopy.Repositories;
+
+    /// <summary>
+    /// Class SearchCopyService.
+    /// </summary>
+    public class SearchCopyService : ISearchCopyService
     {
-        protected static ISearchCopyService _searchCopyService;
+        private static ISearchCopyRepository _searchCopyRepository;
 
-        public SearchCopyService(): this(null)
+        public SearchCopyService() : this(null)
         {
-
         }
 
-        public SearchCopyService(ISearchCopyService searchCopyService)
+        public SearchCopyService(ISearchCopyRepository searchCopyRepository)
         {
-            _searchCopyService = searchCopyService ?? new SearchCopyService();
+            _searchCopyRepository = searchCopyRepository ?? new SearchCopyRepository();
         }
 
         public DataTable GetSportsbookSettings(int custId)
         {
-            return _searchCopyService.GetSportsbookSettings(custId);
-        }
-        
+            return _searchCopyRepository.GetSportsbookSettings(custId);
+        }        
     }
 }

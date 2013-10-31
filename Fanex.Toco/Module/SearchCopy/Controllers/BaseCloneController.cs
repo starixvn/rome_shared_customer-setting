@@ -1,30 +1,34 @@
-﻿// ************************************************************************************
+﻿// --------------------------------------------------------------------------
 // <copyright file="BaseCloneController.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// ************************************************************************************
+// --------------------------------------------------------------------------
 // <history>
-//     <change who="Thai.Tran date="2013.10.30"">Create/Run StyleCop.</change>
+//   <change who="Thai.Tran" date="2013.10.30">Created</change>
 // </history>
-// ************************************************************************************
 
 namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
 {
+    using System;
     using System.Web.Mvc;
-    using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
     using Fanex.CustomerSetting.Module.SearchCopy.App_Start;
-    using Fanex.CustomerSetting.Module.SearchCopy.Helper;
     using Fanex.CustomerSetting.Module.SearchCopy.Services;
-    using Fanex.PTRacing.BusinessObjects;
+    using Fanex.Logging;
+    using Fanex.PTEngine.BusinessObjects;
+    using Fanex.PTEngine.Services;
+    using Fanex.Tarus.Customer.CreditCustomer.Business;
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Serialization;
 
     /// <summary>
-    /// Class BaseRacingSettingController.
+    /// Class BaseCloneController.
     /// </summary>
     public class BaseCloneController : BaseController
     {
-        private static ISearchCopyService _searchCopyService;
+        protected static ICustomerSettingService _customerSettingService;
+        protected static ICustomerService _customerService;
+        private static ISearchCopyService _searchCopyService;        
 
         public BaseCloneController()
             : this(null)
@@ -33,39 +37,74 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
 
         public BaseCloneController(ISearchCopyService searchCopyService)
         {
-            _searchCopyService = searchCopyService ?? new SearchCopyService();
+            _customerSettingService = new CustomerSettingService();
+            _customerService = new CustomerService();
+            _searchCopyService = searchCopyService ?? new SearchCopyService();            
         }
 
         /// <summary>
-        /// Gets the setting.
+        /// Get sports book settings.
         /// </summary>
-        /// <param name="uplineId">The UPLINE identifier.</param>
-        /// <param name="targetCustId">The target customer identifier.</param>
-        /// <param name="targetRoleId">The target role identifier.</param>
-        /// <param name="roleId">The role identifier.</param>
-        /// <returns>Return setting in JSON format.</returns>
+        /// <param name="custId">The customer Id.</param>
+        /// <returns>The JSON object.</returns>
         [HttpPost]
-        public JsonResult GetSetting(int uplineId, int targetCustId, int targetRoleId, int roleId)
+        public JsonResult GetSportsbookSettings(int custId)
         {
-            IRequestContext currentContext = new RequestContext()
-            {
-                CustId = uplineId, ////upline id
-                AgentId = 0,
-                UserName = string.Empty,
-                TargetCustId = targetCustId,
-                AdminId = AppSession.AccId,
-                SubAccId = 0,
-                RoleId = roleId,
-                CurrencyId = 0,
-                TargetRoleId = targetRoleId,
-                IsNeutralSite = false,
-                FormId = FormType.EditPT,
-                IP = System.Web.HttpContext.Current.Request.UserHostAddress
-            };
+            var sportsbookSettings = _searchCopyService.GetSportsbookSettings(custId);
 
-            return Json(JsonConvert.SerializeObject(currentContext, Formatting.Indented, SerializeHelper.GetJsonSerializerSetting()));
-        }     
-        
+            return Json(sportsbookSettings);
+        }
+
+        /// <summary>
+        /// This function will return data of customer object depend on constrain of up-line
+        /// </summary>
+        /// <returns>String was serialized of customer object</returns>
+        [HttpPost]
+        public JsonResult GetCustomerObject(RequestContext requestContext)
+        {
+            string customerObject = string.Empty;
+            try
+            {
+                //format json return
+                JsonSerializerSettings settings = new JsonSerializerSettings();
+                settings.NullValueHandling = NullValueHandling.Ignore;
+                settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
+                //get default value for add new member
+                ICustomer customer = GetCustomerForLaterAction(requestContext);
+                customerObject = JsonConvert.SerializeObject(customer, Formatting.Indented, settings);
+            }
+            catch (Exception ex)
+            {
+                LogService.Error(ex.Message, ex);
+            }
+            return Json(customerObject);
+        }
+
+        /// <summary>
+        /// This Action will be Override by Child Class Derive from this
+        /// </summary>
+        /// <param name="requestContext">Context associate with Form Edit or Add New</param>
+        /// <returns>Return Customer with information</returns>
+        [NonAction]
+        public virtual ICustomer GetCustomerForLaterAction(IRequestContext requestContext)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Get Default serializer for send data to client
+        /// </summary>
+        /// <returns>Format setting of Json</returns>
+        [NonAction]
+        protected JsonSerializerSettings GetJsonSerializerSetting()
+        {
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.NullValueHandling = NullValueHandling.Ignore;
+            settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            return settings;
+        }
+
         /// <summary>
         /// Execute before each request, if Downtime then go to Downtime page.
         /// Or not Authenticate will go to Login Page.
@@ -73,7 +112,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
         /// <param name="filterContext">The filter context.</param>
         protected override void OnActionExecuting(System.Web.Mvc.ActionExecutingContext filterContext)
         {
-            //AppSession.AccId = 8;
+            ////AppSession.AccId = 8;
             ResourceHelper.SetCulture();
             var rootUrl = Url.Content("~") + filterContext.RouteData.DataTokens["area"].ToString() + "/" + ModuleRegistrator.Module + "/";
             ViewBag.RootUrl = rootUrl;
