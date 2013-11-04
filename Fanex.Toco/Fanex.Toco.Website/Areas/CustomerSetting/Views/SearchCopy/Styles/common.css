@@ -17,7 +17,7 @@
     height: 20px;
 }
 
-input[type=button]
+.btnStep
 {
     background: transparent url(Styles/Images/btUpdateR.gif) no-repeat top left;
     text-align: center;

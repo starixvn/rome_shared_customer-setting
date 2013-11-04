@@ -7,11 +7,10 @@
 //     <change who="steven.nguyen">Create/Run StyleCop.</change>
 // </history>
 // ************************************************************************************
-
-using System.Web.Optimization;
-
 namespace Fanex.CustomerSetting.Module.SearchCopy.App_Start
 {
+    using System.Web.Optimization;
+
     /// <summary>
     /// Register bundles.
     /// </summary>
@@ -27,8 +26,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.App_Start
             bundles.Add(new StyleBundle("~/Areas/CustomerSetting/Views/SearchCopy/CommonCss").Include(
                 "~/Areas/CustomerSetting/Views/SearchCopy/Styles/*.css"));
 
-            bundles.Add(new StyleBundle("~/Areas/CustomerSetting/Views/SearchCopy/SearchCopyCss").Include(
-                "~/Areas/CustomerSetting/Views/SearchCopy/Styles/Steps/common.css",
+            bundles.Add(new StyleBundle("~/Areas/CustomerSetting/Views/SearchCopy/SearchCopyCss").Include(                
                 "~/Areas/CustomerSetting/Views/SearchCopy/Styles/Steps/Step1.css",
                 "~/Areas/CustomerSetting/Views/SearchCopy/Styles/Steps/Step2.css"));
 

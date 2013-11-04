@@ -1,12 +1,15 @@
 ﻿
 1. Dependencies
-• Fanex.PTRacing.dll
+• Sunplus.Accouting.Bussiness.dll
+• Sunplus.Accouting.Core.dll
+• Fanex.Tarus.Customer.dll
+//• Fanex.PTEngine.dll
+//• Fanex.PTRacing.dll
 • Fanex.Data.dll
 • Fanex.Common.dll
-• Fanex.CustomerSetting.Security.dll
+• Fanex.Logging.dll
 • Fanex.NAP.Framework.dll
-• Fanex.CustomerSettting.Module.Core.dll
-• Fanex.CustomerSetting.Module.Racebook.Resources.dll
+
 2. Configuration 
 • Setting
 - Additional below config inner configuration tag.

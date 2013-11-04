@@ -209,6 +209,7 @@
   </Function>
 
   <Function Name="SearchCopy">
-    <Setting Key="GetSportsbookSettings" SpName="Acc_CustomerSelCEditCustomer" DbName="db053"  Plain="0"/>    
+    <Setting Key="Acc_CustomerSelStatus" SpName="Acc_CustomerSelStatus" DbName="db053"  Plain="0"/>
+    <Setting Key="Age_CustomerSelCheckBelonging_ByUsername" SpName="Age_CustomerSelCheckBelonging_ByUsername" DbName="db053"  Plain="0"/>    
   </Function>
 </Functions>

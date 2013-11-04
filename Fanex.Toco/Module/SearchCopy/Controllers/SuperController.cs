@@ -8,67 +8,69 @@
 // </history>
 namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
 {
+    using System;
+    using System.Data;
     using System.Web.Mvc;
+    using Fanex.CustomerSetting.Module.SearchCopy.ViewModels;
     using Fanex.CustomerSetting.Security.Authenticate;
-    using Fanex.Tarus.Customer.CreditCustomer.Entities;
-    using Fanex.PTEngine.BusinessObjects;
-    using Newtonsoft.Json;
-    using Sunplus.Accounting.Core.Common;    
 
     /// <summary>
     /// Base racing controller.
     /// </summary>
     public class SuperController : BaseCloneController
     {
+        /// <summary>
+        /// Search a existing super user.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <returns>Return True if success else return False.</returns>
+        public int SearchExistingSuper(string username)
+        {
+            return SearchExistingUser(username);
+        }
+
+        /// <summary>
+        /// Render supper settings.
+        /// </summary>
+        /// <param name="username">The super's name.</param>
+        /// <returns>The ActionResult.</returns>
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Index")]
-        public ActionResult Index(int custId = 1373389, string uname = "test")
+        public ActionResult Index(string username)
         {
-            CustomerSettingView customerSettingView = new CustomerSettingView
+            if (string.IsNullOrEmpty(username))
             {
-                TitlePage = "Super: " + uname,
-                IsInsertPage = false,
-                IsSuperSetting = true,
-                IsMasterSetting = false,
-                IsAgentSetting = false,
-                IsMemberSetting = false,
-                CustId = custId,
-                CustUserName = uname,
-                CanEditCredit = _customerSettingService.CheckPermissionEditCredit()
-            };
+                CustomerSettingView customerSettingView = new CustomerSettingView
+                {
+                    username = string.Empty,
+                    EnableSports = new EnableSports()
+                };
 
-            return View("~/Areas/CustomerSetting/Views/SearchCopy/Super/Index.cshtml", customerSettingView);
-        }
-
-        /// <summary>
-        /// Get Customer
-        /// </summary>
-        /// <param name="requestContext">Constext Of Get customer</param>
-        /// <returns>Customer Object</returns>
-        public override ICustomer GetCustomerForLaterAction(IRequestContext requestContext)
-        {
-            return _customerService.GetCustomerForCompanyEditSuper(requestContext);
-        }
-
-        /// <summary>
-        /// This function will return a current context object
-        /// </summary>
-        /// <returns>Current context object</returns>
-        [HttpPost]
-        public JsonResult GetContextObject(int superId)
-        {
-            //init context for edit supper
-            IRequestContext currentContext = new RequestContext()
+                return View("~/Areas/CustomerSetting/Views/SearchCopy/Super/Index.cshtml", customerSettingView);
+            }
+            else
             {
-                CustId = superId,
-                TargetCustId = superId,
-                RoleId = 0,
-                TargetRoleId = 4,
-                //FormId = FormType.EditPT,
-                SubAccId = 0,
-                AdminId = AppSession.AccId
-            };
+                DataTable customerStatus = GetCustomerInfo(username);
 
-            return Json(JsonConvert.SerializeObject(currentContext, Formatting.Indented, GetJsonSerializerSetting()));
-        }
+                EnableSports enableSports = new EnableSports
+                {
+                    DisableSportsbook = false, ////alway show
+                    DisableSportsbookMinPT = false, ////alway show
+                    DisableRacing = Convert.ToBoolean(customerStatus.Rows[0]["disablehorseracing"]),
+                    DisableRacingMinPT = Convert.ToBoolean(customerStatus.Rows[0]["disablehorseracing"]),
+                    DisableCasino = Convert.ToBoolean(customerStatus.Rows[0]["disablecasino"]),
+                    DisableVirtualSports = Convert.ToBoolean(customerStatus.Rows[0]["disablevirtualsports"]),
+                    DisableBingo = Convert.ToBoolean(customerStatus.Rows[0]["disablebingo"]),
+                    DisableLiveCasino = Convert.ToBoolean(customerStatus.Rows[0]["disablelivecasino"])
+                };
+
+                CustomerSettingView customerSettingView = new CustomerSettingView
+                {
+                    username = username,
+                    EnableSports = enableSports
+                };
+
+                return View("~/Areas/CustomerSetting/Views/SearchCopy/Super/Index.cshtml", customerSettingView);
+            }
+        }    
     }
 }

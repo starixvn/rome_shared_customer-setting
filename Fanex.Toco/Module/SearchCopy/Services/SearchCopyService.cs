@@ -28,9 +28,14 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
             _searchCopyRepository = searchCopyRepository ?? new SearchCopyRepository();
         }
 
-        public DataTable GetSportsbookSettings(int custId)
+        public int SearchExistingUser(string username)
         {
-            return _searchCopyRepository.GetSportsbookSettings(custId);
+            return _searchCopyRepository.SearchExistingUser(username);
+        }
+
+        public DataTable GetCustomerInfo(string username)
+        {
+            return _searchCopyRepository.GetCustomerInfo(username);
         }        
     }
 }
