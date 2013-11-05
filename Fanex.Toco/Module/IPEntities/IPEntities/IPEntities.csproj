@@ -8,8 +8,8 @@
     <ProjectGuid>{6570D17C-FEF2-4C1C-A1EB-841266DF380D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Fanex.ExternalAccount.IP</RootNamespace>
-    <AssemblyName>Fanex.ExternalAccount.IP</AssemblyName>
+    <RootNamespace>Fanex.CustomerSetting.IP</RootNamespace>
+    <AssemblyName>Fanex.CustomerSetting.IP</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

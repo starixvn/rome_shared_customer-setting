@@ -7,14 +7,14 @@
 //   <change who="Andy.Nguyen" date="2013.11.5">Created</change>
 // </history>
 
-namespace Fanex.ExternalAccount.IP.Geographic
+namespace Fanex.CustomerSetting.IP.Geographic
 {
     using System;
     using System.Configuration;
     using System.IO;
     using System.Text.RegularExpressions;
     using System.Xml.Linq;
-    using Fanex.ExternalAccount.IP.DAL;
+    using Fanex.CustomerSetting.IP.DAL;
 
     /// <summary>
     /// This use IP2LOCATION.COM Service (Just backup, not used now).

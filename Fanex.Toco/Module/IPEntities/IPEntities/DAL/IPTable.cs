@@ -7,7 +7,7 @@
 //   <change who="Andy.Nguyen" date="2013.11.5">Created</change>
 // </history>
 
-namespace Fanex.ExternalAccount.IP.DAL
+namespace Fanex.CustomerSetting.IP.DAL
 {
     /// <summary>
     /// TODO: Update summary.

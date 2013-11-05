@@ -7,14 +7,14 @@
 //   <change who="Andy.Nguyen" date="2013.11.5">Created</change>
 // </history>
 
-namespace Fanex.ExternalAccount.IP.Utils
+namespace Fanex.CustomerSetting.IP.Utils
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
     using Fanex.Caching;
-    using Fanex.ExternalAccount.IP.DAL;
+    using Fanex.CustomerSetting.IP.DAL;
     
     /// <summary>
     /// IP utility class.
@@ -25,7 +25,7 @@ namespace Fanex.ExternalAccount.IP.Utils
         public const string IpPattern = @"(?<First>2[0-4]\d|25[0-5]|[01]?\d\d?)\.(?<Second>2[0-4]\d|25[0-5]|[01]?\d\d?)\." + 
             @"(?<Third>2[0-4]\d|25[0-5]|[01]?\d\d?)\.(?<Fourth>2[0-4]\d|25[0-5]|[01]?\d\d?)";
 
-        public const string IpVnKey = "Fanex.ExternalAccount.IP.IpVnKey";
+        public const string IpVnKey = "Fanex.CustomerSetting.IP.IpVnKey";
 
         private static List<IPVN> ipVNList = null;
         
@@ -59,7 +59,7 @@ namespace Fanex.ExternalAccount.IP.Utils
         public static List<IPVN> GetAllVnIps()
         {
             ICache cache = CacheService.CreateInstance(CacheType.MemoryCache);
-            List<IPVN> objA = cache.Get<List<IPVN>>("Fanex.ExternalAccount.IP.IpVnKey");
+            List<IPVN> objA = cache.Get<List<IPVN>>("Fanex.CustomerSetting.IP.IpVnKey");
             if (object.ReferenceEquals(objA, null))
             {
                 using (IPEntities entities = new IPEntities(Utility.GetEFConnectionString()))
@@ -67,7 +67,7 @@ namespace Fanex.ExternalAccount.IP.Utils
                     objA = (from s in entities.IPVN select s).ToList<IPVN>();
                     if (objA.Count > 0)
                     {
-                        cache.Set<List<IPVN>>("Fanex.ExternalAccount.IP.IpVnKey", objA, TimeSpan.FromHours(1.0));
+                        cache.Set<List<IPVN>>("Fanex.CustomerSetting.IP.IpVnKey", objA, TimeSpan.FromHours(1.0));
                     }
                 }
             }

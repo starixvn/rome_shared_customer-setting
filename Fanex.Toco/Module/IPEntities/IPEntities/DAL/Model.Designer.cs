@@ -17,7 +17,7 @@ using System.Runtime.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 
-namespace Fanex.ExternalAccount.IP.DAL
+namespace Fanex.CustomerSetting.IP.DAL
 {
     #region Contexts
     
