@@ -13,6 +13,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
 
     public interface ISearchCopyRepository
     {
-        DataTable GetSportsbookSettings(int custId);
+        int SearchExistingUser(string username);
+
+        DataTable GetCustomerInfo(string username);
     }
 }

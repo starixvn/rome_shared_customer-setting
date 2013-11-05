@@ -32,20 +32,20 @@
 
 .start
 {
-    background: url("Styles/Images/more.gif") no-repeat scroll left center;
+    background: url("../Images/more.gif") no-repeat scroll left center;
     padding-left: 20px;   
 }
 
 .success
 {
-    background: url(Styles/Images/success.gif) no-repeat scroll left center;  
+    background: url("../Images/success.gif") no-repeat scroll left center;  
     padding-left: 20px;   
     margin-left:5px;
 }
 
 .not_success
 {
-    background: url(Styles/Images/not_success.png) no-repeat scroll left center;  
+    background: url("../Images/not_success.png") no-repeat scroll left center;  
     padding-left: 20px;   
     margin-left:5px;
 }

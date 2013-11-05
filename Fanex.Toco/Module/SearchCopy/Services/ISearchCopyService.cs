@@ -6,15 +6,17 @@
 // <history>
 //   <change who="Thai.Tran" date="2013.10.30">Created</change>
 // </history>
-
-using Fanex.PTRacing.BusinessObjects;
-using System.Collections;
-using System.Data;
-
 namespace Fanex.CustomerSetting.Module.SearchCopy.Services
 {
+    using System.Data;
+
+    /// <summary>
+    /// Class ISearchCopyService.
+    /// </summary>
     public interface ISearchCopyService
     {
-        DataTable GetSportsbookSettings(int custId); 
+        int SearchExistingUser(string username);
+
+        DataTable GetCustomerInfo(string username);
     }
 }
