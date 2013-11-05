@@ -34,10 +34,10 @@ namespace Fanex.CustomerSetting.IP.Geographic
 
             return new IPTable
             {
-                CountryShort = (string)respElement.Element("CountryCode"),
-                CountryLong = (string)respElement.Element("CountryName"),
-                City = (string)respElement.Element("City"),
-                Region = (string)respElement.Element("RegionName"),
+                countrySHORT = (string)respElement.Element("CountryCode"),
+                countryLONG = (string)respElement.Element("CountryName"),
+                ipCity = (string)respElement.Element("City"),
+                ipRegion = (string)respElement.Element("RegionName"),
                 FlagPath = (string)respElement.Element("FlagPath")
             };
         }

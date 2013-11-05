@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="IPDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="IPDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="IPDBModelStoreContainer">
           <EntitySet Name="IPTable" EntityType="IPDBModel.Store.IPTable" store:Type="Tables" store:Schema="dbo" store:Name="IPTable">
             <DefiningQuery>SELECT 
@@ -60,8 +60,7 @@
           <Parameter Name="IP" Type="varchar" Mode="In" />
         </Function>
         <Function Name="GetIPVN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="IPDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -69,29 +68,29 @@
           <EntitySet Name="IPTable" EntityType="IPDBModel.IPTable" />
           <EntitySet Name="IPVN" EntityType="IPDBModel.IPVN" />
           <FunctionImport Name="GetIPInfo_Full" EntitySet="IPTable" ReturnType="Collection(IPDBModel.IPTable)">
-            <Parameter Name="IP" Mode="In" Type="String" />
+          <Parameter Name="IP" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetIPVN" EntitySet="IPVN" ReturnType="Collection(IPDBModel.IPVN)" />
         </EntityContainer>
         <EntityType Name="IPTable">
           <Key>
-            <PropertyRef Name="KeyFrom" />
-            <PropertyRef Name="KeyTo" />
-            <PropertyRef Name="From" />
-            <PropertyRef Name="To" />
-            <PropertyRef Name="CountryShort" />
-            <PropertyRef Name="CountryLong" />
-            <PropertyRef Name="Region" />
-            <PropertyRef Name="City" />
+            <PropertyRef Name="ipKeyFrom" />
+            <PropertyRef Name="ipKeyTo" />
+            <PropertyRef Name="ipFrom" />
+            <PropertyRef Name="ipTo" />
+            <PropertyRef Name="countrySHORT" />
+            <PropertyRef Name="countryLONG" />
+            <PropertyRef Name="ipRegion" />
+            <PropertyRef Name="ipCity" />
           </Key>
-          <Property Name="KeyFrom" Type="Byte" Nullable="false" />
-          <Property Name="KeyTo" Type="Byte" Nullable="false" />
-          <Property Name="From" Type="Int64" Nullable="false" />
-          <Property Name="To" Type="Int64" Nullable="false" />
-          <Property Name="CountryShort" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
-          <Property Name="CountryLong" Type="String" Nullable="false" MaxLength="64" Unicode="false" FixedLength="false" />
-          <Property Name="Region" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
-          <Property Name="City" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="ipKeyFrom" Type="Byte" Nullable="false" />
+          <Property Name="ipKeyTo" Type="Byte" Nullable="false" />
+          <Property Name="ipFrom" Type="Int64" Nullable="false" />
+          <Property Name="ipTo" Type="Int64" Nullable="false" />
+          <Property Name="countrySHORT" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="countryLONG" Type="String" Nullable="false" MaxLength="64" Unicode="false" FixedLength="false" />
+          <Property Name="ipRegion" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="ipCity" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
           <Property Name="IsModified" Type="Boolean" />
           <Property Name="IsException" Type="Boolean" />
         </EntityType>
@@ -111,14 +110,14 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="IPDBModelStoreContainer" CdmEntityContainer="IPEntities">
           <EntitySetMapping Name="IPTable"><EntityTypeMapping TypeName="IPDBModel.IPTable"><MappingFragment StoreEntitySet="IPTable">
-            <ScalarProperty Name="KeyFrom" ColumnName="ipKeyFrom" />
-            <ScalarProperty Name="KeyTo" ColumnName="ipKeyTo" />
-            <ScalarProperty Name="From" ColumnName="ipFrom" />
-            <ScalarProperty Name="To" ColumnName="ipTo" />
-            <ScalarProperty Name="CountryShort" ColumnName="countrySHORT" />
-            <ScalarProperty Name="CountryLong" ColumnName="countryLONG" />
-            <ScalarProperty Name="Region" ColumnName="ipRegion" />
-            <ScalarProperty Name="City" ColumnName="ipCity" />
+            <ScalarProperty Name="ipKeyFrom" ColumnName="ipKeyFrom" />
+            <ScalarProperty Name="ipKeyTo" ColumnName="ipKeyTo" />
+            <ScalarProperty Name="ipFrom" ColumnName="ipFrom" />
+            <ScalarProperty Name="ipTo" ColumnName="ipTo" />
+            <ScalarProperty Name="countrySHORT" ColumnName="countrySHORT" />
+            <ScalarProperty Name="countryLONG" ColumnName="countryLONG" />
+            <ScalarProperty Name="ipRegion" ColumnName="ipRegion" />
+            <ScalarProperty Name="ipCity" ColumnName="ipCity" />
             <ScalarProperty Name="IsModified" ColumnName="IsModified" />
             <ScalarProperty Name="IsException" ColumnName="IsException" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>

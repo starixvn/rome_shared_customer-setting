@@ -36,7 +36,7 @@ namespace Fanex.CustomerSetting.IP.Geographic
             string city = matchCountry.Groups[2].Value;
             string timeZone = matchCountry.Groups[3].Value;
 
-            return new IPTable { CountryShort = countryName, City = city };
+            return new IPTable { countrySHORT = countryName, ipCity = city };
         }
     }
 }

@@ -194,25 +194,25 @@ namespace Fanex.CustomerSetting.IP.DAL
         /// <summary>
         /// Create a new IPTable object.
         /// </summary>
-        /// <param name="keyFrom">Initial value of the KeyFrom property.</param>
-        /// <param name="keyTo">Initial value of the KeyTo property.</param>
-        /// <param name="from">Initial value of the From property.</param>
-        /// <param name="to">Initial value of the To property.</param>
-        /// <param name="countryShort">Initial value of the CountryShort property.</param>
-        /// <param name="countryLong">Initial value of the CountryLong property.</param>
-        /// <param name="region">Initial value of the Region property.</param>
-        /// <param name="city">Initial value of the City property.</param>
-        public static IPTable CreateIPTable(global::System.Byte keyFrom, global::System.Byte keyTo, global::System.Int64 from, global::System.Int64 to, global::System.String countryShort, global::System.String countryLong, global::System.String region, global::System.String city)
+        /// <param name="ipKeyFrom">Initial value of the ipKeyFrom property.</param>
+        /// <param name="ipKeyTo">Initial value of the ipKeyTo property.</param>
+        /// <param name="ipFrom">Initial value of the ipFrom property.</param>
+        /// <param name="ipTo">Initial value of the ipTo property.</param>
+        /// <param name="countrySHORT">Initial value of the countrySHORT property.</param>
+        /// <param name="countryLONG">Initial value of the countryLONG property.</param>
+        /// <param name="ipRegion">Initial value of the ipRegion property.</param>
+        /// <param name="ipCity">Initial value of the ipCity property.</param>
+        public static IPTable CreateIPTable(global::System.Byte ipKeyFrom, global::System.Byte ipKeyTo, global::System.Int64 ipFrom, global::System.Int64 ipTo, global::System.String countrySHORT, global::System.String countryLONG, global::System.String ipRegion, global::System.String ipCity)
         {
             IPTable iPTable = new IPTable();
-            iPTable.KeyFrom = keyFrom;
-            iPTable.KeyTo = keyTo;
-            iPTable.From = from;
-            iPTable.To = to;
-            iPTable.CountryShort = countryShort;
-            iPTable.CountryLong = countryLong;
-            iPTable.Region = region;
-            iPTable.City = city;
+            iPTable.ipKeyFrom = ipKeyFrom;
+            iPTable.ipKeyTo = ipKeyTo;
+            iPTable.ipFrom = ipFrom;
+            iPTable.ipTo = ipTo;
+            iPTable.countrySHORT = countrySHORT;
+            iPTable.countryLONG = countryLONG;
+            iPTable.ipRegion = ipRegion;
+            iPTable.ipCity = ipCity;
             return iPTable;
         }
 
@@ -224,216 +224,216 @@ namespace Fanex.CustomerSetting.IP.DAL
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Byte KeyFrom
+        public global::System.Byte ipKeyFrom
         {
             get
             {
-                return _KeyFrom;
+                return _ipKeyFrom;
             }
             set
             {
-                if (_KeyFrom != value)
+                if (_ipKeyFrom != value)
                 {
-                    OnKeyFromChanging(value);
-                    ReportPropertyChanging("KeyFrom");
-                    _KeyFrom = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("KeyFrom");
-                    OnKeyFromChanged();
+                    OnipKeyFromChanging(value);
+                    ReportPropertyChanging("ipKeyFrom");
+                    _ipKeyFrom = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ipKeyFrom");
+                    OnipKeyFromChanged();
                 }
             }
         }
-        private global::System.Byte _KeyFrom;
-        partial void OnKeyFromChanging(global::System.Byte value);
-        partial void OnKeyFromChanged();
+        private global::System.Byte _ipKeyFrom;
+        partial void OnipKeyFromChanging(global::System.Byte value);
+        partial void OnipKeyFromChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Byte KeyTo
+        public global::System.Byte ipKeyTo
         {
             get
             {
-                return _KeyTo;
+                return _ipKeyTo;
             }
             set
             {
-                if (_KeyTo != value)
+                if (_ipKeyTo != value)
                 {
-                    OnKeyToChanging(value);
-                    ReportPropertyChanging("KeyTo");
-                    _KeyTo = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("KeyTo");
-                    OnKeyToChanged();
+                    OnipKeyToChanging(value);
+                    ReportPropertyChanging("ipKeyTo");
+                    _ipKeyTo = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ipKeyTo");
+                    OnipKeyToChanged();
                 }
             }
         }
-        private global::System.Byte _KeyTo;
-        partial void OnKeyToChanging(global::System.Byte value);
-        partial void OnKeyToChanged();
+        private global::System.Byte _ipKeyTo;
+        partial void OnipKeyToChanging(global::System.Byte value);
+        partial void OnipKeyToChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 From
+        public global::System.Int64 ipFrom
         {
             get
             {
-                return _From;
+                return _ipFrom;
             }
             set
             {
-                if (_From != value)
+                if (_ipFrom != value)
                 {
-                    OnFromChanging(value);
-                    ReportPropertyChanging("From");
-                    _From = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("From");
-                    OnFromChanged();
+                    OnipFromChanging(value);
+                    ReportPropertyChanging("ipFrom");
+                    _ipFrom = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ipFrom");
+                    OnipFromChanged();
                 }
             }
         }
-        private global::System.Int64 _From;
-        partial void OnFromChanging(global::System.Int64 value);
-        partial void OnFromChanged();
+        private global::System.Int64 _ipFrom;
+        partial void OnipFromChanging(global::System.Int64 value);
+        partial void OnipFromChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 To
+        public global::System.Int64 ipTo
         {
             get
             {
-                return _To;
+                return _ipTo;
             }
             set
             {
-                if (_To != value)
+                if (_ipTo != value)
                 {
-                    OnToChanging(value);
-                    ReportPropertyChanging("To");
-                    _To = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("To");
-                    OnToChanged();
+                    OnipToChanging(value);
+                    ReportPropertyChanging("ipTo");
+                    _ipTo = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ipTo");
+                    OnipToChanged();
                 }
             }
         }
-        private global::System.Int64 _To;
-        partial void OnToChanging(global::System.Int64 value);
-        partial void OnToChanged();
+        private global::System.Int64 _ipTo;
+        partial void OnipToChanging(global::System.Int64 value);
+        partial void OnipToChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String CountryShort
+        public global::System.String countrySHORT
         {
             get
             {
-                return _CountryShort;
+                return _countrySHORT;
             }
             set
             {
-                if (_CountryShort != value)
+                if (_countrySHORT != value)
                 {
-                    OnCountryShortChanging(value);
-                    ReportPropertyChanging("CountryShort");
-                    _CountryShort = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("CountryShort");
-                    OnCountryShortChanged();
+                    OncountrySHORTChanging(value);
+                    ReportPropertyChanging("countrySHORT");
+                    _countrySHORT = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("countrySHORT");
+                    OncountrySHORTChanged();
                 }
             }
         }
-        private global::System.String _CountryShort;
-        partial void OnCountryShortChanging(global::System.String value);
-        partial void OnCountryShortChanged();
+        private global::System.String _countrySHORT;
+        partial void OncountrySHORTChanging(global::System.String value);
+        partial void OncountrySHORTChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String CountryLong
+        public global::System.String countryLONG
         {
             get
             {
-                return _CountryLong;
+                return _countryLONG;
             }
             set
             {
-                if (_CountryLong != value)
+                if (_countryLONG != value)
                 {
-                    OnCountryLongChanging(value);
-                    ReportPropertyChanging("CountryLong");
-                    _CountryLong = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("CountryLong");
-                    OnCountryLongChanged();
+                    OncountryLONGChanging(value);
+                    ReportPropertyChanging("countryLONG");
+                    _countryLONG = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("countryLONG");
+                    OncountryLONGChanged();
                 }
             }
         }
-        private global::System.String _CountryLong;
-        partial void OnCountryLongChanging(global::System.String value);
-        partial void OnCountryLongChanged();
+        private global::System.String _countryLONG;
+        partial void OncountryLONGChanging(global::System.String value);
+        partial void OncountryLONGChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String Region
+        public global::System.String ipRegion
         {
             get
             {
-                return _Region;
+                return _ipRegion;
             }
             set
             {
-                if (_Region != value)
+                if (_ipRegion != value)
                 {
-                    OnRegionChanging(value);
-                    ReportPropertyChanging("Region");
-                    _Region = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("Region");
-                    OnRegionChanged();
+                    OnipRegionChanging(value);
+                    ReportPropertyChanging("ipRegion");
+                    _ipRegion = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("ipRegion");
+                    OnipRegionChanged();
                 }
             }
         }
-        private global::System.String _Region;
-        partial void OnRegionChanging(global::System.String value);
-        partial void OnRegionChanged();
+        private global::System.String _ipRegion;
+        partial void OnipRegionChanging(global::System.String value);
+        partial void OnipRegionChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String City
+        public global::System.String ipCity
         {
             get
             {
-                return _City;
+                return _ipCity;
             }
             set
             {
-                if (_City != value)
+                if (_ipCity != value)
                 {
-                    OnCityChanging(value);
-                    ReportPropertyChanging("City");
-                    _City = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("City");
-                    OnCityChanged();
+                    OnipCityChanging(value);
+                    ReportPropertyChanging("ipCity");
+                    _ipCity = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("ipCity");
+                    OnipCityChanged();
                 }
             }
         }
-        private global::System.String _City;
-        partial void OnCityChanging(global::System.String value);
-        partial void OnCityChanged();
+        private global::System.String _ipCity;
+        partial void OnipCityChanging(global::System.String value);
+        partial void OnipCityChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
