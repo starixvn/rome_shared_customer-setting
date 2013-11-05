@@ -1,0 +1,27 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="IBaseRepository.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Thai.Tran" date="2013.02.05">Created</change>
+// </history>
+
+namespace Fanex.CustomerSetting.Module.SearchCopy.Repository.Interface
+{
+    using System.Collections;
+    using System.Data;
+    using Fanex.CustomerSetting.Module.SearchCopy.Command;
+    using Fanex.NAP.Framework.Data;
+   
+    public interface IBaseRepository
+    {
+        CommandResult GetCommandResult(Hashtable hash);
+
+        ICommandResult ReturnICommandResult(ICriteria criteria, ICriteria logCriteria);
+
+        IDataReader ReturnDataReader(ICriteria criteria, ICriteria logCriteria);
+
+        DataSet ReturnDataSet(ICriteria criteria, ICriteria logCriteria);
+    }
+}

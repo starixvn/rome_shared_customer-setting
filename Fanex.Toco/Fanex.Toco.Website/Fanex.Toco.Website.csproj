@@ -254,7 +254,6 @@
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\more.gif" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\not_success.png" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\success.gif" />
-    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\CustomerSettingCommon.css" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Steps\Step2.css" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Steps\Step1.css" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\input.css" />

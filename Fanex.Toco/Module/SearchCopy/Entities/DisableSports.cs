@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="EnableSports.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="DisableSports.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -7,15 +7,15 @@
 //   <change who="Thai.Tran" date="2013.11.04">Created</change>
 // </history>
 
-using System;
-
-namespace Fanex.CustomerSetting.Module.SearchCopy.ViewModels
+namespace Fanex.CustomerSetting.Module.SearchCopy.Entities
 {
+    using System;
+
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     [Serializable]
-    public class EnableSports
+    public class DisableSports
     {
         public bool DisableSportsbook { get; set; }
 

@@ -8,15 +8,25 @@
 // </history>
 namespace Fanex.CustomerSetting.Module.SearchCopy.Services
 {
-    using System.Data;
+    using System.Web.Mvc;
+    using Fanex.CustomerSetting.Module.SearchCopy.Command;
+    using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
+    using Fanex.CustomerSetting.Module.SearchCopy.Entities;
+using System.Collections.Generic;
 
     /// <summary>
     /// Class ISearchCopyService.
     /// </summary>
     public interface ISearchCopyService
-    {
-        int SearchExistingUser(string username);
+    {        
+        int SearchExistingUser(SearchExistingUserCriteria criteria);
 
-        DataTable GetCustomerInfo(string username);
+        DisableSports GetSportsStatusByUserName(string username);
+
+        IEnumerable<Site> GetSitesExistingSuper(GetSitesCriteria criteria);
+
+        string GetSiteByUserId(GetSiteByUserIdCriteria criteria);
+
+        CommandResult CopyExistingUser(CustomerInsMemberCriteria criteria);
     }
 }

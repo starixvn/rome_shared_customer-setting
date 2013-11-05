@@ -9,8 +9,12 @@
 
 namespace Fanex.CustomerSetting.Module.SearchCopy.Services
 {
-    using System.Data;
+    using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
+    using Fanex.CustomerSetting.Module.SearchCopy.Entities;
     using Fanex.CustomerSetting.Module.SearchCopy.Repositories;
+    using Fanex.CustomerSetting.Module.SearchCopy.Command;
+    using System.Web.Mvc;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Class SearchCopyService.
@@ -26,16 +30,31 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
         public SearchCopyService(ISearchCopyRepository searchCopyRepository)
         {
             _searchCopyRepository = searchCopyRepository ?? new SearchCopyRepository();
-        }
-
-        public int SearchExistingUser(string username)
-        {
-            return _searchCopyRepository.SearchExistingUser(username);
-        }
-
-        public DataTable GetCustomerInfo(string username)
-        {
-            return _searchCopyRepository.GetCustomerInfo(username);
         }        
+
+        public int SearchExistingUser(SearchExistingUserCriteria criteria)
+        {
+            return _searchCopyRepository.SearchExistingUser(criteria);
+        }
+
+        public DisableSports GetSportsStatusByUserName(string username)
+        {
+            return _searchCopyRepository.GetSportsStatusByUserName(username);
+        }
+
+        public IEnumerable<Site> GetSitesExistingSuper(GetSitesCriteria criteria)
+        {
+            return _searchCopyRepository.GetSitesExistingSuper(criteria);
+        }
+
+        public string GetSiteByUserId(GetSiteByUserIdCriteria criteria)
+        {
+            return _searchCopyRepository.GetSiteByUserId(criteria);
+        }
+
+        public CommandResult CopyExistingUser(CustomerInsMemberCriteria criteria)
+        {
+            return _searchCopyRepository.CopyExistingUser(criteria);
+        }
     }
 }
