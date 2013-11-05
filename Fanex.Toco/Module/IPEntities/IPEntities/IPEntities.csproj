@@ -53,7 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\IPTable.cs" />
+    <Compile Include="DAL\IPTable.cs" />
     <Compile Include="Format\ContextIPInfo.cs" />
     <Compile Include="Format\IContextIPInfo.cs" />
     <Compile Include="Format\IPFormat.cs" />

@@ -7,7 +7,7 @@
 //   <change who="Andy.Nguyen" date="2013.11.5">Created</change>
 // </history>
 
-namespace Fanex.ExternalAccount.IP
+namespace Fanex.ExternalAccount.IP.Utils
 {
     using System;
     using System.Configuration;

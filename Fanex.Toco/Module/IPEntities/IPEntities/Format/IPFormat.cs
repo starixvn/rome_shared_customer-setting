@@ -69,7 +69,7 @@ namespace Fanex.ExternalAccount.IP.Format
 
             if (isAdminLogin)
             {
-                bool isVNIP = Fanex.ExternalAccount.IP.IpUtils.IsVnIp(IP);
+                bool isVNIP = Fanex.ExternalAccount.IP.Utils.IpUtils.IsVnIp(IP);
                 if (isVNIP && !isAdminCanViewVNIP)
                 {
                     result = string.Format(LinkNoFormat, context.DefaultNoIPVN);
@@ -86,7 +86,7 @@ namespace Fanex.ExternalAccount.IP.Format
         /// <returns>Output text that contains all IPs format inside.</returns>
         public string FormatAll(string content)
         {
-            Regex regex = new Regex(Fanex.ExternalAccount.IP.IpUtils.IpPattern, RegexOptions.Compiled);
+            Regex regex = new Regex(Fanex.ExternalAccount.IP.Utils.IpUtils.IpPattern, RegexOptions.Compiled);
             return regex.Replace(
                 content,
                 match =>
