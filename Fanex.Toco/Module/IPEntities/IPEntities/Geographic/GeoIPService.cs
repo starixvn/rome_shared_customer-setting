@@ -1,0 +1,38 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="GeoIPService.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Andy.Nguyen" date="2013.11.5">Created</change>
+// </history>
+
+namespace Fanex.ExternalAccount.IP.Geographic
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    /// <summary>
+    /// GeoIPService class.
+    /// </summary>
+    public class GeoIPService
+    {
+        private static IGeoIP _instance = null;
+
+        private GeoIPService()
+        {
+        }
+
+        public static IGeoIP GetInstance()
+        {
+            if (_instance == null)
+            {
+                _instance = new IbcIPService();
+            }
+
+            return _instance;
+        }
+    }
+}

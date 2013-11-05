@@ -1,0 +1,42 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="IP2LocationService.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Andy.Nguyen" date="2013.11.5">Created</change>
+// </history>
+
+namespace Fanex.ExternalAccount.IP.Geographic
+{
+    using System;
+    using System.Configuration;
+    using System.IO;
+    using System.Text.RegularExpressions;
+    using System.Xml.Linq;
+    using Fanex.ExternalAccount.IP.DAL;
+
+    /// <summary>
+    /// This use IP2LOCATION.COM Service (Just backup, not used now).
+    /// </summary>
+    public class IP2LocationService : GeoIP
+    {
+        // Should move to app.config for easy to change later
+        private string _urlService = "http://www.ip2location.com/{0}";
+        private string _templateReg =
+        @"<span id=""dgLookup__ctl2_lblICountry"">([\w\s]+)</span>[\w\W\s]*<span id=""dgLookup__ctl2_lblICity"">" +
+        @"([\w\-\s]+)</span>[\w\W\s]*<span id=""dgLookup__ctl2_lblITimeZone"">([\w\+\:\s]+)</span>";
+
+        public override IPTable LocationFromIP(string ip)
+        {
+            string responseContent = ReadUrl(string.Format(_urlService, ip));
+            Regex reg = new Regex(_templateReg, RegexOptions.Compiled);
+            Match matchCountry = reg.Match(responseContent);
+            string countryName = matchCountry.Groups[1].Value;
+            string city = matchCountry.Groups[2].Value;
+            string timeZone = matchCountry.Groups[3].Value;
+
+            return new IPTable { CountryShort = countryName, City = city };
+        }
+    }
+}
