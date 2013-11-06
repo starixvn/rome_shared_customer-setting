@@ -75,29 +75,29 @@
                     <span>Sportsbook</span></div>
                 <div id="tabSportsbookMinPT" class="tab-inactive" ng-click="showSetting('#divSportsbookMinPT','#tabSportsbookMinPT');">
                     <span>Sportsbook Min PT</span></div>
-                @if (!Model.EnableSports.DisableRacing)
+                @if (!Model.StatusSports.DisableRacing)
                 {
                     <div id="tabRacing" class="tab-inactive" ng-click="showSetting('#divRacing','#tabRacing');">
                         <span>Racing</span></div>
                     <div id="tabRacingMinPT" class="tab-inactive" ng-click="showSetting('#divRacingMinPT','#tabRacingMinPT');">
                         <span>Racing Min PT</span></div>
                 }
-                @if (!Model.EnableSports.DisableCasino)
+                @if (!Model.StatusSports.DisableCasino)
                 {
                     <div id="tabCasino" class="tab-inactive" ng-click="showSetting('#divCasino','#tabCasino');">
                         <span>Casino</span></div>
                 }
-                @if (!Model.EnableSports.DisableVirtualSports)
+                @if (!Model.StatusSports.DisableVirtualSports)
                 {
                     <div id="tabVirtualSports" class="tab-inactive" ng-click="showSetting('#divVirtualSports','#tabVirtualSports');">
                         <span>Virtual Sports</span></div>
                 }
-                @if (!Model.EnableSports.DisableBingo)
+                @if (!Model.StatusSports.DisableBingo)
                 {
                     <div id="tabBingo" class="tab-inactive" ng-click="showSetting('#divBingo','#tabBingo');">
                         <span>Bingo</span></div>
                 }
-                @if (!Model.EnableSports.DisableLiveCasino)
+                @if (!Model.StatusSports.DisableLiveCasino)
                 {
                     <div id="tabLiveCasino" class="tab-inactive" ng-click="showSetting('#divLiveCasino','#tabLiveCasino');">
                         <span>Live Casino</span></div>
@@ -158,18 +158,7 @@
                                 Site
                             </td>
                             <td class="l" style="width: 45%">
-                                <select name="listSite" id="listSite" class="select-group">
-                                    <option>Select</option>
-                                    @* @foreach (Sites sites in (List<Sites>)ViewData["listSite"])
-                                    {
-                                        <optgroup label="@sites.Name">
-                                            @foreach (Site site in sites.ListSite)
-                                            {
-                                                <option id="@site.Id" value="@site.Name" >@site.Name</option>
-                                            }
-                                        </optgroup>
-                                    }*@
-                                </select>
+                                 <select ng-model="existedUser.selectedSite" ng-options="s.site for s in existedUser.sites"></select><br>
                             </td>
                             <td class="l" style="width: 12%">
                                 Fax

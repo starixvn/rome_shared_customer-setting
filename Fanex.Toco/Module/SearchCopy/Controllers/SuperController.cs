@@ -8,27 +8,21 @@
 // </history>
 namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
 {
-    using System;
-    using System.Data;
     using System.Web.Mvc;
+    using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
+    using Fanex.CustomerSetting.Module.SearchCopy.Entities;
     using Fanex.CustomerSetting.Module.SearchCopy.ViewModels;
     using Fanex.CustomerSetting.Security.Authenticate;
+    using Fanex.CustomerSetting.Module.SearchCopy.Services;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System;
 
     /// <summary>
     /// Base racing controller.
     /// </summary>
     public class SuperController : BaseCloneController
-    {
-        /// <summary>
-        /// Search a existing super user.
-        /// </summary>
-        /// <param name="username">The username.</param>
-        /// <returns>Return True if success else return False.</returns>
-        public int SearchExistingSuper(string username)
-        {
-            return SearchExistingUser(username);
-        }
-
+    {        
         /// <summary>
         /// Render supper settings.
         /// </summary>
@@ -37,40 +31,37 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Index")]
         public ActionResult Index(string username)
         {
-            if (string.IsNullOrEmpty(username))
+            CustomerSettingView customerSettingView = new CustomerSettingView
             {
-                CustomerSettingView customerSettingView = new CustomerSettingView
-                {
-                    username = string.Empty,
-                    EnableSports = new EnableSports()
-                };
+                Username = string.IsNullOrEmpty(username) ? string.Empty : username,
+                StatusSports = string.IsNullOrEmpty(username) ? new DisableSports() : GetSportsStatusByUserName(username)
+            };
 
-                return View("~/Areas/CustomerSetting/Views/SearchCopy/Super/Index.cshtml", customerSettingView);
-            }
-            else
+            return View("~/Areas/CustomerSetting/Views/SearchCopy/Super/Index.cshtml", customerSettingView);           
+        }
+
+        /// <summary>
+        /// Search a existing super user.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <returns>Return True if success else return False.</returns>
+        public int SearchExistingSuper(string username)
+        {
+            var criteria = new SearchExistingUserCriteria
             {
-                DataTable customerStatus = GetCustomerInfo(username);
+                uplineid = 0,
+                username = username,
+                custid = -1,
+                issubacc = false
+            };
 
-                EnableSports enableSports = new EnableSports
-                {
-                    DisableSportsbook = false, ////alway show
-                    DisableSportsbookMinPT = false, ////alway show
-                    DisableRacing = Convert.ToBoolean(customerStatus.Rows[0]["disablehorseracing"]),
-                    DisableRacingMinPT = Convert.ToBoolean(customerStatus.Rows[0]["disablehorseracing"]),
-                    DisableCasino = Convert.ToBoolean(customerStatus.Rows[0]["disablecasino"]),
-                    DisableVirtualSports = Convert.ToBoolean(customerStatus.Rows[0]["disablevirtualsports"]),
-                    DisableBingo = Convert.ToBoolean(customerStatus.Rows[0]["disablebingo"]),
-                    DisableLiveCasino = Convert.ToBoolean(customerStatus.Rows[0]["disablelivecasino"])
-                };
+            return SearchExistingUser(criteria);
+        }       
 
-                CustomerSettingView customerSettingView = new CustomerSettingView
-                {
-                    username = username,
-                    EnableSports = enableSports
-                };
-
-                return View("~/Areas/CustomerSetting/Views/SearchCopy/Super/Index.cshtml", customerSettingView);
-            }
-        }    
+        public bool CopyExistingSuper(CustomerInsMemberCriteria criteria)
+        {            
+            var result = _searchCopyService.CopyExistingUser(criteria);
+            return result.IsSuccessful;
+        }
     }
 }

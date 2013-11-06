@@ -9,17 +9,20 @@
 
 namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
 {
-    using System.Data;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
     using Fanex.CustomerSetting.Module.SearchCopy.App_Start;
+    using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
+    using Fanex.CustomerSetting.Module.SearchCopy.Entities;
     using Fanex.CustomerSetting.Module.SearchCopy.Services;
+    using System.Collections.Generic;
+    using System.Web.Mvc;
 
     /// <summary>
     /// Class BaseCloneController.
     /// </summary>
     public class BaseCloneController : BaseController
     {                
-        private static ISearchCopyService _searchCopyService;        
+        public static ISearchCopyService _searchCopyService;        
 
         public BaseCloneController()
             : this(null)
@@ -30,16 +33,32 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
         {                        
             _searchCopyService = searchCopyService ?? new SearchCopyService();            
         }
-
-        public int SearchExistingUser(string username)
+        
+        public int SearchExistingUser(SearchExistingUserCriteria criteria)
         {
-            return _searchCopyService.SearchExistingUser(username);
+            return _searchCopyService.SearchExistingUser(criteria);
         }
 
-        public DataTable GetCustomerInfo(string username)
-        {            
-            return _searchCopyService.GetCustomerInfo(username);
-        }      
+        public DisableSports GetSportsStatusByUserName(string username)
+        {
+            return _searchCopyService.GetSportsStatusByUserName(username);
+        }
+
+        public string GetSiteByUserId(int custid)
+        {
+            return _searchCopyService.GetSiteByUserId(new GetSiteByUserIdCriteria { custid = custid });
+        }
+
+        /// <summary>
+        /// Get sites.
+        /// </summary>        
+        /// <returns>Return list of sites.</returns>
+        public JsonResult GetSites()
+        {
+            var sites = _searchCopyService.GetSitesExistingSuper(new GetSitesCriteria());
+            return Json(sites, JsonRequestBehavior.DenyGet);
+        }
+      
      
         /// <summary>
         /// Execute before each request, if Downtime then go to Downtime page.

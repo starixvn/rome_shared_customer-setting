@@ -19,12 +19,15 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', fu
         internaluser: false
     };
 
+    var sites = [];
+    var selectedSite = '';
+
     var customer;
     var context;
     var ptGrid = null;
     var bettingLimitGrid = null;
 
-    $scope.existedUser = { userid: -1, username: '' };
+    $scope.existedUser = { userid: -1, username: '', selectedSite: {}, sites: [], selectedCurrency: { id: 0, name: ''} };
     $scope.newUser = {};
     $scope.context = {};
 
@@ -34,7 +37,7 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', fu
         $scope.newUser = angular.copy(user);
         $("#step2").hide();
         $("#errorMsg").addClass("hidden");
-        $scope.addEvents();        
+        $scope.addEvents();
     };
 
     /* define functions*/
@@ -58,6 +61,10 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', fu
 
         $("#step2Back").click(function () {
             $scope.step2Back();
+        });
+
+        $("#step2Submit").click(function () {
+            $scope.copyExistingUser();
         });
     };
 
@@ -132,18 +139,98 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', fu
             dataType: "json",
             data: JSON.stringify(param),
             success: function (custid) {
+                $scope.existedUser.userid = custid;
                 if (custid != "-1") {
-                    $scope.existedUser.userid = custid;
                     $("#checkExisted").addClass('success');
                     $("#checkExisted").removeClass('not_success');
+                    $scope.getSiteByUserId(custid);
                 }
                 else {
                     $("#checkExisted").removeClass('success');
                     $("#checkExisted").addClass('not_success');
+                    message.showAlertMessage("errorMsg", "The super doesn’t exist!", 1);
                 }
             }
             , error: function (e) {
-                message.showAlertMessage("errorMsg", "The super doesn’t exist!", 1);
+                message.showAlertMessage("errorMsg", "Error for searching existing user!", 1);
+            }
+        });
+    };
+
+    $scope.getSiteByUserId = function (custid) {
+        var param = {
+            custid: custid
+        };
+
+        $.ajax({
+            type: "POST",
+            url: toUrl("Super/GetSiteByUserId"),
+            contentType: "application/json; charset=utf-8",
+            dataType: 'html',
+            data: JSON.stringify(param),
+            success: function (result) {
+                selectedSite = result;
+                $scope.getAllSites();
+            }
+            , error: function (e) {
+                message.showAlertMessage("errorMsg", "Error for getting site by user id!", 1);
+            }                      
+        });
+    };
+
+    $scope.getAllSites = function () {
+        $.ajax({
+            type: "POST",
+            url: toUrl("Super/GetSites"),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: null,
+            success: function (result) {
+                $scope.existedUser.sites = result;
+                $scope.existedUser.selectedSite = $scope.existedUser.sites[2];
+
+//                for (var i = 0; i < $scope.existedUser.sites.length; i++) {
+//                    if ($scope.existedUser.sites[i].site == selectedSite) {
+//                        $scope.existedUser.selectedSite = $scope.existedUser.sites[i];
+//                        break;
+//                    }
+//                }
+
+                $scope.$apply(); //important for angularjs
+            }
+            , error: function (e) {
+                message.showAlertMessage("errorMsg", "Error for getting sites of existing user!", 1);
+            }
+        });
+    };
+
+
+    $scope.copyExistingUser = function () {
+        var param = {
+            username: $scope.newUser.username,
+            Userpwd: $scope.newUser.password,
+            FirstName: $scope.newUser.firstname,
+            LastName: $scope.newUser.lastname,
+            Phone: $scope.newUser.phone,
+            MobilePhone: $scope.newUser.mobilephone,
+            Site: $scope.existedUser.sites,
+            Fax: $scope.newUser.fax,
+            Credit: $scope.newUser.maxcredit,
+            IsInternal: $scope.newUser.internaluser,
+            ExistingCustId: $scope.existedUser.userid,
+            Creator: 0 //todo
+        };
+
+        $.ajax({
+            type: "POST",
+            url: toUrl("Super/CopyExistingSuper"),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify(param),
+            success: function (result) {
+            }
+            , error: function (e) {
+                message.showAlertMessage("errorMsg", "Error for copying existing user!", 1);
             }
         });
     };

@@ -377,7 +377,7 @@ img.emoji {
     margin: 0 !important; }
 html, body {
     background-color: white;
-    overflow: hidden;
+    /*overflow: hidden;*/
     font-size: 12px; }
 
 body {

@@ -7,19 +7,19 @@
 //   <change who="Thai.Tran" date="2013.11.04">Created</change>
 // </history>
 
-using System;
-
 namespace Fanex.CustomerSetting.Module.SearchCopy.ViewModels
 {
+    using System;
+    using Fanex.CustomerSetting.Module.SearchCopy.Entities;
+
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     [Serializable]
     public class CustomerSettingView
     {
-        public string username { get; set; }
+        public string Username { get; set; }
 
-        public EnableSports EnableSports { get; set; }
-
+        public DisableSports StatusSports { get; set; }
     }
 }
