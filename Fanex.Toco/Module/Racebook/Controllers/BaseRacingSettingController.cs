@@ -96,7 +96,7 @@ namespace Fanex.CustomerSetting.Module.Racebook.Controllers
             IList<Result> updatedResults = new List<Result>();
             try
             {
-                ICustomer oldSetting = oldSettings;
+                ICustomer oldSetting = _racingSettingService.GetCustomerInfo(currentContext);
                 ICustomer newSetting = newSettings;
                 var hashOtherSettings = new Hashtable();
                 if (otherSettings != null && otherSettings.Count > 0)
