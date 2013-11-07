@@ -35,13 +35,14 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
         }
 
         /// <summary>
-        /// Searching a existing super user.
+        /// Get site and currency of user.
         /// </summary>
-        /// <param name="criteria">Criteria SearchExistingUserCriteria.</param>
-        /// <returns>Return customer id if success else return -1.</returns>
-        public string GetSiteByUserId(GetSiteByUserIdCriteria criteria)
+        /// <param name="criteria">Criteria GetSiteByUserIdCriteria.</param>
+        /// <returns>Return site and currency as format "sitename,currencyname".</returns>
+        public string GetSiteAndCurrencyByUserId(GetSiteByUserIdCriteria criteria)
         {
             string site = string.Empty;
+            string currency = string.Empty;
 
             // prepare SP parameters
             Hashtable param = criteria.GetSpParams();
@@ -53,10 +54,11 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
                 while (dataReader.Read())
                 {
                     site = dataReader["site"].ToString();
+                    currency = dataReader["currencyid"].ToString();
                 }                
             }
 
-            return site;
+            return site + "," + currency;
         }
 
         /// <summary>

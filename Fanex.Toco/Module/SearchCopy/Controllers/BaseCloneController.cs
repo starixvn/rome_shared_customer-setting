@@ -44,9 +44,9 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             return _searchCopyService.GetSportsStatusByUserName(username);
         }
 
-        public string GetSiteByUserId(int custid)
+        public string GetSiteAndCurrencyByUserId(int custid)
         {
-            return _searchCopyService.GetSiteByUserId(new GetSiteByUserIdCriteria { custid = custid });
+            return _searchCopyService.GetSiteAndCurrencyByUserId(new GetSiteByUserIdCriteria { custid = custid });
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
         protected override void OnActionExecuting(System.Web.Mvc.ActionExecutingContext filterContext)
         {
             ////AppSession.AccId = 8;
-            ResourceHelper.SetCulture();
+            //ResourceHelper.SetCulture();
             var rootUrl = Url.Content("~") + filterContext.RouteData.DataTokens["area"].ToString() + "/" + ModuleRegistrator.Module + "/";
             ViewBag.RootUrl = rootUrl;
             base.OnActionExecuting(filterContext);

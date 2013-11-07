@@ -56,12 +56,18 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             };
 
             return SearchExistingUser(criteria);
-        }       
+        }
 
-        public bool CopyExistingSuper(CustomerInsMemberCriteria criteria)
-        {            
+        public JsonResult CopyExistingSuper(CustomerInsMemberCriteria criteria)
+        {
+            criteria.FirstName = criteria.FirstName ?? string.Empty;
+            criteria.LastName = criteria.LastName ?? string.Empty;
+            criteria.Phone = criteria.Phone ?? string.Empty;
+            criteria.MobilePhone = criteria.MobilePhone ?? string.Empty;
+            criteria.Fax = criteria.Fax ?? string.Empty;
+
             var result = _searchCopyService.CopyExistingUser(criteria);
-            return result.IsSuccessful;
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
 }

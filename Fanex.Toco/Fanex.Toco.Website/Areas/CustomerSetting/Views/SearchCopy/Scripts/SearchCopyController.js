@@ -1,7 +1,7 @@
 ﻿var searchCopyController = angular.module('SearchCopy', ['SearchCopy.service', 'SearchCopy.directive', 'SearchCopy.filter']);
 
 // A Controller for your app
-searchCopyController.controller('SearchCopyController', ['$scope', 'message', function ($scope, message) {
+searchCopyController.controller('SearchCopyController', ['$scope', 'message', 'PTSetting', function ($scope, message, PTSetting) {
     /* define variables*/
     var user = {
         userid: -1,
@@ -19,17 +19,12 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', fu
         internaluser: false
     };
 
-    var sites = [];
-    var selectedSite = '';
-
     var customer;
     var context;
     var ptGrid = null;
     var bettingLimitGrid = null;
-
-    $scope.existedUser = { userid: -1, username: '', selectedSite: {}, sites: [], selectedCurrency: { id: 0, name: ''} };
+    $scope.existedUser = { userid: -1, username: '', selectedSite: { siteid: 0, site: '' }, sites: [], selectedCurrency: '' };
     $scope.newUser = {};
-    $scope.context = {};
 
     /* initialization */
     $scope.init = function () {
@@ -64,7 +59,9 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', fu
         });
 
         $("#step2Submit").click(function () {
-            $scope.copyExistingUser();
+            if ($scope.validateData() == true) {
+                $scope.copyExistingUser();
+            }
         });
     };
 
@@ -82,8 +79,14 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', fu
                 $("#step2 .tab-active").attr("class", "tab-inactive");
                 $("#tabGenealInfomation").attr("class", "tab-active");
 
-                $("#panelStep1").attr("class", "step-inactive");
-                $("#panelStep2").attr("class", "step-active");
+                $("#spanstep1").removeClass("step1-active");
+                $("#spanstep1").addClass("step1-inactive");
+
+                $("#spanstep2").removeClass("step2-inactive");
+                $("#spanstep2").addClass("step2-active");
+
+                //removing sports settings
+                //PTSetting.RemoveCustInfoSportType('1');                
             }
             else {
                 message.showAlertMessage("errorMsg", "The super doesn’t exist!", 1);
@@ -95,8 +98,11 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', fu
         $("#step2").hide();
         $("#step1").show();
 
-        $("#panelStep2").attr("class", "step-inactive");
-        $("#panelStep1").attr("class", "step-active");
+        $("#spanstep1").removeClass("step1-inactive");
+        $("#spanstep1").addClass("step1-active");
+
+        $("#spanstep2").removeClass("step2-active");
+        $("#spanstep2").addClass("step2-inactive");
     };
 
     $scope.showSetting = function (settingInfoId, tabId) {
@@ -113,6 +119,8 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', fu
 
         $("#step2 .tab-active").attr("class", "tab-inactive");
         $(tabId).attr("class", "tab-active");
+
+        PTSetting.RemoveSportBookCustInfo();
     };
 
     //Checking required fields: username, password, site and currency
@@ -143,7 +151,7 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', fu
                 if (custid != "-1") {
                     $("#checkExisted").addClass('success');
                     $("#checkExisted").removeClass('not_success');
-                    $scope.getSiteByUserId(custid);
+                    $scope.getSiteAndCurrencyByUserId(custid);
                 }
                 else {
                     $("#checkExisted").removeClass('success');
@@ -157,24 +165,27 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', fu
         });
     };
 
-    $scope.getSiteByUserId = function (custid) {
+    $scope.getSiteAndCurrencyByUserId = function (custid) {
         var param = {
             custid: custid
         };
 
         $.ajax({
             type: "POST",
-            url: toUrl("Super/GetSiteByUserId"),
+            url: toUrl("Super/GetSiteAndCurrencyByUserId"),
             contentType: "application/json; charset=utf-8",
             dataType: 'html',
             data: JSON.stringify(param),
             success: function (result) {
-                selectedSite = result;
+                var site_currency = result.split(',');
+                $scope.existedUser.selectedSite.site = site_currency[0];
+                $scope.existedUser.selectedCurrency = site_currency[1];
+                //$scope.$apply();
                 $scope.getAllSites();
             }
-            , error: function (e) {
-                message.showAlertMessage("errorMsg", "Error for getting site by user id!", 1);
-            }                      
+                , error: function (e) {
+                    message.showAlertMessage("errorMsg", "Error for getting site by user id!", 1);
+                }
         });
     };
 
@@ -187,16 +198,10 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', fu
             data: null,
             success: function (result) {
                 $scope.existedUser.sites = result;
-                $scope.existedUser.selectedSite = $scope.existedUser.sites[2];
+                $scope.$apply();
 
-//                for (var i = 0; i < $scope.existedUser.sites.length; i++) {
-//                    if ($scope.existedUser.sites[i].site == selectedSite) {
-//                        $scope.existedUser.selectedSite = $scope.existedUser.sites[i];
-//                        break;
-//                    }
-//                }
-
-                $scope.$apply(); //important for angularjs
+                //set selected default item.
+                $("select#listSite option").each(function () { this.selected = (this.text == $scope.existedUser.selectedSite.site); });
             }
             , error: function (e) {
                 message.showAlertMessage("errorMsg", "Error for getting sites of existing user!", 1);
@@ -204,6 +209,18 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', fu
         });
     };
 
+    $scope.validateData = function () {
+        if ($scope.newUser.username == undefined || $scope.newUser.username == "") {
+            message.showAlertMessage("errorMsg", "The username is required!", 1);
+            return false;
+        }
+        if ($scope.newUser.password == undefined || $scope.newUser.password == "") {
+            message.showAlertMessage("errorMsg", "The password is required!", 1);
+            return false;
+        }
+
+        return true;
+    };
 
     $scope.copyExistingUser = function () {
         var param = {
@@ -213,7 +230,7 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', fu
             LastName: $scope.newUser.lastname,
             Phone: $scope.newUser.phone,
             MobilePhone: $scope.newUser.mobilephone,
-            Site: $scope.existedUser.sites,
+            Site: $scope.existedUser.selectedSite.site,
             Fax: $scope.newUser.fax,
             Credit: $scope.newUser.maxcredit,
             IsInternal: $scope.newUser.internaluser,
@@ -228,8 +245,16 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', fu
             dataType: "json",
             data: JSON.stringify(param),
             success: function (result) {
+                var success = result != null && result.IsSuccessful == true;
+                if (success) {
+                    message.hideAlertMessage("errorMsg");
+                } else {
+                    if (result != null) {
+                        message.showAlertMessage("errorMsg", result.Message, 1);
+                    }
+                }
             }
-            , error: function (e) {
+            , error: function (xhr, ajaxOptions, thrownError) {
                 message.showAlertMessage("errorMsg", "Error for copying existing user!", 1);
             }
         });

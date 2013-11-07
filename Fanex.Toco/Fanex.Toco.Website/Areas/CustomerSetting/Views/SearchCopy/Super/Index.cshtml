@@ -11,7 +11,9 @@
 }
 @section scripts
 {
-    <script type="text/javascript" src="@Url.Content("~/Areas/CustomerSetting/Views/SearchCopy/Scripts/Libs/angular.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Areas/CustomerSetting/Views/SearchCopy/Scripts/Libs/jquery.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Areas/CustomerSetting/Scripts/angular.min.js")"></script>
+    @*<script type="text/javascript" src="@Url.Content("~/Areas/CustomerSetting/Views/SearchCopy/Scripts/Libs/angular.min.js")"></script>*@
     <script type="text/javascript" src="@Url.Content("~/Areas/CustomerSetting/Views/SearchCopy/Scripts/ModuleSearchCopy.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Areas/CustomerSetting/Views/SearchCopy/Scripts/SearchCopyController.js")"></script>
 }
@@ -19,10 +21,10 @@
     <div id="errorMsg" class="validation-summary-errors hidden" data-valmsg-summary="true">
     </div>
     <div class="formPanel">
-        <div id="panelStep1" class="step-active">
-            <span class="normal">Step 1: Search Existing Supper</span></div>
-        <div id="panelStep2" class="step-inactive">
-            <span class="normal">Step 2: Enter Information</span></div>
+        <div id="panelStep1">
+            <span id="spanstep1" class="step step1-active">Step 1: Search Existing Supper</span></div>
+        <div id="panelStep2">
+            <span id="spanstep2" class="step step2-inactive">Step 2: Enter Information</span></div>
     </div>
     @using (Html.BeginForm("Home", "Index", FormMethod.Post, new { id = "formSearchExistingSupper", @novalidate = "" }))
     {                                
@@ -122,7 +124,7 @@
                                 Password
                             </td>
                             <td class="l" style="width: 31%">
-                                <input type="text" ng-model="newUser.password" size="30" required />
+                                <input type="password" ng-model="newUser.password" size="30" required />
                             </td>
                         </tr>
                         <tr>
@@ -158,7 +160,14 @@
                                 Site
                             </td>
                             <td class="l" style="width: 45%">
-                                 <select ng-model="existedUser.selectedSite" ng-options="s.site for s in existedUser.sites"></select><br>
+                                <select id="listSite" ng-model="existedUser.selectedSite" ng-options="s.site for s in existedUser.sites">
+                                    <option style="display: none" value="">select a type</option>
+                                </select><br>
+                                @*   <select ng-init="selectedValue1 = 0">
+                                    <option ng-repeat="site in existedUser.sites" value="site.siteid" ng-selected="{{site.site==selectedSite1}}">{{site.site}}</option>
+                                 </select><br>*@ @*  <select id="lstSite">
+                                    <option ng-model="selectedSite" ng-repeat="site in existedUser.sites" value="{{site.site}}">{{site.site}}</option>
+                                </select>*@
                             </td>
                             <td class="l" style="width: 12%">
                                 Fax
@@ -178,8 +187,8 @@
                                 Currency
                             </td>
                             <td class="l" style="width: 31%">
-                                <select ng-model="currency" ng-options="c.name for c in newUser.currencylist" name="listCurrency"
-                                    id="listCurrency" class="select-group" required>
+                                <select id="listCurrency" disabled>
+                                    <option value="{{existedUser.selectedCurrency}}">{{existedUser.selectedCurrency}}</option>
                                 </select>
                             </td>
                         </tr>
@@ -195,44 +204,59 @@
                 </div>
                 <div id="divSportsbook" class="bg_table" style="width: 100%">
                     <iframe id="frmSportbook" scrolling="auto" frameborder="0" style="width: 100%; height: 903px;"
-                        hspace="0" vspace="0" marginheight="0" marginwidth="0" src="http://10.18.200.202:8001/Acc-SpecialDelete/EditSuper/EditSuperPage?custId=1373389&uname=testcs"
+                        hspace="0" vspace="0" marginheight="0" marginwidth="0" src="~/EditSuper/EditSuperPage?custId=1373389&uname=testcs"
                         name="centerFr"></iframe>
                 </div>
                 <div id="divSportsbookMinPT" class="bg_table" style="width: 100%">
                     <iframe id="frmSportbookMinPT" scrolling="auto" frameborder="0" style="width: 100%;
-                        height: 903px;" hspace="0" vspace="0" marginheight="0" marginwidth="0" src="http://10.18.200.202:8001/Acc-SpecialDelete/EditSuperMinPt/EditSuperMinPtPage?&custId=1373389&uname=testcs"
+                        height: 903px;" hspace="0" vspace="0" marginheight="0" marginwidth="0" src="~/EditSuperMinPt/EditSuperMinPtPage?&custId=1373389&uname=testcs"
                         name="centerFr"></iframe>
                 </div>
-                <div id="divRacing" class="bg_table" style="width: 100%">
-                    <iframe id="frmRacing" scrolling="auto" frameborder="0" style="width: 100%; height: 903px;"
-                        hspace="0" vspace="0" marginheight="0" marginwidth="0" src="http://10.18.200.202:8001/Acc-SpecialDelete/Customer/PT/Racing/SuperUpdate.aspx?custId=1373389"
-                        name="centerFr"></iframe>
-                </div>
-                <div id="divRacingMinPT" class="bg_table" style="width: 100%">
-                    <iframe id="frmRacingMinPT" scrolling="auto" frameborder="0" style="width: 100%;
-                        height: 903px;" hspace="0" vspace="0" marginheight="0" marginwidth="0" src="http://10.18.200.202:8001/Acc-SpecialDelete/customer/pt/racing/SuperMinUpdate.aspx?custId=1373389"
-                        name="centerFr"></iframe>
-                </div>
-                <div id="divCasino" class="bg_table" style="width: 100%">
-                    <iframe id="frmCasino" scrolling="auto" frameborder="0" style="width: 100%; height: 903px;"
-                        hspace="0" vspace="0" marginheight="0" marginwidth="0" src="http://10.18.200.202:8001/Acc-SpecialDelete/Customer/PositionTakingCS.aspx?custId=1373389"
-                        name="centerFr"></iframe>
-                </div>
-                <div id="divVirtualSports" class="bg_table" style="width: 100%">
-                    <iframe id="frmVirtualSports" scrolling="auto" frameborder="0" style="width: 100%;
-                        height: 903px;" hspace="0" vspace="0" marginheight="0" marginwidth="0" src="http://10.18.200.202:8001/Acc-SpecialDelete/VirtualSportSuperPT/EditSuper?custId=1373389&uname=testcs&roleId=4"
-                        name="centerFr"></iframe>
-                </div>
-                <div id="divBingo" class="bg_table" style="width: 100%">
-                    <iframe id="frmBingo" scrolling="auto" frameborder="0" style="width: 100%; height: 903px;"
-                        hspace="0" vspace="0" marginheight="0" marginwidth="0" src="http://10.18.200.202:8001/Acc-SpecialDelete/Customer/PT/Bingo/SuperUpdate.aspx?custId=1373389"
-                        name="centerFr"></iframe>
-                </div>
-                <div id="divLiveCasino" class="bg_table" style="width: 100%">
-                    <iframe id="frmLiveCasino" scrolling="auto" frameborder="0" style="width: 100%; height: 903px;"
-                        hspace="0" vspace="0" marginheight="0" marginwidth="0" src="http://10.18.200.202:8001/Acc-SpecialDelete/LiveCasino/PTSetting/EditSuper.aspx?custId=1373389&exchangeId=20&roleId=4"
-                        name="centerFr"></iframe>
-                </div>
+                @if (!Model.StatusSports.DisableRacing)
+                {
+                    <div id="divRacing" class="bg_table" style="width: 100%">
+                        <iframe id="frmRacing" scrolling="auto" frameborder="0" style="width: 100%; height: 903px;"
+                            hspace="0" vspace="0" marginheight="0" marginwidth="0" src="~/Customer/PT/Racing/SuperUpdate.aspx?custId=1373389"
+                            name="centerFr"></iframe>
+                    </div>                
+                    <div id="divRacingMinPT" class="bg_table" style="width: 100%">
+                        <iframe id="frmRacingMinPT" scrolling="auto" frameborder="0" style="width: 100%;
+                            height: 903px;" hspace="0" vspace="0" marginheight="0" marginwidth="0" src="~/customer/pt/racing/SuperMinUpdate.aspx?custId=1373389"
+                            name="centerFr"></iframe>
+                    </div>
+                }
+                @if (!Model.StatusSports.DisableCasino)
+                {
+                    <div id="divCasino" class="bg_table" style="width: 100%">
+                        <iframe id="frmCasino" scrolling="auto" frameborder="0" style="width: 100%; height: 903px;"
+                            hspace="0" vspace="0" marginheight="0" marginwidth="0" src="~/Customer/PositionTakingCS.aspx?custId=1373389"
+                            name="centerFr"></iframe>
+                    </div>
+                }
+                @if (!Model.StatusSports.DisableVirtualSports)
+                {
+                    <div id="divVirtualSports" class="bg_table" style="width: 100%">
+                        <iframe id="frmVirtualSports" scrolling="auto" frameborder="0" style="width: 100%;
+                            height: 903px;" hspace="0" vspace="0" marginheight="0" marginwidth="0" src="~/VirtualSportSuperPT/EditSuper?custId=1373389&uname=testcs&roleId=4"
+                            name="centerFr"></iframe>
+                    </div>
+                }
+                @if (!Model.StatusSports.DisableBingo)
+                {
+                    <div id="divBingo" class="bg_table" style="width: 100%">
+                        <iframe id="frmBingo" scrolling="auto" frameborder="0" style="width: 100%; height: 903px;"
+                            hspace="0" vspace="0" marginheight="0" marginwidth="0" src="~/Customer/PT/Bingo/SuperUpdate.aspx?custId=1373389"
+                            name="centerFr"></iframe>
+                    </div>
+                }
+                @if (!Model.StatusSports.DisableLiveCasino)
+                {
+                    <div id="divLiveCasino" class="bg_table" style="width: 100%">
+                        <iframe id="frmLiveCasino" scrolling="auto" frameborder="0" style="width: 100%; height: 903px;"
+                            hspace="0" vspace="0" marginheight="0" marginwidth="0" src="~/LiveCasino/PTSetting/EditSuper.aspx?custId=1373389&exchangeId=20&roleId=4"
+                            name="centerFr"></iframe>
+                    </div>
+                }
             </div>
             <div class="newline">
                 &nbsp;</div>
