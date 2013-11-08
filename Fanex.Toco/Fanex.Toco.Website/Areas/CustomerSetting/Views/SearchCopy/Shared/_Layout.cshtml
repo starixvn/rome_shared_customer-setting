@@ -5,6 +5,8 @@
     <title>@ViewBag.Title</title>
     <link rel="Stylesheet" type="text/css" href="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/Areas/CustomerSetting/Views/SearchCopy/CommonCss")" />
     @RenderSection("Styles", false)    
+    <script type="text/javascript" src="@Url.Content("~/Areas/CustomerSetting/Views/SearchCopy/Scripts/Libs/jquery.js")"></script>        
+    <script type="text/javascript" src="@Url.Content("~/Areas/CustomerSetting/Scripts/angular.min.js")"></script>
 </head>
 <body>
     @RenderBody()

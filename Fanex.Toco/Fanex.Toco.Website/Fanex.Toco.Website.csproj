@@ -242,6 +242,7 @@
     <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\common.js" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\CommonPT.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Config\Store\RacingSpNames.xml" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\RemoveSetting.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\SearchCopyController.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\Libs\angular.min.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\ModuleSearchCopy.js" />
@@ -617,6 +618,8 @@
     <Content Include="Views\Shared\AccessDenied.cshtml" />
     <Content Include="Web.Configuration\CustomerSetting\Racing\PTRacingMappingSection.config" />
     <Content Include="Web.Configuration\CustomerSetting\Racing\RacingBettingCommSettingMappingSection.config" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Super\GeneralInformation.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Super\SearchForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

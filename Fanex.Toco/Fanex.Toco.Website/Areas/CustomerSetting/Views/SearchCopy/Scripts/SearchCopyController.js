@@ -1,7 +1,7 @@
 ﻿var searchCopyController = angular.module('SearchCopy', ['SearchCopy.service', 'SearchCopy.directive', 'SearchCopy.filter']);
 
 // A Controller for your app
-searchCopyController.controller('SearchCopyController', ['$scope', 'message', 'PTSetting', function ($scope, message, PTSetting) {
+searchCopyController.controller('SearchCopyController', ['$scope', 'message', function ($scope, message) {
     /* define variables*/
     var user = {
         userid: -1,
@@ -84,9 +84,6 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', 'P
 
                 $("#spanstep2").removeClass("step2-inactive");
                 $("#spanstep2").addClass("step2-active");
-
-                //removing sports settings
-                //PTSetting.RemoveCustInfoSportType('1');                
             }
             else {
                 message.showAlertMessage("errorMsg", "The super doesn’t exist!", 1);
@@ -114,13 +111,29 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', 'P
         }
 
         $(".settingInfo div").hide();
-        $(settingInfoId).show();
-        $(settingInfoId + " div").show();
+        //$(settingInfoId).show();
+        //$(settingInfoId + " div").show();
 
         $("#step2 .tab-active").attr("class", "tab-inactive");
-        $(tabId).attr("class", "tab-active");
+        $('#' + tabId).attr("class", "tab-active");
 
-        PTSetting.RemoveSportBookCustInfo();
+        var url = ""; //todo
+        switch (tabId) {
+            case 'tabSportsbook': url = "http://localhost:53906/Websites/EditSuper/EditSuperPage?custId=1373389&uname=testcs"; break;
+            case 'tabSportsbookMinPT': url = "http://localhost:53906/Websites/EditSuperMinPt/EditSuperMinPtPage?&custId=1373389&uname=testcs"; break;
+            case 'tabRacing': url = "http://localhost:53906/Websites/EditSuperPTRacing/Index?custid=1373389"; break;
+            case 'tabRacingMinPT': url = "http://localhost:53906/Websites/customer/pt/racing/SuperMinUpdate.aspx?custId=1373389"; break;
+            case 'tabCasino': url = "http://localhost:53906/Websites/Customer/PositionTakingCS.aspx?custId=1373389"; break;
+            case 'tabVirtualSports': url = "http://localhost:53906/Websites/VirtualSportSuperPT/EditSuper?custId=1373389&uname=testcs&roleId=4"; break;
+            case 'tabBingo': url = "http://localhost:53906/Websites/Customer/PT/Bingo/SuperUpdate.aspx?custId=1373389"; break;
+            case 'tabLiveCasino': url = "http://localhost:53906/Websites/LiveCasino/PTSetting/EditSuper.aspx?custId=1373389&exchangeId=20&roleId=4"; break;
+            case 'tabGenealInformation': $("#divGeneralInformation").show();
+        }
+        if (tabId != 'tabGenealInformation') {
+            $('#frmSport').attr('src', url)
+            $("#divSport").show();
+            $("#divSport div").show();
+        };
     };
 
     //Checking required fields: username, password, site and currency
@@ -149,6 +162,7 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', 'P
             success: function (custid) {
                 $scope.existedUser.userid = custid;
                 if (custid != "-1") {
+                    message.hideAlertMessage("errorMsg");
                     $("#checkExisted").addClass('success');
                     $("#checkExisted").removeClass('not_success');
                     $scope.getSiteAndCurrencyByUserId(custid);
@@ -159,7 +173,7 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', 'P
                     message.showAlertMessage("errorMsg", "The super doesn’t exist!", 1);
                 }
             }
-            , error: function (e) {
+            , error: function (xhr, ajaxOptions, thrownError) {
                 message.showAlertMessage("errorMsg", "Error for searching existing user!", 1);
             }
         });
@@ -177,13 +191,13 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', 'P
             dataType: 'html',
             data: JSON.stringify(param),
             success: function (result) {
+                message.hideAlertMessage("errorMsg");
                 var site_currency = result.split(',');
                 $scope.existedUser.selectedSite.site = site_currency[0];
                 $scope.existedUser.selectedCurrency = site_currency[1];
-                //$scope.$apply();
                 $scope.getAllSites();
             }
-                , error: function (e) {
+                , error: function (xhr, ajaxOptions, thrownError) {
                     message.showAlertMessage("errorMsg", "Error for getting site by user id!", 1);
                 }
         });
@@ -197,13 +211,14 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', 'P
             dataType: "json",
             data: null,
             success: function (result) {
-                $scope.existedUser.sites = result;
-                $scope.$apply();
+                message.hideAlertMessage("errorMsg");
+                $scope.$apply(function () {
+                    $scope.existedUser.sites = result;
+                });
 
-                //set selected default item.
                 $("select#listSite option").each(function () { this.selected = (this.text == $scope.existedUser.selectedSite.site); });
             }
-            , error: function (e) {
+            , error: function (xhr, ajaxOptions, thrownError) {
                 message.showAlertMessage("errorMsg", "Error for getting sites of existing user!", 1);
             }
         });
@@ -230,7 +245,7 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', 'P
             LastName: $scope.newUser.lastname,
             Phone: $scope.newUser.phone,
             MobilePhone: $scope.newUser.mobilephone,
-            Site: $scope.existedUser.selectedSite.site,
+            Site: $("#listSite option:selected").text(), //$scope.existedUser.selectedSite.site,
             Fax: $scope.newUser.fax,
             Credit: $scope.newUser.maxcredit,
             IsInternal: $scope.newUser.internaluser,

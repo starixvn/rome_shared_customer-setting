@@ -9,13 +9,11 @@
     <link rel="Stylesheet" href="@Url.Content("~/Areas/CustomerSetting/Views/SearchCopy/Styles/Steps/Step1.css")" />
     <link rel="Stylesheet" href="@Url.Content("~/Areas/CustomerSetting/Views/SearchCopy/Styles/Steps/Step2.css")" />
 }
-@section scripts
-{
-    <script type="text/javascript" src="@Url.Content("~/Areas/CustomerSetting/Views/SearchCopy/Scripts/Libs/jquery.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Areas/CustomerSetting/Scripts/angular.min.js")"></script>
-    @*<script type="text/javascript" src="@Url.Content("~/Areas/CustomerSetting/Views/SearchCopy/Scripts/Libs/angular.min.js")"></script>*@
+@section Scripts
+{    
     <script type="text/javascript" src="@Url.Content("~/Areas/CustomerSetting/Views/SearchCopy/Scripts/ModuleSearchCopy.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Areas/CustomerSetting/Views/SearchCopy/Scripts/SearchCopyController.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Areas/CustomerSetting/Views/SearchCopy/Scripts/RemoveSetting.js")"></script>
 }
 <div id="divSearchCopy" ng-controller="SearchCopyController">
     <div id="errorMsg" class="validation-summary-errors hidden" data-valmsg-summary="true">
@@ -27,236 +25,57 @@
             <span id="spanstep2" class="step step2-inactive">Step 2: Enter Information</span></div>
     </div>
     @using (Html.BeginForm("Home", "Index", FormMethod.Post, new { id = "formSearchExistingSupper", @novalidate = "" }))
-    {                                
+    {                                 
         <div id="step1">
             <div style="clear: both; height: 1px">
                 &nbsp;</div>
-            <div class="formauto">
-                <div class="row username">
-                    <div class="grid2">
-                    </div>
-                    <div class="grid2">
-                        <label>
-                            Username</label></div>
-                    <div class="grid5">
-                        <input id="existedUserName" type="text" ng-model="existedUser.username" size="30"
-                            required />
-                        <span id="checkExisted" class="success" style="display: none"></span>
-                    </div>
-                </div>
-                <div class="newdoubleline">
-                    &nbsp;</div>
-                <div class="row">
-                    <div class="grid1">
-                    </div>
-                    <div class="grid8">
-                        <span class="start">All settings will be copied from username existed.</span>
-                        <br />
-                        <span class="start">Special, AutoSuspend and Internal status will not be copied from
-                            the existing super.</span>
-                    </div>
-                </div>
-                <div class="newdoubleline">
-                    &nbsp;</div>
-                <div class="row">
-                    <div class="grid1">
-                    </div>
-                    <div class="grid2">
-                        <input id="step1Next" type="button" class="btnStep" value="Next >" />
-                    </div>
-                </div>
-            </div>
+            @Html.Partial("~/Areas/CustomerSetting/Views/SearchCopy/Super/SearchForm.cshtml")
         </div>
         <div id="step2">
             <div class="newline">
                 &nbsp;</div>
             <div class="row tabsports">
-                <div id="tabGenealInformation" class="tab-active" ng-click="showSetting('#divGeneralInformation','#tabGenealInformation');">
+                <div id="tabGenealInformation" class="tab-active" ng-click="showSetting('#divGeneralInformation','tabGenealInformation');">
                     <span>General Information</span></div>
-                <div id="tabSportsbook" class="tab-inactive" ng-click="showSetting('#divSportsbook','#tabSportsbook');">
+                <div id="tabSportsbook" class="tab-inactive" ng-click="showSetting('#divSportsbook','tabSportsbook');">
                     <span>Sportsbook</span></div>
-                <div id="tabSportsbookMinPT" class="tab-inactive" ng-click="showSetting('#divSportsbookMinPT','#tabSportsbookMinPT');">
+                <div id="tabSportsbookMinPT" class="tab-inactive" ng-click="showSetting('#divSportsbookMinPT','tabSportsbookMinPT');">
                     <span>Sportsbook Min PT</span></div>
                 @if (!Model.StatusSports.DisableRacing)
                 {
-                    <div id="tabRacing" class="tab-inactive" ng-click="showSetting('#divRacing','#tabRacing');">
+                    <div id="tabRacing" class="tab-inactive" ng-click="showSetting('#divRacing','tabRacing');">
                         <span>Racing</span></div>
-                    <div id="tabRacingMinPT" class="tab-inactive" ng-click="showSetting('#divRacingMinPT','#tabRacingMinPT');">
+                    <div id="tabRacingMinPT" class="tab-inactive" ng-click="showSetting('#divRacingMinPT','tabRacingMinPT');">
                         <span>Racing Min PT</span></div>
                 }
                 @if (!Model.StatusSports.DisableCasino)
                 {
-                    <div id="tabCasino" class="tab-inactive" ng-click="showSetting('#divCasino','#tabCasino');">
+                    <div id="tabCasino" class="tab-inactive" ng-click="showSetting('#divCasino','tabCasino');">
                         <span>Casino</span></div>
                 }
                 @if (!Model.StatusSports.DisableVirtualSports)
                 {
-                    <div id="tabVirtualSports" class="tab-inactive" ng-click="showSetting('#divVirtualSports','#tabVirtualSports');">
+                    <div id="tabVirtualSports" class="tab-inactive" ng-click="showSetting('#divVirtualSports','tabVirtualSports');">
                         <span>Virtual Sports</span></div>
                 }
                 @if (!Model.StatusSports.DisableBingo)
                 {
-                    <div id="tabBingo" class="tab-inactive" ng-click="showSetting('#divBingo','#tabBingo');">
+                    <div id="tabBingo" class="tab-inactive" ng-click="showSetting('#divBingo','tabBingo');">
                         <span>Bingo</span></div>
                 }
                 @if (!Model.StatusSports.DisableLiveCasino)
                 {
-                    <div id="tabLiveCasino" class="tab-inactive" ng-click="showSetting('#divLiveCasino','#tabLiveCasino');">
+                    <div id="tabLiveCasino" class="tab-inactive" ng-click="showSetting('#divLiveCasino','tabLiveCasino');">
                         <span>Live Casino</span></div>
                 }
             </div>
             <div class="settingInfo" style="overflow: auto">
-                <div id="divGeneralInformation">
-                    <table class="tblcollapse" style="width: 850px; margin-bottom: 10px;">
-                        <tr class="title">
-                            <td colspan="4">
-                                General Information
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="l" style="width: 12%">
-                                UserName
-                            </td>
-                            <td class="l" style="width: 45%">
-                                <input type="text" ng-model="newUser.username" size="30" required />
-                            </td>
-                            <td class="l" style="width: 12%">
-                                Password
-                            </td>
-                            <td class="l" style="width: 31%">
-                                <input type="password" ng-model="newUser.password" size="30" required />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="l" style="width: 12%">
-                                First Name
-                            </td>
-                            <td class="l" style="width: 45%">
-                                <input type="text" ng-model="newUser.firstname" size="30" />
-                            </td>
-                            <td class="l" style="width: 12%">
-                                Last Name
-                            </td>
-                            <td class="l" style="width: 31%">
-                                <input type="text" ng-model="newUser.lastname" size="30" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="l" style="width: 12%">
-                                Phone
-                            </td>
-                            <td class="l" style="width: 45%">
-                                <input type="text" ng-model="newUser.phone" size="30" />
-                            </td>
-                            <td class="l" style="width: 12%">
-                                Mobile Phone
-                            </td>
-                            <td class="l" style="width: 31%">
-                                <input type="text" ng-model="newUser.mobilephone" size="30" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="l" style="width: 12%">
-                                Site
-                            </td>
-                            <td class="l" style="width: 45%">
-                                <select id="listSite" ng-model="existedUser.selectedSite" ng-options="s.site for s in existedUser.sites">
-                                    <option style="display: none" value="">select a type</option>
-                                </select><br>
-                                @*   <select ng-init="selectedValue1 = 0">
-                                    <option ng-repeat="site in existedUser.sites" value="site.siteid" ng-selected="{{site.site==selectedSite1}}">{{site.site}}</option>
-                                 </select><br>*@ @*  <select id="lstSite">
-                                    <option ng-model="selectedSite" ng-repeat="site in existedUser.sites" value="{{site.site}}">{{site.site}}</option>
-                                </select>*@
-                            </td>
-                            <td class="l" style="width: 12%">
-                                Fax
-                            </td>
-                            <td class="l" style="width: 31%">
-                                <input type="text" ng-model="newUser.fax" size="30" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="l" style="width: 12%">
-                                Max Credit
-                            </td>
-                            <td class="l" style="width: 45%">
-                                <input type="text" ng-model="newUser.maxcredit" size="30" />
-                            </td>
-                            <td class="l" style="width: 12%">
-                                Currency
-                            </td>
-                            <td class="l" style="width: 31%">
-                                <select id="listCurrency" disabled>
-                                    <option value="{{existedUser.selectedCurrency}}">{{existedUser.selectedCurrency}}</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="l" style="width: 12%">
-                                Internal User
-                            </td>
-                            <td class="l" style="width: 45%">
-                                <input type="checkbox" ng-model="newUser.internaluser">
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div id="divSportsbook" class="bg_table" style="width: 100%">
-                    <iframe id="frmSportbook" scrolling="auto" frameborder="0" style="width: 100%; height: 903px;"
-                        hspace="0" vspace="0" marginheight="0" marginwidth="0" src="~/EditSuper/EditSuperPage?custId=1373389&uname=testcs"
+                @Html.Partial("~/Areas/CustomerSetting/Views/SearchCopy/Super/GeneralInformation.cshtml")
+                 <div id="divSport" class="bg_table" style="width: 100%">
+                    <iframe id="frmSport" onload='setFrameLoaded();' scrolling="auto" frameborder="0" style="width: 100%; height: 903px;"
+                        hspace="0" vspace="0" marginheight="0" marginwidth="0" src=""
                         name="centerFr"></iframe>
                 </div>
-                <div id="divSportsbookMinPT" class="bg_table" style="width: 100%">
-                    <iframe id="frmSportbookMinPT" scrolling="auto" frameborder="0" style="width: 100%;
-                        height: 903px;" hspace="0" vspace="0" marginheight="0" marginwidth="0" src="~/EditSuperMinPt/EditSuperMinPtPage?&custId=1373389&uname=testcs"
-                        name="centerFr"></iframe>
-                </div>
-                @if (!Model.StatusSports.DisableRacing)
-                {
-                    <div id="divRacing" class="bg_table" style="width: 100%">
-                        <iframe id="frmRacing" scrolling="auto" frameborder="0" style="width: 100%; height: 903px;"
-                            hspace="0" vspace="0" marginheight="0" marginwidth="0" src="~/Customer/PT/Racing/SuperUpdate.aspx?custId=1373389"
-                            name="centerFr"></iframe>
-                    </div>                
-                    <div id="divRacingMinPT" class="bg_table" style="width: 100%">
-                        <iframe id="frmRacingMinPT" scrolling="auto" frameborder="0" style="width: 100%;
-                            height: 903px;" hspace="0" vspace="0" marginheight="0" marginwidth="0" src="~/customer/pt/racing/SuperMinUpdate.aspx?custId=1373389"
-                            name="centerFr"></iframe>
-                    </div>
-                }
-                @if (!Model.StatusSports.DisableCasino)
-                {
-                    <div id="divCasino" class="bg_table" style="width: 100%">
-                        <iframe id="frmCasino" scrolling="auto" frameborder="0" style="width: 100%; height: 903px;"
-                            hspace="0" vspace="0" marginheight="0" marginwidth="0" src="~/Customer/PositionTakingCS.aspx?custId=1373389"
-                            name="centerFr"></iframe>
-                    </div>
-                }
-                @if (!Model.StatusSports.DisableVirtualSports)
-                {
-                    <div id="divVirtualSports" class="bg_table" style="width: 100%">
-                        <iframe id="frmVirtualSports" scrolling="auto" frameborder="0" style="width: 100%;
-                            height: 903px;" hspace="0" vspace="0" marginheight="0" marginwidth="0" src="~/VirtualSportSuperPT/EditSuper?custId=1373389&uname=testcs&roleId=4"
-                            name="centerFr"></iframe>
-                    </div>
-                }
-                @if (!Model.StatusSports.DisableBingo)
-                {
-                    <div id="divBingo" class="bg_table" style="width: 100%">
-                        <iframe id="frmBingo" scrolling="auto" frameborder="0" style="width: 100%; height: 903px;"
-                            hspace="0" vspace="0" marginheight="0" marginwidth="0" src="~/Customer/PT/Bingo/SuperUpdate.aspx?custId=1373389"
-                            name="centerFr"></iframe>
-                    </div>
-                }
-                @if (!Model.StatusSports.DisableLiveCasino)
-                {
-                    <div id="divLiveCasino" class="bg_table" style="width: 100%">
-                        <iframe id="frmLiveCasino" scrolling="auto" frameborder="0" style="width: 100%; height: 903px;"
-                            hspace="0" vspace="0" marginheight="0" marginwidth="0" src="~/LiveCasino/PTSetting/EditSuper.aspx?custId=1373389&exchangeId=20&roleId=4"
-                            name="centerFr"></iframe>
-                    </div>
-                }
             </div>
             <div class="newline">
                 &nbsp;</div>
@@ -274,5 +93,9 @@
 <script type="text/javascript">
     function toUrl(relativeUrl) {
         return '@Url.Content("~/CustomerSetting/SearchCopy/")' + relativeUrl;
-    }
+    };
+
+    function setFrameLoaded() {
+        PTSetting.SportType.SetFrameLoaded();
+    };   
 </script>
