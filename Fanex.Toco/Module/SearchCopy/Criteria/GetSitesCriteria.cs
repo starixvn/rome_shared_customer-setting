@@ -17,7 +17,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
     {           
         public override string GetSettingKey()
         {
-            return "Acc_SiteSel";
+            return "CustomerSetting_SiteSel";
         }
 
         public override bool IsValid() { return true; }
