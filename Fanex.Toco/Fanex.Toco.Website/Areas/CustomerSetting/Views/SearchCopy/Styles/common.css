@@ -40,29 +40,61 @@
     padding: 2px 0px 0px 2px;
 }
 
-#divSearchCopy .step-active, #divSearchCopy .step-inactive
-{
-    width: 220px;
+#divSearchCopy .step
+{    
     display: inline;
-    float: left;
-    margin-right: 10px;
+    float: left;    
     padding: 10px;
-    font-size: 14px;
+    font-size: 12px;    
+    margin-top:-2px;
+    height: 6px;
+    width: 183px;
+    background-image: url("Styles/Images/bgSteps.png");
+}
+
+#divSearchCopy .step1-active
+{        
+    background-position: -8px 0px;       
     font-weight: bold;
+    color:White;    
 }
 
-#divSearchCopy .step-active
-{
-    border: 1px solid #90c4d8;
-    background: #F46C00;
-    color: #666666;
+#divSearchCopy .step1-inactive
+{     
+    background-position: -8px -25px;     
+    font-weight: normal;
+    color:Black;
 }
 
-#divSearchCopy .step-inactive
-{
-    border: 1px solid #d7d7d7;
-    background: #F2F2F2;
-    color: #cccccc;
+#spanstep1:hover
+{        
+    background-position: -8px -50px;       
+    font-weight: bold;
+    color:Black;
+}
+
+#divSearchCopy .step2-active
+{        
+    background-position: -8px -75px;       
+    margin-left:-7px;
+    font-weight: bold;
+    color:White;
+}
+
+#divSearchCopy .step2-inactive
+{        
+    background-position: -8px -100px;       
+    margin-left:-7px;
+    font-weight: normal;
+    color:Black;
+}
+
+#spanstep2:hover
+{        
+    background-position: -8px -125px;   
+    margin-left:-10px;    
+    font-weight: bold;
+    color:Black;
 }
 
 /*form*/
@@ -81,7 +113,7 @@
     width: auto;
     border: 1px solid #cfcfcf;
     background: #E6E9F0;
-    padding-bottom: 36px;
+    padding-bottom: 23px;
     zoom: 1;
     display: block;
 }

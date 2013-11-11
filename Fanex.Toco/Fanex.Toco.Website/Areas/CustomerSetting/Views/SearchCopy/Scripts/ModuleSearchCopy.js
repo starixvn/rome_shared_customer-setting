@@ -15,7 +15,10 @@
                  break;
              default:
                  break
-         } 
+         }
+     },
+     hideAlertMessage: function (containerid) {
+         $("#" + containerid).addClass("hidden");
      } 
  });
 

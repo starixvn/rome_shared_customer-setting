@@ -242,6 +242,7 @@
     <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\common.js" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\CommonPT.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Config\Store\RacingSpNames.xml" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\RemoveSetting.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\SearchCopyController.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\Libs\angular.min.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\ModuleSearchCopy.js" />
@@ -249,6 +250,7 @@
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\Libs\json2.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\Libs\knockout-2.0.0.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\common.css" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\bgSteps.png" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\btUpdateR.gif" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\error.gif" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\more.gif" />
@@ -616,6 +618,8 @@
     <Content Include="Views\Shared\AccessDenied.cshtml" />
     <Content Include="Web.Configuration\CustomerSetting\Racing\PTRacingMappingSection.config" />
     <Content Include="Web.Configuration\CustomerSetting\Racing\RacingBettingCommSettingMappingSection.config" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Super\GeneralInformation.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Super\SearchForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -658,7 +662,6 @@
     <Content Include="Areas\CustomerSetting\Views\BetSetting\LiveCasino\Content.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Casino\Content.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Bingo\Content.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Config\PTRacingMappingSection.config" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\Agent.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\Master.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\MasterEditMember.cshtml" />
@@ -666,6 +669,7 @@
     <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\RacingSetting.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\Super.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\SuperEditMember.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Config\PTRacingMappingSection.config" />
     <None Include="Areas\CustomerSetting\Views\SearchCopy\Document.doc" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Shared\_Layout.cshtml" />
     <None Include="Areas\CustomerSetting\Views\OpusCasino\Document.doc" />

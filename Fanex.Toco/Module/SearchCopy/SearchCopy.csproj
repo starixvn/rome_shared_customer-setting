@@ -156,9 +156,7 @@
     <Compile Include="Repositories\Interface\ISearchCopyRepository.cs" />
     <Compile Include="Repositories\Impl\SearchCopyRepository.cs" />
     <Compile Include="Services\ISearchCopyService.cs" />
-    <Compile Include="Helper\MessageHelper.cs" />
     <Compile Include="Services\SearchCopyService.cs" />
-    <Compile Include="Services\ResourceHelper.cs" />
     <Compile Include="Helper\SerializeHelper.cs" />
     <Compile Include="ViewModels\CustomerSettingView.cs" />
     <Compile Include="Entities\DisableSports.cs" />
