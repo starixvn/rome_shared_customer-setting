@@ -45,16 +45,16 @@
             dataType: 'json',
             data: JSON.stringify(param),
             success: function (rs) {
-                if (rs.ErrorCode == 0) {
+                if (rs.errorCode == 0) {
                     showAlertMessage('err', 'Updated Successfully', 0);
                     afterUpdate(true, 2000);
                 }
-                else if (rs.ErrorCode == 500) {
-                    showAlertMessage('err', rs.ErrorMessage, 1);
+                else if (rs.errorCode == 500) {
+                    showAlertMessage('err', rs.errorMessage, 1);
                     afterUpdate(false, 2000);
                 }
                 else {
-                    showAlertMessage('err', rs.ErrorMessage, 1);
+                    showAlertMessage('err', rs.errorMessage, 1);
                 }
             },
             complete: function () {
@@ -63,8 +63,8 @@
         });
     },
     initHtml: function (rs) {
-        if (rs.Result && rs.Result.ErrorCode > 0) {
-            $('#err').html('<div class="alertboxerr"><div>' + rs.Result.ErrorMessage + '</div></div>');
+        if (rs.Result && rs.Result.errorCode > 0) {
+            $('#err').html('<div class="alertboxerr"><div>' + rs.Result.errorMessage + '</div></div>');
             $('.bg_table').addClass('hidden');
         }
         else {
