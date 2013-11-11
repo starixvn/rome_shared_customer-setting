@@ -91,7 +91,7 @@ namespace Fanex.CustomerSetting.Module.Racebook.Controllers
         /// <returns>Return JSON result.</returns>
         [HttpPost]
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Racing")]
-        public JsonResult UpdateCustomerSetting(Customer oldSettings, Customer newSettings, RequestContext currentContext, Dictionary<object, object> otherSettings)
+        public ActionResult UpdateCustomerSetting(Customer oldSettings, Customer newSettings, RequestContext currentContext, Dictionary<object, object> otherSettings)
         {
             IList<Result> updatedResults = new List<Result>();
             try
@@ -117,7 +117,7 @@ namespace Fanex.CustomerSetting.Module.Racebook.Controllers
                 });
             }
 
-            return Json(updatedResults);
+            return JsonBase(updatedResults);
         }
         
         /// <summary>

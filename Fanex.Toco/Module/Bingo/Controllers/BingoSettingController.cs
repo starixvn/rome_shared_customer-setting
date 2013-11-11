@@ -104,7 +104,7 @@ namespace Fanex.CustomerSetting.Module.Bingo.Controllers
                     AppSession.CurrentSession.UserName);
             }
 
-            return Json(result, JsonRequestBehavior.DenyGet);
+            return JsonBase(result);
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Bingo")]
@@ -121,7 +121,7 @@ namespace Fanex.CustomerSetting.Module.Bingo.Controllers
                     AppSession.CurrentSession.UserName);
             }
 
-            return Json(result, JsonRequestBehavior.DenyGet);
+            return JsonBase(result);
         }
 
         #endregion
