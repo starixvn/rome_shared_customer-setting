@@ -17,6 +17,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
     using System.Collections.Generic;
     using System.Linq;
     using System;
+    using System.Configuration;
 
     /// <summary>
     /// Base racing controller.
@@ -37,6 +38,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                 StatusSports = string.IsNullOrEmpty(username) ? new DisableSports() : GetSportsStatusByUserName(username)
             };
 
+            ViewBag.CurrentURL = ConfigurationManager.AppSettings["CurrentURL"].ToString();
             return View("~/Areas/CustomerSetting/Views/SearchCopy/Super/Index.cshtml", customerSettingView);           
         }
 
