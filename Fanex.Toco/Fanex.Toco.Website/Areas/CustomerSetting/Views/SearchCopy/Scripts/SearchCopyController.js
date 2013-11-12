@@ -111,22 +111,20 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', fu
         }
 
         $(".settingInfo div").hide();
-        //$(settingInfoId).show();
-        //$(settingInfoId + " div").show();
 
         $("#step2 .tab-active").attr("class", "tab-inactive");
         $('#' + tabId).attr("class", "tab-active");
 
-        var url = ""; //todo
+        var url = "";        
         switch (tabId) {
-            case 'tabSportsbook': url = "http://localhost:53906/Websites/EditSuper/EditSuperPage?custId=1373389&uname=testcs"; break;
-            case 'tabSportsbookMinPT': url = "http://localhost:53906/Websites/EditSuperMinPt/EditSuperMinPtPage?&custId=1373389&uname=testcs"; break;
-            case 'tabRacing': url = "http://localhost:53906/Websites/EditSuperPTRacing/Index?custid=1373389"; break;
-            case 'tabRacingMinPT': url = "http://localhost:53906/Websites/customer/pt/racing/SuperMinUpdate.aspx?custId=1373389"; break;
-            case 'tabCasino': url = "http://localhost:53906/Websites/Customer/PositionTakingCS.aspx?custId=1373389"; break;
-            case 'tabVirtualSports': url = "http://localhost:53906/Websites/VirtualSportSuperPT/EditSuper?custId=1373389&uname=testcs&roleId=4"; break;
-            case 'tabBingo': url = "http://localhost:53906/Websites/Customer/PT/Bingo/SuperUpdate.aspx?custId=1373389"; break;
-            case 'tabLiveCasino': url = "http://localhost:53906/Websites/LiveCasino/PTSetting/EditSuper.aspx?custId=1373389&exchangeId=20&roleId=4"; break;
+            case 'tabSportsbook': url = "http://localhost:53906/Websites/EditSuper/EditSuperPage?custId=" + $scope.existedUser.userid + "&uname=" + $scope.existedUser.username; break;
+            case 'tabSportsbookMinPT': url = "http://localhost:53906/Websites/EditSuperMinPt/EditSuperMinPtPage?&custId=" + $scope.existedUser.userid + "&uname=" + $scope.existedUser.username; break;
+            case 'tabRacing': url = "http://localhost:53906/Websites/EditSuperPTRacing/Index?custid=" + $scope.existedUser.userid; break;
+            case 'tabRacingMinPT': url = "http://localhost:53906/Websites/customer/pt/racing/SuperMinUpdate.aspx?custId=" + $scope.existedUser.userid; break;
+            case 'tabCasino': url = "http://localhost:53906/Websites/Customer/PositionTakingCS.aspx?custId=" + $scope.existedUser.userid; break;
+            case 'tabVirtualSports': url = "http://localhost:53906/Websites/VirtualSportSuperPT/EditSuper?custId=" + $scope.existedUser.userid + "&uname=" +  $scope.existedUser.username + "&roleId=4"; break;
+            case 'tabBingo': url = "http://localhost:53906/Websites/Customer/PT/Bingo/SuperUpdate.aspx?custId=" + $scope.existedUser.userid; break;
+            case 'tabLiveCasino': url = "http://localhost:53906/Websites/LiveCasino/PTSetting/EditSuper.aspx?custId=" + $scope.existedUser.userid + "&exchangeId=20&roleId=4"; break;
             case 'tabGenealInformation': $("#divGeneralInformation").show();
         }
         if (tabId != 'tabGenealInformation') {
