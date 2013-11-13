@@ -95,14 +95,26 @@ namespace Fanex.CustomerSetting.Module.Racebook.Controllers
         #region Min/Max PT
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Racing")]
-        public ActionResult MasterMinMaxPT()
+        public ActionResult MasterMinMaxPT(int id = 0, int uplineId = 0, string groupName = null)
         {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, groupName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             return View("~/Areas/CustomerSetting/Views/Racebook/Setting/MasterMinMaxPT.cshtml");
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Racing")]
-        public ActionResult AgentMinMaxPT()
+        public ActionResult AgentMinMaxPT(int id = 0, int uplineId = 0, string groupName = null)
         {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, groupName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             return View("~/Areas/CustomerSetting/Views/Racebook/Setting/AgentMinMaxPT.cshtml");
         }
 
