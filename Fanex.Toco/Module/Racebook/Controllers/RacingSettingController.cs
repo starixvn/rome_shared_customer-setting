@@ -7,6 +7,7 @@
 //     <change who="steven.nguyen">Create/Run StyleCop.</change>
 // </history>
 // ************************************************************************************
+
 namespace Fanex.CustomerSetting.Module.Racebook.Controllers
 {
     using System.Web.Mvc;
@@ -17,7 +18,6 @@ namespace Fanex.CustomerSetting.Module.Racebook.Controllers
     /// </summary>
     public class RacingSettingController : BaseRacingSettingController
     {
-
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Racing")]
         public ActionResult Super()
         {
@@ -53,5 +53,21 @@ namespace Fanex.CustomerSetting.Module.Racebook.Controllers
         {
             return View("~/Areas/CustomerSetting/Views/Racebook/Setting/MasterEditMember.cshtml");
         }
+
+        #region Min/Max PT
+
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Racing")]
+        public ActionResult MasterMinMaxPT()
+        {
+            return View("~/Areas/CustomerSetting/Views/Racebook/Setting/MasterMinMaxPT.cshtml");
+        }
+
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Racing")]
+        public ActionResult AgentMinMaxPT()
+        {
+            return View("~/Areas/CustomerSetting/Views/Racebook/Setting/AgentMinMaxPT.cshtml");
+        }
+
+        #endregion
     }
 }

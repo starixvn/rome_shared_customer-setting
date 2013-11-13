@@ -7,6 +7,7 @@
 //     <change who="steven.nguyen">Create/Run StyleCop.</change>
 // </history>
 // ************************************************************************************
+
 namespace Fanex.CustomerSetting.Module.Racebook.Controllers
 {
     using System;
@@ -16,6 +17,7 @@ namespace Fanex.CustomerSetting.Module.Racebook.Controllers
     using App_Start;
     using Core.Web;
     using Core.Web.Controllers;
+    using Fanex.CustomerSetting.Module.Racebook.Entities;
     using Fanex.CustomerSetting.Security.Authenticate;
     using Helper;
     using Newtonsoft.Json;
@@ -64,7 +66,7 @@ namespace Fanex.CustomerSetting.Module.Racebook.Controllers
         {
             IRequestContext currentContext = new RequestContext()
             {
-                CustId = uplineId, ////upline id
+                CustId = uplineId, // upline id
                 AgentId = 0,
                 UserName = string.Empty,
                 TargetCustId = targetCustId,
@@ -93,7 +95,7 @@ namespace Fanex.CustomerSetting.Module.Racebook.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Racing")]
         public JsonResult UpdateCustomerSetting(Customer oldSettings, Customer newSettings, RequestContext currentContext, Dictionary<object, object> otherSettings)
         {
-            IList<Result> updatedResults = new List<Result>();
+            IList<Fanex.PTRacing.BusinessObjects.Result> updatedResults = new List<Fanex.PTRacing.BusinessObjects.Result>();
             try
             {
                 ICustomer oldSetting = oldSettings;
@@ -110,7 +112,7 @@ namespace Fanex.CustomerSetting.Module.Racebook.Controllers
             }
             catch (Exception ex)
             {
-                updatedResults.Add(new Result()
+                updatedResults.Add(new Fanex.PTRacing.BusinessObjects.Result()
                 {
                     ErrorCode = "100",
                     ErrorMessage = ex.Message
@@ -119,6 +121,35 @@ namespace Fanex.CustomerSetting.Module.Racebook.Controllers
 
             return Json(updatedResults);
         }
+
+        #region Min/Max PT Setting
+
+        /// <summary>
+        /// Gets the min max PT setting.
+        /// </summary>
+        /// <param name="custId">The customer id.</param>
+        /// <param name="roleId">The role id.</param>
+        /// <returns>JSON result of Min/Max PT setting.</returns>
+        [HttpPost]
+        public JsonResult GetMinMaxPTSetting(int custId, int roleId)
+        {
+            Setting result = _racingSettingService.GetCustomerInfo(custId, roleId);
+            
+            JsonSerializerSettings jsonSetting = new JsonSerializerSettings();
+            jsonSetting.NullValueHandling = NullValueHandling.Ignore;
+            return Json(JsonConvert.SerializeObject(result, Formatting.Indented, jsonSetting));
+        }
+
+        [HttpPost]
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Racing")]
+        public JsonResult UpdateMinMaxPT(Setting setting, int targetRoleId)
+        {
+            int updatedUserId = AppSession.CurrentSession.UserId;
+            Entities.Result result = _racingSettingService.SaveCustomerSettings(setting, targetRoleId, updatedUserId);
+            return Json(JsonConvert.SerializeObject(result, Formatting.Indented));
+        }
+
+        #endregion
         
         /// <summary>
         /// Execute before each request, if Downtime then go to Downtime page.
@@ -127,7 +158,6 @@ namespace Fanex.CustomerSetting.Module.Racebook.Controllers
         /// <param name="filterContext">The filter context.</param>
         protected override void OnActionExecuting(System.Web.Mvc.ActionExecutingContext filterContext)
         {
-            //AppSession.AccId = 8;
             ResourceHelper.SetCulture();
             var rootUrl = Url.Content("~") + filterContext.RouteData.DataTokens["area"].ToString() + "/" + ModuleRegistrator.Module + "/";
             ViewBag.RootUrl = rootUrl;

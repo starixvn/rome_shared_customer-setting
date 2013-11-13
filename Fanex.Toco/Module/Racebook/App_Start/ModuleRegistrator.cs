@@ -17,7 +17,6 @@ namespace Fanex.CustomerSetting.Module.Racebook.App_Start
     /// </summary>
     public class ModuleRegistrator : AppAreaRegistrator
     {
-
         public const string Module = "Racebook";
 
         /// <summary>

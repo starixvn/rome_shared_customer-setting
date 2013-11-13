@@ -1,4 +1,13 @@
-﻿using System.Reflection;
+﻿// ************************************************************************************
+// <copyright file="AssemblyInfo.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) AssemblyInfo.cs. All rights reserved.
+// </copyright>
+// ************************************************************************************
+// <history>
+//     <change who="kan.nguyen">Create/Run StyleCop.</change>
+// </history>
+// ************************************************************************************
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 

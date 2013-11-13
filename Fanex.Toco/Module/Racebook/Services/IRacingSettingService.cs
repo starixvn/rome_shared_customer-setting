@@ -1,11 +1,31 @@
-﻿using Fanex.PTRacing.BusinessObjects;
-using System.Collections;
-using RequestContext = Fanex.PTRacing.BusinessObjects.RequestContext;
+﻿// ************************************************************************************
+// <copyright file="IRacingSettingService.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// ************************************************************************************
+// <history>
+//     <change who="kan.nguyen">Create/Run StyleCop.</change>
+// </history>
+// ************************************************************************************
 namespace Fanex.CustomerSetting.Module.Racebook.Services
 {
+    using System.Collections;
+    using Fanex.CustomerSetting.Module.Racebook.Entities;
+    using Fanex.PTRacing.BusinessObjects;
+    using RequestContext = Fanex.PTRacing.BusinessObjects.RequestContext;
+
     public interface IRacingSettingService
     {
         ICustomer GetCustomerInfo(IRequestContext requestContext);
-        Result SaveCustomerSettings(ICustomer oldCustomerSettings, ICustomer newCustomerSettings, RequestContext currentContext, Hashtable otherSettings);
+
+        Setting GetCustomerInfo(int custId, int roleId);
+
+        Fanex.PTRacing.BusinessObjects.Result SaveCustomerSettings(
+            ICustomer oldCustomerSettings, 
+            ICustomer newCustomerSettings,
+            RequestContext currentContext,
+            Hashtable otherSettings);
+
+        Fanex.CustomerSetting.Module.Racebook.Entities.Result SaveCustomerSettings(Setting setting, int targetRoleId, int updatedUserId);
     }
 }

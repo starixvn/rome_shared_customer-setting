@@ -1,24 +1,41 @@
-﻿using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text.RegularExpressions;
-using Fanex.CustomerSetting.Module.Racebook.Services;
-using Fanex.PTRacing.BusinessObjects;
-using System;
-
+﻿// ************************************************************************************
+// <copyright file="MessageHelper.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// ************************************************************************************
+// <history>
+//     <change who="kan.nguyen">Created.</change>
+// </history>
+// ************************************************************************************
 namespace Fanex.CustomerSetting.Module.Racebook.Helper
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using Fanex.CustomerSetting.Module.Racebook.Services;
+    using Fanex.PTRacing.BusinessObjects;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
     internal class MessageHelper
     {
-       public static IList<Result> ParseError(string errorCode, string errorMsg)
+        /// <summary>
+        /// Parses the error.
+        /// </summary>
+        /// <param name="errorCode">The error code.</param>
+        /// <param name="errorMsg">The error MSG.</param>
+        /// <returns>The list of result object.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules",
+            "SP2101:MethodMustNotContainMoreLinesThan",
+            Justification = "Reviewed. Suppression is OK here.")]
+        public static IList<Result> ParseError(string errorCode, string errorMsg)
         {
             var errorResults = new List<Result>();
 
             if (!string.IsNullOrEmpty(errorCode))
             {
-                //var arrErrorCode = Regex.Split(errorCode, "\a");
-                //var arrErrorMsgs = Regex.Split(errorMsg, "\a");
-
                 string[] splitChars = new[] { "\a" };
                 var arrErrorCode = errorCode.Split(splitChars, StringSplitOptions.RemoveEmptyEntries);
                 var arrErrorMsgs = errorMsg.Split(splitChars, StringSplitOptions.RemoveEmptyEntries);
@@ -28,7 +45,11 @@ namespace Fanex.CustomerSetting.Module.Racebook.Helper
                     for (int i = 0; i < totalErrors; i++)
                     {
                         var errCode = Fanex.Common.Converter.ToInt(arrErrorCode[i]);
-                        if (errCode == 0) { continue; }
+                        if (errCode == 0)
+                        {
+                            continue;
+                        }
+
                         var errMsg = errCode > 0
                                         ? arrErrorMsgs[i]
                                         : ResourceHelper.GetResource(errCode.ToString());
@@ -58,6 +79,7 @@ namespace Fanex.CustomerSetting.Module.Racebook.Helper
                     ErrorMessage = ResourceHelper.GetResource("Unchanged")
                 });
             }
+
             return errorResults;
         }
     }

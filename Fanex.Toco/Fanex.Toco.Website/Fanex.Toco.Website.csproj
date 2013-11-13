@@ -224,6 +224,9 @@
     <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditSuperController.js" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\common.js" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\CommonPT.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Setting\AgentMinMaxPT.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Setting\MasterMinMaxPT.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Setting\MinMaxPTRacingSetting.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Config\Store\RacingSpNames.xml" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\Libs\jquery.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\Libs\json2.js" />
@@ -800,6 +803,7 @@
     <Content Include="Views\Shared\AccessDenied.cshtml" />
     <Content Include="Web.Configuration\CustomerSetting\Racing\PTRacingMappingSection.config" />
     <Content Include="Web.Configuration\CustomerSetting\Racing\RacingBettingCommSettingMappingSection.config" />
+    <Content Include="Web.Configuration\CustomerSetting\Racing\RacingSection.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -865,6 +869,10 @@
     <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\RacingSetting.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\Super.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\SuperEditMember.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Shared\_LayoutMinMaxPT.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\MasterMinMaxPT.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Config\RacingSection.config" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\AgentMinMaxPT.cshtml" />
     <None Include="Areas\CustomerSetting\Views\SearchCopy\Document.doc" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Super\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Shared\_Layout.cshtml" />

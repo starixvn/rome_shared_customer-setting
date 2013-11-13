@@ -102,7 +102,7 @@
       <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Providers">
-      <HintPath>..\..\_Dependencies\Web\System.Web.Providers.dll</HintPath>
+      <HintPath>..\..\..\_Dependencies\Web\System.Web.Providers.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -122,11 +122,11 @@
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
-      <HintPath>..\..\_Dependencies\Web\WebGrease.dll</HintPath>
+      <HintPath>..\..\..\_Dependencies\Web\WebGrease.dll</HintPath>
     </Reference>
     <Reference Include="Antlr3.Runtime">
       <Private>True</Private>
-      <HintPath>..\..\_Dependencies\Web\Antlr3.Runtime.dll</HintPath>
+      <HintPath>..\..\..\_Dependencies\Web\Antlr3.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
