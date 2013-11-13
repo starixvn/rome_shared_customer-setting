@@ -17,6 +17,7 @@ namespace Fanex.CustomerSetting.Module.Racebook.Controllers
     using Core.Web;
     using Core.Web.Controllers;
     using Fanex.CustomerSetting.Security.Authenticate;
+    using Fanex.CustomerSetting.Security.Configurations;
     using Helper;
     using Newtonsoft.Json;
     using PTRacing.BusinessObjects;
@@ -91,8 +92,14 @@ namespace Fanex.CustomerSetting.Module.Racebook.Controllers
         /// <returns>Return JSON result.</returns>
         [HttpPost]
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Racing")]
-        public ActionResult UpdateCustomerSetting(Customer oldSettings, Customer newSettings, RequestContext currentContext, Dictionary<object, object> otherSettings)
+        public ActionResult UpdateCustomerSetting(Customer oldSettings, Customer newSettings, RequestContext currentContext, Dictionary<object, object> otherSettings, string groupName = null)
         {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(currentContext.TargetCustId, null, groupName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             IList<Result> updatedResults = new List<Result>();
             try
             {

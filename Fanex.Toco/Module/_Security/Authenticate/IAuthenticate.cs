@@ -25,5 +25,7 @@
         /// Gets or sets current function need to authenticate
         /// </summary>
         string Function { get; set; }
+
+        bool IsBelong(int custId, string username, string groupName = null, bool getUplineInfo = true);
     }
 }

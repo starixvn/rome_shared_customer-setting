@@ -26,12 +26,16 @@ namespace Fanex.CustomerSetting.Security.Authenticate
             get;
             set;
         }
-
-
+        
         public string Function
         {
             get;
             set;
+        }
+        
+        public bool IsBelong(int custId, string username, string groupName = null, bool getUplineInfo = true)
+        {
+            return true;
         }
     }
 }

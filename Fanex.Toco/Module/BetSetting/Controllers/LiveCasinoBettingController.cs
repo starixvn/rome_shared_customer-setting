@@ -13,11 +13,13 @@
 /// </summary>
 namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
 {
+    using System;
     using System.Collections.Generic;
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.BetSetting.Base;
     using Fanex.CustomerSetting.Module.BetSetting.ViewModels;
     using Fanex.CustomerSetting.Security.Authenticate;
+    using Fanex.CustomerSetting.Security.Configurations;
     using Fanex.LiveCasinoSetting;
     using Fanex.LiveCasinoSetting.Model;
     using Fanex.LiveCasinoSetting.Model.Log;
@@ -41,6 +43,12 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
         /// <returns>ActionResult object.</returns>
         public ActionResult Index(int id, int uplineId, int userId, string siteName)
         {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, siteName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             return this.View("~/Areas/CustomerSetting/Views/BetSetting/LiveCasino/Index.cshtml");
         }
 
@@ -58,7 +66,8 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
             IList<int> groups = GroupConfigurations.AllowBettingGroups;
             Customer customer = this.CustomerInfo(id, userId);
 
-            if (customer.RoleId != 4 || groups == null || !groups.Contains(customer.GroupId) || !siteName.Substring(3).ToUpper().Contains(customer.CurrencyName.ToUpper()) || !customer.SyncLiveCasino)
+            if (customer.RoleId != 4 || groups == null || !groups.Contains(customer.GroupId) || 
+                !siteName.Substring(3).ToUpper().Contains(customer.CurrencyName.ToUpper()) || !customer.SyncLiveCasino)
             {
                 return this.PartialView("~/Areas/CustomerSetting/Views/Security/AccessDenied.cshtml");
             }
@@ -101,6 +110,12 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "LiveCasinoBetting")]
         public ActionResult EditBetSettingPost(int id, int uplineId, int userId, string txtCustomerObject, string siteName = "ACCUT")
         {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, siteName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             IList<int> groups = GroupConfigurations.AllowBettingGroups;
             Customer customer = this.CustomerInfo(id, userId);
             JsonSerializerSettings settings = new JsonSerializerSettings();
@@ -108,7 +123,8 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
             settings.NullValueHandling = NullValueHandling.Ignore;
             settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
-            if (customer.RoleId != 4 || groups == null || !groups.Contains(customer.GroupId) || !siteName.Substring(3).ToUpper().Contains(customer.CurrencyName.ToUpper()) || !customer.SyncLiveCasino)
+            if (customer.RoleId != 4 || groups == null || !groups.Contains(customer.GroupId) || 
+                !siteName.Substring(3).ToUpper().Contains(customer.CurrencyName.ToUpper()) || !customer.SyncLiveCasino)
             {
                 return this.JsonBase(new { ErrorCode = 1, ErrorMessage = "You're not authorized on this function" }, settings);
             }

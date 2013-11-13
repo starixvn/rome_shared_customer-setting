@@ -34,7 +34,7 @@ namespace Fanex.CustomerSetting.Security.Authenticate
                 _authenticateFactory = item as IAuthenticate;
                 _authenticateFactory.Policy = actionType;
                 _authenticateFactory.Function = functionName;
-
+                
                 return _authenticateFactory;
             }
 

@@ -1,5 +1,5 @@
 ﻿// ************************************************************************************
-// <copyright file="BingoBettingController.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="CasinoBettingController.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ************************************************************************************
@@ -21,6 +21,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
     using Fanex.CustomerSetting.Module.Casino.Services.Impl;
     using Fanex.CustomerSetting.Module.Casino.ViewModels;
     using Fanex.CustomerSetting.Security.Authenticate;
+    using Fanex.CustomerSetting.Security.Configurations;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
 
@@ -39,6 +40,12 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
         /// <returns>ActionResult object.</returns>
         public ActionResult Index(int id, int uplineId, int userId, string siteName)
         {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, siteName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             return this.View("~/Areas/CustomerSetting/Views/BetSetting/Casino/Index.cshtml");
         }
 
@@ -57,7 +64,8 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
 
             var customer = this.CustomerInfo(id, userId);
 
-            if (customer.RoleId != 4 || groups == null || !groups.Contains(customer.GroupId) || !customer.SyncBingo || !siteName.Substring(3).ToUpper().Contains(customer.CurrencyName.ToUpper()))
+            if (customer.RoleId != 4 || groups == null || !groups.Contains(customer.GroupId) || !customer.SyncBingo || 
+                !siteName.Substring(3).ToUpper().Contains(customer.CurrencyName.ToUpper()))
             {
                 return this.PartialView("~/Areas/CustomerSetting/Views/Security/AccessDenied.cshtml");
             }
@@ -113,6 +121,12 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "CasinoBetting")]
         public ActionResult EditBetSettingPost(int id, int uplineId, int userId, string txtCustomerObject, string siteName = "ACCUT")
         {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, siteName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             var groups = GroupConfigurations.AllowBettingGroups;
 
             var customer = this.CustomerInfo(id, userId);
@@ -121,13 +135,22 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
             settings.NullValueHandling = NullValueHandling.Ignore;
             settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
-            if (customer.RoleId != 4 || groups == null || !groups.Contains(customer.GroupId) || !customer.SyncBingo || !siteName.Substring(3).ToUpper().Contains(customer.CurrencyName.ToUpper()))
+            if (customer.RoleId != 4 || groups == null || !groups.Contains(customer.GroupId) || !customer.SyncBingo || 
+                !siteName.Substring(3).ToUpper().Contains(customer.CurrencyName.ToUpper()))
             {
                 return this.JsonBase(new { ErrorCode = 1, ErrorMessage = "You're not authorized on this function" }, settings);
             }
 
             CasinoModel model = JsonConvert.DeserializeObject<CasinoModel>(txtCustomerObject);
-            var  result = CasinoManager.Instance.UpdateSuperBettingLimit(id, 4, Request.UserHostAddress, userId, "Admin", FromSystem, model.SettingModel, model.CustomerModel);
+            var  result = CasinoManager.Instance.UpdateSuperBettingLimit(
+                id, 
+                4, 
+                Request.UserHostAddress, 
+                userId, 
+                "Admin", 
+                FromSystem, 
+                model.SettingModel, 
+                model.CustomerModel);
 
             return this.JsonBase(result, settings);
         }

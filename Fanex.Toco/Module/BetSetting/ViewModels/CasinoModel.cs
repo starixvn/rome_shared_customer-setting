@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="CasinoModel.cs" company="">
+// <copyright file="CasinoModel.cs" company="Nexcel">
 // TODO: Update copyright text.
 // </copyright>
 // -----------------------------------------------------------------------

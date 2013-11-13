@@ -1,18 +1,26 @@
 ﻿namespace Fanex.CustomerSetting.Module.Casino.Controllers
 {
+    using System;
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.Casino.Entities;
     using Fanex.CustomerSetting.Module.Casino.Services.Impl;
     using Fanex.CustomerSetting.Module.Casino.ViewModels;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
     using Fanex.CustomerSetting.Security.Authenticate;
+    using Fanex.CustomerSetting.Security.Configurations;
     using Newtonsoft.Json;
 
     public class SuperController : BaseController
     {
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
-        public ActionResult EditSuper(int id, int uplineId)
+        public ActionResult EditSuper(int id, int uplineId, string groupName = null)
         {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, groupName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             var customerSetting = new CasinoSettingModel();
 
             try
@@ -28,8 +36,14 @@
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
-        public ActionResult UpdateSuperPost(int id, string custName, int uplineId, int userId, string username, string settingModel, string customerModel)
+        public ActionResult UpdateSuperPost(int id, string custName, int uplineId, int userId, string username, string settingModel, string customerModel, string groupName = null)
         {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, groupName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             var ret = CasinoManager.Instance.UpdateSuper(id, custName, uplineId, Request.UserHostAddress, userId, username, BaseController.FromSystem, JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
 
             return this.JsonBase(new { ErrorCode = ret.IsSuccess ? 0 : 1, ErrorMessage = ret.ErrorMessage });

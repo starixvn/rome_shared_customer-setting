@@ -33,8 +33,8 @@ namespace Fanex.CustomerSetting.Module.Core.Web.App_Start
             {
                 context.MapRoute(
                     AreaName + "_" + ModuleName,
-                    AreaName + "/" + ModuleName + "/{controller}/{action}/{id}/{uplineId}",
-                    new { action = "Index", id = UrlParameter.Optional, uplineId = UrlParameter.Optional },
+                    AreaName + "/" + ModuleName + "/{controller}/{action}/{id}/{uplineId}/{groupName}",
+                    new { action = "Index", id = UrlParameter.Optional, uplineId = UrlParameter.Optional, groupName = UrlParameter.Optional },
                     new[] { ModuleNameSpace });
             }
         }

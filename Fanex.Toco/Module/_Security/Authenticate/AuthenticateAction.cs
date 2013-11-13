@@ -8,7 +8,7 @@ namespace Fanex.CustomerSetting.Security.Authenticate
     {
         private readonly AuthenticationType _authenticationType;
         private readonly string _mainAction;
-
+        
         public enum AuthenticationType
         {
             Read,

@@ -21,6 +21,7 @@ namespace Fanex.CustomerSetting.Module.Core.Web.Controllers
     using Fanex.ExternalAccount.Controllers.Base;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
+using System.Web;
 
 	[SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
 	public class BaseController : Controller
@@ -146,5 +147,28 @@ namespace Fanex.CustomerSetting.Module.Core.Web.Controllers
 
 			base.ExecuteCore();
 		}
+
+        protected ActionResult ActionDenied(HttpRequestBase request)
+        {
+            if (request.Headers["X-Requested-With"] != null && request.Headers["X-Requested-With"].Equals("XMLHttpRequest"))
+            {
+                return new JsonResult
+                {
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+                    Data = new
+                    {
+                        errorCode = 500,
+                        errorMessage = "You are not authorized on this function"
+                    }
+                };
+            }
+            else
+            {
+                return new ViewResult
+                {
+                    ViewName = "~/Areas/CustomerSetting/Views/Security/AccessDenied.cshtml"
+                };
+            }
+        }
 	}
 }

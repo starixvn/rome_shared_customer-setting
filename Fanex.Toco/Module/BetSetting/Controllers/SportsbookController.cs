@@ -20,6 +20,8 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
     using Fanex.PTEngine.Services;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
+    using System;
+    using Fanex.CustomerSetting.Security.Configurations;
 
     /// <summary>
     /// Sports book Bet Settings.
@@ -37,7 +39,13 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
         /// <param name="siteName">Name of the site.</param>
         /// <returns>ActionResult object.</returns>
         public ActionResult Index(int id, int uplineId, int userId, string siteName)
-        {           
+        {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, siteName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             return this.PartialView("~/Areas/CustomerSetting/Views/BetSetting/Sportsbook/Index.cshtml");
         }
 
@@ -97,6 +105,12 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "SportsbookBetting")]
         public ActionResult EditBetSettingPost(int id, int uplineId, int userId, string txtCustomerObject, string siteName = "ACCUT")
         {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, siteName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             var groups = GroupConfigurations.AllowBettingGroups;
 
             var customer = this.CustomerInfo(id, userId);

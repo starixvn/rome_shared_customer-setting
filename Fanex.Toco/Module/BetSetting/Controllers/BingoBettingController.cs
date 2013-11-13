@@ -17,6 +17,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.BetSetting.Base;
     using Fanex.CustomerSetting.Security.Authenticate;
+    using Fanex.CustomerSetting.Security.Configurations;
     using Microsoft.Practices.Unity;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
@@ -39,6 +40,12 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
         /// <returns>ActionResult object.</returns>
         public ActionResult Index(int id, int uplineId, int userId, string siteName)
         {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, siteName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             return this.View("~/Areas/CustomerSetting/Views/BetSetting/Bingo/Index.cshtml");
         }
 
@@ -57,7 +64,8 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
 
             var customer = this.CustomerInfo(id, userId);
 
-            if (customer.RoleId != 4 || groups == null || !groups.Contains(customer.GroupId) || !customer.SyncBingo || !siteName.Substring(3).ToUpper().Contains(customer.CurrencyName.ToUpper()))
+            if (customer.RoleId != 4 || groups == null || !groups.Contains(customer.GroupId) || !customer.SyncBingo || 
+                !siteName.Substring(3).ToUpper().Contains(customer.CurrencyName.ToUpper()))
             {
                 return this.PartialView("~/Areas/CustomerSetting/Views/Security/AccessDenied.cshtml");
             }
@@ -103,6 +111,12 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "BingoBetting")]
         public ActionResult EditBetSettingPost(int id, int uplineId, int userId, string txtCustomerObject, string siteName = "ACCUT")
         {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, siteName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             var groups = GroupConfigurations.AllowBettingGroups;
 
             var customer = this.CustomerInfo(id, userId);
@@ -111,7 +125,8 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
             settings.NullValueHandling = NullValueHandling.Ignore;
             settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
-            if (customer.RoleId != 4 || groups == null || !groups.Contains(customer.GroupId) || !customer.SyncBingo || !siteName.Substring(3).ToUpper().Contains(customer.CurrencyName.ToUpper()))
+            if (customer.RoleId != 4 || groups == null || !groups.Contains(customer.GroupId) || !customer.SyncBingo || 
+                !siteName.Substring(3).ToUpper().Contains(customer.CurrencyName.ToUpper()))
             {
                 return this.JsonBase(new { ErrorCode = 1, ErrorMessage = "You're not authorized on this function" }, settings);
             }

@@ -62,7 +62,7 @@ namespace Fanex.CustomerSetting.Module.Core.Web
                 {
                     return Fanex.Common.Converter.ToInt(HttpContext.Current.Session["EASUserId"]);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     return 0;
                 }

@@ -10,12 +10,15 @@
 
 namespace Fanex.CustomerSetting.Module.Bingo.Controllers
 {
+    using System;
     using System.Web.Mvc;
     using Bingo.Helper;
     using Bingo.Services;
+    using Fanex.CustomerSetting.Module.Core;
     using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
     using Fanex.CustomerSetting.Security.Authenticate;
+    using Fanex.CustomerSetting.Security.Configurations;
     using Newtonsoft.Json;
     using Sunplus.Bingo.Entities;
 
@@ -40,41 +43,77 @@ namespace Fanex.CustomerSetting.Module.Bingo.Controllers
         
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Bingo")]
         [ActionName("Super")]
-        public ActionResult SuperEdit()
+        public ActionResult SuperEdit(int id = 0, int uplineId = 0, string groupName = null)
         {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, groupName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             return View("~/Areas/CustomerSetting/Views/Bingo/Setting/Super.cshtml");
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Bingo")]
         [ActionName("Master")]
-        public ActionResult MasterEdit()
+        public ActionResult MasterEdit(int id = 0, int uplineId = 0, string groupName = null)
         {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, groupName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             return View("~/Areas/CustomerSetting/Views/Bingo/Setting/Master.cshtml");
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Bingo")]
         [ActionName("Agent")]
-        public ActionResult AgentEdit()
+        public ActionResult AgentEdit(int id = 0, int uplineId = 0, string groupName = null)
         {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, groupName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             return View("~/Areas/CustomerSetting/Views/Bingo/Setting/Agent.cshtml");
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Bingo")]
         [ActionName("Member")]
-        public ActionResult MemberEdit()
+        public ActionResult MemberEdit(int id = 0, int uplineId = 0, string groupName = null)
         {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, groupName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             return View("~/Areas/CustomerSetting/Views/Bingo/Setting/Member.cshtml");
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Bingo")]
-        public ActionResult SuperEditMember()
+        public ActionResult SuperEditMember(int id = 0, int uplineId = 0, string groupName = null)
         {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, groupName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             return View("~/Areas/CustomerSetting/Views/Bingo/Setting/SuperEditMember.cshtml");
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Bingo")]
-        public ActionResult MasterEditMember()
+        public ActionResult MasterEditMember(int id = 0, int uplineId = 0, string groupName = null)
         {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, groupName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             return View("~/Areas/CustomerSetting/Views/Bingo/Setting/MasterEditMember.cshtml");
         }
 
@@ -91,8 +130,14 @@ namespace Fanex.CustomerSetting.Module.Bingo.Controllers
 
         [HttpPost]
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Bingo")]
-        public ActionResult UpdateCustomerSetting(Customer customer, int? updatedByRoleID)
+        public ActionResult UpdateCustomerSetting(Customer customer, int? updatedByRoleID, string groupName = null)
         {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(customer.ID, null, groupName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             IResult result = null;
             if (updatedByRoleID.HasValue && updatedByRoleID.Value > 0)
             {
@@ -108,8 +153,14 @@ namespace Fanex.CustomerSetting.Module.Bingo.Controllers
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Bingo")]
-        public ActionResult ResetMaxTransfer(int? custId)
+        public ActionResult ResetMaxTransfer(int? custId, string groupName = null)
         {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(Utils.ToInt32(custId), null, groupName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             IResult result = null;
             bool validCustId = custId.HasValue && custId.Value > 0;
             if (validCustId)

@@ -9,8 +9,10 @@
 // ************************************************************************************
 namespace Fanex.CustomerSetting.Module.Racebook.Controllers
 {
+    using System;
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Security.Authenticate;
+    using Fanex.CustomerSetting.Security.Configurations;
 
     /// <summary>
     /// Base racing controller.
@@ -19,38 +21,74 @@ namespace Fanex.CustomerSetting.Module.Racebook.Controllers
     {
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Racing")]
-        public ActionResult Super()
+        public ActionResult Super(int id = 0, int uplineId = 0, string groupName = null)
         {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, groupName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             return View("~/Areas/CustomerSetting/Views/Racebook/Setting/Super.cshtml");
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Racing")]
-        public ActionResult Master()
+        public ActionResult Master(int id = 0, int uplineId = 0, string groupName = null)
         {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, groupName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             return View("~/Areas/CustomerSetting/Views/Racebook/Setting/Master.cshtml");
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Racing")]
-        public ActionResult Agent()
+        public ActionResult Agent(int id = 0, int uplineId = 0, string groupName = null)
         {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, groupName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             return View("~/Areas/CustomerSetting/Views/Racebook/Setting/Agent.cshtml");
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Racing")]
-        public ActionResult Member()
+        public ActionResult Member(int id = 0, int uplineId = 0, string groupName = null)
         {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, groupName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             return View("~/Areas/CustomerSetting/Views/Racebook/Setting/Member.cshtml");
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Racing")]
-        public ActionResult SuperEditMember()
+        public ActionResult SuperEditMember(int id = 0, int uplineId = 0, string groupName = null)
         {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, groupName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             return View("~/Areas/CustomerSetting/Views/Racebook/Setting/SuperEditMember.cshtml");
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Racing")]
-        public ActionResult MasterEditMember()
+        public ActionResult MasterEditMember(int id = 0, int uplineId = 0, string groupName = null)
         {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, groupName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             return View("~/Areas/CustomerSetting/Views/Racebook/Setting/MasterEditMember.cshtml");
         }
     }

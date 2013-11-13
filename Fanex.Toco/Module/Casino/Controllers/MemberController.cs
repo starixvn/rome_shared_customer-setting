@@ -1,18 +1,26 @@
 ﻿namespace Fanex.CustomerSetting.Module.Casino.Controllers
 {
+    using System;
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.Casino.Entities;
     using Fanex.CustomerSetting.Module.Casino.Services.Impl;
     using Fanex.CustomerSetting.Module.Casino.ViewModels;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
     using Fanex.CustomerSetting.Security.Authenticate;
+    using Fanex.CustomerSetting.Security.Configurations;
     using Newtonsoft.Json;
 
     public class MemberController : BaseController
     {
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
-        public ActionResult EditMember(int id, int uplineId)
+        public ActionResult EditMember(int id, int uplineId, string groupName = null)
         {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, groupName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             var customerSetting = new CasinoSettingModel();
 
             try
@@ -28,8 +36,14 @@
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
-        public ActionResult EditMemberByMaster(int id, int uplineId)
+        public ActionResult EditMemberByMaster(int id, int uplineId, string groupName = null)
         {
+            var obj = System.Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, groupName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             var customerSetting = new CasinoSettingModel();
 
             try
@@ -45,8 +59,14 @@
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
-        public ActionResult EditMemberBySuper(int id, int uplineId)
+        public ActionResult EditMemberBySuper(int id, int uplineId, string groupName = null)
         {
+            var obj = System.Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, groupName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             var customerSetting = new CasinoSettingModel();
 
             try
@@ -62,24 +82,42 @@
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
-        public ActionResult UpdateMemberPost(int id, string custName, int uplineId, int userId, string username, string settingModel, string customerModel)
+        public ActionResult UpdateMemberPost(int id, string custName, int uplineId, int userId, string username, string settingModel, string customerModel, string groupName = null)
         {
+            var obj = System.Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, groupName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             var ret = CasinoManager.Instance.UpdateMember(id, custName, uplineId, Request.UserHostAddress, userId, username, BaseController.FromSystem, JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
 
             return this.JsonBase(new { ErrorCode = ret.IsSuccess ? 0 : 1, ErrorMessage = ret.ErrorMessage });
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
-        public ActionResult UpdateMemberBySuperPost(int id, int uplineId, int userId, string username, string settingModel, string customerModel)
+        public ActionResult UpdateMemberBySuperPost(int id, int uplineId, int userId, string username, string settingModel, string customerModel, string groupName = null)
         {
+            var obj = System.Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, groupName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             var ret = CasinoManager.Instance.UpdateMemberBySuper(id, uplineId, Request.UserHostAddress, userId, username, BaseController.FromSystem, JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
 
             return this.JsonBase(new { ErrorCode = ret.IsSuccess ? 0 : 1, ErrorMessage = ret.ErrorMessage });
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
-        public ActionResult UpdateMemberByMasterPost(int id, int uplineId, int userId, string username, string settingModel, string customerModel)
+        public ActionResult UpdateMemberByMasterPost(int id, int uplineId, int userId, string username, string settingModel, string customerModel, string groupName = null)
         {
+            var obj = System.Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, groupName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             var ret = CasinoManager.Instance.UpdateMemberByMaster(id, uplineId, Request.UserHostAddress, userId, username, BaseController.FromSystem, JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
 
             return this.JsonBase(new { ErrorCode = ret.IsSuccess ? 0 : 1, ErrorMessage = ret.ErrorMessage });

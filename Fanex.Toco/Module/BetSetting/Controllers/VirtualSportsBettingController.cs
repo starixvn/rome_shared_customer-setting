@@ -9,12 +9,13 @@
 
 namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
 {
+    using System;
     using System.Collections;
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.BetSetting.Base;
     using Fanex.CustomerSetting.Security.Authenticate;
+    using Fanex.CustomerSetting.Security.Configurations;
     using Fanex.PTEngine.BusinessObjects;
-    using Fanex.PTVirtualSports.Services;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
 
@@ -33,6 +34,12 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
         /// <returns>ActionResult object.</returns>
         public ActionResult Index(int id, int uplineId, int userId, string siteName)
         {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, siteName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             return this.PartialView("~/Areas/CustomerSetting/Views/BetSetting/VirtualSports/Index.cshtml");
         }
 
@@ -88,11 +95,18 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
         /// <param name="uplineId">The up-line identifier.</param>
         /// <param name="userId">The user identifier.</param>
         /// <param name="txtCustomerObject">The text customer object.</param>
+        /// <param name="siteName">Group name.</param>
         /// <returns>ActionResult object.</returns>
         [HttpPost]
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "VirtualSportsBetting")]
         public ActionResult EditBetSettingPost(int id, int uplineId, int userId, string txtCustomerObject, string siteName = "ACCUT")
         {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, siteName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
             var groups = GroupConfigurations.AllowBettingGroups;
 
             var customer = this.CustomerInfo(id, userId);
