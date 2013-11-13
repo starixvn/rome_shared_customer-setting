@@ -141,7 +141,6 @@
     <Compile Include="Criteria\GetSitesCriteria.cs" />
     <Compile Include="Criteria\ResultCriteria.cs" />
     <Compile Include="Criteria\SearchExistingUserCriteria.cs" />
-    <Compile Include="Entities\CustInfo.cs" />
     <Compile Include="Entities\DisableSports.cs" />
     <Compile Include="Entities\Site.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -149,16 +148,12 @@
     <Compile Include="Repositories\Impl\SearchCopyRepository.cs" />
     <Compile Include="Repositories\Interface\IBaseRepository.cs" />
     <Compile Include="Repositories\Interface\ISearchCopyRepository.cs" />
-    <Compile Include="Helper\MessageHelper.cs" />
     <Compile Include="Services\ISearchCopyService.cs" />
-    <Compile Include="Services\ResourceHelper.cs" />
-    <Compile Include="Helper\SerializeHelper.cs" />
     <Compile Include="Services\SearchCopyService.cs" />
     <Compile Include="ViewModels\CustomerSettingView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Configuration\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.Toco.Module.Core\_Core.csproj">
