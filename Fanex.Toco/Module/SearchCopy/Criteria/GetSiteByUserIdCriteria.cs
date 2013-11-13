@@ -1,0 +1,27 @@
+// -----------------------------------------------------------------------
+// <copyright file="GetSiteByUserIdCriteria.cs" company="Nexcel">
+// TODO: Update copyright text.
+// </copyright>
+// -----------------------------------------------------------------------
+// <history>
+//   <change who="Thai.Tran" date="2013.11.05">Created</change>
+// </history>
+
+namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
+{
+    using System;
+    using Fanex.NAP.Framework.Data;
+
+    [Serializable]
+    public class GetSiteByUserIdCriteria : CriteriaBase
+    {       
+        public int custid { get; set; }
+         
+        public override string GetSettingKey()
+        {
+            return "Acc_CustomerSelCEditCustomer";
+        }
+
+        public override bool IsValid() { return true; }
+    }
+}

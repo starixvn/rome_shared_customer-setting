@@ -58,17 +58,17 @@ namespace Fanex.CustomerSetting.Security.Authenticate
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet,
                     Data = new 
                     {
-                        ErrorCode = 500,
-                        ErrorMessage = Resource.Errors.errorNotAuthorized
+                        errorCode = 500,
+                        errorMessage = Resource.Errors.errorNotAuthorized
                     }
                 };
                 filterContext.HttpContext.Response.Clear();
-                filterContext.HttpContext.Response.StatusCode = 500;
+                filterContext.HttpContext.Response.StatusCode = 200;
                 filterContext.HttpContext.Response.TrySkipIisCustomErrors = true;
             }
             else
             {
-                filterContext.Result = new ViewResult// new RedirectToRouteResult(new RouteValueDictionary(new
+                filterContext.Result = new ViewResult
                 {
                     ViewName = "~/Areas/CustomerSetting/Views/Security/AccessDenied.cshtml"
                 };

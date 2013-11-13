@@ -384,7 +384,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
                 // Agent preset PT
                 gameGroup.M2 = Utils.ToDecimal(row["APositionTaking"]).Format(2);
-                gameGroup.N3 = gameGroup.Is3 == true ? gameGroup.N4 - gameGroup.M3 - gameGroup.M2 : gameGroup.N4;
+                gameGroup.N3 = gameGroup.Is3 == true ? gameGroup.N4 - gameGroup.M3 - gameGroup.M2 : Math.Max((decimal)(gameGroup.N4 - gameGroup.M3 - gameGroup.M2), 0m);
 
                 // Assign game types
                 var gameTypes = this.GetGameTypeMemberBySuper(custId, gameGroup.GameGroupID, ref gameGroup, gameModel.IsPtByGameType);
@@ -454,10 +454,10 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             return this._casino.GetCustInfoIBC(custid, uplineId);
         }
 
-        public void GetCustSettingCS(ref CasinoCustomer custIBC, bool isSuper = false)
+        public void GetCustSettingCS(ref CasinoCustomer custIBC)
         {
             var cust = new Customer();
-            var dt = custIBC.IBCCustID != 0 && custIBC.RoleId != Super ? cust.GetCustSetting(custIBC.IBCCustID) : new DataTable();
+            var dt = custIBC.CasinoSync || (custIBC.IBCCustID != 0 && custIBC.RoleId != Super) ? cust.GetCustSetting(custIBC.IBCCustID) : new DataTable();
             DataRow row = null;
             if (dt != null && dt.Rows.Count > 0)
             {
@@ -2082,7 +2082,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
                 // Agent preset PT
                 gameType.M2 = Utils.ToDecimal(row["APositionTaking"]).Format(2);
-                gameType.N3 = gameType.Is3 == true ? gameType.N4 - gameType.M3 - gameType.M2 : gameType.N4;
+                gameType.N3 = gameType.Is3 == true ? gameType.N4 - gameType.M3 - gameType.M2 : Math.Max((decimal)(gameType.N4 - gameType.M3 - gameType.M2), 0m);
 
                 // Betting limits
                 var stakes = this.GetStakeLevels(custId, gameType.GameTypeID);

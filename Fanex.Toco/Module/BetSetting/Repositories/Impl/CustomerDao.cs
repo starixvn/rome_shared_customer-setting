@@ -73,7 +73,8 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Repositories.Impl
         /// <param name="custId">The customer identifier.</param>
         /// <returns>System.Int32 object.</returns>
         public int UserGroupId(int custId)
-        {/*
+        {
+            /*
             var param = new Hashtable();
             param.Add("custid", custId);
 

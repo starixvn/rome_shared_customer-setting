@@ -8,17 +8,16 @@
 // </history>
 // ************************************************************************************
 
-using System.Reflection;
-using Fanex.CustomerSetting.Module.Core.Web.App_Start;
-
 namespace Fanex.CustomerSetting.Module.SearchCopy.App_Start
 {
+    using System.Reflection;
+    using Fanex.CustomerSetting.Module.Core.Web.App_Start;
+
     /// <summary>
     /// Register racing module.
     /// </summary>
     public class ModuleRegistrator : AppAreaRegistrator
     {
-
         public const string Module = "SearchCopy";
 
         /// <summary>
@@ -52,8 +51,17 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.App_Start
         /// <param name="context">The context.</param>
         public override void RegisterArea(System.Web.Mvc.AreaRegistrationContext context)
         {
+            context.MapRoute(
+            this.AreaName + "_" + this.ModuleName + "_" + "GetSettings",
+            this.AreaName + "/" + this.ModuleName + "/{controller}/{action}/{username}",
+            new
+            {
+                action = "Index"
+            },
+            new[] { this.ModuleNameSpace });
+
             base.RegisterArea(context);
-            BundleConfig.RegisterBundles(System.Web.Optimization.BundleTable.Bundles);
+            BundleConfig.RegisterBundles(System.Web.Optimization.BundleTable.Bundles);          
         }
     }
 }

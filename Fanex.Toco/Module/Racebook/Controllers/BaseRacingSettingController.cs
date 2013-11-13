@@ -93,12 +93,12 @@ namespace Fanex.CustomerSetting.Module.Racebook.Controllers
         /// <returns>Return JSON result.</returns>
         [HttpPost]
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Racing")]
-        public JsonResult UpdateCustomerSetting(Customer oldSettings, Customer newSettings, RequestContext currentContext, Dictionary<object, object> otherSettings)
+        public ActionResult UpdateCustomerSetting(Customer oldSettings, Customer newSettings, RequestContext currentContext, Dictionary<object, object> otherSettings)
         {
             IList<Fanex.PTRacing.BusinessObjects.Result> updatedResults = new List<Fanex.PTRacing.BusinessObjects.Result>();
             try
             {
-                ICustomer oldSetting = oldSettings;
+                ICustomer oldSetting = _racingSettingService.GetCustomerInfo(currentContext);
                 ICustomer newSetting = newSettings;
                 var hashOtherSettings = new Hashtable();
                 if (otherSettings != null && otherSettings.Count > 0)
@@ -119,7 +119,7 @@ namespace Fanex.CustomerSetting.Module.Racebook.Controllers
                 });
             }
 
-            return Json(updatedResults);
+            return JsonBase(updatedResults);
         }
 
         #region Min/Max PT Setting

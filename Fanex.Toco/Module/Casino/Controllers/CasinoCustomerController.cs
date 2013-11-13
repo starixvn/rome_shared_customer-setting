@@ -5,21 +5,28 @@
     using Fanex.CustomerSetting.Module.Casino.Services.Impl;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
     using Fanex.CustomerSetting.Security.Authenticate;
+    using Newtonsoft.Json.Serialization;
+    using Newtonsoft.Json;
 
     public class CasinoCustomerController : BaseController
     {
         public ActionResult CustomerInfo(int id, int uplineId)
         {
+            return PartialView("~/Areas/CustomerSetting/Views/Casino/Customer/CustomerInfo.cshtml");
+        }
+
+        public ActionResult CustomerData(int id, int uplineId)
+        {
             var customerInfo = CasinoManager.Instance.GetCustInfoIBC(id, uplineId);
             var customerUpline = new CasinoCustomer();
-            
+
             customerUpline.IBCCustID = uplineId;
 
             if (uplineId != 0)
             {
                 CasinoManager.Instance.GetCustSettingCS(ref customerUpline);
             }
-            
+
             customerInfo.IBCCustID = customerInfo.CasinoSync ? id : uplineId;
             CasinoManager.Instance.GetCustSettingCS(ref customerInfo);
 
@@ -32,7 +39,16 @@
                 customerInfo.IBCCustID = id;
             }
 
-            return PartialView("~/Areas/CustomerSetting/Views/Casino/Customer/CustomerInfo.cshtml", customerInfo);
+            var result = JsonConvert.SerializeObject(
+                customerInfo, 
+                Formatting.None, 
+                new JsonSerializerSettings
+                {
+                    ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                    NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore
+                });
+
+            return this.Content("var customerModel = " + result + ";");
         }
     }
 }

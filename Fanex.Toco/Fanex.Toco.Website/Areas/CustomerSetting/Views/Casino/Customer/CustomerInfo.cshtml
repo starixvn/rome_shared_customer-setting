@@ -2,14 +2,7 @@
 @using Fanex.CustomerSetting.Module.Casino.Entities
 @using Newtonsoft.Json
 @using Newtonsoft.Json.Serialization
-@model CasinoCustomer
-@{
-    var customer = JsonConvert.SerializeObject(Model, Formatting.None, new JsonSerializerSettings
-    {
-        ContractResolver = new CamelCasePropertyNamesContractResolver(),
-        NullValueHandling = NullValueHandling.Ignore
-    });
-    
+@{    
     var id = Utils.ToInt32(Request.RequestContext.RouteData.Values["id"]);
     var uplineId = Utils.ToInt32(Request.RequestContext.RouteData.Values["uplineId"]);
 }
@@ -29,19 +22,19 @@
         </tr>
         <tr>
             <td class="tdTitleLeft">First Name</td>
-            <td><span>{{CustomerModel.firstName}}</span></td>
+            <td><span>{{CustomerModel.firstName.decodeHtml()}}</span></td>
             <td class="tdTitleRight">Phone</td>
-            <td class="noneBorderRight"><span>{{CustomerModel.phone}}</span></td>
+            <td class="noneBorderRight"><span>{{CustomerModel.phone.decodeHtml()}}</span></td>
         </tr>
         <tr>
             <td class="tdTitleLeft">Last Name</td>
-            <td><span>{{CustomerModel.lastName}}</span></td>
+            <td><span>{{CustomerModel.lastName.decodeHtml()}}</span></td>
             <td class="tdTitleRight">Mobile Phone</td>
-            <td class="noneBorderRight"><span>{{CustomerModel.mobilePhone}}</span></td>
+            <td class="noneBorderRight"><span>{{CustomerModel.mobilePhone.decodeHtml()}}</span></td>
         </tr>
         <tr>
             <td class="tdTitleLeft">Fax</td>
-            <td><span>{{CustomerModel.fax}}</span></td>
+            <td><span>{{CustomerModel.fax.decodeHtml()}}</span></td>
             <td class="tdTitleRight">Enable Casino</td>
             <td class="noneBorderRight">                
                 <div style="float: left; height: 24px">
@@ -93,8 +86,8 @@
     <script src="@Url.Content("~/Areas/CustomerSetting/Scripts/ptarea.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Areas/CustomerSetting/Views/Casino/Scripts/CustomerController.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Areas/CustomerSetting/Views/Casino/Scripts/CasinoController.js")" type="text/javascript"></script>   
+    <script src="@Url.Content("~/CustomerSetting/Casino/CasinoCustomer/CustomerData/" + id + "/" + uplineId)" type="text/javascript"></script>
      <script type="text/javascript">
-        var customerModel = $.parseJSON(Fanex.CustomerSetting.Core.DecodeHtml('@customer'));
         var custId = '@id';
         var uplineId = '@uplineId';
 
