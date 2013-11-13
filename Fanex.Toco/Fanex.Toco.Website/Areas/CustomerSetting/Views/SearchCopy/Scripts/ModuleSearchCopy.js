@@ -17,9 +17,17 @@
                  break
          }
      },
+
      hideAlertMessage: function (containerid) {
          $("#" + containerid).addClass("hidden");
-     } 
+     }     
+ }).
+ value('validate', {
+     setRequired: function (id) {
+         $(id).removeClass("ng-valid").removeClass("ng-valid-required");
+         $(id).addClass("ng-dirty").addClass("ng-invalid").addClass("ng-invalid-required");
+         $(id).focus();
+     }
  });
 
 angular.module('SearchCopy.directive', []);

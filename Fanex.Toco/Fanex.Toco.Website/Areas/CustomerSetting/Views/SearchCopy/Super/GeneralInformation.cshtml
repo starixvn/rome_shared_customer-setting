@@ -10,13 +10,13 @@
                 UserName
             </td>
             <td class="l" style="width: 45%">
-                <input type="text" ng-model="newUser.username" size="30" required />
+                <input type="text" id="username"  ng-model="newUser.username" size="30" required />
             </td>
             <td class="l" style="width: 12%">
                 Password
             </td>
             <td class="l" style="width: 31%">
-                <input type="password" ng-model="newUser.password" size="30" required />
+                <input type="password" id="password"  ng-model="newUser.password" size="30" required />
             </td>
         </tr>
         <tr>
@@ -52,16 +52,9 @@
                 Site
             </td>
             <td class="l" style="width: 45%">
-                @*<select id="listSite" ng-model="existedUser.selectedSite" ng-options="s.site for s in existedUser.sites" ng-selected="selectedIndex">
-                    <option style="display: none" value="">select a type</option>
-                </select><br>*@
-           @*    <select ng-init="selectedValue1 = 0">
-                                    <option ng-repeat="site in existedUser.sites" value="site.siteid" ng-selected="{{site.site==selectedSite1}}">{{site.site}}</option>
-                                 </select><br>*@
-                                   <select id="listSite">
-                                    <option value="{{site.site}}" ng-repeat="site in existedUser.sites" ng-model="site.site" ng-selected="{{site.site == existedUser.selectedSite.site}}">{{site.site}}</option>                                    
-                                   </select>
-            </td>
+                <select id="listSite" ng-model="existedUser.selectedSite" ng-options="s.SiteName for s in existedUser.sites">                
+                </select>                
+            </td>            
             <td class="l" style="width: 12%">
                 Fax
             </td>
@@ -74,7 +67,7 @@
                 Max Credit
             </td>
             <td class="l" style="width: 45%">
-                <input type="text" ng-model="newUser.maxcredit" size="30" />
+                <input id="maxCredit" type="text" ng-model="existedUser.maxCredit" size="30" />
             </td>
             <td class="l" style="width: 12%">
                 Currency
