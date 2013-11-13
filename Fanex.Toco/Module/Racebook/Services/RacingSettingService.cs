@@ -1,21 +1,64 @@
-﻿using Fanex.PTRacing.BusinessObjects;
-using Fanex.PTRacing.Services;
-using System.Collections;
-
+﻿// ************************************************************************************
+// <copyright file="RacingSettingService.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// ************************************************************************************
+// <history>
+//     <change who="kan.nguyen">Add Min/Max PT functions</change>
+// </history>
+// ************************************************************************************
 namespace Fanex.CustomerSetting.Module.Racebook.Services
 {
-    public class RacingSettingService: IRacingSettingService
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using Fanex.Caching;
+    using Fanex.Common;
+    using Fanex.CustomerSetting.Module.Core.Web;
+    using Fanex.CustomerSetting.Module.Racebook.Configuration;
+    using Fanex.CustomerSetting.Module.Racebook.Entities;
+    using Fanex.CustomerSetting.Module.Racebook.Helper;
+    using Fanex.CustomerSetting.Module.Racebook.Repositories;
+    using Fanex.PTRacing.BusinessObjects;
+    using Fanex.PTRacing.Services;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public class RacingSettingService : IRacingSettingService
     {
-        protected static ICustomerService _customerService;
+        private const string FieldMasterptMax = "v{0}mpositiontaking_{1}_max";
+        private const string FieldMasterptMin = "v{0}mpositiontaking_{1}_min";
+        private const string FieldMasterpt = "v{0}mpositiontaking_{1}";
 
-        public RacingSettingService(): this(null)
+        private const string FieldAgentMaxpt = "v{0}apositiontaking_{1}_max";
+        private const string FieldAgentMinpt = "v{0}apositiontaking_{1}_min";
+        private const string FieldAgentpt = "v{0}apositiontaking_{1}";
+        
+        private const string FieldIsUdpMinPt = "updateminpos";
+        private const string FieldIsUdpMaxPt = "updatemaxpos";
+        private const string FieldMinPt = "v{0}positiontaking_{1}_min";
+        private const string FieldMaxPt = "v{0}positiontaking_{1}_max";
+
+        private const string ExchangeNameCache = "Fanex.CustomerSetting.Module.Racebook.Services.RacingSettingService.ExchangeName";
+
+        private readonly ICustomerService _customerService;
+        private readonly IRacingDAO _racingDao;
+        private readonly ICache _cacheManager;
+
+        public RacingSettingService()
+            : this(null, null, null)
         {
-
         }
 
-        public RacingSettingService(ICustomerService customerService)
+        public RacingSettingService(ICustomerService customerService, IRacingDAO racingDao, ICache cacheManager)
         {
             _customerService = customerService ?? new CustomerService();
+            _racingDao = racingDao ?? new RacingDAO();
+            _cacheManager = cacheManager ?? CacheService.CreateInstance();
         }
 
         public ICustomer GetCustomerInfo(PTRacing.BusinessObjects.IRequestContext requestContext)
@@ -23,10 +66,360 @@ namespace Fanex.CustomerSetting.Module.Racebook.Services
             return _customerService.GetCustomer(requestContext);
         }
 
-
-        public Result SaveCustomerSettings(ICustomer oldCustomerSettings, ICustomer newCustomerSettings, RequestContext currentContext, Hashtable otherSettings)
+        public Fanex.PTRacing.BusinessObjects.Result SaveCustomerSettings(
+            ICustomer oldCustomerSettings, 
+            ICustomer newCustomerSettings, 
+            RequestContext currentContext, 
+            Hashtable otherSettings)
         {
             return _customerService.SaveCustomer(oldCustomerSettings, newCustomerSettings, currentContext, otherSettings);
         }
+
+        #region Min/Max PT
+
+        /// <summary>
+        /// Gets the customer info.
+        /// </summary>
+        /// <param name="custId">The customer id.</param>
+        /// <param name="roleId">The role id.</param>
+        /// <returns>The min/max PT setting.</returns>
+        public Setting GetCustomerInfo(int custId, int roleId)
+        {
+            DataTable racingSetting = _racingDao.GetRacingSetting(custId, roleId);
+            if (racingSetting == null || racingSetting.Rows.Count == 0)
+            {
+                return null;
+            }
+
+            Setting positionTakingSetting = null;
+            CustInfo.Roles role = (CustInfo.Roles)roleId;
+            if (role == CustInfo.Roles.MasterMinMax || role == CustInfo.Roles.AgentMinMax)
+            {
+                positionTakingSetting = GetMinMaxPositionTakingSetting(racingSetting.Rows[0], role);
+                if (positionTakingSetting != null)
+                {
+                    positionTakingSetting.IsHideCopyBetSetting = RacingSection.Instance.HideCopyBetSetting;
+                    positionTakingSetting.Crypting = GetCyripting(custId, roleId);
+                }
+            }
+
+            return positionTakingSetting;
+        }
+
+        /// <summary>
+        /// Saves the customer settings.
+        /// </summary>
+        /// <param name="setting">The setting.</param>
+        /// <param name="targetRoleId">The target role id.</param>
+        /// <param name="updatedUserId">The updated user id.</param>
+        /// <returns>The result object.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules",
+            "SP2101:MethodMustNotContainMoreLinesThan",
+            Justification = "Reviewed. Suppression is OK here.")]
+        public Entities.Result SaveCustomerSettings(Setting setting, int targetRoleId, int updatedUserId)
+        {
+            Entities.Result result = null;
+
+            CustInfo.Roles role = (CustInfo.Roles)targetRoleId;
+            if (role == CustInfo.Roles.MasterMinMax || role == CustInfo.Roles.AgentMinMax)
+            {
+                string crypting = GetCyripting(setting.CustInfo.CustId, targetRoleId);
+                if (crypting != setting.Crypting)
+                {
+                    return new Entities.Result
+                    {
+                        ErrorCode = 100,
+                        ErrorMessage = ResourceHelper.GetResource("100")
+                    };
+                }
+
+                Hashtable settingParams = new Hashtable();
+                try
+                {
+                    // get racing setting
+                    foreach (Sport racing in setting.RacingSportType.Cast<Sport>())
+                    {
+                        foreach (Tote tote in racing.Totes.Cast<Tote>())
+                        {
+                            // receive tote data
+                            string[] strTote = tote.Id.Split('_');
+                            int toteId = int.Parse(strTote[1]);
+
+                            // check is update PT
+                            CheckIsUpdate(ref settingParams, FieldIsUdpMinPt, tote.UpdatePT);
+                            CheckIsUpdate(ref settingParams, FieldIsUdpMaxPt, tote.UpdatePT);
+
+                            // set params bettype
+                            foreach (Bettype bettype in tote.Bettypes.Cast<Bettype>())
+                            {
+                                // receive bettype data
+                                int betId = bettype.Id;
+                                Data dataPt = bettype.PositionTaking;
+
+                                // customer PT
+                                settingParams.Add(string.Format(FieldMinPt, racing.Id, betId), dataPt.Pt);
+                                settingParams.Add(string.Format(FieldMaxPt, racing.Id, betId), dataPt.UplinePt);
+                            }
+                        }
+                    }
+
+                    // static params
+                    settingParams.Add("custid", setting.CustInfo.CustId);
+                    settingParams.Add("userid", updatedUserId);
+                    settingParams.Add("subaccid", 0);
+                    settingParams.Add("language", "EN");
+                    settingParams.Add("errcode", 0);
+                    settingParams.Add("errmsg", string.Empty);
+                    settingParams.Add("ip", AppSession.CurrentContext.Ip4Address);
+                    result = _racingDao.UpdateRacingSetting(settingParams, targetRoleId);
+                }
+                catch (Exception ex)
+                {
+                    result = new Entities.Result
+                    {
+                        ErrorCode = 100,
+                        ErrorMessage = ex.Message
+                    };
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Gets the encryption string.
+        /// </summary>
+        /// <param name="custId">The customer ID.</param>
+        /// <param name="roleId">The role ID.</param>
+        /// <returns>Encryption string.</returns>
+        private string GetCyripting(int custId, int roleId)
+        {
+            return IBCCrypt.IBCCrypt.GenMD5Key(custId.ToString() + roleId.ToString()) + IBCCrypt.IBCCrypt.GenMD5Key("^") + custId + roleId.ToString();
+        }
+
+        /// <summary>
+        /// Gets the min max position taking setting.
+        /// </summary>
+        /// <param name="row">The data row.</param>
+        /// <param name="targetRole">The target role.</param>
+        /// <returns>The Min/Max racing setting object.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules",
+            "SP2101:MethodMustNotContainMoreLinesThan",
+            Justification = "Reviewed. Suppression is OK here.")]
+        private Setting GetMinMaxPositionTakingSetting(DataRow row, CustInfo.Roles targetRole)
+        {
+            Setting positionTakingSetting = new Setting
+            {
+                CustInfo = GetCustomerInformation(row)
+            };
+
+            // Get sport type
+            List<Sport> sports = new List<Sport>();
+            IEnumerable<RacingElement> racingElements = RacingSection.Instance.Racings.Cast<RacingElement>();
+            foreach (RacingElement racing in racingElements)
+            {
+                // Set sport information
+                Sport sport = new Sport
+                {
+                    Id = Converter.ToInt(racing.Id),
+                    Name = racing.Name,
+                    Visible = racing.Active
+                };
+
+                // Set data tote information
+                if (racing.Totes.Count > 0)
+                {
+                    List<Tote> totes = new List<Tote>();
+                    IEnumerable<ToteElement> toteElements = racing.Totes.Cast<ToteElement>();
+                    foreach (ToteElement tote in toteElements)
+                    {
+                        // Set defaultRacingSportType
+                        if (racing.Active && tote.IsTop)
+                        {
+                            // set racing default
+                            positionTakingSetting.DefaultRacingSportType = sport.Name + " " + tote.Name;
+                            positionTakingSetting.DefaultRacingSportTypeId = string.Concat(racing.Id, "_", tote.Id);
+                        }
+
+                        Tote toteItem = new Tote
+                        {
+                            Id = racing.Id + "_" + tote.Id,
+                            Name = tote.Name,
+                            IsTop = tote.IsTop,
+
+                            // Check allow currency
+                            Visible = CheckAllowCurrency(positionTakingSetting.CustInfo.Currency, tote.Currency, tote.Active)
+                        };
+
+                        string[] betStringType = tote.BetType.Split(',');
+                        List<Bettype> betTypes = new List<Bettype>();
+                        if (betStringType.Length > 0)
+                        {
+                            foreach (string betId in betStringType)
+                            {
+                                Bettype betType = new Bettype
+                                {
+                                    Id = Converter.ToInt(betId),
+                                    Name = GetBettypeName(Converter.ToInt(betId)),
+                                    PositionTaking = null
+                                };
+
+                                if (targetRole == CustInfo.Roles.MasterMinMax)
+                                {
+                                    betType.PositionTaking = GetMasterData(row, racing.Id, betId);
+                                }
+                                else if (targetRole == CustInfo.Roles.AgentMinMax)
+                                {
+                                    betType.PositionTaking = GetAgentData(row, racing.Id, betId);
+                                }
+                                
+                                // Add bettype
+                                betTypes.Add(betType);
+                            }
+
+                            // Set tote bettypes
+                            toteItem.Bettypes = betTypes;
+                        }
+
+                        // Add tote item
+                        totes.Add(toteItem);
+                    }
+
+                    // Set sport totes
+                    sport.Totes = totes;
+                }
+
+                // Add sport type
+                sports.Add(sport);
+            }
+
+            // set racing sports
+            positionTakingSetting.RacingSportType = sports;
+
+            return positionTakingSetting;
+        }
+
+        private Data GetMasterData(DataRow row, string racingId, string betId)
+        {
+            return new Data
+            {
+                // Max PT
+                UplinePt = Converter.ToDecimal(row[string.Format(FieldMasterptMax, racingId, betId)]),
+                MaxUplinePt = RacingSection.Instance.MaxPT,
+                MinUplinePt = Converter.ToDecimal(row[string.Format(FieldMasterptMin, racingId, betId)]),
+
+                // Min PT
+                Pt = Converter.ToDecimal(row[string.Format(FieldMasterptMin, racingId, betId)]),
+                MaxPt = Converter.ToDecimal(row[string.Format(FieldMasterpt, racingId, betId)]),
+                MinPt = 0
+            };
+        }
+
+        private Data GetAgentData(DataRow row, string racingId, string betId)
+        {
+            return new Data
+            {
+                // Max PT
+                UplinePt = Converter.ToDecimal(row[string.Format(FieldAgentMaxpt, racingId, betId)]),
+                MaxUplinePt = RacingSection.Instance.MaxPT,
+                MinUplinePt = Converter.ToDecimal(row[string.Format(FieldAgentMinpt, racingId, betId)]),
+
+                // Min PT
+                Pt = Converter.ToDecimal(row[string.Format(FieldAgentMinpt, racingId, betId)]),
+                MaxPt = Converter.ToDecimal(row[string.Format(FieldAgentpt, racingId, betId)]),
+                MinPt = 0
+            };
+        }
+
+        /// <summary>
+        /// Gets the customer information.
+        /// </summary>
+        /// <param name="row">The row parameter.</param>
+        /// <returns>The customer information.</returns>
+        private CustInfo GetCustomerInformation(DataRow row)
+        {
+            return new CustInfo
+            {
+                CustId = Converter.ToInt(row["custid"]),
+                CustLevel = Converter.ToInt(row["roleid"]),
+                Fax = Converter.ToString2(row["fax"]),
+                FirstName = Converter.ToString2(row["firstname"]),
+                UserName = Converter.ToString2(row["username"]),
+                LastName = Converter.ToString2(row["lastname"]),
+                Phone = Converter.ToString2(row["phone"]),
+                MobilePhone = Converter.ToString2(row["mobilephone"]),
+                Currency = Converter.ToInt(row["currency"])
+            };
+        }
+
+        /// <summary>
+        /// Checks the allow currency.
+        /// </summary>
+        /// <param name="currencyId">The currency id.</param>
+        /// <param name="allowCurrency">The allow currency.</param>
+        /// <param name="isVisible">If set to <c>true</c> [is visible].</param>
+        /// <returns>The boolean indicate currency is allowed or not.</returns>
+        private bool CheckAllowCurrency(int currencyId, string allowCurrency, bool isVisible)
+        {
+            // Current off - not check currency
+            if (!isVisible) 
+            { 
+                return false;
+            }
+ 
+            if (string.IsNullOrEmpty(allowCurrency) || allowCurrency == "*" || currencyId == 0)
+            {
+                return true;
+            }
+
+            Dictionary<int, string> exchangeHash = _cacheManager.Get<Dictionary<int, string>>(
+                ExchangeNameCache,
+                () =>
+                {
+                    return _racingDao.GetExchange();
+                });
+
+            if (exchangeHash != null)
+            {
+                string currencyName;
+                if (exchangeHash.TryGetValue(currencyId, out currencyName))
+                {
+                    return allowCurrency.Split(',').Contains(currencyName);
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Gets the name of the bet type.
+        /// </summary>
+        /// <param name="betTypeId">The bet type id.</param>
+        /// <returns>Bet type name.</returns>
+        private string GetBettypeName(int betTypeId)
+        {
+            return (betTypeId % 2 == 1) ? "Win" : "Place";
+        }
+
+        /// <summary>
+        /// Checks the is update.
+        /// </summary>
+        /// <param name="settingParams">The setting parameters.</param>
+        /// <param name="paramName">Name of the parameter.</param>
+        /// <param name="isUpdate">If set to <c>true</c> [is update].</param>
+        private void CheckIsUpdate(ref Hashtable settingParams, string paramName, bool isUpdate)
+        {
+            if (!settingParams.ContainsKey(paramName))
+            {
+                settingParams.Add(paramName, false);
+            }
+
+            if (isUpdate)
+            {
+                settingParams[paramName] = isUpdate;
+            }
+        }
+
+        #endregion
     }
 }

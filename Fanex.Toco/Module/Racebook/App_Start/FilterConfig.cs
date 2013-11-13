@@ -1,7 +1,19 @@
-﻿using System.Web.Mvc;
-
+﻿// ************************************************************************************
+// <copyright file="FilterConfig.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) FilterConfig.cs. All rights reserved.
+// </copyright>
+// ************************************************************************************
+// <history>
+//     <change who="kan.nguyen">Create/Run StyleCop.</change>
+// </history>
+// ************************************************************************************
 namespace Fanex.CustomerSetting.Module.Racebook.App_Start
 {
+    using System.Web.Mvc;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
     public class FilterConfig
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)

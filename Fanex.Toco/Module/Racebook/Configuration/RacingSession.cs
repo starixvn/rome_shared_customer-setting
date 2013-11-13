@@ -1,77 +1,109 @@
-﻿using System;
-using System.Configuration;
-
+﻿// ************************************************************************************
+// <copyright file="RacingSection.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) RacingSection.cs. All rights reserved.
+// </copyright>
+// ************************************************************************************
+// <history>
+//     <change who="kan.nguyen">Create/Run StyleCop.</change>
+// </history>
+// ************************************************************************************
 namespace Fanex.CustomerSetting.Module.Racebook.Configuration
 {
-    public class RacingSection:ConfigurationSection
+    using System;
+    using System.Configuration;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public class RacingSection : ConfigurationSection
     {
-        [ConfigurationProperty("", IsDefaultCollection = true,IsRequired = false)]
-        //[RegexStringValidator(@"\w+:\/\/[\w.]+\S*")]
+        public static RacingSection Instance
+        {
+            get
+            {
+                return ConfigurationManager.GetSection("CustomerSetting/RacingSection") as RacingSection;
+            }
+        }
+
+        [ConfigurationProperty("", IsDefaultCollection = true, IsRequired = false)]
+        //// [RegexStringValidator(@"\w+:\/\/[\w.]+\S*")]
         public RacingCollection Racings
         {
             get
             {
-                return (RacingCollection)base[""];
+                return (RacingCollection)base[string.Empty];
             }
-
         }
 
         [ConfigurationProperty("ptSites", DefaultValue = "12bet", IsRequired = false)]
         public string PtSites
         {
-            get { return (string)this["ptSites"]; }
+            get 
+            { 
+                return (string)this["ptSites"];
+            }
         }
 
         [ConfigurationProperty("hideCopyBetSetting", DefaultValue = true, IsRequired = false)]
         public bool HideCopyBetSetting
         {
-            get { return (bool)this["hideCopyBetSetting"]; }
+            get 
+            {
+                return (bool)this["hideCopyBetSetting"]; 
+            }
         }
 
         [ConfigurationProperty("maxPT", IsRequired = false)]
         public decimal MaxPT
         {
-            get { return (decimal)this["maxPT"]; }
-        }
-
-        
-        public static RacingSection Instance
-        {
-            get
-            {
-                var spSection =
-                 ConfigurationManager.GetSection("CustomerSetting/RacingSection") as RacingSection;
-                return spSection;
+            get 
+            { 
+                return (decimal)this["maxPT"]; 
             }
         }
     }
 
-    public class RacingCollection:ConfigurationElementCollection
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public class RacingCollection : ConfigurationElementCollection
     {
+        public override ConfigurationElementCollectionType CollectionType
+        {
+            get
+            {
+                return ConfigurationElementCollectionType.BasicMap;
+            }
+        }
+
+        protected override string ElementName
+        {
+            get
+            {
+                return "racing";
+            }
+        }
 
         public new RacingElement this[string id]
         {
             get
             {
-                //if (IndexOf(id) < 0) return null;
-
+                // if (IndexOf(id) < 0) return null;
                 return (RacingElement)BaseGet(id);
             }
         }
 
         public RacingElement this[int index]
         {
-            get { return (RacingElement)BaseGet(index); }
+            get 
+            { 
+                return (RacingElement)BaseGet(index); 
+            }
         }
 
         public int IndexOf(RacingElement racingElement)
         {
             return BaseIndexOf(racingElement);
-        }
-
-        public override ConfigurationElementCollectionType CollectionType
-        {
-            get { return ConfigurationElementCollectionType.BasicMap; }
         }
 
         protected override ConfigurationElement CreateNewElement()
@@ -83,28 +115,39 @@ namespace Fanex.CustomerSetting.Module.Racebook.Configuration
         {
             return ((RacingElement)element).Id;
         }
-
-        protected override string ElementName
-        {
-            get { return "racing"; }
-        }
-        
     }
 
-    public class RacingElement:ConfigurationElement
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public class RacingElement : ConfigurationElement
     {
-
         [ConfigurationProperty("id", DefaultValue = "0", IsRequired = true, IsKey = true)]
         public string Id
         {
-            get { return (string)this["id"]; }
-            set { this["id"] = value; }
+            get 
+            { 
+                return (string)this["id"];
+            }
+
+            set 
+            { 
+                this["id"] = value; 
+            }
         }
+
         [ConfigurationProperty("name", DefaultValue = "NA", IsRequired = true, IsKey = false)]
         public string Name
         {
-            get { return (string)this["name"]; }
-            set { this["name"] = value; }
+            get 
+            { 
+                return (string)this["name"]; 
+            }
+
+            set 
+            { 
+                this["name"] = value; 
+            }
         }
 
         [ConfigurationProperty("active", DefaultValue = true, IsRequired = true, IsKey = true)]
@@ -114,6 +157,7 @@ namespace Fanex.CustomerSetting.Module.Racebook.Configuration
             {
                 return (bool)this["active"];
             }
+
             set
             {
                 this["active"] = value;
@@ -127,6 +171,7 @@ namespace Fanex.CustomerSetting.Module.Racebook.Configuration
             {
                 return (bool)this["istop"];
             }
+
             set
             {
                 this["istop"] = value;
@@ -136,8 +181,15 @@ namespace Fanex.CustomerSetting.Module.Racebook.Configuration
         [ConfigurationProperty("currency", DefaultValue = "*", IsRequired = false, IsKey = true)]
         public string Currency
         {
-            get{return (string)this["currency"];}
-            set{this["currency"] = value;}
+            get
+            {
+                return (string)this["currency"];
+            }
+
+            set
+            {
+                this["currency"] = value;
+            }
         }
 
         [ConfigurationProperty("tote", IsDefaultCollection = false)]
@@ -147,17 +199,19 @@ namespace Fanex.CustomerSetting.Module.Racebook.Configuration
            RemoveItemName = "remove")]
         public ToteCollection Totes
         {
-            get { return (ToteCollection)base["tote"]; }
+            get 
+            { 
+                return (ToteCollection)base["tote"];
+            }
         }
-
-
-
-        
     }
 
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
     public class ToteCollection : ConfigurationElementCollection
     {
-       public override ConfigurationElementCollectionType CollectionType
+        public override ConfigurationElementCollectionType CollectionType
         {
             get
             {
@@ -165,20 +219,43 @@ namespace Fanex.CustomerSetting.Module.Racebook.Configuration
             }
         }
 
-        public void Add(ToteElement  toteElement)
+        public ToteElement this[int index]
         {
-            BaseAdd(toteElement);
+            get
+            {
+                return (ToteElement)BaseGet(index);
+            }
+
+            set
+            {
+                if (BaseGet(index) != null)
+                {
+                    BaseRemoveAt(index);
+                }
+
+                BaseAdd(index, value);
+            }
         }
 
-        protected override void BaseAdd(ConfigurationElement element)
+        public new ToteElement this[string id]
         {
-            BaseAdd(element, false);
+            get
+            {
+                return (ToteElement)BaseGet(id);
+            }
+        }
+
+        public void Add(ToteElement toteElement)
+        {
+            BaseAdd(toteElement);
         }
 
         public void Remove(ToteElement toteElement)
         {
             if (BaseIndexOf(toteElement) >= 0)
+            {
                 BaseRemove(toteElement.Id);
+            }
         }
 
         public void RemoveAt(int index)
@@ -196,36 +273,10 @@ namespace Fanex.CustomerSetting.Module.Racebook.Configuration
             BaseClear();
         }
 
-
-        public ToteElement this[int index]
-        {
-            get
-            {
-                return (ToteElement)BaseGet(index);
-            }
-            set
-            {
-                if (BaseGet(index) != null)
-                {
-                    BaseRemoveAt(index);
-                }
-                BaseAdd(index, value);
-            }
-        }
-
-        new public ToteElement this[string id]
-        {
-            get
-            {
-                return (ToteElement)BaseGet(id);
-            }
-        }
-
         public int IndexOf(ToteElement storeProcedureElement)
         {
             return BaseIndexOf(storeProcedureElement);
         }
-
 
         protected override sealed ConfigurationElement CreateNewElement()
         {
@@ -236,11 +287,18 @@ namespace Fanex.CustomerSetting.Module.Racebook.Configuration
         {
             return ((ToteElement)element).Id;
         }
+
+        protected override void BaseAdd(ConfigurationElement element)
+        {
+            BaseAdd(element, false);
+        }
     }
 
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
     public class ToteElement : ConfigurationElement
     {
-
         public ToteElement(string id, string name, string bettypes)
         {
             this.Id = id;
@@ -258,67 +316,130 @@ namespace Fanex.CustomerSetting.Module.Racebook.Configuration
         [ConfigurationProperty("id", DefaultValue = "0", IsRequired = true, IsKey = true)]
         public string Id
         {
-            get { return (string) this["id"]; }
-            set { this["id"] = value; }
+            get 
+            { 
+                return (string)this["id"]; 
+            }
+
+            set 
+            { 
+                this["id"] = value; 
+            }
         }
 
         [ConfigurationProperty("active", DefaultValue = true, IsRequired = true, IsKey = true)]
         public bool Active
         {
-            get { return (bool) this["active"]; }
-            set { this["active"] = value; }
+            get 
+            { 
+                return (bool)this["active"]; 
+            }
+
+            set 
+            { 
+                this["active"] = value; 
+            }
         }
 
         [ConfigurationProperty("istop", DefaultValue = false, IsRequired = true, IsKey = true)]
         public bool IsTop
         {
-            get { return (bool) this["istop"]; }
-            set { this["istop"] = value; }
+            get 
+            { 
+                return (bool)this["istop"]; 
+            }
+
+            set 
+            {
+                this["istop"] = value; 
+            }
         }
 
         [ConfigurationProperty("name", DefaultValue = "NA", IsRequired = true)]
-        //[RegexStringValidator(@"\w+:\/\/[\w.]+\S*")]
-            public string Name
+        //// [RegexStringValidator(@"\w+:\/\/[\w.]+\S*")]
+        public string Name
         {
-            get { return (string) this["name"]; }
-            set { this["name"] = value; }
+            get 
+            { 
+                return (string)this["name"];
+            }
+
+            set 
+            {
+                this["name"] = value; 
+            }
         }
 
         [ConfigurationProperty("bettype", DefaultValue = "NA", IsRequired = true)]
-        //[RegexStringValidator(@"\w+:\/\/[\w.]+\S*")]
-            public string BetType
+        //// [RegexStringValidator(@"\w+:\/\/[\w.]+\S*")]
+        public string BetType
         {
-            get { return (string) this["bettype"]; }
-            set { this["bettype"] = value; }
+            get 
+            { 
+                return (string)this["bettype"]; 
+            }
+
+            set 
+            { 
+                this["bettype"] = value; 
+            }
         }
 
         [ConfigurationProperty("currency", DefaultValue = "*", IsRequired = false)]
-        //[RegexStringValidator(@"\w+:\/\/[\w.]+\S*")]
-            public string Currency
+        //// [RegexStringValidator(@"\w+:\/\/[\w.]+\S*")]
+        public string Currency
         {
-            get { return (string) this["currency"]; }
-            set { this["currency"] = value; }
+            get 
+            { 
+                return (string)this["currency"]; 
+            }
+
+            set 
+            { 
+                this["currency"] = value; 
+            }
         }
 
         [ConfigurationProperty("minbet", DefaultValue = "0", IsRequired = true, IsKey = true)]
-        public String Minbet
+        public string Minbet
         {
-            get { return (String) this["minbet"]; }
-            set { this["minbet"] = value; }
+            get
+            {
+                return (string)this["minbet"]; 
+            }
+
+            set 
+            { 
+                this["minbet"] = value; 
+            }
         }
 
         [ConfigurationProperty("maxbet", DefaultValue = "0", IsRequired = true, IsKey = true)]
-        public String Maxbet
+        public string Maxbet
         {
-            get { return (String) this["maxbet"]; }
-            set { this["maxbet"] = value; }
+            get 
+            {
+                return (string)this["maxbet"]; 
+            }
+
+            set 
+            { 
+                this["maxbet"] = value; 
+            }
         }
 
         [ConfigurationProperty("maxpermatch", DefaultValue = "0", IsRequired = true, IsKey = true)]
-        public String Maxpermatch
+        public string Maxpermatch
         {
-            get { return (String) this["maxpermatch"]; }
-            set { this["maxpermatch"] = value; }
+            get 
+            {
+                return (string)this["maxpermatch"]; 
+            }
+
+            set 
+            { 
+                this["maxpermatch"] = value; 
+            }
         }
     }
 }

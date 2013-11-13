@@ -38,10 +38,11 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
         /// Get site and currency of user.
         /// </summary>
         /// <param name="criteria">Criteria GetSiteByUserIdCriteria.</param>
-        /// <returns>Return site and currency as format "sitename,currencyname".</returns>
-        public string GetSiteAndCurrencyByUserId(GetSiteByUserIdCriteria criteria)
+        /// <returns>Return site and currency as format "site,credit,currency".</returns>
+        public string GetSiteCreditAndCurrencyByUserId(GetSiteByUserIdCriteria criteria)
         {
             string site = string.Empty;
+            string credit = string.Empty;
             string currency = string.Empty;
 
             // prepare SP parameters
@@ -54,11 +55,12 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
                 while (dataReader.Read())
                 {
                     site = dataReader["site"].ToString();
+                    credit = dataReader["credit"].ToString();
                     currency = dataReader["currencyid"].ToString();
                 }                
             }
 
-            return site + "," + currency;
+            return site + "," + credit + "," + currency;
         }
 
         /// <summary>

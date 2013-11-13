@@ -24,7 +24,7 @@ using System.Collections.Generic;
 
         IEnumerable<Site> GetSitesExistingSuper(GetSitesCriteria criteria);
 
-        string GetSiteAndCurrencyByUserId(GetSiteByUserIdCriteria criteria);
+        string GetSiteCreditAndCurrencyByUserId(GetSiteByUserIdCriteria criteria);
 
         CommandResult CopyExistingUser(CustomerInsMemberCriteria criteria);
     }

@@ -33,7 +33,18 @@ namespace Fanex.CustomerSetting.Module.Racebook.App_Start
             bundles.Add(new StyleBundle("~/bundles/racingstyle").Include(
                 "~/Areas/CustomerSetting/Views/Racebook/Styles/*.css"));
 
-           
+            // Min/Max PT Racing setting
+            bundles.Add(new ScriptBundle("~/bundles/minmax_ptracingsetting").Include(
+                "~/Areas/CustomerSetting/Scripts/jquery.js",
+                "~/Areas/CustomerSetting/Scripts/jquery.blockUI.1.33.js",
+                "~/Areas/CustomerSetting/Scripts/Fanex.CustomerSetting.Core.js",
+                "~/Areas/CustomerSetting/Views/Racebook/Scripts/CommonPT.js",
+                "~/Areas/CustomerSetting/Views/Racebook/Scripts/Setting/MinMaxPTRacingSetting.js"));
+
+            bundles.Add(new StyleBundle("~/bundles/minmax-ptracingstyle").Include(
+                "~/Areas/CustomerSetting/Styles/input.css",
+                "~/Areas/CustomerSetting/Views/Racebook/Styles/common.css",
+                "~/Areas/CustomerSetting/Views/Racebook/Styles/table.css"));
         }
     }
 }

@@ -1,13 +1,16 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="ExchangeRate.cs" company="Microsoft">
-// TODO: Update copyright text.
+﻿// ************************************************************************************
+// <copyright file="ExchangeRate.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
-
-using System;
-
+// ************************************************************************************
+// <history>
+//     <change who="kan.nguyen">Create/Run StyleCop.</change>
+// </history>
+// ************************************************************************************
 namespace Fanex.CustomerSetting.Module.Racebook.ViewModels
 {
+    using System;
+
     /// <summary>
     /// TODO: Update summary.
     /// </summary>

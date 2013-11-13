@@ -1,0 +1,60 @@
+﻿// ************************************************************************************
+// <copyright file="CacheExtension.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// ************************************************************************************
+// <history>
+//     <change who="kan.nguyen">Created.</change>
+// </history>
+// ************************************************************************************
+namespace Fanex.CustomerSetting.Module.Racebook.Helper
+{
+    using System;
+    using Fanex.Caching;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public static class CacheExtension
+    {
+        /// <summary>
+        /// Gets the specified cache manager.
+        /// </summary>
+        /// <typeparam name="T">Template for caching object.</typeparam>
+        /// <param name="cacheManager">The cache manager.</param>
+        /// <param name="key">The key of cache.</param>
+        /// <param name="acquire">The acquire function.</param>
+        /// <returns>The object in cache.</returns>
+        public static T Get<T>(this ICache cacheManager, string key, Func<T> acquire)
+        {
+            return Get(cacheManager, key, 120, acquire);
+        }
+
+        /// <summary>
+        /// Gets the specified cache manager.
+        /// </summary>
+        /// <typeparam name="T">Template for caching object.</typeparam>
+        /// <param name="cacheManager">The cache manager.</param>
+        /// <param name="key">The key of cache.</param>
+        /// <param name="cacheTime">The cache time.</param>
+        /// <param name="acquire">The acquire function.</param>
+        /// <returns>The object in cache.</returns>
+        public static T Get<T>(this ICache cacheManager, string key, int cacheTime, Func<T> acquire)
+        {
+            if (cacheManager.Contains(key))
+            {
+                return cacheManager.Get<T>(key);
+            }
+            else
+            {
+                var result = acquire();
+                if (result != null)
+                {
+                    cacheManager.Set(key, result, cacheTime);
+                }
+
+                return result;
+            }
+        }
+    }
+}

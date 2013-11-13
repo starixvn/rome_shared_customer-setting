@@ -46,21 +46,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\_Dependencies\Fanex\Fanex.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.PTEngine, Version=1.0.4894.26393, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\_Dependencies\Fanex\Fanex.PTEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.Tarus.Customer">
-      <HintPath>..\_Dependencies\Fanex\Fanex.Tarus.Customer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Sunplus.Accounting.Business">
-      <HintPath>..\_Dependencies\SearchCopy\Sunplus.Accounting.Business.dll</HintPath>
-    </Reference>
-    <Reference Include="Sunplus.Accounting.Core, Version=1.0.12.78, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\_Dependencies\SearchCopy\Sunplus.Accounting.Core.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -145,13 +131,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Error.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources\Language.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Language.resx</DependentUpon>
-    </Compile>
+    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomePageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -241,26 +224,17 @@
     <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditSuperController.js" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\common.js" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\CommonPT.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Setting\AgentMinMaxPT.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Setting\MasterMinMaxPT.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Setting\MinMaxPTRacingSetting.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Config\Store\RacingSpNames.xml" />
-    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\RemoveSetting.js" />
-    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\SearchCopyController.js" />
-    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\Libs\angular.min.js" />
-    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\ModuleSearchCopy.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\Libs\jquery.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\Libs\json2.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\Libs\knockout-2.0.0.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\common.css" />
-    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\bgSteps.png" />
-    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\btUpdateR.gif" />
-    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\error.gif" />
-    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\more.gif" />
-    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\not_success.png" />
-    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\success.gif" />
-    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Steps\Step2.css" />
-    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Steps\Step1.css" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\input.css" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Message.css" />
-    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\style.css" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\RacingSetting.css" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\table.css" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Config\Store\RacingSpNames.xml" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Setting\BetSettingController.js" />
@@ -528,9 +502,6 @@
     <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\sorting_desc.gif" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\RacingSetting.css" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\table.css" />
-    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Super\Index.cshtml">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="Web.Configuration\Store\RacingSpNames.xml" />
     <Content Include="Web.Configuration\Store\CustomerSpNames.xml" />
     <Content Include="Global.asax" />
@@ -544,6 +515,7 @@
     <Content Include="Web.Configuration\ProgressiveSection.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Areas\CustomerSetting\Views\LeftPanel\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Error.cshtml" />
     <None Include="Areas\CustomerSetting\Styles\Bootstrap\accordion.less" />
     <None Include="Areas\CustomerSetting\Styles\Bootstrap\alerts.less" />
@@ -601,6 +573,219 @@
     <Content Include="PTEngine\BettingLimit.xml" />
     <Content Include="PTEngine\PTGrid.xml" />
     <Content Include="PTEngine\PTRacingGrid.xml" />
+    <Content Include="Scripts\Common\Message.Helper.js" />
+    <Content Include="Scripts\Common\Message.Validator.js" />
+    <Content Include="Scripts\Common\ValidateMessage.js" />
+    <Content Include="Scripts\_Libs\AngularJs\angular.min.js" />
+    <Content Include="Scripts\_Libs\AngularJs\json3.min.js" />
+    <Content Include="Scripts\_Libs\BlockUI\jquery.blockUI.1.33.js" />
+    <Content Include="Scripts\_Libs\BlockUI\jquery.blockUI.1.33.min.js" />
+    <Content Include="Scripts\_Libs\DatePicker\Demo.htm" />
+    <Content Include="Scripts\_Libs\DatePicker\images\icon-calendar.png" />
+    <Content Include="Scripts\_Libs\DatePicker\jquery.nexDatePicker.css" />
+    <Content Include="Scripts\_Libs\DatePicker\jquery.nexDatePicker.js" />
+    <Content Include="Scripts\_Libs\DatePicker\jquery.nexDatePicker.min.js" />
+    <Content Include="Scripts\_Libs\FanexGrid\Fanex.Grid.Convert.js" />
+    <Content Include="Scripts\_Libs\FanexGrid\Fanex.Grid.css" />
+    <Content Include="Scripts\_Libs\FanexGrid\Fanex.Grid.js" />
+    <Content Include="Scripts\_Libs\FanexGrid\Fanex.Pagination.css" />
+    <Content Include="Scripts\_Libs\FanexGrid\Fanex.Pagination.js" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\1350530947_page_excel.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\ajax-loader.gif" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\back-icon.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\bgtitle.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\bg_gloss_wave.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\check-box.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\collapse-icon.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\collapse-small.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\email.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\excel-icon.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\expand-icon.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\expand-small.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\go-hover-icon.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\icn_add.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\icn_del.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\icn_edit.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\icon_page.gif" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\page_white_edit.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\pdf.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\print.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\refresh_icon.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\report_check.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\send-mail.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\send.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\seperations.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\setting.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\sort-icon-new.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\sort-icon-new1.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\sort-icon-new3.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\sort-icon.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\sorting_asc.gif" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\sorting_bg.gif" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\sorting_desc.gif" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\white-top-bottom.gif" />
+    <Content Include="Scripts\_Libs\FanexGrid\moment.js" />
+    <Content Include="Scripts\_Libs\FanexGrid\numeral.js" />
+    <Content Include="Scripts\_Libs\FormatLibs\DateTimeFormat\moment.js" />
+    <Content Include="Scripts\_Libs\FormatLibs\DateTimeFormat\moment.min.js" />
+    <Content Include="Scripts\_Libs\FormatLibs\jquery.customformat.js" />
+    <Content Include="Scripts\_Libs\FormatLibs\NumberFormat\numeral-min.js" />
+    <Content Include="Scripts\_Libs\FormatLibs\NumberFormat\numeral.js" />
+    <Content Include="Scripts\_Libs\GridScroller\gridscroller.css" />
+    <Content Include="Scripts\_Libs\GridScroller\images\1350530947_page_excel.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\ajax-loader.gif" />
+    <Content Include="Scripts\_Libs\GridScroller\images\back-icon.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\bgtitle.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\bg_gloss_wave.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\collapse-icon.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\collapse-small.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\email.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\excel-icon.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\expand-icon.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\expand-small.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\icn_add.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\icn_del.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\icn_edit.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\refresh_icon.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\report_check.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\send-mail.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\setting.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\sort-icon.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\sorting_asc.gif" />
+    <Content Include="Scripts\_Libs\GridScroller\images\sorting_bg.gif" />
+    <Content Include="Scripts\_Libs\GridScroller\images\sorting_desc.gif" />
+    <Content Include="Scripts\_Libs\GridScroller\images\white-top-bottom.gif" />
+    <Content Include="Scripts\_Libs\GridScroller\jquery.gridscroller.1.0.js" />
+    <Content Include="Scripts\_Libs\GridScroller\jquery.gridscroller.1.1.js" />
+    <Content Include="Scripts\_Libs\GridScroller\jquery.gridscroller.js" />
+    <Content Include="Scripts\_Libs\GridScroller\jquery.gridscrollerlite.1.0.js" />
+    <Content Include="Scripts\_Libs\GridScroller\jquery.gridscrollerlite.1.1.js" />
+    <Content Include="Scripts\_Libs\jQuery\classList.js" />
+    <Content Include="Scripts\_Libs\jQuery\Core\jquery.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery-1.7.1-vsdoc.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery-migrate-1.0.0.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery-ui-1.9.1.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery-ui-1.9.1.min.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery.cookie.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery.fixedsortable.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery.form.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery.formattyping.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery.jqprint-0.3.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery.validate.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery.validate.min.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\_Libs\jQuery\knockout-2.1.0.debug.js" />
+    <Content Include="Scripts\_Libs\jQuery\knockout-2.1.0.js" />
+    <Content Include="Scripts\_Libs\jQuery\modernizr-2.5.3.js" />
+    <Content Include="Scripts\_Libs\jQuery\_references.js" />
+    <Content Include="Scripts\_Libs\knockout\knockout-2.1.0.debug.js" />
+    <Content Include="Scripts\_Libs\knockout\knockout-2.1.0.js" />
+    <Content Include="Scripts\_Libs\MessageNotifier\Images\error.png" />
+    <Content Include="Scripts\_Libs\MessageNotifier\Images\success.png" />
+    <Content Include="Scripts\_Libs\MessageNotifier\Images\warning.png" />
+    <Content Include="Scripts\_Libs\MessageNotifier\jquery.messagenotifier.css" />
+    <Content Include="Scripts\_Libs\MessageNotifier\jquery.messagenotifier.js" />
+    <Content Include="Scripts\_Libs\MonthPicker\images\bg-demo-docs-param.gif" />
+    <Content Include="Scripts\_Libs\MonthPicker\images\demo-spindown-closed.gif" />
+    <Content Include="Scripts\_Libs\MonthPicker\images\demo-spindown-open.gif" />
+    <Content Include="Scripts\_Libs\MonthPicker\images\dropdown-icon.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\images\icon-left.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\images\icon-right.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\images\spindown-closed.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\images\spindown-open.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3.css" />
+    <Content Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3.js" />
+    <Content Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3.min.css" />
+    <Content Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3.min.js" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\images\ui-bg_flat_55_fbec88_40x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\images\ui-bg_glass_75_d0e5f5_1x400.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\images\ui-bg_glass_85_dfeffc_1x400.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\images\ui-bg_gloss-wave_55_5c9ccc_500x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\images\ui-bg_inset-hard_100_f5f8f9_1x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\images\ui-icons_217bc0_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\images\ui-icons_469bdd_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\images\ui-icons_6da8d5_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\images\ui-icons_d8e7f3_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\images\ui-icons_f9bd01_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\jquery-ui-1.8.17.css" />
+    <Content Include="Scripts\_Libs\MonthPicker\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\smoothness\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\smoothness\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\smoothness\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\smoothness\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\smoothness\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\smoothness\images\ui-icons_222222_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\smoothness\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\smoothness\images\ui-icons_454545_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\smoothness\images\ui-icons_888888_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\smoothness\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\smoothness\jquery-ui-1.8.17.css" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-bg_diagonals-medium_20_d34d17_40x40.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-bg_flat_30_cccccc_40x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-bg_flat_50_5c5c5c_40x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-bg_gloss-wave_45_817865_500x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-bg_gloss-wave_60_fece2f_500x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-bg_gloss-wave_70_ffdd57_500x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-bg_gloss-wave_90_fff9e5_500x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-bg_highlight-soft_100_feeebd_1x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-bg_inset-soft_30_ffffff_1x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-icons_3d3d3d_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-icons_bd7b00_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-icons_d19405_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-icons_eb990f_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-icons_ed9f26_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-icons_fadc7a_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-icons_ffe180_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\jquery-ui-1.8.17.css" />
+    <Content Include="Scripts\_Libs\MultipleSelect\images\BottomLine.png" />
+    <Content Include="Scripts\_Libs\MultipleSelect\images\FirstNodeSpan.png" />
+    <Content Include="Scripts\_Libs\MultipleSelect\images\MiddleLine.png" />
+    <Content Include="Scripts\_Libs\MultipleSelect\images\NodeSpan.png" />
+    <Content Include="Scripts\_Libs\MultipleSelect\images\PlusMinus.png" />
+    <Content Include="Scripts\_Libs\MultipleSelect\images\sprites.png" />
+    <Content Include="Scripts\_Libs\MultipleSelect\images\TopLine.png" />
+    <Content Include="Scripts\_Libs\MultipleSelect\images\ui-icons_2e83ff_256x240-1.png" />
+    <Content Include="Scripts\_Libs\MultipleSelect\images\ui-icons_2e83ff_256x240-2.png" />
+    <Content Include="Scripts\_Libs\MultipleSelect\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Scripts\_Libs\MultipleSelect\jquery.multiradioselect.nlevel_new.js" />
+    <Content Include="Scripts\_Libs\MultipleSelect\jquery.multiselect.css" />
+    <Content Include="Scripts\_Libs\MultipleSelect\jquery.multiselect.js" />
+    <Content Include="Scripts\_Libs\MultipleSelect\jquery.multiselect.min.js" />
+    <Content Include="Scripts\_Libs\MultipleSelect\jquery.nextreeview.css" />
+    <Content Include="Scripts\_Libs\MultipleSelect\jquery.nextreeview.js" />
+    <Content Include="Scripts\_Libs\Pager\go-hover-icon.png" />
+    <Content Include="Scripts\_Libs\Pager\icon_page.gif" />
+    <Content Include="Scripts\_Libs\Pager\jpager.js" />
+    <Content Include="Scripts\_Libs\Pager\pagination.css" />
+    <Content Include="Scripts\_Libs\Pager\seperations.png" />
+    <Content Include="Scripts\_Libs\PopUp\dialogbox.js" />
+    <Content Include="Scripts\_Libs\TemplateRender\doT\doT.js" />
+    <Content Include="Scripts\_Libs\TemplateRender\doT\doT.min.js" />
+    <Content Include="Scripts\_Libs\TimePicker\jquery-ui-timepicker-addon.css" />
+    <Content Include="Scripts\_Libs\TimePicker\jquery-ui-timepicker-addon.js" />
+    <Content Include="Scripts\_Libs\Tooltip\Demo.htm" />
+    <Content Include="Scripts\_Libs\Tooltip\jquery.tipsy.js" />
+    <Content Include="Scripts\_Libs\Tooltip\jquery.tipsy.min.js" />
+    <Content Include="Scripts\_Libs\Tooltip\tipsy.css" />
+    <Content Include="Scripts\_Libs\Utils\html5shiv.js" />
+    <Content Include="Scripts\_Libs\Utils\html5shiv.min.js" />
+    <Content Include="Scripts\_Libs\Utils\jquery.fixBugsBrowser.js" />
+    <Content Include="Scripts\_Libs\Utils\Namespace.js" />
+    <Content Include="Scripts\_Libs\Utils\stdlib.js" />
+    <Content Include="Scripts\_Libs\Validation\jquery.validationEngine-en.js" />
+    <Content Include="Scripts\_Libs\Validation\jquery.validationEngine.js" />
+    <Content Include="Scripts\_Libs\Validation\validationEngine.jquery.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -618,19 +803,33 @@
     <Content Include="Views\Shared\AccessDenied.cshtml" />
     <Content Include="Web.Configuration\CustomerSetting\Racing\PTRacingMappingSection.config" />
     <Content Include="Web.Configuration\CustomerSetting\Racing\RacingBettingCommSettingMappingSection.config" />
-    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Super\GeneralInformation.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Super\SearchForm.cshtml" />
+    <Content Include="Web.Configuration\CustomerSetting\Racing\RacingSection.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\CustomerSetting\Views\Bingo\Scripts\Libs\" />
-    <Folder Include="Areas\CustomerSetting\Views\SearchCopy\App_LocalResources\" />
+    <Folder Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\" />
+    <Folder Include="Content\base\img\actions\dd\" />
+    <Folder Include="Content\base\img\combo-pickr\" />
+    <Folder Include="Content\base\img\textures\" />
+    <Folder Include="Content\base\jquery\images\" />
+    <Folder Include="Content\img\" />
+    <Folder Include="Content\jquery-ui\images\" />
+    <Folder Include="Content\themes\base\images\" />
+    <Folder Include="Content\themes\base\minified\images\" />
+    <Folder Include="Content\themes\Honolulu\css\" />
+    <Folder Include="Content\themes\Honolulu\ico\" />
+    <Folder Include="Content\themes\Honolulu\img\" />
+    <Folder Include="Content\themes\Honolulu\js\" />
+    <Folder Include="Content\themes\Honolulu\less\report\" />
     <Folder Include="Models\" />
+    <Folder Include="Scripts\_Libs\BlockUI\img\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\_Libs\FanexGrid\images.zip" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Shared\_Layout.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Sportsbook\Index.cshtml" />
     <Content Include="PTEngine\BettingLimitMappingSection.config" />
@@ -662,6 +861,7 @@
     <Content Include="Areas\CustomerSetting\Views\BetSetting\LiveCasino\Content.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Casino\Content.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Bingo\Content.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Config\PTRacingMappingSection.config" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\Agent.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\Master.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\MasterEditMember.cshtml" />
@@ -669,8 +869,12 @@
     <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\RacingSetting.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\Super.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\SuperEditMember.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Config\PTRacingMappingSection.config" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Shared\_LayoutMinMaxPT.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\MasterMinMaxPT.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Config\RacingSection.config" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\AgentMinMaxPT.cshtml" />
     <None Include="Areas\CustomerSetting\Views\SearchCopy\Document.doc" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Super\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Shared\_Layout.cshtml" />
     <None Include="Areas\CustomerSetting\Views\OpusCasino\Document.doc" />
     <Content Include="Areas\CustomerSetting\Views\OpusCasino\Setting\Agent.cshtml" />
@@ -695,6 +899,7 @@
     <None Include="Areas\CustomerSetting\Views\Racebook\Document.doc" />
     <Content Include="Web.Configuration\RacingSection.config" />
     <None Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Buttons\AntiXss.msi" />
+    <None Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3-custom.less" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Module\BetSetting\BetSetting.csproj">
@@ -738,12 +943,6 @@
     <Content Include="App_GlobalResources\Error.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Error.Designer.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_GlobalResources\Language.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Language.designer.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <PropertyGroup>

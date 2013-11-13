@@ -1,72 +1,126 @@
-﻿using System.Collections.Generic;
+﻿// ************************************************************************************
+// <copyright file="RacingDAO.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// ************************************************************************************
+// <history>
+//     <change who="kan.nguyen">Create/Run StyleCop.</change>
+// </history>
+// ************************************************************************************
 namespace Fanex.CustomerSetting.Module.Racebook.Repositories
 {
     using System.Collections;
+    using System.Collections.Generic;
     using System.Data;
+    using System.Diagnostics.CodeAnalysis;
+    using Fanex.Common;
     using Fanex.CustomerSetting.Module.Racebook.Entities;
     using Fanex.Data;
-    using Fanex.Data.DNAide;
 
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
     public class RacingDAO : IRacingDAO
     {
+        /// <summary>
+        /// Gets the racing status.
+        /// </summary>
+        /// <param name="custId">The customer id.</param>
+        /// <returns>Data table.</returns>
         public DataTable GetRacingStatus(int custId)
         {
             var param = new Hashtable { { "custid", custId } };
 
             using (var objDb = new ObjectDb("GetRacingStatus"))
             {
-                var dsResult = objDb.ExecuteDataSet(param);
-                if (dsResult == null || dsResult.Tables.Count == 0)
+                var datasetResult = objDb.ExecuteDataSet(param);
+                if (datasetResult == null || datasetResult.Tables.Count == 0)
+                {
                     return null;
-                return dsResult.Tables[0];
-            }
+                }
 
+                return datasetResult.Tables[0];
+            }
         }
+
+        /// <summary>
+        /// Gets the racing setting.
+        /// </summary>
+        /// <param name="custId">The customer id.</param>
+        /// <param name="roleId">The role id.</param>
+        /// <returns>Data table.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules",
+            "SP2101:MethodMustNotContainMoreLinesThan",
+            Justification = "Reviewed. Suppression is OK here.")]
         public DataTable GetRacingSetting(int custId, int roleId)
         {
-            DbResult dbResult = null;
-            string spMaping = null;
+            string storedKey = null;
             var param = new Hashtable { { "custid", custId } };
-            switch (roleId)
+            CustInfo.Roles role = (CustInfo.Roles)roleId;
+            switch (role)
             {
-                case (int)CustInfo.Roles.Super:
-                    spMaping = "GetSuperSetting";
+                case CustInfo.Roles.Super:
+                    storedKey = "GetSuperSetting";
                     break;
-                case (int)CustInfo.Roles.Master:
-                    spMaping = "GetMasterSetting";
+
+                case CustInfo.Roles.Master:
+                    storedKey = "GetMasterSetting";
                     break;
-                case (int)CustInfo.Roles.Agent:
-                    spMaping = "GetAgentSetting";
+
+                case CustInfo.Roles.Agent:
+                    storedKey = "GetAgentSetting";
                     break;
-                case (int)CustInfo.Roles.Member:
-                    spMaping = "GetMemberSetting";
+
+                case CustInfo.Roles.Member:
+                    storedKey = "GetMemberSetting";
                     break;
-                case (int)CustInfo.Roles.SuperOnMember: 
-                    spMaping = "GetSuperOnMember";
+
+                case CustInfo.Roles.SuperOnMember: 
+                    storedKey = "GetSuperOnMember";
                     break;
-                case (int)CustInfo.Roles.MasterOnMember: 
-                    spMaping = "GetMasterOnMember";
+
+                case CustInfo.Roles.MasterOnMember: 
+                    storedKey = "GetMasterOnMember";
                     break;
-                case (int)CustInfo.Roles.SuperMin: 
-                    spMaping = "GetSuperMin";
+
+                case CustInfo.Roles.SuperMin: 
+                    storedKey = "GetSuperMin";
                     break;
-                case (int)CustInfo.Roles.MasterMinMax: 
-                    spMaping = "GetMasterMinMax";
+
+                case CustInfo.Roles.MasterMinMax: 
+                    storedKey = "GetMasterMinMax";
                     break;
-                case (int)CustInfo.Roles.AgentMinMax: 
-                    spMaping = "GetAgentMinMax";
+
+                case CustInfo.Roles.AgentMinMax: 
+                    storedKey = "GetAgentMinMax";
                     break;
-            }
-            using (var objDb = new ObjectDb(spMaping))
-            {
-                var dsResult = objDb.ExecuteDataSet(param);
-                if (dsResult == null || dsResult.Tables.Count == 0)
-                    return null;
-                return dsResult.Tables[0];
+
+                default:
+                    break;
             }
 
+            if (storedKey == null)
+            {
+                return null;
+            }
+
+            using (var objDb = new ObjectDb(storedKey))
+            {
+                var datasetResult = objDb.ExecuteDataSet(param);
+                if (datasetResult == null || datasetResult.Tables.Count == 0)
+                {
+                    return null;
+                }
+
+                return datasetResult.Tables[0];
+            }
         }
 
+        /// <summary>
+        /// Updates the racing status.
+        /// </summary>
+        /// <param name="settingParams">The setting parameters.</param>
+        /// <returns>The result object.</returns>
         public Result UpdateRacingStatus(Hashtable settingParams)
         {
             var result = new Result();
@@ -77,76 +131,100 @@ namespace Fanex.CustomerSetting.Module.Racebook.Repositories
                 result.ErrorCode = Fanex.Common.Converter.ToInt(outputResult["errcode"]);
                 result.ErrorMessage = Fanex.Common.Converter.ToString2(outputResult["errmsg"]);
             }
+
             return (result.ErrorCode != 0) ? result : new Result();
         }
 
+        /// <summary>
+        /// Updates the racing setting.
+        /// </summary>
+        /// <param name="settingParams">The setting parameters.</param>
+        /// <param name="roleId">The role id.</param>
+        /// <returns>The result object.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules",
+            "SP2101:MethodMustNotContainMoreLinesThan",
+            Justification = "Reviewed. Suppression is OK here.")]
         public Result UpdateRacingSetting(Hashtable settingParams, int roleId)
         {
             var result = new Result();
-            string spMaping = null;
-            switch (roleId)
+            string storedKey = null;
+            CustInfo.Roles role = (CustInfo.Roles)roleId;
+            switch (role)
             {
-                case (int)CustInfo.Roles.Super:
-                    spMaping = "UpdateSuperSetting";
+                case CustInfo.Roles.Super:
+                    storedKey = "UpdateSuperSetting";
                     break;
 
-                case (int)CustInfo.Roles.Master:
-                    spMaping = "UpdateMasterSetting";
+                case CustInfo.Roles.Master:
+                    storedKey = "UpdateMasterSetting";
                     break;
 
-                case (int)CustInfo.Roles.Agent:
-                    spMaping = "UpdateAgentSetting";
+                case CustInfo.Roles.Agent:
+                    storedKey = "UpdateAgentSetting";
                     break;
 
-                case (int)CustInfo.Roles.Member:
-                    spMaping = "UpdateMemberSetting";
+                case CustInfo.Roles.Member:
+                    storedKey = "UpdateMemberSetting";
                     break;
-                case (int)CustInfo.Roles.SuperOnMember: 
-                    spMaping = "UpdateSuperOnMember";
+
+                case CustInfo.Roles.SuperOnMember: 
+                    storedKey = "UpdateSuperOnMember";
                     break;
-                case (int)CustInfo.Roles.MasterOnMember: 
-                    spMaping = "UpdateMasterOnMember";
+
+                case CustInfo.Roles.MasterOnMember: 
+                    storedKey = "UpdateMasterOnMember";
                     break;
-                case (int)CustInfo.Roles.SuperMin:
-                case (int)CustInfo.Roles.MasterMinMax:
-                case (int)CustInfo.Roles.AgentMinMax:
-                    spMaping = "UpdateMinMaxPt";
+
+                case CustInfo.Roles.SuperMin:
+                case CustInfo.Roles.MasterMinMax:
+                case CustInfo.Roles.AgentMinMax:
+                    storedKey = "UpdateMinMaxPt";
+                    break;
+
+                default:
                     break;
             }
 
-            if (!string.IsNullOrEmpty(spMaping))
+            if (storedKey == null)
             {
-                using (var db = new ObjectDb(spMaping))
-                {
-                    db.ExecuteNonQuery(settingParams);
-                    var outputResult = db.GetOuputParams();
-                    result.ErrorCode = Fanex.Common.Converter.ToInt(outputResult["errcode"]);
-                    result.ErrorMessage = Fanex.Common.Converter.ToString2(outputResult["errmsg"]);
-                }
+                return null;
+            }
+           
+            using (var db = new ObjectDb(storedKey))
+            {
+                db.ExecuteNonQuery(settingParams);
+                var outputResult = db.GetOuputParams();
+                result.ErrorCode = Converter.ToInt(outputResult["errcode"]);
+                result.ErrorMessage = Converter.ToString2(outputResult["errmsg"]);
             }
 
-            return (result.ErrorCode != 0)? result : new Result();
+            return (result.ErrorCode != 0) ? result : new Result();
         }
 
+        /// <summary>
+        /// Gets the exchange.
+        /// </summary>
+        /// <returns>The hash table of Exchange.</returns>
         public Dictionary<int, string> GetExchange()
         {
             var exchange = new Dictionary<int, string>();
            
-                //get data from database
-                
-                using (var objDb = new ObjectDb("ExchangeCurrencySel"))
+            // Get data from database
+            using (var objDb = new ObjectDb("ExchangeCurrencySel"))
+            {
+                var datasetResult = objDb.ExecuteDataSet();
+                if (datasetResult == null || datasetResult.Tables.Count == 0 || datasetResult.Tables[0].Rows.Count == 0)
                 {
-                    var dsResult = objDb.ExecuteDataSet();
-                    if (dsResult == null || dsResult.Tables.Count == 0 || dsResult.Tables[0].Rows.Count == 0)
-                        return null;
-                    DataRow[] dr = dsResult.Tables[0].Select();
-                    foreach (DataRow row in dr)
-                    {
-                        exchange.Add(Fanex.Common.Converter.ToInt(row["exchangeid"]), row["currency"].ToString());
-                    }
-                    return exchange;
+                    return null;
                 }
-             
+
+                foreach (DataRow row in datasetResult.Tables[0].Rows)
+                {
+                    exchange.Add(Converter.ToInt(row["exchangeid"]), row["currency"].ToString());
+                }
+
+                return exchange;
+            }
         }
     }
 }
