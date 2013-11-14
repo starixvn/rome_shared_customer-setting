@@ -21,30 +21,25 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
     public class SuperController : BaseCloneController
     {        
         /// <summary>
-        /// Render supper settings.
-        /// </summary>
-        /// <param name="username">The super's name.</param>
+        /// Render search existing super form.
+        /// </summary>        
         /// <returns>The ActionResult.</returns>
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Index")]
-        public ActionResult Index(string username)
-        {
-            CustomerSettingView customerSettingView = new CustomerSettingView
-            {
-                Username = string.IsNullOrEmpty(username) ? string.Empty : username,
-                StatusSports = string.IsNullOrEmpty(username) ? new DisableSports() : GetSportsStatusByUserName(username)
-            };
-
-            ViewBag.CurrentUserId = Fanex.Common.Converter.ToInt(System.Web.HttpContext.Current.Session["AccId"]);
+        public ActionResult Index()
+        {            
+            string accIdSessionName = ConfigurationManager.AppSettings["AccIdSessionName"].ToString();
+            ViewBag.CurrentUserId = Fanex.Common.Converter.ToInt(System.Web.HttpContext.Current.Session[accIdSessionName]);
             ViewBag.CurrentURL = ConfigurationManager.AppSettings["CurrentURL"].ToString();            
-            return View("~/Areas/CustomerSetting/Views/SearchCopy/Super/Index.cshtml", customerSettingView);           
+
+            return View("~/Areas/CustomerSetting/Views/SearchCopy/Super/Index.cshtml");           
         }
 
         /// <summary>
-        /// Search a existing super user.
+        /// Searching a existing super user.
         /// </summary>
         /// <param name="username">The username.</param>
-        /// <returns>Return True if success else return False.</returns>
-        public int SearchExistingSuper(string username)
+        /// <returns>Return JSONRESULT.</returns>
+        public JsonResult SearchExistingSuper(string username)
         {
             var criteria = new SearchExistingUserCriteria
             {
@@ -54,9 +49,23 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                 Issubacc = false
             };
 
-            return SearchExistingUser(criteria);
+            int userId = SearchExistingUser(criteria);
+            
+            CustomerSettingView customerSettingView = new CustomerSettingView
+            {
+                UserId = userId,
+                Username = username,
+                StatusSports = userId > 0 ? GetSportsStatusByUserName(username) : new DisableSports()
+            };
+
+            return Json(customerSettingView, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Copy existing super.
+        /// </summary>
+        /// <param name="criteria">The criteria for copying.</param>
+        /// <returns>The JSONRESULT .</returns>
         public JsonResult CopyExistingSuper(CustomerInsMemberCriteria criteria)
         {
             criteria.FirstName = criteria.FirstName ?? string.Empty;

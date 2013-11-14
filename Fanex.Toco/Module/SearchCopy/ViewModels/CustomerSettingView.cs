@@ -18,6 +18,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.ViewModels
     [Serializable]
     public class CustomerSettingView
     {
+        public int UserId { get; set; }
+
         public string Username { get; set; }
 
         public DisableSports StatusSports { get; set; }
