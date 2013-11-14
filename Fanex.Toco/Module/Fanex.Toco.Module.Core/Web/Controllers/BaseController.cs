@@ -150,15 +150,16 @@ using System.Web;
 
         protected ActionResult ActionDenied(HttpRequestBase request)
         {
-            if (request.Headers["X-Requested-With"] != null && request.Headers["X-Requested-With"].Equals("XMLHttpRequest"))
+            if (request.IsAjaxRequest())
             {
                 return new JsonResult
                 {
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet,
                     Data = new
                     {
-                        errorCode = 500,
-                        errorMessage = "You are not authorized on this function"
+                        errorCode = 1,
+                        errorMessage = "You are not authorized on this function",
+                        isSuccess = false
                     }
                 };
             }
