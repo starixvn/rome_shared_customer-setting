@@ -150,7 +150,7 @@ using System.Web;
 
         protected ActionResult ActionDenied(HttpRequestBase request)
         {
-            if (request.Headers["X-Requested-With"] != null && request.Headers["X-Requested-With"].Equals("XMLHttpRequest"))
+            if (request.IsAjaxRequest())
             {
                 return new JsonResult
                 {
