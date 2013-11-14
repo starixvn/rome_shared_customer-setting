@@ -12,6 +12,9 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
     using System;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Class CustomerInsMemberCriteria.
+    /// </summary>
     [Serializable]
     public class CustomerInsMemberCriteria : CriteriaBase
     {
@@ -52,6 +55,9 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
             return "Acc_CustomerInsMember_CloneSetting_Com";
         }
 
-        public override bool IsValid() { return true; }
+        public override bool IsValid()
+        {
+            return true;
+        }
     }
 }

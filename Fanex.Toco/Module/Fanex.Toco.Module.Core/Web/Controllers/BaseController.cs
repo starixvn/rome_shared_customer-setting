@@ -157,8 +157,9 @@ using System.Web;
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet,
                     Data = new
                     {
-                        errorCode = 500,
-                        errorMessage = "You are not authorized on this function"
+                        errorCode = 1,
+                        errorMessage = "You are not authorized on this function",
+                        isSuccess = false
                     }
                 };
             }

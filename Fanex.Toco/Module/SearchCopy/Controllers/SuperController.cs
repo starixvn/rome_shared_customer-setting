@@ -8,16 +8,12 @@
 // </history>
 namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
 {
+    using System.Configuration;
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
     using Fanex.CustomerSetting.Module.SearchCopy.Entities;
     using Fanex.CustomerSetting.Module.SearchCopy.ViewModels;
     using Fanex.CustomerSetting.Security.Authenticate;
-    using Fanex.CustomerSetting.Module.SearchCopy.Services;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System;
-    using System.Configuration;
 
     /// <summary>
     /// Base racing controller.
@@ -38,7 +34,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                 StatusSports = string.IsNullOrEmpty(username) ? new DisableSports() : GetSportsStatusByUserName(username)
             };
 
-            ViewBag.CurrentURL = ConfigurationManager.AppSettings["CurrentURL"].ToString();
+            ViewBag.CurrentUserId = Fanex.Common.Converter.ToInt(System.Web.HttpContext.Current.Session["AccId"]);
+            ViewBag.CurrentURL = ConfigurationManager.AppSettings["CurrentURL"].ToString();            
             return View("~/Areas/CustomerSetting/Views/SearchCopy/Super/Index.cshtml", customerSettingView);           
         }
 
@@ -51,10 +48,10 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
         {
             var criteria = new SearchExistingUserCriteria
             {
-                uplineid = 0,
-                username = username,
-                custid = -1,
-                issubacc = false
+                Uplineid = 0,
+                Username = username,
+                Custid = -1,
+                Issubacc = false
             };
 
             return SearchExistingUser(criteria);
@@ -68,8 +65,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             criteria.MobilePhone = criteria.MobilePhone ?? string.Empty;
             criteria.Fax = criteria.Fax ?? string.Empty;
 
-            var result = _searchCopyService.CopyExistingUser(criteria);
-            return Json(result, JsonRequestBehavior.AllowGet);
+            return CopyExistingUser(criteria);            
         }
     }
 }

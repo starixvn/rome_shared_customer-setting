@@ -12,6 +12,9 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
     using System;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Class GetSitesCriteria.
+    /// </summary>
     [Serializable]
     public class GetSitesCriteria : CriteriaBase
     {           
@@ -20,6 +23,9 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
             return "CustomerSetting_SiteSel";
         }
 
-        public override bool IsValid() { return true; }
+        public override bool IsValid()
+        {
+            return true;
+        }
     }
 }

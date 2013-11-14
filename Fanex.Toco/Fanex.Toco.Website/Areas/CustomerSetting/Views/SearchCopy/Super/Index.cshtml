@@ -16,7 +16,9 @@
     <script type="text/javascript" src="@Url.Content("~/Areas/CustomerSetting/Views/SearchCopy/Scripts/RemoveSetting.js")"></script>
 }
 <div id="divSearchCopy" ng-controller="SearchCopyController">
-    <div id="errorMsg" class="validation-summary-errors hidden" data-valmsg-summary="true">
+    <input type="hidden" id="currentUserId" value= '@ViewBag.CurrentUserId' />
+    <input type="hidden" id="currentURL" value= '@ViewBag.CurrentURL' />
+    <div id="errorMsg" class="validation-summary-errors hidden">
     </div>
     <div class="formPanel">
         <div id="panelStep1">
@@ -74,7 +76,7 @@
                  <div id="divSport" class="bg_table" style="width: 100%">
                     <iframe id="frmSport" onload='setFrameLoaded();' scrolling="auto" frameborder="0" style="width: 100%; height: 903px;"
                         hspace="0" vspace="0" marginheight="0" marginwidth="0" src=""
-                        name="centerFr"></iframe>
+                        name="frmSport"></iframe>
                 </div>
             </div>
             <div class="newline">
@@ -91,11 +93,16 @@
     }
 </div>
 <script type="text/javascript">
+    
     function toUrl(relativeUrl) {
         return '@Url.Content("~/CustomerSetting/SearchCopy/")' + relativeUrl;
     };
 
     function setFrameLoaded() {
-        PTSetting.SportType.SetFrameLoaded();
-    };   
+        if ($('#frmSport').attr('src') != "")
+        {            
+            PTSetting.SportType.SetFrameLoaded();
+        }
+    };
+
 </script>

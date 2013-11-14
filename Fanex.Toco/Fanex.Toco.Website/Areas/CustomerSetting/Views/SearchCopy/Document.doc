@@ -1,10 +1,5 @@
 ﻿
 1. Dependencies
-• Sunplus.Accouting.Bussiness.dll
-• Sunplus.Accouting.Core.dll
-• Fanex.Tarus.Customer.dll
-//• Fanex.PTEngine.dll
-//• Fanex.PTRacing.dll
 • Fanex.Data.dll
 • Fanex.Common.dll
 • Fanex.Logging.dll
