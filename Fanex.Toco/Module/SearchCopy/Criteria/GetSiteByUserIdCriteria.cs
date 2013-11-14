@@ -12,16 +12,22 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
     using System;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Class GetSiteByUserIdCriteria.
+    /// </summary>
     [Serializable]
     public class GetSiteByUserIdCriteria : CriteriaBase
     {       
-        public int custid { get; set; }
+        public int Custid { get; set; }
          
         public override string GetSettingKey()
         {
             return "Acc_CustomerSelCEditCustomer";
         }
 
-        public override bool IsValid() { return true; }
+        public override bool IsValid()
+        {
+            return true;
+        }
     }
 }

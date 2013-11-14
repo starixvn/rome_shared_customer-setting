@@ -44,6 +44,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repository.Impl
         /// Returns the single value.
         /// </summary>
         /// <param name="criteria">The criteria.</param>
+        /// <param name="columnName">The column name.</param>
         /// <returns>System Object.</returns>
         public object ReturnSingleValueByColumnName(ICriteria criteria, string columnName)
         {

@@ -1,7 +1,7 @@
 ﻿var searchCopyController = angular.module('SearchCopy', ['SearchCopy.service', 'SearchCopy.directive', 'SearchCopy.filter']);
 
 // A Controller for your app
-searchCopyController.controller('SearchCopyController', ['$scope', 'message', function ($scope, message) {
+searchCopyController.controller('SearchCopyController', ['$scope', 'message', 'validate', function ($scope, message, validate) {
     /* define variables*/
     var user = {
         userid: -1,
@@ -12,42 +12,42 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', fu
         phone: '',
         mobilephone: '',
         fax: '',
-        maxcredit: '',
+        maxCredit: '',
         currencylist: [
             { currency: '' }
         ],
         internaluser: false
     };
 
-    var customer;
-    var context;
-    var ptGrid = null;
-    var bettingLimitGrid = null;
-    $scope.existedUser = { userid: -1, username: '', selectedSite: { siteid: 0, site: '' }, sites: [], selectedCurrency: '' };
+    $scope.existedUser = { userid: -1, username: '', selectedSite: {}, sites: [], selectedCurrency: '', maxCredit: '' };
     $scope.newUser = {};
 
     /* initialization */
     $scope.init = function () {
-        /* init GUI */
         $scope.newUser = angular.copy(user);
         $("#step2").hide();
-        $("#errorMsg").addClass("hidden");
         $scope.addEvents();
+        $("#maxCredit").ForceDecimalOnly().ForceCurrencyOnly();
     };
 
     /* define functions*/
     $scope.addEvents = function () {
         $("#existedUserName").focus(function () {
-            $("#errorMsg").addClass("hidden");
-            $("#nameReqErr").hide();
-            $("#superNotExistedErr").hide();
+            message.hideAlertMessage("errorMsg");
             $("#checkExisted").hide();
         });
 
         $("#existedUserName").focusout(function () {
-            $scope.searchExistingUser(this.value);
             $("#checkExisted").show();
+            $scope.searchExistingUser(this.value);            
+        });
 
+        $("#panelStep1").click(function () {
+            $scope.step2Back();
+        });
+
+        $("#panelStep2").click(function () {
+            $scope.step1Next();
         });
 
         $("#step1Next").click(function () {
@@ -71,13 +71,15 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', fu
         }
         else {
             if ($scope.existedUser.userid != "-1") {
+                message.hideAlertMessage("errorMsg");
+
                 $("#step1").hide();
                 $("#step2").show();
                 $(".settingInfo div").hide();
                 $("#divGeneralInformation").show();
 
                 $("#step2 .tab-active").attr("class", "tab-inactive");
-                $("#tabGenealInfomation").attr("class", "tab-active");
+                $("#tabGenealInformation").attr("class", "tab-active");
 
                 $("#spanstep1").removeClass("step1-active");
                 $("#spanstep1").addClass("step1-inactive");
@@ -92,6 +94,8 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', fu
     };
 
     $scope.step2Back = function () {
+        message.hideAlertMessage("errorMsg");
+
         $("#step2").hide();
         $("#step1").show();
 
@@ -102,31 +106,50 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', fu
         $("#spanstep2").addClass("step2-inactive");
     };
 
+    $scope.validateData = function () {
+        if ($scope.newUser.username == undefined || $scope.newUser.username == "") {
+            message.showAlertMessage("errorMsg", "The username is required !", 1);
+            validate.setRequired("#username");
+            return false;
+        }
+        if ($scope.newUser.password == undefined || $scope.newUser.password == "") {
+            message.showAlertMessage("errorMsg", "The password is required !", 1);
+            validate.setRequired("#password");
+            return false;
+        }
+
+        return true;
+    };
+
     $scope.showSetting = function (settingInfoId, tabId) {
-        if (tabId != '#tabGenealInfomation') {
-            var result = $scope.checkRequiredFields();
-            if (result == false) {
+        if (tabId != 'tabGenealInformation') {
+            if ($scope.newUser.username == undefined || $scope.newUser.username == "") {
+                message.showAlertMessage("errorMsg", "Please Enter User Name.", 1);
+                validate.setRequired("#username");
                 return;
+            }
+            else {
+                message.hideAlertMessage("errorMsg");
             }
         }
 
         $(".settingInfo div").hide();
-
         $("#step2 .tab-active").attr("class", "tab-inactive");
         $('#' + tabId).attr("class", "tab-active");
 
-        var url = "";        
+        var url = $("#currentURL").val();
         switch (tabId) {
-            case 'tabSportsbook': url = "http://localhost:53906/Websites/EditSuper/EditSuperPage?custId=" + $scope.existedUser.userid + "&uname=" + $scope.existedUser.username; break;
-            case 'tabSportsbookMinPT': url = "http://localhost:53906/Websites/EditSuperMinPt/EditSuperMinPtPage?&custId=" + $scope.existedUser.userid + "&uname=" + $scope.existedUser.username; break;
-            case 'tabRacing': url = "http://localhost:53906/Websites/EditSuperPTRacing/Index?custid=" + $scope.existedUser.userid; break;
-            case 'tabRacingMinPT': url = "http://localhost:53906/Websites/customer/pt/racing/SuperMinUpdate.aspx?custId=" + $scope.existedUser.userid; break;
-            case 'tabCasino': url = "http://localhost:53906/Websites/Customer/PositionTakingCS.aspx?custId=" + $scope.existedUser.userid; break;
-            case 'tabVirtualSports': url = "http://localhost:53906/Websites/VirtualSportSuperPT/EditSuper?custId=" + $scope.existedUser.userid + "&uname=" +  $scope.existedUser.username + "&roleId=4"; break;
-            case 'tabBingo': url = "http://localhost:53906/Websites/Customer/PT/Bingo/SuperUpdate.aspx?custId=" + $scope.existedUser.userid; break;
-            case 'tabLiveCasino': url = "http://localhost:53906/Websites/LiveCasino/PTSetting/EditSuper.aspx?custId=" + $scope.existedUser.userid + "&exchangeId=20&roleId=4"; break;
+            case 'tabSportsbook': url += "/EditSuper/EditSuperPage?custId=" + $scope.existedUser.userid + "&uname=" + $scope.existedUser.username; break;
+            case 'tabSportsbookMinPT': url += "/EditSuperMinPt/EditSuperMinPtPage?&custId=" + $scope.existedUser.userid + "&uname=" + $scope.existedUser.username; break;
+            case 'tabRacing': url += "/EditSuperPTRacing/Index?custid=" + $scope.existedUser.userid; break;
+            case 'tabRacingMinPT': url += "/customer/pt/racing/SuperMinUpdate.aspx?custId=" + $scope.existedUser.userid; break;
+            case 'tabCasino': url += "/Customer/PositionTakingCS.aspx?custId=" + $scope.existedUser.userid; break;
+            case 'tabVirtualSports': url += "/VirtualSportSuperPT/EditSuper?custId=" + $scope.existedUser.userid + "&uname=" + $scope.existedUser.username + "&roleId=4"; break;
+            case 'tabBingo': url += "/Customer/PT/Bingo/SuperUpdate.aspx?custId=" + $scope.existedUser.userid; break;
+            case 'tabLiveCasino': url += "/LiveCasino/PTSetting/EditSuper.aspx?custId=" + $scope.existedUser.userid + "&exchangeId=20&roleId=4"; break;
             case 'tabGenealInformation': $("#divGeneralInformation").show();
         }
+
         if (tabId != 'tabGenealInformation') {
             $('#frmSport').attr('src', url)
             $("#divSport").show();
@@ -134,19 +157,13 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', fu
         };
     };
 
-    //Checking required fields: username, password, site and currency
-    $scope.checkRequiredFields = function () {
-        if ($scope.newUser.username == undefined || $scope.newUser.username == "") {
-            message.showAlertMessage("errorMsg", "Please Enter User Name.", 1);
-            return false;
-        }
-        else {
-            $("#errorMsg").addClass("hidden");
-            return true;
-        }
-    };
-
     $scope.searchExistingUser = function (username) {
+        if (username == "") {
+            $("#checkExisted").removeClass('success');
+            $("#checkExisted").removeClass('not_success');
+            return;
+        }
+
         var param = {
             username: username
         };
@@ -161,42 +178,43 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', fu
                 $scope.existedUser.userid = custid;
                 if (custid != "-1") {
                     message.hideAlertMessage("errorMsg");
-                    $("#checkExisted").addClass('success');
                     $("#checkExisted").removeClass('not_success');
-                    $scope.getSiteAndCurrencyByUserId(custid);
+                    $("#checkExisted").addClass('success');                    
+                    $scope.getSiteCreditAndCurrencyByUserId(custid);
                 }
                 else {
                     $("#checkExisted").removeClass('success');
                     $("#checkExisted").addClass('not_success');
-                    message.showAlertMessage("errorMsg", "The super doesn’t exist!", 1);
+                    message.showAlertMessage("errorMsg", "The super doesn’t exist !", 1);
                 }
             }
             , error: function (xhr, ajaxOptions, thrownError) {
-                message.showAlertMessage("errorMsg", "Error for searching existing user!", 1);
+                message.showAlertMessage("errorMsg", "Error for searching existing user !", 1);
             }
         });
     };
 
-    $scope.getSiteAndCurrencyByUserId = function (custid) {
+    $scope.getSiteCreditAndCurrencyByUserId = function (custid) {
         var param = {
             custid: custid
         };
 
         $.ajax({
             type: "POST",
-            url: toUrl("Super/GetSiteAndCurrencyByUserId"),
+            url: toUrl("Super/GetSiteCreditAndCurrencyByUserId"),
             contentType: "application/json; charset=utf-8",
             dataType: 'html',
             data: JSON.stringify(param),
             success: function (result) {
                 message.hideAlertMessage("errorMsg");
                 var site_currency = result.split(',');
-                $scope.existedUser.selectedSite.site = site_currency[0];
-                $scope.existedUser.selectedCurrency = site_currency[1];
+                $scope.existedUser.selectedSite.SiteName = site_currency[0];
+                $scope.existedUser.maxCredit = numeral(site_currency[1]).format("0,0");
+                $scope.existedUser.selectedCurrency = site_currency[2];
                 $scope.getAllSites();
             }
                 , error: function (xhr, ajaxOptions, thrownError) {
-                    message.showAlertMessage("errorMsg", "Error for getting site by user id!", 1);
+                    message.showAlertMessage("errorMsg", "Error for getting site by user id !", 1);
                 }
         });
     };
@@ -208,31 +226,25 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', fu
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             data: null,
-            success: function (result) {
+            success: function (data) {
                 message.hideAlertMessage("errorMsg");
-                $scope.$apply(function () {
-                    $scope.existedUser.sites = result;
-                });
 
-                $("select#listSite option").each(function () { this.selected = (this.text == $scope.existedUser.selectedSite.site); });
+                //get selected index.
+                var index = 0;
+                while(index < data.length && $scope.existedUser.selectedSite.SiteName != data[index].SiteName)
+                {
+                    index ++;
+                }
+                
+                $scope.$apply(function () {
+                    $scope.existedUser.sites = data;
+                    $scope.existedUser.selectedSite = $scope.existedUser.sites[index];
+                });                
             }
             , error: function (xhr, ajaxOptions, thrownError) {
-                message.showAlertMessage("errorMsg", "Error for getting sites of existing user!", 1);
+                message.showAlertMessage("errorMsg", "Error for getting sites of existing user !", 1);
             }
         });
-    };
-
-    $scope.validateData = function () {
-        if ($scope.newUser.username == undefined || $scope.newUser.username == "") {
-            message.showAlertMessage("errorMsg", "The username is required!", 1);
-            return false;
-        }
-        if ($scope.newUser.password == undefined || $scope.newUser.password == "") {
-            message.showAlertMessage("errorMsg", "The password is required!", 1);
-            return false;
-        }
-
-        return true;
     };
 
     $scope.copyExistingUser = function () {
@@ -243,12 +255,12 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', fu
             LastName: $scope.newUser.lastname,
             Phone: $scope.newUser.phone,
             MobilePhone: $scope.newUser.mobilephone,
-            Site: $("#listSite option:selected").text(), //$scope.existedUser.selectedSite.site,
+            Site: $scope.existedUser.selectedSite.SiteName,
             Fax: $scope.newUser.fax,
-            Credit: $scope.newUser.maxcredit,
+            Credit: $scope.existedUser.maxCredit,
             IsInternal: $scope.newUser.internaluser,
             ExistingCustId: $scope.existedUser.userid,
-            Creator: 0 //todo
+            Creator: $("#currentUserId").val()
         };
 
         $.ajax({
@@ -261,6 +273,7 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', fu
                 var success = result != null && result.IsSuccessful == true;
                 if (success) {
                     message.hideAlertMessage("errorMsg");
+                    message.showAlertMessage("errorMsg", "Created Super Successfully !", 0);
                 } else {
                     if (result != null) {
                         message.showAlertMessage("errorMsg", result.Message, 1);
@@ -268,7 +281,7 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', fu
                 }
             }
             , error: function (xhr, ajaxOptions, thrownError) {
-                message.showAlertMessage("errorMsg", "Error for copying existing user!", 1);
+                message.showAlertMessage("errorMsg", "Error for copying existing user !", 1);
             }
         });
     };

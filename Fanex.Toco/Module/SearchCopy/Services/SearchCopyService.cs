@@ -9,12 +9,11 @@
 
 namespace Fanex.CustomerSetting.Module.SearchCopy.Services
 {
+    using System.Collections.Generic;
+    using Fanex.CustomerSetting.Module.SearchCopy.Command;
     using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
     using Fanex.CustomerSetting.Module.SearchCopy.Entities;
     using Fanex.CustomerSetting.Module.SearchCopy.Repositories;
-    using Fanex.CustomerSetting.Module.SearchCopy.Command;
-    using System.Web.Mvc;
-    using System.Collections.Generic;
 
     /// <summary>
     /// Class SearchCopyService.

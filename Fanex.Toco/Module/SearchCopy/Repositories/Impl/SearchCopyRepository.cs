@@ -11,13 +11,12 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
 {
     using System;
     using System.Collections;
+    using System.Collections.Generic;
     using Fanex.CustomerSetting.Module.SearchCopy.Command;
     using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
     using Fanex.CustomerSetting.Module.SearchCopy.Entities;
     using Fanex.CustomerSetting.Module.SearchCopy.Repository.Impl;
     using Fanex.Data;
-    using System.Web.Mvc;
-    using System.Collections.Generic;
 
     /// <summary>
     /// Class SearchCopyRepository.
@@ -93,7 +92,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
         }
 
         /// <summary>
-        /// Get sites of the user
+        /// Get sites of the user.
         /// </summary>
         /// <param name="criteria">Criteria GetSitesExistingSuperCriteria.</param>
         /// <returns>The list of sites.</returns>
@@ -112,7 +111,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
                 {
                     if (Convert.ToBoolean(dataReader["islicensee"]) == false)
                     {
-                        Site site = new Site { siteid = Convert.ToInt32(dataReader["siteid"]), site = dataReader["site"].ToString() };
+                        Site site = new Site { SiteId = Convert.ToInt32(dataReader["siteid"]), SiteName = dataReader["site"].ToString() };
                         sites.Add(site);
                     }
                 } 

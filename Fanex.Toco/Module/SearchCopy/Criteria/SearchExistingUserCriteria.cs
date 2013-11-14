@@ -12,22 +12,28 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
     using System;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Class SearchExistingUserCriteria.
+    /// </summary>
     [Serializable]
     public class SearchExistingUserCriteria : CriteriaBase
     {
-        public int uplineid { get; set; }
+        public int Uplineid { get; set; }
 
-        public string username { get; set; }
+        public string Username { get; set; }
 
-        public int custid { get; set; }
+        public int Custid { get; set; }
 
-        public bool issubacc { get; set; }
+        public bool Issubacc { get; set; }
          
         public override string GetSettingKey()
         {
             return "Age_CustomerSelCheckBelonging_ByUsername";
         }
 
-        public override bool IsValid() { return true; }
+        public override bool IsValid()
+        {
+            return true;
+        }
     }
 }
