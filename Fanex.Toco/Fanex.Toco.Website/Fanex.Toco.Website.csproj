@@ -225,6 +225,7 @@
     <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Setting\AgentMinMaxPT.js" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Setting\MasterMinMaxPT.js" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Setting\MinMaxPTRacingSetting.js" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Config\Store\SearchCopySpNames.xml" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\Libs\angular.min.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\Libs\jquery-1.10.2.min.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\Libs\jquery.caret.1.02.js" />
@@ -882,6 +883,7 @@
     <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\MasterMinMaxPT.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Config\RacingSection.config" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\AgentMinMaxPT.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Config\SearchCopySetting.config" />
     <None Include="Areas\CustomerSetting\Views\SearchCopy\Document.doc" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Super\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Shared\_Layout.cshtml" />
