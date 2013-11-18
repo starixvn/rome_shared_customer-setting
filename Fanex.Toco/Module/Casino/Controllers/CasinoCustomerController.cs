@@ -7,6 +7,10 @@
     using Fanex.CustomerSetting.Security.Authenticate;
     using Newtonsoft.Json.Serialization;
     using Newtonsoft.Json;
+    using Fanex.CustomerSetting.Module.Core.Web;
+    using System;
+    using Fanex.CustomerSetting.Security.Configurations;
+    using Fanex.CustomerSetting.Module.Core;
 
     public class CasinoCustomerController : BaseController
     {
@@ -49,6 +53,21 @@
                 });
 
             return this.Content("var customerModel = " + result + ";");
+        }
+
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Transfer")]
+        public ActionResult ResetMaxTransfer(int id, string groupName = null)
+        {
+            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+            if (!obj.IsBelong(id, null, groupName))
+            {
+                return this.ActionDenied(this.Request);
+            }
+
+            var customerInfo = new CasinoLibrary.SBAgent.Customer();
+            var success = customerInfo.ResetMaxTransfer(id, Request.UserHostAddress, AppSession.CurrentSession.UserId, AppSession.CurrentSession.UserName, FromSystem);
+
+            return this.JsonBase(new { ErrorCode = success ? 0 : 1, ErrorMessage = success ? string.Empty : "Reset max transfer failed" });
         }
     }
 }

@@ -152,7 +152,7 @@ namespace Fanex.CustomerSetting.Module.Bingo.Controllers
             return JsonBase(result);
         }
 
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Bingo")]
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Transfer")]
         public ActionResult ResetMaxTransfer(int? custId, string groupName = null)
         {
             var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
