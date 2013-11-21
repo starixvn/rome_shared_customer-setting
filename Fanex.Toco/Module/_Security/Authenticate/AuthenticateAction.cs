@@ -51,20 +51,18 @@ namespace Fanex.CustomerSetting.Security.Authenticate
         private static void ActionDenied(ActionExecutingContext filterContext)
         {
             var request = filterContext.HttpContext.Request;
-            if (request.Headers["X-Requested-With"] != null && request.Headers["X-Requested-With"].Equals("XMLHttpRequest"))
+            if (request.IsAjaxRequest())
             {
                 filterContext.Result = new JsonResult
                 {
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet,
                     Data = new 
                     {
-                        errorCode = 500,
-                        errorMessage = Resource.Errors.errorNotAuthorized
+                        errorCode = 1,
+                        errorMessage = Resource.Errors.errorNotAuthorized,
+                        isSuccess = false
                     }
                 };
-                filterContext.HttpContext.Response.Clear();
-                filterContext.HttpContext.Response.StatusCode = 200;
-                filterContext.HttpContext.Response.TrySkipIisCustomErrors = true;
             }
             else
             {
