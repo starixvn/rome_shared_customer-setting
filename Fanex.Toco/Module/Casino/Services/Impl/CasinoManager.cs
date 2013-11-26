@@ -1882,7 +1882,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 gameType.N3 = !synced ? 0 : Utils.ToDecimal(row["MinPositionTaking"]).Format(2);
 
                 // Betting limits
-                var stakes = this.GetStakeLevels(custId, gameType.GameTypeID);
+                var stakes = this.GetStakeLevels(custId, gameType.GameTypeID, 0, synced);
                 gameType.BettingLimits = stakes;
 
                 scos.Add(gameType.Sco);
@@ -1941,7 +1941,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 gameType.N2 = !synced ? 0 : Utils.ToDecimal(row["MinPositionTaking"]).Format(2);
 
                 // Betting limits
-                var stakes = this.GetStakeLevels(custId, gameType.GameTypeID);
+                var stakes = this.GetStakeLevels(custId, gameType.GameTypeID, 0, synced);
                 gameType.BettingLimits = stakes;
 
                 mcos.Add(gameType.Mco);
@@ -2021,7 +2021,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 gameType.N2 = synced ? Utils.ToDecimal(row["UplineMinPositionTaking"]).Format(2) : Utils.ToDecimal(row["MinPositionTaking"]).Format(2);
 
                 // Betting limits
-                var stakes = this.GetStakeLevels(custId, gameType.GameTypeID);
+                var stakes = this.GetStakeLevels(custId, gameType.GameTypeID, 0, synced);
                 gameType.BettingLimits = stakes;
 
                 acos.Add(gameType.Aco);
@@ -2153,7 +2153,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             return gameTypes;
         }
 
-        private List<StakeLevel> GetStakeLevels(int custId, int gameTypeID, int exchangeId = 0)
+        private List<StakeLevel> GetStakeLevels(int custId, int gameTypeID, int exchangeId = 0, bool synced = true)
         {
             var cust = new Customer();
             var stakeLevels = new List<StakeLevel>();
@@ -2168,7 +2168,10 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     IsChecked = Utils.ToBoolean(row["IsChecked"]),
                 };
 
-                stakeLevels.Add(stake);
+                if (synced || stake.IsChecked)
+                {
+                    stakeLevels.Add(stake);
+                }
             }
 
             return stakeLevels;
