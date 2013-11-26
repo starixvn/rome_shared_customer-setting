@@ -1,4 +1,4 @@
-﻿var searchCopyController = angular.module('SearchCopy', ['SearchCopy.service', 'SearchCopy.directive', 'SearchCopy.filter']);
+﻿var searchCopyController = angular.module('SearchCopy', [searchCopyService, searchCopyDirective, searchCopyFilter]);
 
 // A Controller for your app
 searchCopyController.controller('SearchCopyController', ['$scope', 'message', 'validate', function ($scope, message, validate) {
@@ -50,25 +50,12 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', 'v
         $("#panelStep2").click(function () {
             $scope.step1Next();
         });
-
-        $("#step1Next").click(function () {
-            $scope.step1Next();
-        });
-
-        $("#step2Back").click(function () {
-            $scope.step2Back();
-        });
-
-        $("#step2Submit").click(function () {
-            if ($scope.validateData() == true) {
-                $scope.copyExistingUser();
-            }
-        });
     };
 
     $scope.step1Next = function () {
         if ($scope.existedUser.username == undefined || $scope.existedUser.username == "") {
-            message.showAlertMessage("errorMsg", "Please Enter User Name.", 1);
+            validate.setRequired("#existedUserName");
+            message.showAlertMessage("errorMsg", "Please Enter User Name.", 1);            
         }
         else {
             if ($scope.existedUser.userid != "-1") {
@@ -105,6 +92,12 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', 'v
 
         $("#spanstep2").removeClass("step2-active");
         $("#spanstep2").addClass("step2-inactive");
+    };
+
+    $scope.step2Submit = function () {
+        if ($scope.validateData() == true) {
+            $scope.copyExistingUser();
+        }
     };
 
     $scope.validateData = function () {
@@ -304,6 +297,9 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', 'v
                 } else {
                     if (result != null) {
                         message.showAlertMessage("errorMsg", result.Message, 1);
+                    }
+                    else {
+                        message.showAlertMessage("errorMsg", "Created Super Un-successfully !", 1);
                     }
                 }
             }

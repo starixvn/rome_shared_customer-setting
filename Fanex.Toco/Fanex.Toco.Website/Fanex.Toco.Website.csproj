@@ -237,6 +237,9 @@
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\SearchCopyController.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\common.css" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\bgSteps.png" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\bg_head_tb.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\btnLeft.png" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\btnRight.png" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\btUpdateR.gif" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\error.gif" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\more.gif" />
@@ -244,6 +247,7 @@
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\success.gif" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\input.css" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Message.css" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\SearchCopy.css" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Steps\Step1.css" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Steps\Step2.css" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\style.css" />
