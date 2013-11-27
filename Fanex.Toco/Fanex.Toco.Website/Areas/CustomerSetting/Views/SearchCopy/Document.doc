@@ -1,8 +1,8 @@
 ﻿
 1. Dependencies
+• _Core.dll
 • Fanex.Data.dll
 • Fanex.Common.dll
-• Fanex.Logging.dll
 • Fanex.NAP.Framework.dll
 
 2. Configuration 
