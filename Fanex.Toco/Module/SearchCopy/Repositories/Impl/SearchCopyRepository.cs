@@ -67,9 +67,9 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
         /// </summary>
         /// <param name="username">The username.</param>
         /// <returns>Object DisableSports.</returns>
-        public DisableSports GetSportsStatusByUserName(string username)
+        public HideSports GetSportsStatusByUserName(string username)
         {
-            DisableSports statusSports = new DisableSports();
+            HideSports statusSports = new HideSports();
             var param = new Hashtable { { "custid", 0 }, { "username", username } };
 
             using (var objDb = new ObjectDb("Acc_CustomerSelStatus"))
@@ -77,14 +77,14 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
                 var dataReader = objDb.ExecuteReader(param);
                 while (dataReader.Read())
                 {
-                    statusSports.DisableSportsbook = false; ////alway show
-                    statusSports.DisableSportsbookMinPT = false; ////alway show
-                    statusSports.DisableRacing = Convert.ToBoolean(dataReader["disablehorseracing"]);
-                    statusSports.DisableRacingMinPT = Convert.ToBoolean(dataReader["disablehorseracing"]);
-                    statusSports.DisableCasino = Convert.ToBoolean(dataReader["disablecasino"]);
-                    statusSports.DisableVirtualSports = Convert.ToBoolean(dataReader["disablevirtualsports"]);
-                    statusSports.DisableBingo = Convert.ToBoolean(dataReader["disablebingo"]);
-                    statusSports.DisableLiveCasino = Convert.ToBoolean(dataReader["disablelivecasino"]);                                                              
+                    statusSports.HideSportsbook = false; ////alway show
+                    statusSports.HideSportsbookMinPT = false; ////alway show
+                    statusSports.HideRacing = false;// Convert.ToBoolean(dataReader["disablehorseracing"]);
+                    statusSports.HideRacingMinPT = false;// Convert.ToBoolean(dataReader["disablehorseracing"]);
+                    statusSports.HideCasino = false;// Convert.ToBoolean(dataReader["disablecasino"]);
+                    statusSports.HideVirtualSports = false;// Convert.ToBoolean(dataReader["disablevirtualsports"]);
+                    statusSports.HideBingo = false;// Convert.ToBoolean(dataReader["disablebingo"]);
+                    statusSports.HideLiveCasino = Convert.ToBoolean(dataReader["synclivecasino"]);                                                              
                 } 
             }
 

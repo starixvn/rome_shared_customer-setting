@@ -36,7 +36,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
             return _searchCopyRepository.SearchExistingUser(criteria);
         }
 
-        public DisableSports GetSportsStatusByUserName(string username)
+        public HideSports GetSportsStatusByUserName(string username)
         {
             return _searchCopyRepository.GetSportsStatusByUserName(username);
         }

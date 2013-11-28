@@ -15,22 +15,22 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Entities
     /// TODO: Update summary.
     /// </summary>
     [Serializable]
-    public class DisableSports
+    public class HideSports
     {
-        public bool DisableSportsbook { get; set; }
+        public bool HideSportsbook { get; set; }
 
-        public bool DisableSportsbookMinPT { get; set; }
+        public bool HideSportsbookMinPT { get; set; }
 
-        public bool DisableRacing { get; set; }
+        public bool HideRacing { get; set; }
 
-        public bool DisableRacingMinPT { get; set; }
+        public bool HideRacingMinPT { get; set; }
 
-        public bool DisableCasino { get; set; }
+        public bool HideCasino { get; set; }
 
-        public bool DisableVirtualSports { get; set; }
+        public bool HideVirtualSports { get; set; }
 
-        public bool DisableBingo { get; set; }
+        public bool HideBingo { get; set; }
 
-        public bool DisableLiveCasino { get; set; }
+        public bool HideLiveCasino { get; set; }
     }
 }

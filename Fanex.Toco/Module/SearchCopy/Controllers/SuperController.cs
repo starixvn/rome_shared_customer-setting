@@ -55,7 +55,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             {
                 UserId = userId,
                 Username = username,
-                StatusSports = userId > 0 ? GetSportsStatusByUserName(username) : new DisableSports()
+                StatusSports = userId > 0 ? GetSportsStatusByUserName(username) : new HideSports()
             };
 
             return Json(customerSettingView, JsonRequestBehavior.AllowGet);

@@ -20,7 +20,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
     {        
         int SearchExistingUser(SearchExistingUserCriteria criteria);
 
-        DisableSports GetSportsStatusByUserName(string username);
+        HideSports GetSportsStatusByUserName(string username);
 
         IEnumerable<Site> GetSitesExistingSuper(GetSitesCriteria criteria);
 
