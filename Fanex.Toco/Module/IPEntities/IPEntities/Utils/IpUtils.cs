@@ -64,7 +64,7 @@ namespace Fanex.CustomerSetting.IP.Utils
             {
                 using (IPEntities entities = new IPEntities(Utility.GetEFConnectionString()))
                 {
-                    objA = (from s in entities.IPVN select s).ToList<IPVN>();
+                    objA = (from s in entities.GetIPVN() select s).ToList<IPVN>();
                     if (objA.Count > 0)
                     {
                         cache.Set<List<IPVN>>("Fanex.CustomerSetting.IP.IpVnKey", objA, TimeSpan.FromHours(1.0));

@@ -1473,7 +1473,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                             {
                                 custId,
                                 gameGroupID,
-                                !(uplineRoleId == Super || uplineRoleId == Master) || gameGroup.Is3 == true ? null : (object)gameGroup.S3,
+                                !(uplineRoleId == Super || uplineRoleId == Master) || gameGroup.Is1 == true || gameGroup.Is3 == true ? null : (object)gameGroup.S3,
                                 !(uplineRoleId == Master || uplineRoleId == Agent) ? null : (object)gameGroup.M3,
                                 gameGroup.Is1 == true ? 1 : 0,
                                 !gameGroup.Is1 == true ? null : (object)gameGroup.Us3,
@@ -1493,7 +1493,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                             {
                                 custId,
                                 gameType.GameTypeID,
-                                !(uplineRoleId == Super || uplineRoleId == Master) || gameType.Is3 == true ? null : (object)gameType.S3,
+                                !(uplineRoleId == Super || uplineRoleId == Master) || gameType.Is1 == true || gameType.Is3 == true ? null : (object)gameType.S3,
                                 !(uplineRoleId == Master || uplineRoleId == Agent) ? null : (object)gameType.M3,
                                 gameType.Is1 == true ? 1 : 0,
                                 !gameType.Is1 == true ? null : (object)gameType.Us3,
