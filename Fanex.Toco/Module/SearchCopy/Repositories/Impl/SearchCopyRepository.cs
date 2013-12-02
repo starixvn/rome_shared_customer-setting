@@ -72,7 +72,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
             HideSports statusSports = new HideSports();
             var param = new Hashtable { { "custid", 0 }, { "username", username } };
 
-            using (var objDb = new ObjectDb("Acc_CustomerSelStatus"))
+            using (var objDb = new ObjectDb("CustomerSelStatus"))
             {
                 var dataReader = objDb.ExecuteReader(param);
                 while (dataReader.Read())

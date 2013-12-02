@@ -225,7 +225,9 @@
     <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Setting\AgentMinMaxPT.js" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Setting\MasterMinMaxPT.js" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Setting\MinMaxPTRacingSetting.js" />
-    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Config\Store\SearchCopySpNames.xml" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Config\Store\SearchCopySpNames.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\Libs\angular.min.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\Libs\jquery-1.10.2.min.js" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\Libs\jquery.caret.1.02.js" />
@@ -519,7 +521,9 @@
     <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\RacingSetting.css" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\table.css" />
     <Content Include="Web.Configuration\Store\RacingSpNames.xml" />
-    <Content Include="Web.Configuration\Store\CustomerSpNames.xml" />
+    <Content Include="Web.Configuration\Store\CustomerSpNames.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="Areas\CustomerSetting\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Web.config" />
