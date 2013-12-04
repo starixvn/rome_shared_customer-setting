@@ -15,6 +15,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
     using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
     using Fanex.CustomerSetting.Module.SearchCopy.Entities;
     using Fanex.CustomerSetting.Module.SearchCopy.Services;
+    using Fanex.CustomerSetting.Security.Authenticate;
 
     /// <summary>
     /// Class BaseCloneController.
@@ -58,6 +59,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             return Json(sites, JsonRequestBehavior.AllowGet);
         }
 
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "SearchAndCopy")]
         public JsonResult CopyExistingUser(CustomerInsMemberCriteria criteria)
         {     
             var result = _searchCopyService.CopyExistingUser(criteria);

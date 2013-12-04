@@ -24,7 +24,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
         /// Render search existing super form.
         /// </summary>        
         /// <returns>The ActionResult.</returns>
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Index")]
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "SearchAndCopy")]
         public ActionResult Index()
         {            
             string accIdSessionName = ConfigurationManager.AppSettings["AccIdSessionName"].ToString();
