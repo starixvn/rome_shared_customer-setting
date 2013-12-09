@@ -21,8 +21,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
     /// Class BaseCloneController.
     /// </summary>
     public class BaseCloneController : BaseController
-    {                
-        private static ISearchCopyService _searchCopyService;        
+    {
+        protected static ISearchCopyService _searchCopyService;
 
         public BaseCloneController()
             : this(null)
@@ -31,9 +31,25 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
 
         public BaseCloneController(ISearchCopyService searchCopyService)
         {
-            _searchCopyService = searchCopyService ?? new SearchCopyService();            
+            _searchCopyService = searchCopyService ?? new SearchCopyService();
         }
-        
+
+        public string GetClientIP()
+        {
+            string ip = string.Empty;
+
+            if (System.Web.HttpContext.Current.Request.IsLocal)
+            {
+                ip = "127.0.0.1";
+            }
+            else
+            {
+                ip = Fanex.Common.Converter.ToString2(System.Web.HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"]);
+            }
+
+            return ip;
+        }
+
         public int SearchExistingUser(SearchExistingUserCriteria criteria)
         {
             return _searchCopyService.SearchExistingUser(criteria);
@@ -59,20 +75,13 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             return Json(sites, JsonRequestBehavior.AllowGet);
         }
 
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "SearchAndCopy")]
-        public JsonResult CopyExistingUser(CustomerInsMemberCriteria criteria)
-        {     
-            var result = _searchCopyService.CopyExistingUser(criteria);
-            return Json(result, JsonRequestBehavior.AllowGet);
-        }
-
         /// <summary>
         /// Execute before each request, if Downtime then go to Downtime page.
         /// Or not Authenticate will go to Login Page.
         /// </summary>
         /// <param name="filterContext">The filter context.</param>
         protected override void OnActionExecuting(System.Web.Mvc.ActionExecutingContext filterContext)
-        {                   
+        {
             var rootUrl = Url.Content("~") + filterContext.RouteData.DataTokens["area"].ToString() + "/" + ModuleRegistrator.Module + "/";
             ViewBag.RootUrl = rootUrl;
             base.OnActionExecuting(filterContext);

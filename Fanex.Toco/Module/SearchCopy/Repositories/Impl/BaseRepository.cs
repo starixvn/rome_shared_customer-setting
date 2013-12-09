@@ -11,12 +11,11 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repository.Impl
 {
     using System;
     using System.Collections;
-    using System.Data;
-    using Fanex.CustomerSetting.Module.SearchCopy.Command;
+    using System.Data;    
     using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
     using Fanex.CustomerSetting.Module.SearchCopy.Repository.Interface;
     using Fanex.Data;
-    using Fanex.NAP.Framework.Data;    
+    using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// Class RepositoryBase.

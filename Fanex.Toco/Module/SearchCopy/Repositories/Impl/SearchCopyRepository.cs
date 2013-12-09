@@ -11,12 +11,13 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
 {
     using System;
     using System.Collections;
-    using System.Collections.Generic;
-    using Fanex.CustomerSetting.Module.SearchCopy.Command;
+    using System.Collections.Generic;    
     using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
     using Fanex.CustomerSetting.Module.SearchCopy.Entities;
     using Fanex.CustomerSetting.Module.SearchCopy.Repository.Impl;
     using Fanex.Data;
+    using Fanex.NAP.Framework.Data;
+    using Fanex.Common;
 
     /// <summary>
     /// Class SearchCopyRepository.
@@ -42,7 +43,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
         {
             string site = string.Empty;
             string credit = string.Empty;
-            string currency = string.Empty;
+            int currencyId = 0;
+            string currencyName = string.Empty;
 
             // prepare SP parameters
             Hashtable param = criteria.GetSpParams();
@@ -55,11 +57,12 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
                 {
                     site = dataReader["site"].ToString();
                     credit = dataReader["credit"].ToString();
-                    currency = dataReader["currencyid"].ToString();
+                    currencyId = Converter.ToInt(dataReader["currencyID"]);
+                    currencyName = dataReader["currencyName"].ToString();
                 }                
             }
 
-            return site + "," + credit + "," + currency;
+            return site + "," + credit + "," + currencyId + "," + currencyName;
         }
 
         /// <summary>
@@ -138,6 +141,36 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
 
                 return GetCommandResult(param);
             }         
+        }
+
+        public CommandResult UpdateSyncLiveCasino(UpdateSyncLiveCasinoCriteria criteria)
+        {
+            // prepare SP parameters
+            Hashtable param = criteria.GetSpParams();
+
+            param = (new ResultCriteria()).AddSpParams(param);
+
+            using (var db = new ObjectDb(criteria.GetSettingKey()))
+            {
+                db.ExecuteNonQuery(param);
+
+                return GetCommandResult(param);
+            }         
+        }
+
+        public CommandResult UpdateSync(ICriteria criteria)
+        {
+            // prepare SP parameters
+            Hashtable param = criteria.GetSpParams();
+
+            param = (new ResultCriteria()).AddSpParams(param);
+
+            using (var db = new ObjectDb(criteria.GetSettingKey()))
+            {
+                db.ExecuteNonQuery(param);
+
+                return GetCommandResult(param);
+            }
         }
     }
 }

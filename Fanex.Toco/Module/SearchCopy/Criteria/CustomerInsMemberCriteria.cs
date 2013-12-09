@@ -11,6 +11,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
 {
     using System;
     using Fanex.NAP.Framework.Data;
+using Fanex.PTEngine.BusinessObjects;
 
     /// <summary>
     /// Class CustomerInsMemberCriteria.
@@ -44,11 +45,15 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
 
         public int ExistingCustId { get; set; }
 
+        public int CurrencyId { get; set; }
+
         public int Creator { get; set; }
 
         public string Language { get; set; }
 
         public string IP { get; set; }
+
+        public StatusSetting StatusSetting { get; set; }
 
         public override string GetSettingKey()
         {

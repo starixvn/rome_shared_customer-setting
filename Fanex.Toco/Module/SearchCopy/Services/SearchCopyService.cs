@@ -9,11 +9,11 @@
 
 namespace Fanex.CustomerSetting.Module.SearchCopy.Services
 {
-    using System.Collections.Generic;
-    using Fanex.CustomerSetting.Module.SearchCopy.Command;
+    using System.Collections.Generic;    
     using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
     using Fanex.CustomerSetting.Module.SearchCopy.Entities;
     using Fanex.CustomerSetting.Module.SearchCopy.Repositories;
+    using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// Class SearchCopyService.
@@ -54,6 +54,16 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
         public CommandResult CopyExistingUser(CustomerInsMemberCriteria criteria)
         {
             return _searchCopyRepository.CopyExistingUser(criteria);
+        }
+
+        public CommandResult UpdateSyncLiveCasino(UpdateSyncLiveCasinoCriteria criteria)
+        {
+            return _searchCopyRepository.UpdateSyncLiveCasino(criteria);
+        }
+
+        public CommandResult UpdateSync(ICriteria criteria)
+        {
+            return _searchCopyRepository.UpdateSync(criteria);
         }
     }
 }

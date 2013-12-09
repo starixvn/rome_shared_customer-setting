@@ -35,23 +35,42 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CasinoLibrary">
+      <HintPath>..\..\_Dependencies\SearchCopy\CasinoLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.Common">
       <HintPath>..\..\_Dependencies\Fanex\Fanex.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.CustomerSetting.Security, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Fanex.CustomerSetting.Security">
       <HintPath>..\_Security\bin\Debug\Fanex.CustomerSetting.Security.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Data">
       <HintPath>..\..\_Dependencies\Fanex\Fanex.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_Dependencies\Fanex\Fanex.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.NAP.Core, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_Dependencies\Fanex\Fanex.NAP.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.NAP.Framework, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\_Dependencies\_FanexLib\Fanex.NAP.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.PTEngine">
+      <HintPath>..\..\_Dependencies\Fanex\Fanex.PTEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCasinoLibrary">
+      <HintPath>..\..\_Dependencies\SearchCopy\LiveCasinoLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\_Dependencies\Web\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Sunplus.Libraries.AOP">
+      <HintPath>..\..\_Dependencies\Casino\Sunplus.Libraries.AOP.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -132,10 +151,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\ModuleRegistrator.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="Command\CommandResult.cs" />
-    <Compile Include="Command\CommandResultBase.cs" />
+    <Compile Include="Common\Constants.cs" />
     <Compile Include="Controllers\BaseCloneController.cs" />
     <Compile Include="Controllers\SuperController.cs" />
+    <Compile Include="Criteria\UpdateSyncLiveCasinoForIBCCriteria.cs" />
+    <Compile Include="Criteria\UpdateSyncBingoForIBCCriteria.cs" />
+    <Compile Include="Criteria\UpdateSyncCasinoForIBCCriteria.cs" />
+    <Compile Include="Criteria\UpdateSyncLiveCasinoCriteria.cs" />
     <Compile Include="Criteria\CustomerInsMemberCriteria.cs" />
     <Compile Include="Criteria\GetSiteByUserIdCriteria.cs" />
     <Compile Include="Criteria\GetSitesCriteria.cs" />

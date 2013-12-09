@@ -60,7 +60,7 @@ namespace Fanex.CustomerSetting.Module.Core.Web
             {
                 try
                 {
-                    return Fanex.Common.Converter.ToInt(HttpContext.Current.Session["EASUserId"]);
+                    return Fanex.Common.Converter.ToInt(HttpContext.Current.Session["AccId"]);
                 }
                 catch (Exception)
                 {
@@ -68,6 +68,22 @@ namespace Fanex.CustomerSetting.Module.Core.Web
                 }
             }
             set { HttpContext.Current.Session["AccId"] = value; }
+        }
+
+        public static string AccUserName
+        {
+            get
+            {
+                try
+                {
+                    return Fanex.Common.Converter.ToString2(HttpContext.Current.Session["AccUserName"]);
+                }
+                catch (Exception)
+                {
+                    return string.Empty;
+                }
+            }
+            set { HttpContext.Current.Session["AccUserName"] = value; }
         }
 
 		/// <summary>

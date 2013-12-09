@@ -8,10 +8,10 @@
 // </history>
 namespace Fanex.CustomerSetting.Module.SearchCopy.Services
 {
-    using System.Collections.Generic;
-    using Fanex.CustomerSetting.Module.SearchCopy.Command;
+    using System.Collections.Generic;    
     using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
     using Fanex.CustomerSetting.Module.SearchCopy.Entities;
+    using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// Class ISearchCopyService.
@@ -27,5 +27,9 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
         string GetSiteCreditAndCurrencyByUserId(GetSiteByUserIdCriteria criteria);
 
         CommandResult CopyExistingUser(CustomerInsMemberCriteria criteria);
+
+        CommandResult UpdateSyncLiveCasino(UpdateSyncLiveCasinoCriteria syncLiveCasino);
+
+        CommandResult UpdateSync(ICriteria criteria);
     }
 }

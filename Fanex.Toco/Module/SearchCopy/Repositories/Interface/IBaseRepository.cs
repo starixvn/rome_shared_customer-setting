@@ -10,8 +10,7 @@
 namespace Fanex.CustomerSetting.Module.SearchCopy.Repository.Interface
 {
     using System.Collections;
-    using System.Data;
-    using Fanex.CustomerSetting.Module.SearchCopy.Command;
+    using System.Data;    
     using Fanex.NAP.Framework.Data;
    
     public interface IBaseRepository
