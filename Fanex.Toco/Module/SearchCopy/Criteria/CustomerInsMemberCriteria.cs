@@ -11,7 +11,6 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
 {
     using System;
     using Fanex.NAP.Framework.Data;
-using Fanex.PTEngine.BusinessObjects;
 
     /// <summary>
     /// Class CustomerInsMemberCriteria.
@@ -52,9 +51,7 @@ using Fanex.PTEngine.BusinessObjects;
         public string Language { get; set; }
 
         public string IP { get; set; }
-
-        public StatusSetting StatusSetting { get; set; }
-
+    
         public override string GetSettingKey()
         {
             return "Acc_CustomerInsMember_CloneSetting_Com";

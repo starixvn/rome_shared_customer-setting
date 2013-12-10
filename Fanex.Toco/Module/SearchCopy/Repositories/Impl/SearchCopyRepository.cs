@@ -128,7 +128,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
         /// </summary>
         /// <param name="criteria">The new user.</param>
         /// <returns>Object CommandResult.</returns>
-        public CommandResult CopyExistingUser(CustomerInsMemberCriteria criteria)
+        public CommandResult CopyExistingUser(ref CustomerInsMemberCriteria criteria)
         {            
             // prepare SP parameters
             Hashtable param = criteria.GetSpParams();
@@ -138,7 +138,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
             using (var db = new ObjectDb(criteria.GetSettingKey()))
             {
                 db.ExecuteNonQuery(param);
-
+                criteria.CustId = Convert.ToInt32(param["custid"]);
                 return GetCommandResult(param);
             }         
         }

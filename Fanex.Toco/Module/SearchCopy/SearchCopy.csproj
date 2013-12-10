@@ -35,11 +35,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CasinoLibrary">
-      <HintPath>..\..\_Dependencies\SearchCopy\CasinoLibrary.dll</HintPath>
+    <Reference Include="CasinoLibrary, Version=1.0.1.16, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\accountingsite\Dependency\CasinoLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Common">
       <HintPath>..\..\_Dependencies\Fanex\Fanex.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.CustomerSetting.Module.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Fanex.Toco.Module.Core\bin\Release\Fanex.CustomerSetting.Module.Core.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.CustomerSetting.Security">
       <HintPath>..\_Security\bin\Debug\Fanex.CustomerSetting.Security.dll</HintPath>
@@ -58,11 +63,9 @@
     <Reference Include="Fanex.NAP.Framework, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\_Dependencies\_FanexLib\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.PTEngine">
-      <HintPath>..\..\_Dependencies\Fanex\Fanex.PTEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="LiveCasinoLibrary">
-      <HintPath>..\..\_Dependencies\SearchCopy\LiveCasinoLibrary.dll</HintPath>
+    <Reference Include="LiveCasinoLibrary, Version=1.0.0.14, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\accountingsite\Dependency\LiveCasinoLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -189,12 +192,6 @@
     <Content Include="web.Release.config">
       <DependentUpon>web.config</DependentUpon>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Fanex.Toco.Module.Core\_Core.csproj">
-      <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
-      <Name>_Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

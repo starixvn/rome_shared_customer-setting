@@ -51,9 +51,9 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
             return _searchCopyRepository.GetSiteCreditAndCurrencyByUserId(criteria);
         }
 
-        public CommandResult CopyExistingUser(CustomerInsMemberCriteria criteria)
+        public CommandResult CopyExistingUser(ref CustomerInsMemberCriteria criteria)
         {
-            return _searchCopyRepository.CopyExistingUser(criteria);
+            return _searchCopyRepository.CopyExistingUser(ref criteria);
         }
 
         public CommandResult UpdateSyncLiveCasino(UpdateSyncLiveCasinoCriteria criteria)

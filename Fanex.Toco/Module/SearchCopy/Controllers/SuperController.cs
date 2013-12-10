@@ -12,13 +12,13 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
     using System.Configuration;
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.Core.Web;
+    using Fanex.CustomerSetting.Module.SearchCopy.Common;
     using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
     using Fanex.CustomerSetting.Module.SearchCopy.Entities;
     using Fanex.CustomerSetting.Module.SearchCopy.ViewModels;
     using Fanex.CustomerSetting.Security.Authenticate;
     using Fanex.Logging;
     using Fanex.NAP.Framework.Data;
-    using Fanex.CustomerSetting.Module.SearchCopy.Common;
 
     /// <summary>
     /// Base racing controller.
@@ -34,8 +34,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
         {            
             string accIdSessionName = ConfigurationManager.AppSettings["AccIdSessionName"].ToString();
             ViewBag.CurrentUserId = Fanex.Common.Converter.ToInt(System.Web.HttpContext.Current.Session[accIdSessionName]);
-            ViewBag.CurrentURL = ConfigurationManager.AppSettings["CurrentURL"].ToString();            
-
+            ViewBag.CurrentURL = ConfigurationManager.AppSettings["CurrentURL"].ToString();
+          
             return View("~/Areas/CustomerSetting/Views/SearchCopy/Super/Index.cshtml");           
         }
 
@@ -80,12 +80,12 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             criteria.MobilePhone = criteria.MobilePhone ?? string.Empty;
             criteria.Fax = criteria.Fax ?? string.Empty;
 
-            CommandResult result = _searchCopyService.CopyExistingUser(criteria);
+            CommandResult result = _searchCopyService.CopyExistingUser(ref criteria);
             try
             {
                 if (result.IsSuccessful)
                 {
-                    result = UpdateSyncCasinoAfterCopySuper(criteria);
+                    result = UpdateSyncCasinoAfterCopySuper(criteria);                                       
                     if (result.IsSuccessful)
                     {
                         result = UpdateSyncBingoAfterCopySuper(criteria);
@@ -99,6 +99,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             catch (Exception ex)
             {
                 LogService.Error(ex.Message);
+                return Json(new CommandResultBase(-1, ex.Message), JsonRequestBehavior.AllowGet);
             }
 
             return Json(result, JsonRequestBehavior.AllowGet);
@@ -113,49 +114,52 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
         /// <returns>True if success else return False.</returns>
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "SearchAndCopy")]
         public CommandResult UpdateSyncCasinoAfterCopySuper(CustomerInsMemberCriteria customer)
-        {            
-            if (customer.StatusSetting.SyncCasino == true)
+        {
+            CommandResult result = new CommandResult();
+
+            ////Sync data to Casino 
+            CasinoLibrary.SBAgent.Customer casinoCustomer = new CasinoLibrary.SBAgent.Customer();      
+            bool success = casinoCustomer.AutoInsertSuperFromExisting(
+                                                                                    "01",
+                                                                                    customer.CustId,
+                                                                                    customer.ExistingCustId,
+                                                                                    customer.UserName,
+                                                                                    customer.UserName,
+                                                                                    customer.FirstName,
+                                                                                    customer.LastName,
+                                                                                    customer.Userpwd,
+                                                                                    customer.Phone,
+                                                                                    customer.MobilePhone,
+                                                                                    customer.Fax,
+                                                                                    customer.CurrencyId,
+                                                                                    new DateTime(),
+                                                                                    GetClientIP(),
+                                                                                    AppSession.AccId,
+                                                                                    AppSession.AccUserName,
+                                                                                    3);
+            if (success == false)
             {
-                ////Sync data to Casino 
-                CasinoLibrary.SBAgent.Customer casinoCustomer = new CasinoLibrary.SBAgent.Customer();
-                bool success = casinoCustomer.AutoInsertSuperFromExisting(
-                                                                                        "01",
-                                                                                        customer.CustId,
-                                                                                        customer.ExistingCustId,
-                                                                                        customer.UserName,
-                                                                                        customer.UserName,
-                                                                                        customer.FirstName,
-                                                                                        customer.LastName,
-                                                                                        customer.Userpwd,
-                                                                                        customer.Phone,
-                                                                                        customer.MobilePhone,
-                                                                                        customer.Fax,
-                                                                                        customer.CurrencyId,
-                                                                                        new DateTime(),
-                                                                                        GetClientIP(),
-                                                                                        AppSession.AccId,
-                                                                                        AppSession.AccUserName,
-                                                                                        3);
-                if (success == false)
-                {
-                    return new CommandResultBase(-1, Constants.FailedCopyMessage.Casino) as CommandResult;
-                }
-
-                ////Sync data to IBC 
-                UpdateSyncCasinoForIBCCriteria syncCasinoIBC = new UpdateSyncCasinoForIBCCriteria();
-                syncCasinoIBC.CustId = customer.CustId;
-                syncCasinoIBC.SyncCS = true;
-                syncCasinoIBC.UserId = AppSession.AccId;
-                syncCasinoIBC.LoginIP = GetClientIP();
-
-                var result = _searchCopyService.UpdateSync((ICriteria)syncCasinoIBC);
-                if (result.IsSuccessful == false)
-                {
-                    return new CommandResultBase(-1, Constants.FailedCopyMessage.Casino) as CommandResult;
-                }             
+                result.Code = -1;
+                result.Message = Constants.FailedCopyMessage.Casino;
+                return result;
             }
 
-            return new CommandResultBase(0, string.Empty) as CommandResult;
+            ////Sync data to IBC 
+            UpdateSyncCasinoForIBCCriteria syncCasinoIBC = new UpdateSyncCasinoForIBCCriteria();
+            syncCasinoIBC.CustId = customer.CustId;
+            syncCasinoIBC.SyncCS = true;
+            syncCasinoIBC.UserId = AppSession.AccId;
+            syncCasinoIBC.LoginIP = GetClientIP();
+
+            result = _searchCopyService.UpdateSync((ICriteria)syncCasinoIBC);
+            if (result.IsSuccessful == false)
+            {
+                result.Code = -1;
+                result.Message = Constants.FailedCopyMessage.Casino;
+                return result;                
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -165,41 +169,44 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
         /// <returns>True if success else return False.</returns>
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "SearchAndCopy")]
         public CommandResult UpdateSyncBingoAfterCopySuper(CustomerInsMemberCriteria customer)
-        {            
-            if (customer.StatusSetting.SyncBingo == true)
+        {
+            CommandResult result = new CommandResult();
+
+            ////Sync data to Bingo                                                            
+            LiveCasinoLibrary.SBAgent.Customer bingoCustomer = new LiveCasinoLibrary.SBAgent.Customer();
+            bool success = bingoCustomer.AutoInsertSuperFromExisting(
+                                                                                    "01",
+                                                                                    customer.CustId,
+                                                                                    customer.ExistingCustId,
+                                                                                    customer.UserName,
+                                                                                    new DateTime(),
+                                                                                    GetClientIP(),
+                                                                                    AppSession.AccId,
+                                                                                    AppSession.AccUserName,
+                                                                                    3);
+            if (success == false)
             {
-                ////Sync data to Bingo                                                            
-                LiveCasinoLibrary.SBAgent.Customer bingoCustomer = new LiveCasinoLibrary.SBAgent.Customer();
-                bool success = bingoCustomer.AutoInsertSuperFromExisting(
-                                                                                        "01",
-                                                                                        customer.CustId,
-                                                                                        customer.ExistingCustId,
-                                                                                        customer.UserName,
-                                                                                        new DateTime(),
-                                                                                        GetClientIP(),
-                                                                                        AppSession.AccId,
-                                                                                        AppSession.AccUserName,
-                                                                                        3);
-                if (success == false)
-                {
-                    return new CommandResultBase(-1, Constants.FailedCopyMessage.Bingo) as CommandResult;
-                }
-
-                ////Sync data to IBC 
-                UpdateSyncBingoForIBCCriteria syncBingoIBC = new UpdateSyncBingoForIBCCriteria();
-                syncBingoIBC.CustId = customer.CustId;
-                syncBingoIBC.SyncBingo = true;
-                syncBingoIBC.UserId = AppSession.AccId;
-                syncBingoIBC.IP = GetClientIP();
-
-                var result = _searchCopyService.UpdateSync((ICriteria)syncBingoIBC);
-                if (result.IsSuccessful == false)
-                {
-                    return new CommandResultBase(-1, Constants.FailedCopyMessage.Bingo) as CommandResult;
-                }
+                result.Code = -1;
+                result.Message = Constants.FailedCopyMessage.Bingo;
+                return result;                            
             }
 
-            return new CommandResultBase(0, string.Empty) as CommandResult;
+            ////Sync data to IBC 
+            UpdateSyncBingoForIBCCriteria syncBingoIBC = new UpdateSyncBingoForIBCCriteria();
+            syncBingoIBC.CustId = customer.CustId;
+            syncBingoIBC.SyncBingo = true;
+            syncBingoIBC.UserId = AppSession.AccId;
+            syncBingoIBC.IP = GetClientIP();
+
+            result = _searchCopyService.UpdateSync((ICriteria)syncBingoIBC);
+            if (result.IsSuccessful == false)
+            {
+                result.Code = -1;
+                result.Message = Constants.FailedCopyMessage.Bingo;
+                return result;            
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -209,41 +216,44 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
         /// <returns>True if success else return False.</returns>
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "SearchAndCopy")]
         public CommandResult UpdateSyncLiveCasinoAfterCopySuper(CustomerInsMemberCriteria customer)
-        {            
-            if (customer.StatusSetting.SyncCasino == true)
+        {
+            CommandResult result = new CommandResult();
+
+            ////Sync data to Live Casino                                        
+            UpdateSyncLiveCasinoCriteria syncLiveCasino = new UpdateSyncLiveCasinoCriteria();
+            syncLiveCasino.CasinoNo = "01";
+            syncLiveCasino.CustID = customer.CustId;
+            syncLiveCasino.OldCustID = customer.ExistingCustId;
+            syncLiveCasino.SignupIP = GetClientIP();
+            syncLiveCasino.SignupBy = AppSession.AccId;
+            syncLiveCasino.SignupFrom = 3;
+            syncLiveCasino.ModifyUserName = AppSession.AccUserName;
+            syncLiveCasino.ToUserName = customer.UserName;
+
+            result = _searchCopyService.UpdateSyncLiveCasino(syncLiveCasino);
+            if (result.IsSuccessful == false)
             {
-                ////Sync data to Live Casino                                        
-                UpdateSyncLiveCasinoCriteria syncLiveCasino = new UpdateSyncLiveCasinoCriteria();
-                syncLiveCasino.CasinoNo = "01";
-                syncLiveCasino.CustID = customer.CustId;
-                syncLiveCasino.OldCustID = customer.ExistingCustId;                
-                syncLiveCasino.SignupIP = GetClientIP();
-                syncLiveCasino.SignupBy = AppSession.AccId;
-                syncLiveCasino.SignupFrom = 3;
-                syncLiveCasino.ModifyUserName = AppSession.AccUserName;
-                syncLiveCasino.ToUserName = customer.UserName;
-
-                var result = _searchCopyService.UpdateSyncLiveCasino(syncLiveCasino);
-                if (result.IsSuccessful == false)
-                {
-                    return new CommandResultBase(-1, Constants.FailedCopyMessage.LiveCasino) as CommandResult;
-                }
-
-                ////Sync data to IBC 
-                UpdateSyncLiveCasinoForIBCCriteria syncLiveCasinoIBC = new UpdateSyncLiveCasinoForIBCCriteria();
-                syncLiveCasinoIBC.CustId = customer.CustId;                
-                syncLiveCasinoIBC.SyncLiveCS = true;
-                syncLiveCasinoIBC.UserId = AppSession.AccId;
-                syncLiveCasinoIBC.IP = GetClientIP();
-
-                result = _searchCopyService.UpdateSync((ICriteria)syncLiveCasinoIBC);
-                if (result.IsSuccessful == false)
-                {
-                    return new CommandResultBase(-1, Constants.FailedCopyMessage.LiveCasino) as CommandResult;
-                }
+                result.Code = -1;
+                result.Message = Constants.FailedCopyMessage.LiveCasino;
+                return result;    
             }
 
-            return new CommandResultBase(0, string.Empty) as CommandResult;
+            ////Sync data to IBC 
+            UpdateSyncLiveCasinoForIBCCriteria syncLiveCasinoIBC = new UpdateSyncLiveCasinoForIBCCriteria();
+            syncLiveCasinoIBC.CustId = customer.CustId;
+            syncLiveCasinoIBC.SyncLiveCS = true;
+            syncLiveCasinoIBC.UserId = AppSession.AccId;
+            syncLiveCasinoIBC.IP = GetClientIP();
+
+            result = _searchCopyService.UpdateSync((ICriteria)syncLiveCasinoIBC);
+            if (result.IsSuccessful == false)
+            {
+                result.Code = -1;
+                result.Message = Constants.FailedCopyMessage.LiveCasino;
+                return result;    
+            }
+
+            return result;
         }
         #endregion
     }
