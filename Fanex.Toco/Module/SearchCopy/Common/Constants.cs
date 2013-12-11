@@ -9,9 +9,9 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Common
     {
         public static class FailedCopyMessage
         {
-            public const string Casino = "Copying failed due to RNG Casino product. Please try again!";
-            public const string Bingo = "Copying failed due to Bingo product. Please try again!";
-            public const string LiveCasino = "Copying failed due to Live Casino product. Please try again!";
+            public const string Casino = "RNG Casino failed to synchronize!";
+            public const string Bingo = "Bingo failed to synchronize!";
+            public const string LiveCasino = "Live Casino failed to synchronize!";
         }
     }
 }
