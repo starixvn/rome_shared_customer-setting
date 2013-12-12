@@ -22,7 +22,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
     /// </summary>
     public class BaseCloneController : BaseController
     {
-        protected static ISearchCopyService _searchCopyService;
+        private static ISearchCopyService _searchCopyService;
 
         public BaseCloneController()
             : this(null)
@@ -34,6 +34,15 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             _searchCopyService = searchCopyService ?? new SearchCopyService();
         }
 
+        protected ISearchCopyService SearchCopyServiceInstance
+        {
+            get { return _searchCopyService ?? new SearchCopyService(); }
+        }
+
+        /// <summary>
+        /// Get client IP.
+        /// </summary>
+        /// <returns>The client IP.</returns>
         public string GetClientIP()
         {
             string ip = string.Empty;

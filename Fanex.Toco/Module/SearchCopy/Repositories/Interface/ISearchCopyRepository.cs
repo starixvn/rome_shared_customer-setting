@@ -26,9 +26,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
         string GetSiteCreditAndCurrencyByUserId(GetSiteByUserIdCriteria criteria);
 
         CommandResult CopyExistingUser(ref CustomerInsMemberCriteria criteria);
-
-        CommandResult UpdateSyncLiveCasino(UpdateSyncLiveCasinoCriteria criteria);
-
+        
         CommandResult UpdateSync(ICriteria criteria);
     }
 }

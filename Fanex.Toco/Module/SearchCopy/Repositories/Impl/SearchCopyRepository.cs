@@ -11,13 +11,13 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
 {
     using System;
     using System.Collections;
-    using System.Collections.Generic;    
+    using System.Collections.Generic;
+    using Fanex.Common;
     using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
     using Fanex.CustomerSetting.Module.SearchCopy.Entities;
     using Fanex.CustomerSetting.Module.SearchCopy.Repository.Impl;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
-    using Fanex.Common;
 
     /// <summary>
     /// Class SearchCopyRepository.
@@ -82,11 +82,11 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
                 {
                     statusSports.HideSportsbook = false; ////alway show
                     statusSports.HideSportsbookMinPT = false; ////alway show
-                    statusSports.HideRacing = false;// Convert.ToBoolean(dataReader["disablehorseracing"]);
-                    statusSports.HideRacingMinPT = false;// Convert.ToBoolean(dataReader["disablehorseracing"]);
-                    statusSports.HideCasino = false;// Convert.ToBoolean(dataReader["disablecasino"]);
-                    statusSports.HideVirtualSports = false;// Convert.ToBoolean(dataReader["disablevirtualsports"]);
-                    statusSports.HideBingo = false;// Convert.ToBoolean(dataReader["disablebingo"]);
+                    statusSports.HideRacing = false; // Convert.ToBoolean(dataReader["disablehorseracing"]);
+                    statusSports.HideRacingMinPT = false; // Convert.ToBoolean(dataReader["disablehorseracing"]);
+                    statusSports.HideCasino = false; // Convert.ToBoolean(dataReader["disablecasino"]);
+                    statusSports.HideVirtualSports = false; // Convert.ToBoolean(dataReader["disablevirtualsports"]);
+                    statusSports.HideBingo = false; // Convert.ToBoolean(dataReader["disablebingo"]);
                     statusSports.HideLiveCasino = Convert.ToBoolean(dataReader["synclivecasino"]);                                                              
                 } 
             }
@@ -143,21 +143,11 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
             }         
         }
 
-        public CommandResult UpdateSyncLiveCasino(UpdateSyncLiveCasinoCriteria criteria)
-        {
-            // prepare SP parameters
-            Hashtable param = criteria.GetSpParams();
-
-            param = (new ResultCriteria()).AddSpParams(param);
-
-            using (var db = new ObjectDb(criteria.GetSettingKey()))
-            {
-                db.ExecuteNonQuery(param);
-
-                return GetCommandResult(param);
-            }         
-        }
-
+        /// <summary>
+        /// Update sync data.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Object CommandResult.</returns>
         public CommandResult UpdateSync(ICriteria criteria)
         {
             // prepare SP parameters

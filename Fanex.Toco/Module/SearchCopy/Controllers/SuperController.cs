@@ -80,32 +80,75 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             criteria.MobilePhone = criteria.MobilePhone ?? string.Empty;
             criteria.Fax = criteria.Fax ?? string.Empty;
 
-            CommandResult result = _searchCopyService.CopyExistingUser(ref criteria);
+            CommandResult result = new CommandResult();            
             try
             {
+                result = SearchCopyServiceInstance.CopyExistingUser(ref criteria);
+
                 if (result.IsSuccessful)
                 {
-                    result = UpdateSyncCasinoAfterCopySuper(criteria);                                       
-                    if (result.IsSuccessful)
-                    {
-                        result = UpdateSyncBingoAfterCopySuper(criteria);
-                        if (result.IsSuccessful)
-                        {
-                            result = UpdateSyncLiveCasinoAfterCopySuper(criteria);
-                        }
+                    result.Message = string.Join(null, new string[] { "<div class=\"alertboxscc\"><div>", Constants.CopyMessage.Success, "</div></div>" });
+
+                    CommandResultBase resultSyncData = UpdateSyncData(criteria);
+                    if (resultSyncData.IsSuccessful == false)
+                    {                        
+                        result.Message += resultSyncData.Message;
                     }
+                }
+                else
+                {
+                    result.Message = string.Join(null, new string[] { "<div class=\"alertboxerr\"><div>", Constants.CopyMessage.Failed, "</div></div>" });
                 }
             }
             catch (Exception ex)
             {
                 LogService.Error(ex.Message);
-                return Json(new CommandResultBase(-1, ex.Message), JsonRequestBehavior.AllowGet);
-            }
+                result.Code = -1;
+                result.Message = string.Join(null, new string[] { "<div class=\"alertboxerr\"><div>", ex.Message, "</div></div>" });
 
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }          
+                      
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         #region Update Sync
+
+        /// <summary>
+        /// Update sync Data after copy customer.
+        /// </summary>
+        /// <param name="criteria">Information of Customer.</param>   
+        /// <returns>True if success else return False.</returns>
+        public CommandResult UpdateSyncData(CustomerInsMemberCriteria criteria)
+        {
+            CommandResult resultSyncData = new CommandResult();
+            try
+            {
+                resultSyncData = UpdateSyncCasinoAfterCopySuper(criteria);
+                if (resultSyncData.IsSuccessful)
+                {
+                    resultSyncData = UpdateSyncBingoAfterCopySuper(criteria);
+                    if (resultSyncData.IsSuccessful)
+                    {
+                        resultSyncData = UpdateSyncLiveCasinoAfterCopySuper(criteria);
+                    }
+                }
+
+                if (resultSyncData.IsSuccessful == false)
+                {                    
+                    resultSyncData.Message = string.Join(null, new string[] { "<div class='alertboxerr'><div>", resultSyncData.Message, "</div></div>" });
+                }
+            }
+            catch (Exception ex)
+            {
+                LogService.Error(ex.Message);
+                resultSyncData.Code = -1;
+                resultSyncData.Message = string.Join(null, new string[] { "<div class='alertboxerr'><div>", ex.Message, "</div></div>" });
+                return resultSyncData;
+            }
+
+            return resultSyncData;
+        }
 
         /// <summary>
         /// Update syncCasino Data after copy customer.
@@ -140,7 +183,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             if (success == false)
             {
                 result.Code = -1;
-                result.Message = Constants.FailedCopyMessage.Casino;
+                result.Message = Constants.FailedSyncMessage.Casino;
                 return result;
             }
 
@@ -151,11 +194,11 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             syncCasinoIBC.UserId = AppSession.AccId;
             syncCasinoIBC.LoginIP = GetClientIP();
 
-            result = _searchCopyService.UpdateSync((ICriteria)syncCasinoIBC);
+            result = SearchCopyServiceInstance.UpdateSync(syncCasinoIBC);
             if (result.IsSuccessful == false)
             {
                 result.Code = -1;
-                result.Message = Constants.FailedCopyMessage.Casino;
+                result.Message = Constants.FailedSyncMessage.Casino;
                 return result;                
             }
 
@@ -187,7 +230,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             if (success == false)
             {
                 result.Code = -1;
-                result.Message = Constants.FailedCopyMessage.Bingo;
+                result.Message = Constants.FailedSyncMessage.Bingo;
                 return result;                            
             }
 
@@ -198,11 +241,11 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             syncBingoIBC.UserId = AppSession.AccId;
             syncBingoIBC.IP = GetClientIP();
 
-            result = _searchCopyService.UpdateSync((ICriteria)syncBingoIBC);
+            result = SearchCopyServiceInstance.UpdateSync(syncBingoIBC);
             if (result.IsSuccessful == false)
             {
                 result.Code = -1;
-                result.Message = Constants.FailedCopyMessage.Bingo;
+                result.Message = Constants.FailedSyncMessage.Bingo;
                 return result;            
             }
 
@@ -230,11 +273,11 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             syncLiveCasino.ModifyUserName = AppSession.AccUserName;
             syncLiveCasino.ToUserName = customer.UserName;
 
-            result = _searchCopyService.UpdateSyncLiveCasino(syncLiveCasino);
+            result = SearchCopyServiceInstance.UpdateSync(syncLiveCasino);
             if (result.IsSuccessful == false)
             {
                 result.Code = -1;
-                result.Message = Constants.FailedCopyMessage.LiveCasino;
+                result.Message = Constants.FailedSyncMessage.LiveCasino;
                 return result;    
             }
 
@@ -245,11 +288,11 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             syncLiveCasinoIBC.UserId = AppSession.AccId;
             syncLiveCasinoIBC.IP = GetClientIP();
 
-            result = _searchCopyService.UpdateSync((ICriteria)syncLiveCasinoIBC);
+            result = SearchCopyServiceInstance.UpdateSync(syncLiveCasinoIBC);
             if (result.IsSuccessful == false)
             {
                 result.Code = -1;
-                result.Message = Constants.FailedCopyMessage.LiveCasino;
+                result.Message = Constants.FailedSyncMessage.LiveCasino;
                 return result;    
             }
 
