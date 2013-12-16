@@ -9,22 +9,24 @@
 
 namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
 {
-    using System.Collections.Generic;
-    using Fanex.CustomerSetting.Module.SearchCopy.Command;
+    using System.Collections.Generic;    
     using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
     using Fanex.CustomerSetting.Module.SearchCopy.Entities;
     using Fanex.CustomerSetting.Module.SearchCopy.Repository.Interface;
+    using Fanex.NAP.Framework.Data;
 
     public interface ISearchCopyRepository : IBaseRepository
     {        
         int SearchExistingUser(SearchExistingUserCriteria criteria);
 
-        DisableSports GetSportsStatusByUserName(string username);
+        HideSports GetSportsStatusByUserName(string username);
 
         IEnumerable<Site> GetSitesExistingSuper(GetSitesCriteria criteria);
 
         string GetSiteCreditAndCurrencyByUserId(GetSiteByUserIdCriteria criteria);
 
-        CommandResult CopyExistingUser(CustomerInsMemberCriteria criteria);
+        CommandResult CopyExistingUser(ref CustomerInsMemberCriteria criteria);
+        
+        CommandResult UpdateSync(ICriteria criteria);
     }
 }

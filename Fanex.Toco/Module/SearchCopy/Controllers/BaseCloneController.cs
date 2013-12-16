@@ -15,13 +15,14 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
     using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
     using Fanex.CustomerSetting.Module.SearchCopy.Entities;
     using Fanex.CustomerSetting.Module.SearchCopy.Services;
+    using Fanex.CustomerSetting.Security.Authenticate;
 
     /// <summary>
     /// Class BaseCloneController.
     /// </summary>
     public class BaseCloneController : BaseController
-    {                
-        private static ISearchCopyService _searchCopyService;        
+    {
+        private static ISearchCopyService _searchCopyService;
 
         public BaseCloneController()
             : this(null)
@@ -30,15 +31,40 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
 
         public BaseCloneController(ISearchCopyService searchCopyService)
         {
-            _searchCopyService = searchCopyService ?? new SearchCopyService();            
+            _searchCopyService = searchCopyService ?? new SearchCopyService();
         }
-        
+
+        protected ISearchCopyService SearchCopyServiceInstance
+        {
+            get { return _searchCopyService ?? new SearchCopyService(); }
+        }
+
+        /// <summary>
+        /// Get client IP.
+        /// </summary>
+        /// <returns>The client IP.</returns>
+        public string GetClientIP()
+        {
+            string ip = string.Empty;
+
+            if (System.Web.HttpContext.Current.Request.IsLocal)
+            {
+                ip = "127.0.0.1";
+            }
+            else
+            {
+                ip = Fanex.Common.Converter.ToString2(System.Web.HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"]);
+            }
+
+            return ip;
+        }
+
         public int SearchExistingUser(SearchExistingUserCriteria criteria)
         {
             return _searchCopyService.SearchExistingUser(criteria);
         }
 
-        public DisableSports GetSportsStatusByUserName(string username)
+        public HideSports GetSportsStatusByUserName(string username)
         {
             return _searchCopyService.GetSportsStatusByUserName(username);
         }
@@ -58,19 +84,13 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             return Json(sites, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult CopyExistingUser(CustomerInsMemberCriteria criteria)
-        {     
-            var result = _searchCopyService.CopyExistingUser(criteria);
-            return Json(result, JsonRequestBehavior.AllowGet);
-        }
-
         /// <summary>
         /// Execute before each request, if Downtime then go to Downtime page.
         /// Or not Authenticate will go to Login Page.
         /// </summary>
         /// <param name="filterContext">The filter context.</param>
         protected override void OnActionExecuting(System.Web.Mvc.ActionExecutingContext filterContext)
-        {                   
+        {
             var rootUrl = Url.Content("~") + filterContext.RouteData.DataTokens["area"].ToString() + "/" + ModuleRegistrator.Module + "/";
             ViewBag.RootUrl = rootUrl;
             base.OnActionExecuting(filterContext);

@@ -12,11 +12,12 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using Fanex.CustomerSetting.Module.SearchCopy.Command;
+    using Fanex.Common;
     using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
     using Fanex.CustomerSetting.Module.SearchCopy.Entities;
     using Fanex.CustomerSetting.Module.SearchCopy.Repository.Impl;
     using Fanex.Data;
+    using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// Class SearchCopyRepository.
@@ -42,7 +43,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
         {
             string site = string.Empty;
             string credit = string.Empty;
-            string currency = string.Empty;
+            int currencyId = 0;
+            string currencyName = string.Empty;
 
             // prepare SP parameters
             Hashtable param = criteria.GetSpParams();
@@ -55,11 +57,12 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
                 {
                     site = dataReader["site"].ToString();
                     credit = dataReader["credit"].ToString();
-                    currency = dataReader["currencyid"].ToString();
+                    currencyId = Converter.ToInt(dataReader["currencyID"]);
+                    currencyName = dataReader["currencyName"].ToString();
                 }                
             }
 
-            return site + "," + credit + "," + currency;
+            return site + "," + credit + "," + currencyId + "," + currencyName;
         }
 
         /// <summary>
@@ -67,24 +70,24 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
         /// </summary>
         /// <param name="username">The username.</param>
         /// <returns>Object DisableSports.</returns>
-        public DisableSports GetSportsStatusByUserName(string username)
+        public HideSports GetSportsStatusByUserName(string username)
         {
-            DisableSports statusSports = new DisableSports();
+            HideSports statusSports = new HideSports();
             var param = new Hashtable { { "custid", 0 }, { "username", username } };
 
-            using (var objDb = new ObjectDb("Acc_CustomerSelStatus"))
+            using (var objDb = new ObjectDb("CustomerSelStatus"))
             {
                 var dataReader = objDb.ExecuteReader(param);
                 while (dataReader.Read())
                 {
-                    statusSports.DisableSportsbook = false; ////alway show
-                    statusSports.DisableSportsbookMinPT = false; ////alway show
-                    statusSports.DisableRacing = Convert.ToBoolean(dataReader["disablehorseracing"]);
-                    statusSports.DisableRacingMinPT = Convert.ToBoolean(dataReader["disablehorseracing"]);
-                    statusSports.DisableCasino = Convert.ToBoolean(dataReader["disablecasino"]);
-                    statusSports.DisableVirtualSports = Convert.ToBoolean(dataReader["disablevirtualsports"]);
-                    statusSports.DisableBingo = Convert.ToBoolean(dataReader["disablebingo"]);
-                    statusSports.DisableLiveCasino = Convert.ToBoolean(dataReader["disablelivecasino"]);                                                              
+                    statusSports.HideSportsbook = false; ////alway show
+                    statusSports.HideSportsbookMinPT = false; ////alway show
+                    statusSports.HideRacing = false; // Convert.ToBoolean(dataReader["disablehorseracing"]);
+                    statusSports.HideRacingMinPT = false; // Convert.ToBoolean(dataReader["disablehorseracing"]);
+                    statusSports.HideCasino = false; // Convert.ToBoolean(dataReader["disablecasino"]);
+                    statusSports.HideVirtualSports = false; // Convert.ToBoolean(dataReader["disablevirtualsports"]);
+                    statusSports.HideBingo = false; // Convert.ToBoolean(dataReader["disablebingo"]);
+                    statusSports.HideLiveCasino = Convert.ToBoolean(dataReader["synclivecasino"]);                                                              
                 } 
             }
 
@@ -125,8 +128,28 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
         /// </summary>
         /// <param name="criteria">The new user.</param>
         /// <returns>Object CommandResult.</returns>
-        public CommandResult CopyExistingUser(CustomerInsMemberCriteria criteria)
+        public CommandResult CopyExistingUser(ref CustomerInsMemberCriteria criteria)
         {            
+            // prepare SP parameters
+            Hashtable param = criteria.GetSpParams();
+
+            param = (new ResultCriteria()).AddSpParams(param);
+
+            using (var db = new ObjectDb(criteria.GetSettingKey()))
+            {
+                db.ExecuteNonQuery(param);
+                criteria.CustId = Convert.ToInt32(param["custid"]);
+                return GetCommandResult(param);
+            }         
+        }
+
+        /// <summary>
+        /// Update sync data.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Object CommandResult.</returns>
+        public CommandResult UpdateSync(ICriteria criteria)
+        {
             // prepare SP parameters
             Hashtable param = criteria.GetSpParams();
 
@@ -137,7 +160,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
                 db.ExecuteNonQuery(param);
 
                 return GetCommandResult(param);
-            }         
+            }
         }
     }
 }

@@ -35,19 +35,45 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CasinoLibrary, Version=1.0.1.16, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\accountingsite\Dependency\CasinoLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.Common">
       <HintPath>..\..\_Dependencies\Fanex\Fanex.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.CustomerSetting.Module.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Fanex.Toco.Module.Core\bin\Release\Fanex.CustomerSetting.Module.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.CustomerSetting.Security">
+      <HintPath>..\_Security\bin\Debug\Fanex.CustomerSetting.Security.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Data">
       <HintPath>..\..\_Dependencies\Fanex\Fanex.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_Dependencies\Fanex\Fanex.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.NAP.Core, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_Dependencies\Fanex\Fanex.NAP.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.NAP.Framework, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\_Dependencies\_FanexLib\Fanex.NAP.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCasinoLibrary, Version=1.0.0.14, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\accountingsite\Dependency\LiveCasinoLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\_Dependencies\Web\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Sunplus.Libraries.AOP">
+      <HintPath>..\..\_Dependencies\Casino\Sunplus.Libraries.AOP.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -128,16 +154,19 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\ModuleRegistrator.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="Command\CommandResult.cs" />
-    <Compile Include="Command\CommandResultBase.cs" />
+    <Compile Include="Common\Constants.cs" />
     <Compile Include="Controllers\BaseCloneController.cs" />
     <Compile Include="Controllers\SuperController.cs" />
+    <Compile Include="Criteria\UpdateSyncLiveCasinoForIBCCriteria.cs" />
+    <Compile Include="Criteria\UpdateSyncBingoForIBCCriteria.cs" />
+    <Compile Include="Criteria\UpdateSyncCasinoForIBCCriteria.cs" />
+    <Compile Include="Criteria\UpdateSyncLiveCasinoCriteria.cs" />
     <Compile Include="Criteria\CustomerInsMemberCriteria.cs" />
     <Compile Include="Criteria\GetSiteByUserIdCriteria.cs" />
     <Compile Include="Criteria\GetSitesCriteria.cs" />
     <Compile Include="Criteria\ResultCriteria.cs" />
     <Compile Include="Criteria\SearchExistingUserCriteria.cs" />
-    <Compile Include="Entities\DisableSports.cs" />
+    <Compile Include="Entities\HideSports.cs" />
     <Compile Include="Entities\Site.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Impl\BaseRepository.cs" />
@@ -150,16 +179,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Fanex.Toco.Module.Core\_Core.csproj">
-      <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
-      <Name>_Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\_Security\Security.csproj">
-      <Project>{91E16AE3-1209-4BF2-8846-7E36363167B3}</Project>
-      <Name>Security</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="web.config" />

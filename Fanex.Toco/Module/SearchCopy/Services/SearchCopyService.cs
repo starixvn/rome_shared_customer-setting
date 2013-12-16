@@ -9,11 +9,11 @@
 
 namespace Fanex.CustomerSetting.Module.SearchCopy.Services
 {
-    using System.Collections.Generic;
-    using Fanex.CustomerSetting.Module.SearchCopy.Command;
+    using System.Collections.Generic;    
     using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
     using Fanex.CustomerSetting.Module.SearchCopy.Entities;
     using Fanex.CustomerSetting.Module.SearchCopy.Repositories;
+    using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// Class SearchCopyService.
@@ -36,7 +36,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
             return _searchCopyRepository.SearchExistingUser(criteria);
         }
 
-        public DisableSports GetSportsStatusByUserName(string username)
+        public HideSports GetSportsStatusByUserName(string username)
         {
             return _searchCopyRepository.GetSportsStatusByUserName(username);
         }
@@ -51,9 +51,14 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
             return _searchCopyRepository.GetSiteCreditAndCurrencyByUserId(criteria);
         }
 
-        public CommandResult CopyExistingUser(CustomerInsMemberCriteria criteria)
+        public CommandResult CopyExistingUser(ref CustomerInsMemberCriteria criteria)
         {
-            return _searchCopyRepository.CopyExistingUser(criteria);
+            return _searchCopyRepository.CopyExistingUser(ref criteria);
+        }        
+
+        public CommandResult UpdateSync(ICriteria criteria)
+        {
+            return _searchCopyRepository.UpdateSync(criteria);
         }
     }
 }

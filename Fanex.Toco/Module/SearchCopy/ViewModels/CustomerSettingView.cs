@@ -22,6 +22,6 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.ViewModels
 
         public string Username { get; set; }
 
-        public DisableSports StatusSports { get; set; }
+        public HideSports StatusSports { get; set; }
     }
 }

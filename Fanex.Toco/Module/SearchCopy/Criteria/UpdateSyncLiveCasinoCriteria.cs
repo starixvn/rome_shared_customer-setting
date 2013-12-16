@@ -1,0 +1,47 @@
+// -----------------------------------------------------------------------
+// <copyright file="UpdateSyncLiveCasinoCriteria.cs" company="Nexcel">
+// TODO: Update copyright text.
+// </copyright>
+// -----------------------------------------------------------------------
+// <history>
+//   <change who="Thai.Tran" date="2013.11.05">Created</change>
+// </history>
+
+namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
+{
+    using System;
+    using Fanex.NAP.Framework.Data;
+
+    /// <summary>
+    /// Class UpdateSyncLiveCasinoCriteria.
+    /// </summary>
+    [Serializable]
+    public class UpdateSyncLiveCasinoCriteria : CriteriaBase
+    {
+        public int CustID { get; set; }
+
+        public int OldCustID { get; set; }
+
+        public string CasinoNo { get; set; }        
+        
+        public string SignupIP { get; set; }
+
+        public int SignupBy { get; set; }
+
+        public short SignupFrom { get; set; }
+
+        public string ModifyUserName { get; set; }
+
+        public string ToUserName { get; set; }        
+
+        public override string GetSettingKey()
+        {
+            return "TP_User_Customer_AutoInsertSuperFromExisting";
+        }
+
+        public override bool IsValid()
+        {
+            return true;
+        }
+    }
+}

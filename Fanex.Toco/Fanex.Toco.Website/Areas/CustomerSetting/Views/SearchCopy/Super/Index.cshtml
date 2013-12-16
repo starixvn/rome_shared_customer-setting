@@ -5,7 +5,7 @@
 @section Styles
 {
     <link rel="Stylesheet" href="@Url.Content("~/Areas/CustomerSetting/Views/SearchCopy/Styles/Steps/Step1.css")" />
-    <link rel="Stylesheet" href="@Url.Content("~/Areas/CustomerSetting/Views/SearchCopy/Styles/Steps/Step2.css")" />    
+    <link rel="Stylesheet" href="@Url.Content("~/Areas/CustomerSetting/Views/SearchCopy/Styles/Steps/Step2.css")" />
 }
 @section Scripts
 {
@@ -16,14 +16,14 @@
 <div id="divSearchCopy" ng-controller="SearchCopyController">
     <input type="hidden" id="currentUserId" value= '@ViewBag.CurrentUserId' />
     <input type="hidden" id="currentURL" value= '@ViewBag.CurrentURL' />
-    <div id="errorMsg" class="errMsg maincontent_box" style="width: 850px;">
+    <div id="errorMsg" class="errMsg maincontent_box" style="width: 700px;">
     </div>
     <div class="formPanel">
-        <div id="panelStep1">
+        <div id="panelStep1" ng-click="step2Back();">
             <span id="spanstep1" class="step step1-active">Step 1: <span style="font-weight: bold">
-                Search Existing Supper</span> </span>
+                Search Existing Super</span> </span>
         </div>
-        <div id="panelStep2">
+        <div id="panelStep2" ng-click="step1Next();">
             <span id="spanstep2" class="step step2-inactive">Step 2: <span style="font-weight: bold">
                 Enter Information</span></span></div>
     </div>
@@ -35,34 +35,45 @@
             @Html.Partial("~/Areas/CustomerSetting/Views/SearchCopy/Super/SearchForm.cshtml")
         </div>
         <div id="step2">
-            <div class="newline">
+            <div style="clear: both; height: 1px">
                 &nbsp;</div>
             <div class="row tabsports">
-                <div id="tabGenealInformation" class="tab-active" ng-click="showSetting('#divGeneralInformation','tabGenealInformation');">
+                <div id="tabGenealInformation" class="tab-active" ng-click="showSetting('tabGenealInformation');">
                     <span>General Information</span></div>
-                <div id="tabSportsbook" class="tab-inactive" ng-click="showSetting('#divSportsbook','tabSportsbook');">
-                    <span>Sportsbook</span></div>
-                <div id="tabSportsbookMinPT" class="tab-inactive" ng-click="showSetting('#divSportsbookMinPT','tabSportsbookMinPT');">
-                    <span>Sportsbook Min PT</span></div>
-                <div id="tabRacing" class="tab-inactive" ng-click="showSetting('#divRacing','tabRacing');">
-                    <span>Racing</span></div>
-                <div id="tabRacingMinPT" class="tab-inactive" ng-click="showSetting('#divRacingMinPT','tabRacingMinPT');">
-                    <span>Racing Min PT</span></div>
-                <div id="tabCasino" class="tab-inactive" ng-click="showSetting('#divCasino','tabCasino');">
-                    <span>Casino</span></div>
-                <div id="tabVirtualSports" class="tab-inactive" ng-click="showSetting('#divVirtualSports','tabVirtualSports');">
-                    <span>Virtual Sports</span></div>
-                <div id="tabBingo" class="tab-inactive" ng-click="showSetting('#divBingo','tabBingo');">
-                    <span>Bingo</span></div>
-                <div id="tabLiveCasino" class="tab-inactive" ng-click="showSetting('#divLiveCasino','tabLiveCasino');">
-                    <span>Live Casino</span></div>
+                <div id="tabSports" class="tab-inactive">
+                    <font class="b" ng-click="showSetting('tabSports');">&nbsp;Preview settings: </font>
+                    <select id="listSports" ng-model="selectedSport" ng-options="s.sportname for s in sports"
+                        ng-change="showSetting();" name="listType">
+                    </select>
+                </div>
             </div>
-            <div class="settingInfo" style="overflow: auto">
+            <div class="settingInfo" style="overflow: auto;margin-top:-2px;">
                 @Html.Partial("~/Areas/CustomerSetting/Views/SearchCopy/Super/GeneralInformation.cshtml")
-                <div id="divSport" class="bg_table" style="width: 100%">
-                    <iframe id="frmSport" onload='setFrameLoaded();' scrolling="auto" frameborder="0"
-                        style="width: 100%; height: 700px;" hspace="0" vspace="0" marginheight="0" marginwidth="0"
-                        src="" name="frmSport"></iframe>
+                <div id="divSport" class="bg_table" style="width: 99%">
+                    <iframe id="frmSportbook" onload='setFrameLoaded();' scrolling="auto" frameborder="0"
+                        class="sport" style="width: 100%; height: 680px;" hspace="0" vspace="0" marginheight="0"
+                        marginwidth="0" src="" name="frmSportbook"></iframe>
+                    <iframe id="frmSportbookMinPT" onload='setFrameLoaded();' scrolling="auto" frameborder="0"
+                        class="sport" style="width: 100%; height: 680px;" hspace="0" vspace="0" marginheight="0"
+                        marginwidth="0" src="" name="frmSportbookMinPT"></iframe>
+                    <iframe id="frmRacing" onload='setFrameLoaded();' scrolling="auto" frameborder="0"
+                        class="sport" style="width: 100%; height: 680px;" hspace="0" vspace="0" marginheight="0"
+                        marginwidth="0" src="" name="frmRacing"></iframe>
+                    <iframe id="frmRacingMinPT" onload='setFrameLoaded();' scrolling="auto" frameborder="0"
+                        class="sport" style="width: 100%; height: 680px;" hspace="0" vspace="0" marginheight="0"
+                        marginwidth="0" src="" name="frmRacingMinPT"></iframe>
+                    <iframe id="frmCasino" onload='setFrameLoaded();' scrolling="auto" frameborder="0"
+                        class="sport" style="width: 100%; height: 680px;" hspace="0" vspace="0" marginheight="0"
+                        marginwidth="0" src="" name="frmCasino"></iframe>
+                    <iframe id="frmVirtualSports" onload='setFrameLoaded();' scrolling="auto" frameborder="0"
+                        class="sport" style="width: 100%; height: 680px;" hspace="0" vspace="0" marginheight="0"
+                        marginwidth="0" src="" name="frmVirtualSports"></iframe>
+                    <iframe id="frmBingo" onload='setFrameLoaded();' scrolling="auto" frameborder="0"
+                        class="sport" style="width: 100%; height: 680px;" hspace="0" vspace="0" marginheight="0"
+                        marginwidth="0" src="" name="frmBingo"></iframe>
+                    <iframe id="frmLiveCasino" onload='setFrameLoaded();' scrolling="auto" frameborder="0"
+                        class="sport" style="width: 100%; height: 680px;" hspace="0" vspace="0" marginheight="0"
+                        marginwidth="0" src="" name="frmLiveCasino"></iframe>
                 </div>
             </div>
             <div class="newline">
@@ -74,7 +85,7 @@
             <div class="btnNextR hand grid3" ng-click="step2Submit();">
                 <div class="btnNextL">
                     <span>Submit</span></div>
-            </div>            
+            </div>
         </div>
     }
 </div>
@@ -85,7 +96,7 @@
     };
 
     function setFrameLoaded() {
-        if ($('#frmSport').attr('src') != "") {
+        if ($(this).attr('src') != "") {
             PTSetting.SportType.SetFrameLoaded();
         }
     };

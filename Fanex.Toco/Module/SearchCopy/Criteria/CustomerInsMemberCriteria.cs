@@ -44,12 +44,14 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
 
         public int ExistingCustId { get; set; }
 
+        public int CurrencyId { get; set; }
+
         public int Creator { get; set; }
 
         public string Language { get; set; }
 
         public string IP { get; set; }
-
+    
         public override string GetSettingKey()
         {
             return "Acc_CustomerInsMember_CloneSetting_Com";
