@@ -519,7 +519,9 @@
     <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\RacingSetting.css" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\table.css" />
     <Content Include="Web.Configuration\Store\RacingSpNames.xml" />
-    <Content Include="Web.Configuration\Store\CustomerSpNames.xml" />
+    <Content Include="Web.Configuration\Store\CustomerSpNames.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="Areas\CustomerSetting\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Web.config" />
