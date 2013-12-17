@@ -69,7 +69,7 @@ namespace Fanex.CustomerSetting.Module.Bingo.Services
             catch (Exception ex)
             {
                 LogExtension.Log(ex);
-                customer.Result = new Sunplus.Bingo.Entities.Result(1, ex.Message);
+                customer.Result = new Sunplus.Bingo.Entities.Result(1, "Not bingo's user");
             }
 
             return customer;
@@ -123,7 +123,7 @@ namespace Fanex.CustomerSetting.Module.Bingo.Services
             catch (Exception ex)
             {
                 LogExtension.Log(ex);
-                return new Sunplus.Bingo.Entities.Result(1, ex.Message);
+                return new Sunplus.Bingo.Entities.Result(1, "Not bingo's user");
             }
         }
 
@@ -146,7 +146,7 @@ namespace Fanex.CustomerSetting.Module.Bingo.Services
             catch (Exception ex)
             {
                 LogExtension.Log(ex);
-                result = new Sunplus.Bingo.Entities.Result(1, ex.Message);
+                result = new Sunplus.Bingo.Entities.Result(1, "Not bingo's user");
             }
 
             return result;
