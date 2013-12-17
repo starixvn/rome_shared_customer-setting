@@ -16,16 +16,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
     /// Class UpdateSyncCasinoForIBCCriteria.
     /// </summary>
     [Serializable]
-    public class UpdateSyncCasinoForIBCCriteria : CriteriaBase
-    {
-        public int CustId { get; set; }
-
-        public bool SyncCS { get; set; }
-
-        public int UserId { get; set; }
-
-        public string LoginIP { get; set; }
-
+    public class UpdateSyncCasinoForIBCCriteria : UpdateSyncBaseForIBCCriteria
+    {     
         public override string GetSettingKey()
         {
             return "Acc_UpdCSStatus";

@@ -63,6 +63,9 @@
     <Reference Include="Fanex.NAP.Framework, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\_Dependencies\_FanexLib\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="IBCUtils">
+      <HintPath>..\..\_Dependencies\SearchCopy\IBCUtils.dll</HintPath>
+    </Reference>
     <Reference Include="LiveCasinoLibrary, Version=1.0.0.14, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\accountingsite\Dependency\LiveCasinoLibrary.dll</HintPath>
@@ -157,6 +160,7 @@
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Controllers\BaseCloneController.cs" />
     <Compile Include="Controllers\SuperController.cs" />
+    <Compile Include="Criteria\UpdateSyncBaseForIBCCriteria.cs" />
     <Compile Include="Criteria\UpdateSyncLiveCasinoForIBCCriteria.cs" />
     <Compile Include="Criteria\UpdateSyncBingoForIBCCriteria.cs" />
     <Compile Include="Criteria\UpdateSyncCasinoForIBCCriteria.cs" />
