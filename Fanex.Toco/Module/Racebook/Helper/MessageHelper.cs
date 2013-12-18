@@ -38,7 +38,7 @@ namespace Fanex.CustomerSetting.Module.Racebook.Helper
             {
                 string[] splitChars = new[] { "\a" };
                 var arrErrorCode = errorCode.Split(splitChars, StringSplitOptions.RemoveEmptyEntries);
-                var arrErrorMsgs = errorMsg.Split(splitChars, StringSplitOptions.RemoveEmptyEntries);
+                var arrErrorMsgs = errorMsg.Split(splitChars, StringSplitOptions.None);
                 if (arrErrorCode.Length > 0)
                 {
                     var totalErrors = arrErrorCode.Length;
