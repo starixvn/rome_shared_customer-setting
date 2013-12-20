@@ -74,7 +74,6 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Repositories.Impl
         /// <returns>System.Int32 object.</returns>
         public int UserGroupId(int custId)
         {
-            /*
             var param = new Hashtable();
             param.Add("custid", custId);
 
@@ -92,10 +91,10 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Repositories.Impl
 
                     return 0;
                 }
-            }*/
+            }
 
             // For new external accounting only.
-            return SessionManager.Get<int>("EASGroupId");
+            //return SessionManager.Get<int>("EASGroupId");
         }
     }
 }

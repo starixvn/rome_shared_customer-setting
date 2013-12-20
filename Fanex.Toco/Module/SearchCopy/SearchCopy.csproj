@@ -35,9 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CasinoLibrary, Version=1.0.1.16, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CasinoLibrary, Version=1.0.1.11, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\accountingsite\Dependency\CasinoLibrary.dll</HintPath>
+      <HintPath>..\..\_Dependencies\SearchCopy\CasinoLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Common">
       <HintPath>..\..\_Dependencies\Fanex\Fanex.Common.dll</HintPath>
@@ -66,9 +66,9 @@
     <Reference Include="IBCUtils">
       <HintPath>..\..\_Dependencies\SearchCopy\IBCUtils.dll</HintPath>
     </Reference>
-    <Reference Include="LiveCasinoLibrary, Version=1.0.0.14, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="LiveCasinoLibrary, Version=1.0.0.11, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\accountingsite\Dependency\LiveCasinoLibrary.dll</HintPath>
+      <HintPath>..\..\_Dependencies\SearchCopy\LiveCasinoLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
