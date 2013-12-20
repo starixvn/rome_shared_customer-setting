@@ -64,8 +64,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
 
             var customer = this.CustomerInfo(id, userId);
 
-            if (customer.RoleId != 4 || groups == null || !groups.Contains(customer.GroupId) || !customer.SyncBingo || 
-                !siteName.Substring(3).ToUpper().Contains(customer.CurrencyName.ToUpper()))
+            if (customer.RoleId != 4 || groups == null || !groups.Contains(customer.GroupId) || !customer.SyncBingo)
             {
                 return this.PartialView("~/Areas/CustomerSetting/Views/Security/AccessDenied.cshtml");
             }
@@ -125,8 +124,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
             settings.NullValueHandling = NullValueHandling.Ignore;
             settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
-            if (customer.RoleId != 4 || groups == null || !groups.Contains(customer.GroupId) || !customer.SyncBingo || 
-                !siteName.Substring(3).ToUpper().Contains(customer.CurrencyName.ToUpper()))
+            if (customer.RoleId != 4 || groups == null || !groups.Contains(customer.GroupId) || !customer.SyncBingo)
             {
                 return this.JsonBase(new { ErrorCode = 1, ErrorMessage = "You're not authorized on this function" }, settings);
             }
