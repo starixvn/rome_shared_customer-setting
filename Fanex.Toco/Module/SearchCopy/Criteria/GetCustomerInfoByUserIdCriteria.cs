@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// <copyright file="GetSiteByUserIdCriteria.cs" company="Nexcel">
+// <copyright file="GetCustomerInfoByUserIdCriteria.cs" company="Nexcel">
 // TODO: Update copyright text.
 // </copyright>
 // -----------------------------------------------------------------------
@@ -13,10 +13,10 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// Class GetSiteByUserIdCriteria.
+    /// Class GetCustomerInfoByUserIdCriteria.
     /// </summary>
     [Serializable]
-    public class GetSiteByUserIdCriteria : CriteriaBase
+    public class GetCustomerInfoByUserIdCriteria : CriteriaBase
     {       
         public int Custid { get; set; }
          

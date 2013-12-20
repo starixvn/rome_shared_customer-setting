@@ -166,10 +166,11 @@
     <Compile Include="Criteria\UpdateSyncCasinoForIBCCriteria.cs" />
     <Compile Include="Criteria\UpdateSyncLiveCasinoCriteria.cs" />
     <Compile Include="Criteria\CustomerInsMemberCriteria.cs" />
-    <Compile Include="Criteria\GetSiteByUserIdCriteria.cs" />
+    <Compile Include="Criteria\GetCustomerInfoByUserIdCriteria.cs" />
     <Compile Include="Criteria\GetSitesCriteria.cs" />
     <Compile Include="Criteria\ResultCriteria.cs" />
     <Compile Include="Criteria\SearchExistingUserCriteria.cs" />
+    <Compile Include="Entities\CustomerInfo.cs" />
     <Compile Include="Entities\HideSports.cs" />
     <Compile Include="Entities\Site.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

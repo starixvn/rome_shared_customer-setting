@@ -46,9 +46,9 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
             return _searchCopyRepository.GetSitesExistingSuper(criteria);
         }
 
-        public string GetSiteCreditAndCurrencyByUserId(GetSiteByUserIdCriteria criteria)
+        public CustomerInfo GetCustomerInfoByUserId(GetCustomerInfoByUserIdCriteria criteria)
         {
-            return _searchCopyRepository.GetSiteCreditAndCurrencyByUserId(criteria);
+            return _searchCopyRepository.GetCustomerInfoByUserId(criteria);
         }
 
         public CommandResult CopyExistingUser(ref CustomerInsMemberCriteria criteria)

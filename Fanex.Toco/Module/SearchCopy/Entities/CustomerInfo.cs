@@ -1,0 +1,31 @@
+﻿// -----------------------------------------------------------------------
+// <copyright file="CustomerInfo.cs" company="Nexcel">
+// TODO: Update copyright text.
+// </copyright>
+// -----------------------------------------------------------------------
+// <history>
+//   <change who="Thai.Tran" date="2013.11.05">Created</change>
+// </history>
+
+namespace Fanex.CustomerSetting.Module.SearchCopy.Entities
+{
+    /// <summary>
+    /// Class CustomerInfo.
+    /// </summary>
+    public class CustomerInfo
+    {        
+        public string Site { get; set; }
+        
+        public string Credit { get; set; }
+
+        public int CurrencyId { get; set; }
+
+        public string Currency { get; set; }
+
+        public byte IsSyncCasino { get; set; }
+
+        public byte IsSyncBingo { get; set; }
+
+        public byte IsSyncLiveCasino { get; set; }
+    }
+}

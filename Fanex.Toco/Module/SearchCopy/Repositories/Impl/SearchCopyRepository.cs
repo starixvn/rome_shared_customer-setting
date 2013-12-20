@@ -38,15 +38,11 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
         /// Get site and currency of user.
         /// </summary>
         /// <param name="criteria">Criteria GetSiteByUserIdCriteria.</param>
-        /// <returns>Return site and currency as format "site,credit,currency".</returns>
-        public string GetSiteCreditAndCurrencyByUserId(GetSiteByUserIdCriteria criteria)
+        /// <returns>Return customer info.</returns>
+        public CustomerInfo GetCustomerInfoByUserId(GetCustomerInfoByUserIdCriteria criteria)
         {
-            string site = string.Empty;
-            string credit = string.Empty;
-            int currencyId = 0;
-            string currencyName = string.Empty;
-
-            // prepare SP parameters
+            CustomerInfo custInfo = new CustomerInfo();
+            ////prepare SP parameters
             Hashtable param = criteria.GetSpParams();
             param = (new ResultCriteria()).AddSpParams(param);
 
@@ -55,14 +51,17 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
                 var dataReader = objDb.ExecuteReader(param);
                 while (dataReader.Read())
                 {
-                    site = dataReader["site"].ToString();
-                    credit = dataReader["credit"].ToString();
-                    currencyId = Converter.ToInt(dataReader["currencyID"]);
-                    currencyName = dataReader["currencyName"].ToString();
+                    custInfo.Site = dataReader["site"].ToString();
+                    custInfo.Credit = dataReader["credit"].ToString();
+                    custInfo.CurrencyId = Converter.ToInt(dataReader["currencyID"]);
+                    custInfo.Currency = dataReader["currencyName"].ToString();
+                    custInfo.IsSyncCasino = Converter.To<byte>(dataReader["synccasino"]);
+                    custInfo.IsSyncBingo = Converter.To<byte>(dataReader["syncbingo"]);
+                    custInfo.IsSyncLiveCasino = Converter.To<byte>(dataReader["synclivecasino"]);
                 }                
             }
 
-            return site + "," + credit + "," + currencyId + "," + currencyName;
+            return custInfo;            
         }
 
         /// <summary>
@@ -102,8 +101,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
         public IEnumerable<Site> GetSitesExistingSuper(GetSitesCriteria criteria)
         {
             List<Site> sites = new List<Site>();
-
-            // prepare SP parameters
+            ////prepare SP parameters
             Hashtable param = criteria.GetSpParams();
             param = (new ResultCriteria()).AddSpParams(param);
 
@@ -129,8 +127,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
         /// <param name="criteria">The new user.</param>
         /// <returns>Object CommandResult.</returns>
         public CommandResult CopyExistingUser(ref CustomerInsMemberCriteria criteria)
-        {            
-            // prepare SP parameters
+        {
+            ////prepare SP parameters
             Hashtable param = criteria.GetSpParams();
 
             param = (new ResultCriteria()).AddSpParams(param);
@@ -150,7 +148,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
         /// <returns>Object CommandResult.</returns>
         public CommandResult UpdateSync(ICriteria criteria)
         {
-            // prepare SP parameters
+            ////prepare SP parameters
             Hashtable param = criteria.GetSpParams();
 
             param = (new ResultCriteria()).AddSpParams(param);

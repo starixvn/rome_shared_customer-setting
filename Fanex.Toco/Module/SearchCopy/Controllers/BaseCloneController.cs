@@ -69,9 +69,10 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             return _searchCopyService.GetSportsStatusByUserName(username);
         }
 
-        public string GetSiteCreditAndCurrencyByUserId(int custid)
+        public JsonResult GetCustomerInfoByUserId(int custid)
         {
-            return _searchCopyService.GetSiteCreditAndCurrencyByUserId(new GetSiteByUserIdCriteria { Custid = custid });
+            var custInfo = _searchCopyService.GetCustomerInfoByUserId(new GetCustomerInfoByUserIdCriteria { Custid = custid });
+            return Json(custInfo, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>

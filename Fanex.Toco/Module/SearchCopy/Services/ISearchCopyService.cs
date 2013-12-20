@@ -24,7 +24,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
 
         IEnumerable<Site> GetSitesExistingSuper(GetSitesCriteria criteria);
 
-        string GetSiteCreditAndCurrencyByUserId(GetSiteByUserIdCriteria criteria);
+        CustomerInfo GetCustomerInfoByUserId(GetCustomerInfoByUserIdCriteria criteria);
 
         CommandResult CopyExistingUser(ref CustomerInsMemberCriteria criteria);
         
