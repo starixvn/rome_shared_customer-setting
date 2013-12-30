@@ -1,6 +1,6 @@
-﻿app.controller('sMAGameSettingController', function ($scope) {
+﻿OpusModule.controller('sMAGameSettingController', function ($scope) {
     $scope.gameSettingList = model.gameSettingList;
-    $scope.orignalGameSettingList = angular.copy(model.gameSettingList); 
+    $scope.orignalGameSettingList = angular.copy(model.gameSettingList);
 
     $scope.isDisabledSaveGameSetting = true;
 

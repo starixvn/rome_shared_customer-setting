@@ -1,4 +1,4 @@
-﻿app.controller('memberPositionTakingController', function ($scope, $rootScope) {
+﻿OpusModule.controller('memberPositionTakingController', function ($scope, $rootScope) {
     $scope.positionTaking = model.positionTaking;
     $scope.isDisabledSavedPT = true;
 

@@ -1,4 +1,4 @@
-﻿var app = angular.module('OpusCasino', []).run(['$http', '$rootScope', function ($http, $rootScope) {
+﻿var OpusModule = angular.module('OpusCasino', []).run(['$http', '$rootScope', function ($http, $rootScope) {
     $rootScope.getRangeValue = function (max, stepValue, roundValue) {
         var rangeValueArray = new Array();
         while (max >= 0) {
@@ -9,7 +9,7 @@
     }
 } ]);
 
-app.controller('opusSettingController', function ($scope, $rootScope) {
+OpusModule.controller('opusSettingController', function ($scope, $rootScope) {
     $scope.isDisabledUpdated = true;
     $scope.isDisabledSavedPT = true;
     $scope.isDisabledSaveBetSetting = true;
@@ -41,7 +41,7 @@ app.controller('opusSettingController', function ($scope, $rootScope) {
     });
 });
 
-app.directive('checkDisableElement', function () {
+OpusModule.directive('checkDisableElement', function () {
     return {
         require: 'ngModel',
         link: function (scope, element, attrs, ctrl) {

@@ -70,21 +70,21 @@
 3. Action in detail
 
 • Super Setting
-- customersetting/opuscasino/opuscasinosetting/super?custId=1373389
+- customersetting/opuscasino/opuscasinosetting/OpusCasinoSuper?custId=1373389
 
 • Master Setting
-- customersetting/opuscasino/opuscasinosetting/master?custid=1373580&uplineid=1373389
+- customersetting/opuscasino/opuscasinosetting/OpusCasinoMaster?custid=1373580&uplineid=1373389
 
 • Agent Setting
-- customersetting/opuscasino/opuscasinosetting/agent?custid=1374738&uplineid=1373580
+- customersetting/opuscasino/opuscasinosetting/OpusCasinoAgent?custid=1374738&uplineid=1373580
 
 • Member Setting
-- customersetting/opuscasino/opuscasinosetting/member?custid=4797995&uplineid=1374738
+- customersetting/opuscasino/opuscasinosetting/OpusCasinoMember?custid=4797995&uplineid=1374738
 
 • Super Edit member
-- customersetting/opuscasino/opuscasinosetting/supereditmember?custid=4797995&superid=1373389
+- customersetting/opuscasino/opuscasinosetting/OpusCasinoSupereditmember?custid=4797995&superid=1373389
 
 • Master Edit Member
-- customersetting/opuscasino/opuscasinosetting/mastereditmember?custid=4797995&uplineid=1373580
+- customersetting/opuscasino/opuscasinosetting/OpusCasinoMastereditmember?custid=4797995&uplineid=1373580
 
 

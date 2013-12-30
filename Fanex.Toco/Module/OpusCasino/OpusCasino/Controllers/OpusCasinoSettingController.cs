@@ -37,42 +37,42 @@ namespace Fanex.CustomerSetting.OpusCasino.Controllers
         /// </summary>
         /// <returns></returns>
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "index")]
-        public ActionResult Super()
+        public ActionResult OpusCasinoSuper()
         {
             OpusSetting opus = _opusSettingService.GetCustomerInfo(0, 0, 4, 0);
             return View("~/Areas/CustomerSetting/Views/OpusCasino/Setting/Super.cshtml", opus);
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "index")]
-        public ActionResult Master()
+        public ActionResult OpusCasinoMaster()
         {
             OpusSetting opus = _opusSettingService.GetCustomerInfo(0, 4, 3, 0);
             return View("~/Areas/CustomerSetting/Views/OpusCasino/Setting/Master.cshtml", opus);
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "index")]
-        public ActionResult Agent()
+        public ActionResult OpusCasinoAgent()
         {
             OpusSetting opus = _opusSettingService.GetCustomerInfo(0, 3, 2, 0);
             return View("~/Areas/CustomerSetting/Views/OpusCasino/Setting/Agent.cshtml", opus);
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "index")]
-        public ActionResult Member()
+        public ActionResult OpusCasinoMember()
         {
             OpusSetting opus = _opusSettingService.GetCustomerInfo(0, 2, 1, 0);
             return View("~/Areas/CustomerSetting/Views/OpusCasino/Setting/Member.cshtml", opus);
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "index")]
-        public ActionResult SuperEditMember()
+        public ActionResult OpusCasinoSuperEditMember()
         {
             OpusSetting opus = new OpusSetting();
-            return View("~/Areas/CustomerSetting/Views/OpusCasino/Setting/SuperEditMember.cshtml",opus);
+            return View("~/Areas/CustomerSetting/Views/OpusCasino/Setting/SuperEditMember.cshtml", opus);
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "index")]
-        public ActionResult MasterEditMember()
+        public ActionResult OpusCasinoMasterEditMember()
         {
             OpusSetting opus = new OpusSetting();
             return View("~/Areas/CustomerSetting/Views/OpusCasino/Setting/MasterEditMember.cshtml", opus);

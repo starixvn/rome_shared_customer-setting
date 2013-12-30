@@ -1,4 +1,4 @@
-﻿app.controller('betSettingController', function ($scope, $rootScope) {
+﻿OpusModule.controller('betSettingController', function ($scope, $rootScope) {
     $scope.betLimitSetting = model.betLimitSetting;
     $scope.orignalBetLimitSetting = angular.copy(model.betLimitSetting);
 
@@ -15,7 +15,7 @@
             return;
         }
         $scope.broadcastOpusSetting(true);
-    },true);
+    }, true);
 
 });
 

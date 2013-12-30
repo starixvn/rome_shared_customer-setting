@@ -1,4 +1,4 @@
-﻿app.controller('superPositionTakingController', function ($scope, $rootScope) {
+﻿OpusModule.controller('superPositionTakingController', function ($scope, $rootScope) {
     $scope.positionTaking = model.positionTaking;
     $scope.isDisabledSavedPT = true;
 

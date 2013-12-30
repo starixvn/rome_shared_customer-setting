@@ -1,4 +1,4 @@
-﻿app.controller('customerInfoController', function ($scope, $rootScope) {
+﻿OpusModule.controller('customerInfoController', function ($scope, $rootScope) {
     $scope.customerInfo = model.customerInformation;
     $scope.isDownlineDisabled = true;
 

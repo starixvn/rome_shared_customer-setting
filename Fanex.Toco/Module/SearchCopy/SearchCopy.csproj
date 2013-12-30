@@ -61,7 +61,7 @@
       <HintPath>..\..\_Dependencies\Fanex\Fanex.NAP.Core.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.NAP.Framework, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\_Dependencies\_FanexLib\Fanex.NAP.Framework.dll</HintPath>
+      <HintPath>..\..\_Dependencies\Fanex\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
     <Reference Include="IBCUtils">
       <HintPath>..\..\_Dependencies\SearchCopy\IBCUtils.dll</HintPath>

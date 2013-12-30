@@ -1,4 +1,4 @@
-﻿app.controller('memberGameSettingController', function ($scope) {
+﻿OpusModule.controller('memberGameSettingController', function ($scope) {
     $scope.gameSettingList = model.gameSettingList;
     $scope.orignalGameSettingList = angular.copy(model.gameSettingList);
 

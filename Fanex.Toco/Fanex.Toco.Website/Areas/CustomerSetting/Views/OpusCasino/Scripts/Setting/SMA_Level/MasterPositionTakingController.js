@@ -1,14 +1,14 @@
-﻿app.controller('masterPositionTakingController', function ($scope, $rootScope) {
+﻿OpusModule.controller('masterPositionTakingController', function ($scope, $rootScope) {
     $scope.positionTaking = model.positionTaking;
     $scope.isDisabledSavedPT = true;
 
     $scope.iS3 = $scope.positionTaking.iS3;
 
-    $scope.s3Range = $scope.uS3Range =  $rootScope.getRangeValue($scope.positionTaking.s4, 0.01, 100);
+    $scope.s3Range = $scope.uS3Range = $rootScope.getRangeValue($scope.positionTaking.s4, 0.01, 100);
     $scope.s3 = $scope.positionTaking.s3 = 0;
     $scope.uS3 = $scope.positionTaking.uS3 = 0;
 
-    $scope.maxPTRange =$scope.minPTRange= $rootScope.getRangeValue($scope.positionTaking.l3, 0.01, 100);
+    $scope.maxPTRange = $scope.minPTRange = $rootScope.getRangeValue($scope.positionTaking.l3, 0.01, 100);
     $scope.l3 = $scope.positionTaking.l3 = $scope.maxPTRange[0];
     $scope.n3 = $scope.positionTaking.n3 = 0;
 
