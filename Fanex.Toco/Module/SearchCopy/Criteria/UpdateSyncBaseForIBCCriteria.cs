@@ -20,8 +20,6 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
     {
         public int CustId { get; set; }
 
-        public bool SyncValue { get; set; }
-
         public int UserId { get; set; }
 
         public string LoginIP { get; set; }             

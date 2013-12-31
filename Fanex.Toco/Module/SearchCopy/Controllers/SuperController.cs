@@ -256,7 +256,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                 }
 
                 ////Sync data to IBC 
-                result = UpdateSyncDataToIBC(customer.CustId, new UpdateSyncCasinoForIBCCriteria());
+                result = UpdateSyncDataToIBC(customer.CustId, new UpdateSyncBingoForIBCCriteria());
                 if (result.IsSuccessful == false)
                 {
                     result.Code = -1;
@@ -305,7 +305,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
         private CommandResult UpdateSyncLiveCasinoAfterCopySuper(CustomerInsMemberCriteria customer)
         {
             CommandResult result = new CommandResult { Code = 0, Message = string.Empty };
-            if (customer.IsSyncBingo == false)
+            if (customer.IsSyncLiveCasino == false)
             {
                 return result;
             }
@@ -321,7 +321,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                 }
 
                 ////Sync data to IBC 
-                result = UpdateSyncDataToIBC(customer.CustId, new UpdateSyncCasinoForIBCCriteria());
+                result = UpdateSyncDataToIBC(customer.CustId, new UpdateSyncLiveCasinoForIBCCriteria());
                 if (result.IsSuccessful == false)
                 {
                     result.Code = -1;
@@ -351,7 +351,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             UpdateSyncLiveCasinoCriteria syncLiveCasino = new UpdateSyncLiveCasinoCriteria();
             syncLiveCasino.CasinoNo = "01";
             syncLiveCasino.CustID = customer.CustId;
-            syncLiveCasino.OldCustID = customer.ExistingCustId;
+            syncLiveCasino.OldCustID = customer.ExistingCustId;            
             syncLiveCasino.SignupIP = GetClientIP();
             syncLiveCasino.SignupBy = AppSession.AccId;
             syncLiveCasino.SignupFrom = 3;
@@ -370,8 +370,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
         private CommandResult UpdateSyncDataToIBC(int custid, UpdateSyncBaseForIBCCriteria sysnIBC)
         {
             CommandResult result = new CommandResult { Code = 0, Message = string.Empty };
-            sysnIBC.CustId = custid;
-            sysnIBC.SyncValue = true;
+            sysnIBC.CustId = custid;            
             sysnIBC.UserId = AppSession.AccId;
             sysnIBC.LoginIP = GetClientIP();
 

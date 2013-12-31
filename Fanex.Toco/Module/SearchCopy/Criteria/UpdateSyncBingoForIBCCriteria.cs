@@ -17,7 +17,14 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
     /// </summary>
     [Serializable]
     public class UpdateSyncBingoForIBCCriteria : UpdateSyncBaseForIBCCriteria
-    {        
+    {
+        public UpdateSyncBingoForIBCCriteria()
+        {
+            SyncBingo = true;
+        }
+
+        public bool SyncBingo { get; set; }
+
         public override string GetSettingKey()
         {
             return "Acc_CustomerUpdSyncBingo";
