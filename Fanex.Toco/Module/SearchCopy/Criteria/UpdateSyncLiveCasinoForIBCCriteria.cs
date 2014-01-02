@@ -18,7 +18,6 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
     [Serializable]
     public class UpdateSyncLiveCasinoForIBCCriteria : UpdateSyncBaseForIBCCriteria
     {
-
         public UpdateSyncLiveCasinoForIBCCriteria()
         {
             SyncLiveCS = true;
