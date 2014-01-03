@@ -129,23 +129,33 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
         /// <returns>True if success else return False.</returns>
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "SearchAndCopy")]
         private CommandResult UpdateSyncData(CustomerInsMemberCriteria criteria)
-        {
+        {            
+            string resultMessage = string.Empty;
             CommandResult resultSyncData = new CommandResult { Code = 0, Message = string.Empty };
             try
             {
                 resultSyncData = UpdateSyncCasinoAfterCopySuper(criteria);
-                if (resultSyncData.IsSuccessful)
-                {
-                    resultSyncData = UpdateSyncBingoAfterCopySuper(criteria);
-                    if (resultSyncData.IsSuccessful)
-                    {
-                        resultSyncData = UpdateSyncLiveCasinoAfterCopySuper(criteria);
-                    }
+                if (resultSyncData.IsSuccessful == false)
+                {         
+                    resultMessage = string.Join(null, new string[] { "<div>", resultSyncData.Message, "</div>" });
                 }
 
+                resultSyncData = UpdateSyncBingoAfterCopySuper(criteria);
                 if (resultSyncData.IsSuccessful == false)
+                {                 
+                    resultMessage = string.Join(null, new string[] { resultMessage, "<div>", resultSyncData.Message, "</div>" });
+                }
+
+                resultSyncData = UpdateSyncLiveCasinoAfterCopySuper(criteria);
+                if (resultSyncData.IsSuccessful == false)
+                {                 
+                    resultMessage = string.Join(null, new string[] { resultMessage, "<div>", resultSyncData.Message, "</div>" });
+                }
+
+                if (resultMessage != string.Empty)
                 {
-                    resultSyncData.Message = string.Join(null, new string[] { "<div class='alertboxerr'><div>", resultSyncData.Message, "</div></div>" });
+                    resultSyncData.Code = -1;                    
+                    resultSyncData.Message = string.Join(null, new string[] { "<div class='alertboxerr'>", resultMessage, "</div>" });
                 }
             }
             catch (Exception ex)

@@ -24,7 +24,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Common
         public static class CopyMessage
         {
             public const string Success = "Created Super Successfully !";
-            public const string Failed = "Created Super Un-successfully !";
+            public const string Failed = "Unable to copy the Super, please try again !";
         }
 
         /// <summary>
