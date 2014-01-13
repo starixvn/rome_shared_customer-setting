@@ -361,7 +361,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             UpdateSyncLiveCasinoCriteria syncLiveCasino = new UpdateSyncLiveCasinoCriteria();
             syncLiveCasino.CasinoNo = "01";
             syncLiveCasino.CustID = customer.CustId;
-            syncLiveCasino.OldCustID = customer.ExistingCustId;            
+            syncLiveCasino.OldCustID = customer.ExistingCustId;
+            syncLiveCasino.CustSite = customer.Site;
             syncLiveCasino.SignupIP = GetClientIP();
             syncLiveCasino.SignupBy = AppSession.AccId;
             syncLiveCasino.SignupFrom = 3;

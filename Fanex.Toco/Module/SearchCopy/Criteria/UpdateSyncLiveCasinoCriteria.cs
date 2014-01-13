@@ -22,6 +22,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
 
         public int OldCustID { get; set; }
 
+        public string CustSite { get; set; }
+
         public string CasinoNo { get; set; }        
         
         public string SignupIP { get; set; }
