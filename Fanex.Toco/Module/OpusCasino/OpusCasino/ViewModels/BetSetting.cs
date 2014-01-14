@@ -7,6 +7,8 @@ namespace Fanex.CustomerSetting.OpusCasino.ViewModels
 {
     public class BetSetting
     {
+        public bool IsUpdateBetSetting { get; set; }
+
         public double MaxTransferAllowed { get; set; }
 
         public bool IsDailyAutoResetLimit { get; set; }

@@ -38,6 +38,14 @@
     <Reference Include="Fanex.Common">
       <HintPath>..\..\_Dependencies\Fanex\Fanex.Common.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.CustomerSetting.OpusCasino.Resources, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\OpusCasino.Resources\bin\Debug\Fanex.CustomerSetting.OpusCasino.Resources.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.CustomerSetting.Security, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_Security\bin\Debug\Fanex.CustomerSetting.Security.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.Data">
       <HintPath>..\..\_Dependencies\Fanex\Fanex.Data.dll</HintPath>
     </Reference>
@@ -49,9 +57,9 @@
       <HintPath>..\..\..\_Dependencies\Fanex\Fanex.PTRacing.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\_Dependencies\Web\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\ACCOUNT-GITTO\Master-accountingsite\Dependency\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -135,6 +143,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="Controllers\BaseOpusCasinoSettingController.cs" />
     <Compile Include="Controllers\OpusCasinoSettingController.cs" />
+    <Compile Include="Criteria\SelectMasterOnMemberCriteria.cs" />
+    <Compile Include="Criteria\SelectSuperOnMemberCriteria.cs" />
+    <Compile Include="Criteria\SelectMemberCriteria.cs" />
+    <Compile Include="Criteria\SelectAgentCriteria.cs" />
+    <Compile Include="Criteria\SelectMasterCriteria.cs" />
+    <Compile Include="Criteria\SelectSuperCriteria.cs" />
+    <Compile Include="Criteria\UpdateSuperCriteria.cs" />
     <Compile Include="Entities\Result.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helper\MessageHelper.cs" />
@@ -152,7 +167,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Configuration\" />
-    <Folder Include="Criteria\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
   <ItemGroup>

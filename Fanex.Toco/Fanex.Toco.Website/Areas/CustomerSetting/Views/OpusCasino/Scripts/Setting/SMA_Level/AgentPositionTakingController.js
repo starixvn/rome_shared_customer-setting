@@ -5,15 +5,15 @@
     $scope.iM2 = $scope.positionTaking.iM2;
 
     $scope.m2Range = $scope.uM2Range = $rootScope.getRangeValue($scope.positionTaking.m3, 0.01, 100);
-    $scope.m2 = $scope.positionTaking.m2 = 0;
-    $scope.uM2 = $scope.positionTaking.uM2 = 0;
+    $scope.m2 = $scope.positionTaking.m2;
+    $scope.uM2 = $scope.positionTaking.uM2;
 
-    $scope.maxPTRange = $scope.minPTRange = $rootScope.getRangeValue($scope.positionTaking.l2, 0.01, 100);
-    $scope.l2 = $scope.positionTaking.l2 = $scope.maxPTRange[0];
-    $scope.n2 = $scope.positionTaking.n2 = 0;
+    $scope.maxPTRange = $scope.minPTRange = $rootScope.getRangeValue($scope.positionTaking.m3 - $scope.positionTaking.m2, 0.01, 100);
+    $scope.l2 = $scope.positionTaking.l2;
+    $scope.n2 = $scope.positionTaking.n2;
 
     $scope.commRange = $rootScope.getRangeValue($scope.positionTaking.comm3, 0.0005, 10000);
-    $scope.comm2 = $scope.positionTaking.comm2 = $scope.commRange[0];
+    $scope.comm2 = $scope.positionTaking.comm2;
 
     $scope.broadcastOpusSetting = function (value) {
         $scope.isDisabledSavedPT = value;

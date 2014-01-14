@@ -7,6 +7,7 @@ namespace Fanex.CustomerSetting.OpusCasino.ViewModels
 {
     public class GameSetting
     {
+        public bool IsUpdateGameSetting { get; set; }
         public string GameTypeName { get; set; }
         public int GameTypeID { get; set; }
        

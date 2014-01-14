@@ -25,7 +25,7 @@ namespace Fanex.CustomerSetting.OpusCasino.App_Start
         {
             bundles.Add(new ScriptBundle("~/bundles/OpusCasinoSetting").Include(
                 "~/Areas/CustomerSetting/Views/OpusCasino/Scripts/libs/*.js",
-                "~/Areas/CustomerSetting/Views/OpusCasino/Scripts/libs/ToolTip/wz_tooltip/wz_tooltip.js",
+                //"~/Areas/CustomerSetting/Views/OpusCasino/Scripts/libs/ToolTip/wz_tooltip/wz_tooltip.js",
                 "~/Areas/CustomerSetting/Views/OpusCasino/Scripts/common.js",
                 "~/Areas/CustomerSetting/Views/OpusCasino/Scripts/CommonPT.js",
                 "~/Areas/CustomerSetting/Views/OpusCasino/Scripts/Setting/RacingHelper.js",
