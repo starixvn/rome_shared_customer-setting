@@ -34,7 +34,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
         {            
             string accIdSessionName = ConfigurationManager.AppSettings["AccIdSessionName"].ToString();
             ViewBag.CurrentUserId = Fanex.Common.Converter.ToInt(System.Web.HttpContext.Current.Session[accIdSessionName]);
-            ViewBag.CurrentURL = ConfigurationManager.AppSettings["CurrentURL"].ToString();
+            ViewBag.CurrentURL = GetCurrentUrl();
           
             return View("~/Areas/CustomerSetting/Views/SearchCopy/Super/Index.cshtml");           
         }

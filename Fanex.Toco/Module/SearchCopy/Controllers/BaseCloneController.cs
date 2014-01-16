@@ -9,13 +9,14 @@
 
 namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
 {
+    using System;
+    using System.Configuration;
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
     using Fanex.CustomerSetting.Module.SearchCopy.App_Start;
     using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
     using Fanex.CustomerSetting.Module.SearchCopy.Entities;
     using Fanex.CustomerSetting.Module.SearchCopy.Services;
-    using Fanex.CustomerSetting.Security.Authenticate;
 
     /// <summary>
     /// Class BaseCloneController.
@@ -57,6 +58,20 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             }
 
             return ip;
+        }
+
+        /// <summary>
+        /// Get current URL.
+        /// </summary>
+        /// <returns>Current URL.</returns>
+        public string GetCurrentUrl()
+        {
+            var currentURL = ConfigurationManager.AppSettings["CurrentURL"];
+            Uri uri = System.Web.HttpContext.Current.Request.Url;
+            string host = uri.Scheme + Uri.SchemeDelimiter + uri.Host + (uri.Port == 80 ? string.Empty : ":" + uri.Port);
+
+            currentURL = string.Format(currentURL, host);
+            return currentURL.StartsWith("http") ? currentURL : "http://" + currentURL;  
         }
 
         public int SearchExistingUser(SearchExistingUserCriteria criteria)
