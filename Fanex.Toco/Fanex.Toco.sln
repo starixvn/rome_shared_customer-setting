@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{99A825B1-BE53-4620-8177-783BE55A6F21}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Module", "Module", "{35597BDC-D8EC-4E5C-BDEC-DB5C273D5D00}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_Core", "Module\Fanex.Toco.Module.Core\_Core.csproj", "{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}"
