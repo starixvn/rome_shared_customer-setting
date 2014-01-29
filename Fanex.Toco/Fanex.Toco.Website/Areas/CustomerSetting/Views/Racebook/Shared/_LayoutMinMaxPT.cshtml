@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>@ViewBag.Title</title>
+        @Styles.Render("~/bundles/minmax-ptracingstyle")
+        @RenderSection("styles", required: false)
+    </head>
+    <body>
+        <div class="main">
+            <div class="maincontent">
+                <table cellspacing="0px" cellpadding="0px" border="0" class="maincontent_header">
+                    <tbody>
+                        <tr>
+                            <td class="maincontent_headerL">
+                            </td>
+                            <td class="maincontent_headerC fixfont">
+                                Update Racing Min/Max PT
+                            </td>
+                            <td class="maincontent_headerR">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="maincontent_box" style="width: 800px;">
+                    <div id="err"></div>
+                </div>
+                <div id="SettingContent">Loading...
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            window.custId = '@Request["id"]';
+            window.roleId = '@Request["roleId"]';
+        </script>
+        @Scripts.Render("~/bundles/minmax_ptracingsetting")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

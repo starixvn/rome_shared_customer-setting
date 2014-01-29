@@ -11,11 +11,11 @@
 
 using System.Diagnostics.CodeAnalysis;
 using System.Web.Mvc;
-using Fanex.CustomerSetting.Module.Core.Security;
 using Fanex.CustomerSetting.Module.Core.Web.Controllers;
 using Fanex.CustomerSetting.Module.ProgressiveModule.Criteria.ReportRequestTicket;
 using Fanex.CustomerSetting.Module.ProgressiveModule.Services.Implement;
 using Fanex.CustomerSetting.Module.ProgressiveModule.Services.Interface;
+using Fanex.CustomerSetting.Security.Authenticate;
 
 namespace Fanex.CustomerSetting.Module.ProgressiveModule.Controllers
 {

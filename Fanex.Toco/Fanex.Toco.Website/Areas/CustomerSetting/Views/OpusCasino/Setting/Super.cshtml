@@ -1,0 +1,163 @@
+﻿@using Fanex.CustomerSetting.OpusCasino.ViewModels;
+@using Newtonsoft.Json
+@using Newtonsoft.Json.Serialization
+@{
+    ViewBag.Title = "Super Opus Casino Setting";
+    Layout = "~/Areas/CustomerSetting/Views/OpusCasino/Shared/_Layout.cshtml";
+}
+<table class="tableColor" ng-controller="customerInfoController">
+    <tr>
+        <td colspan="4" class="header c b">
+            CustomerInfo
+        </td>
+    </tr>
+    <tr>
+        <td class="col120 formatCol r b">
+            Username
+        </td>
+        <td class="col120 formatCol l">
+            <span ng-bind="customerInfo.username "></span>
+        </td>
+        <td class="col120 formatCol r b">
+            Nick Name
+        </td>
+        <td class="col243 formatCol l">
+            <span ng-bind="customerInfo.nickName "></span>
+        </td>
+    </tr>
+    <tr>
+        <td class="formatCol r b">
+            First Name
+        </td>
+        <td class="formatCol l">
+            <span ng-bind="customerInfo.firstName "></span>
+        </td>
+        <td class="formatCol r b">
+            Last Name
+        </td>
+        <td class="col243 formatCol l">
+            <span ng-bind="customerInfo.lastName "></span>
+        </td>
+    </tr>
+    <tr>
+        <td class="formatCol r b">
+            Phone
+        </td>
+        <td class="formatCol l">
+            <span ng-bind="customerInfo.phone "></span>
+        </td>
+        <td class="formatCol r b">
+            Mobile Phone
+        </td>
+        <td class="formatCol l">
+            <span ng-bind="customerInfo.mobilePhone "></span>
+        </td>
+    </tr>
+    <tr>
+        <td class="formatCol r b">
+            Fax
+        </td>
+        <td class="formatCol l">
+            <span ng-bind="customerInfo.fax "></span>
+        </td>
+        <td class="formatCol r b">
+            Enable
+        </td>
+        <td class="col243 formatCol l" ng-init="getRoleName()">
+            <input type="checkbox" ng-model="customerInfo.isEnable" ng-change="checkDownlineButton()" />
+            Super
+            <input type="checkbox" ng-disabled="isDownlineDisabled" ng-model="customerInfo.isDownline"
+                ng-init="checkDownlineButton()" />Downlines
+        </td>
+    </tr>
+</table>
+<table ng-controller="superPositionTakingController">
+    <tr>
+        <td colspan="3" class="header headerColor l b">
+            <span class="textHeader">Position Talking/Commission</span>
+            <input ng-class-name="btnSave" check-disable-element ng-model="isDisabledSavedPT"
+                ng-click="" type="button" />
+        </td>
+    </tr>
+    <tr>
+        <td class="col120 formatCol c b">
+            Super Max Position
+        </td>
+        <td class="col120 formatCol c b">
+            Super Min Position
+        </td>
+        <td class=" col366 formatCol c b">
+            Super Commission
+        </td>
+    </tr>
+    <tr>
+        <td class="formatCol c b">
+            <select class="col60" ng-model="positionTaking.l4" ng-options="value for value in maxPTRange">
+            </select>
+        </td>
+        <td class="formatCol c b">
+            <select class="col60" ng-model="positionTaking.n4" ng-options="value for value in minPTRange">
+            </select>
+        </td>
+        <td class="formatCol c b">
+            <select class="col60" ng-model="positionTaking.comm4" ng-options="value for value in commRange">
+            </select>
+        </td>
+    </tr>
+</table>
+<table ng-controller="betSettingController">
+    <tr>
+        <td class="col612 header l b ">
+            <span class="textHeader">Bet Setting</span>
+            <input ng-class-name="btnSave" check-disable-element ng-model="isDisabledSaveBetSetting"
+                ng-click="" type="button" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <span class="base-font b">Member Max Transfer Credit</span>
+            <input onkeydown='validateNumber(event)' type="text" ng-model="betLimitSetting.maxTransfer" />
+            <label class="base-font">
+                <input class="chb" type="checkbox" ng-model="betLimitSetting.isDailyAutoResetLimit" />
+                Daily auto reset limit (at 12 noon GMT+8)
+            </label>
+            <br />
+            <span id="numberLimit" class="base-font">(1 - {{betLimitSetting.maxTransferAllowed}})</span>
+        </td>
+    </tr>
+</table>
+<table ng-controller="sMAGameSettingController">
+    <tr>
+        <td colspan="2" class="header l b">
+            <span class="textHeader">Game Setting</span>
+            <input ng-class-name="btnSave" check-disable-element ng-model="isDisabledSaveGameSetting"
+                ng-click="" type="button" />
+        </td>
+    </tr>
+    <tr>
+        <td class="col120 formatCol r b">
+            Game Type
+        </td>
+        <td class="formatCol l b col489">
+            Betting Limit
+        </td>
+    </tr>
+    <tr ng-repeat="gameSetting in gameSettingList">
+        <td class="formatCol r">
+            <span ng-bind="gameSetting.gameTypeName"></span>
+        </td>
+        <td class="formatCol">
+            <label ng-repeat="bettingLimit in gameSetting.bettingLimitList">
+                <input type="checkbox" ng-model="bettingLimit.isChecked" ng-click="changeStatusCheckbox()" />
+                <span ng-bind="bettingLimit.value"></span>
+            </label>
+        </td>
+    </tr>
+</table>
+@section scripts
+{
+    <script type="text/javascript">
+      
+       
+    </script>
+}

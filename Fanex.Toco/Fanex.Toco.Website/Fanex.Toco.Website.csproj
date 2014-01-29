@@ -1,0 +1,988 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CBE64DA9-6FA3-438E-8D49-79A0D63D3D70}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fanex.CustomerSetting.Website</RootNamespace>
+    <AssemblyName>Fanex.CustomerSetting.Website</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="dotless.Core">
+      <HintPath>..\_Dependencies\Web\dotless.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Common, Version=1.0.404.97, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dependencies\Fanex\Fanex.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Data, Version=0.5.404.54, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dependencies\Fanex\Fanex.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.1\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_GlobalResources\Error.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Error.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomePageController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\CustomerSetting\Images\glyphicons-halflings-white.png" />
+    <Content Include="Areas\CustomerSetting\Images\glyphicons-halflings.png" />
+    <Content Include="Areas\CustomerSetting\Images\Success.gif" />
+    <Content Include="Areas\CustomerSetting\Scripts\angular.full.js" />
+    <Content Include="Areas\CustomerSetting\Scripts\jquery-ui-1.9.1.min.js" />
+    <Content Include="Areas\CustomerSetting\Styles\images\copied.png" />
+    <Content Include="Areas\CustomerSetting\Styles\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Areas\CustomerSetting\Styles\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Areas\CustomerSetting\Styles\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Areas\CustomerSetting\Styles\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Areas\CustomerSetting\Styles\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Areas\CustomerSetting\Styles\images\uncopied.png" />
+    <Content Include="Areas\CustomerSetting\Styles\jquery-ui.css" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Bingo\Scripts\BingoController.js" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Bingo\Styles\Bingo.css" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Casino\Scripts\CasinoController.js" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Casino\Styles\Casino.css" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\LiveCasino\Scripts\LiveCasinoController.js" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\LiveCasino\Styles\LiveCasino.css" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Racing\Scripts\RacingController.js" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Racing\Styles\Racing.css" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Scripts\BetSetting.js" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Sportsbook\Scripts\SportsbookController.js" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Sportsbook\Styles\Sportsbook.css" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\VirtualSports\Scripts\VirtualSportsController.js" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\VirtualSports\Styles\VirtualSports.css" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Scripts\Common.js" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Scripts\CommonPT.js" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Scripts\Setting\AgentBingoSetting.js" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Scripts\Setting\BingoHelper.js" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Scripts\Setting\BingoSetting.js" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Scripts\Setting\MasterBingoSetting.js" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Scripts\Setting\MasterEditMemberBingoSetting.js" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Scripts\Setting\MemberBingoSetting.js" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Scripts\Setting\SuperBingoSetting.js" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Scripts\Setting\SuperEditMemberBingoSetting.js" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\common.css" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\back.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\Banner\bg_head_tb.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\btUpdateL.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\btUpdateR.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\Buttons\bgred1_btn.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\Buttons\bgred_btn.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\Buttons\bg_btn.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\calendar1.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\close.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\C_content_tab.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\dec1.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\dec1_disable.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\dec2.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\dec2_disable.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\dec3.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\dec3_disable.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\dec4.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\dec4_disable.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\email.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\excel.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\folder.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\help.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\icn_add.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\icn_del.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\icn_edit.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\icn_view.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\loading51.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\L_content_tab.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\opened_folder.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\ptL.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\ptR.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\ptRp.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\ptR_down.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\refresh_icon.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\R_content_tab.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\Save.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\sorting_asc.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\sorting_desc.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Images\undo.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\input.css" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Message.css" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\table.css" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditSuperController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\common.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\CommonPT.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Setting\AgentMinMaxPT.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Setting\MasterMinMaxPT.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Setting\MinMaxPTRacingSetting.js" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Config\Store\SearchCopySpNames.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\Libs\angular.min.js" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\Libs\jquery-1.10.2.min.js" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\Libs\jquery.caret.1.02.js" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\Libs\jquery.formattyping.js" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\Libs\jquery.setcaretposition.js" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\Libs\numeral.js" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\ModuleSearchCopy.js" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\RemoveSetting.js" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Scripts\SearchCopyController.js" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\common.css" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\bgSteps.png" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\bg_head_tb.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\btnLeft.png" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\btnRight.png" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\btUpdateR.gif" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\error.gif" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\more.gif" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\not_success.png" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Images\success.gif" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\input.css" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Message.css" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\SearchCopy.css" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Steps\Step1.css" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\Steps\Step2.css" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\style.css" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Styles\table.css" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Config\Store\RacingSpNames.xml" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Setting\BetSettingController.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Setting\Member_Level\MasterOnMemberPositionTakingController.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Setting\Member_Level\SuperOnMemberPositionTakingController.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Setting\SMA_Level\AgentPositionTakingController.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Setting\Member_Level\MemberGameSettingController.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Setting\Member_Level\MemberPositionTakingController.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Setting\SMA_Level\MasterPositionTakingController.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Setting\SMA_Level\SMAGameSettingController.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\angular.min.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\BlockUI.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Setting\CustomerInfoController.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\Functions.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\head.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\jquery.blockUI.1.33.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\jquery.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\jquery.tmpl.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\json2.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\ToolTip\wz_tooltip\tip_balloon.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\ToolTip\wz_tooltip\tip_balloon2.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\ToolTip\wz_tooltip\tip_balloon\b.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\ToolTip\wz_tooltip\tip_balloon\background.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\ToolTip\wz_tooltip\tip_balloon\l.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\ToolTip\wz_tooltip\tip_balloon\lb.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\ToolTip\wz_tooltip\tip_balloon\lt.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\ToolTip\wz_tooltip\tip_balloon\r.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\ToolTip\wz_tooltip\tip_balloon\rb.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\ToolTip\wz_tooltip\tip_balloon\rt.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\ToolTip\wz_tooltip\tip_balloon\stemb.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\ToolTip\wz_tooltip\tip_balloon\stemt.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\ToolTip\wz_tooltip\tip_balloon\t.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\ToolTip\wz_tooltip\tip_centerwindow.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\ToolTip\wz_tooltip\tip_followscroll.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Libs\ToolTip\wz_tooltip\wz_tooltip.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Setting\OpusSettingAgular.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Scripts\Setting\SMA_Level\SuperPositionTakingController.js" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Accounting\Images\Update.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Accounting\Images\bgHeader.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Agent\Images\Update.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Agent\Images\bgHeader.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Agent\Images\b_left.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Agent\Images\b_right.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\accessDenied.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\back.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Banner\bg_banner.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Banner\bg_head_tb.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Banner\bg_menu.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Banner\down.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Banner\down_up.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Banner\icn_user.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Banner\in.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Banner\left_right.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Banner\logo.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Banner\L_main_btn.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Banner\out.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Banner\right_left.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Banner\R_main_btn.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Banner\up.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Banner\up_down.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\bg_checkbox.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\btUpdateL.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\btUpdateR.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Buttons\bgred1_btn.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Buttons\bgred_btn.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Buttons\bg_btn.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Buttons\check.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Buttons\checked-icon.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Buttons\check_hover.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Buttons\icn_date.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Buttons\uncheck.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Buttons\uncheck_hover.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Buttons\unverify-icon.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\calendar1.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\close.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\C_content_tab.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\dec1.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\dec1_disable.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\dec2.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\dec2_disable.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\dec3.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\dec3_disable.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\dec4.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\dec4_disable.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\email.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\emsg_1_1.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\emsg_1_2.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\emsg_1_3.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\emsg_2_1.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\emsg_2_2.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\emsg_3_1.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\emsg_3_2.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\emsg_3_3.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\error.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\excel.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\folder.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\help.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\icn_add.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\icn_del.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\icn_edit.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\icn_top.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\icn_view.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\ico1.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\ico_clear.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\ico_login1.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\ico_login2.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\ico_warning.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\loading51.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\L_content_tab.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\opened_folder.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\ptL.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\ptR.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\ptRp.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\ptR_down.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\refresh_icon.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\R_content_tab.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\save.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Save1.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\save_s.png" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\sorting_asc.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\sorting_bg.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\sorting_desc.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\sucess.gif" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\undo.png" />
+    <Content Include="Areas\CustomerSetting\Views\ProgressiveBonus\Scripts\Progressive.js" />
+    <Content Include="Areas\Common\Views\Shared\Images\Loading.gif" />
+    <Content Include="Areas\Common\Views\Shared\Scripts\Fanex.CustomerSetting.js" />
+    <Content Include="Areas\CustomerSetting\Images\arrowblue-icn.png" />
+    <Content Include="Areas\CustomerSetting\Images\arrowdown-icn.png" />
+    <Content Include="Areas\CustomerSetting\Images\Loading.gif" />
+    <Content Include="Areas\CustomerSetting\Images\pointer.png" />
+    <Content Include="Areas\CustomerSetting\Images\pointerDown.png" />
+    <Content Include="Areas\CustomerSetting\Images\warning-icn.png" />
+    <Content Include="Areas\CustomerSetting\Scripts\angular.min.js" />
+    <Content Include="Areas\CustomerSetting\Scripts\Fanex.CustomerSetting.Core.js" />
+    <Content Include="Areas\CustomerSetting\Scripts\jquery.blockUI.1.33.js" />
+    <Content Include="Areas\CustomerSetting\Scripts\jquery.js" />
+    <Content Include="Areas\CustomerSetting\Scripts\ptarea.js" />
+    <Content Include="Areas\CustomerSetting\Scripts\Validators.js" />
+    <Content Include="Areas\CustomerSetting\Scripts\_references.js" />
+    <Content Include="Areas\CustomerSetting\Styles\Validators.css" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\CasinoController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditAgentController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditMemberBySuperController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditMemberByMasterController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditMemberController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\CustomerController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditMasterController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\ViewAgentController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Styles\Casino.css" />
+    <Content Include="Areas\CustomerSetting\Images\btn-bgsubmit-hover.png" />
+    <Content Include="Areas\CustomerSetting\Images\btn-bgsubmit-original.png" />
+    <Content Include="Areas\CustomerSetting\Images\b_add.jpg" />
+    <Content Include="Areas\CustomerSetting\Images\b_down.jpg" />
+    <Content Include="Areas\CustomerSetting\Images\b_sub.jpg" />
+    <Content Include="Areas\CustomerSetting\Images\b_up.jpg" />
+    <Content Include="Areas\CustomerSetting\Styles\Common.css" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Config\Store\RacingSpNames.xml" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Libs\knockout-2.0.0.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Libs\ToolTip\wz_tooltip\tip_balloon.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Libs\ToolTip\wz_tooltip\tip_balloon2.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Libs\ToolTip\wz_tooltip\tip_balloon\b.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Libs\ToolTip\wz_tooltip\tip_balloon\background.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Libs\ToolTip\wz_tooltip\tip_balloon\l.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Libs\ToolTip\wz_tooltip\tip_balloon\lb.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Libs\ToolTip\wz_tooltip\tip_balloon\lt.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Libs\ToolTip\wz_tooltip\tip_balloon\r.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Libs\ToolTip\wz_tooltip\tip_balloon\rb.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Libs\ToolTip\wz_tooltip\tip_balloon\rt.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Libs\ToolTip\wz_tooltip\tip_balloon\stemb.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Libs\ToolTip\wz_tooltip\tip_balloon\stemt.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Libs\ToolTip\wz_tooltip\tip_balloon\t.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Libs\ToolTip\wz_tooltip\tip_centerwindow.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Libs\ToolTip\wz_tooltip\tip_followscroll.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Libs\ToolTip\wz_tooltip\wz_tooltip.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Setting\RacingSetting.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Libs\BlockUI.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Libs\Functions.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Libs\jquery.blockUI.1.33.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Libs\jquery.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Libs\json2.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Libs\jquery.tmpl.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Setting\RacingHelper.js" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\common.css" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\accessDenied.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\back.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Banner\bg_banner.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Banner\bg_head_tb.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Banner\bg_menu.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Banner\down.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Banner\down_up.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Banner\icn_user.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Banner\in.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Banner\left_right.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Banner\logo.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Banner\L_main_btn.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Banner\out.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Banner\right_left.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Banner\R_main_btn.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Banner\up.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Banner\up_down.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\bg_checkbox.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\btUpdateL.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\btUpdateR.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Buttons\bgred1_btn.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Buttons\bgred_btn.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Buttons\bg_btn.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Buttons\check.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Buttons\checked-icon.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Buttons\check_hover.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Buttons\icn_date.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Buttons\uncheck.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Buttons\uncheck_hover.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Buttons\unverify-icon.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\calendar1.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\close.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\C_content_tab.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\dec1.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\dec1_disable.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\dec2.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\dec2_disable.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\dec3.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\dec3_disable.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\dec4.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\dec4_disable.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\email.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\emsg_1_1.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\emsg_1_2.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\emsg_1_3.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\emsg_2_1.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\emsg_2_2.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\emsg_3_1.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\emsg_3_2.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\emsg_3_3.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\error.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\excel.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\folder.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\help.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\icn_add.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\icn_del.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\icn_edit.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\icn_top.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\icn_view.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\ico1.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\ico_clear.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\ico_login1.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\ico_login2.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\ico_warning.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\loading51.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\L_content_tab.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\opened_folder.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\ptL.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\ptR.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\ptRp.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\ptR_down.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\refresh_icon.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\R_content_tab.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Save.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\sucess.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\undo.png" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\input.css" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Message.css" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\sorting_asc.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\sorting_bg.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\sorting_desc.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\RacingSetting.css" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\table.css" />
+    <Content Include="Web.Configuration\Store\RacingSpNames.xml" />
+    <Content Include="Web.Configuration\Store\CustomerSpNames.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Global.asax" />
+    <Content Include="Areas\CustomerSetting\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Web.config" />
+    <Content Include="Areas\CustomerSetting\Views\Sample\Index.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Index.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\ProgressiveBonus\Index.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\ProgressiveBonus\Casino\Index.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\ProgressiveBonus\Shared\_Layout.cshtml" />
+    <Content Include="Web.Configuration\ProgressiveSection.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\CustomerSetting\Views\LeftPanel\Index.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Error.cshtml" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\accordion.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\alerts.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\bootstrap.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\breadcrumbs.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\button-groups.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\buttons.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\carousel.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\close.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\code.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\component-animations.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\dropdowns.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\forms.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\grid.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\hero-unit.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\labels-badges.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\layouts.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\media.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\mixins.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\modals.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\navbar.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\navs.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\pager.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\pagination.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\popovers.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\progress-bars.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\reset.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\responsive-1200px-min.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\responsive-767px-max.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\responsive-768px-979px.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\responsive-navbar.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\responsive-utilities.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\responsive.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\scaffolding.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\sprites.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\style.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\tables.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\thumbnails.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\tooltip.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\type.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\utilities.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\variables.less" />
+    <None Include="Areas\CustomerSetting\Styles\Bootstrap\wells.less" />
+    <None Include="Areas\CustomerSetting\Styles\ProgressiveBonus\Color.less" />
+    <None Include="Areas\CustomerSetting\Styles\ProgressiveBonus\ProgressiveBonus.less" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Customer\CustomerInfo.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Agent\EditAgent.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Agent\ViewAgentBySuper.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Member\EditMember.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Member\EditMemberBySuper.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Member\EditMemberByMaster.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Master\EditMaster.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="PTEngine\BettingLimit.xml" />
+    <Content Include="PTEngine\PTGrid.xml" />
+    <Content Include="PTEngine\PTRacingGrid.xml" />
+    <Content Include="Scripts\Common\Message.Helper.js" />
+    <Content Include="Scripts\Common\Message.Validator.js" />
+    <Content Include="Scripts\Common\ValidateMessage.js" />
+    <Content Include="Scripts\_Libs\AngularJs\angular.min.js" />
+    <Content Include="Scripts\_Libs\AngularJs\json3.min.js" />
+    <Content Include="Scripts\_Libs\BlockUI\jquery.blockUI.1.33.js" />
+    <Content Include="Scripts\_Libs\BlockUI\jquery.blockUI.1.33.min.js" />
+    <Content Include="Scripts\_Libs\DatePicker\Demo.htm" />
+    <Content Include="Scripts\_Libs\DatePicker\images\icon-calendar.png" />
+    <Content Include="Scripts\_Libs\DatePicker\jquery.nexDatePicker.css" />
+    <Content Include="Scripts\_Libs\DatePicker\jquery.nexDatePicker.js" />
+    <Content Include="Scripts\_Libs\DatePicker\jquery.nexDatePicker.min.js" />
+    <Content Include="Scripts\_Libs\FanexGrid\Fanex.Grid.Convert.js" />
+    <Content Include="Scripts\_Libs\FanexGrid\Fanex.Grid.css" />
+    <Content Include="Scripts\_Libs\FanexGrid\Fanex.Grid.js" />
+    <Content Include="Scripts\_Libs\FanexGrid\Fanex.Pagination.css" />
+    <Content Include="Scripts\_Libs\FanexGrid\Fanex.Pagination.js" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\1350530947_page_excel.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\ajax-loader.gif" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\back-icon.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\bgtitle.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\bg_gloss_wave.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\check-box.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\collapse-icon.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\collapse-small.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\email.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\excel-icon.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\expand-icon.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\expand-small.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\go-hover-icon.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\icn_add.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\icn_del.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\icn_edit.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\icon_page.gif" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\page_white_edit.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\pdf.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\print.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\refresh_icon.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\report_check.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\send-mail.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\send.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\seperations.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\setting.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\sort-icon-new.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\sort-icon-new1.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\sort-icon-new3.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\sort-icon.png" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\sorting_asc.gif" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\sorting_bg.gif" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\sorting_desc.gif" />
+    <Content Include="Scripts\_Libs\FanexGrid\images\white-top-bottom.gif" />
+    <Content Include="Scripts\_Libs\FanexGrid\moment.js" />
+    <Content Include="Scripts\_Libs\FanexGrid\numeral.js" />
+    <Content Include="Scripts\_Libs\FormatLibs\DateTimeFormat\moment.js" />
+    <Content Include="Scripts\_Libs\FormatLibs\DateTimeFormat\moment.min.js" />
+    <Content Include="Scripts\_Libs\FormatLibs\jquery.customformat.js" />
+    <Content Include="Scripts\_Libs\FormatLibs\NumberFormat\numeral-min.js" />
+    <Content Include="Scripts\_Libs\FormatLibs\NumberFormat\numeral.js" />
+    <Content Include="Scripts\_Libs\GridScroller\gridscroller.css" />
+    <Content Include="Scripts\_Libs\GridScroller\images\1350530947_page_excel.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\ajax-loader.gif" />
+    <Content Include="Scripts\_Libs\GridScroller\images\back-icon.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\bgtitle.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\bg_gloss_wave.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\collapse-icon.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\collapse-small.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\email.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\excel-icon.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\expand-icon.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\expand-small.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\icn_add.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\icn_del.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\icn_edit.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\refresh_icon.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\report_check.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\send-mail.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\setting.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\sort-icon.png" />
+    <Content Include="Scripts\_Libs\GridScroller\images\sorting_asc.gif" />
+    <Content Include="Scripts\_Libs\GridScroller\images\sorting_bg.gif" />
+    <Content Include="Scripts\_Libs\GridScroller\images\sorting_desc.gif" />
+    <Content Include="Scripts\_Libs\GridScroller\images\white-top-bottom.gif" />
+    <Content Include="Scripts\_Libs\GridScroller\jquery.gridscroller.1.0.js" />
+    <Content Include="Scripts\_Libs\GridScroller\jquery.gridscroller.1.1.js" />
+    <Content Include="Scripts\_Libs\GridScroller\jquery.gridscroller.js" />
+    <Content Include="Scripts\_Libs\GridScroller\jquery.gridscrollerlite.1.0.js" />
+    <Content Include="Scripts\_Libs\GridScroller\jquery.gridscrollerlite.1.1.js" />
+    <Content Include="Scripts\_Libs\jQuery\classList.js" />
+    <Content Include="Scripts\_Libs\jQuery\Core\jquery.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery-1.7.1-vsdoc.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery-migrate-1.0.0.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery-ui-1.9.1.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery-ui-1.9.1.min.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery.cookie.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery.fixedsortable.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery.form.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery.formattyping.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery.jqprint-0.3.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery.validate.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery.validate.min.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\_Libs\jQuery\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\_Libs\jQuery\knockout-2.1.0.debug.js" />
+    <Content Include="Scripts\_Libs\jQuery\knockout-2.1.0.js" />
+    <Content Include="Scripts\_Libs\jQuery\modernizr-2.5.3.js" />
+    <Content Include="Scripts\_Libs\jQuery\_references.js" />
+    <Content Include="Scripts\_Libs\knockout\knockout-2.1.0.debug.js" />
+    <Content Include="Scripts\_Libs\knockout\knockout-2.1.0.js" />
+    <Content Include="Scripts\_Libs\MessageNotifier\Images\error.png" />
+    <Content Include="Scripts\_Libs\MessageNotifier\Images\success.png" />
+    <Content Include="Scripts\_Libs\MessageNotifier\Images\warning.png" />
+    <Content Include="Scripts\_Libs\MessageNotifier\jquery.messagenotifier.css" />
+    <Content Include="Scripts\_Libs\MessageNotifier\jquery.messagenotifier.js" />
+    <Content Include="Scripts\_Libs\MonthPicker\images\bg-demo-docs-param.gif" />
+    <Content Include="Scripts\_Libs\MonthPicker\images\demo-spindown-closed.gif" />
+    <Content Include="Scripts\_Libs\MonthPicker\images\demo-spindown-open.gif" />
+    <Content Include="Scripts\_Libs\MonthPicker\images\dropdown-icon.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\images\icon-left.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\images\icon-right.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\images\spindown-closed.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\images\spindown-open.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3.css" />
+    <Content Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3.js" />
+    <Content Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3.min.css" />
+    <Content Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3.min.js" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\images\ui-bg_flat_55_fbec88_40x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\images\ui-bg_glass_75_d0e5f5_1x400.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\images\ui-bg_glass_85_dfeffc_1x400.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\images\ui-bg_gloss-wave_55_5c9ccc_500x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\images\ui-bg_inset-hard_100_f5f8f9_1x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\images\ui-icons_217bc0_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\images\ui-icons_469bdd_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\images\ui-icons_6da8d5_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\images\ui-icons_d8e7f3_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\images\ui-icons_f9bd01_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\redmond\jquery-ui-1.8.17.css" />
+    <Content Include="Scripts\_Libs\MonthPicker\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\smoothness\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\smoothness\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\smoothness\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\smoothness\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\smoothness\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\smoothness\images\ui-icons_222222_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\smoothness\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\smoothness\images\ui-icons_454545_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\smoothness\images\ui-icons_888888_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\smoothness\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\smoothness\jquery-ui-1.8.17.css" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-bg_diagonals-medium_20_d34d17_40x40.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-bg_flat_30_cccccc_40x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-bg_flat_50_5c5c5c_40x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-bg_gloss-wave_45_817865_500x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-bg_gloss-wave_60_fece2f_500x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-bg_gloss-wave_70_ffdd57_500x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-bg_gloss-wave_90_fff9e5_500x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-bg_highlight-soft_100_feeebd_1x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-bg_inset-soft_30_ffffff_1x100.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-icons_3d3d3d_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-icons_bd7b00_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-icons_d19405_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-icons_eb990f_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-icons_ed9f26_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-icons_fadc7a_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\images\ui-icons_ffe180_256x240.png" />
+    <Content Include="Scripts\_Libs\MonthPicker\sunny\jquery-ui-1.8.17.css" />
+    <Content Include="Scripts\_Libs\MultipleSelect\images\BottomLine.png" />
+    <Content Include="Scripts\_Libs\MultipleSelect\images\FirstNodeSpan.png" />
+    <Content Include="Scripts\_Libs\MultipleSelect\images\MiddleLine.png" />
+    <Content Include="Scripts\_Libs\MultipleSelect\images\NodeSpan.png" />
+    <Content Include="Scripts\_Libs\MultipleSelect\images\PlusMinus.png" />
+    <Content Include="Scripts\_Libs\MultipleSelect\images\sprites.png" />
+    <Content Include="Scripts\_Libs\MultipleSelect\images\TopLine.png" />
+    <Content Include="Scripts\_Libs\MultipleSelect\images\ui-icons_2e83ff_256x240-1.png" />
+    <Content Include="Scripts\_Libs\MultipleSelect\images\ui-icons_2e83ff_256x240-2.png" />
+    <Content Include="Scripts\_Libs\MultipleSelect\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Scripts\_Libs\MultipleSelect\jquery.multiradioselect.nlevel_new.js" />
+    <Content Include="Scripts\_Libs\MultipleSelect\jquery.multiselect.css" />
+    <Content Include="Scripts\_Libs\MultipleSelect\jquery.multiselect.js" />
+    <Content Include="Scripts\_Libs\MultipleSelect\jquery.multiselect.min.js" />
+    <Content Include="Scripts\_Libs\MultipleSelect\jquery.nextreeview.css" />
+    <Content Include="Scripts\_Libs\MultipleSelect\jquery.nextreeview.js" />
+    <Content Include="Scripts\_Libs\Pager\go-hover-icon.png" />
+    <Content Include="Scripts\_Libs\Pager\icon_page.gif" />
+    <Content Include="Scripts\_Libs\Pager\jpager.js" />
+    <Content Include="Scripts\_Libs\Pager\pagination.css" />
+    <Content Include="Scripts\_Libs\Pager\seperations.png" />
+    <Content Include="Scripts\_Libs\PopUp\dialogbox.js" />
+    <Content Include="Scripts\_Libs\TemplateRender\doT\doT.js" />
+    <Content Include="Scripts\_Libs\TemplateRender\doT\doT.min.js" />
+    <Content Include="Scripts\_Libs\TimePicker\jquery-ui-timepicker-addon.css" />
+    <Content Include="Scripts\_Libs\TimePicker\jquery-ui-timepicker-addon.js" />
+    <Content Include="Scripts\_Libs\Tooltip\Demo.htm" />
+    <Content Include="Scripts\_Libs\Tooltip\jquery.tipsy.js" />
+    <Content Include="Scripts\_Libs\Tooltip\jquery.tipsy.min.js" />
+    <Content Include="Scripts\_Libs\Tooltip\tipsy.css" />
+    <Content Include="Scripts\_Libs\Utils\html5shiv.js" />
+    <Content Include="Scripts\_Libs\Utils\html5shiv.min.js" />
+    <Content Include="Scripts\_Libs\Utils\jquery.fixBugsBrowser.js" />
+    <Content Include="Scripts\_Libs\Utils\Namespace.js" />
+    <Content Include="Scripts\_Libs\Utils\stdlib.js" />
+    <Content Include="Scripts\_Libs\Validation\jquery.validationEngine-en.js" />
+    <Content Include="Scripts\_Libs\Validation\jquery.validationEngine.js" />
+    <Content Include="Scripts\_Libs\Validation\validationEngine.jquery.css" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\AccessDenied.cshtml" />
+    <Content Include="Web.Configuration\CustomerSetting\Racing\PTRacingMappingSection.config" />
+    <Content Include="Web.Configuration\CustomerSetting\Racing\RacingBettingCommSettingMappingSection.config" />
+    <Content Include="Web.Configuration\CustomerSetting\Racing\RacingSection.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\CustomerSetting\Views\Bingo\Scripts\Libs\" />
+    <Folder Include="Content\base\img\actions\dd\" />
+    <Folder Include="Content\base\img\combo-pickr\" />
+    <Folder Include="Content\base\img\textures\" />
+    <Folder Include="Content\base\jquery\images\" />
+    <Folder Include="Content\img\" />
+    <Folder Include="Content\jquery-ui\images\" />
+    <Folder Include="Content\themes\base\images\" />
+    <Folder Include="Content\themes\base\minified\images\" />
+    <Folder Include="Content\themes\Honolulu\css\" />
+    <Folder Include="Content\themes\Honolulu\ico\" />
+    <Folder Include="Content\themes\Honolulu\img\" />
+    <Folder Include="Content\themes\Honolulu\js\" />
+    <Folder Include="Content\themes\Honolulu\less\report\" />
+    <Folder Include="Models\" />
+    <Folder Include="Scripts\_Libs\BlockUI\img\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\_Libs\FanexGrid\images.zip" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Shared\_Layout.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Sportsbook\Index.cshtml" />
+    <Content Include="PTEngine\BettingLimitMappingSection.config" />
+    <Content Include="PTEngine\PTMappingSection.config" />
+    <Content Include="Areas\CustomerSetting\Views\Security\AccessDenied.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Casino\Super\EditSuper.cshtml" />
+    <Content Include="PTEngine\PTRacingMappingSection.config" />
+    <Content Include="PTEngine\RacingBettingCommSettingMappingSection.config" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Racing\Index.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\VirtualSports\Index.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\LiveCasino\Index.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Bingo\Index.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Casino\Index.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Shared\_Layout.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Config\PTRacingMappingSection.config" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Config\RacingBettingCommSettingMappingSection.config" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Config\PTRacingMappingSection.config" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Config\RacingBettingCommSettingMappingSection.config" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Setting\Agent.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Setting\Master.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Setting\MasterEditMember.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Setting\Member.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Setting\Super.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Setting\SuperEditMember.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Shared\_Layout.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Sportsbook\Content.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\VirtualSports\Content.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Racing\Content.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\LiveCasino\Content.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Casino\Content.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\BetSetting\Bingo\Content.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\Agent.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\Master.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\MasterEditMember.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\Member.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\RacingSetting.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\Super.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\SuperEditMember.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Shared\_LayoutMinMaxPT.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\MasterMinMaxPT.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Config\RacingSection.config" />
+    <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\AgentMinMaxPT.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Config\SearchCopySetting.config" />
+    <None Include="Areas\CustomerSetting\Views\SearchCopy\Document.doc" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Super\Index.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Shared\_Layout.cshtml" />
+    <None Include="Areas\CustomerSetting\Views\OpusCasino\Document.doc" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Setting\Agent.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Setting\Master.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Setting\MasterEditMember.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Setting\Member.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Setting\Super.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Setting\SuperEditMember.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\OpusCasino\Shared\_Layout.cshtml" />
+    <None Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Agent\ThemeColor.less">
+      <Compile>True</Compile>
+      <Minify>True</Minify>
+    </None>
+    <None Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Accounting\ThemeColor.less">
+      <Compile>True</Compile>
+      <Minify>True</Minify>
+    </None>
+    <None Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Common.less" />
+    <None Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Images\Buttons\AntiXss.msi" />
+    <None Include="Areas\CustomerSetting\Views\OpusCasino\Styles\OpusCasinoSetting.less" />
+    <None Include="Areas\CustomerSetting\Views\OpusCasino\Styles\Variables.less" />
+    <None Include="Areas\CustomerSetting\Views\Racebook\Document.doc" />
+    <Content Include="Web.Configuration\RacingSection.config" />
+    <None Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Buttons\AntiXss.msi" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Super\GeneralInformation.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\SearchCopy\Super\SearchForm.cshtml" />
+    <None Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3-custom.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Module\BetSetting\BetSetting.csproj">
+      <Project>{F9261CF3-913A-436F-AD9D-6607C190367E}</Project>
+      <Name>BetSetting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Module\Fanex.Toco.Module.Core\_Core.csproj">
+      <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
+      <Name>_Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Module\ProgressiveBonus\Fanex.CustomerSetting.Module.ProgressiveBonus.csproj">
+      <Project>{5EFF254F-0DEE-41BD-9D90-3FF4489D077F}</Project>
+      <Name>Fanex.CustomerSetting.Module.ProgressiveBonus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Module\Racebook\Racebook.csproj">
+      <Project>{63D0DC31-9FEF-4BEE-9D43-E1E3A3BE42A5}</Project>
+      <Name>Racebook</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Module\SearchCopy\SearchCopy.csproj">
+      <Project>{F3B4DA37-69B0-44E6-B011-7844A0FE77F1}</Project>
+      <Name>SearchCopy</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Error.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Error.Designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>63674</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>
