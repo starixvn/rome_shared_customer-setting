@@ -923,34 +923,6 @@
     <None Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3-custom.less" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Module\BetSetting\BetSetting.csproj">
-      <Project>{F9261CF3-913A-436F-AD9D-6607C190367E}</Project>
-      <Name>BetSetting</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Module\Bingo.Resources\Bingo.Resources.csproj">
-      <Project>{B4ECC635-F693-4EF8-9AC2-84B8900DDBCC}</Project>
-      <Name>Bingo.Resources</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Module\Bingo\Bingo.csproj">
-      <Project>{8B0CB9F3-0D8F-4B0B-8F66-931BFE44B40A}</Project>
-      <Name>Bingo %28Module\Bingo\Bingo%29</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Module\Casino\Casino.csproj">
-      <Project>{5F8F3877-90E3-48A3-BAD7-4207DCBA088D}</Project>
-      <Name>Casino</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Module\Fanex.Toco.Module.Core\_Core.csproj">
-      <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
-      <Name>_Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Module\OpusCasino\OpusCasino\OpusCasino.csproj">
-      <Project>{0BEC9591-05A7-4CE9-A011-BB65B1FA9FDE}</Project>
-      <Name>OpusCasino %28Module\OpusCasino\OpusCasino%29</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Module\ProgressiveBonus\Fanex.CustomerSetting.Module.ProgressiveBonus.csproj">
-      <Project>{5EFF254F-0DEE-41BD-9D90-3FF4489D077F}</Project>
-      <Name>Fanex.CustomerSetting.Module.ProgressiveBonus</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Module\Racebook\Racebook.csproj">
       <Project>{63D0DC31-9FEF-4BEE-9D43-E1E3A3BE42A5}</Project>
       <Name>Racebook</Name>
