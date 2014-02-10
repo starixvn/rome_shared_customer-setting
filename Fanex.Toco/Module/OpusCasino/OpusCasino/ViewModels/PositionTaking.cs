@@ -7,6 +7,8 @@ namespace Fanex.CustomerSetting.OpusCasino.ViewModels
 {
     public class PositionTaking
     {
+        public bool IsUpdatePT { get; set; }
+
         public double S4Max { get; set; } 
         public double S4 { get; set; }
         public double M4 { get; set; }

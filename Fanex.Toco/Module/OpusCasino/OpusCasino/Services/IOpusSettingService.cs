@@ -6,6 +6,7 @@
 using System.Collections;
 using Fanex.CustomerSetting.OpusCasino.ViewModels;
 using Fanex.CustomerSetting.OpusCasino.Entities;
+using System.Collections.Generic;
 
 namespace Fanex.CustomerSetting.Module.Racebook.Services
 {
@@ -16,5 +17,7 @@ namespace Fanex.CustomerSetting.Module.Racebook.Services
         OpusSetting UpdateOpusSetting(OpusSetting opusSetting, int uplineRole, int downlineRole, int actionId, int userId, int subAccId, string ip, string language);
 
         Result UpdateSuper(OpusSetting opusSetting);
+
+        List<Result> UpdateStake(OpusSetting opusSetting);
     }
 }

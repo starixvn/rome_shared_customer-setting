@@ -10,6 +10,7 @@ namespace Fanex.CustomerSetting.OpusCasino.ViewModels
         public int GameTypeId { get; set; }
         public string GameTypeName { get; set; }
         public string StakeLevelName { get; set; }
+        public int StakeLevelId { get; set; }
         public bool IsChecked { get; set; }
     }
 }

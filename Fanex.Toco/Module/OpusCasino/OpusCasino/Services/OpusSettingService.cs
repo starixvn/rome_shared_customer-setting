@@ -106,6 +106,7 @@ namespace Fanex.CustomerSetting.Module.Racebook.Services
                         GameTypeId = Converter.To<int>(row["GameTypeID"]),
                         GameTypeName = Converter.ToString2(row["GameTypeName"]),
                         StakeLevelName = Converter.ToString2(row["StakeLevelName"]),
+                        StakeLevelId = Converter.To<int>(row["StakeLevelID"]),
                         IsChecked = Converter.To<bool>(row["isChecked"])
                     });
                 }
@@ -115,11 +116,11 @@ namespace Fanex.CustomerSetting.Module.Racebook.Services
 
                 foreach (var gameType in gameTypeList)
                 {
-                    superOpusModel.GameSettingList.Add(new GameSetting
+                    superOpusModel.GameSetting.GameTypeList.Add(new GameType
                     {
                         GameTypeID = gameType.GameTypeId,
                         GameTypeName = gameType.GameTypeName,
-                        BettingLimitList = listStakeTmp.Select(x => x).Where(y => y.GameTypeId.Equals(gameType.GameTypeId)).ToList()
+                        StakeLevelList = listStakeTmp.Select(x => x).Where(y => y.GameTypeId.Equals(gameType.GameTypeId)).ToList()
                     });
                 }
             }
@@ -202,11 +203,11 @@ namespace Fanex.CustomerSetting.Module.Racebook.Services
 
                 foreach (var gameType in gameTypeList)
                 {
-                    masterOpusModel.GameSettingList.Add(new GameSetting
+                    masterOpusModel.GameSetting.GameTypeList.Add(new GameType
                     {
                         GameTypeID = gameType.GameTypeId,
                         GameTypeName = gameType.GameTypeName,
-                        BettingLimitList = listStakeTmp.Select(x => x).Where(y => y.GameTypeId.Equals(gameType.GameTypeId)).ToList()
+                        StakeLevelList = listStakeTmp.Select(x => x).Where(y => y.GameTypeId.Equals(gameType.GameTypeId)).ToList()
                     });
                 }
             }
@@ -290,11 +291,11 @@ namespace Fanex.CustomerSetting.Module.Racebook.Services
 
                 foreach (var gameType in gameTypeList)
                 {
-                    agentOpusModel.GameSettingList.Add(new GameSetting
+                    agentOpusModel.GameSetting.GameTypeList.Add(new GameType
                     {
                         GameTypeID = gameType.GameTypeId,
                         GameTypeName = gameType.GameTypeName,
-                        BettingLimitList = listStakeTmp.Select(x => x).Where(y => y.GameTypeId.Equals(gameType.GameTypeId)).ToList()
+                        StakeLevelList = listStakeTmp.Select(x => x).Where(y => y.GameTypeId.Equals(gameType.GameTypeId)).ToList()
                     });
                 }
             }
@@ -378,11 +379,11 @@ namespace Fanex.CustomerSetting.Module.Racebook.Services
 
                 foreach (var gameType in gameTypeList)
                 {
-                    memberOpusModel.GameSettingList.Add(new GameSetting
+                    memberOpusModel.GameSetting.GameTypeList.Add(new GameType
                     {
                         GameTypeID = gameType.GameTypeId,
                         GameTypeName = gameType.GameTypeName,
-                        BettingLimitList = listStakeTmp.Select(x => x).Where(y => y.GameTypeId.Equals(gameType.GameTypeId)).ToList()
+                        StakeLevelList = listStakeTmp.Select(x => x).Where(y => y.GameTypeId.Equals(gameType.GameTypeId)).ToList()
                     });
                 }
             }
@@ -449,11 +450,56 @@ namespace Fanex.CustomerSetting.Module.Racebook.Services
             {
                 db.ExecuteNonQuery(criteria.GetSpParams());
                 Hashtable hash = db.GetOuputParams();
-                result.ErrorCode = Converter.To<int>(hash["errcode"]);
-                result.ErrorMessage = Converter.ToString2(hash["errmsg"]); 
+                //result.ErrorCode = Converter.To<int>(hash["errcode"]);
+                //result.ErrorMessage = Converter.ToString2(hash["errmsg"]); 
             }
 
+            UpdateStake(opusSetting);
             return result;
+        }
+
+
+        public List<Result> UpdateStake(OpusSetting opusSetting)
+        {
+            List<Result> resultList = new List<Result>();
+            CustomerInfo customerInfo = opusSetting.CustomerInformation;
+
+            foreach (GameType gameType in opusSetting.GameSetting.GameTypeList)
+            {
+                if (gameType.IsUpdateGameType)
+                {
+                    string stakeIdList = string.Empty;
+                    foreach (StakeLevel stake in gameType.StakeLevelList)
+                    {
+                        if (stake.IsChecked)
+                        {
+                            stakeIdList = stakeIdList + stake.StakeLevelId + ',';
+                        }
+                    }
+
+                    UpdateStakeCriteria criteria = new UpdateStakeCriteria
+                    {
+                        CustId = customerInfo.CustId,
+                        UserId = customerInfo.UserId,
+                        GameTypeId = gameType.GameTypeID,
+                        StakeLevelList = stakeIdList
+
+                    };
+
+                    using (var db = new ObjectDb(criteria.GetSettingKey()))
+                    {
+                        db.ExecuteNonQuery(criteria.GetSpParams());
+                        Hashtable hash = db.GetOuputParams();
+                        resultList.Add(new Result
+                        {
+                            ErrorCode = Converter.To<int>(hash["errcode"]),
+                            ErrorMessage = Converter.ToString2(hash["errmsg"])
+                        });
+                    }
+                }
+
+            }
+            return resultList;
         }
     }
 }

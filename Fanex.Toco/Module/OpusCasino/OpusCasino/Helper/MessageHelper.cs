@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 using Fanex.CustomerSetting.OpusCasino.Services;
-using Fanex.PTRacing.BusinessObjects;
+using Fanex.OpusCasino;
 
 namespace Fanex.CustomerSetting.OpusCasino.Helper
 {
