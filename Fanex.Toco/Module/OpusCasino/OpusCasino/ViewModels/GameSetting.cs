@@ -16,6 +16,7 @@ namespace Fanex.CustomerSetting.OpusCasino.ViewModels
         public GameSetting()
         {
             this.GameTypeList = new List<GameType>();
+            this.IsUpdateGameSetting = false;
         }
     }
 }

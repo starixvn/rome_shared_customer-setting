@@ -456,7 +456,10 @@ namespace Fanex.CustomerSetting.Module.Racebook.Services
                 //result.ErrorMessage = Converter.ToString2(hash["errmsg"]); 
             }
 
-            UpdateStake(opusSetting);
+            if (opusSetting.GameSetting.IsUpdateGameSetting)
+            {
+                UpdateStake(opusSetting);
+            }
             return result;
         }
 
