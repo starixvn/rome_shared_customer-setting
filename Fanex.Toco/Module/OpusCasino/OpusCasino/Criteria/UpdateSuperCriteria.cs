@@ -1,13 +1,20 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="UpdateSuperCriteria.cs" company="Nexcel Solution">
-// TODO: Update copyright text.
+﻿// ************************************************************************************
+// <copyright file="UpdateSuperCriteria.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// ************************************************************************************
+// <history>
+//     <change who="steven.nguyen">Create/Run StyleCop.</change>
+// </history>
+// ************************************************************************************
 
 namespace Fanex.CustomerSetting.OpusCasino.Criteria
 {
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// UpdateSuperCriteria Class.
+    /// </summary>
     public class UpdateSuperCriteria : CriteriaBase
     {
         public int CustId { get; set; }
@@ -44,9 +51,9 @@ namespace Fanex.CustomerSetting.OpusCasino.Criteria
 
         public string Language { get; set; }
 
-        //public int ErrCode { get; set; }
+        ////public int ErrCode { get; set; }
 
-        //public string ErrMsg { get; set; }
+        ////public string ErrMsg { get; set; }
 
         public override string GetSettingKey()
         {

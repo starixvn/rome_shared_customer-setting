@@ -8,21 +8,19 @@ using System.Web;
 namespace Fanex.CustomerSetting.OpusCasino.ViewModels
 {
     public class PositionTaking
-    {
-        public bool IsUpdatePT { get; set; }
-
-        public double S4Max { get; set; } 
+    {        
         public double S4 { get; set; }
-        public double M4 { get; set; }
-        public double A4 { get; set; }
 
-        public bool IsUpdateN4 { get; set; }
+        public double M4 { get; set; }
+
+        public double A4 { get; set; }  
+        
         public double N4 { get; set; }
-        public bool IsUpdateL4 { get; set; }
+                   
         public double L4 { get; set; }
 
-        public bool IsUpdateCom4 { get; set; }
         public double Comm4 { get; set; }
+
         public double Comm4Max { get; set; }
 
         public double S3 { get; set; }
@@ -50,10 +48,7 @@ namespace Fanex.CustomerSetting.OpusCasino.ViewModels
         public bool IM1 { get; set; }
 
         public PositionTaking()
-        {
-            this.IsUpdateCom4 = false;
-            this.IsUpdateL4 = false;
-            this.IsUpdateN4 = false;
+        {        
         }
     }
 }
