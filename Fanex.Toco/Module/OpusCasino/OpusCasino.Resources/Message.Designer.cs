@@ -367,6 +367,15 @@ namespace OpusCasinoResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Super Auto PT.
+        /// </summary>
+        public static string SuperAutoPT {
+            get {
+                return ResourceManager.GetString("SuperAutoPT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Super Commission.
         /// </summary>
         public static string SuperCommission {

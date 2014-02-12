@@ -237,4 +237,7 @@
   <data name="Username" xml:space="preserve">
     <value>Username</value>
   </data>
+  <data name="SuperAutoPT" xml:space="preserve">
+    <value>Super Auto PT</value>
+  </data>
 </root>
