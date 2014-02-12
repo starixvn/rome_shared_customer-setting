@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -151,11 +151,15 @@
     <Compile Include="Helper\Result.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helper\MessageHelper.cs" />
+    <Compile Include="Services\IOpusSettingSuperService.cs" />
+    <Compile Include="Services\OpusSettingSuperService.cs" />
     <Compile Include="Services\IOpusSettingService.cs" />
     <Compile Include="Services\OpusSettingService.cs" />
     <Compile Include="Services\ResourceHelper.cs" />
     <Compile Include="Helper\SerializeHelper.cs" />
     <Compile Include="ViewModels\BetSetting.cs" />
+    <Compile Include="ViewModels\OpusSettingSuper.cs" />
+    <Compile Include="ViewModels\PositionTakingSuper.cs" />
     <Compile Include="ViewModels\GameType.cs" />
     <Compile Include="ViewModels\StakeLevel.cs" />
     <Compile Include="ViewModels\CustomerInfo.cs" />
