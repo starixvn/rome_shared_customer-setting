@@ -117,115 +117,124 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="-101" xml:space="preserve">
-    <value>Customer information updated successfully</value>
+  <data name="Agent" xml:space="preserve">
+    <value>Agent</value>
   </data>
-  <data name="-102" xml:space="preserve">
-    <value>Closed status updated successfully</value>
+  <data name="AgentComm" xml:space="preserve">
+    <value>Agent Comm</value>
   </data>
-  <data name="-103" xml:space="preserve">
-    <value>Suspended status updated successfully</value>
+  <data name="AgentMaxPT" xml:space="preserve">
+    <value>Agent Max PT</value>
   </data>
-  <data name="-104" xml:space="preserve">
-    <value>Credit updated successfully</value>
+  <data name="AgentMinPT" xml:space="preserve">
+    <value>Agent Min PT</value>
   </data>
-  <data name="-105" xml:space="preserve">
-    <value>Commission updated sucessfully</value>
+  <data name="AgentPresetPT" xml:space="preserve">
+    <value>Agent Preset PT</value>
   </data>
-  <data name="-106" xml:space="preserve">
-    <value>Bet Setting updated successfully</value>
+  <data name="AgentPT" xml:space="preserve">
+    <value>Agent PT</value>
   </data>
-  <data name="-107" xml:space="preserve">
-    <value>Position taking updated successfully</value>
+  <data name="BetSetting" xml:space="preserve">
+    <value>Bet Setting</value>
   </data>
-  <data name="-108" xml:space="preserve">
-    <value>Enable/Disable Financial status  updated successfully</value>
+  <data name="BettingLimit" xml:space="preserve">
+    <value>Betting Limit</value>
   </data>
-  <data name="-109" xml:space="preserve">
-    <value>Enable/Disable SA Racing status  updated successfully</value>
+  <data name="CustomerInfo" xml:space="preserve">
+    <value>CustomerInfo</value>
   </data>
-  <data name="-110" xml:space="preserve">
-    <value>Enable/Disable UK/Irish Racing status updated successfully</value>
+  <data name="DailyAutoMessege" xml:space="preserve">
+    <value>Daily auto reset limit (at 12 noon GMT+8)</value>
   </data>
-  <data name="-111" xml:space="preserve">
-    <value>UK/Irish Racing Bet Setting updated successfully</value>
+  <data name="Downline" xml:space="preserve">
+    <value>Downline</value>
   </data>
-  <data name="-112" xml:space="preserve">
-    <value>SA Racing Bet Setting updated successfully</value>
+  <data name="Enable" xml:space="preserve">
+    <value>Enable</value>
   </data>
-  <data name="-113" xml:space="preserve">
-    <value>Enable/Disable Aust Racing status updated successfully</value>
+  <data name="Fax" xml:space="preserve">
+    <value>Fax</value>
   </data>
-  <data name="-114" xml:space="preserve">
-    <value>Enable/Disable UK/Irish Greyhounds status updated successfully</value>
+  <data name="FirstName" xml:space="preserve">
+    <value>First Name</value>
   </data>
-  <data name="-115" xml:space="preserve">
-    <value>Enable/Disable Aust Greyhound status updated successfully</value>
+  <data name="GameSetting" xml:space="preserve">
+    <value>Game Setting</value>
   </data>
-  <data name="-116" xml:space="preserve">
-    <value>Enable/Disable Aust Harness status updated successfully</value>
+  <data name="GameType" xml:space="preserve">
+    <value>Game Type</value>
   </data>
-  <data name="-117" xml:space="preserve">
-    <value>Aust Racing Bet Setting updated successfully</value>
+  <data name="LastName" xml:space="preserve">
+    <value>Last Name</value>
   </data>
-  <data name="-118" xml:space="preserve">
-    <value>UK/Irish Greyhounds Bet Setting updated successfully</value>
+  <data name="Master" xml:space="preserve">
+    <value>Master</value>
   </data>
-  <data name="-119" xml:space="preserve">
-    <value>Aust Greyhound Bet Setting updated successfully</value>
+  <data name="MasterAutoPresetPT" xml:space="preserve">
+    <value>Master Auto Preset PT</value>
   </data>
-  <data name="-120" xml:space="preserve">
-    <value>Aust Harness Bet Setting updated successfully</value>
+  <data name="MasterAutoPT" xml:space="preserve">
+    <value>Master Auto PT</value>
   </data>
-  <data name="0" xml:space="preserve">
-    <value>Updated successfully.</value>
+  <data name="MasterComm" xml:space="preserve">
+    <value>Master Comm</value>
   </data>
-  <data name="100" xml:space="preserve">
-    <value>Invalid request data</value>
+  <data name="MasterMaxPT" xml:space="preserve">
+    <value>Master Max PT</value>
   </data>
-  <data name="alertMaxbet" xml:space="preserve">
-    <value>Incorrect Max Bet</value>
+  <data name="MasterMinPT" xml:space="preserve">
+    <value>Master Min PT</value>
   </data>
-  <data name="alertMaxbet1" xml:space="preserve">
-    <value>Max Bet cannot be greater than Max Per Match</value>
+  <data name="MasterPresetPT" xml:space="preserve">
+    <value>Master Preset PT</value>
   </data>
-  <data name="alertMaxbet2" xml:space="preserve">
-    <value>Max Bet must be less than or equal to</value>
+  <data name="MasterPT" xml:space="preserve">
+    <value>Master PT</value>
   </data>
-  <data name="alertMaxbet3" xml:space="preserve">
-    <value>Max Bet must be more than or equal to</value>
+  <data name="Member" xml:space="preserve">
+    <value>Member</value>
   </data>
-  <data name="alertMaxpermatch" xml:space="preserve">
-    <value>Incorrect Max Per Match</value>
+  <data name="MemberCommission" xml:space="preserve">
+    <value>Member Commission</value>
   </data>
-  <data name="alertMaxpermatch1" xml:space="preserve">
-    <value>Max Per Match  must be less than or equal to</value>
+  <data name="MemberMaxTransferCredit" xml:space="preserve">
+    <value>Member Max Transfer Credit</value>
   </data>
-  <data name="alertMaxpermatch2" xml:space="preserve">
-    <value>Max Per Match must be more than or equal to</value>
+  <data name="MobilePhone" xml:space="preserve">
+    <value>Mobile Phone</value>
   </data>
-  <data name="alertMinbet" xml:space="preserve">
-    <value>Incorrect Min Bet</value>
+  <data name="NickName" xml:space="preserve">
+    <value>Nick Name</value>
   </data>
-  <data name="alertMinbet1" xml:space="preserve">
-    <value>Min Bet cannot be greater than Max Bet</value>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone</value>
   </data>
-  <data name="alertMinbet2" xml:space="preserve">
-    <value>Min Bet must be more than or equal to</value>
+  <data name="PTComm" xml:space="preserve">
+    <value>Postion Talking/Commission</value>
   </data>
-  <data name="confirmUpdateMember" xml:space="preserve">
-    <value>Confirm Update Member's PT</value>
+  <data name="Super" xml:space="preserve">
+    <value>Super</value>
   </data>
-  <data name="noRacingData" xml:space="preserve">
-    <value>There is no Racing PositionTaking data.</value>
+  <data name="SuperAutoPresetPT" xml:space="preserve">
+    <value>Super Auto Preset PT</value>
   </data>
-  <data name="Success" xml:space="preserve">
-    <value>Success</value>
+  <data name="SuperCommission" xml:space="preserve">
+    <value>Super Commission</value>
   </data>
-  <data name="_500" xml:space="preserve">
-    <value>You are not authorized on this function. </value>
+  <data name="SuperMaxPosition" xml:space="preserve">
+    <value>Super Max Position</value>
   </data>
-  <data name="Unchanged" xml:space="preserve">
-    <value>There is no change to update.</value>
+  <data name="SuperMinPosition" xml:space="preserve">
+    <value>Super Min Position</value>
+  </data>
+  <data name="SuperPresetPT" xml:space="preserve">
+    <value>Super Preset PT</value>
+  </data>
+  <data name="SuperPT" xml:space="preserve">
+    <value>Super PT</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Username</value>
   </data>
 </root>

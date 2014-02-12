@@ -117,40 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="alertMaxbet" xml:space="preserve">
-    <value>Incorrect Max Bet</value>
-  </data>
-  <data name="alertMaxbet1" xml:space="preserve">
-    <value>Max Bet cannot be greater than Max Per Match</value>
-  </data>
-  <data name="alertMaxbet2" xml:space="preserve">
-    <value>Max Bet must be less than or equal to</value>
-  </data>
-  <data name="alertMaxbet3" xml:space="preserve">
-    <value>Max Bet must be more than or equal to</value>
-  </data>
-  <data name="alertMaxpermatch" xml:space="preserve">
-    <value>Incorrect Max Per Match</value>
-  </data>
-  <data name="alertMaxpermatch1" xml:space="preserve">
-    <value>Max Per Match  must be less than or equal to</value>
-  </data>
-  <data name="alertMaxpermatch2" xml:space="preserve">
-    <value>Max Per Match must be more than or equal to</value>
-  </data>
-  <data name="alertMinbet" xml:space="preserve">
-    <value>Incorrect Min Bet</value>
-  </data>
-  <data name="alertMinbet1" xml:space="preserve">
-    <value>Min Bet cannot be greater than Max Bet</value>
-  </data>
-  <data name="alertMinbet2" xml:space="preserve">
-    <value>Min Bet must be more than or equal to</value>
-  </data>
-  <data name="confirmUpdateMember" xml:space="preserve">
-    <value>Confirm Update Member's PT</value>
-  </data>
-  <data name="noRacingData" xml:space="preserve">
-    <value>There is no Racing PositionTaking data.</value>
-  </data>
 </root>

@@ -56,12 +56,12 @@
     <EmbeddedResource Include="Message.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Message.Designer.cs</LastGenOutput>
-      <CustomToolNamespace>RacebookResources</CustomToolNamespace>
+      <CustomToolNamespace>OpusCasinoResources</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="Message.zh-CN.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Message.zh-CN.Designer.cs</LastGenOutput>
-      <CustomToolNamespace>RacebookResources</CustomToolNamespace>
+      <CustomToolNamespace>OpusCasinoResources</CustomToolNamespace>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
