@@ -10,16 +10,16 @@
 
 namespace Fanex.CustomerSetting.Module.OpusCasino.Services
 {
-    using System.Collections;
-    using Fanex.CustomerSetting.OpusCasino.ViewModels;
-    using Fanex.CustomerSetting.OpusCasino.Criteria;
-    using System.Data;
-    using Fanex.Data;
-    using Fanex.Common;
-    using System.Linq;
-    using System.Collections.Generic;
-    using Fanex.CustomerSetting.OpusCasino.Entities;
-    using Fanex.CustomerSetting.Module.Core.Repository;
+    ////using System.Collections;
+    ////using Fanex.CustomerSetting.OpusCasino.ViewModels;
+    ////using Fanex.CustomerSetting.OpusCasino.Criteria;
+    ////using System.Data;
+    ////using Fanex.Data;
+    ////using Fanex.Common;
+    ////using System.Linq;
+    ////using System.Collections.Generic;
+    ////using Fanex.CustomerSetting.OpusCasino.Entities;
+    ////using Fanex.CustomerSetting.Module.Core.Repository;
 
     /// <summary>
     /// OpusSettingService Class.
