@@ -24,6 +24,7 @@ namespace Fanex.CustomerSetting.OpusCasino.ViewModels
             this.IsUpdateCom4 = false;
             this.IsUpdateS4 = false;
             this.IsUpdateN4 = false;
+            this.IsUpdatePT = false;
         }
 
         public bool IsUpdatePT { get; set; }

@@ -10,17 +10,11 @@ namespace Fanex.CustomerSetting.OpusCasino.ViewModels
     public class PositionTaking
     {        
         public double S4 { get; set; }
-
         public double M4 { get; set; }
-
         public double A4 { get; set; }  
-        
         public double N4 { get; set; }
-                   
         public double L4 { get; set; }
-
         public double Comm4 { get; set; }
-
         public double Comm4Max { get; set; }
 
         public double S3 { get; set; }

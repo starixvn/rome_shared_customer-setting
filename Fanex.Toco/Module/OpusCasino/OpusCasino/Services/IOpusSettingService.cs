@@ -7,15 +7,16 @@
 // -----------------------------------------------------------------------
 using System.Collections;
 using Fanex.CustomerSetting.OpusCasino.ViewModels;
-using Fanex.CustomerSetting.OpusCasino.Entities;
 using System.Collections.Generic;
+using System.Data;
+using Fanex.OpusCasino;
 
 namespace Fanex.CustomerSetting.Module.OpusCasino.Services
 {
     public interface IOpusSettingService
-    {        
-        ////OpusSetting SelectCustomerInfo(int custId, int uplineRole, int downlineRole, int actionId);
-
-        ////OpusSetting UpdateOpusSetting(OpusSetting opusSetting, int uplineRole, int downlineRole, int actionId, int userId, int subAccId, string ip, string language);
+    {
+        DataSet GetDataSetting(dynamic criteria);
+        GameSetting GetGameSetting(DataTable gameTypeTable);
+        List<Result> UpdateStake(GameSetting gameSetting, CustomerInfo customerInfo);
     }
 }

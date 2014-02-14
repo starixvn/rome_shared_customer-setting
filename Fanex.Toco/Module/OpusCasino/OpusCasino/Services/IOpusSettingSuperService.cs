@@ -7,8 +7,8 @@
 // -----------------------------------------------------------------------
 using System.Collections;
 using Fanex.CustomerSetting.OpusCasino.ViewModels;
-using Fanex.CustomerSetting.OpusCasino.Entities;
 using System.Collections.Generic;
+using Fanex.OpusCasino;
 
 namespace Fanex.CustomerSetting.Module.OpusCasino.Services
 {
@@ -16,8 +16,6 @@ namespace Fanex.CustomerSetting.Module.OpusCasino.Services
     {
         OpusSettingSuper GetSuperSetting(int custId);
 
-        Result UpdateSuper(OpusSettingSuper opusSetting);
-
-        List<Result> UpdateStake(OpusSettingSuper opusSetting);        
+        List<Result> UpdateSuper(OpusSettingSuper opusSetting);
     }
 }

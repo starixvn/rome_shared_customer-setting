@@ -10,11 +10,13 @@
 // </history>
 // ************************************************************************************
 
+using System.Collections.Generic;
 using System.Web.Mvc;
 using Fanex.CustomerSetting.Module.OpusCasino.Services;
 using Fanex.CustomerSetting.OpusCasino.ViewModels;
 using Fanex.CustomerSetting.Security.Authenticate;
-using Fanex.CustomerSetting.OpusCasino.Entities;
+using Fanex.CustomerSetting.OpusCasino.Helper;
+using Fanex.OpusCasino;
 
 namespace Fanex.CustomerSetting.OpusCasino.Controllers
 {
@@ -24,16 +26,18 @@ namespace Fanex.CustomerSetting.OpusCasino.Controllers
     public class OpusCasinoSettingController : BaseOpusCasinoSettingController
     {
         private static IOpusSettingSuperService _opusSettingSuperService;
+        private static IOpusSettingMasterService _opusSettingMasterService;
 
         public OpusCasinoSettingController()
-            : this(null)
+            : this(null, null)
         {
         }
 
-        public OpusCasinoSettingController(IOpusSettingSuperService opusSettingSuperService)
+        public OpusCasinoSettingController(IOpusSettingSuperService opusSettingSuperService,
+                                           IOpusSettingMasterService opusSettingMasterService)
         {
             _opusSettingSuperService = opusSettingSuperService ?? new OpusSettingSuperService();
-
+            _opusSettingMasterService = opusSettingMasterService ?? new OpusSettingMasterService();
         }
 
         /// <summary>
@@ -50,7 +54,7 @@ namespace Fanex.CustomerSetting.OpusCasino.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "OpusCasinoMaster")]
         public ActionResult OpusCasinoMaster(int custId)
         {
-            OpusSetting opus = new OpusSetting();// _opusSettingService.SelectCustomerInfo(custId, 4, 3, 0);
+            OpusSettingMaster opus = _opusSettingMasterService.GetMasterSetting(custId);            
             return View("~/Areas/CustomerSetting/Views/OpusCasino/Setting/Master.cshtml", opus);
         }
 
@@ -86,8 +90,8 @@ namespace Fanex.CustomerSetting.OpusCasino.Controllers
         [HttpPost]
         public JsonResult UpdateSuper(OpusSettingSuper opusSetting)
         {
-            Result result = _opusSettingSuperService.UpdateSuper(opusSetting);
-            return Json(result);
+            List<Result> results = _opusSettingSuperService.UpdateSuper(opusSetting);
+            return Json(results);
         }
     }
 }

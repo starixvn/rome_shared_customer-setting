@@ -211,7 +211,7 @@
     <value>Phone</value>
   </data>
   <data name="PTComm" xml:space="preserve">
-    <value>Postion Talking/Commission</value>
+    <value>Postion Taking/Commission</value>
   </data>
   <data name="Super" xml:space="preserve">
     <value>Super</value>
@@ -239,5 +239,35 @@
   </data>
   <data name="SuperAutoPT" xml:space="preserve">
     <value>Super Auto PT</value>
+  </data>
+  <data name="UpdateOpusCasinoSetting" xml:space="preserve">
+    <value>Update Opus Casino Setting</value>
+  </data>
+  <data name="-100" xml:space="preserve">
+    <value>Status updated successfully</value>
+  </data>
+  <data name="-101" xml:space="preserve">
+    <value>Commission updated successfully</value>
+  </data>
+  <data name="-102" xml:space="preserve">
+    <value>Postion Taking updated successfully</value>
+  </data>
+  <data name="-103" xml:space="preserve">
+    <value>Min Position Taking updated successfully</value>
+  </data>
+  <data name="-104" xml:space="preserve">
+    <value>Max Transfer updated successfully</value>
+  </data>
+  <data name="-105" xml:space="preserve">
+    <value>Commission updated sucessfully</value>
+  </data>
+  <data name="0" xml:space="preserve">
+    <value>Updated successfully.</value>
+  </data>
+  <data name="100" xml:space="preserve">
+    <value>Invalid request data</value>
+  </data>
+  <data name="_500" xml:space="preserve">
+    <value>You are not authorized on this function. </value>
   </data>
 </root>

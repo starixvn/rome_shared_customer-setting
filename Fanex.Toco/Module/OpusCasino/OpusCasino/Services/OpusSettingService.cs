@@ -10,22 +10,121 @@
 
 namespace Fanex.CustomerSetting.Module.OpusCasino.Services
 {
-    ////using System.Collections;
-    ////using Fanex.CustomerSetting.OpusCasino.ViewModels;
-    ////using Fanex.CustomerSetting.OpusCasino.Criteria;
-    ////using System.Data;
-    ////using Fanex.Data;
-    ////using Fanex.Common;
-    ////using System.Linq;
-    ////using System.Collections.Generic;
-    ////using Fanex.CustomerSetting.OpusCasino.Entities;
-    ////using Fanex.CustomerSetting.Module.Core.Repository;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Linq;
+    using Fanex.Common;
+    using Fanex.CustomerSetting.OpusCasino.Criteria;
+    using Fanex.CustomerSetting.OpusCasino.ViewModels;
+    using Fanex.Data;
+    using Fanex.OpusCasino;
 
     /// <summary>
     /// OpusSettingService Class.
     /// </summary>
     public abstract class OpusSettingService : IOpusSettingService
-    {        
+    {
+        /// <summary>
+        /// Get Data setting.
+        /// </summary>
+        /// <param name="criteria">Criteria to get data.</param>
+        /// <returns>Data set object.</returns>
+        public DataSet GetDataSetting(dynamic criteria)
+        {
+            DataSet dataSet = new DataSet();
+            using (var db = new ObjectDb(criteria.GetSettingKey()))
+            {
+                var paramsOuput = criteria.GetSpParams();
+                dataSet = db.ExecuteDataSet(paramsOuput);
+            }
+
+            return dataSet;
+        }
+
+        /// <summary>
+        /// Get Game Setting.
+        /// </summary>
+        /// <param name="gameTypeTable">Data table.</param>
+        /// <returns>GameSetting object.</returns>
+        public GameSetting GetGameSetting(DataTable gameTypeTable)
+        {
+            GameSetting gameSetting = new GameSetting();
+            List<StakeLevel> listStakeTmp = new List<StakeLevel>();
+            foreach (DataRow row in gameTypeTable.Rows)
+            {
+                listStakeTmp.Add(new StakeLevel
+                {
+                    GameTypeId = Converter.To<int>(row["GameTypeID"]),
+                    GameTypeName = Converter.ToString2(row["GameTypeName"]),
+                    StakeLevelName = Converter.ToString2(row["StakeLevelName"]),
+                    StakeLevelId = Converter.To<int>(row["StakeLevelID"]),
+                    IsChecked = Converter.To<bool>(row["isChecked"])
+                });
+            }
+
+            var gameTypeList = listStakeTmp.Select(item => new { item.GameTypeId, item.GameTypeName }).Distinct().ToList();
+
+            foreach (var gameType in gameTypeList)
+            {
+                gameSetting.GameTypeList.Add(new GameType
+                {
+                    GameTypeID = gameType.GameTypeId,
+                    GameTypeName = gameType.GameTypeName,
+                    StakeLevelList = listStakeTmp.Select(x => x).Where(y => y.GameTypeId.Equals(gameType.GameTypeId)).ToList()
+                });
+            }
+
+            return gameSetting;
+        }
+
+        /// <summary>
+        /// Update Stake.
+        /// </summary>
+        /// <param name="gameSetting">GameSetting object.</param>
+        /// <param name="customerInfo">CustomerInfo object.</param>
+        /// <returns>The list result.</returns>
+        public List<Result> UpdateStake(GameSetting gameSetting, CustomerInfo customerInfo)
+        {
+            List<Result> resultList = new List<Result>();
+
+            foreach (GameType gameType in gameSetting.GameTypeList)
+            {
+                if (gameType.IsUpdateGameType)
+                {
+                    string stakeIdList = string.Empty;
+                    foreach (StakeLevel stake in gameType.StakeLevelList)
+                    {
+                        if (stake.IsChecked)
+                        {
+                            stakeIdList = stakeIdList + stake.StakeLevelId + ',';
+                        }
+                    }
+
+                    UpdateStakeCriteria criteria = new UpdateStakeCriteria
+                    {
+                        CustId = customerInfo.CustId,
+                        UserId = customerInfo.UserId,
+                        GameTypeId = gameType.GameTypeID,
+                        StakeLevelList = stakeIdList
+                    };
+
+                    using (var db = new ObjectDb(criteria.GetSettingKey()))
+                    {
+                        db.ExecuteNonQuery(criteria.GetSpParams());
+                        Hashtable hash = db.GetOuputParams();
+                        resultList.Add(new Result
+                        {
+                            ErrorCode = Converter.To<int>(hash["errcode"]),
+                            ErrorMessage = Converter.ToString2(hash["errmsg"])
+                        });
+                    }
+                }
+            }
+
+            return resultList;
+        }
+
         ////public OpusSetting SelectCustomerInfo(int custId, int uplineRole, int downlineRole, int actionId)
         ////{            
         ////    OpusSetting opusModel = new OpusSetting();
