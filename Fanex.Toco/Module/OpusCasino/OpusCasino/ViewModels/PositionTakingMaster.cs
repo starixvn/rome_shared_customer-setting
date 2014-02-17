@@ -22,25 +22,25 @@ namespace Fanex.CustomerSetting.OpusCasino.ViewModels
         public PositionTakingMaster()
         {
             this.IsUpdatePT = false;
-            this.IsUpdateSuper = false;
-            this.IsUpdateAutoSuper = false;
-            this.IsUpdateCom3 = false;
+            this.IsUpdateS3 = false;
+            this.IsUpdateUS3 = false;
+            this.IsUpdateComm3 = false;
             this.IsUpdateAllMember = false;
             this.IsUpdateN3 = false;
         }
 
         public bool IsUpdatePT { get; set; }
 
-        public bool IsUpdateSuper { get; set; }
+        public bool IsUpdateS3 { get; set; }
 
-        public bool IsUpdateAutoSuper { get; set; }
+        public bool IsUpdateUS3 { get; set; }
 
         public bool IsUpdateN3 { get; set; }
 
-        public bool IsUpdateCom3 { get; set; }
+        public bool IsUpdateComm3 { get; set; }
 
         public bool IsUpdateAllMember { get; set; }
 
-        public double NewsPT { get; set; }
+        public double NewMemberPT { get; set; }
     }
 }

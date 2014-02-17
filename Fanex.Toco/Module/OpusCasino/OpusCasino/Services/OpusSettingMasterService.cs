@@ -93,7 +93,7 @@ namespace Fanex.CustomerSetting.Module.OpusCasino.Services
                         S3 = Converter.To<double>(row["v163spositiontaking_1401"]),
                         US3 = Converter.To<double>(row["auto_v163spositiontaking_1401"]),
                         IS3 = Converter.To<bool>(row["isauto_v163spositiontaking_1401"]),
-                        L3 = Converter.To<double>(row["v163mpositiontaking_1401"]),
+                        M3 = Converter.To<double>(row["v163mpositiontaking_1401"]),
                         N3 = Converter.To<double>(row["v163spositiontaking_1401_min"]),
                         Comm4 = Converter.To<double>(row["v163dicount_1401_max"]),
                         Comm3 = Converter.To<double>(row["v163discount_1401"]),
