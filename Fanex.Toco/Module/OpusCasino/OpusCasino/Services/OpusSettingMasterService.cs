@@ -13,11 +13,12 @@ namespace Fanex.CustomerSetting.Module.OpusCasino.Services
     using System.Collections;
     using System.Collections.Generic;
     using System.Data;
-    using System.Linq;
     using Fanex.Common;
     using Fanex.CustomerSetting.OpusCasino.Criteria;
+    using Fanex.CustomerSetting.OpusCasino.Helper;
     using Fanex.CustomerSetting.OpusCasino.ViewModels;
     using Fanex.Data;
+    using Fanex.OpusCasino;
 
     /// <summary>
     /// OpusSettingSuperService Class.
@@ -50,10 +51,52 @@ namespace Fanex.CustomerSetting.Module.OpusCasino.Services
                     this.MapBetLimitSetting(ref masterOpusModel, row);
                 }
 
-               masterOpusModel.GameSetting = this.GetGameSetting(gameTypeTable);
+                masterOpusModel.GameSetting = this.GetGameSetting(gameTypeTable);
             }
 
             return masterOpusModel;
+        }
+
+        /// <summary>
+        /// Update Master setting.
+        /// </summary>
+        /// <param name="opusSetting">OpusSettingSuper object.</param>
+        /// <returns>Result object.</returns>
+        public List<Result> UpdateMaster(OpusSettingMaster opusSetting)
+        {
+            List<Result> resultList = new List<Result>();
+            try
+            {
+                CustomerInfo customerInfo = opusSetting.CustomerInformation;
+                PositionTakingMaster pt = opusSetting.PositionTaking;
+                BetSetting betSetting = opusSetting.BetLimitSetting;
+                List<Result> resultsTmp = new List<Result>();
+
+                if (opusSetting.GameSetting.IsUpdateGameSetting)
+                {
+                    resultList = this.UpdateStake(opusSetting.GameSetting, opusSetting.CustomerInformation);
+                }
+
+                if (customerInfo.IsUpdateStatus || pt.IsUpdatePT || betSetting.IsUpdateBetSetting)
+                {
+                    resultsTmp = UpdateMasterOpusAll(opusSetting);
+
+                    foreach (var result in resultsTmp)
+                    {
+                        resultList.Add(result);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                resultList.Add(new Result
+                {
+                    ErrorCode = 100,
+                    ErrorMessage = ex.Message
+                });
+            }
+
+            return resultList;
         }
 
         /// <summary>
@@ -114,6 +157,58 @@ namespace Fanex.CustomerSetting.Module.OpusCasino.Services
                 IsLimited = true,
                 IsDailyAutoResetLimit = Converter.To<bool>(row["isAutoResetOpusCasino"]),
             };
+        }
+
+        /// <summary>
+        /// Update Customer information, bet setting and position taking.
+        /// </summary>
+        /// <param name="opusSetting">Opus Setting.</param>
+        /// <returns>List results.</returns>
+        private List<Result> UpdateMasterOpusAll(OpusSettingMaster opusSetting)
+        {
+            string errorCode = string.Empty;
+            string errorMsg = string.Empty;
+            CustomerInfo customerInfo = opusSetting.CustomerInformation;
+            PositionTakingMaster pt = opusSetting.PositionTaking;
+            BetSetting betSetting = opusSetting.BetLimitSetting;
+
+            UpdateMasterCriteria criteria = new UpdateMasterCriteria
+            {
+                CustId = customerInfo.CustId,
+                Srecommend = opusSetting.CustomerInformation.UplineId,
+                UserId = customerInfo.UserId,
+                SubAccId = customerInfo.SubAccId,
+                Ip = customerInfo.Ip,
+                Language = customerInfo.Language,
+                V163UpdateCustomerStatus_1401 = customerInfo.IsUpdateStatus,
+                Disable = customerInfo.IsDisable,
+                DisableDownLines = customerInfo.IsDisableDownlines,
+                V163UpdatePositionTaking_1401 = pt.IsUpdateS3,
+                V163spositiontaking_1401 = pt.S3,
+                V163mpositiontaking_1401 = pt.M3,
+                V163UpdateAutoPositiontaking_1401 = pt.IsUpdateUS3,
+                Isauto_v163spositiontaking_1401 = pt.IS3,
+                Auto_v163spositiontaking_1401 = pt.US3,
+                V163UpdateMinPositiontaking_1401 = pt.IsUpdateN3,
+                V163mpositiontaking_1401_min = pt.N3,
+                Updateallmembers = pt.IsUpdateAllMember,
+                Newspositiontaking = pt.NewMemberPT,
+                V163UpdateCommission_1401 = opusSetting.PositionTaking.IsUpdateComm3,
+                V163Discount_1401 = opusSetting.PositionTaking.Comm4,
+                V163UpdateMaxTransfer_1401 = betSetting.IsUpdateBetSetting,
+                MaxTransferCredit = betSetting.MaxTransfer,
+                IsAutoReset = betSetting.IsDailyAutoResetLimit
+            };
+
+            using (var db = new ObjectDb(criteria.GetSettingKey()))
+            {
+                db.ExecuteNonQuery(criteria.GetSpParams());
+                Hashtable hash = db.GetOuputParams();
+                errorCode = Converter.ToString2(hash["errcode"]);
+                errorMsg = Converter.ToString2(hash["errmsg"]);
+            }
+
+            return MessageHelper.ParseError(errorCode, errorMsg);
         }
     }
 }

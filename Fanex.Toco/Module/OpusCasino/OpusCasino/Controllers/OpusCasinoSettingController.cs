@@ -52,9 +52,10 @@ namespace Fanex.CustomerSetting.OpusCasino.Controllers
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "OpusCasinoMaster")]
-        public ActionResult OpusCasinoMaster(int custId)
+        public ActionResult OpusCasinoMaster(int custId, int uplineId)
         {
-            OpusSettingMaster opus = _opusSettingMasterService.GetMasterSetting(custId);            
+            OpusSettingMaster opus = _opusSettingMasterService.GetMasterSetting(custId);
+            opus.CustomerInformation.UplineId = uplineId;
             return View("~/Areas/CustomerSetting/Views/OpusCasino/Setting/Master.cshtml", opus);
         }
 
@@ -91,6 +92,14 @@ namespace Fanex.CustomerSetting.OpusCasino.Controllers
         public JsonResult UpdateSuper(OpusSettingSuper opusSetting)
         {
             List<Result> results = _opusSettingSuperService.UpdateSuper(opusSetting);
+            return Json(results);
+        }
+
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateSuper")]
+        [HttpPost]
+        public JsonResult UpdateMaster(OpusSettingMaster opusSetting)
+        {
+            List<Result> results = _opusSettingMasterService.UpdateMaster(opusSetting);
             return Json(results);
         }
     }

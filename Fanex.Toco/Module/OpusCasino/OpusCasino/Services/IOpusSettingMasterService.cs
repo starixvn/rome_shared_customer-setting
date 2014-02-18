@@ -5,9 +5,10 @@
 // TODO: Update copyright text.
 // </copyright>
 // -----------------------------------------------------------------------
-using System.Collections;
-using Fanex.CustomerSetting.OpusCasino.ViewModels;
+
 using System.Collections.Generic;
+using Fanex.CustomerSetting.OpusCasino.ViewModels;
+using Fanex.OpusCasino;
 
 namespace Fanex.CustomerSetting.Module.OpusCasino.Services
 {
@@ -15,6 +16,6 @@ namespace Fanex.CustomerSetting.Module.OpusCasino.Services
     {
         OpusSettingMaster GetMasterSetting(int custId);
 
-        //List<Result> UpdateMaster(OpusSettingMaster opusSetting);
+        List<Result> UpdateMaster(OpusSettingMaster opusSetting);
     }
 }

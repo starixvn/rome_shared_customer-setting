@@ -10,6 +10,7 @@ namespace Fanex.CustomerSetting.OpusCasino.ViewModels
     public class CustomerInfo
     {
         public int CustId { get; set; }
+        public int UplineId { get; set; }
         public int RoleId { get; set; }
         public string Username { get; set; }
         public string NickName { get; set; }

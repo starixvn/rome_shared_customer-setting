@@ -135,6 +135,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="Controllers\BaseOpusCasinoSettingController.cs" />
     <Compile Include="Controllers\OpusCasinoSettingController.cs" />
+    <Compile Include="Criteria\UpdateMasterCriteria.cs" />
     <Compile Include="Criteria\UpdateStakeCriteria.cs" />
     <Compile Include="Criteria\SelectMasterOnMemberCriteria.cs" />
     <Compile Include="Criteria\SelectSuperOnMemberCriteria.cs" />
