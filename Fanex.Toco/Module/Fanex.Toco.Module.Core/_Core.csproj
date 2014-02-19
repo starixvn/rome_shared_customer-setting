@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</ProjectGuid>
+    <ProjectGuid>{FA7AFDA2-F599-4DB2-B733-2992043C9D10}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Fanex.CustomerSetting.Module.Core</RootNamespace>
@@ -25,7 +25,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -98,9 +98,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Criteria\GetCurrencyCriteria.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Criteria\TestCriteria.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Exceptions\HandleActionErrorAttribute.cs" />
