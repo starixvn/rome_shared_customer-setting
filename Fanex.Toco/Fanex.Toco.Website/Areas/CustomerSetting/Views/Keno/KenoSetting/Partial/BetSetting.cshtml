@@ -1,0 +1,71 @@
+﻿@using Fanex.CustomerSetting.Module.Keno.Resources;
+<table class="tableColor" ng-controller="fanex.customerSetting.betSettingController">
+    <tr>
+        <td colspan="7" class="header c b">
+            <span>@LayoutTexts.BetSetting</span>
+        </td>
+    </tr>
+    <tr>
+        <td class="col120 formatCol">
+        </td>
+        <td class="col120 formatCol c b">
+            <span>@LayoutTexts.MinBet</span>
+        </td>
+        <td class="col120 formatCol c b">
+            <span>@LayoutTexts.MaxBet</span>
+        </td>
+        <td class="col120 formatCol c b">
+            <span>@LayoutTexts.MaxPerMatch</span>
+        </td>
+        <td class="col243 formatCol c b">
+            @if (Model.FormType == 0)
+            {
+                <span>@LayoutTexts.Super</span>
+            }
+            else if (Model.FormType == 1)
+            {
+                <span>@LayoutTexts.Master</span>
+            }
+            else if (Model.FormType == 2)
+            {
+                <span>@LayoutTexts.Agent</span>
+            }
+        </td>
+        <td class="col243 formatCol c b">
+            <span>@LayoutTexts.Downlines</span>
+        </td>
+    </tr>
+    <tr ng-repeat="betSetting in model">
+        <td class="col120 formatCol l">
+            <span>{{betSetting.gameTypeName}}</span>
+        </td>
+        <td class="col120 formatCol l">
+            <input type="text" class="input" ng-model="betSetting.minBet" ng-change="betSetting.actions.changeMinBet()"
+                style="width: 50px;" />
+            <span ng-show="betSetting.upline.minBet >= 0">&gt;= {{betSetting.upline.minBet | number
+                : 0}} </span>
+        </td>
+        <td class="col120 formatCol l">
+            <input type="text" class="input" ng-model="betSetting.maxBet" ng-change="betSetting.actions.changeMaxBet()"
+                style="width: 50px;" />
+            <span ng-show="betSetting.upline.maxBet >= 0">&lt;= {{betSetting.upline.maxBet | number
+                : 0}} </span>
+        </td>
+        <td class="col120 formatCol l">
+            <input type="text" class="input" ng-model="betSetting.maxPerMatch" ng-change="betSetting.actions.changeMaxPerMatch()"
+                style="width: 50px;" />
+            <span ng-show="betSetting.upline.maxPerMatch >= 0">&lt;= {{betSetting.upline.maxPerMatch
+                | number : 0}} </span>
+        </td>
+        <td class="col243 formatCol c">
+            <label class="checkbox">
+                <input type="checkbox" ng-model="betSetting.isDisable" />
+            </label>
+        </td>
+        <td class="col243 formatCol c">
+            <label class="checkbox">
+                <input type="checkbox" ng-model="betSetting.isDownlinesDisable" />
+            </label>
+        </td>
+    </tr>
+</table>
