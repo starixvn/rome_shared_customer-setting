@@ -11,7 +11,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
 {
     public static class Constants
     {
-        public const string EDIT_SUPER_CSHTML = "~/Areas/CustomerSetting/Views/Keno/KenoSetting/EditSuper.cshtml";
+        public const string EDIT_SUPER_CSHTML = "~/Areas/CustomerSetting/Views/Keno/Setting/Super/EditSuper.cshtml";
         public const string EDIT_MASTER_CSHTML = "~/Areas/CustomerSetting/Views/Keno/KenoSetting/EditMaster.cshtml";
         public const string EDIT_AGENT_CSHTML = "~/Areas/CustomerSetting/Views/Keno/KenoSetting/EditAgent.cshtml";
         public const string SUPER_EDIT_MEMBER_CSHTML = "~/Areas/CustomerSetting/Views/Keno/KenoSetting/SuperEditMember.cshtml";

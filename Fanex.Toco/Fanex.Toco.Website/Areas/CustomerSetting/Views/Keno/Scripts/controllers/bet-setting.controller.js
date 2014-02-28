@@ -1,25 +1,23 @@
-﻿if (fanex.customerSetting) {
-    fanex.customerSetting.controller('fanex.customerSetting.betSettingController',
-    [
-        '$scope',
-        '$rootScope',
-        '$filter',
-        function ($scope, $rootScope, $filter) {
-            $scope.model = $rootScope.model.betSettings;
-            $scope.betSettingService = fanex.customerSetting.betSettingService;
+﻿"use strict";
 
-            $scope.getChangedData = function () {
-                return $scope.betSettingService.getChangedData($scope.model);
-            }
+KenoModule.controller('betSettingController', function ($scope, kenoRepositories, betSettingService) {
+    $scope.betSettingList = kenoRepositories.kenoSetting.betSettings;
+    $scope.isUpdateBetSetting = false;
+    $scope.init = function () {
+        var length = $scope.betSettingList.length;
 
-            $scope.isValidData = function () {
-                return $scope.betSettingService.isValidData($scope.model);
-            };
+        for (var i = 0; i < length; i++) {
+            betSettingService.setAction($scope.betSettingList[i]);
+        }
+    };
 
-            return {
-                getScope: function () {
-                    return $scope;
-                }
-            }
-        } ]);
-}
+    $scope.init();
+
+    $scope.getChangedData = function () {
+        return betSettingService.getChangedData($scope.betSetting);
+    };
+
+    $scope.isValidData = function () {
+        return betSettingService.isValidData($scope.betSetting);
+    };
+});
