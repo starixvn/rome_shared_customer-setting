@@ -1,0 +1,28 @@
+// --------------------------------------------------------------------------
+// <copyright file="MasterPositionTaking.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Paul.Nguyen" date="2014/02/20">Created.</change>
+// </history>
+
+namespace Fanex.CustomerSetting.Module.Keno.Entities
+{
+    public class MasterPositionTaking
+    {
+        public bool IsUpdatePT { get; set; }
+
+        public bool IsUpdateS3 { get; set; }
+
+        public bool IsUpdateUS3 { get; set; }
+
+        public bool IsUpdateN3 { get; set; }
+
+        public bool IsUpdateMCO { get; set; }
+
+        public bool IsUpdateAllMember { get; set; }
+
+        public double NewMemberPT { get; set; }
+    }
+}
