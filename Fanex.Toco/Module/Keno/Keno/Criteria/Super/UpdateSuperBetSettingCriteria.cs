@@ -12,7 +12,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Criteria
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// UpdateCustOverrideCriteria class.
+    /// UpdateCustomerOverrideCriteria class.
     /// </summary>
     public class UpdateSuperBetSettingCriteria : CriteriaBase
     {

@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------
-// <copyright file="CommissionSetting.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="CustomerInformation.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -7,9 +7,11 @@
 //   <change who="Paul.Nguyen" date="2014/02/20">Created.</change>
 // </history>
 
-
 namespace Fanex.CustomerSetting.Module.Keno.Entities
 {
+    /// <summary>
+    /// The CustomerInformation entity.
+    /// </summary>
     public class CustomerInformation
     {
         public int CustId { get; set; }
@@ -37,5 +39,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
         public bool IsDisable { get; set; }
 
         public bool HideKeno { get; set; }
+
+        public int UserId { get; set; }
+
+        public int SubAccId { get; set; }
     }
 }

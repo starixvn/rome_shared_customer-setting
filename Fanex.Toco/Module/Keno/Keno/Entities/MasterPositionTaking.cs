@@ -9,6 +9,9 @@
 
 namespace Fanex.CustomerSetting.Module.Keno.Entities
 {
+    /// <summary>
+    /// The MasterPositionTaking entity.
+    /// </summary>
     public class MasterPositionTaking
     {
         public bool IsUpdatePT { get; set; }

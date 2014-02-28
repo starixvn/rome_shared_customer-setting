@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------
-// <copyright file="KenoSettingBaseController.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="BundleConfig.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -22,18 +22,16 @@ namespace Fanex.CustomerSetting.Module.Keno.App_Start
         /// <param name="bundles">The bundles.</param>
         public static void RegisterBundles(BundleCollection bundles)
         {
-            //bundles.Add(new ScriptBundle("~/bundles/KenoSetting").Include(
-            //    "~/Areas/CustomerSetting/Views/Keno/Scripts/libs/*.js",
-            //    //"~/Areas/CustomerSetting/Views/Keno/Scripts/libs/ToolTip/wz_tooltip/wz_tooltip.js",
-            //    "~/Areas/CustomerSetting/Views/Keno/Scripts/common.js",
-            //    "~/Areas/CustomerSetting/Views/Keno/Scripts/CommonPT.js",
-            //    "~/Areas/CustomerSetting/Views/Keno/Scripts/Setting/RacingHelper.js",
-            //    "~/Areas/CustomerSetting/Views/Keno/Scripts/Setting/RacingSetting.js"));
+            ////bundles.Add(new ScriptBundle("~/bundles/KenoSetting").Include(
+            ////    "~/Areas/CustomerSetting/Views/Keno/Scripts/libs/*.js",
+            ////    //"~/Areas/CustomerSetting/Views/Keno/Scripts/libs/ToolTip/wz_tooltip/wz_tooltip.js",
+            ////    "~/Areas/CustomerSetting/Views/Keno/Scripts/common.js",
+            ////    "~/Areas/CustomerSetting/Views/Keno/Scripts/CommonPT.js",
+            ////    "~/Areas/CustomerSetting/Views/Keno/Scripts/Setting/RacingHelper.js",
+            ////    "~/Areas/CustomerSetting/Views/Keno/Scripts/Setting/RacingSetting.js"));
 
-            //bundles.Add(new StyleBundle("~/bundles/KenoStyle").Include(
-            //    "~/Areas/CustomerSetting/Views/Keno/Styles/*.css"));
-
-           
+            ////bundles.Add(new StyleBundle("~/bundles/KenoStyle").Include(
+            ////    "~/Areas/CustomerSetting/Views/Keno/Styles/*.css"));
         }
     }
 }

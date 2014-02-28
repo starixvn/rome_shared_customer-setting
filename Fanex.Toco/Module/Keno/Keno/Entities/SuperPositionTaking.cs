@@ -9,6 +9,9 @@
 
 namespace Fanex.CustomerSetting.Module.Keno.Entities
 {
+    /// <summary>
+    /// The SuperPositionTaking entity.
+    /// </summary>
     public class SuperPositionTaking : PositionTakingBase
     {
         public bool IsUpdatePT { get; set; }
@@ -17,6 +20,6 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
 
         public bool IsUpdateN4 { get; set; }
 
-        public bool IsUpdateSCO { get; set; }
+        public bool IsUpdateSCo { get; set; }
     }
 }
