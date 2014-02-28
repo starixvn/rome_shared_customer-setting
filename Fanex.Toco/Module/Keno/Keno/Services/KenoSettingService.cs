@@ -15,6 +15,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
     using System.Text;
     using System.Xml.Linq;
     using Fanex.Common;
+    using Fanex.CustomerSetting.Module.Core;
+    using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.CustomerSetting.Module.Keno.Criteria;
     using Fanex.CustomerSetting.Module.Keno.Entities;
     using Fanex.CustomerSetting.Module.Keno.Repositories;
@@ -57,6 +59,38 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
             return _kenoSettingRepository.UpdateSuperPositionTaking(criteria);
         }
 
+        public IList<Result> UpdateSuperBetSettings(CustomerInformation customerInformation, IList<BetSetting> betSettings)
+        {
+            var results = new List<Result>();
+
+            foreach (var betSetting in betSettings)
+            {
+                results.Add(this.UpdateSuperBetSetting(customerInformation, betSetting));
+            }
+
+            return results;
+        }
+
+        public IList<Result> UpdateSuperPositionTakings(CustomerInformation customerInformation, IList<SuperPositionTaking> positionTakings)
+        {
+            var results = new List<Result>();
+
+            foreach (var positionTaking in positionTakings)
+            {
+                results.Add(this.UpdateSuperPositionTaking(customerInformation, positionTaking));
+            }
+
+            return results;
+        }
+
+        public IList<Result> UpdateSuperCustomerSetting(SuperSetting superSetting)
+        {
+            var results = new List<Result>();
+            results.AddRange(this.UpdateSuperBetSettings(superSetting.CustomerInformation, superSetting.BetSettings));
+            results.AddRange(this.UpdateSuperPositionTakings(superSetting.CustomerInformation, superSetting.SuperPositionTakings));
+            return results;
+        }
+
         /// <summary>
         /// Creates the update super bet setting criteria.
         /// </summary>
@@ -76,9 +110,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
                 MinBet = betSetting.MinBet,
                 MaxBet = betSetting.MaxBet,
                 MaxPerMatch = betSetting.MaxPerMatch,
-                UserId = customerInformation.UserId,
-                SubAccId = customerInformation.SubAccId,
-                IP = customerInformation.Ip,
+                UserId = AppSession.AccId,
+                SubAccId = AppSession.SubAccountId,
+                Ip = Utils.GetClientIP(),
                 Language = customerInformation.Language
             };
         }
@@ -104,8 +138,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
                 UpdatePositionTaking = superPositionTaking.IsUpdatePT,
                 UpdateMinPositionTaking = superPositionTaking.IsUpdateN4,
                 UpdateCommission = superPositionTaking.IsUpdateSCo,
-                UserId = customerInformation.UserId,
-                IP = customerInformation.Ip,
+                UserId = AppSession.AccId,
+                Ip = Utils.GetClientIP(),
                 Language = customerInformation.Language
             };
         }

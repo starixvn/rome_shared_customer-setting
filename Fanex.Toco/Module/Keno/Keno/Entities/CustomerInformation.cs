@@ -41,7 +41,5 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
         public bool HideKeno { get; set; }
 
         public int UserId { get; set; }
-
-        public int SubAccId { get; set; }
     }
 }

@@ -38,7 +38,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Criteria
 
         public int SubAccId { get; set; }
 
-        public string IP { get; set; }
+        public string Ip { get; set; }
 
         public string Language { get; set; }
 
