@@ -25,8 +25,6 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         /// <param name="filterContext">The filter context.</param>
         protected override void OnActionExecuting(System.Web.Mvc.ActionExecutingContext filterContext)
         {
-            ////AppSession.AccId = 8;
-            ////ResourceHelper.SetCulture();
             var rootUrl = Url.Content("~") + filterContext.RouteData.DataTokens["area"].ToString() + "/" + ModuleRegistrator.Module + "/";
             ViewBag.RootUrl = rootUrl;
             base.OnActionExecuting(filterContext);
