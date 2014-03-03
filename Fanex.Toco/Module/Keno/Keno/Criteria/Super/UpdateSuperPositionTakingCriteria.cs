@@ -22,11 +22,11 @@ namespace Fanex.CustomerSetting.Module.Keno.Criteria
 
         public int BetType { get; set; }
 
-        public decimal sPositionTaking { get; set; }
+        public double SPositionTaking { get; set; }
 
-        public decimal Min_PositionTaking { get; set; }
+        public double Min_PositionTaking { get; set; }
 
-        public decimal Discount { get; set; }
+        public double Discount { get; set; }
 
         public bool UpdatePositionTaking { get; set; }
 
@@ -36,7 +36,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Criteria
 
         public int UserId { get; set; }
 
-        public string IP { get; set; }
+        public string Ip { get; set; }
 
         public string Language { get; set; }
 

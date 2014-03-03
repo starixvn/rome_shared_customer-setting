@@ -13,6 +13,9 @@ namespace Fanex.CustomerSetting.Module.Keno.ViewModels
     using System.Collections.Generic;
     using Fanex.CustomerSetting.Module.Keno.Entities;
 
+    /// <summary>
+    /// The MemberSetting view model.
+    /// </summary>
     public class MemberSetting : CustomerSettingBase
     {
         public IList<MemberPositionTaking> MemberPositionTakings { get; set; }

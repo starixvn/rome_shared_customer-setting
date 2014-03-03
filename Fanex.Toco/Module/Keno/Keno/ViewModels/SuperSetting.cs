@@ -13,6 +13,9 @@ namespace Fanex.CustomerSetting.Module.Keno.ViewModels
     using System.Collections.Generic;
     using Fanex.CustomerSetting.Module.Keno.Entities;
 
+    /// <summary>
+    /// The SuperSetting view model.
+    /// </summary>
     public class SuperSetting : CustomerSettingBase
     {
         public IList<SuperPositionTaking> SuperPositionTakings { get; set; }

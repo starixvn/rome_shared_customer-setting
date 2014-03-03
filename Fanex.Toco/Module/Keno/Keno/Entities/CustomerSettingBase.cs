@@ -12,6 +12,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
     using System;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// The CustomerSettingBase entity.
+    /// </summary>
     public class CustomerSettingBase
     {
         public CustomerInformation CustomerInformation { get; set; }

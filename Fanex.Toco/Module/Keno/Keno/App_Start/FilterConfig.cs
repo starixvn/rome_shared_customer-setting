@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------
-// <copyright file="KenoSettingBaseController.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="FilterConfig.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -11,6 +11,9 @@ namespace Fanex.CustomerSetting.Module.Keno.App_Start
 {
     using System.Web.Mvc;
 
+    /// <summary>
+    /// The FilterConfig class.
+    /// </summary>
     public class FilterConfig
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)

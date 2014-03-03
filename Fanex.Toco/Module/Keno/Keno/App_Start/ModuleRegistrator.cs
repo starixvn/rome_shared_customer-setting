@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------
-// <copyright file="KenoSettingBaseController.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="ModuleRegistrator.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -17,7 +17,6 @@ namespace Fanex.CustomerSetting.Module.Keno.App_Start
     /// </summary>
     public class ModuleRegistrator : AppAreaRegistrator
     {
-
         public const string Module = "Keno";
 
         /// <summary>

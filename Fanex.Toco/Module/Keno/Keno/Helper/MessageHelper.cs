@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------
-// <copyright file="CustomerSetting.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="MessageHelper.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -13,9 +13,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Helper
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
-    using Fanex.CustomerSetting.Module.Keno.Services;
     using Fanex.Common;
     using Fanex.CustomerSetting.Module.Core.Models;
+    using Fanex.CustomerSetting.Module.Keno.Services;
 
     /// <summary>
     /// TODO: Update summary.
@@ -53,7 +53,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Helper
 
                         var errMsg = errCode > 0
                                         ? arrErrorMsgs[i]
-                                        : ""; ////ResourceHelper.GetResource(errCode.ToString());
+                                        : string.Empty; ////ResourceHelper.GetResource(errCode.ToString());
 
                         errorResults.Add(new Result()
                         {
@@ -67,7 +67,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Helper
                         errorResults.Add(new Result()
                         {
                             ErrorCode = 0,
-                            ErrorMessage = "" ////ResourceHelper.GetResource("0")
+                            ErrorMessage = string.Empty ////ResourceHelper.GetResource("0")
                         });
                     }
                 }
@@ -77,7 +77,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Helper
                 errorResults.Add(new Result()
                 {
                     ErrorCode = 1000,
-                    ErrorMessage = "" ////ResourceHelper.GetResource("Unchanged")
+                    ErrorMessage = string.Empty ////ResourceHelper.GetResource("Unchanged")
                 });
             }
 

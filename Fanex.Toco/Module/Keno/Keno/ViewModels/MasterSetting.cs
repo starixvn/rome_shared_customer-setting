@@ -13,6 +13,9 @@ namespace Fanex.CustomerSetting.Module.Keno.ViewModels
     using System.Collections.Generic;
     using Fanex.CustomerSetting.Module.Keno.Entities;
 
+    /// <summary>
+    /// The MasterSetting view model.
+    /// </summary>
     public class MasterSetting : CustomerSettingBase
     {
         public IList<MasterPositionTaking> MasterPositionTakings { get; set; }

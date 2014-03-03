@@ -9,6 +9,9 @@
 
 namespace Fanex.CustomerSetting.Module.Keno.Entities
 {
+    /// <summary>
+    /// The BetSetting entity.
+    /// </summary>
     public class BetSetting
     {
         public int SportTypeId { get; set; }

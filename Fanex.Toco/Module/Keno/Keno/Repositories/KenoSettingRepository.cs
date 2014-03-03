@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------
-// <copyright file="CustomerSetting.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="KenoSettingRepository.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -9,6 +9,7 @@
 
 namespace Fanex.CustomerSetting.Module.Keno.Repositories
 {
+    using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Data;
@@ -16,18 +17,22 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
     using Fanex.Common;
     using Fanex.Common.Extensions;
     using Fanex.CustomerSetting.Module.Keno.Criteria;
+    using Fanex.CustomerSetting.Module.Keno.Entities;
     using Fanex.CustomerSetting.Module.Keno.ViewModels;
     using Fanex.Data;
-    using Fanex.Keno;
     using Fanex.NAP.Framework.Data;
     using Fanex.NAP.Framework.Exceptions;
-    using Fanex.CustomerSetting.Module.Keno.Entities;
 
     /// <summary>
     /// KenoSettingRepository Class.
     /// </summary>
-    public class KenoSettingRepository : IKenoSettingRepository
+    public class KenoSettingRepository : KenoSettingBaseRepository, IKenoSettingRepository, IKenoSettingBaseRepository
     {
+        /// <summary>
+        /// Gets the super setting.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>The SuperSetting object.</returns>
         public SuperSetting GetSuperSetting(ICriteria criteria)
         {
             if (!criteria.IsValid())
@@ -50,6 +55,21 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
             return superSetting;
         }
 
+        public Result UpdateSuperBetSetting(ICriteria criteria)
+        {
+            return this.UpdateSetting(criteria);
+        }
+
+        public Result UpdateSuperPositionTaking(ICriteria criteria)
+        {
+            return this.UpdateSetting(criteria);
+        }
+
+        /// <summary>
+        /// Readers the agent information data.
+        /// </summary>
+        /// <param name="dataReader">The data reader.</param>
+        /// <returns>The CustomerInformation object.</returns>
         private CustomerInformation ReaderAgentInfoData(IDataReader dataReader)
         {
             CustomerInformation customerInformation = null;
@@ -66,6 +86,11 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
             return customerInformation;
         }
 
+        /// <summary>
+        /// Reads the bet limit data.
+        /// </summary>
+        /// <param name="dataReader">The data reader.</param>
+        /// <returns>The list of BetSetting.</returns>
         private IList<BetSetting> ReadBetLimitData(IDataReader dataReader)
         {
             var betSettings = new List<BetSetting>();
@@ -87,6 +112,11 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
             return betSettings;
         }
 
+        /// <summary>
+        /// Reads the position taking data.
+        /// </summary>
+        /// <param name="dataReader">The data reader.</param>
+        /// <returns>The list of SuperPositionTaking.</returns>
         private IList<SuperPositionTaking> ReadPositionTakingData(IDataReader dataReader)
         {
             var positionTakings = new List<SuperPositionTaking>();
@@ -97,7 +127,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
                     BetTypeId = dataReader.ToInt("IBCBetTypeID"),
                     N4 = dataReader.ToDouble("minpositiontaking"),
                     L4 = dataReader.ToDouble("spositiontaking"),
-                    SCO = dataReader.ToDouble("sdiscount")
+                    SCo = dataReader.ToDouble("sdiscount")
                 };
 
                 positionTakings.Add(bettingSetting);

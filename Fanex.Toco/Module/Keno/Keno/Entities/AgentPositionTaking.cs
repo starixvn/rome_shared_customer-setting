@@ -9,6 +9,9 @@
 
 namespace Fanex.CustomerSetting.Module.Keno.Entities
 {
+    /// <summary>
+    /// The AgentPositionTaking entity.
+    /// </summary>
     public class AgentPositionTaking
     {
         public bool IsDisabledMPT { get; set; }
