@@ -21,21 +21,25 @@ KenoModule.directive('betSettingElement', function () {
         },
         templateUrl: '/Areas/CustomerSetting/Views/Keno/Setting/Partial/BetSetting/_BetSetting.htm',
         link: function ($scope, elem, attr, ctrl) {
-//            console.log($scope);
+            console.log($scope);
+
+            $scope.originalBetSetting = angular.copy($scope.betSetting);
+
+            $scope.$watch('betSetting.maxPerMatch', function (newValue, oldValue) {
+                if (newValue !== oldValue) {
+                    if (($scope.betSetting.maxPerMatch != $scope.originalBetSetting.maxPerMatch)) {
+                        $scope.betSetting.isBetSettingUpdated = true;
+                        $scope.$emit('betSetting');
+                        return true;
+                    }
+
+                    $scope.betSetting.isBetSettingUpdated = false;
+                    $scope.$emit('betSetting');
+                }
+            }, true);
 
         }
     };
-});
-
-
-
-KenoModule.controller('betSettingRowController', function ($scope, kenoRepositories, betSettingService, commonService) {
-    console.log($scope.betSetting);
-    $scope.originalBetSetting = angular.copy($scope.betSetting);
-
-//     $scope.$watch('positionTaking.s4', function () {
-//        
-//     }, true);
 });
 
 
@@ -50,30 +54,32 @@ KenoModule.directive('format', ['$filter', function ($filter) {
             var maxValue = eval(attrs.maxValue);
             var minValue = eval(attrs.minValue);
 
+                ctrl.$formatters.unshift(function (a) {
+                    return $filter(attrs.format)(ctrl.$modelValue)
+                });
 
-            ctrl.$formatters.unshift(function (a) {
-                return $filter(attrs.format)(ctrl.$modelValue)
-            });
+                ctrl.$parsers.unshift(function (viewValue) {
+                    var plainNumber = viewValue.replace(/[^\d|\-+|\.+]/g, '');
+                    if(plainNumber == ""){
+                        plainNumber = "0"
+                    }
 
-//            scope.$watch('ctrl.$modelValue', function () {
-//                console.log(ctrl.$modelValue);
-//            }, true);
+                    ctrl.$modelValue = eval(plainNumber);
+                    if (ctrl.$modelValue > maxValue) {
+                        alert("max invalid");
+                        return ctrl.$modelValue;
+                    }
 
-            ctrl.$parsers.unshift(function (viewValue) {
-//                if (ctrl.$modelValue > maxValue) {
-//                    alert("max invalid");
-//                    return ctrl.$modelValue;
-//                }
+                    if (ctrl.$modelValue < minValue) {
+                        alert("min invalid");
+                        return ctrl.$modelValue;
+                    }
 
-//                if (ctrl.$modelValue < minValue) {
-//                    alert("min invalid");
-//                    return ctrl.$modelValue;
-//                }
-
-                var plainNumber = viewValue.replace(/[^\d|\-+|\.+]/g, '');
-                elem.val($filter('number')(plainNumber));
-                return plainNumber;
-            });
+                           
+                    elem.val($filter('number')(plainNumber));
+                    return plainNumber;
+                });
         }
     };
 } ]);
+
