@@ -43,7 +43,6 @@ KenoModule.directive('betSettingElement', function () {
 });
 
 
-
 KenoModule.directive('format', ['$filter', function ($filter) {
     return {
         require: '?ngModel',
@@ -51,34 +50,36 @@ KenoModule.directive('format', ['$filter', function ($filter) {
         link: function (scope, elem, attrs, ctrl) {
             if (!ctrl) return;
 
-            var maxValue = eval(attrs.maxValue);
-            var minValue = eval(attrs.minValue);
+            ctrl.$formatters.unshift(function (a) {
+                return $filter(attrs.format)(ctrl.$modelValue)
+            });
 
-                ctrl.$formatters.unshift(function (a) {
-                    return $filter(attrs.format)(ctrl.$modelValue)
-                });
+            ctrl.$parsers.unshift(function (viewValue) {
+                var maxValue = eval(attrs.maxValue);
+                var minValue = eval(attrs.minValue);
 
-                ctrl.$parsers.unshift(function (viewValue) {
-                    var plainNumber = viewValue.replace(/[^\d|\-+|\.+]/g, '');
-                    if(plainNumber == ""){
-                        plainNumber = "0"
-                    }
+                var plainNumber = viewValue.replace(/[^\d|\-+|\.+]/g, '');
+                if (plainNumber == "") {
+                    plainNumber = "0"
+                }
 
-                    ctrl.$modelValue = eval(plainNumber);
-                    if (ctrl.$modelValue > maxValue) {
-                        alert("max invalid");
-                        return ctrl.$modelValue;
-                    }
+                ctrl.$modelValue = eval(plainNumber);
+                if (ctrl.$modelValue > maxValue) {
+                    alert("Value must be less than or equal to " + maxValue);
+                    ctrl.$modelValue = maxValue;
+                    //                    return ctrl.$modelValue;
+                }
 
-                    if (ctrl.$modelValue < minValue) {
-                        alert("min invalid");
-                        return ctrl.$modelValue;
-                    }
+                if (ctrl.$modelValue < minValue) {
+                    alert("Value must be more than or equal to " + minValue);
+                    ctrl.$modelValue = minValue;
+                    //                    return ctrl.$modelValue;
+                }
 
-                           
-                    elem.val($filter('number')(plainNumber));
-                    return plainNumber;
-                });
+
+                elem.val($filter('number')(plainNumber));
+                return plainNumber;
+            });
         }
     };
 } ]);

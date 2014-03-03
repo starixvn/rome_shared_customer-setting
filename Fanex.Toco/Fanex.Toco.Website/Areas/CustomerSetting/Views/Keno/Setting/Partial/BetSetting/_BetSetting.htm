@@ -5,22 +5,25 @@
             ng-click="updated(true, 'BetSetting')" type="button" /></div>
 </td>
 <td class="formatCol">
-    <input  class="col100 r"  type="text" ng-model="betSetting.minBet" format="number" min-value="{{betSetting.upline.minBet}}"
-        max-value="{{betSetting.maxBet}}" />
-    <div class="col100 l divInline" ng-show="betSetting.upline.minBet >= 0">&gt;= {{betSetting.upline.minBet | number
-        : 0}} </div>
+    <input class="col100 r" type="text" ng-model="betSetting.minBet" format="number"
+        min-value="{{betSetting.upline.minBet}}" max-value="{{betSetting.maxBet}}" />
+    <div class="col100 l divInline" ng-show="betSetting.upline.minBet >= 0">
+        &gt;= {{betSetting.upline.minBet | number : 0}}
+    </div>
 </td>
 <td class="formatCol">
-    <input class="col100 r"  type="text" ng-model="betSetting.maxBet" format="number" min-value="{{betSetting.minBet}}"
-        max-value="{Math.min(betSetting.upline.maxBet,betSetting.maxPerMatch)}" />
-    <div class="col100 l divInline" ng-show="betSetting.upline.maxBet >= 0">&lt;= {{betSetting.upline.maxBet | number
-        : 0}} </div>
+    <input class="col100 r" type="text" ng-model="betSetting.maxBet" format="number"
+        min-value="{{betSetting.minBet}}" max-value="{Math.min({{betSetting.upline.maxBet}},{{betSetting.maxPerMatch}})}" />
+    <div class="col100 l divInline" ng-show="betSetting.upline.maxBet >= 0">
+        &lt;= {{betSetting.upline.maxBet | number : 0}}
+    </div>
 </td>
 <td class=" formatCol ">
-    <input class="col100 r"  type="text" ng-model="betSetting.maxPerMatch" format="number" min-value="{{betSetting.maxBet}}"
-        max-value="{{betSetting.upline.maxPerMatch}}" />
-<div class="col100 l divInline" ng-show="betSetting.upline.maxPerMatch >= 0">&lt;= {{betSetting.upline.maxPerMatch
-        | number : 0}} </div>
+    <input class="col100 r" type="text" ng-model="betSetting.maxPerMatch" format="number"
+        min-value="{{betSetting.maxBet}}" max-value="{{betSetting.upline.maxPerMatch}}" />
+    <div class="col100 l divInline" ng-show="betSetting.upline.maxPerMatch >= 0">
+        &lt;= {{betSetting.upline.maxPerMatch | number : 0}}
+    </div>
 </td>
 <td class="col60 formatCol c">
     <label class="checkbox">
