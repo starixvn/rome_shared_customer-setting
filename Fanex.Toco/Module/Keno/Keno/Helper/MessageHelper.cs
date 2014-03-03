@@ -20,7 +20,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Helper
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    internal class MessageHelper
+    public class MessageHelper
     {
         /// <summary>
         /// Parses the error.
@@ -28,9 +28,6 @@ namespace Fanex.CustomerSetting.Module.Keno.Helper
         /// <param name="errorCode">The error code.</param>
         /// <param name="errorMsg">The error MSG.</param>
         /// <returns>The list of result object.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules",
-            "SP2101:MethodMustNotContainMoreLinesThan",
-            Justification = "Reviewed. Suppression is OK here.")]
         public static List<Result> ParseError(string errorCode, string errorMsg)
         {
             var errorResults = new List<Result>();

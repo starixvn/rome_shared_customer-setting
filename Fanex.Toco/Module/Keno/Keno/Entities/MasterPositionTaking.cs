@@ -12,7 +12,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
     /// <summary>
     /// The MasterPositionTaking entity.
     /// </summary>
-    public class MasterPositionTaking
+    public class MasterPositionTaking : PositionTakingBase
     {
         public bool IsUpdatePT { get; set; }
 
@@ -22,7 +22,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
 
         public bool IsUpdateN3 { get; set; }
 
-        public bool IsUpdateMCO { get; set; }
+        public bool IsUpdateMComm { get; set; }
 
         public bool IsUpdateAllMember { get; set; }
 
