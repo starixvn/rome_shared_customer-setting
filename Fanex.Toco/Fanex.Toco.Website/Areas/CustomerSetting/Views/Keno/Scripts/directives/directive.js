@@ -11,3 +11,26 @@ KenoModule.directive('checkDisableElement', function () {
         }
     }
 });
+
+
+//KenoModule.directive('betSettingElement', function () {
+//    return {
+//        restrict: 'A',
+//        scope: {},
+//        replace: true,
+//        templateUrl: '/Areas/CustomerSetting/Views/Keno/Scripts/directives/_BetSetting.html'
+//    }
+//});
+
+KenoModule.directive('betSettingElement', function () {
+    return {
+        restrict: 'EA',
+        scope: {
+            betSetting: "=",
+        },
+        templateUrl: '/Areas/CustomerSetting/Views/Keno/Scripts/directives/_BetSetting.html',
+        link: function ($scope, elem, attr, ctrl) {
+            console.log($scope);
+        }
+    };
+});

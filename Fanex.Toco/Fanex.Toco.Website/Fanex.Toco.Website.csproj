@@ -226,12 +226,14 @@
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\controllers\main.controller.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\controllers\position-taking.controller.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\directives\directive.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\directives\_BetSetting.html" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\modules\module.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\repositories\repository.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\services\betSettingService.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\services\commissionSettingService.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\services\commonService.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\services\position-taking.service.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\BetSetting\_BetSetting.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Accounting\Images\bgHeader.jpg" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Accounting\Images\bg_head_tb.jpg" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Accounting\Images\C_content_tab.png" />
@@ -274,6 +276,8 @@
     <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\Buttons\unverify-icon.png" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\calendar1.gif" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\close.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\copyChecked.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\copyUnChecked.png" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\C_content_tab.png" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\dec1.gif" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\dec1_disable.jpg" />

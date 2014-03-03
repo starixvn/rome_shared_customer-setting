@@ -9,7 +9,7 @@
             </td>
             <td colspan="2" class="header c b">
                 <span>@LayoutTexts.EnableStatus</span>
-                <input ng-class-name="btnSave" check-disable-element ng-model="isUpdateBetSetting"
+                <input ng-class-name="btnSave" check-disable-element ng-model="isBetSettingPartial"
                     ng-click="updated(true, 'BetSetting')" type="button" />
             </td>
         </tr>
@@ -32,11 +32,14 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="betSetting in betSettingList">
+        <tr ng-repeat="betSetting in betSettingList"  bet-setting-element ng-model="betSetting">
+           @* <td bet-setting-element></td>*@
+        </tr>
+        @*<tr ng-repeat="betSetting in betSettingList">
             <td class="col120 formatCol l">
                 <span>{{betSetting.betTypeName}}</span>
                 <div style="display: inline-block; float: right;" ng-switch="($index)==0">
-                    <input ng-switch-when="true" ng-class-name="btnCopyAll" check-disable-element ng-model="isUpdateBetSetting"
+                    <input ng-switch-when="true" ng-class-name="btnCopyAll" check-disable-element ng-model="isBetSettingPartial"
                         ng-click="updated(true, 'BetSetting')" type="button" /></div>
             </td>
             <td class="col150 formatCol l">
@@ -67,6 +70,6 @@
                     <input type="checkbox" ng-model="betSetting.isDownlinesDisable" />
                 </label>
             </td>
-        </tr>
+        </tr>*@
     </tbody>
 </table>
