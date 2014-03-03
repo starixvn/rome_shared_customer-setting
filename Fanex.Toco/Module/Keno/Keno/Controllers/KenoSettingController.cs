@@ -119,8 +119,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
                     A4 = 0.5,
                     N4 = 0,
                     L4 = 0.85,
-                    SCo = 0.0095,
-                    SCoMax = 0.01
+                    SComm = 0.0095,
+                    SMaxComm = 0.01
                 },
                 new SuperPositionTaking()
                 {
@@ -132,8 +132,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
                     A4 = 0.5,
                     N4 = 0,
                     L4 = 0.85,
-                    SCo = 0.0095,
-                    SCoMax = 0.01
+                    SComm = 0.0095,
+                    SMaxComm = 0.01
                 },
                 new SuperPositionTaking()
                 {
@@ -145,8 +145,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
                     A4 = 0.5,
                     N4 = 0,
                     L4 = 0.85,
-                    SCo = 0.0095,
-                    SCoMax = 0.01
+                    SComm = 0.0095,
+                    SMaxComm = 0.01
                 }
             };
 
@@ -155,6 +155,111 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
 
         [HttpPost]
         public JsonResult EditSuper(SuperSetting superSetting)
+        {
+            return Json(new
+            {
+                ErrCode = 1,
+                ErrMsg = "Reponded From ServerSide: Not Implemented Yet"
+            });
+        }
+
+        /// <summary>
+        /// Change name controller to clear.
+        /// </summary>
+        /// <param name="custId">The customer identifier.</param>
+        /// <returns>The ActionResult of EditMaster.</returns>
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditMaster")]
+        public ActionResult EditMaster(int custId)
+        {
+            return View(Constants.EditMasterCshtml);
+        }
+
+        [HttpPost]
+        public JsonResult EditMaster(MasterSetting masterSetting)
+        {
+            return Json(new
+            {
+                ErrCode = 1,
+                ErrMsg = "Reponded From ServerSide: Not Implemented Yet"
+            });
+        }
+
+        /// <summary>
+        /// Change name controller to clear.
+        /// </summary>
+        /// <param name="custId">The customer identifier.</param>
+        /// <returns>The ActionResult of EditAgent.</returns>
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditAgent")]
+        public ActionResult EditAgent(int custId)
+        {
+            return View(Constants.EditAgentCshtml);
+        }
+
+        [HttpPost]
+        public JsonResult EditAgent(MasterSetting agentSetting)
+        {
+            return Json(new
+            {
+                ErrCode = 1,
+                ErrMsg = "Reponded From ServerSide: Not Implemented Yet"
+            });
+        }
+
+        /// <summary>
+        /// Change name controller to clear.
+        /// </summary>
+        /// <param name="custId">The customer identifier.</param>
+        /// <returns>The ActionResult of SuperEditMember.</returns>
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "SuperEditMember")]
+        public ActionResult SuperEditMember(int custId)
+        {
+            return View(Constants.SuperEditMemberCshtml);
+        }
+
+        [HttpPost]
+        public JsonResult SuperEditMember(MemberSetting memberSetting)
+        {
+            return Json(new
+            {
+                ErrCode = 1,
+                ErrMsg = "Reponded From ServerSide: Not Implemented Yet"
+            });
+        }
+
+        /// <summary>
+        /// Change name controller to clear.
+        /// </summary>
+        /// <param name="custId">The customer identifier.</param>
+        /// <returns>The ActionResult of MasterEditMember.</returns>
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "MasterEditMember")]
+        public ActionResult MasterEditMember(int custId)
+        {
+            return View(Constants.MasterEditMemberCshtml);
+        }
+
+        [HttpPost]
+        public JsonResult MasterEditMember(MemberSetting memberSetting)
+        {
+            return Json(new
+            {
+                ErrCode = 1,
+                ErrMsg = "Reponded From ServerSide: Not Implemented Yet"
+            });
+        }
+
+        /// <summary>
+        /// Change name controller to clear.
+        /// </summary>
+        /// <param name="custId">The customer identifier.</param>
+        /// <returns>The ActionResult of MasterEditMember.</returns>
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "AgentEditMember")]
+        public ActionResult AgentEditMember(int custId)
+        {
+            return View(Constants.AgentEditMemberCshtml);
+        }
+
+        [HttpPost]
+        public JsonResult AgentEditMember(MemberSetting memberSetting)
         {
             return Json(new
             {

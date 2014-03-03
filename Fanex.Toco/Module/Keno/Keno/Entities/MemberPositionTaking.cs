@@ -12,12 +12,12 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
     /// <summary>
     /// The MemberPositionTaking entity.
     /// </summary>
-    public class MemberPositionTaking
+    public class MemberPositionTaking : PositionTakingBase
     {
         public bool IsUpdatePT { get; set; }
 
         public bool IsUpdateA1 { get; set; }
 
-        public bool IsUpdateCO { get; set; }
+        public bool IsUpdateComm { get; set; }
     }
 }

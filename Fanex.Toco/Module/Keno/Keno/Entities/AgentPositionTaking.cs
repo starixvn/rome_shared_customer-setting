@@ -12,7 +12,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
     /// <summary>
     /// The AgentPositionTaking entity.
     /// </summary>
-    public class AgentPositionTaking
+    public class AgentPositionTaking : PositionTakingBase
     {
         public bool IsDisabledMPT { get; set; }
 

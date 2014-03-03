@@ -134,7 +134,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
                 BetType = superPositionTaking.BetTypeId,
                 SPositionTaking = superPositionTaking.L4,
                 Min_PositionTaking = superPositionTaking.N4,
-                Discount = superPositionTaking.SCo,
+                Discount = superPositionTaking.SComm,
                 UpdatePositionTaking = superPositionTaking.IsUpdatePT,
                 UpdateMinPositionTaking = superPositionTaking.IsUpdateN4,
                 UpdateCommission = superPositionTaking.IsUpdateSCo,

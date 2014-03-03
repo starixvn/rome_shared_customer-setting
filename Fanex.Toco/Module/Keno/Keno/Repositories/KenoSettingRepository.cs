@@ -46,9 +46,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
             {
                 using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
                 {
-                    superSetting.CustomerInformation = ReaderAgentInfoData(reader);
+                    superSetting.CustomerInformation = ReadAgentInformationData(reader);
                     superSetting.BetSettings = ReadBetLimitData(reader);
-                    superSetting.SuperPositionTakings = ReadPositionTakingData(reader);
+                    superSetting.SuperPositionTakings = ReadSuperPositionTakingData(reader);
                 }
             }
 
@@ -66,11 +66,11 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
         }
 
         /// <summary>
-        /// Readers the agent information data.
+        /// Reads the agent information data.
         /// </summary>
         /// <param name="dataReader">The data reader.</param>
         /// <returns>The CustomerInformation object.</returns>
-        private CustomerInformation ReaderAgentInfoData(IDataReader dataReader)
+        private CustomerInformation ReadAgentInformationData(IDataReader dataReader)
         {
             CustomerInformation customerInformation = null;
             while (dataReader.Read())
@@ -103,7 +103,13 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
                     MaxBet = dataReader.ToDecimal("MaxBet"),
                     MaxPerMatch = dataReader.ToDecimal("MaxPerGameType"),
                     IsEnabled = !dataReader.ToBool("IsDisabled"),
-                    IsDownlinesEnabled = !dataReader.ToBool("DisableDownlinesKeno")
+                    IsDownlinesEnabled = !dataReader.ToBool("DisableDownlinesKeno"),
+                    Upline = new BetSetting()
+                    {
+                        MinBet = dataReader.ToDecimal("MaxMinBet"),
+                        MaxBet = !dataReader.IsDBNull("MinMaxBet") ? dataReader.ToDecimal("MinMaxBet") : 0,
+                        MaxPerMatch = !dataReader.IsDBNull("MinMaxBet") ? dataReader.ToDecimal("MinMaxPerMatch") : 0
+                    }
                 };
 
                 betSettings.Add(bettingSetting);
@@ -113,11 +119,11 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
         }
 
         /// <summary>
-        /// Reads the position taking data.
+        /// Reads the super position taking data.
         /// </summary>
         /// <param name="dataReader">The data reader.</param>
         /// <returns>The list of SuperPositionTaking.</returns>
-        private IList<SuperPositionTaking> ReadPositionTakingData(IDataReader dataReader)
+        private IList<SuperPositionTaking> ReadSuperPositionTakingData(IDataReader dataReader)
         {
             var positionTakings = new List<SuperPositionTaking>();
             while (dataReader.Read())
@@ -126,8 +132,152 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
                 {
                     BetTypeId = dataReader.ToInt("IBCBetTypeID"),
                     N4 = dataReader.ToDouble("minpositiontaking"),
-                    L4 = dataReader.ToDouble("spositiontaking"),
-                    SCo = dataReader.ToDouble("sdiscount")
+                    L4 = 0.85,
+                    S4 = dataReader.ToDouble("spositiontaking"),
+                    SComm = dataReader.ToDouble("sdiscount"),
+                    SMaxComm = dataReader.ToDouble("smaxdiscount")
+                };
+
+                positionTakings.Add(bettingSetting);
+            }
+
+            return positionTakings;
+        }
+
+        /// <summary>
+        /// Reads the master position taking data.
+        /// </summary>
+        /// <param name="dataReader">The data reader.</param>
+        /// <returns>The list of MasterPositionTaking.</returns>
+        private IList<MasterPositionTaking> ReadMasterPositionTakingData(IDataReader dataReader)
+        {
+            var positionTakings = new List<MasterPositionTaking>();
+            while (dataReader.Read())
+            {
+                var bettingSetting = new MasterPositionTaking
+                {
+                    BetTypeId = dataReader.ToInt("IBCBetTypeID"),
+                    IS3 = dataReader.ToBool("IS3"),
+                    US3 = dataReader.ToDouble("US3"),
+                    S3 = dataReader.ToDouble("spresetpositiontaking"),
+                    S4 = dataReader.ToDouble("spositiontaking"),
+                    N4 = dataReader.ToDouble("sminpositiontaking"),
+                    M4 = dataReader.ToDouble("mmaxpositiontaking"),
+                    M3 = dataReader.ToDouble("m3"),
+                    MComm = dataReader.ToDouble("mdiscount"),
+                    MMaxComm = dataReader.ToDouble("mmaxdiscount")
+                };
+
+                positionTakings.Add(bettingSetting);
+            }
+
+            return positionTakings;
+        }
+
+        /// <summary>
+        /// Reads the agent position taking data.
+        /// </summary>
+        /// <param name="dataReader">The data reader.</param>
+        /// <returns>The list of MasterPositionTaking.</returns>
+        private IList<AgentPositionTaking> ReadAgentPositionTakingData(IDataReader dataReader)
+        {
+            var positionTakings = new List<AgentPositionTaking>();
+            while (dataReader.Read())
+            {
+                var bettingSetting = new AgentPositionTaking
+                {
+                    BetTypeId = dataReader.ToInt("IBCBetTypeID"),
+                    IM2 = dataReader.ToBool("IM2"),
+                    UM2 = dataReader.ToDouble("UM2"),
+                    M2 = dataReader.ToDouble("mpresetpositiontaking"),
+                    N3 = dataReader.ToDouble("mminpositiontaking"),
+                    A4 = dataReader.ToDouble("amaxminpositiontaking"),
+                    M4 = dataReader.ToDouble("mmaxpositiontaking"),
+                    M3 = dataReader.ToDouble("m3"),
+                    A2 = dataReader.ToDouble("a2"),
+                    AComm = dataReader.ToDouble("adiscount"),
+                    AMaxComm = dataReader.ToDouble("amaxdiscount")
+                };
+
+                positionTakings.Add(bettingSetting);
+            }
+
+            return positionTakings;
+        }
+
+        /// <summary>
+        /// Reads the member position taking data.
+        /// </summary>
+        /// <param name="dataReader">The data reader.</param>
+        /// <returns>The list of MasterPositionTaking.</returns>
+        private IList<MemberPositionTaking> ReadAgentEditMemberPositionTakingData(IDataReader dataReader)
+        {
+            var positionTakings = new List<MemberPositionTaking>();
+            while (dataReader.Read())
+            {
+                var bettingSetting = new MemberPositionTaking
+                {
+                    BetTypeId = dataReader.ToInt("IBCBetTypeID"),
+                    A1 = dataReader.ToDouble("positiontaking"),
+                    L2 = dataReader.ToDouble("maxpositiontaking"),
+                    A4 = dataReader.ToDouble("amaxminpositiontaking"),
+                    A2 = dataReader.ToDouble("a2"),
+                    Comm = dataReader.ToDouble("discount"),
+                    MaxComm = dataReader.ToDouble("maxdiscount")
+                };
+
+                positionTakings.Add(bettingSetting);
+            }
+
+            return positionTakings;
+        }
+
+        /// <summary>
+        /// Reads the member position taking data.
+        /// </summary>
+        /// <param name="dataReader">The data reader.</param>
+        /// <returns>The list of MasterPositionTaking.</returns>
+        private IList<MemberPositionTaking> ReadSuperEditMemberPositionTakingData(IDataReader dataReader)
+        {
+            var positionTakings = new List<MemberPositionTaking>();
+            while (dataReader.Read())
+            {
+                var bettingSetting = new MemberPositionTaking
+                {
+                    BetTypeId = dataReader.ToInt("IBCBetTypeID"),
+                    A1 = dataReader.ToDouble("positiontaking"),
+                    L2 = dataReader.ToDouble("maxpositiontaking"),
+                    A4 = dataReader.ToDouble("amaxminpositiontaking"),
+                    A2 = dataReader.ToDouble("a2"),
+                    Comm = dataReader.ToDouble("discount"),
+                    MaxComm = dataReader.ToDouble("maxdiscount")
+                };
+
+                positionTakings.Add(bettingSetting);
+            }
+
+            return positionTakings;
+        }
+
+        /// <summary>
+        /// Reads the member position taking data.
+        /// </summary>
+        /// <param name="dataReader">The data reader.</param>
+        /// <returns>The list of MasterPositionTaking.</returns>
+        private IList<MemberPositionTaking> ReadMasterEditMemberPositionTakingData(IDataReader dataReader)
+        {
+            var positionTakings = new List<MemberPositionTaking>();
+            while (dataReader.Read())
+            {
+                var bettingSetting = new MemberPositionTaking
+                {
+                    BetTypeId = dataReader.ToInt("IBCBetTypeID"),
+                    A1 = dataReader.ToDouble("positiontaking"),
+                    L2 = dataReader.ToDouble("maxpositiontaking"),
+                    A4 = dataReader.ToDouble("amaxminpositiontaking"),
+                    A2 = dataReader.ToDouble("a2"),
+                    Comm = dataReader.ToDouble("discount"),
+                    MaxComm = dataReader.ToDouble("maxdiscount")
                 };
 
                 positionTakings.Add(bettingSetting);

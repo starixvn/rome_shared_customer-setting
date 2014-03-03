@@ -30,9 +30,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
 
         public double L4 { get; set; }
 
-        public double SCo { get; set; }
+        public double SComm { get; set; }
 
-        public double SCoMax { get; set; }
+        public double SMaxComm { get; set; }
 
         public double S3 { get; set; }
 
@@ -46,7 +46,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
 
         public double L3 { get; set; }
 
-        public double MCo { get; set; }
+        public double MComm { get; set; }
+
+        public double MMaxComm { get; set; }
 
         public double M2 { get; set; }
 
@@ -60,11 +62,15 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
 
         public double L2 { get; set; }
 
-        public double ACo { get; set; }
+        public double AComm { get; set; }
+
+        public double AMaxComm { get; set; }
 
         public double A1 { get; set; }
 
-        public double Co { get; set; }
+        public double Comm { get; set; }
+
+        public double MaxComm { get; set; }
 
         public double S1 { get; set; }
 
