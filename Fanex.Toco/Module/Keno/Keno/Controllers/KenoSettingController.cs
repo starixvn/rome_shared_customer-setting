@@ -150,7 +150,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
                 }
             };
 
-            return View(Constants.EditSuperCshtml, customerSetting);
+            return View(Constants.EDIT_SUPER_CSHTML, customerSetting);
         }
 
         [HttpPost]

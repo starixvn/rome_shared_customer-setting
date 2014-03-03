@@ -32,8 +32,9 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="betSetting in betSettingList"  bet-setting-element ng-model="betSetting">
+        <tr ng-repeat="betSetting in betSettingList" bet-setting-element ng-model="betSetting" index="$index" ng-controller="betSettingRowController">
            @* <td bet-setting-element></td>*@
+        @* <td   bet-setting-element betSetting="betSetting"></td>*@
         </tr>
         @*<tr ng-repeat="betSetting in betSettingList">
             <td class="col120 formatCol l">
