@@ -22,63 +22,136 @@ namespace Fanex.CustomerSetting.Module.Keno.Helper
     /// </summary>
     public class MessageHelper
     {
-        /// <summary>
-        /// Parses the error.
-        /// </summary>
-        /// <param name="errorCode">The error code.</param>
-        /// <param name="errorMsg">The error MSG.</param>
-        /// <returns>The list of result object.</returns>
-        public static List<Result> ParseError(string errorCode, string errorMsg)
+        private const string Separator = "\a";
+        private const int NoDataIsChangedCode = 1000;
+        private const int MessageIsNotValidCode = 1001;
+        private string _errorCode = string.Empty;
+        private string _errorMsg = string.Empty;
+        private List<Result> _errorResults;
+
+        public MessageHelper()
         {
-            var errorResults = new List<Result>();
+            _errorResults = new List<Result>();
+        }
 
-            if (!string.IsNullOrEmpty(errorCode))
+        public MessageHelper(string errorCode, string errorMsg)
+            : this()
+        {
+            _errorCode = errorCode;
+            _errorMsg = errorMsg;
+        }
+
+        internal List<Result> ErrorResults
+        {
+            get { return _errorResults; }
+        }
+
+        /// <summary>
+        /// Gets the errors.
+        /// </summary>
+        /// <returns>The list of errors.</returns>
+        public List<Result> GetErrors()
+        {
+            if (NoDataIsChanged())
             {
-                string[] splitChars = new[] { "\a" };
-                var arrErrorCode = errorCode.Split(splitChars, StringSplitOptions.RemoveEmptyEntries);
-                var arrErrorMsgs = errorMsg.Split(splitChars, StringSplitOptions.None);
-                if (arrErrorCode.Length > 0)
-                {
-                    var totalErrors = arrErrorCode.Length;
-                    for (int i = 0; i < totalErrors; i++)
-                    {
-                        var errCode = Converter.ToInt(arrErrorCode[i]);
-                        if (errCode == 0)
-                        {
-                            continue;
-                        }
-
-                        var errMsg = errCode > 0
-                                        ? arrErrorMsgs[i]
-                                        : string.Empty; ////ResourceHelper.GetResource(errCode.ToString());
-
-                        errorResults.Add(new Result()
-                        {
-                            ErrorCode = errCode,
-                            ErrorMessage = errMsg
-                        });
-                    }
-
-                    if (errorResults.Count == 0)
-                    {
-                        errorResults.Add(new Result()
-                        {
-                            ErrorCode = 0,
-                            ErrorMessage = string.Empty ////ResourceHelper.GetResource("0")
-                        });
-                    }
-                }
+                AddNotificationMessageWhenClientDataIsNotChanged();
+            }
+            else if (MessageIsNotValid())
+            {
+                AddErrorMessageInCaseMessageIsNotValid();
             }
             else
             {
-                errorResults.Add(new Result()
-                {
-                    ErrorCode = 1000,
-                    ErrorMessage = string.Empty ////ResourceHelper.GetResource("Unchanged")
-                });
+                AddErrorMessageWhenClientDataIsChanged();
+                AddSuccessfulMessageInCaseThereIsNoError();
             }
 
-            return errorResults;
+            return _errorResults;
+        }
+
+        internal static string GetResourceFromErrorCode(string errorCode)
+        {
+            return errorCode;
+        }
+
+        internal bool NoDataIsChanged()
+        {
+            return string.IsNullOrEmpty(this._errorCode);
+        }
+
+        internal void AddErrorMessageWhenClientDataIsChanged()
+        {
+            var errorCodes = _errorCode.Split(new[] { Separator }, StringSplitOptions.None);
+            var errorMsgs = _errorMsg.Split(new[] { Separator }, StringSplitOptions.None);
+
+            for (int i = 0; i < errorCodes.Length; i++)
+            {
+                AddErrorMessage(Convert.ToInt32(errorCodes[i]), errorMsgs[i]);
+            }
+        }
+
+        internal void AddSuccessfulMessageInCaseThereIsNoError()
+        {
+            if (_errorResults.Count == 0)
+            {
+                _errorResults.Add(new Result()
+                {
+                    ErrorCode = 0,
+                    ErrorMessage = GetResourceFromErrorCode("0")
+                });
+            }
+        }
+
+        internal void AddErrorMessage(int errorCode, string errorMsg)
+        {
+            if (errorCode != 0)
+            {
+                _errorResults.Add(new Result()
+                {
+                    ErrorCode = errorCode,
+                    ErrorMessage = errorCode > 0 ? errorMsg : GetResourceFromErrorCode(errorCode.ToString())
+                });
+            }
+        }
+
+        internal void AddNotificationMessageWhenClientDataIsNotChanged()
+        {
+            _errorResults.Add(new Result()
+            {
+                ErrorCode = NoDataIsChangedCode,
+                ErrorMessage = GetResourceFromErrorCode(NoDataIsChangedCode.ToString())
+            });
+        }
+
+        /// <summary>
+        /// Messages the is not valid.
+        /// </summary>
+        /// <returns>Whether the message is valid or not.</returns>
+        internal bool MessageIsNotValid()
+        {
+            if (!string.IsNullOrEmpty(_errorCode) && string.IsNullOrEmpty(_errorMsg))
+            {
+                return true;
+            }
+
+            var errorCodes = _errorCode.Split(new[] { Separator }, StringSplitOptions.None);
+            var errorMsgs = _errorMsg.Split(new[] { Separator }, StringSplitOptions.None);
+
+            if (errorCodes.Length != errorMsgs.Length)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        internal void AddErrorMessageInCaseMessageIsNotValid()
+        {
+            _errorResults.Add(new Result()
+            {
+                ErrorCode = MessageIsNotValidCode,
+                ErrorMessage = GetResourceFromErrorCode(MessageIsNotValidCode.ToString())
+            });
         }
     }
 }

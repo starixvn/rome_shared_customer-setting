@@ -25,5 +25,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
         IList<Result> UpdateSuperBetSettings(CustomerInformation customerInformation, IList<BetSetting> betSettings);
 
         IList<Result> UpdateSuperPositionTakings(CustomerInformation customerInformation, IList<SuperPositionTaking> positionTakings);
+
+        IList<Result> UpdateSuperCustomerSetting(SuperSetting superSetting);
     }
 }

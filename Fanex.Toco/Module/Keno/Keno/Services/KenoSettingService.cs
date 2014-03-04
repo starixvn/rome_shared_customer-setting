@@ -38,7 +38,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
 
         public KenoSettingService(IKenoSettingRepository kenoSettingRepository)
         {
-            _kenoSettingRepository = kenoSettingRepository;
+            _kenoSettingRepository = kenoSettingRepository ?? new KenoSettingRepository();
         }
 
         public SuperSetting GetSuperSetting(int custId)

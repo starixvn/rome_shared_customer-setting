@@ -21,7 +21,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
     using Fanex.CustomerSetting.Module.Keno.ViewModels;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
-    using Fanex.NAP.Framework.Exceptions; 
+    using Fanex.NAP.Framework.Exceptions;
 
     /// <summary>
     /// KenoSettingRepository Class.
@@ -35,7 +35,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
         /// <returns>The Result object.</returns>
         public Result UpdateSetting(ICriteria criteria)
         {
-            if (!criteria.IsValid())
+            if (criteria == null || !criteria.IsValid())
             {
                 throw new NapDataAccessException();
             }

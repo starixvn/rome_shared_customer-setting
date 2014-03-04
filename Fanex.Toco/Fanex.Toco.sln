@@ -49,6 +49,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keno.Resources", "Module\Ke
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KenoStatus", "Module\Keno\KenoStatus\KenoStatus.csproj", "{7954F23F-567D-457D-99DC-A92224A50A99}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.CustomerSetting.Module.Keno.Tests", "Module\Keno\Keno.Tests\Fanex.CustomerSetting.Module.Keno.Tests.csproj", "{933DF1A4-78C3-407E-86E9-A2F557434BF0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -119,10 +121,10 @@ Global
 		{F317B419-340B-418D-B2AB-8C43F18B85D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F317B419-340B-418D-B2AB-8C43F18B85D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F317B419-340B-418D-B2AB-8C43F18B85D6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7954F23F-567D-457D-99DC-A92224A50A99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7954F23F-567D-457D-99DC-A92224A50A99}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7954F23F-567D-457D-99DC-A92224A50A99}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7954F23F-567D-457D-99DC-A92224A50A99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{933DF1A4-78C3-407E-86E9-A2F557434BF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{933DF1A4-78C3-407E-86E9-A2F557434BF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{933DF1A4-78C3-407E-86E9-A2F557434BF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{933DF1A4-78C3-407E-86E9-A2F557434BF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -148,5 +150,6 @@ Global
 		{B4ECC635-F693-4EF8-9AC2-84B8900DDBCC} = {AE9C3ED2-2BFE-47F9-8303-DCC37ED9BA32}
 		{F317B419-340B-418D-B2AB-8C43F18B85D6} = {6879CEAE-B0E8-4C47-AB8C-CEF00D5A9E54}
 		{7954F23F-567D-457D-99DC-A92224A50A99} = {6879CEAE-B0E8-4C47-AB8C-CEF00D5A9E54}
+		{933DF1A4-78C3-407E-86E9-A2F557434BF0} = {2D3875C3-8D99-424C-B5F8-058295F74E6C}
 	EndGlobalSection
 EndGlobal
