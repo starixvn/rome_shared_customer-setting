@@ -1,6 +1,6 @@
 ﻿"use strict";
 
-KenoModule.controller('betSettingController', function ($scope, kenoRepositories, betSettingService) {
+KenoModule.controller('betSettingController', function ($scope, kenoRepositories) {
     $scope.betSettingList = kenoRepositories.kenoSetting.betSettings;
     $scope.isBetSettingPartial = false;
     $scope.isCopyAll = false;
