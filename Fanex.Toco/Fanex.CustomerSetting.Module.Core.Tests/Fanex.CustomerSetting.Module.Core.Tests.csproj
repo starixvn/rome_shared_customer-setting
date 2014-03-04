@@ -55,14 +55,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\UtilityTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Module\Keno\Keno\Fanex.CustomerSetting.Module.Keno.csproj">
-      <Project>{4204CDC3-7A3E-46C6-A97F-4CB07D2DF45E}</Project>
-      <Name>Fanex.CustomerSetting.Module.Keno</Name>
+    <Folder Include="Configurations\" />
+    <Folder Include="Controllers\Base\" />
+    <Folder Include="Criteria\" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="Repository\" />
+    <Folder Include="Services\" />
+    <Folder Include="Web\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Module\Core\Fanex.CustomerSetting.Module.Core.csproj">
+      <Project>{07B083E4-AA0A-41BF-A0FC-172C0E2A49B2}</Project>
+      <Name>Fanex.CustomerSetting.Module.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,0 +1,89 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="UtilityTests.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Paul.Nguyen" date="2014/02/20">Created.</change>
+// </history>
+
+namespace Fanex.CustomerSetting.Module.Core.Tests.Utility
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Linq;
+    using System.Text;
+    using Fanex.CustomerSetting.Module.Core.Utility;
+    using NUnit.Framework;
+    using Rhino.Mocks;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    [TestFixture]
+    public class UtilityTests
+    {
+        [Test]
+        public void ResolveCheckBox_IsChecked_ShouldReturnActiveText()
+        {
+            // Act
+            var status = Utility.ResolveCheckBox(true);
+
+            // Assert
+            Assert.AreEqual("active", status);
+        }
+
+        [Test]
+        public void ResolveCheckBox_IsNotChecked_ShouldReturnInActiveText()
+        {
+            // Act
+            var status = Utility.ResolveCheckBox(false);
+
+            // Assert
+            Assert.AreEqual("inactive", status);
+        }
+
+        [Test]
+        public void ToByte_InvalidInputValue_ShouldReturnZero()
+        {
+            // Act
+            var nullInput = Utility.ToByte(null);
+            var dbnullInput = Utility.ToByte(DBNull.Value);
+            var emptyInput = Utility.ToByte(string.Empty);
+
+            // Assert
+            Assert.AreEqual(0, nullInput);
+            Assert.AreEqual(0, dbnullInput);
+            Assert.AreEqual(0, emptyInput);
+        }
+
+        [Test]
+        public void ToByte_ValidInputValue_ShouldReturnExactValue()
+        {
+            // Act
+            var result = Utility.ToByte("10");
+
+            // Assert
+            Assert.AreEqual(10, result);
+        }
+
+        [Test]
+        [ExpectedException(typeof(System.NullReferenceException))]
+        public void ToByte_DataReaderIsNull_ShouldThrowsException()
+        {
+            // Act
+            Utility.ToByte(null, "certainField");
+        }
+
+        [Test]
+        public void ToByte_DataReaderIsInvalid_ShouldReturnZero()
+        {
+            // Arrange
+            var stubDataReader = MockRepository.GenerateStub<IDataReader>();
+
+            // Act
+            // Assert
+        }
+    }
+}

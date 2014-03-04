@@ -9,7 +9,7 @@
 
 namespace Fanex.CustomerSetting.Module.Keno.Services
 {
-    using Fanex.CustomerSetting.Module.Core;
+    using Fanex.CustomerSetting.Module.Core.Utility;
     using Fanex.CustomerSetting.Module.Core.Web;
 
     /// <summary>
@@ -37,7 +37,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
         {
             get
             {
-                return Utils.GetClientIP();
+                return Utility.GetClientIP();
             }
         }
     }

@@ -129,8 +129,8 @@
     <Compile Include="Services\Interface\ICoreService.cs" />
     <Compile Include="Services\Interface\IMessageService.cs" />
     <Compile Include="Services\Interface\IServiceBase.cs" />
-    <Compile Include="Utils\FormatKey.cs" />
-    <Compile Include="Utils\Utils.cs" />
+    <Compile Include="Utility\FormatKey.cs" />
+    <Compile Include="Utility\Utility.cs" />
     <Compile Include="Web\AppSession.cs" />
     <Compile Include="Web\App_Start\AppAreaRegistrator.cs" />
     <Compile Include="Web\App_Start\FilterConfig.cs" />
