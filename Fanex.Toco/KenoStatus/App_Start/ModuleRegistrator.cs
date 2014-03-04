@@ -18,7 +18,7 @@ namespace Fanex.CustomerSetting.Module.Racebook.App_Start
     /// </summary>
     public class ModuleRegistrator : AppAreaRegistrator
     {
-        public const string Module = "KenoStatus";
+        public const string Module = "Keno";
 
         /// <summary>
         /// Gets the name of the controller.

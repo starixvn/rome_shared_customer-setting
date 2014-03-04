@@ -221,6 +221,8 @@
     <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\table.css" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditSuperController.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Configurations\KenoSpNames.xml" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\EnableStatus\Scripts\KenoStatusController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\EnableStatus\Styles\EnableRacing.css" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\controllers\bet-setting.controller.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\controllers\customer-information.controller.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\controllers\main.controller.js" />
@@ -1018,6 +1020,7 @@
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\SuperOnMember\SuperEditMember.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Super\EditSuper.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Shared\_Layout.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\EnableStatus\Index.cshtml" />
     <None Include="Areas\CustomerSetting\Views\Keno\Styles\Accounting\theme-color.less" />
     <None Include="Areas\CustomerSetting\Views\Keno\Styles\Agent\theme-color.less" />
     <None Include="Areas\CustomerSetting\Views\Keno\Styles\Common.less" />
