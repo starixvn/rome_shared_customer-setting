@@ -42,15 +42,163 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditSuper")]
         public ActionResult EditSuper(int custId)
         {
-            var customerSetting = _kenoSettingService.GetSuperSetting(custId);
-            return View(Constants.EditSuperCshtml, customerSetting);
+            var customerSetting = new SuperSetting();
+
+            customerSetting.CustomerInformation = new CustomerInformation()
+            {
+                CustId = custId,
+                FirstName = "Paul",
+                LastName = "Nguyen",
+                Phone = "---",
+                MobilePhone = "---",
+                Fax = "---",
+                Username = "Super001"
+            };
+
+            customerSetting.BetSettings = new List<BetSetting>() 
+            {
+                new BetSetting()
+                {
+                    BetTypeId = 1,
+                    BetTypeName = "Beijing",
+                    MinBet = 0,
+                    MaxBet = 0,
+                    MaxPerMatch = 0,
+                    IsEnabled = true,
+                    IsDownlinesEnabled = true,
+                    Upline = new BetSetting() 
+                    {
+                        MinBet = 10,
+                        MaxBet = 0,
+                        MaxPerMatch = 0,
+                        IsEnabled = true,
+                        IsDownlinesEnabled = true
+                    }
+                },
+                new BetSetting()
+                {
+                    BetTypeId = 2,
+                    BetTypeName = "Canada",
+                    MinBet = 10,
+                    MaxBet = 0,
+                    MaxPerMatch = 0,
+                    IsEnabled = false,
+                    IsDownlinesEnabled = false,
+                    Upline = new BetSetting() 
+                    {
+                        MinBet = 10,
+                        MaxBet = 50,
+                        MaxPerMatch = 400,
+                        IsEnabled = true,
+                        IsDownlinesEnabled = false
+                    }
+                },
+                new BetSetting()
+                {
+                    BetTypeId = 3,
+                    BetTypeName = "Australia",
+                    MinBet = 0,
+                    MaxBet = 0,
+                    MaxPerMatch = 0,
+                    IsEnabled = true,
+                    IsDownlinesEnabled = false,
+                    Upline = new BetSetting() 
+                    {
+                        MinBet = 10,
+                        MaxBet = 50,
+                        MaxPerMatch = 300,
+                        IsEnabled = false,
+                        IsDownlinesEnabled = false
+                    }
+                },
+
+                 new BetSetting()
+                {
+                    BetTypeId = 4,
+                    BetTypeName = "Vienam",
+                    MinBet = 10,
+                    MaxBet = 0,
+                    MaxPerMatch = 0,
+                    IsEnabled = false,
+                    IsDownlinesEnabled = false,
+                    Upline = new BetSetting() 
+                    {
+                        MinBet = 10,
+                        MaxBet = 50,
+                        MaxPerMatch = 400,
+                        IsEnabled = true,
+                        IsDownlinesEnabled = true
+                    }
+                },
+                new BetSetting()
+                {
+                    BetTypeId = 4,
+                    BetTypeName = "Thai",
+                    MinBet = 0,
+                    MaxBet = 0,
+                    MaxPerMatch = 0,
+                    IsEnabled = true,
+                    IsDownlinesEnabled = false,
+                    Upline = new BetSetting() 
+                    {
+                        MinBet = 10,
+                        MaxBet = 50,
+                        MaxPerMatch = 300,
+                        IsEnabled = true,
+                        IsDownlinesEnabled = true
+                    }
+                },
+            };
+
+            customerSetting.SuperPositionTakings = new List<SuperPositionTaking>() 
+            {
+                new SuperPositionTaking()
+                {
+                    SportTypeId = 202,
+                    BetTypeId = 1,
+                    BetTypeName = "Bejing",
+                    S4 = 0.85,
+                    M4 = 0.6,
+                    A4 = 0.5,
+                    N4 = 0,
+                    L4 = 0.85,
+                    SComm = 0.0095,
+                    SMaxComm = 0.01
+                },
+                new SuperPositionTaking()
+                {
+                    SportTypeId = 202,
+                    BetTypeId = 2,
+                    BetTypeName = "Canada",
+                    S4 = 0.85,
+                    M4 = 0.6,
+                    A4 = 0.5,
+                    N4 = 0,
+                    L4 = 0.85,
+                    SComm = 0.0095,
+                    SMaxComm = 0.01
+                },
+                new SuperPositionTaking()
+                {
+                    SportTypeId = 202,
+                    BetTypeId = 3,
+                    BetTypeName = "Australia",
+                    S4 = 0.85,
+                    M4 = 0.6,
+                    A4 = 0.5,
+                    N4 = 0,
+                    L4 = 0.85,
+                    SComm = 0.0095,
+                    SMaxComm = 0.01
+                }
+            };
+
+            return View(Constants.EDIT_SUPER_CSHTML, customerSetting);
         }
 
         [HttpPost]
         public JsonResult EditSuper(SuperSetting superSetting)
         {
-            IList<Result> results = _kenoSettingService.UpdateSuperCustomerSetting(superSetting);
-
             return Json(new
             {
                 ErrCode = 1,

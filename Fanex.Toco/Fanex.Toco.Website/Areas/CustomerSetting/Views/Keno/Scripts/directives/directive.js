@@ -25,19 +25,51 @@ KenoModule.directive('betSettingElement', function () {
 
             $scope.originalBetSetting = angular.copy($scope.betSetting);
 
-            $scope.$watch('betSetting.maxPerMatch', function (newValue, oldValue) {
+            $scope.isStatuschkDisabled = false;
+            $scope.isDownlinechkDisabled = true;
+  
+            if (!$scope.betSetting.upline.isEnabled || !$scope.betSetting.upline.isDownlinesEnabled) {
+                $scope.isStatuschkDisabled = true;
+            }
+
+            $scope.$watch('[betSetting.minBet,betSetting.maxBet,betSetting.maxPerMatch]', function (newValue, oldValue) {
                 if (newValue !== oldValue) {
-                    if (($scope.betSetting.maxPerMatch != $scope.originalBetSetting.maxPerMatch)) {
+                    if (($scope.betSetting.minBet != $scope.originalBetSetting.minBet)
+                        || ($scope.betSetting.maxBet != $scope.originalBetSetting.maxBet)
+                        || ($scope.betSetting.maxPerMatch != $scope.originalBetSetting.maxPerMatch)) {
                         $scope.betSetting.isBetSettingUpdated = true;
-                        $scope.$emit('betSetting');
-                        return true;
+                    }
+                    else {
+                        $scope.betSetting.isBetSettingUpdated = false;
                     }
 
-                    $scope.betSetting.isBetSettingUpdated = false;
                     $scope.$emit('betSetting');
                 }
             }, true);
 
+            $scope.$watch('betSetting.isEnabled', function (newValue, oldValue) {
+                if (newValue !== oldValue) {
+                    if ($scope.originalBetSetting.isEnabled) {
+                        $scope.isDownlinechkDisabled = true;
+                        if ($scope.betSetting.isEnabled != $scope.originalBetSetting.isEnabled) {
+                            if ($scope.originalBetSetting.isDownlinesEnabled) {
+                                $scope.betSetting.isDownlinesEnabled = !$scope.originalBetSetting.isDownlinesEnabled;
+                            }
+                            $scope.betSetting.isStatusUpdated = true;
+                        }
+                        else {
+                            $scope.betSetting.isDownlinesEnabled = $scope.originalBetSetting.isDownlinesEnabled;
+                            $scope.betSetting.isStatusUpdated = false;
+                        }
+                    }
+                    else {
+                        $scope.betSetting.isStatusUpdated = $scope.betSetting.isEnabled != $scope.originalBetSetting.isEnabled;
+                        $scope.isDownlinechkDisabled = $scope.betSetting.isEnabled == false ;
+                    }
+
+                    $scope.$emit('status');
+                }
+            }, true);
         }
     };
 });
@@ -66,13 +98,15 @@ KenoModule.directive('format', ['$filter', function ($filter) {
                 ctrl.$modelValue = eval(plainNumber);
                 if (ctrl.$modelValue > maxValue) {
                     alert("Value must be less than or equal to " + maxValue);
-                    ctrl.$modelValue = maxValue;
+//                    ctrl.$modelValue = maxValue;
+//                    plainNumber = maxValue.toString();
                     //                    return ctrl.$modelValue;
                 }
 
                 if (ctrl.$modelValue < minValue) {
                     alert("Value must be more than or equal to " + minValue);
-                    ctrl.$modelValue = minValue;
+//                    ctrl.$modelValue = minValue;
+//                    plainNumber = minValue.toString();
                     //                    return ctrl.$modelValue;
                 }
 

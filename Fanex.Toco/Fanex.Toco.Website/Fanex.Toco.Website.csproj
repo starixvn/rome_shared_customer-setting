@@ -236,7 +236,6 @@
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\controllers\main.controller.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\controllers\position-taking.controller.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\directives\directive.js" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\directives\_BetSetting.html" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\modules\module.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\repositories\repository.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\services\betSettingService.js" />
