@@ -67,7 +67,7 @@ KenoModule.directive('betSettingElement', function () {
                         $scope.isDownlinechkDisabled = $scope.betSetting.isEnabled == false ;
                     }
 
-                    $scope.$emit('status');
+                    $scope.$emit('betSetting');
                 }
             }, true);
         }

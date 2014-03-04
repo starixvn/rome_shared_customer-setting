@@ -2,7 +2,7 @@
     <span>{{betSetting.betTypeName}}</span>
     <div style="display: inline-block; float: right;" ng-switch="index == 0">
         <input ng-class="{'btnCopyAll' : $parent.$parent.isCopyAll, 'btnUnCopyAll' : !$parent.$parent.isCopyAll}" ng-switch-when="true" ng-class-name="btnCopyAll" ng-model="$parent.$parent.isCopyAll"
-            ng-click="$parent.$parent.copyAll($parent.$parent.isCopyAll)" type="button" /></div>
+            ng-click="$parent.$parent.copyAll(!$parent.$parent.isCopyAll)" type="button" /></div>
 </td>
 <td class="formatCol">
     <input ng-disabled="$parent.$parent.isCopyAll && index != 0" class="col100 r" type="text"
