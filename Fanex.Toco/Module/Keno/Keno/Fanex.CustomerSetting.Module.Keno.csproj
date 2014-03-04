@@ -147,6 +147,7 @@
     <Compile Include="Entities\MasterPositionTaking.cs" />
     <Compile Include="Entities\SuperPositionTaking.cs" />
     <Compile Include="Entities\CustomerSettingBase.cs" />
+    <Compile Include="Helper\IMessageHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helper\MessageHelper.cs" />
     <Compile Include="Repositories\IKenoSettingBaseRepository.cs" />
@@ -157,7 +158,9 @@
     <Compile Include="Entities\BetSetting.cs" />
     <Compile Include="Entities\CustomerInformation.cs" />
     <Compile Include="Entities\PositionTakingBase.cs" />
+    <Compile Include="Services\IKenoSession.cs" />
     <Compile Include="Services\IKenoSettingService.cs" />
+    <Compile Include="Services\KenoSession.cs" />
     <Compile Include="Services\KenoSettingService.cs" />
     <Compile Include="ViewModels\AgentSetting.cs" />
     <Compile Include="ViewModels\MemberSetting.cs" />

@@ -14,11 +14,15 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
     /// </summary>
     public static class Constants
     {
-        public const string EDIT_SUPER_CSHTML = "~/Areas/CustomerSetting/Views/Keno/Setting/Super/EditSuper.cshtml";
+        public const string EditSuperCshtml = "~/Areas/CustomerSetting/Views/Keno/Setting/Super/EditSuper.cshtml";
         public const string EditMasterCshtml = "~/Areas/CustomerSetting/Views/Keno/KenoSetting/EditMaster.cshtml";
         public const string EditAgentCshtml = "~/Areas/CustomerSetting/Views/Keno/KenoSetting/EditAgent.cshtml";
         public const string SuperEditMemberCshtml = "~/Areas/CustomerSetting/Views/Keno/KenoSetting/SuperEditMember.cshtml";
         public const string AgentEditMemberCshtml = "~/Areas/CustomerSetting/Views/Keno/KenoSetting/AgentEditMember.cshtml";
         public const string MasterEditMemberCshtml = "~/Areas/CustomerSetting/Views/Keno/KenoSetting/MasterEditMember.cshtml";
+
+        public const string GetSuperSettingCriteriaKeyName = "Acc_CustomerSelEditSuperKeno";
+        public const string UpdateSuperBetSettingCriteriaKeyName = "Acc_CustomerUpdSuperKeno_BetSetting";
+        public const string UpdateSuperPositionTakingCriteriaKeyName = "Acc_CustomerUpdSuperKeno_Positiontaking";
     }
 }

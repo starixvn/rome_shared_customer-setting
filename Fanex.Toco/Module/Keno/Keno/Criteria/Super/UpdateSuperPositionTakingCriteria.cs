@@ -9,6 +9,7 @@
 
 namespace Fanex.CustomerSetting.Module.Keno.Criteria
 {
+    using Fanex.CustomerSetting.Module.Keno.Entities;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -46,7 +47,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Criteria
 
         public override string GetSettingKey()
         {
-            return "Acc_CustomerUpdSuperKeno_Positiontaking";
+            return Constants.UpdateSuperPositionTakingCriteriaKeyName;
         }
 
         public override bool IsValid()

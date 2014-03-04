@@ -20,7 +20,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Helper
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class MessageHelper
+    public class MessageHelper : IMessageHelper
     {
         private const string Separator = "\a";
         private const int NoDataIsChangedCode = 1000;

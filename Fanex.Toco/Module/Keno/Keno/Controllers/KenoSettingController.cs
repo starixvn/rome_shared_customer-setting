@@ -43,7 +43,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         public ActionResult EditSuper(int custId)
         {
             var customerSetting = _kenoSettingService.GetSuperSetting(custId);
-            return View(Constants.EDIT_SUPER_CSHTML, customerSetting);
+            return View(Constants.EditSuperCshtml, customerSetting);
         }
 
         [HttpPost]
