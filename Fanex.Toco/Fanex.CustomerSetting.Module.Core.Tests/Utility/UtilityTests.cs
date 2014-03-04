@@ -83,7 +83,32 @@ namespace Fanex.CustomerSetting.Module.Core.Tests.Utility
             var stubDataReader = MockRepository.GenerateStub<IDataReader>();
 
             // Act
+            var firstname = Utility.ToByte(stubDataReader, "firstname");
+
             // Assert
+            Assert.AreEqual(0, firstname);
+        }
+
+        [Test]
+        public void ToByte_ParseValueFromDataReader()
+        {
+            // Arrange
+            var stubDataReader = MockRepository.GenerateStub<IDataReader>();
+            stubDataReader.Stub(d => d["firstname"]).Return("paul");
+            stubDataReader.Stub(d => d["isactive"]).Return(true);
+            stubDataReader.Stub(d => d["custid"]).Return(10);
+
+            // Act
+            var firstName = Utility.ToByte(stubDataReader, "firstname");
+            var lastName = Utility.ToByte(stubDataReader, "lastname");
+            var isActive = Utility.ToByte(stubDataReader, "isactive");
+            var custId = Utility.ToByte(stubDataReader, "custid");
+
+            // Assert
+            Assert.AreEqual(0, firstName);
+            Assert.AreEqual(0, lastName);
+            Assert.AreEqual(0, isActive);
+            Assert.AreEqual(10, custId);
         }
     }
 }
