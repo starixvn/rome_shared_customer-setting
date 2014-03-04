@@ -1,8 +1,11 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="KenoSettingBaseRepositoryTests.cs" company="">
-// TODO: Update copyright text.
+// <copyright file="KenoSettingBaseRepositoryTests.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Paul.Nguyen" date="2014/03/04">Created.</change>
+// </history>
 
 namespace Fanex.CustomerSetting.Module.Keno.Tests.Repositories
 {
@@ -35,39 +38,46 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Repositories
 
         [Test]
         [ExpectedException(typeof(NapDataAccessException))]
-        public void UpdateSetting_CriteriaIsNotValid_ThrowsException()
+        public void UpdateSetting_CriteriaIsNotValid_ThrowsExceptionWithUsingRecord()
         {
             // Arrange
             var mocks = new MockRepository();
-            var criteria = mocks.DynamicMock<ICriteria>();
+            var mockCriteria = mocks.DynamicMock<ICriteria>();
 
             using (mocks.Record())
             {
-                criteria.IsValid();
+                mockCriteria.IsValid();
                 LastCall.Return(false);
             }
 
             var kenoSettingBaseRepository = new KenoSettingBaseRepository();
 
             // Act
-            kenoSettingBaseRepository.UpdateSetting(criteria);
+            kenoSettingBaseRepository.UpdateSetting(mockCriteria);
+        }
+
+        [Test]
+        [ExpectedException(typeof(NapDataAccessException))]
+        public void UpdateSetting_CriteriaIsNotValid_ThrowsExceptionWithoutUsingRecord()
+        {
+            // Arrange
+            var mockCriteria = MockRepository.GenerateMock<ICriteria>();
+            mockCriteria.Stub(c => c.IsValid()).Return(false);
+            var kenoSettingBaseRepository = new KenoSettingBaseRepository();
+
+            // Act
+            kenoSettingBaseRepository.UpdateSetting(mockCriteria);
         }
 
         [Test]
         public void UpdateSetting_CreateMockCriteria_ReturnTrue()
         {
             // Arrange
-            var mocks = new MockRepository();
-            var criteria = mocks.DynamicMock<ICriteria>();
-
-            using (mocks.Record())
-            {
-                criteria.IsValid();
-                LastCall.Return(true);
-            }
+            var mockCriteria = MockRepository.GenerateMock<ICriteria>();
+            mockCriteria.Stub(c => c.IsValid()).Return(true);
 
             // Act
-            var isValid = criteria.IsValid();
+            var isValid = mockCriteria.IsValid();
 
             // Assert
             Assert.AreEqual(true, isValid);

@@ -26,7 +26,7 @@ namespace Fanex.CustomerSetting.Module.Keno.App_Start
             RegisterCustomerSetting(bundles);
         }
 
-        private static void RegisterBundleCore(BundleCollection bundles)
+        internal static void RegisterBundleCore(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/js/core").Include(
                 "~/Areas/CustomerSetting/Scripts/jquery.js",
@@ -42,7 +42,7 @@ namespace Fanex.CustomerSetting.Module.Keno.App_Start
         /// Registers the customer setting.
         /// </summary>
         /// <param name="bundles">The bundles.</param>
-        private static void RegisterCustomerSetting(BundleCollection bundles)
+        internal static void RegisterCustomerSetting(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/js/keno/customersetting").Include(
                 "~/Areas/CustomerSetting/Views/Keno/Scripts/modules/module.js",
