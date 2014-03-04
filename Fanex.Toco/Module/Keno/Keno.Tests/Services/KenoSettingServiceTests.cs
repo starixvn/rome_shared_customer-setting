@@ -99,7 +99,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Services
         }
 
         [Test]
-        public void UpdateSuperCustomerSetting_InvalidCustomerSetting_ShouldReturnAListOfResults()
+        public void UpdateSuperCustomerSetting_ValidCustomerSetting_ShouldReturnAListOfResults()
         {
             // Arrange
             _mockRepository.Expect(r => r.UpdateSuperBetSetting(Arg<ICriteria>.Is.Anything)).Return(new Result() { });
