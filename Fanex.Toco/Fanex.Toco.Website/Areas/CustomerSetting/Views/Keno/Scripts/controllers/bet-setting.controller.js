@@ -1,13 +1,17 @@
 ﻿"use strict";
 
-KenoModule.controller('betSettingController', function ($scope, kenoRepositories) {
-    $scope.betSettingList = kenoRepositories.kenoSetting.betSettings;
-    $scope.roleId = kenoRepositories.kenoSetting.customerInformation.roleId;
+KenoModule.controller('betSettingController', function ($scope, kenoRepositories, dataService) {
+//    $scope.betSettingList = kenoRepositories.kenoSetting.betSettings;
+//    $scope.roleId = kenoRepositories.kenoSetting.customerInformation.roleId;
+
+    $scope.betSettingList = dataService.createBetSettingList();
+    $scope.roleId = 4;
+
     $scope.betSettingCopyAll = kenoRepositories.kenoSetting.betSettingCopyAll;
     $scope.isBetSettingPartial = false;
     $scope.isCopyAll = false;
 
-    console.log($scope);
+    console.log($scope.betSettingList);
 
     $scope.copyAll = function (isCopy, betTypeID) {
         $scope.isCopyAll = isCopy;

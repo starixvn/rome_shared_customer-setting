@@ -13,3 +13,4 @@ KenoModule.factory('kenoRepositories', function ($http, $q) {
         }
     }
 });
+

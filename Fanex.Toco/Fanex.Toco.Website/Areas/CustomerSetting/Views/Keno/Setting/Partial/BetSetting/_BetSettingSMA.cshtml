@@ -37,6 +37,6 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="betSetting in betSettingList" bet-setting-element ng-model="betSetting" index="$index"></tr>
+        <tr ng-repeat="betSetting in betSettingList track by $index" bet-setting-element ng-model="betSetting" index="$index"></tr>
     </tbody>
 </table>

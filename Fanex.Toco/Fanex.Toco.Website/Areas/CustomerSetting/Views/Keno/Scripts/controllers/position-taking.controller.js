@@ -1,7 +1,9 @@
 ﻿"use strict";
 
-KenoModule.controller('positionTakingController', function ($scope, kenoRepositories) {
-    $scope.positionTakingList = kenoRepositories.kenoSetting.positionTakings;
+KenoModule.controller('positionTakingController', function ($scope, kenoRepositories, dataService) {
+    //    $scope.positionTakingList = kenoRepositories.kenoSetting.positionTakings;
+    $scope.positionTakingList = dataService.createPositionTakingList(3);
+
     $scope.positionTakingCopyAll = kenoRepositories.kenoSetting.betSettingCopyAll;
     $scope.isPositionTakingPartial = false;
     $scope.isCopyAll = false;
@@ -25,6 +27,20 @@ KenoModule.controller('positionTakingController', function ($scope, kenoReposito
         $scope.isPositionTakingPartial = false;
     });
 
+
+    $scope.$on('confirmIsAuto', function (event, data) {
+        
+        var length = $scope.positionTakingList.length;
+        for (var i = 0; i < length; i++) {
+            var positionTakingTmp = $scope.positionTakingList[i];
+            if (positionTakingTmp.isUpdatePT) {
+                $scope.isPositionTakingPartial = true;
+                return true;
+            }
+        }
+
+        $scope.isPositionTakingPartial = false;
+    });
 
     $scope.$watch('isCopyAll', function (newValue, oldValue) {
         if (newValue !== oldValue) {
