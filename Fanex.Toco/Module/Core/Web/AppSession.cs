@@ -16,6 +16,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Web;
 using Fanex.NAP.Core.Model;
 using System.Configuration;
+using Fanex.CustomerSetting.Module.Core.Entities;
 
 namespace Fanex.CustomerSetting.Module.Core.Web
 {

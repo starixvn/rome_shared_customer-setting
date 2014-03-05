@@ -20,6 +20,7 @@ using System.Web.Mvc.Html;
 using System.Globalization;
 using System.Web;
 using System.Collections.Specialized;
+using Fanex.CustomerSetting.Module.Core.Entities;
 
 namespace Fanex.CustomerSetting.Module.Core.Extensions
 {

@@ -91,7 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\AppSettings.cs" />
-    <Compile Include="Constants.cs" />
+    <Compile Include="Entities\Constants.cs" />
     <Compile Include="Controllers\Base\ControllerExtentions.cs" />
     <Compile Include="Controllers\Base\JsonBase.cs" />
     <Compile Include="Criteria\GetBettypeCriteria.cs">
