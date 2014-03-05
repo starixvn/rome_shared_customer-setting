@@ -64,7 +64,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
         /// <param name="uplineId">Upper customer id.</param>
         /// <param name="roleId">Customer role id.</param>
         /// <returns>ActionResult object.</returns>        
-        public ActionResult GetKenoStatusData(int id, int uplineId, int roleId, string useName)
+        public ActionResult GetKenoStatusData(int id, int uplineId, int roleId)
         {
             //ViewBag.roleId = roleId;
             //ViewBag.id = id;
