@@ -103,68 +103,68 @@ function KenoStatusController($scope) {
 /*
  test data
 */
-var model = {
-    custID: 1176070,
-    userName: "SuperTest1",
-    roleID: 4,
-    uplineID: 122451,
-    userID: 51154,
-    betTypeStatusList: [{
-        betTypeID: 1,
-        betTypeName: "Beijing",
-        isDisabled: true,
-        isDisabledUpline: true,
-        isDisabledDownlines: true
-    },
-    {
-        betTypeID: 2,
-        betTypeName: "Canada",
-        isDisabled: false,
-        isDisabledUpline: false,
-        isDisabledDownlines: true
-    },
-    {
-        betTypeID: 3,
-        betTypeName: "Australia",
-        isDisabled: false,
-        isDisabledUpline: false,
-        isDisabledDownlines: false
-    }
-    , {
-        betTypeID: 4,
-        betTypeName: "Slovakia",
-        isDisabled: false,
-        isDisabledUpline: false,
-        isDisabledDownlines: false
-    }, {
-        betTypeID: 5,
-        betTypeName: "Ohio",
-        isDisabled: true,
-        isDisabledUpline: false,
-        isDisabledDownlines: true
-    }, {
-        betTypeID: 6,
-        betTypeName: "West Canada",
-        isDisabled: false,
-        isDisabledUpline: false,
-        isDisabledDownlines: false
-    }, {
-        betTypeID: 7,
-        betTypeName: "Malta",
-        isDisabled: false,
-        isDisabledUpline: false,
-        isDisabledDownlines: false
-    }, {
-        betTypeID: 8,
-        betTypeName: "Taiwan",
-        isDisabled: false,
-        isDisabledUpline: false,
-        isDisabledDownlines: false
-    }, {
-        betTypeID: 8,
-        betTypeName: "Massac",
-        isDisabled: false,
-        isDisabledUpline: false,
-        isDisabledDownlines: false
-    }]
-};
+//var model = {
+//    custID: 1176070,
+//    userName: "SuperTest1",
+//    roleID: 4,
+//    uplineID: 122451,
+//    userID: 51154,
+//    betTypeStatusList: [{
+//        betTypeID: 1,
+//        betTypeName: "Beijing",
+//        isDisabled: true,
+//        isDisabledUpline: true,
+//        isDisabledDownlines: true
+//    },
+//    {
+//        betTypeID: 2,
+//        betTypeName: "Canada",
+//        isDisabled: false,
+//        isDisabledUpline: false,
+//        isDisabledDownlines: true
+//    },
+//    {
+//        betTypeID: 3,
+//        betTypeName: "Australia",
+//        isDisabled: false,
+//        isDisabledUpline: false,
+//        isDisabledDownlines: false
+//    }
+//    , {
+//        betTypeID: 4,
+//        betTypeName: "Slovakia",
+//        isDisabled: false,
+//        isDisabledUpline: false,
+//        isDisabledDownlines: false
+//    }, {
+//        betTypeID: 5,
+//        betTypeName: "Ohio",
+//        isDisabled: true,
+//        isDisabledUpline: false,
+//        isDisabledDownlines: true
+//    }, {
+//        betTypeID: 6,
+//        betTypeName: "West Canada",
+//        isDisabled: false,
+//        isDisabledUpline: false,
+//        isDisabledDownlines: false
+//    }, {
+//        betTypeID: 7,
+//        betTypeName: "Malta",
+//        isDisabled: false,
+//        isDisabledUpline: false,
+//        isDisabledDownlines: false
+//    }, {
+//        betTypeID: 8,
+//        betTypeName: "Taiwan",
+//        isDisabled: false,
+//        isDisabledUpline: false,
+//        isDisabledDownlines: false
+//    }, {
+//        betTypeID: 8,
+//        betTypeName: "Massac",
+//        isDisabled: false,
+//        isDisabledUpline: false,
+//        isDisabledDownlines: false
+//    }]
+//};
