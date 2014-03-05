@@ -25,6 +25,12 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Criteria
         public int CustId { get; set; }
 
         /// <summary>
+        /// Gets or sets the Bet Type 
+        /// </summary>
+        /// <value>The Bet Type</value>
+        public int Bettype { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether disable status.
         /// </summary>
         /// <value>The id of the customer.</value>
