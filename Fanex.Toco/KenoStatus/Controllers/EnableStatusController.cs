@@ -44,10 +44,10 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
         /// <param name="uplineId">Upper customer id.</param>
         /// <param name="roleId">Customer role id.</param>
         /// <returns>ActionResult object.</returns>
-        public ActionResult Index(int id, int uplineId, int roleId)
+        public ActionResult Index(int id, int uplineId, int roleId, string userName = null)
         {
             var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
-            if (!obj.IsBelong(id, null))
+            if (!obj.IsBelong(id, userName))
             {
                 return this.ActionDenied(this.Request);
             }
