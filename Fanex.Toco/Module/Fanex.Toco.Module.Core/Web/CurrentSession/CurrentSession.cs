@@ -18,12 +18,14 @@ namespace Fanex.CustomerSetting.Module.Core.Web
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using System.Web.UI;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class CurrentSession : ICurrentSession
+    public class CurrentSession :Page, ICurrentSession
     {
+        public const string _Language = "LANGUAGE";
         public string UserName
         {
             get;
@@ -92,8 +94,15 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 
         public string Language
         {
-            get;
-            set;
+            get
+            {
+                return Utils.ToString(this.Session[_Language]);
+            }
+
+            set
+            {
+                this.Session[_Language] = value;
+            }
         }
     }
 }
