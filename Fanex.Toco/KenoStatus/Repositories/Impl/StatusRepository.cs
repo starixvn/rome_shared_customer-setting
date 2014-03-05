@@ -23,7 +23,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Repositories.Impl
     /// Progressive repository.
     /// </summary>
     [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1027:TabsMustNotBeUsed", Justification = "Reviewed.")]
-    public class ProgressiveRepository : IStatusRepository
+    public class StatusRepository : IStatusRepository
 	{
 		/// <summary>
 		/// Get Enable Status.
@@ -44,9 +44,9 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Repositories.Impl
                         foreach (DataRow row in ds.Tables[0].Rows)
                         {
                             kenoEnableStatus.BetTypeStatusList.Add(new BetTypeStatus(){
-                                BetTypeID = Converter.ToInt(row["Bettype"]),
-                                BetTypeName = RemotingRef.RefData.GetBetTypeName(Converter.ToString2(row["Bettype"]), TWLang(AppSession.CurrentSession.Language)),
-                                IsDisabled = row["IsDisable"] == DBNull.Value ? true : Converter.ToBool(row["IsDisable"]),
+                                BetTypeID = Converter.ToInt(row["IBCBetTypeID"]),
+                                BetTypeName = RemotingRef.RefData.GetBetTypeName(Converter.ToString2(row["IBCBetTypeID"]), TWLang(AppSession.CurrentSession.Language)),
+                                IsDisabled = row["IsDisabled"] == DBNull.Value ? true : Converter.ToBool(row["IsDisabled"]),
                                 IsDisabledUpline = row["DisableUplines"] == DBNull.Value ? true : Converter.ToBool(row["DisableUplines"]),
                                 IsDisabledDownlines = row["DisableDownlines"] == DBNull.Value ? true : Converter.ToBool(row["DisableDownlines"])
                             });

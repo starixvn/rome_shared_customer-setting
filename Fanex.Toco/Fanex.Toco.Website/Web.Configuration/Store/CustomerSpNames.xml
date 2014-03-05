@@ -214,4 +214,8 @@
     <Setting Key="CustomerSelStatus" SpName="Acc_CustomerSelStatus" DbName="db053"  />
     <Setting Key="CustomerSetting_SiteSel" SpName="Acc_SiteSel" DbName="db053" Plain="0" />
   </Function>
+  <Function Name="KenoStatus">
+    <Setting Key="Acc_CustomerSelKenoStatus" SpName="Acc_CustomerSelKenoStatus" DbName="DBAGE.bodb02.BODBDownlineNet"  />
+    <Setting Key="Acc_CustomerUpdDisableKeno" SpName="Acc_CustomerUpdDisableKeno" DbName="DBTXN.CustDB.BODBDownlineNet" Plain="0" />    
+  </Function>
 </Functions>
