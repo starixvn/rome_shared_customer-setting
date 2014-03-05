@@ -2,6 +2,7 @@
 
 KenoModule.controller('betSettingController', function ($scope, kenoRepositories) {
     $scope.betSettingList = kenoRepositories.kenoSetting.betSettings;
+    $scope.roleId = kenoRepositories.kenoSetting.customerInformation.roleId;
     $scope.betSettingCopyAll = kenoRepositories.kenoSetting.betSettingCopyAll;
     $scope.isBetSettingPartial = false;
     $scope.isCopyAll = false;
@@ -44,5 +45,5 @@ KenoModule.controller('betSettingController', function ($scope, kenoRepositories
             $scope.$emit('betSettingBlock', $scope.isBetSettingPartial);
         }
     }, true);
-   
+
 });
