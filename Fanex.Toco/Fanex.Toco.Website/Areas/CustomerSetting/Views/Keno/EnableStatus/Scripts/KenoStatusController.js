@@ -1,5 +1,4 @@
 ﻿angular.module('kenoStatusApp', []);
-
 angular.element($('#ng-app')).ready(function () {
     $('#ng-app').show();
 });
@@ -7,7 +6,7 @@ angular.element($('#ng-app')).ready(function () {
 function KenoStatusController($scope) {
     $scope.model = model;
 
-    $scope.sportTypes = $scope.model.settings.sportTypes;
+    $scope.betTypes = $scope.model.betTypeStatusList;
 
     $scope.CheckStatus = function (preVal, scope) {
         if (preVal) {
@@ -42,7 +41,7 @@ function KenoStatusController($scope) {
             data: {
                 id: custId,
                 uplineId: uplineId,
-                txtCustomerObject: JSON.stringify(model),
+                model: JSON.stringify(model),
                 roleId: roleId,
                 groupName: ''
             }
@@ -82,4 +81,96 @@ function KenoStatusController($scope) {
             //parent.Fanex.ExtAcc.UnBlockUI();
         });
     };
+
+    $scope.CheckAll = function () {
+        var checkbox = document.getElementById('chkAll');
+        var betTypeChexkboxes = document.getElementsByName('betTypes0');
+        var betTypeChexkboxesDownlines = document.getElementsByName('betTypes1');
+
+        if (checkbox.checked) {
+            for (var i = 0; i < betTypeChexkboxes.length; i++) {
+                if (betTypeChexkboxes[i].disabled) continue;
+
+                betTypeChexkboxes[i].checked = true;
+                betTypeChexkboxesDownlines[i].checked = true;
+            }
+        }
+        else {
+            for (var i = 0; i < betTypeChexkboxes.length; i++) {
+                if (betTypeChexkboxes[i].disabled) continue;
+
+                betTypeChexkboxes[i].checked = false;
+                betTypeChexkboxesDownlines[i].checked = false;
+            }
+        }
+    };
 };
+    
+///*
+// test data
+//*/
+//var model = {
+//    custID: 1176070,
+//    userName: "SuperTest1",
+//    roleID: 4,
+//    uplineID: 122451,
+//    userID: 51154,
+//    betTypeStatusList: [{
+//        betTypeID: 1,
+//        betTypeName: "Beijing",
+//        isDisabled: true,
+//        isDisabledUpline: true,
+//        isDisabledDownlines: true
+//    },
+//    {
+//        betTypeID: 2,
+//        betTypeName: "Canada",
+//        isDisabled: false,
+//        isDisabledUpline: false,
+//        isDisabledDownlines: true
+//    },
+//    {
+//        betTypeID: 3,
+//        betTypeName: "Australia",
+//        isDisabled: false,
+//        isDisabledUpline: false,
+//        isDisabledDownlines: false
+//    }
+//    , {
+//        betTypeID: 4,
+//        betTypeName: "Slovakia",
+//        isDisabled: false,
+//        isDisabledUpline: false,
+//        isDisabledDownlines: false
+//    }, {
+//        betTypeID: 5,
+//        betTypeName: "Ohio",
+//        isDisabled: true,
+//        isDisabledUpline: false,
+//        isDisabledDownlines: true
+//    }, {
+//        betTypeID: 6,
+//        betTypeName: "West Canada",
+//        isDisabled: false,
+//        isDisabledUpline: false,
+//        isDisabledDownlines: false
+//    }, {
+//        betTypeID: 7,
+//        betTypeName: "Malta",
+//        isDisabled: false,
+//        isDisabledUpline: false,
+//        isDisabledDownlines: false
+//    }, {
+//        betTypeID: 8,
+//        betTypeName: "Taiwan",
+//        isDisabled: false,
+//        isDisabledUpline: false,
+//        isDisabledDownlines: false
+//    }, {
+//        betTypeID: 8,
+//        betTypeName: "Massac",
+//        isDisabled: false,
+//        isDisabledUpline: false,
+//        isDisabledDownlines: false
+//    }]
+//};

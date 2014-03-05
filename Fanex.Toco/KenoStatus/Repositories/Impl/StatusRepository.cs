@@ -41,7 +41,8 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Repositories.Impl
 				{
 					if ( ds.Tables.Count>0)
 					{
-                        foreach (DataRow row in ds.Tables[0].Rows)
+                        var dt = ds.Tables[0];
+                        foreach (DataRow row in dt.Rows)
                         {
                             kenoEnableStatus.BetTypeStatusList.Add(new BetTypeStatus(){
                                 BetTypeID = Converter.ToInt(row["IBCBetTypeID"]),
@@ -51,6 +52,8 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Repositories.Impl
                                 IsDisabledDownlines = row["DisableDownlines"] == DBNull.Value ? true : Converter.ToBool(row["DisableDownlines"])
                             });
                         }
+                        
+                        kenoEnableStatus.UserName = dt.Rows.Count>0 ? Convert.ToString(dt.Rows[0]["UserName"]) : string.Empty;
                         return kenoEnableStatus;
 					}
 				}
