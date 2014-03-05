@@ -55,6 +55,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
                 Username = "Super001"
             };
 
+            customerSetting.BetSettingCopyAll = customerSetting.PositionTakingCopyAll = new CopyAll { IsCopiedAll = false, BettypeId = -1 };
+
             customerSetting.BetSettings = new List<BetSetting>() 
             {
                 new BetSetting()
@@ -115,7 +117,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
                  new BetSetting()
                 {
                     BetTypeId = 4,
-                    BetTypeName = "Vienam",
+                    BetTypeName = "Vietnam",
                     MinBet = 10,
                     MaxBet = 0,
                     MaxPerMatch = 0,
@@ -150,7 +152,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
                 },
             };
 
-            customerSetting.SuperPositionTakings = new List<SuperPositionTaking>() 
+            customerSetting.PositionTakings = new List<SuperPositionTaking>() 
             {
                 new SuperPositionTaking()
                 {
@@ -183,6 +185,32 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
                     SportTypeId = 202,
                     BetTypeId = 3,
                     BetTypeName = "Australia",
+                    S4 = 0.85,
+                    M4 = 0.6,
+                    A4 = 0.5,
+                    N4 = 0,
+                    L4 = 0.85,
+                    SComm = 0.0095,
+                    SCommMax = 0.01
+                },
+                 new SuperPositionTaking()
+                {
+                    SportTypeId = 202,
+                    BetTypeId = 2,
+                    BetTypeName = "Vietnam",
+                    S4 = 0.85,
+                    M4 = 0.6,
+                    A4 = 0.5,
+                    N4 = 0,
+                    L4 = 0.85,
+                    SComm = 0.0095,
+                    SCommMax = 0.01
+                },
+                new SuperPositionTaking()
+                {
+                    SportTypeId = 202,
+                    BetTypeId = 3,
+                    BetTypeName = "Thai",
                     S4 = 0.85,
                     M4 = 0.6,
                     A4 = 0.5,

@@ -18,6 +18,6 @@ namespace Fanex.CustomerSetting.Module.Keno.ViewModels
     /// </summary>
     public class SuperSetting : CustomerSettingBase
     {
-        public IList<SuperPositionTaking> SuperPositionTakings { get; set; }
+        public IList<SuperPositionTaking> PositionTakings { get; set; }
     }
 }

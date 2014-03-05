@@ -89,7 +89,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
         {
             var results = new List<Result>();
             results.AddRange(this.UpdateSuperBetSettings(superSetting.CustomerInformation, superSetting.BetSettings));
-            results.AddRange(this.UpdateSuperPositionTakings(superSetting.CustomerInformation, superSetting.SuperPositionTakings));
+            results.AddRange(this.UpdateSuperPositionTakings(superSetting.CustomerInformation, superSetting.PositionTakings));
             return results;
         }
 

@@ -31,7 +31,7 @@ KenoModule.directive('betSettingElement', function () {
                         $scope.betSetting.isBetSettingUpdated = false;
                     }
 
-                    $scope.$emit('betSetting');
+                    $scope.$emit('betSettingRow');
                 }
             }, true);
 
@@ -55,7 +55,7 @@ KenoModule.directive('betSettingElement', function () {
                         $scope.isDownlinechkDisabled = $scope.betSetting.isEnabled == false ;
                     }
 
-                    $scope.$emit('betSetting');
+                    $scope.$emit('betSettingRow');
                 }
             }, true);
         }

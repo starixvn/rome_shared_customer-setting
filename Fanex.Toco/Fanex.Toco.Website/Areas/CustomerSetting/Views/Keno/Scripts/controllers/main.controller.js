@@ -3,8 +3,7 @@
 KenoModule.controller('mainController', function ($scope, $timeout, kenoRepositories) {
     $scope.kenoSetting = kenoRepositories.kenoSetting;
 
-    $scope.isUpdated = false;
-
+    $scope.isUpdatedKeno = false;
     $scope.isUpdatePT = false;
     $scope.isUpdateBetSetting = false;
 
@@ -12,27 +11,29 @@ KenoModule.controller('mainController', function ($scope, $timeout, kenoReposito
 
     $scope.$watch(function () {
         if ($scope.isUpdatePT || $scope.isUpdateBetSetting) {
-            $scope.isUpdated = true;
+            $scope.isUpdatedKeno = true;
             return;
         }
 
-        $scope.isUpdated = false;
+        $scope.isUpdatedKeno = false;
+    });
+
+    $scope.$on('betSettingBlock', function (event, data) {
+        $scope.isUpdateBetSetting = data;
+    });
+
+    $scope.$on('positionTakingBlock', function (event, data) {
+        $scope.isUpdatePT = data;
     });
 
     $scope.updated = function (isUpdatePartial, partialName) {
         if (isUpdatePartial) {
             switch (partialName) {
                 case "PositionTalking":
-                    $scope.positionTaking.isUpdatePT = true;
-                    $scope.betLimitSetting.isUpdateBetSetting = false;
-                    $scope.customerInfo.isUpdateStatus = false;
-                    $scope.gameSetting.isUpdateGameSetting = false;
+                    $scope.kenoSetting.betSettings = null;
                     break;
                 case "BetSetting":
-                    $scope.positionTaking.isUpdatePT = false;
-                    $scope.betLimitSetting.isUpdateBetSetting = true;
-                    $scope.customerInfo.isUpdateStatus = false;
-                    $scope.gameSetting.isUpdateGameSetting = false;
+                    $scope.kenoSetting.positionTakings = null;
                     break;
                 default:
                     break;

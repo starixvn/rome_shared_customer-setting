@@ -48,7 +48,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
                 {
                     superSetting.CustomerInformation = ReadAgentInformationData(reader);
                     superSetting.BetSettings = ReadBetLimitData(reader);
-                    superSetting.SuperPositionTakings = ReadSuperPositionTakingData(reader);
+                    superSetting.PositionTakings = ReadSuperPositionTakingData(reader);
                 }
             }
 
