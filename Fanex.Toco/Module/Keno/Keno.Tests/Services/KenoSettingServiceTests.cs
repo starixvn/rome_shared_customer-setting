@@ -235,7 +235,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditAgent")]
         public ActionResult EditAgent(int custId)
         {
-            return View(Constants.EditAgentCshtml);
+            return View(Constants.EDIT_AGENT_CSHTML);
         }
 
         [HttpPost]

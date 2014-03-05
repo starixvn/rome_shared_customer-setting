@@ -18,6 +18,6 @@ namespace Fanex.CustomerSetting.Module.Keno.ViewModels
     /// </summary>
     public class AgentSetting : CustomerSettingBase
     {
-        public IList<AgentPositionTaking> AgentPositionTakings { get; set; }
+        public IList<AgentPositionTaking> PositionTakings { get; set; }
     }
 }
