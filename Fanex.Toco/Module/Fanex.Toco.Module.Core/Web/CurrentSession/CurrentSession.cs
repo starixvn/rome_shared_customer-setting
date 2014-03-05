@@ -89,5 +89,11 @@ namespace Fanex.CustomerSetting.Module.Core.Web
             get;
             set;
         }
+
+        public string Language
+        {
+            get;
+            set;
+        }
     }
 }
