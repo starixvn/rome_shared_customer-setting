@@ -42,7 +42,7 @@ function KenoStatusController($scope) {
             data: {
                 id: custId,
                 uplineId: uplineId,
-                txtCustomerObject: JSON.stringify(model),
+                model: JSON.stringify(model),
                 roleId: roleId,
                 groupName: ''
             }
@@ -85,16 +85,23 @@ function KenoStatusController($scope) {
 
     $scope.CheckAll = function () {
         var checkbox = document.getElementById('chkAll');
-        var betTypeChexkboxes = document.getElementsByName('betTypes');
+        var betTypeChexkboxes = document.getElementsByName('betTypes0');
+        var betTypeChexkboxesDownlines = document.getElementsByName('betTypes1');
 
         if (checkbox.checked) {
             for (var i = 0; i < betTypeChexkboxes.length; i++) {
+                if (betTypeChexkboxes[i].disabled) continue;
+
                 betTypeChexkboxes[i].checked = true;
+                betTypeChexkboxesDownlines[i].checked = true;
             }
         }
         else {
             for (var i = 0; i < betTypeChexkboxes.length; i++) {
+                if (betTypeChexkboxes[i].disabled) continue;
+
                 betTypeChexkboxes[i].checked = false;
+                betTypeChexkboxesDownlines[i].checked = false;
             }
         }
     };
