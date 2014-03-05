@@ -47,6 +47,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
             customerSetting.CustomerInformation = new CustomerInformation()
             {
                 CustId = custId,
+                RoleId = 4,
                 FirstName = "Paul",
                 LastName = "Nguyen",
                 Phone = "---",
@@ -247,6 +248,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
             customerSetting.CustomerInformation = new CustomerInformation()
             {
                 CustId = custId,
+                RoleId = 3,
                 FirstName = "Paul",
                 LastName = "Nguyen",
                 Phone = "---",
@@ -359,65 +361,70 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
                     SportTypeId = 202,
                     BetTypeId = 1,
                     BetTypeName = "Bejing",
-                    S4 = 0.85,
-                    M4 = 0.6,
-                    A4 = 0.5,
-                    N4 = 0,
-                    L4 = 0.85,
+                    S4 = 0.8,
+                    S3 = 0.2,
+                    US3 = 0.6,
+                    IS3 = false,
+                    M3 = 0.5,
+                    N3 = 0.1,
                     SComm = 0.0095,
-                    SCommMax = 0.01
+                    MComm = 0.003
                 },
                 new MasterPositionTaking()
                 {
                     SportTypeId = 202,
                     BetTypeId = 2,
                     BetTypeName = "Canada",
-                    S4 = 0.85,
-                    M4 = 0.6,
-                    A4 = 0.5,
-                    N4 = 0,
-                    L4 = 0.85,
+                    S4 = 0.8,
+                    S3 = 0.2,
+                    US3 = 0.6,
+                    IS3 = false,
+                    M3 = 0.5,
+                    N3 = 0.1,
                     SComm = 0.0095,
-                    SCommMax = 0.01
+                    MComm = 0.003
                 },
                 new MasterPositionTaking()
                 {
                     SportTypeId = 202,
                     BetTypeId = 3,
                     BetTypeName = "Australia",
-                    S4 = 0.85,
-                    M4 = 0.6,
-                    A4 = 0.5,
-                    N4 = 0,
-                    L4 = 0.85,
+                    S4 = 0.8,
+                    S3 = 0.2,
+                    US3 = 0.6,
+                    IS3 = false,
+                    M3 = 0.5,
+                    N3 = 0.1,
                     SComm = 0.0095,
-                    SCommMax = 0.01
+                    MComm = 0.003
                 },
                  new MasterPositionTaking()
                 {
                     SportTypeId = 202,
                     BetTypeId = 2,
                     BetTypeName = "Vietnam",
-                    S4 = 0.85,
-                    M4 = 0.6,
-                    A4 = 0.5,
-                    N4 = 0,
-                    L4 = 0.85,
+                     S4 = 0.8,
+                    S3 = 0.2,
+                    US3 = 0.6,
+                    IS3 = false,
+                    M3 = 0.5,
+                    N3 = 0.1,
                     SComm = 0.0095,
-                    SCommMax = 0.01
+                    MComm = 0.003
                 },
                 new MasterPositionTaking()
                 {
                     SportTypeId = 202,
                     BetTypeId = 3,
                     BetTypeName = "Thai",
-                    S4 = 0.85,
-                    M4 = 0.6,
-                    A4 = 0.5,
-                    N4 = 0,
-                    L4 = 0.85,
+                    S4 = 0.8,
+                    S3 = 0.2,
+                    US3 = 0.6,
+                    IS3 = false,
+                    M3 = 0.5,
+                    N3 = 0.1,
                     SComm = 0.0095,
-                    SCommMax = 0.01
+                    MComm = 0.003
                 }
             };
 

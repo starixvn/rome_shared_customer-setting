@@ -1,25 +1,14 @@
 ﻿@using Fanex.CustomerSetting.Module.Keno.Resources;
 <table class="tableColor tableWidth" ng-controller="customerInfoController">
     <tr>
-        <td colspan="4" class="header c b">
-         <span>@LayoutTexts.Super: </span>
-         @*   @if (Model.FormType == 0)
-            {
-                <span>@LayoutTexts.Super: </span>
-            }
-            else if (Model.FormType == 1)
-            {
-                <span>@LayoutTexts.Master: </span>
-            }
-            else if (Model.FormType == 2)
-            {
-                <span>@LayoutTexts.Agent: </span>
-            }
-            else
-            {
-                <span>@LayoutTexts.Member: </span>
-            }*@
-            <span ng-bind="model.username"></span>
+        <td colspan="4" class="header c b" >
+           <div class=" divInline" ng-switch="customerInfo.roleId">
+                <span ng-switch-when="4">@LayoutTexts.Super: </span>
+                <span ng-switch-when="3">@LayoutTexts.Master: </span>
+                <span ng-switch-when="2">@LayoutTexts.Agent: </span>
+                <span ng-switch-default>@LayoutTexts.Member: </span>
+            </div>
+            <span ng-bind="customerInfo.username"> </span>
         </td>
     </tr>
     <tr>
