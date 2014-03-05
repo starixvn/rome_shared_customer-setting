@@ -9,28 +9,28 @@ KenoModule.controller('positionTakingController', function ($scope, kenoReposito
         $scope.isCopyAll = isCopy;
     };
 
-//    $scope.$on('betSetting', function (event) {
-//        var length = $scope.betSettingList.length;
-//        for (var i = 0; i < length; i++) {
-//            var betSettingTmp = $scope.betSettingList[i];
-//            if (betSettingTmp.isBetSettingUpdated || betSettingTmp.isStatusUpdated) {
-//                $scope.isBetSettingPartial = true;
-//                return true;
-//            }
-//        }
+    $scope.$on('positionTaking', function (event) {
+        var length = $scope.positionTakingList.length;
+        for (var i = 0; i < length; i++) {
+            var positionTakingTmp = $scope.positionTakingList[i];
+            if (positionTakingTmp.isUpdatePT) {
+                $scope.isPositionTakingPartial = true;
+                return true;
+            }
+        }
 
-//        $scope.isBetSettingPartial = false;
-//    });
+        $scope.isPositionTakingPartial = false;
+    });
 
 
-//    $scope.$watch('isCopyAll', function (newValue, oldValue) {
-//        if (newValue !== oldValue) {
-//            if ($scope.isCopyAll) {
-//                $scope.isBetSettingPartial = true;
-//            }
-//            else {
-//                $scope.$broadcast('betSetting');
-//            }
-//        }
-//    }, true);
+    $scope.$watch('isCopyAll', function (newValue, oldValue) {
+        if (newValue !== oldValue) {
+            if ($scope.isCopyAll) {
+                $scope.isPositionTakingPartial = true;
+            }
+            else {
+                $scope.$broadcast('positionTaking');
+            }
+        }
+    }, true);
 });

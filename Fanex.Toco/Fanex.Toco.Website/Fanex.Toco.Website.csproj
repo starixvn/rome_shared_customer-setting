@@ -245,7 +245,7 @@
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\services\commonService.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\services\position-taking.service.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\BetSetting\BetSetting.htm" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\SuperPT.htm" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\SuperPositionTaking.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Accounting\Images\bgHeader.jpg" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Accounting\Images\bg_head_tb.jpg" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Accounting\Images\C_content_tab.png" />

@@ -1,7 +1,87 @@
 ﻿"use strict";
 
-KenoModule.controller('mainController', function ($scope, kenoRepositories) {
+KenoModule.controller('mainController', function ($scope, $timeout, kenoRepositories) {
     $scope.kenoSetting = kenoRepositories.kenoSetting;
+
+    $scope.isUpdated = false;
+
+    $scope.isUpdatePT = false;
+    $scope.isUpdateBetSetting = false;
+
+    $scope.errors = {};
+
+    $scope.$watch(function () {
+        if ($scope.isUpdatePT || $scope.isUpdateBetSetting) {
+            $scope.isUpdated = true;
+            return;
+        }
+
+        $scope.isUpdated = false;
+    });
+
+    $scope.updated = function (isUpdatePartial, partialName) {
+        if (isUpdatePartial) {
+            switch (partialName) {
+                case "PositionTalking":
+                    $scope.positionTaking.isUpdatePT = true;
+                    $scope.betLimitSetting.isUpdateBetSetting = false;
+                    $scope.customerInfo.isUpdateStatus = false;
+                    $scope.gameSetting.isUpdateGameSetting = false;
+                    break;
+                case "BetSetting":
+                    $scope.positionTaking.isUpdatePT = false;
+                    $scope.betLimitSetting.isUpdateBetSetting = true;
+                    $scope.customerInfo.isUpdateStatus = false;
+                    $scope.gameSetting.isUpdateGameSetting = false;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        $scope.doUpdated();
+    };
+
+    $scope.doUpdated = function () {
+        BlockUI();
+        var url = domain + 'customersetting/opuscasino/OpusCasinoSuperSetting/UpdateSuper';
+        opusRepositories.save(url, $scope.opusSetting).then(
+            function (results) {
+                $("#divShowInfo").empty();
+                if (typeof results != 'undefined') {
+                    var length = results.length;
+                    var isError = false;
+                    for (var i = 0; i < length; i++) {
+                        var className = results[i].ErrorCode > 0 ? "alerterror" : "alertsuccess";
+                        var html = '<div class="' + className + '">' + results[i].ErrorMessage + '</div>';
+                        $("#divShowInfo").append(html);
+                        if (results[i].ErrorCode > 0) {
+                            isError = true;
+                        }
+                    }
+
+                    if (!isError) {
+                        $timeout(function () {
+                            UnBlockUI();
+                            location.reload();
+                            parent.frames["centerFr"].location.reload();
+                        }, 5000);
+                    } else {
+                        UnBlockUI();
+                    }
+                }
+                else {
+                    var html = '<div class="alerterror">Updated fail.</div>';
+                    $("#divShowInfo").append(html);
+                    UnBlockUI();
+                }
+            },
+            function () {
+                var html = '<div class="alerterror">Updated fail.</div>';
+                $("#divShowInfo").append(html);
+                UnBlockUI();
+            });
+    };
 });
 
 

@@ -1,13 +1,13 @@
 ﻿"use strict";
 
-KenoModule.directive('superPositionTakingElement', ['commonService',  function (commonService) {
+KenoModule.directive('superPositionTakingElement', ['commonService', function (commonService) {
     return {
         restrict: 'A',
         scope: {
             positionTaking: "=ngModel",
             index: "=index"
         },
-        templateUrl: '/Areas/CustomerSetting/Views/Keno/Setting/Partial/PositionTaking/SuperPT.htm',
+        templateUrl: '/Areas/CustomerSetting/Views/Keno/Setting/Partial/PositionTaking/SuperPositionTaking.htm',
         link: function ($scope, elem, attr, ctrl) {
             console.log($scope.positionTaking);
 
@@ -21,10 +21,11 @@ KenoModule.directive('superPositionTakingElement', ['commonService',  function (
             || $scope.positionTaking.isUpdateSCO
             || $scope.positionTaking.isUpdateN4) {
                     $scope.positionTaking.isUpdatePT = true;
-                    return;
                 }
-
-                $scope.positionTaking.isUpdatePT = false;
+                else {
+                    $scope.positionTaking.isUpdatePT = false;
+                }
+                $scope.$emit('positionTaking');
             };
 
             $scope.$watch('positionTaking.s4', function () {
@@ -50,7 +51,7 @@ KenoModule.directive('superPositionTakingElement', ['commonService',  function (
 
         }
     };
-}]);
+} ]);
 
 
 //KenoModule.directive('format', ['$filter', function ($filter) {
