@@ -21,6 +21,8 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
     using Fanex.CustomerSetting.Module.KenoStatus.Repositories.Interface;
     using Fanex.CustomerSetting.Module.KenoStatus.Criteria;
     using Fanex.CustomerSetting.Module.KenoStatus.Repositories.Impl;
+    using Fanex.CustomerSetting.Module.KenoStatus.ViewModels;
+    using System.Collections;
 
     public class EnableStatusController: BaseController
     {
@@ -64,17 +66,15 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
         /// <param name="uplineId">Upper customer id.</param>
         /// <param name="roleId">Customer role id.</param>
         /// <returns>ActionResult object.</returns>        
-        public ActionResult GetKenoStatusData(int id, int uplineId, int roleId, string useName)
+        public ActionResult GetKenoStatusData(int id, int uplineId, int roleId)
         {
-            //ViewBag.roleId = roleId;
-            //ViewBag.id = id;
-            //ViewBag.uplineId = uplineId;
-
             var model = _statusRepository.GetStatus(new SelectStatusCriteria() { 
                 CustID=id
             });
+
             model.RoleID = roleId;
             model.UplineID = uplineId;
+
             var result = "var model = " + JsonConvert.SerializeObject(
                 model,
                 Formatting.None,
@@ -89,7 +89,35 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
 
         public ActionResult Update(string model)
         {
-            return this.JsonBase(new { ErrorCode = 0, ErrorMessage = string.Empty });
+            var settings = new JsonSerializerSettings();
+            settings.NullValueHandling = NullValueHandling.Ignore;
+            settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            var newStatus = JsonConvert.DeserializeObject<KenoEnableStatus>(model, settings);
+            var criteria = new UpdateStatusCriteria()
+            {
+                CustId=newStatus.CustID,
+                UserID=newStatus.UserID,
+                SubAccID=newStatus.SubAccID,
+                Language=AppSession.CurrentSession.Language,
+                IP = AppSession.CurrentContext.Ip4Address
+            };
+            List<string> errCode = new List<string>();
+            List<string> errMsg = new List<string>();
+
+            foreach (BetTypeStatus status in newStatus.BetTypeStatusList)
+            {
+                criteria.Bettype = status.BetTypeID;
+                criteria.Disable = status.IsDisabled;
+                criteria.DisableDownLines = status.IsDisabledDownlines;
+                var result=_statusRepository.UpdateStatus(criteria);
+                errCode.Add(Convert.ToString(result["Errcode"]));
+                errMsg.Add(Convert.ToString(result["ErrMsg"]));
+            }
+
+            return this.JsonBase(new {
+                ErrorCode = String.Join("\u0007", errCode.ToArray()),
+                ErrorMessage = String.Join("\u0007", errMsg.ToArray()) 
+                });
         }
 
         /// <summary>
