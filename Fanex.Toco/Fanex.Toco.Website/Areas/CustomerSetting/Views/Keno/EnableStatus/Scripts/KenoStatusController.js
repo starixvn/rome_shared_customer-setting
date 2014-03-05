@@ -9,6 +9,9 @@ function KenoStatusController($scope) {
     $scope.betTypes = $scope.model.betTypeStatusList;
 
     $scope.CheckStatus = function (preVal, scope) {
+        var betTypesCheckboxes = document.getElementsByName('betTypes0');
+        var allChecked = true;
+
         if (preVal) {
             if (scope.item.enable) {
                 scope.item.enableDownline = true;
@@ -17,8 +20,20 @@ function KenoStatusController($scope) {
                 scope.item.isDisabled = false;
                 scope.item.isDisabledUpline = false;
                 scope.item.isDisabledDownlines = false;
+
+                for (var i = 0; i < betTypesCheckboxes.length; i++) {
+                    if (!betTypesCheckboxes[i].checked) {
+                        allChecked = false;
+                        break;
+                    }
+                }
+
+                if (allChecked)
+                    document.getElementById('chkAll').checked = true;
             }
             else {
+                document.getElementById('chkAll').checked = false;
+
                 scope.item.enableDownline = false;
                 scope.item.disableDownline = true;
 
@@ -35,8 +50,20 @@ function KenoStatusController($scope) {
                 scope.item.isDisabled = false;
                 scope.item.isDisabledUpline = false;
                 scope.item.isDisabledDownlines = false;
+
+                for (var i = 0; i < betTypesCheckboxes.length; i++) {
+                    if (!betTypesCheckboxes[i].checked) {
+                        allChecked = false;
+                        break;
+                    }
+                }
+
+                if (allChecked)
+                    document.getElementById('chkAll').checked = true;
             }
             else {
+                document.getElementById('chkAll').checked = false;
+
                 scope.item.enableDownline = false;
                 scope.item.disableDownline = true;
 
