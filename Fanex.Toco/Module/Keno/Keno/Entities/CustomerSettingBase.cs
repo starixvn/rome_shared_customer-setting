@@ -20,5 +20,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
         public CustomerInformation CustomerInformation { get; set; }
 
         public IList<BetSetting> BetSettings { get; set; }
+
+        public CopyAll BetSettingCopyAll { get; set; }
+
+        public CopyAll PositionTakingCopyAll { get; set; }
     }
 }

@@ -142,6 +142,7 @@
     <Compile Include="Criteria\Super\UpdateSuperBetSettingCriteria.cs" />
     <Compile Include="Entities\Constants.cs" />
     <Compile Include="Entities\AgentPositionTaking.cs" />
+    <Compile Include="Entities\CopyAll.cs" />
     <Compile Include="Entities\Result.cs" />
     <Compile Include="Entities\MemberPositionTaking.cs" />
     <Compile Include="Entities\MasterPositionTaking.cs" />
