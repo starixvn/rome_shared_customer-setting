@@ -69,6 +69,11 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
             return this.Content(result);
         }
 
+        public ActionResult Update()
+        {
+            return this.JsonBase(new { ErrorCode = 0, ErrorMessage = string.Empty });
+        }
+
         /// <summary>
         /// Returns Partial View associated with model object.
         /// </summary>
