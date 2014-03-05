@@ -18,9 +18,24 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
     using Fanex.CustomerSetting.Module.Core.Web;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
+    using Fanex.CustomerSetting.Module.KenoStatus.Repositories.Interface;
+    using Fanex.CustomerSetting.Module.KenoStatus.Criteria;
+    using Fanex.CustomerSetting.Module.KenoStatus.Repositories.Impl;
 
     public class EnableStatusController: BaseController
     {
+        private static IStatusRepository _statusRepository;
+
+        public EnableStatusController()
+            : this(null)
+        {
+        }
+
+        public EnableStatusController(IStatusRepository statusRepository)
+        {
+            _statusRepository = statusRepository ?? new StatusRepository();
+        }
+
         /// <summary>
         /// Gets enable racing page.
         /// </summary>
@@ -51,12 +66,15 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
         /// <returns>ActionResult object.</returns>        
         public ActionResult GetKenoStatusData(int id, int uplineId, int roleId)
         {
-            ViewBag.roleId = roleId;
-            ViewBag.id = id;
-            ViewBag.uplineId = uplineId;
+            //ViewBag.roleId = roleId;
+            //ViewBag.id = id;
+            //ViewBag.uplineId = uplineId;
 
-            var model = new List<object>();
-
+            var model = _statusRepository.GetStatus(new SelectStatusCriteria() { 
+                CustID=id
+            });
+            model.RoleID = roleId;
+            model.UplineID = uplineId;
             var result = "var model = " + JsonConvert.SerializeObject(
                 model,
                 Formatting.None,
@@ -69,7 +87,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
             return this.Content(result);
         }
 
-        public ActionResult Update()
+        public ActionResult Update(string model)
         {
             return this.JsonBase(new { ErrorCode = 0, ErrorMessage = string.Empty });
         }
