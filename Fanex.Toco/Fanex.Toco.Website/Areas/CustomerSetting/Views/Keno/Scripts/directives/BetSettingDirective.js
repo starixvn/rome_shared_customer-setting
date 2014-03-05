@@ -1,17 +1,5 @@
 ﻿"use strict";
 
-KenoModule.directive('checkDisableElement', function () {
-    return {
-        require: 'ngModel',
-        link: function (scope, element, attrs, ctrl) {
-            scope.$watch(attrs.ngModel, function () {
-                var className = attrs.ngClassName;
-                scope.$eval(attrs.ngModel) == false ? element.attr("disabled", "disabled").addClass(className + "Disabled").removeClass(className) : element.removeAttr("disabled", "disabled").addClass(className).removeClass(className + "Disabled");
-            }, true);
-        }
-    }
-});
-
 KenoModule.directive('betSettingElement', function () {
     return {
         restrict: 'A',
@@ -19,9 +7,9 @@ KenoModule.directive('betSettingElement', function () {
             betSetting: "=ngModel",
             index: "=index"
         },
-        templateUrl: '/Areas/CustomerSetting/Views/Keno/Setting/Partial/BetSetting/_BetSetting.htm',
+        templateUrl: '/Areas/CustomerSetting/Views/Keno/Setting/Partial/BetSetting/BetSetting.htm',
         link: function ($scope, elem, attr, ctrl) {
-            console.log($scope);
+//            console.log($scope);
 
             $scope.originalBetSetting = angular.copy($scope.betSetting);
 

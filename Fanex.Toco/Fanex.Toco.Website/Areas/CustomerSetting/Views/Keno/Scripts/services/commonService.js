@@ -1,29 +1,31 @@
 ﻿"use strict";
 
 KenoModule.service('commonService', function () {
-    var formType = {
-        editSuper: 0,
-        editMaster: 1,
-        editAgent: 2,
-        superEditMember: 3,
-        masterEditMember: 4,
-        agentEditMember: 5
-    };
-
-    var role = {
-        super: 0,
-        master: 1,
-        agent: 2,
-        member: 3
-    };
-
-    this.getRangeValue = function (max, min, stepValue, roundValue) {
+    var getRangeValue = function (max, min, stepValue, roundValue) {
         var rangeValueArray = new Array();
         while (max >= min) {
             rangeValueArray.push(max);
             max = Math.round((max - stepValue) * roundValue) / roundValue;
         }
         return rangeValueArray;
+    }
+
+    this.getRangePTValue = function (max, min) {
+        var ptValue = {
+            stepValue: 0.01,
+            roundValue: 100
+        };
+
+        return getRangeValue(max, min, ptValue.stepValue, ptValue.roundValue);
+    };
+
+    this.getRangeCommValue = function (max, min) {
+        var commValues = {
+            stepValue: 0.0005,
+            roundValue: 10000
+        };
+
+        return getRangeValue(max, min, commValues.stepValue, commValues.roundValue);
     };
 
     this.regIsDigit = function (input) {

@@ -32,7 +32,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
 
         public double SComm { get; set; }
 
-        public double SMaxComm { get; set; }
+        public double SCommMax { get; set; }
 
         public double S3 { get; set; }
 
@@ -48,8 +48,6 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
 
         public double MComm { get; set; }
 
-        public double MMaxComm { get; set; }
-
         public double M2 { get; set; }
 
         public double A2 { get; set; }
@@ -64,13 +62,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
 
         public double AComm { get; set; }
 
-        public double AMaxComm { get; set; }
-
         public double A1 { get; set; }
 
         public double Comm { get; set; }
-
-        public double MaxComm { get; set; }
 
         public double S1 { get; set; }
 

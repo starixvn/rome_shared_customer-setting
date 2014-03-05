@@ -1,34 +1,36 @@
-﻿if (fanex.customerSetting) {
-    fanex.customerSetting.controller('fanex.customerSetting.positionTakingController',
-    [
-        '$scope',
-        '$rootScope',
-        '$filter',
-        function ($scope, $rootScope, $filter) {
-            $scope.model = $rootScope.model.positiongTakingSections;
-            $scope.positionTakingService = fanex.customerSetting.positionTakingService;
-            $scope.commissionSettingService = fanex.customerSetting.commissionSettingService;
+﻿"use strict";
 
-            $scope.getChangedPositionTakings = function () {
-                return $scope.positionTakingService.getChangedData($scope.model);
-            }
+KenoModule.controller('positionTakingController', function ($scope, kenoRepositories) {
+    $scope.positionTakingList = kenoRepositories.kenoSetting.superPositionTakings;
+    $scope.isPositionTakingPartial = false;
+    $scope.isCopyAll = false;
 
-            $scope.isValidPositionTakings = function () {
-                return $scope.positionTakingService.isValidData($scope.model);
-            };
+    $scope.copyAll = function (isCopy) {
+        $scope.isCopyAll = isCopy;
+    };
 
-            $scope.getChangedCommissionSettings = function () {
-                return $scope.commissionSettingService.getChangedData($scope.model);
-            }
+//    $scope.$on('betSetting', function (event) {
+//        var length = $scope.betSettingList.length;
+//        for (var i = 0; i < length; i++) {
+//            var betSettingTmp = $scope.betSettingList[i];
+//            if (betSettingTmp.isBetSettingUpdated || betSettingTmp.isStatusUpdated) {
+//                $scope.isBetSettingPartial = true;
+//                return true;
+//            }
+//        }
 
-            $scope.isValidCommissionSettings = function () {
-                return $scope.commissionSettingService.isValidData($scope.model);
-            };
+//        $scope.isBetSettingPartial = false;
+//    });
 
-            return {
-                getScope: function () {
-                    return $scope;
-                }
-            }
-        } ]);
-}
+
+//    $scope.$watch('isCopyAll', function (newValue, oldValue) {
+//        if (newValue !== oldValue) {
+//            if ($scope.isCopyAll) {
+//                $scope.isBetSettingPartial = true;
+//            }
+//            else {
+//                $scope.$broadcast('betSetting');
+//            }
+//        }
+//    }, true);
+});

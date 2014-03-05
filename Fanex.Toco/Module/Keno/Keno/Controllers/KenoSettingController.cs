@@ -163,7 +163,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
                     N4 = 0,
                     L4 = 0.85,
                     SComm = 0.0095,
-                    SMaxComm = 0.01
+                    SCommMax = 0.01
                 },
                 new SuperPositionTaking()
                 {
@@ -176,7 +176,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
                     N4 = 0,
                     L4 = 0.85,
                     SComm = 0.0095,
-                    SMaxComm = 0.01
+                    SCommMax = 0.01
                 },
                 new SuperPositionTaking()
                 {
@@ -189,7 +189,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
                     N4 = 0,
                     L4 = 0.85,
                     SComm = 0.0095,
-                    SMaxComm = 0.01
+                    SCommMax = 0.01
                 }
             };
 

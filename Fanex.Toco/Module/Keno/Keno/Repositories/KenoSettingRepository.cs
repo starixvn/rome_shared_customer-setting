@@ -135,7 +135,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
                     L4 = 0.85,
                     S4 = dataReader.ToDouble("spositiontaking"),
                     SComm = dataReader.ToDouble("sdiscount"),
-                    SMaxComm = dataReader.ToDouble("smaxdiscount")
+                    SCommMax = dataReader.ToDouble("smaxdiscount")
                 };
 
                 positionTakings.Add(bettingSetting);
@@ -165,7 +165,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
                     M4 = dataReader.ToDouble("mmaxpositiontaking"),
                     M3 = dataReader.ToDouble("m3"),
                     MComm = dataReader.ToDouble("mdiscount"),
-                    MMaxComm = dataReader.ToDouble("mmaxdiscount")
+                    SComm = dataReader.ToDouble("mmaxdiscount")
                 };
 
                 positionTakings.Add(bettingSetting);
@@ -196,7 +196,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
                     M3 = dataReader.ToDouble("m3"),
                     A2 = dataReader.ToDouble("a2"),
                     AComm = dataReader.ToDouble("adiscount"),
-                    AMaxComm = dataReader.ToDouble("amaxdiscount")
+                    MComm = dataReader.ToDouble("amaxdiscount")
                 };
 
                 positionTakings.Add(bettingSetting);
@@ -223,7 +223,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
                     A4 = dataReader.ToDouble("amaxminpositiontaking"),
                     A2 = dataReader.ToDouble("a2"),
                     Comm = dataReader.ToDouble("discount"),
-                    MaxComm = dataReader.ToDouble("maxdiscount")
+                    AComm = dataReader.ToDouble("maxdiscount")
                 };
 
                 positionTakings.Add(bettingSetting);
@@ -249,8 +249,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
                     L2 = dataReader.ToDouble("maxpositiontaking"),
                     A4 = dataReader.ToDouble("amaxminpositiontaking"),
                     A2 = dataReader.ToDouble("a2"),
-                    Comm = dataReader.ToDouble("discount"),
-                    MaxComm = dataReader.ToDouble("maxdiscount")
+                    //Comm = dataReader.ToDouble("discount"),
+                    //MaxComm = dataReader.ToDouble("maxdiscount")
                 };
 
                 positionTakings.Add(bettingSetting);
@@ -276,8 +276,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
                     L2 = dataReader.ToDouble("maxpositiontaking"),
                     A4 = dataReader.ToDouble("amaxminpositiontaking"),
                     A2 = dataReader.ToDouble("a2"),
-                    Comm = dataReader.ToDouble("discount"),
-                    MaxComm = dataReader.ToDouble("maxdiscount")
+                    //Comm = dataReader.ToDouble("discount"),
+                    //MaxComm = dataReader.ToDouble("maxdiscount")
                 };
 
                 positionTakings.Add(bettingSetting);

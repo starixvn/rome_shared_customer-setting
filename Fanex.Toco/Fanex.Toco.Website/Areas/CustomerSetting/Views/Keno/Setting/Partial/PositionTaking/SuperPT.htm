@@ -1,0 +1,18 @@
+﻿<td class="col120 formatCol l">
+    <span>{{positionTaking.betTypeName}}</span>
+    <div style="display: inline-block; float: right;" ng-switch="index == 0">
+        <input ng-class="{'btnCopyAll' : $parent.$parent.isCopyAll, 'btnUnCopyAll' : !$parent.$parent.isCopyAll}" ng-switch-when="true" ng-class-name="btnCopyAll" ng-model="$parent.$parent.isCopyAll"
+            ng-click="$parent.$parent.copyAll(!$parent.$parent.isCopyAll)" type="button" /></div>
+</td>
+<td class="col120 formatCol c">
+    <select class="col60" ng-model="positionTaking.s4" ng-options="value for value in maxPTRange">
+    </select>
+</td>
+<td class="col120 formatCol c">
+    <select class="col60" ng-model="positionTaking.n4" ng-options="value for value in minPTRange">
+    </select>
+</td>
+<td class="col120 formatCol c">
+    <select class="col60" ng-model="positionTaking.sComm" ng-options="value for value in commRange">
+    </select>
+</td>
