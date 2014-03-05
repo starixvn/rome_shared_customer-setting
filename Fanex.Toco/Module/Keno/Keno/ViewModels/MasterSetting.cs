@@ -18,6 +18,6 @@ namespace Fanex.CustomerSetting.Module.Keno.ViewModels
     /// </summary>
     public class MasterSetting : CustomerSettingBase
     {
-        public IList<MasterPositionTaking> MasterPositionTakings { get; set; }
+        public IList<MasterPositionTaking> PositionTakings { get; set; }
     }
 }

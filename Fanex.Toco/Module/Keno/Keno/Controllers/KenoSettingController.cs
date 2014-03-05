@@ -242,7 +242,187 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditMaster")]
         public ActionResult EditMaster(int custId)
         {
-            return View(Constants.EditMasterCshtml);
+            var customerSetting = new MasterSetting();
+
+            customerSetting.CustomerInformation = new CustomerInformation()
+            {
+                CustId = custId,
+                FirstName = "Paul",
+                LastName = "Nguyen",
+                Phone = "---",
+                MobilePhone = "---",
+                Fax = "---",
+                Username = "Master001"
+            };
+
+            customerSetting.BetSettingCopyAll = customerSetting.PositionTakingCopyAll = new CopyAll { IsCopiedAll = false, BettypeId = -1 };
+
+            customerSetting.BetSettings = new List<BetSetting>() 
+            {
+                new BetSetting()
+                {
+                    BetTypeId = 1,
+                    BetTypeName = "Beijing",
+                    MinBet = 0,
+                    MaxBet = 0,
+                    MaxPerMatch = 0,
+                    IsEnabled = true,
+                    IsDownlinesEnabled = true,
+                    Upline = new BetSetting() 
+                    {
+                        MinBet = 10,
+                        MaxBet = 100,
+                        MaxPerMatch = 1000,
+                        IsEnabled = true,
+                        IsDownlinesEnabled = true
+                    }
+                },
+                new BetSetting()
+                {
+                    BetTypeId = 2,
+                    BetTypeName = "Canada",
+                    MinBet = 10,
+                    MaxBet = 0,
+                    MaxPerMatch = 0,
+                    IsEnabled = false,
+                    IsDownlinesEnabled = false,
+                    Upline = new BetSetting() 
+                    {
+                        MinBet = 10,
+                        MaxBet = 50,
+                        MaxPerMatch = 400,
+                        IsEnabled = true,
+                        IsDownlinesEnabled = false
+                    }
+                },
+                new BetSetting()
+                {
+                    BetTypeId = 3,
+                    BetTypeName = "Australia",
+                    MinBet = 0,
+                    MaxBet = 0,
+                    MaxPerMatch = 0,
+                    IsEnabled = true,
+                    IsDownlinesEnabled = false,
+                    Upline = new BetSetting() 
+                    {
+                        MinBet = 10,
+                        MaxBet = 50,
+                        MaxPerMatch = 300,
+                        IsEnabled = false,
+                        IsDownlinesEnabled = false
+                    }
+                },
+
+                 new BetSetting()
+                {
+                    BetTypeId = 4,
+                    BetTypeName = "Vietnam",
+                    MinBet = 10,
+                    MaxBet = 0,
+                    MaxPerMatch = 0,
+                    IsEnabled = false,
+                    IsDownlinesEnabled = false,
+                    Upline = new BetSetting() 
+                    {
+                        MinBet = 10,
+                        MaxBet = 50,
+                        MaxPerMatch = 400,
+                        IsEnabled = true,
+                        IsDownlinesEnabled = true
+                    }
+                },
+                new BetSetting()
+                {
+                    BetTypeId = 4,
+                    BetTypeName = "Thai",
+                    MinBet = 0,
+                    MaxBet = 0,
+                    MaxPerMatch = 0,
+                    IsEnabled = true,
+                    IsDownlinesEnabled = false,
+                    Upline = new BetSetting() 
+                    {
+                        MinBet = 10,
+                        MaxBet = 50,
+                        MaxPerMatch = 300,
+                        IsEnabled = true,
+                        IsDownlinesEnabled = true
+                    }
+                },
+            };
+
+            customerSetting.PositionTakings = new List<MasterPositionTaking>() 
+            {
+                new MasterPositionTaking()
+                {
+                    SportTypeId = 202,
+                    BetTypeId = 1,
+                    BetTypeName = "Bejing",
+                    S4 = 0.85,
+                    M4 = 0.6,
+                    A4 = 0.5,
+                    N4 = 0,
+                    L4 = 0.85,
+                    SComm = 0.0095,
+                    SCommMax = 0.01
+                },
+                new MasterPositionTaking()
+                {
+                    SportTypeId = 202,
+                    BetTypeId = 2,
+                    BetTypeName = "Canada",
+                    S4 = 0.85,
+                    M4 = 0.6,
+                    A4 = 0.5,
+                    N4 = 0,
+                    L4 = 0.85,
+                    SComm = 0.0095,
+                    SCommMax = 0.01
+                },
+                new MasterPositionTaking()
+                {
+                    SportTypeId = 202,
+                    BetTypeId = 3,
+                    BetTypeName = "Australia",
+                    S4 = 0.85,
+                    M4 = 0.6,
+                    A4 = 0.5,
+                    N4 = 0,
+                    L4 = 0.85,
+                    SComm = 0.0095,
+                    SCommMax = 0.01
+                },
+                 new MasterPositionTaking()
+                {
+                    SportTypeId = 202,
+                    BetTypeId = 2,
+                    BetTypeName = "Vietnam",
+                    S4 = 0.85,
+                    M4 = 0.6,
+                    A4 = 0.5,
+                    N4 = 0,
+                    L4 = 0.85,
+                    SComm = 0.0095,
+                    SCommMax = 0.01
+                },
+                new MasterPositionTaking()
+                {
+                    SportTypeId = 202,
+                    BetTypeId = 3,
+                    BetTypeName = "Thai",
+                    S4 = 0.85,
+                    M4 = 0.6,
+                    A4 = 0.5,
+                    N4 = 0,
+                    L4 = 0.85,
+                    SComm = 0.0095,
+                    SCommMax = 0.01
+                }
+            };
+
+            return View(Constants.EDIT_MASTER_CSHTML, customerSetting);
+   
         }
 
         [HttpPost]
