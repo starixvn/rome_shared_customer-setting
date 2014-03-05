@@ -89,13 +89,16 @@ function KenoStatusController($scope) {
                 groupName: ''
             }
         })
-        .success(function (data) {                        
+        .success(function (data) {
             var errorCodes = data.errorCode.toString().indexOf('\u0007') != -1 ? data.errorCode.split('\u0007') : data.errorCode.toString();
+            var errorMessages = data.errorMessage.toString().indexOf('\u0007') != -1 ? data.errorMessage.split('\u0007') : data.errorMessage.toString();
             var success = true;
+            var message = '';
 
             $(errorCodes).each(function (i, error) {
                 if (error != '' && parseInt(error) >= 0) {
                     success = false;
+                    message += (parseInt(error) == 600 ? 'Account was disabled' : errorMessages[i]) + '<br />';
                 }
             });
 
@@ -112,14 +115,14 @@ function KenoStatusController($scope) {
             }
             else {
                 $('#errMsg').attr('class', 'errMsg');
-                $('#errMsg').html(data.errorMessage.formatErrorMessage());
+                $('#errMsg').html(message.formatErrorMessage());
                 $('#errMsg').show();
             }
 
             //parent.Fanex.ExtAcc.UnBlockUI();
         }).error(function (data) {
             if (typeof console != 'undefined')
-                console.log(data);            
+                console.log(data);
 
             //parent.Fanex.ExtAcc.UnBlockUI();
         });
