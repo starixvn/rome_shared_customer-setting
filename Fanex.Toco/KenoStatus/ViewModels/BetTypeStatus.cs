@@ -20,5 +20,6 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.ViewModels
         public bool IsDisabled { get; set; }
         public bool IsDisabledUpline { get; set; }
         public bool IsDisabledDownlines { get; set; }
+        public string BetTypeName { get; set; }
     }
 }
