@@ -104,7 +104,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Helper
 
         internal void AddErrorMessage(int errorCode, string errorMsg)
         {
-            if (errorCode != 0)
+            if (IfThisIsAnError(errorCode))
             {
                 _errorResults.Add(new Result()
                 {
@@ -112,6 +112,11 @@ namespace Fanex.CustomerSetting.Module.Keno.Helper
                     ErrorMessage = errorCode > 0 ? errorMsg : GetResourceFromErrorCode(errorCode.ToString())
                 });
             }
+        }
+
+        internal static bool IfThisIsAnError(int errorCode)
+        {
+            return errorCode != 0;
         }
 
         internal void AddNotificationMessageWhenClientDataIsNotChanged()
