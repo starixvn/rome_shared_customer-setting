@@ -47,7 +47,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
         public ActionResult Index(int id, int uplineId, int roleId, string userName = null)
         {
             var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
-            if (!obj.IsBelong(id, userName))
+            if (!obj.IsBelong(id, userName, this.Request["groupName"]))
             {
                 return this.ActionDenied(this.Request);
             }
@@ -106,7 +106,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
             List<string> errMsg = new List<string>();
 
             var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
-            if (!obj.IsBelong(newStatus.CustID, newStatus.UserName))
+            if (!obj.IsBelong(newStatus.CustID, newStatus.UserName, this.Request["groupName"]))
             {
                 return this.ActionDenied(this.Request);
             }
