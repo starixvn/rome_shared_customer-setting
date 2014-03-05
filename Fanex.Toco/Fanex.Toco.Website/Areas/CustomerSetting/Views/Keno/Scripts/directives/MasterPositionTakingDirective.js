@@ -24,14 +24,16 @@ KenoModule.directive('masterPositionTakingElement', ['commonService', function (
 
             $scope.monitorSaveButton = function () {
                 if ($scope.positionTaking.isUpdateUS3
-            || $scope.positionTaking.isUpdateS3
-            || $scope.positionTaking.isUpdateN3
-            || $scope.positionTaking.isUpdateMCO) {
+                    || $scope.positionTaking.isUpdateS3
+                    || $scope.positionTaking.isUpdateN3
+                    || $scope.positionTaking.isUpdateMComm) {
                     $scope.positionTaking.isUpdatePT = true;
-                    return;
+                }
+                else {
+                    $scope.positionTaking.isUpdatePT = false;
                 }
 
-                $scope.positionTaking.isUpdatePT = false;
+                $scope.$emit('positionTakingRow');
             };
 
             $scope.$watch('[positionTaking.s3, positionTaking.uS3, positionTaking.iS3]', function () {
@@ -92,7 +94,7 @@ KenoModule.directive('masterPositionTakingElement', ['commonService', function (
             }, true)
 
             $scope.$watch('positionTaking.mComm', function () {
-                $scope.positionTaking.isUpdateMCO = $scope.originalPositionTaking.mComm != $scope.positionTaking.mComm ? true : false;
+                $scope.positionTaking.isUpdateMComm = $scope.originalPositionTaking.mComm != $scope.positionTaking.mComm ? true : false;
                 $scope.monitorSaveButton();
             }, true)
 
