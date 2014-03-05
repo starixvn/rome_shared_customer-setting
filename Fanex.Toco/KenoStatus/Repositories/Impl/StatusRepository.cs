@@ -17,6 +17,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Repositories.Impl
     using Fanex.CustomerSetting.Module.KenoStatus.Repositories.Interface;
     using Fanex.CustomerSetting.Module.KenoStatus.ViewModels;
     using Fanex.CustomerSetting.Module.KenoStatus.Criteria;
+    using Fanex.CustomerSetting.Module.Core.Web;
 
     /// <summary>
     /// Progressive repository.
@@ -43,10 +44,11 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Repositories.Impl
                         foreach (DataRow row in ds.Tables[0].Rows)
                         {
                             kenoEnableStatus.BetTypeStatusList.Add(new BetTypeStatus(){
-                                BetTypeID=  Converter.ToInt(row["BettypeID"]),
-                                IsDisabled = row["Disable"] == DBNull.Value ? true : Converter.ToBool(row["Disable"]),
-                                IsDisabledUpline = row["DisabledUpline"] == DBNull.Value ? true : Converter.ToBool(row["DisabledUpline"]),
-                                IsDisabledDownlines = row["DisabledDownlines"] == DBNull.Value ? true : Converter.ToBool(row["DisabledDownlines"])
+                                BetTypeID = Converter.ToInt(row["Bettype"]),
+                                BetTypeName = RemotingRef.RefData.GetBetTypeName(Converter.ToString2(row["Bettype"]), TWLang(AppSession.CurrentSession.Language)),
+                                IsDisabled = row["IsDisable"] == DBNull.Value ? true : Converter.ToBool(row["IsDisable"]),
+                                IsDisabledUpline = row["DisableUplines"] == DBNull.Value ? true : Converter.ToBool(row["DisableUplines"]),
+                                IsDisabledDownlines = row["DisableDownlines"] == DBNull.Value ? true : Converter.ToBool(row["DisableDownlines"])
                             });
                         }
                         return kenoEnableStatus;
@@ -70,5 +72,18 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Repositories.Impl
 				return db.GetOuputParams();
 			}
 		}
+
+        private static string TWLang(string lang)
+        {
+            switch (lang)
+            {
+                case "en-US": return "en";
+                case "zh-TW": return "ch"; // Traditional
+                case "zh-CN": return "cs"; // Simplified
+                case "ja-JP": return "jp";
+                case "th-TH": return "th"; // Thai
+                default: return "en";
+            }
+        }
 	}
 }
