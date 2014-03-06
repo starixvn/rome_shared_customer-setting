@@ -23,6 +23,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
     using Fanex.CustomerSetting.Module.KenoStatus.Repositories.Impl;
     using Fanex.CustomerSetting.Module.KenoStatus.ViewModels;
     using System.Collections;
+    using Fanex.CustomerSetting.Security.Authenticate;
 
     public class EnableStatusController: BaseController
     {
@@ -45,12 +46,13 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
         /// <param name="uplineId">Upper customer id.</param>
         /// <param name="roleId">Customer role id.</param>
         /// <returns>ActionResult object.</returns>
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Keno")]
         public ActionResult Index(int id, int uplineId, int roleId)
         {
             //if (!this.IsBelong(Request["groupName"], id, null, true))
             //{
             //    return this.ActionDenied(this.Request);
-            //}
+            //} EnableStatus/Keno
 
             ViewBag.roleId = roleId;
             ViewBag.id = id;
@@ -66,7 +68,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
         /// <param name="uplineId">Upper customer id.</param>
         /// <param name="roleId">Customer role id.</param>
         /// <returns>ActionResult object.</returns>        
-        public ActionResult GetKenoStatusData(int id, int uplineId, int roleId)
+        public ActionResult GetKenoStatusData(int id, int uplineId, int roleId, int subAccountId)
         {
             var model = _statusRepository.GetStatus(new SelectStatusCriteria() { 
                 CustID=id
@@ -74,6 +76,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
 
             model.RoleID = roleId;
             model.UplineID = uplineId;
+            model.SubAccID = subAccountId;
 
             var result = "var model = " + JsonConvert.SerializeObject(
                 model,
@@ -87,6 +90,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
             return this.Content(result);
         }
 
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Keno")]
         public ActionResult Update(string model)
         {
             var settings = new JsonSerializerSettings();
