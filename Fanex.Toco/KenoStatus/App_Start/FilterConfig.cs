@@ -8,7 +8,7 @@
 //     <change who="kan.nguyen">Create/Run StyleCop.</change>
 // </history>
 // ************************************************************************************
-namespace Fanex.CustomerSetting.Module.Racebook.App_Start
+namespace Fanex.CustomerSetting.Module.KenoStatus.App_Start
 {
     using System.Web.Mvc;
 

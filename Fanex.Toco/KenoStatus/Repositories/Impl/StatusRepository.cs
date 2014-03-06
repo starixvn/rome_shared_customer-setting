@@ -18,6 +18,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Repositories.Impl
     using Fanex.CustomerSetting.Module.KenoStatus.ViewModels;
     using Fanex.CustomerSetting.Module.KenoStatus.Criteria;
     using Fanex.CustomerSetting.Module.Core.Web;
+    using Fanex.CustomerSetting.Module.Core;
 
     /// <summary>
     /// Progressive repository.
@@ -46,10 +47,10 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Repositories.Impl
                         {
                             kenoEnableStatus.BetTypeStatusList.Add(new BetTypeStatus(){
                                 BetTypeID = Converter.ToInt(row["IBCBetTypeID"]),
-                                BetTypeName = RemotingRef.RefData.GetBetTypeName(Converter.ToString2(row["IBCBetTypeID"]), TWLang(AppSession.CurrentSession.Language)),
-                                IsDisabled = row["IsDisabled"] == DBNull.Value ? true : Converter.ToBool(row["IsDisabled"]),
-                                IsDisabledUpline = row["DisableUplines"] == DBNull.Value ? true : Converter.ToBool(row["DisableUplines"]),
-                                IsDisabledDownlines = row["DisableDownlines"] == DBNull.Value ? true : Converter.ToBool(row["DisableDownlines"])
+                                BetTypeName = RemotingRef.RefData.GetBetTypeName(Utils.ToString(row["IBCBetTypeID"]), TWLang(AppSession.CurrentSession.Language)),
+                                IsDisabled = row["IsDisabled"] == DBNull.Value ? true : Utils.ToBoolean(row["IsDisabled"]),
+                                IsDisabledUpline = row["DisableUplines"] == DBNull.Value ? true : Utils.ToBoolean(row["DisableUplines"]),
+                                IsDisabledDownlines = row["DisableDownlines"] == DBNull.Value ? true : Utils.ToBoolean(row["DisableDownlines"])
                             });
                         }
                         
