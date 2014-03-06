@@ -19,10 +19,9 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
     using Fanex.CustomerSetting.Module.KenoStatus.Repositories.Interface;
     using Fanex.CustomerSetting.Module.KenoStatus.ViewModels;
     using Fanex.CustomerSetting.Security.Authenticate;
-    using Fanex.CustomerSetting.Security.Authenticate;
+    using Fanex.CustomerSetting.Security.Configurations;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
-    using Fanex.CustomerSetting.Security.Configurations;
 
     public class EnableStatusController: BaseController
     {
@@ -71,6 +70,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
         /// <returns>ActionResult object.</returns>        
         public ActionResult GetKenoStatusData(int id, int uplineId, int roleId, int subAccountId = 0)
         {
+            ViewBag.subAccountId = subAccountId;
             var selectCriteria = new SelectStatusCriteria();
             selectCriteria.CustID = id;
             var model = _statusRepository.GetStatus(selectCriteria);
