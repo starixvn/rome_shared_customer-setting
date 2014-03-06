@@ -70,6 +70,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
         /// <returns>ActionResult object.</returns>        
         public ActionResult GetKenoStatusData(int id, int uplineId, int roleId, int subAccountId = 0)
         {
+            ViewBag.subAccountId = subAccountId;
             var selectCriteria = new SelectStatusCriteria();
             selectCriteria.CustID = id;
             var model = _statusRepository.GetStatus(selectCriteria);
