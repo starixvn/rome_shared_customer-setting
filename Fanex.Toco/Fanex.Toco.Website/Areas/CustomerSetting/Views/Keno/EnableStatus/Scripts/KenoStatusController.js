@@ -104,13 +104,13 @@ function KenoStatusController($scope) {
 
             if (data.errorCode == "0" || data.errorCode == "" || success) {
                 $('#errMsg').attr('class', 'successMsg');
-                $('#errMsg').html('<font color="Blue">Updated successfully</font>');
+                $('#errMsg').html('<font color="Blue">' + successMsg + '</font>');
                 $('#errMsg').show();
 
                 var timeout = setTimeout(function () {
                     clearTimeout(timeout);
 
-                    document.location.reload(true);
+                   // document.location.reload(true);
                 }, 3000);
             }
             else {
