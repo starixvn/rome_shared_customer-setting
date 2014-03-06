@@ -22,7 +22,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.App_Start
         /// </summary>
         /// <param name="bundles">The bundles.</param>
         public static void RegisterBundles(BundleCollection bundles)
-        {            
+        {          
         }
     }
 }
