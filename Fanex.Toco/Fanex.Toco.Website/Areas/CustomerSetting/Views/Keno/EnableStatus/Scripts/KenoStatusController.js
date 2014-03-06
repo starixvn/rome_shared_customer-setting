@@ -96,7 +96,7 @@ function KenoStatusController($scope) {
             var message = '';
 
             $(errorCodes).each(function (i, error) {
-                if (error != '' && parseInt(error) >= 0) {
+                if (error != '' && parseInt(error) > 0) {
                     success = false;
                     message += (parseInt(error) == 600 ? 'Account was disabled' : errorMessages[i]) + '<br />';
                 }
