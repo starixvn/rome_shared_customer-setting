@@ -47,7 +47,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
         /// <param name="roleId">Customer role id.</param>
         /// <returns>ActionResult object.</returns>
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Keno")]
-        public ActionResult Index(int id, int uplineId, int roleId)
+        public ActionResult Index(int id, int uplineId, int roleId, int subAccountId = 0)
         {
             //if (!this.IsBelong(Request["groupName"], id, null, true))
             //{
@@ -57,6 +57,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
             ViewBag.roleId = roleId;
             ViewBag.id = id;
             ViewBag.uplineId = uplineId;
+            ViewBag.subAccountId = subAccountId;
 
             return this.PartialViewBase(null, "~/Areas/CustomerSetting/Views/Keno/EnableStatus/Index.cshtml");
         }
@@ -68,7 +69,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
         /// <param name="uplineId">Upper customer id.</param>
         /// <param name="roleId">Customer role id.</param>
         /// <returns>ActionResult object.</returns>        
-        public ActionResult GetKenoStatusData(int id, int uplineId, int roleId, int subAccountId)
+        public ActionResult GetKenoStatusData(int id, int uplineId, int roleId, int subAccountId = 0)
         {
             var model = _statusRepository.GetStatus(new SelectStatusCriteria() { 
                 CustID=id
