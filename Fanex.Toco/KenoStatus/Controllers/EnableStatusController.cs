@@ -19,9 +19,10 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
     using Fanex.CustomerSetting.Module.KenoStatus.Repositories.Interface;
     using Fanex.CustomerSetting.Module.KenoStatus.ViewModels;
     using Fanex.CustomerSetting.Security.Authenticate;
-    using Fanex.CustomerSetting.Security.Configurations;
+    using Fanex.CustomerSetting.Security.Authenticate;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
+    using Fanex.CustomerSetting.Security.Configurations;
 
     public class EnableStatusController: BaseController
     {
@@ -44,12 +45,13 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
         /// <param name="uplineId">Upper customer id.</param>
         /// <param name="roleId">Customer role id.</param>
         /// <returns>ActionResult object.</returns>
-        public ActionResult Index(int id, int uplineId, int roleId, string userName = null)
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Keno")]
+        public ActionResult Index(int id, int uplineId, int roleId, int subAccountId = 0)
         {
             var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
-            if (!obj.IsBelong(id, userName, this.Request["groupName"]))
+            if (!obj.IsBelong(id, null, this.Request["groupName"]))
             {
-                return this.ActionDenied(this.Request);
+                this.ActionDenied(this.Request);
             }
 
             ViewBag.roleId = roleId;
@@ -66,7 +68,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
         /// <param name="uplineId">Upper customer id.</param>
         /// <param name="roleId">Customer role id.</param>
         /// <returns>ActionResult object.</returns>        
-        public ActionResult GetKenoStatusData(int id, int uplineId, int roleId)
+        public ActionResult GetKenoStatusData(int id, int uplineId, int roleId, int subAccountId = 0)
         {
             var selectCriteria = new SelectStatusCriteria();
             selectCriteria.CustID = id;
@@ -74,7 +76,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
             model.CustID = id;
             model.RoleID = roleId;
             model.UplineID = uplineId;
-            model.UserID = AppSession.CurrentSession.UserId;
+            model.SubAccID = subAccountId;
 
             var result = "var model = " + JsonConvert.SerializeObject(
                 model,
@@ -88,6 +90,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
             return this.Content(result);
         }
 
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Keno")]
         public ActionResult Update(string model)
         {
             var settings = new JsonSerializerSettings();
