@@ -87,4 +87,5 @@
 • Master Edit Member
 - /customersetting/keno/kenosetting/MasterEditMember?custid=1
 
-
+• Edit Keno Status
+- /customersetting/keno/enablestatus/index?id=xxx&uplineId=yyy&roleId=zzz (xxx, yyy, zzz is integer occording to custId, uplineId, roleId)

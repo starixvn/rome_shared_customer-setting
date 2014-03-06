@@ -267,4 +267,10 @@
   <data name="IsAuto" xml:space="preserve">
     <value>Is Auto</value>
   </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="EnableDownlines" xml:space="preserve">
+    <value>Enable Downlines</value>
+  </data>
 </root>

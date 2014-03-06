@@ -6,28 +6,70 @@ angular.element($('#ng-app')).ready(function () {
 
 function KenoStatusController($scope) {
     $scope.model = model;
-
     $scope.betTypes = $scope.model.betTypeStatusList;
 
     $scope.CheckStatus = function (preVal, scope) {
+        var betTypesCheckboxes = document.getElementsByName('betTypes0');
+        var allChecked = true;
+
         if (preVal) {
             if (scope.item.enable) {
                 scope.item.enableDownline = true;
                 scope.item.disableDownline = true;
+
+                scope.item.isDisabled = false;
+                scope.item.isDisabledUpline = false;
+                scope.item.isDisabledDownlines = false;
+
+                for (var i = 0; i < betTypesCheckboxes.length; i++) {
+                    if (!betTypesCheckboxes[i].checked) {
+                        allChecked = false;
+                        break;
+                    }
+                }
+
+                if (allChecked)
+                    document.getElementById('chkAll').checked = true;
             }
             else {
+                document.getElementById('chkAll').checked = false;
+
                 scope.item.enableDownline = false;
                 scope.item.disableDownline = true;
+
+                scope.item.isDisabled = true;
+                scope.item.isDisabledUpline = false;
+                scope.item.isDisabledDownlines = true;
             }
         }
         else {
             if (scope.item.enable) {
                 scope.item.enableDownline = false;
                 scope.item.disableDownline = false;
+
+                scope.item.isDisabled = false;
+                scope.item.isDisabledUpline = false;
+                scope.item.isDisabledDownlines = false;
+
+                for (var i = 0; i < betTypesCheckboxes.length; i++) {
+                    if (!betTypesCheckboxes[i].checked) {
+                        allChecked = false;
+                        break;
+                    }
+                }
+
+                if (allChecked)
+                    document.getElementById('chkAll').checked = true;
             }
             else {
+                document.getElementById('chkAll').checked = false;
+
                 scope.item.enableDownline = false;
                 scope.item.disableDownline = true;
+
+                scope.item.isDisabled = true;
+                scope.item.isDisabledUpline = false;
+                scope.item.isDisabledDownlines = true;
             }
         }
     };
@@ -42,42 +84,45 @@ function KenoStatusController($scope) {
             data: {
                 id: custId,
                 uplineId: uplineId,
-                txtCustomerObject: JSON.stringify(model),
+                model: JSON.stringify(model),
                 roleId: roleId,
                 groupName: ''
             }
         })
-        .success(function (data) {                        
+        .success(function (data) {
             var errorCodes = data.errorCode.toString().indexOf('\u0007') != -1 ? data.errorCode.split('\u0007') : data.errorCode.toString();
+            var errorMessages = data.errorMessage.toString().indexOf('\u0007') != -1 ? data.errorMessage.split('\u0007') : data.errorMessage.toString();
             var success = true;
+            var message = '';
 
             $(errorCodes).each(function (i, error) {
-                if (error != '' && parseInt(error) >= 0) {
+                if (error != '' && parseInt(error) > 0) {
                     success = false;
+                    message += (parseInt(error) == 600 ? 'Account was disabled' : errorMessages[i]) + '<br />';
                 }
             });
 
             if (data.errorCode == "0" || data.errorCode == "" || success) {
                 $('#errMsg').attr('class', 'successMsg');
-                $('#errMsg').html('<font color="Blue">Updated successfully</font>');
+                $('#errMsg').html('<font color="Blue">' + successMsg + '</font>');
                 $('#errMsg').show();
 
                 var timeout = setTimeout(function () {
                     clearTimeout(timeout);
 
-                    document.location.reload(true);
+                   // document.location.reload(true);
                 }, 3000);
             }
             else {
                 $('#errMsg').attr('class', 'errMsg');
-                $('#errMsg').html(data.errorMessage.formatErrorMessage());
+                $('#errMsg').html(message.formatErrorMessage());
                 $('#errMsg').show();
             }
 
             //parent.Fanex.ExtAcc.UnBlockUI();
         }).error(function (data) {
             if (typeof console != 'undefined')
-                console.log(data);            
+                console.log(data);
 
             //parent.Fanex.ExtAcc.UnBlockUI();
         });
@@ -85,86 +130,44 @@ function KenoStatusController($scope) {
 
     $scope.CheckAll = function () {
         var checkbox = document.getElementById('chkAll');
-        var betTypeChexkboxes = document.getElementsByName('betTypes');
+        var betTypeChexkboxes = document.getElementsByName('betTypes0');
+        var betTypeChexkboxesDownlines = document.getElementsByName('betTypes1');
 
         if (checkbox.checked) {
             for (var i = 0; i < betTypeChexkboxes.length; i++) {
+                if (betTypeChexkboxes[i].disabled) continue;
+
                 betTypeChexkboxes[i].checked = true;
+
+                if ($scope.betTypes[i].preVal) {
+                    betTypeChexkboxesDownlines[i].checked = true;
+                    $scope.betTypes[i].isDisabledDownlines = false;
+                }
+                else {
+                    betTypeChexkboxesDownlines[i].disabled = false;
+                    $scope.betTypes[i].isDisabledDownlines = true;
+                }
+
+                $scope.betTypes[i].isDisabled = false;
             }
         }
         else {
             for (var i = 0; i < betTypeChexkboxes.length; i++) {
+                if (betTypeChexkboxes[i].disabled) continue;
+
                 betTypeChexkboxes[i].checked = false;
+                betTypeChexkboxesDownlines[i].checked = false;
+
+                if ($scope.betTypes[i].preVal) {
+                    betTypeChexkboxesDownlines[i].disabled = true;
+                }
+                else {
+                    betTypeChexkboxesDownlines[i].disabled = true;
+                }
+
+                $scope.betTypes[i].isDisabled = true;
+                $scope.betTypes[i].isDisabledDownlines = true;
             }
         }
     };
-};
-    
-/*
- test data
-*/
-var model = {
-    custID: 1176070,
-    userName: "SuperTest1",
-    roleID: 4,
-    uplineID: 122451,
-    userID: 51154,
-    betTypeStatusList: [{
-        betTypeID: 1,
-        betTypeName: "Beijing",
-        isDisabled: true,
-        isDisabledUpline: true,
-        isDisabledDownlines: true
-    },
-    {
-        betTypeID: 2,
-        betTypeName: "Canada",
-        isDisabled: false,
-        isDisabledUpline: false,
-        isDisabledDownlines: true
-    },
-    {
-        betTypeID: 3,
-        betTypeName: "Australia",
-        isDisabled: false,
-        isDisabledUpline: false,
-        isDisabledDownlines: false
-    }
-    , {
-        betTypeID: 4,
-        betTypeName: "Slovakia",
-        isDisabled: false,
-        isDisabledUpline: false,
-        isDisabledDownlines: false
-    }, {
-        betTypeID: 5,
-        betTypeName: "Ohio",
-        isDisabled: true,
-        isDisabledUpline: false,
-        isDisabledDownlines: true
-    }, {
-        betTypeID: 6,
-        betTypeName: "West Canada",
-        isDisabled: false,
-        isDisabledUpline: false,
-        isDisabledDownlines: false
-    }, {
-        betTypeID: 7,
-        betTypeName: "Malta",
-        isDisabled: false,
-        isDisabledUpline: false,
-        isDisabledDownlines: false
-    }, {
-        betTypeID: 8,
-        betTypeName: "Taiwan",
-        isDisabled: false,
-        isDisabledUpline: false,
-        isDisabledDownlines: false
-    }, {
-        betTypeID: 8,
-        betTypeName: "Massac",
-        isDisabled: false,
-        isDisabledUpline: false,
-        isDisabledDownlines: false
-    }]
 };

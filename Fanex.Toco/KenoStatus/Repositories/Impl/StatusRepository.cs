@@ -17,12 +17,14 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Repositories.Impl
     using Fanex.CustomerSetting.Module.KenoStatus.Repositories.Interface;
     using Fanex.CustomerSetting.Module.KenoStatus.ViewModels;
     using Fanex.CustomerSetting.Module.KenoStatus.Criteria;
+    using Fanex.CustomerSetting.Module.Core.Web;
+    using Fanex.CustomerSetting.Module.Core;
 
     /// <summary>
     /// Progressive repository.
     /// </summary>
     [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1027:TabsMustNotBeUsed", Justification = "Reviewed.")]
-    public class ProgressiveRepository : IStatusRepository
+    public class StatusRepository : IStatusRepository
 	{
 		/// <summary>
 		/// Get Enable Status.
@@ -40,15 +42,19 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Repositories.Impl
 				{
 					if ( ds.Tables.Count>0)
 					{
-                        foreach (DataRow row in ds.Tables[0].Rows)
+                        var dt = ds.Tables[0];
+                        foreach (DataRow row in dt.Rows)
                         {
                             kenoEnableStatus.BetTypeStatusList.Add(new BetTypeStatus(){
-                                BetTypeID=  Converter.ToInt(row["BettypeID"]),
-                                IsDisabled = row["Disable"] == DBNull.Value ? true : Converter.ToBool(row["Disable"]),
-                                IsDisabledUpline = row["DisabledUpline"] == DBNull.Value ? true : Converter.ToBool(row["DisabledUpline"]),
-                                IsDisabledDownlines = row["DisabledDownlines"] == DBNull.Value ? true : Converter.ToBool(row["DisabledDownlines"])
+                                BetTypeID = Converter.ToInt(row["IBCBetTypeID"]),
+                                BetTypeName = RemotingRef.RefData.GetBetTypeName(Utils.ToString(row["IBCBetTypeID"]), TWLang(AppSession.CurrentSession.Language)),
+                                IsDisabled = row["IsDisabled"] == DBNull.Value ? true : Utils.ToBoolean(row["IsDisabled"]),
+                                IsDisabledUpline = row["DisableUplines"] == DBNull.Value ? true : Utils.ToBoolean(row["DisableUplines"]),
+                                IsDisabledDownlines = row["DisableDownlines"] == DBNull.Value ? true : Utils.ToBoolean(row["DisableDownlines"])
                             });
                         }
+                        
+                        kenoEnableStatus.UserName = dt.Rows.Count>0 ? Convert.ToString(dt.Rows[0]["UserName"]) : string.Empty;
                         return kenoEnableStatus;
 					}
 				}
@@ -70,5 +76,18 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Repositories.Impl
 				return db.GetOuputParams();
 			}
 		}
+
+        private static string TWLang(string lang)
+        {
+            switch (lang)
+            {
+                case "en-US": return "en";
+                case "zh-TW": return "ch"; // Traditional
+                case "zh-CN": return "cs"; // Simplified
+                case "ja-JP": return "jp";
+                case "th-TH": return "th"; // Thai
+                default: return "en";
+            }
+        }
 	}
 }
