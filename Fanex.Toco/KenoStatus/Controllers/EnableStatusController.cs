@@ -57,6 +57,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
             ViewBag.roleId = roleId;
             ViewBag.id = id;
             ViewBag.uplineId = uplineId;
+            ViewBag.subAccountId = subAccountId;
 
             return this.PartialViewBase(null, "~/Areas/CustomerSetting/Views/Keno/EnableStatus/Index.cshtml");
         }
