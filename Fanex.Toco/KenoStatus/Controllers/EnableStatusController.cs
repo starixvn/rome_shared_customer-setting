@@ -19,10 +19,9 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
     using Fanex.CustomerSetting.Module.KenoStatus.Repositories.Interface;
     using Fanex.CustomerSetting.Module.KenoStatus.ViewModels;
     using Fanex.CustomerSetting.Security.Authenticate;
-    using Fanex.CustomerSetting.Security.Authenticate;
+    using Fanex.CustomerSetting.Security.Configurations;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
-    using Fanex.CustomerSetting.Security.Configurations;
 
     public class EnableStatusController: BaseController
     {
