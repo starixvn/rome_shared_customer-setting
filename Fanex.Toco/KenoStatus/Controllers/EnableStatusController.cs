@@ -45,7 +45,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
         /// <param name="roleId">Customer role id.</param>
         /// <returns>ActionResult object.</returns>
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Keno")]
-        public ActionResult Index(int id, int uplineId, int roleId, int subAccountId = 0)
+        public ActionResult Index(int id, int uplineId, int roleId, int subAccountId = 0, int userId = 0)
         {
             var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
             if (!obj.IsBelong(id, null, this.Request["groupName"]))
@@ -57,6 +57,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
             ViewBag.id = id;
             ViewBag.uplineId = uplineId;
             ViewBag.subAccountId = subAccountId;
+            ViewBag.userId = userId;
 
             return this.PartialViewBase(null, "~/Areas/CustomerSetting/Views/Keno/EnableStatus/Index.cshtml");
         }
@@ -68,16 +69,17 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
         /// <param name="uplineId">Upper customer id.</param>
         /// <param name="roleId">Customer role id.</param>
         /// <returns>ActionResult object.</returns>        
-        public ActionResult GetKenoStatusData(int id, int uplineId, int roleId, int subAccountId = 0)
+        public ActionResult GetKenoStatusData(int id, int uplineId, int roleId, int subAccountId = 0, int userId = 0)
         {
             ViewBag.subAccountId = subAccountId;
             var selectCriteria = new SelectStatusCriteria();
             selectCriteria.CustID = id;
             var model = _statusRepository.GetStatus(selectCriteria);
-            model.CustID = id;
+            model.CustID = selectCriteria.CustID;
             model.RoleID = roleId;
             model.UplineID = uplineId;
             model.SubAccID = subAccountId;
+            model.UserID = userId;
 
             var result = "var model = " + JsonConvert.SerializeObject(
                 model,
