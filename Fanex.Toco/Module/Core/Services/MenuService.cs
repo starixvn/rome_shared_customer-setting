@@ -16,7 +16,7 @@ using System.Linq;
 using Fanex.CustomerSetting.Module.Core.Web;
 using Fanex.NAP.Core.Model;
 
-namespace Fanex.CustomerSetting.Module.Core.Services.Impl
+namespace Fanex.CustomerSetting.Module.Core.Services
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class MenuService : ServiceBase

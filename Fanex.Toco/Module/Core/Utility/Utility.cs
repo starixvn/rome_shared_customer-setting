@@ -14,7 +14,7 @@ namespace Fanex.CustomerSetting.Module.Core.Utility
     using System;
     using System.Data;
     using System.Web;
-    using Fanex.CustomerSetting.Module.Core.Services.Impl;
+    using Fanex.CustomerSetting.Module.Core.Services;
 
     public static class Utility
     {
@@ -433,7 +433,7 @@ namespace Fanex.CustomerSetting.Module.Core.Utility
             }
             catch (Exception ex)
             {
-                LoggingHandler.Log(ex);
+                new LoggingHandler().Log(ex);
             }
             return ip;
         }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using Fanex.CustomerSetting.Module.Core.Models;
 
-namespace Fanex.CustomerSetting.Module.Core.Services.Interface
+namespace Fanex.CustomerSetting.Module.Core.Services.Interfaces
 {
     public interface IMessageService
     {

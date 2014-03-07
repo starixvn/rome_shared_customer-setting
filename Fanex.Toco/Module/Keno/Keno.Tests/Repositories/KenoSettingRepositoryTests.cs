@@ -35,9 +35,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Repositories
             mockDataReader.Stub(d => d["mobilephone"]).Return("0908201560");
             mockDataReader.Stub(d => d["fax"]).Return("fax_test");
             mockDataReader.Stub(d => d.Read()).Return(true).Repeat.Times(1);
+            var repository = new KenoSettingRepository();
 
             // Act
-            var repository = new KenoSettingRepository();
             var customerInformation = repository.ReadAgentInformationData(mockDataReader);
 
             // Assert
@@ -68,9 +68,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Repositories
             mockDataReader.Stub(d => d["MinMaxBet"]).Return(120);
             mockDataReader.Stub(d => d["MinMaxPerMatch"]).Return(1500);
             mockDataReader.Stub(d => d.Read()).Return(true).Repeat.Times(5);
+            var repository = new KenoSettingRepository();
 
             // Act
-            var repository = new KenoSettingRepository();
             var betLimits = repository.ReadBetLimitData(mockDataReader);
 
             // Assert
@@ -107,9 +107,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Repositories
             mockDataReader.Stub(d => d["sdiscount"]).Return(10);
             mockDataReader.Stub(d => d["smaxdiscount"]).Return(20);
             mockDataReader.Stub(d => d.Read()).Return(true).Repeat.Times(5);
+            var repository = new KenoSettingRepository();
 
             // Act
-            var repository = new KenoSettingRepository();
             var betLimits = repository.ReadSuperPositionTakingData(mockDataReader);
 
             // Assert

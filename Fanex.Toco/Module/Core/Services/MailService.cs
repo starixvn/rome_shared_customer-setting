@@ -12,52 +12,39 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Fanex.CustomerSetting.Module.Core.Models;
-using Fanex.MailDeliver.Model;
 using System.Threading.Tasks;
+using Fanex.CustomerSetting.Module.Core.Models;
+using Fanex.CustomerSetting.Module.Core.Services.Interfaces;
+using Fanex.MailDeliver.Model;
 
-namespace Fanex.CustomerSetting.Module.Core.Services.Impl
+namespace Fanex.CustomerSetting.Module.Core.Services
 {
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public static class MailService
+    public class MailService
     {
+        protected readonly ILoggingHandler _logginHandler;
+
+        public MailService()
+            : this(null)
+        {
+        }
+
+        public MailService(ILoggingHandler logginHandler)
+        {
+            this._logginHandler = logginHandler ?? new LoggingHandler();
+        }
+
         /// <summary>
         /// Send Email Util, 4 Property need to specific are Mail To, Title, Subject, Body
         /// Other Properties will be option
         /// </summary>
         /// <param name="mailItem"></param>
-        public static bool SendMail(MailItem mailItem)
+        public bool SendMail(MailItem mailItem)
         {
             try
             {
-                #region Send Mail Example
-                //#region test attachment
-                //var stream = System.IO.File.Open(HttpContext.Current.Request.MapPath(".") + "\\" + "App_Data" + "\\Licensee-NumberGameWinLoss_From_7_29_2012_To_10_31_2012.xls", FileMode.Open);
-                //var buffer = new byte[stream.Length];
-                //stream.Read(buffer, 0, buffer.Length);
-                //stream.Flush();
-                //stream.Close();
-                ////#endregion test attachment
-                //MailService.SendMail(new MailItem
-                //{
-                //    To = "ricky.nguyen@nexcel.vn",
-                //    Title = "Test mail",
-                //    Subject = "Test mail",
-                //    Body = "Test mail",
-                //    Attachments = new List<MailAttachment>
-                //{
-                //    new MailAttachment
-                //    {
-                //        Content = new MemoryStream(buffer),
-                //        ContentType = "excel",
-                //        FileName = "Licensee"
-                //    }
-                //}
-                //});
-                #endregion
-
                 var mailRecord = new MailRecord
                 {
                     MailTo = mailItem.To,
@@ -130,7 +117,7 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
             }
             catch (Exception ex)
             {
-                LoggingHandler.Log(ex);
+                _logginHandler.Log(ex);
                 return false;
             }
 
@@ -141,7 +128,7 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
         /// Send mail Through Nexcel Mail Service
         /// </summary>
         /// <param name="mailRecordObject"></param>
-        private static void SendMailWithEmailService(object mailRecordObject)
+        private void SendMailWithEmailService(object mailRecordObject)
         {
             MailRecord mailRecord = mailRecordObject as MailRecord;
             if (mailRecord != null)
@@ -155,7 +142,7 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
                 }
                 catch (Exception ex)
                 {
-                    LoggingHandler.Log(ex);
+                    _logginHandler.Log(ex);
                 }
             }
         }

@@ -18,9 +18,9 @@ using Fanex.Common.Extensions;
 using Fanex.CustomerSetting.Module.Core.Criteria;
 using Fanex.CustomerSetting.Module.Core.Models;
 using Fanex.CustomerSetting.Module.Core.Repository;
-using Fanex.CustomerSetting.Module.Core.Services.Interface;
+using Fanex.CustomerSetting.Module.Core.Services.Interfaces;
 
-namespace Fanex.CustomerSetting.Module.Core.Services.Impl
+namespace Fanex.CustomerSetting.Module.Core.Services
 {
     /// <summary>
     /// TODO: Update summary.

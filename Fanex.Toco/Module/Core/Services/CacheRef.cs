@@ -10,7 +10,7 @@ using System.Diagnostics.CodeAnalysis;
 using Fanex.Common;
 using RemotingRef;
 
-namespace Fanex.CustomerSetting.Module.Core.Services.Impl
+namespace Fanex.CustomerSetting.Module.Core.Services
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public static class CacheRef

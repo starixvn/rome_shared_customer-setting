@@ -15,26 +15,23 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Fanex.Common.Helper;
 using Fanex.CustomerSetting.Module.Core.Repository;
-using Fanex.CustomerSetting.Module.Core.Services.Interface;
+using Fanex.CustomerSetting.Module.Core.Services.Interfaces;
 using Fanex.NAP.Framework.Data;
 using Fanex.Caching;
 using Fanex.NAP.Core.Web.Context;
 using Fanex.NAP.Core.Web.Session;
 
-namespace Fanex.CustomerSetting.Module.Core.Services.Impl
+namespace Fanex.CustomerSetting.Module.Core.Services
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ServiceBase : IServiceBase
     {
         protected readonly IDynamicRepository DynamicRepository;
-
         protected readonly ICache _cacheManager;
-
         protected readonly BaseRepository _repository;
-
         protected readonly ICurrentContext _context;
-
         protected readonly ICurrentSession _session;
+        protected readonly ILoggingHandler _logginHandler;
 
         public ServiceBase(IDynamicRepository repository = null)
         {
@@ -42,7 +39,7 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
             this._cacheManager = CacheService.CreateInstance();
             this._repository = new BaseRepository();
             this._context = this._context ?? new CurrentContext();
-            //this._session = this._session ?? new CurrentSession();
+            this._logginHandler = new LoggingHandler();
         }
 
         /// <summary>
@@ -56,11 +53,10 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
         /// <summary>
         /// Handler Exception
         /// </summary>
-        /// <param name="ex"></param>
-        public void HandleException(Exception ex)
+        /// <param name="exception">The exception.</param>
+        public void HandleException(Exception exception)
         {
-            //LogService.Error(ex.Message, ex);
-            LoggingHandler.Log(ex);
+            _logginHandler.Log(exception);
         }
 
         /// <summary>
@@ -88,7 +84,5 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
                 return null;
             }
         }
-
-       
     }
 }

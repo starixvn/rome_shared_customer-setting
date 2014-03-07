@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using Fanex.CustomerSetting.Module.Core.Criteria;
 using Fanex.CustomerSetting.Module.Core.Models;
 
-namespace Fanex.CustomerSetting.Module.Core.Services.Interface
+namespace Fanex.CustomerSetting.Module.Core.Services.Interfaces
 {
     /// <summary>
     /// TODO: Update summary.

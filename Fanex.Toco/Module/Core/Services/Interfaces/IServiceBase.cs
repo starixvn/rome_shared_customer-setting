@@ -14,7 +14,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Fanex.NAP.Framework.Data;
 
-namespace Fanex.CustomerSetting.Module.Core.Services.Interface
+namespace Fanex.CustomerSetting.Module.Core.Services.Interfaces
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public interface IServiceBase

@@ -4,7 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Louis.Nguyen" date="2012.12.07">Created</change>
+//   <change who="Louis.Nguyen" date="2012.12.07">Created.</change>
 // </history>
 
 namespace Fanex.CustomerSetting.Module.Core.Extensions
@@ -23,6 +23,13 @@ namespace Fanex.CustomerSetting.Module.Core.Extensions
         public const string ASC = "asc";
         public const string DESC = "desc";
 
+        /// <summary>
+        /// Sorts the by property.
+        /// </summary>
+        /// <typeparam name="T">Generic type in list.</typeparam>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="sortDirection">The sort direction.</param>
+        /// <param name="sortColumn">The sort column.</param>
         public static void SortByProperty<T>(this List<T> dataSource, string sortDirection, string sortColumn)
         {
             PropertyInfo sortColumnInformation = typeof(T).GetProperty(sortColumn);
