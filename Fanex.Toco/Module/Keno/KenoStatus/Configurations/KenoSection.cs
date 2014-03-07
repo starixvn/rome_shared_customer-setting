@@ -1,35 +1,28 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="KenoSection.cs" company="">
-// TODO: Update copyright text.
+// <copyright file="KenoSection.cs" company="Nexcel">
+// Steven.Nguyen
 // </copyright>
 // -----------------------------------------------------------------------
-namespace Fanex.CustomerSetting.Module.KenoStatus.Configuration
+
+namespace Fanex.CustomerSetting.Module.KenoStatus.Configurations
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Configuration;
 
     /// <summary>
-    /// Keno section, define dynamic configure from web.config.
+    /// Keno config section.
     /// </summary>
-    public class KenoSection:ConfigurationSection
+    public class KenoSection : ConfigurationSection
     {
         private static KenoSection _instance;
 
-        [ConfigurationProperty("enableKeno", IsRequired = false)]
-        public bool EnableKeno
-        {
-            get
-            {
-                return (bool)base["enableKeno"];
-            }
-        }
-        
-        /// <summary>
-        /// Keno section instance
+       /// <summary>
+        /// Gets the instance.
         /// </summary>
+        /// <value>
+        /// The instance.
+        /// </value>
+        /// <exception cref="System.Configuration.ConfigurationErrorsException">Error when parsing configuration section CustomerSetting - Keno.</exception>
         public static KenoSection Instance
         {
             get
@@ -47,6 +40,15 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Configuration
                 }
 
                 return _instance;
+            }
+        }
+
+        [ConfigurationProperty("enableKeno", IsRequired = false)]
+        public bool EnableKeno
+        {
+            get
+            {
+                return (bool)base["enableKeno"];
             }
         }
     }
