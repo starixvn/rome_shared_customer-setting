@@ -74,6 +74,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\ModuleRegistrator.cs" />
+    <Compile Include="Configuration\KenoSection.cs" />
     <Compile Include="Controllers\EnableStatusController.cs" />
     <Compile Include="Criteria\UpdateStatusCriteria.cs" />
     <Compile Include="Criteria\SelectStatusCriteria.cs" />
@@ -103,7 +104,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Configuration\" />
     <Folder Include="Entities\" />
     <Folder Include="Helper\" />
     <Folder Include="Services\" />
