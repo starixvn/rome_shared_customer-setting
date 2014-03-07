@@ -55,7 +55,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{0DB2F24A-0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.CustomerSetting.Module.Core", "Module\Core\Fanex.CustomerSetting.Module.Core.csproj", "{07B083E4-AA0A-41BF-A0FC-172C0E2A49B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.CustomerSetting.Module.Core.Tests", "Fanex.CustomerSetting.Module.Core.Tests\Fanex.CustomerSetting.Module.Core.Tests.csproj", "{D4D75F47-BEE4-4F2F-A8B7-F2A81D368D28}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.CustomerSetting.Module.Core.Tests", "Module\Core.Tests\Fanex.CustomerSetting.Module.Core.Tests.csproj", "{D4D75F47-BEE4-4F2F-A8B7-F2A81D368D28}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

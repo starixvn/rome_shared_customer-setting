@@ -40,6 +40,16 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
                 throw new NapDataAccessException();
             }
 
+            return ExecuteUpdateSetting(criteria);
+        }
+
+        /// <summary>
+        /// Executes the update setting.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>The Result object.</returns>
+        internal virtual Result ExecuteUpdateSetting(ICriteria criteria)
+        {
             using (var objDb = new ObjectDb(criteria.GetSettingKey()))
             {
                 objDb.ExecuteNonQuery(criteria.GetSpParams());

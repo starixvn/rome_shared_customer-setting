@@ -81,7 +81,7 @@
     <Folder Include="Web\CustomResults\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Module\Core\Fanex.CustomerSetting.Module.Core.csproj">
+    <ProjectReference Include="..\Core\Fanex.CustomerSetting.Module.Core.csproj">
       <Project>{07B083E4-AA0A-41BF-A0FC-172C0E2A49B2}</Project>
       <Name>Fanex.CustomerSetting.Module.Core</Name>
     </ProjectReference>

@@ -13,6 +13,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Repositories
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using Fanex.CustomerSetting.Module.Keno.Entities;
     using Fanex.CustomerSetting.Module.Keno.Repositories;
     using Fanex.NAP.Framework.Data;
     using Fanex.NAP.Framework.Exceptions;
@@ -81,6 +82,23 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Repositories
 
             // Assert
             Assert.AreEqual(true, isValid);
+        }
+
+        [Test]
+        public void UpdateSetting_CriteriaIsValid_ShouldReturnResultObject()
+        {
+            // Arrange
+            var mockCriteria = MockRepository.GenerateMock<ICriteria>();
+            mockCriteria.Stub(c => c.IsValid()).Return(true);
+            var kenoSettingBaseRepository = new TestableKenoSettingBaseRepository();
+
+            // Act
+            var result = kenoSettingBaseRepository.UpdateSetting(mockCriteria);
+
+            // Assert
+            Assert.IsInstanceOf<Result>(result);
+            Assert.AreEqual(0, result.ErrCode);
+            Assert.AreEqual(string.Empty, result.ErrMsg);
         }
     }
 }

@@ -70,7 +70,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
         /// </summary>
         /// <param name="dataReader">The data reader.</param>
         /// <returns>The CustomerInformation object.</returns>
-        private CustomerInformation ReadAgentInformationData(IDataReader dataReader)
+        internal CustomerInformation ReadAgentInformationData(IDataReader dataReader)
         {
             CustomerInformation customerInformation = null;
             while (dataReader.Read())
@@ -91,7 +91,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
         /// </summary>
         /// <param name="dataReader">The data reader.</param>
         /// <returns>The list of BetSetting.</returns>
-        private IList<BetSetting> ReadBetLimitData(IDataReader dataReader)
+        internal IList<BetSetting> ReadBetLimitData(IDataReader dataReader)
         {
             var betSettings = new List<BetSetting>();
             while (dataReader.Read())
@@ -108,7 +108,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
                     {
                         MinBet = dataReader.ToDecimal("MaxMinBet"),
                         MaxBet = !dataReader.IsDBNull("MinMaxBet") ? dataReader.ToDecimal("MinMaxBet") : 0,
-                        MaxPerMatch = !dataReader.IsDBNull("MinMaxBet") ? dataReader.ToDecimal("MinMaxPerMatch") : 0
+                        MaxPerMatch = !dataReader.IsDBNull("MinMaxPerMatch") ? dataReader.ToDecimal("MinMaxPerMatch") : 0
                     }
                 };
 
@@ -123,7 +123,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
         /// </summary>
         /// <param name="dataReader">The data reader.</param>
         /// <returns>The list of SuperPositionTaking.</returns>
-        private IList<SuperPositionTaking> ReadSuperPositionTakingData(IDataReader dataReader)
+        internal IList<SuperPositionTaking> ReadSuperPositionTakingData(IDataReader dataReader)
         {
             var positionTakings = new List<SuperPositionTaking>();
             while (dataReader.Read())
@@ -149,7 +149,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
         /// </summary>
         /// <param name="dataReader">The data reader.</param>
         /// <returns>The list of MasterPositionTaking.</returns>
-        private IList<MasterPositionTaking> ReadMasterPositionTakingData(IDataReader dataReader)
+        internal IList<MasterPositionTaking> ReadMasterPositionTakingData(IDataReader dataReader)
         {
             var positionTakings = new List<MasterPositionTaking>();
             while (dataReader.Read())
@@ -179,7 +179,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
         /// </summary>
         /// <param name="dataReader">The data reader.</param>
         /// <returns>The list of MasterPositionTaking.</returns>
-        private IList<AgentPositionTaking> ReadAgentPositionTakingData(IDataReader dataReader)
+        internal IList<AgentPositionTaking> ReadAgentPositionTakingData(IDataReader dataReader)
         {
             var positionTakings = new List<AgentPositionTaking>();
             while (dataReader.Read())
@@ -210,7 +210,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
         /// </summary>
         /// <param name="dataReader">The data reader.</param>
         /// <returns>The list of MasterPositionTaking.</returns>
-        private IList<MemberPositionTaking> ReadAgentEditMemberPositionTakingData(IDataReader dataReader)
+        internal IList<MemberPositionTaking> ReadAgentEditMemberPositionTakingData(IDataReader dataReader)
         {
             var positionTakings = new List<MemberPositionTaking>();
             while (dataReader.Read())
@@ -237,7 +237,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
         /// </summary>
         /// <param name="dataReader">The data reader.</param>
         /// <returns>The list of MasterPositionTaking.</returns>
-        private IList<MemberPositionTaking> ReadSuperEditMemberPositionTakingData(IDataReader dataReader)
+        internal IList<MemberPositionTaking> ReadSuperEditMemberPositionTakingData(IDataReader dataReader)
         {
             var positionTakings = new List<MemberPositionTaking>();
             while (dataReader.Read())
@@ -248,9 +248,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
                     A1 = dataReader.ToDouble("positiontaking"),
                     L2 = dataReader.ToDouble("maxpositiontaking"),
                     A4 = dataReader.ToDouble("amaxminpositiontaking"),
-                    A2 = dataReader.ToDouble("a2"),
-                    //Comm = dataReader.ToDouble("discount"),
-                    //MaxComm = dataReader.ToDouble("maxdiscount")
+                    A2 = dataReader.ToDouble("a2")
                 };
 
                 positionTakings.Add(bettingSetting);
@@ -264,7 +262,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
         /// </summary>
         /// <param name="dataReader">The data reader.</param>
         /// <returns>The list of MasterPositionTaking.</returns>
-        private IList<MemberPositionTaking> ReadMasterEditMemberPositionTakingData(IDataReader dataReader)
+        internal IList<MemberPositionTaking> ReadMasterEditMemberPositionTakingData(IDataReader dataReader)
         {
             var positionTakings = new List<MemberPositionTaking>();
             while (dataReader.Read())
@@ -275,9 +273,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
                     A1 = dataReader.ToDouble("positiontaking"),
                     L2 = dataReader.ToDouble("maxpositiontaking"),
                     A4 = dataReader.ToDouble("amaxminpositiontaking"),
-                    A2 = dataReader.ToDouble("a2"),
-                    //Comm = dataReader.ToDouble("discount"),
-                    //MaxComm = dataReader.ToDouble("maxdiscount")
+                    A2 = dataReader.ToDouble("a2")
                 };
 
                 positionTakings.Add(bettingSetting);
