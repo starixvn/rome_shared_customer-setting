@@ -1060,13 +1060,9 @@
     <None Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3-custom.less" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\KenoStatus\KenoStatus.csproj">
-      <Project>{7954F23F-567D-457D-99DC-A92224A50A99}</Project>
-      <Name>KenoStatus</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Module\Keno\Keno.Resources\Fanex.CustomerSetting.Module.Keno.Resources.csproj">
+    <ProjectReference Include="..\Module\Keno\Keno.Resources\Keno.Resources.csproj">
       <Project>{F317B419-340B-418D-B2AB-8C43F18B85D6}</Project>
-      <Name>Fanex.CustomerSetting.Module.Keno.Resources</Name>
+      <Name>Keno.Resources</Name>
     </ProjectReference>
     <ProjectReference Include="..\Module\Racebook\Racebook.csproj">
       <Project>{63D0DC31-9FEF-4BEE-9D43-E1E3A3BE42A5}</Project>
