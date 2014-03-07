@@ -59,12 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\DateTimeExtensionsTests.cs" />
-    <Compile Include="Extensions\ExcelExtensionsTests.cs" />
-    <Compile Include="Extensions\HtmlHelperExtensionsTests.cs" />
     <Compile Include="Extensions\ListExtensionsTests.cs" />
-    <Compile Include="Extensions\LogExtensionTests.cs" />
-    <Compile Include="Extensions\NumberExtensionsTests.cs" />
-    <Compile Include="Extensions\ResourceExtensionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\LoggingHandlerTests.cs" />
     <Compile Include="Services\PermissionServiceTests.cs" />

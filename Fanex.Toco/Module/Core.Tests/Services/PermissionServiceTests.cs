@@ -6,7 +6,6 @@
 //   <change who="Paul.Nguyen" date="2014/03/07">Created.</change>
 // </history>
 
-
 namespace Fanex.CustomerSetting.Module.Core.Tests.Services
 {
     using System.Collections.Generic;

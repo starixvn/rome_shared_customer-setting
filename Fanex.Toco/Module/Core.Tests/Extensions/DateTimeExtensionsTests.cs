@@ -10,12 +10,8 @@
 namespace Fanex.CustomerSetting.Module.Core.Tests.Extensions
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Fanex.CustomerSetting.Module.Core.Extensions;
     using NUnit.Framework;
-    using Rhino.Mocks;
 
     /// <summary>
     /// TODO: Update summary.
