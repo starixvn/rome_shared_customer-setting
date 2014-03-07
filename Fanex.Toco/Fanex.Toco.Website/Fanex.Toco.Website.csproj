@@ -245,6 +245,7 @@
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\services\betSettingService.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\services\commissionSettingService.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\services\commonService.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\services\dataService.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\services\position-taking.service.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\BetSetting\BetSetting.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\BetSetting\Copy of BetSetting.htm" />

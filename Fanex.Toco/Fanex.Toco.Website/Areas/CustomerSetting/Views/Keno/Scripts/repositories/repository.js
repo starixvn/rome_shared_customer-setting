@@ -1,8 +1,9 @@
 ﻿"use strict";
 
-KenoModule.factory('kenoRepositories', function ($http, $q) {
+KenoModule.factory('kenoRepositories', function ($http, $q, dataService) {
     return {
-        kenoSetting: model,
+//        kenoSetting: model,
+        kenoSetting: dataService.getKenoSetting(3),
 
         save: function (url, kenoSetting) {
             var deferred = $q.defer();

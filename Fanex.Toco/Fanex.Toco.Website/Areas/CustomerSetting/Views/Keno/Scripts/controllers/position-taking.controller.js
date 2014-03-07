@@ -1,8 +1,7 @@
 ﻿"use strict";
 
-KenoModule.controller('positionTakingController', function ($scope, kenoRepositories, dataService) {
-    //    $scope.positionTakingList = kenoRepositories.kenoSetting.positionTakings;
-    $scope.positionTakingList = dataService.createPositionTakingList(3);
+KenoModule.controller('positionTakingController', function ($scope, kenoRepositories) {
+    $scope.positionTakingList = kenoRepositories.kenoSetting.positionTakings;
 
     $scope.positionTakingCopyAll = kenoRepositories.kenoSetting.betSettingCopyAll;
     $scope.isPositionTakingPartial = false;

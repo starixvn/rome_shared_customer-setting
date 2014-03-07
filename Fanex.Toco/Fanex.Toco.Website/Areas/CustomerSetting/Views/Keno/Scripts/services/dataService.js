@@ -1,12 +1,10 @@
 ﻿"use strict";
 
 KenoModule.service('dataService', function () {
-    this.model = {};
-
-    this.createCustomerInfo = function () {
+    var createCustomerInfo = function (roleId) {
         return {
             "custId": 122222,
-            "roleId": 4,
+            "roleId": roleId,
             "firstName": "Vu",
             "lastName": "Tran",
             "phone": "---",
@@ -36,17 +34,15 @@ KenoModule.service('dataService', function () {
         };
     };
 
-    this.createBetSettingList = function () {
-        var betSettings = {
-            "betSettings": []
-        };
+    var createBetSettingList = function () {
+        var betSettings = [];
 
         for (var i = 1; i < 6; i++) {
             var betSettingTmp = createBetSetting(i, 100 * i, true, false);
-            betSettings.betSettings.push(betSettingTmp);
+            betSettings.push(betSettingTmp);
         }
 
-        return betSettings.betSettings;
+        return betSettings;
     };
 
 
@@ -119,15 +115,21 @@ KenoModule.service('dataService', function () {
         return positionTaking;
     };
 
-    this.createPositionTakingList = function (roleId) {
-        var positionTakings = {
-            "positionTakings": []
-        };
+    var createPositionTakingList = function (roleId) {
+        var positionTakings = [];
 
         for (var i = 1; i < 6; i++) {
-            positionTakings.positionTakings.push(createPositionTaking(i, true, true, "bettypeName" + i, roleId));
+            positionTakings.push(createPositionTaking(i, true, true, "bettypeName" + i, roleId));
         }
 
-        return positionTakings.positionTakings;
+        return positionTakings;
+    };
+
+    this.getKenoSetting = function (roleId) {
+        var kenoSetting = {};
+        kenoSetting.customerInformation = createCustomerInfo(roleId);
+        kenoSetting.betSettings = createBetSettingList();
+        kenoSetting.positionTakings = createPositionTakingList(roleId);
+        return kenoSetting;
     };
 });
