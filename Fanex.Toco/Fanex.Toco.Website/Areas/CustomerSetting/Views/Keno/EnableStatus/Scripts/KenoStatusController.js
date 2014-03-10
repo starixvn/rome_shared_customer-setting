@@ -9,6 +9,7 @@ function KenoStatusController($scope) {
     $scope.betTypes = $scope.model.betTypeStatusList;
     $scope.isDisabledAll = true;
     $scope.isCheckeddAll = true;
+
     var length = $scope.model.betTypeStatusList.length;
     for (var i = 0; i < length; i++) {
         if (!$scope.model.betTypeStatusList[i].isDisabledUpline) {
@@ -196,16 +197,4 @@ function KenoStatusController($scope) {
             }
         }
     };
-
-    $scope.$watch('model', function () {
-        var length = $scope.model.betTypeStatusList.length;
-        $scope.isCheckeddAll = true;
-        for (var i = 0; i < length; i++) {
-            var bettypeTmp = $scope.model.betTypeStatusList[i];
-            if (bettypeTmp.isDisabled) {
-                $scope.isCheckeddAll = false;
-                return;
-            }
-        }
-    }, true);
 };
