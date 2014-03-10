@@ -29,9 +29,6 @@ KenoModule.controller('betSettingController', function ($scope, kenoRepositories
         $scope.isBetSettingPartial = false;
     });
 
-    $scope.$on('changeSetting', function (event) {
-        var a = 1;
-    });
 
     $scope.$watch('isCopyAll', function (newValue, oldValue) {
         if (newValue !== oldValue) {
