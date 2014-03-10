@@ -8,6 +8,19 @@ function KenoStatusController($scope) {
     $scope.model = model;
     $scope.betTypes = $scope.model.betTypeStatusList;
 
+    $scope.Init = function () {
+        var allChecked = true;
+        for (var i = 0; i < $scope.betTypes.length; i++) {
+            if ($scope.betTypes[i].isDisabled) {
+                allChecked = false;
+                break;
+            }
+        }
+
+        if (allChecked)
+            document.getElementById('chkAll').checked = true;
+    };
+
     $scope.CheckStatus = function (preVal, scope) {
         var betTypesCheckboxes = document.getElementsByName('betTypes0');
         var allChecked = true;
