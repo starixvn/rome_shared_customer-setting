@@ -47,12 +47,6 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Keno")]
         public ActionResult Index(int id, int uplineId, int roleId, int subAccountId = 0, int userId = 0)
         {
-            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
-            if (!obj.IsBelong(id, null, this.Request["groupName"]))
-            {
-                this.ActionDenied(this.Request);
-            }
-
             ViewBag.roleId = roleId;
             ViewBag.id = id;
             ViewBag.uplineId = uplineId;
@@ -111,12 +105,6 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
             };
             List<string> errCode = new List<string>();
             List<string> errMsg = new List<string>();
-
-            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
-            if (!obj.IsBelong(newStatus.CustID, newStatus.UserName, this.Request["groupName"]))
-            {
-                return this.ActionDenied(this.Request);
-            }
 
             foreach (BetTypeStatus status in newStatus.BetTypeStatusList)
             {

@@ -32,29 +32,29 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Fanex.Caching">
-      <HintPath>..\_Dependencies\Fanex\Fanex.Caching.dll</HintPath>
+      <HintPath>..\..\..\_Dependencies\Fanex\Fanex.Caching.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Common">
-      <HintPath>..\_Dependencies\Fanex\Fanex.Common.dll</HintPath>
+      <HintPath>..\..\..\_Dependencies\Fanex\Fanex.Common.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Data">
-      <HintPath>..\_Dependencies\Fanex\Fanex.Data.dll</HintPath>
+      <HintPath>..\..\..\_Dependencies\Fanex\Fanex.Data.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Logging">
-      <HintPath>..\_Dependencies\Fanex\Fanex.Logging.dll</HintPath>
+      <HintPath>..\..\..\_Dependencies\Fanex\Fanex.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.NAP.Core">
-      <HintPath>..\_Dependencies\Fanex\Fanex.NAP.Core.dll</HintPath>
+      <HintPath>..\..\..\_Dependencies\Fanex\Fanex.NAP.Core.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.NAP.Framework">
-      <HintPath>..\_Dependencies\Fanex\Fanex.NAP.Framework.dll</HintPath>
+      <HintPath>..\..\..\_Dependencies\Fanex\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\_Dependencies\Web\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\_Dependencies\Web\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RemotingRef, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\_Dependencies\RemotingRef.dll</HintPath>
+      <HintPath>..\..\..\_Dependencies\RemotingRef.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -62,7 +62,7 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Optimization">
-      <HintPath>..\_Dependencies\Web\System.Web.Optimization.dll</HintPath>
+      <HintPath>..\..\..\_Dependencies\Web\System.Web.Optimization.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -74,6 +74,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\ModuleRegistrator.cs" />
+    <Compile Include="Configurations\KenoSection.cs" />
     <Compile Include="Controllers\EnableStatusController.cs" />
     <Compile Include="Criteria\UpdateStatusCriteria.cs" />
     <Compile Include="Criteria\SelectStatusCriteria.cs" />
@@ -89,17 +90,20 @@
     <Compile Include="ViewModels\KenoEnableStatus.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Module\Fanex.Toco.Module.Core\_Core.csproj">
-      <Project>{FA7AFDA2-F599-4DB2-B733-2992043C9D10}</Project>
+    <ProjectReference Include="..\..\Fanex.Toco.Module.Core\_Core.csproj">
+      <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
       <Name>_Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Module\_Security\Security.csproj">
+    <ProjectReference Include="..\..\_Security\Security.csproj">
       <Project>{91E16AE3-1209-4BF2-8846-7E36363167B3}</Project>
       <Name>Security</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Keno.Resources\Keno.Resources.csproj">
+      <Project>{F317B419-340B-418D-B2AB-8C43F18B85D6}</Project>
+      <Name>Keno.Resources</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Configuration\" />
     <Folder Include="Entities\" />
     <Folder Include="Helper\" />
     <Folder Include="Services\" />

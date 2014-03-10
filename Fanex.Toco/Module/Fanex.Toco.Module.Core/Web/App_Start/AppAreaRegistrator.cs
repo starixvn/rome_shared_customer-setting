@@ -33,8 +33,11 @@ namespace Fanex.CustomerSetting.Module.Core.Web.App_Start
         {
             if (!string.IsNullOrWhiteSpace(this.ModuleName) && !string.IsNullOrWhiteSpace(this.ModuleNameSpace))
             {
+                var areaName = AreaName + "_" + ModuleName;
+                if(context.Routes[areaName] != null)
+                    return;
                 context.MapRoute(
-                    AreaName + "_" + ModuleName,
+                    areaName,
                     AreaName + "/" + ModuleName + "/{controller}/{action}/{id}/{uplineId}/{groupName}",
                     new { action = "Index", id = UrlParameter.Optional, uplineId = UrlParameter.Optional, groupName = UrlParameter.Optional },
                     new[] { ModuleNameSpace });
