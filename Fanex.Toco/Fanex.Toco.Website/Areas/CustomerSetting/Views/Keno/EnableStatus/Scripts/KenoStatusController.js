@@ -7,6 +7,13 @@ angular.element($('#ng-app')).ready(function () {
 function KenoStatusController($scope) {
     $scope.model = model;
     $scope.betTypes = $scope.model.betTypeStatusList;
+    $scope.isDisabledAll = true;
+    var length = $scope.model.betTypeStatusList.length;
+    for (var i = 0; i < length; i++) {
+        if (!$scope.model.betTypeStatusList[i].isDisabledUpline)
+            $scope.isDisabledAll = false;
+        break;
+    }
 
     $scope.CheckStatus = function (preVal, scope) {
         var betTypesCheckboxes = document.getElementsByName('betTypes0');
@@ -170,4 +177,17 @@ function KenoStatusController($scope) {
             }
         }
     };
+
+//    $scope.$watch('model', function () {
+//        var length = $scope.model.betTypeStatusList.length;
+//        for (var i = 0; i < length; i++) {
+//            var bettypeTmp = $scope.model.betTypeStatusList[i];
+//            if (!bettypeTmp.isDisabledUpline) {
+//                $scope.isDisabledAll = false;
+//                return;
+//            }
+//            $scope.isDisabledAll = true;
+
+//        }
+//    }, true);
 };
