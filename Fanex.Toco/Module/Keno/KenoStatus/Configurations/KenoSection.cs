@@ -43,12 +43,21 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Configurations
             }
         }
 
-        [ConfigurationProperty("enableKeno", IsRequired = false)]
-        public bool EnableKeno
+        [ConfigurationProperty("enable", IsRequired = false)]
+        public bool Enable
         {
             get
             {
-                return (bool)base["enableKeno"];
+                return (bool)base["enable"];
+            }
+        }
+
+        [ConfigurationProperty("showBetListResult", IsRequired = false)]
+        public bool ShowBetListResult
+        {
+            get
+            {
+                return (bool)base["showBetListResult"];
             }
         }
     }
