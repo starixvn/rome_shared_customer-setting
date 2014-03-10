@@ -11,9 +11,10 @@ function KenoStatusController($scope) {
     $scope.isCheckeddAll = true;
     var length = $scope.model.betTypeStatusList.length;
     for (var i = 0; i < length; i++) {
-        if (!$scope.model.betTypeStatusList[i].isDisabledUpline)
+        if (!$scope.model.betTypeStatusList[i].isDisabledUpline) {
             $scope.isDisabledAll = false;
-        break;
+            break;
+        }
     }
 
     $scope.CheckStatus = function (preVal, scope) {
