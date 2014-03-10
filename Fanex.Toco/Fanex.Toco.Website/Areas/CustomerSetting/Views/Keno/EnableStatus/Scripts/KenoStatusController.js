@@ -11,9 +11,10 @@ function KenoStatusController($scope) {
     $scope.isCheckeddAll = true;
     var length = $scope.model.betTypeStatusList.length;
     for (var i = 0; i < length; i++) {
-        if (!$scope.model.betTypeStatusList[i].isDisabledUpline)
+        if (!$scope.model.betTypeStatusList[i].isDisabledUpline) {
             $scope.isDisabledAll = false;
-        break;
+            break;
+        }
     }
 
     $scope.Init = function () {
@@ -43,7 +44,7 @@ function KenoStatusController($scope) {
                 scope.item.isDisabledDownlines = false;
 
                 for (var i = 0; i < betTypesCheckboxes.length; i++) {
-                    if (!betTypesCheckboxes[i].checked) {
+                    if (!betTypesCheckboxes[i].checked && !betTypesCheckboxes[i].disabled) {
                         allChecked = false;
                         break;
                     }
@@ -73,7 +74,7 @@ function KenoStatusController($scope) {
                 scope.item.isDisabledDownlines = false;
 
                 for (var i = 0; i < betTypesCheckboxes.length; i++) {
-                    if (!betTypesCheckboxes[i].checked) {
+                    if (!betTypesCheckboxes[i].checked && !betTypesCheckboxes[i].disabled) {
                         allChecked = false;
                         break;
                     }
