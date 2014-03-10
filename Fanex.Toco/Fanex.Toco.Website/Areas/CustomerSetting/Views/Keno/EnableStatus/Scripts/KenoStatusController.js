@@ -7,6 +7,14 @@ angular.element($('#ng-app')).ready(function () {
 function KenoStatusController($scope) {
     $scope.model = model;
     $scope.betTypes = $scope.model.betTypeStatusList;
+    $scope.isDisabledAll = true;
+    $scope.isCheckeddAll = true;
+    var length = $scope.model.betTypeStatusList.length;
+    for (var i = 0; i < length; i++) {
+        if (!$scope.model.betTypeStatusList[i].isDisabledUpline)
+            $scope.isDisabledAll = false;
+        break;
+    }
 
     $scope.Init = function () {
         var allChecked = true;
@@ -89,7 +97,10 @@ function KenoStatusController($scope) {
 
     $scope.Update = function () {
         //parent.Fanex.ExtAcc.BlockUI();
-
+        var length = model.betTypeStatusList.length;
+        for (var i = 0; i < length; i++) {
+            model.betTypeStatusList[i].isDisabledDownlines = model.betTypeStatusList[i].enableDownline;
+        }
         $.ajax({
             dataType: 'json',
             type: 'post',
@@ -99,6 +110,7 @@ function KenoStatusController($scope) {
                 uplineId: uplineId,
                 model: JSON.stringify(model),
                 roleId: roleId,
+                username: model.userName,
                 groupName: ''
             }
         })
@@ -183,4 +195,16 @@ function KenoStatusController($scope) {
             }
         }
     };
+
+    $scope.$watch('model', function () {
+        var length = $scope.model.betTypeStatusList.length;
+        $scope.isCheckeddAll = true;
+        for (var i = 0; i < length; i++) {
+            var bettypeTmp = $scope.model.betTypeStatusList[i];
+            if (bettypeTmp.isDisabled) {
+                $scope.isCheckeddAll = false;
+                return;
+            }
+        }
+    }, true);
 };
