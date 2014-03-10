@@ -2,7 +2,7 @@
 
 KenoModule.directive('betSettingElement', function () {
     return {
-        restrict: 'A',
+        restrict: 'EA',
         //        priority: 2, 
         scope: {
             betSetting: "=ngModel",
@@ -75,46 +75,47 @@ KenoModule.directive('betSettingElement', function () {
 
 KenoModule.directive('format', ['$filter', '$parse', function ($filter, $parse) {
     return {
-        require: '^betSettingElement',
+        require: '?betSettingElement',
         //        require: '?ngModel',
         link: function (scope, element, attrs, ctrl) {
             if (!ctrl) return;
 
-            var initValue = eval(attrs.initValue);
+            
+//            var initValue = eval(attrs.initValue);
 
-            ctrl.$formatters.unshift(function (a) {
-                return $filter(attrs.format)(ctrl.$modelValue);
-            });
+//            ctrl.$formatters.unshift(function (a) {
+//                return $filter(attrs.format)(ctrl.$modelValue);
+//            });
 
-            ctrl.$parsers.unshift(function (viewValue) {
-                var plainNumber = viewValue.replace(/[^\d|\-+|\.+]/g, '');
-                ctrl.$modelValue = eval(plainNumber);
-                element.val($filter(attrs.format)(plainNumber));
-                return plainNumber;
-            });
+//            ctrl.$parsers.unshift(function (viewValue) {
+//                var plainNumber = viewValue.replace(/[^\d|\-+|\.+]/g, '');
+//                ctrl.$modelValue = eval(plainNumber);
+//                element.val($filter(attrs.format)(plainNumber));
+//                return plainNumber;
+//            });
 
-            element.bind('blur', function (viewValue) {
-                var maxValue = eval(attrs.maxValue);
-                var minValue = eval(attrs.minValue);
+//            element.bind('blur', function (viewValue) {
+//                var maxValue = eval(attrs.maxValue);
+//                var minValue = eval(attrs.minValue);
 
-                if (ctrl.$modelValue < minValue) {
-                    alert("Value must be more than or equal to " + minValue);
-                    ctrl.$modelValue = initValue;
-                    ctrl.$setViewValue($filter('number')(initValue));
-                    scope.$emit('changeSetting');
-                    eval("scope." + attrs.ngModel + "=" + initValue);
-                    scope.$apply();
-                    return false;
-                }
+//                if (ctrl.$modelValue < minValue) {
+//                    alert("Value must be more than or equal to " + minValue);
+//                    ctrl.$modelValue = initValue;
+//                    ctrl.$setViewValue($filter('number')(initValue));
+//                    scope.$emit('changeSetting');
+//                    eval("scope." + attrs.ngModel + "=" + initValue);
+//                    scope.$apply();
+//                    return false;
+//                }
 
-                if (ctrl.$modelValue > maxValue) {
-                    alert("Value must be less than or equal to " + maxValue);
-                    ctrl.$modelValue = initValue;
-                    ctrl.$setViewValue($filter('number')(initValue));
-                    return false;
-                }
+//                if (ctrl.$modelValue > maxValue) {
+//                    alert("Value must be less than or equal to " + maxValue);
+//                    ctrl.$modelValue = initValue;
+//                    ctrl.$setViewValue($filter('number')(initValue));
+//                    return false;
+//                }
 
-            });
+//            });
         }
     };
 } ]);
