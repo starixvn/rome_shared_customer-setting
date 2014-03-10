@@ -1,0 +1,114 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="BaseControllerTests.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Paul.Nguyen" date="2014/03/10">Created.</change>
+// </history>
+
+namespace Fanex.CustomerSetting.Module.Core.Tests.Web.Controllers
+{
+    using System.Web.Mvc;
+    using Fanex.CustomerSetting.Module.Core.Web.Controllers;
+    using NUnit.Framework;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    [TestFixture]
+    public class BaseControllerTests
+    {
+        private BaseController baseController = null;
+
+        [SetUp]
+        public void SetUp()
+        {
+            baseController = new BaseController();
+        }
+
+        [Test]
+        public void IsSiteLogin_AlwaysReturnZero()
+        {
+            // Assert
+            Assert.AreEqual(0, baseController.IsSiteLogin);
+        }
+
+        [Test]
+        public void GetActionListFromController_CheckControllerWithoutAction()
+        {
+            // Act
+            var list = baseController.GetActionListFromController<FakeControllerWithoutAction>();
+
+            // Assert
+            Assert.AreEqual(0, list.Count);
+        }
+
+        [Test]
+        public void GetActionListFromController_CheckForControllerWithSomePublicViewResult()
+        {
+            // Act
+            var list = baseController.GetActionListFromController<FakeControllerWithSomePublicViewResult>();
+
+            // Assert
+            Assert.AreEqual(1, list.Count);
+            Assert.AreEqual("PublicViewResult", list[0]);
+        }
+
+        [Test]
+        public void GetActionListFromController_CheckForInheritanceControllerWithSomePublicJsonResult()
+        {
+            // Act
+            var list = baseController.GetActionListFromController<FakeControllerWithSomePublicJsonResult>();
+
+            // Assert
+            Assert.AreEqual(2, list.Count);
+            Assert.AreEqual("PublicJsonResult", list[0]);
+            Assert.AreEqual("PublicViewResult", list[1]);
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            baseController = null;
+        }
+
+        private class FakeControllerWithoutAction
+        {
+        }
+
+        private class FakeControllerWithSomePublicViewResult : Controller
+        {
+            public ViewResult PublicViewResult()
+            {
+                return View();
+            }
+
+            private ActionResult PrivateViewResult()
+            {
+                return View();
+            }
+        }
+
+        private class FakeControllerWithSomePublicJsonResult : FakeControllerWithSomePublicViewResult
+        {
+            public JsonResult PublicJsonResult()
+            {
+                return Json(new
+                {
+                    ErrCode = 1,
+                    ErrMsg = "Reponded From ServerSide: Not Implemented Yet"
+                });
+            }
+
+            private JsonResult PrivateJsonResult()
+            {
+                return Json(new
+                {
+                    ErrCode = 1,
+                    ErrMsg = "Reponded From ServerSide: Not Implemented Yet"
+                });
+            }
+        }
+    }
+}
