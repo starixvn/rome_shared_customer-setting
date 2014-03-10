@@ -52,6 +52,9 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
             ViewBag.uplineId = uplineId;
             ViewBag.subAccountId = subAccountId;
             ViewBag.userId = userId;
+            System.Globalization.CultureInfo def = System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(AppSession.CurrentSession.Language);
+            System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.CreateSpecificCulture(AppSession.CurrentSession.Language);
 
             return this.PartialViewBase(null, "~/Areas/CustomerSetting/Views/Keno/EnableStatus/Index.cshtml");
         }

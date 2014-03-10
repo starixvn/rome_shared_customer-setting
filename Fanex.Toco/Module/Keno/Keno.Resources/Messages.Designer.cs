@@ -61,6 +61,15 @@ namespace Fanex.CustomerSetting.Module.Keno.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account was disabled.
+        /// </summary>
+        public static string AccountDisabled {
+            get {
+                return ResourceManager.GetString("AccountDisabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Status updated successfully.
         /// </summary>
         public static string UpdatedSuccess {
