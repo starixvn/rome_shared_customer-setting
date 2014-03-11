@@ -34,11 +34,6 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
             _kenoSettingService = kenoSettingService ?? new KenoSettingService();
         }
 
-        /// <summary>
-        /// Change name controller to clear.
-        /// </summary>
-        /// <param name="custId">The customer identifier.</param>
-        /// <returns>The ActionResult of EditSuper.</returns>
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditSuper")]
         public ActionResult EditSuper(int custId)
         {
@@ -53,27 +48,18 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
             return Json(results);
         }
 
-        /// <summary>
-        /// Change name controller to clear.
-        /// </summary>
-        /// <param name="custId">The customer identifier.</param>
-        /// <returns>The ActionResult of EditMaster.</returns>
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditMaster")]
         public ActionResult EditMaster(int custId)
         {
-            var customerSetting = new MasterSetting();
-
+            var customerSetting = _kenoSettingService.GetMasterSetting(custId);
             return View(Constants.EditMasterCshtml, customerSetting);
         }
 
         [HttpPost]
         public JsonResult EditMaster(MasterSetting masterSetting)
         {
-            return Json(new
-            {
-                ErrCode = 1,
-                ErrMsg = "Reponded From ServerSide: Not Implemented Yet"
-            });
+            var results = _kenoSettingService.UpdateMasterCustomerSetting(masterSetting);
+            return Json(results);
         }
 
         /// <summary>
@@ -84,8 +70,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditAgent")]
         public ActionResult EditAgent(int custId)
         {
-            var customerSetting = new AgentSetting();
-
+            var customerSetting = _kenoSettingService.GetAgentSetting(custId);
             return View(Constants.EditAgentCshtml, customerSetting);
         }
 

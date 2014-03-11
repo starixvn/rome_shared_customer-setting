@@ -10,21 +10,24 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Repositories
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using Fanex.CustomerSetting.Module.Keno.Entities;
     using Fanex.CustomerSetting.Module.Keno.Repositories;
     using Fanex.NAP.Framework.Data;
+    using Fanex.CustomerSetting.Module.Core.Models;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class TestableKenoSettingBaseRepository : KenoSettingBaseRepository
     {
-        internal override Result ExecuteUpdateSetting(ICriteria criteria)
+        internal override IList<Result> ExecuteUpdateSetting(ICriteria criteria)
         {
-            return new Result()
+            return new List<Result>()
             {
-                ErrCode = 0,
-                ErrMsg = string.Empty
+                new Result()
+                {
+                    ErrorCode = 0,
+                    ErrorMessage = string.Empty
+                }
             };
         }
     }

@@ -21,5 +21,17 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
         IList<Result> UpdateSuperBetSetting(ICriteria criteria);
 
         IList<Result> UpdateSuperPositionTaking(ICriteria criteria);
+
+        MasterSetting GetMasterSetting(ICriteria criteria);
+
+        IList<Result> UpdateMasterBetSetting(ICriteria criteria);
+
+        IList<Result> UpdateMasterPositionTaking(ICriteria criteria);
+
+        AgentSetting GetAgentSetting(ICriteria criteria);
+
+        IList<Result> UpdateAgentBetSetting(ICriteria criteria);
+
+        IList<Result> UpdateAgentPositionTaking(ICriteria criteria);
     }
 }

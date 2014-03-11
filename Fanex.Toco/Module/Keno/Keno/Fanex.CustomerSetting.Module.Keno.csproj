@@ -137,6 +137,13 @@
     <Compile Include="App_Start\ModuleRegistrator.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="Controllers\KenoSettingBaseController.cs" />
+    <Compile Include="Controllers\KenoSettingController.cs" />
+    <Compile Include="Criteria\Agent\GetAgentSettingCriteria.cs" />
+    <Compile Include="Criteria\Agent\UpdateAgentBetSettingCriteria.cs" />
+    <Compile Include="Criteria\Agent\UpdateAgentPositionTakingCriteria.cs" />
+    <Compile Include="Criteria\Master\GetMasterSettingCriteria.cs" />
+    <Compile Include="Criteria\Master\UpdateMasterBetSettingCriteria.cs" />
+    <Compile Include="Criteria\Master\UpdateMasterPositionTakingCriteria.cs" />
     <Compile Include="Criteria\Super\GetSuperSettingCriteria.cs" />
     <Compile Include="Criteria\Super\UpdateSuperPositionTakingCriteria.cs" />
     <Compile Include="Criteria\Super\UpdateSuperBetSettingCriteria.cs" />
@@ -169,8 +176,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Criteria\Agent\" />
-    <Folder Include="Criteria\Master\" />
     <Folder Include="Criteria\Member\" />
   </ItemGroup>
   <ItemGroup>

@@ -18,14 +18,14 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
     {
         SuperSetting GetSuperSetting(int custId);
 
-        IList<Result> UpdateSuperBetSetting(CustomerInformation customerInformation, BetSetting betSetting);
-
-        IList<Result> UpdateSuperPositionTaking(CustomerInformation customerInformation, SuperPositionTaking superPositionTaking);
-
-        IList<Result> UpdateSuperBetSettings(CustomerInformation customerInformation, IList<BetSetting> betSettings);
-
-        IList<Result> UpdateSuperPositionTakings(CustomerInformation customerInformation, IList<SuperPositionTaking> positionTakings);
-
         IList<Result> UpdateSuperCustomerSetting(SuperSetting superSetting);
+
+        MasterSetting GetMasterSetting(int custId);
+
+        IList<Result> UpdateMasterCustomerSetting(MasterSetting masterSetting);
+
+        AgentSetting GetAgentSetting(int custId);
+
+        IList<Result> UpdateAgentCustomerSetting(AgentSetting agentSetting);
     }
 }

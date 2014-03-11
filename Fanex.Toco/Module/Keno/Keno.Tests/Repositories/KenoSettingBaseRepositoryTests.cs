@@ -19,6 +19,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Repositories
     using Fanex.NAP.Framework.Exceptions;
     using NUnit.Framework;
     using Rhino.Mocks;
+    using Fanex.CustomerSetting.Module.Core.Models;
 
     /// <summary>
     /// TODO: Update summary.
@@ -96,9 +97,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Repositories
             var result = kenoSettingBaseRepository.UpdateSetting(mockCriteria);
 
             // Assert
-            Assert.IsInstanceOf<Result>(result);
-            Assert.AreEqual(0, result.ErrCode);
-            Assert.AreEqual(string.Empty, result.ErrMsg);
+            Assert.IsInstanceOf<IList<Result>>(result);
+            Assert.AreEqual(0, result[0].ErrorCode);
+            Assert.AreEqual(string.Empty, result[0].ErrorMessage);
         }
     }
 }

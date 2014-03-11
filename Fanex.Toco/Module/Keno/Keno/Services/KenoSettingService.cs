@@ -41,19 +41,50 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
             return _kenoSettingRepository.GetSuperSetting(criteria);
         }
 
-        public IList<Result> UpdateSuperBetSetting(CustomerInformation customerInformation, BetSetting betSetting)
+        public MasterSetting GetMasterSetting(int custId)
+        {
+            var criteria = new GetMasterSettingCriteria() { CustId = custId };
+            return _kenoSettingRepository.GetMasterSetting(criteria);
+        }
+
+        public AgentSetting GetAgentSetting(int custId)
+        {
+            var criteria = new GetAgentSettingCriteria() { CustId = custId };
+            return _kenoSettingRepository.GetAgentSetting(criteria);
+        }
+
+        public IList<Result> UpdateSuperCustomerSetting(SuperSetting superSetting)
+        {
+            superSetting.UpdateSettingInCaseOfCopyAll();
+            var results = new List<Result>();
+            results.AddRange(this.UpdateSuperBetSettings(superSetting.CustomerInformation, superSetting.BetSettings));
+            results.AddRange(this.UpdateSuperPositionTakings(superSetting.CustomerInformation, superSetting.PositionTakings));
+            return results;
+        }
+
+        public IList<Result> UpdateMasterCustomerSetting(MasterSetting masterSetting)
+        {
+            return null;
+        }
+
+        public IList<Result> UpdateAgentCustomerSetting(AgentSetting agentSetting)
+        {
+            return null;
+        }
+
+        internal IList<Result> UpdateSuperBetSetting(CustomerInformation customerInformation, BetSetting betSetting)
         {
             var criteria = CreateUpdateSuperBetSettingCriteria(customerInformation, betSetting);
             return _kenoSettingRepository.UpdateSuperBetSetting(criteria);
         }
 
-        public IList<Result> UpdateSuperPositionTaking(CustomerInformation customerInformation, SuperPositionTaking superPositionTaking)
+        internal IList<Result> UpdateSuperPositionTaking(CustomerInformation customerInformation, SuperPositionTaking superPositionTaking)
         {
             var criteria = CreateUpdateSuperPositionTakingCriteria(customerInformation, superPositionTaking);
             return _kenoSettingRepository.UpdateSuperPositionTaking(criteria);
         }
 
-        public IList<Result> UpdateSuperBetSettings(CustomerInformation customerInformation, IList<BetSetting> betSettings)
+        internal IList<Result> UpdateSuperBetSettings(CustomerInformation customerInformation, IList<BetSetting> betSettings)
         {
             var results = new List<Result>();
 
@@ -65,7 +96,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
             return results;
         }
 
-        public IList<Result> UpdateSuperPositionTakings(CustomerInformation customerInformation, IList<SuperPositionTaking> positionTakings)
+        internal IList<Result> UpdateSuperPositionTakings(CustomerInformation customerInformation, IList<SuperPositionTaking> positionTakings)
         {
             var results = new List<Result>();
 
@@ -74,15 +105,6 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
                 results.AddRange(this.UpdateSuperPositionTaking(customerInformation, positionTaking));
             }
 
-            return results;
-        }
-
-        public IList<Result> UpdateSuperCustomerSetting(SuperSetting superSetting)
-        {
-            superSetting.UpdateSettingInCaseOfCopyAll();
-            var results = new List<Result>();
-            results.AddRange(this.UpdateSuperBetSettings(superSetting.CustomerInformation, superSetting.BetSettings));
-            results.AddRange(this.UpdateSuperPositionTakings(superSetting.CustomerInformation, superSetting.PositionTakings));
             return results;
         }
 
