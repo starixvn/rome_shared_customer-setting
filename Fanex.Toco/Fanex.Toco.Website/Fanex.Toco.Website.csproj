@@ -1043,7 +1043,7 @@
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\_MasterPositionTaking.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\_MemberPositionTaking.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\_MasterOnMemberPositionTaking.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\_SuperOnMemberPostionTaking.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\_SuperOnMemberPositionTaking.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\_SuperPositionTaking.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\SuperOnMember\SuperEditMember.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Super\EditSuper.cshtml" />
