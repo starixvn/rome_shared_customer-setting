@@ -62,22 +62,27 @@ KenoModule.directive('betSettingElement', function () {
     };
 });
 
-KenoModule.directive('format', ['$filter', '$parse', function ($filter, $parse) {
+KenoModule.directive('betSettingInput', ['$filter', '$parse', function ($filter, $parse) {
     return {
         require: '?ngModel',
         link: function (scope, element, attrs, ctrl) {
             if (!ctrl) return;
 
-            var initValue = eval("scope." + attrs.ngModel);
+            scope.formatNumber = function (value) {
+                return $filter("number")(value);
+            };
+
+            var initValueModel = eval("scope." + attrs.ngModel);
+            var initValueViewModel = scope.formatNumber(initValueModel);
 
             ctrl.$formatters.unshift(function () {
-                return $filter(attrs.format)(ctrl.$modelValue);
+                return scope.formatNumber(ctrl.$modelValue);
             });
 
             ctrl.$parsers.unshift(function (viewValue) {
                 var plainNumber = viewValue.replace(/[^\d|\-+|\.+]/g, '');
                 ctrl.$modelValue = eval(plainNumber);
-                element.val($filter(attrs.format)(plainNumber));
+                element.val(scope.formatNumber(plainNumber));
                 return plainNumber;
             });
 
@@ -85,19 +90,21 @@ KenoModule.directive('format', ['$filter', '$parse', function ($filter, $parse) 
                 var maxValue = eval(attrs.maxValue);
                 var minValue = eval(attrs.minValue);
 
+                var resetValue = function () {
+                    ctrl.$modelValue = initValueModel;
+                    ctrl.$setViewValue(initValueViewModel);
+                    scope.$apply();
+                };
+
                 if (ctrl.$modelValue < minValue) {
                     alert("Value must be more than or equal to " + minValue);
-                    ctrl.$modelValue = initValue;
-                    ctrl.$setViewValue($filter('number')(initValue));
-                    scope.$apply();
+                    resetValue();
                     return false;
                 }
 
                 if (ctrl.$modelValue > maxValue) {
                     alert("Value must be less than or equal to " + maxValue);
-                    ctrl.$modelValue = initValue;
-                    ctrl.$setViewValue($filter('number')(initValue));
-                    scope.$apply();
+                    resetValue();
                     return false;
                 }
 
@@ -105,6 +112,26 @@ KenoModule.directive('format', ['$filter', '$parse', function ($filter, $parse) 
         }
     };
 } ]);
+
+KenoModule.directive('betSettingConstrain', ['$filter', function ($filter) {
+    return {
+        require: '?ngModel',
+        link: function (scope, element, attrs, ctrl) {
+            if (!ctrl) return;
+
+            var valueModel = eval("scope." + attrs.ngModel);
+
+            if (valueModel > 0) {
+                var symbol = attrs.betSettingConstrain == 1 ? " >= " : " <= ";
+
+                element.text(symbol + scope.formatNumber(valueModel));
+            }
+        }
+    };
+} ]);
+
+
+
 
 
 //KenoModule.directive('format', ['$filter', function ($filter) {

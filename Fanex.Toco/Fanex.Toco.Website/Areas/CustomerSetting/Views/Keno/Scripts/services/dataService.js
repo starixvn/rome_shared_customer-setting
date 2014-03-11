@@ -1,10 +1,12 @@
 ﻿"use strict";
 
 KenoModule.service('dataService', function () {
-    var createCustomerInfo = function (roleId) {
+    var  roleId = 0;
+    var createCustomerInfo = function (id) {
+        roleId = id;
         return {
             "custId": 122222,
-            "roleId": roleId,
+            "roleId": id,
             "firstName": "Vu",
             "lastName": "Tran",
             "phone": "---",
@@ -26,8 +28,8 @@ KenoModule.service('dataService', function () {
             "isDownlinesEnabled": isDownlinesEnabled,
             "upline": {
                 "minBet": betValue - 1,
-                "maxBet": (betValue + 1) * 10,
-                "maxPerMatch": (betValue + 1) * 100,
+                "maxBet": roleId == 4 ? 0 : (betValue + 1) * 10,
+                "maxPerMatch": roleId == 4 ? 0 : (betValue + 1) * 100,
                 "isEnabled": isEnabled,
                 "isDownlinesEnabled": isDownlinesEnabled
             }
@@ -144,8 +146,8 @@ KenoModule.service('dataService', function () {
         kenoSetting.customerInformation = createCustomerInfo(roleId);
         kenoSetting.betSettings = createBetSettingList();
         kenoSetting.positionTakings = createPositionTakingList(roleId);
-        kenoSetting.betSettingCopyAll = {"bettypeId" : -1 , "isCopiedAll" : false};
-        kenoSetting.positionTakingCopyAll = {"bettypeId" : -1 , "isCopiedAll" : false};
+        kenoSetting.betSettingCopyAll = { "bettypeId": -1, "isCopiedAll": false };
+        kenoSetting.positionTakingCopyAll = { "bettypeId": -1, "isCopiedAll": false };
         return kenoSetting;
     };
 });

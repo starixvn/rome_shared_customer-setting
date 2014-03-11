@@ -232,7 +232,6 @@
     <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Message.css" />
     <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\table.css" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditSuperController.js" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Configurations\KenoSpNames.xml" />
     <Content Include="Areas\CustomerSetting\Views\Keno\EnableStatus\Scripts\KenoStatusController.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\EnableStatus\Styles\EnableRacing.css" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\controllers\bet-setting.controller.js" />
@@ -249,13 +248,9 @@
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\directives\BetSettingDirective.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\modules\module.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\repositories\repository.js" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\services\betSettingService.js" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\services\commissionSettingService.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\services\commonService.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\services\dataService.js" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\services\position-taking.service.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\BetSetting\BetSetting.htm" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\BetSetting\Copy of BetSetting.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\AgentPositionTaking.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\MasterOnMemberPositionTaking.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\SuperOnMemberPositionTaking.htm" />
@@ -1029,8 +1024,6 @@
     <Content Include="Areas\CustomerSetting\Views\Racebook\Config\RacingSection.config" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\AgentMinMaxPT.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Config\SearchCopySetting.config" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Configurations\PTRacingMappingSection.config" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Configurations\RacingBettingCommSettingMappingSection.config" />
     <None Include="Areas\CustomerSetting\Views\Keno\Document.doc" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Agent\EditAgent.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\MasterOnMember\MasterEditMember.cshtml" />
