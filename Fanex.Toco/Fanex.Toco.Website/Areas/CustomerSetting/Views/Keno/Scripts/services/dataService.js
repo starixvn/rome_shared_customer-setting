@@ -58,7 +58,7 @@ KenoModule.service('dataService', function () {
             "l4": 0.9,
             "sComm": 0.0095,
             "sCommMax": 0.01,
-            "s3": 0.1,
+            "s3": 0.6,
             "m3": 0.6,
             "uS3": 0.5,
             "iS3": boolValue1,
@@ -107,6 +107,20 @@ KenoModule.service('dataService', function () {
                 positionTaking.IsUpdateACO = false;
                 positionTaking.IsUpdateAllMember = false;
                 positionTaking.NewMemberPT = 0;
+                break;
+            case 1:
+                positionTaking.isUpdatePT = false;
+                positionTaking.isUpdateCO = false;
+                break;
+            case 41:
+                positionTaking.isUpdatePT = false;
+                positionTaking.IsUpdateS1 = false;
+                positionTaking.IsUpdateUS1 = false;
+                break;
+            case 31:
+                positionTaking.isUpdatePT = false;
+                positionTaking.IsUpdateM1 = false;
+                positionTaking.IsUpdateUM1 = false;
                 break;
             default:
                 break;

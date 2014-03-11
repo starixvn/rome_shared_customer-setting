@@ -31,32 +31,3 @@
     <tr ng-repeat="positionTaking in positionTakingList" agent-position-taking-element ng-model="positionTaking" index="$index">
     </tr>
 </table>
-
-
-@*
- <tr ng-repeat="ptsection in model">
-        <td class="col120 formatCol l">
-            <span>{{ptsection.positionTaking.betTypeName}}</span>
-        </td>
-        <td class="col120 formatCol c">
-            <select class="col60" ng-model="ptsection.positionTaking.preset" ng-options="value for value in ptsection.positionTaking.rangeOfPreset">
-            </select>
-        </td>
-        <td class="col120 formatCol c">
-            <label class="checkbox">
-                <input type="checkbox" ng-model="ptsection.positionTaking.isAuto" />
-            </label>
-        </td>
-        <td class="col120 formatCol c">
-            <select class="col60" ng-model="ptsection.positionTaking.max" ng-change="ptsection.positionTaking.actions.changeMax()" ng-options="value for value in ptsection.positionTaking.rangeOfMax">
-            </select>
-        </td>
-        <td class="col120 formatCol c">
-            <select class="col60" ng-model="ptsection.positionTaking.min" ng-options="value for value in ptsection.positionTaking.rangeOfMin">
-            </select>
-        </td>
-        <td class="col243 formatCol c">
-            <select class="col60" ng-model="ptsection.commissionSetting.value" ng-options="value for value in ptsection.commissionSetting.range">
-            </select>
-        </td>
-    </tr>*@

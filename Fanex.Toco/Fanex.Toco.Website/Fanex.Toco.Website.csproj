@@ -241,6 +241,9 @@
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\controllers\position-taking.controller.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\directives\CommonDirective.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\directives\AgentPositionTakingDirective.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\directives\MasterOnMemberPositionTakingDirective.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\directives\SuperOnMemberPositionTakingDirective.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\directives\MemberPositionTakingDirective.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\directives\MasterPositionTakingDirective.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\directives\SuperPositionTakingDirective.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\directives\BetSettingDirective.js" />
@@ -254,6 +257,9 @@
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\BetSetting\BetSetting.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\BetSetting\Copy of BetSetting.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\AgentPositionTaking.htm" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\MasterOnMemberPositionTaking.htm" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\SuperOnMemberPositionTaking.htm" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\MemberPositionTaking.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\MasterPositionTaking.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\SuperPositionTaking.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Accounting\Images\bgHeader.jpg" />
@@ -1035,9 +1041,9 @@
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\CustomerInfo\_Information.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\_AgentPositionTaking.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\_MasterPositionTaking.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\MemberPositionTakingEditedByAgent.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\MemberPositionTakingEditedByMaster.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\MemberPositionTakingEditedBySuper.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\_MemberPositionTaking.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\_MasterOnMemberPositionTaking.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\_SuperOnMemberPostionTaking.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\_SuperPositionTaking.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\SuperOnMember\SuperEditMember.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Super\EditSuper.cshtml" />
