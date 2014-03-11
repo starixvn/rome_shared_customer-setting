@@ -26,22 +26,16 @@
     <tbody>
         <tr ng-repeat="betSetting in betSettingList track by $index">
             <td class="formatCol l header">
-                <span>{{betSetting.betTypeName}}</span>
+                <span ng-bind="betSetting.betTypeName"></span>
             </td>
-            <td class="formatCol">
-                <div class="c">
-                    {{betSetting.upline.minBet | number : 0}}
-                </div>
+            <td class="c formatCol">
+                <span ng-bind="betSetting.minBet | number : 0"></span>
             </td>
-            <td class="formatCol">
-                <div class="c " >
-                    {{betSetting.upline.maxBet | number : 0}}
-                </div>
+            <td class="c formatCol">
+                <span ng-bind="betSetting.maxBet | number : 0"></span>
             </td>
-            <td class=" formatCol ">
-                <div class="c">
-                    {{betSetting.upline.maxPerMatch | number : 0}}
-                </div>
+            <td class="c formatCol ">
+                <span ng-bind="betSetting.maxPerMatch | number : 0"></span>
             </td>
             <td class="formatCol c">
                 <input ng-disabled="true " type="checkbox" ng-model="betSetting.isEnabled" />
