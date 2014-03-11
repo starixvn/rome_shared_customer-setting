@@ -130,6 +130,8 @@ KenoModule.service('dataService', function () {
         kenoSetting.customerInformation = createCustomerInfo(roleId);
         kenoSetting.betSettings = createBetSettingList();
         kenoSetting.positionTakings = createPositionTakingList(roleId);
+        kenoSetting.betSettingCopyAll = {"bettypeId" : -1 , "isCopiedAll" : false};
+        kenoSetting.positionTakingCopyAll = {"bettypeId" : -1 , "isCopiedAll" : false};
         return kenoSetting;
     };
 });

@@ -3,7 +3,6 @@
 KenoModule.directive('betSettingElement', function () {
     return {
         restrict: 'EA',
-        //        priority: 2, 
         scope: {
             betSetting: "=ngModel",
             index: "=index"
