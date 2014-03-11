@@ -9,14 +9,10 @@
 
 namespace Fanex.CustomerSetting.Module.Keno.Repositories
 {
-    using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.Data;
-    using System.Linq;
-    using Fanex.Common;
     using Fanex.Common.Extensions;
-    using Fanex.CustomerSetting.Module.Keno.Criteria;
+    using Fanex.CustomerSetting.Module.Core.Models;
     using Fanex.CustomerSetting.Module.Keno.Entities;
     using Fanex.CustomerSetting.Module.Keno.ViewModels;
     using Fanex.Data;
@@ -55,12 +51,12 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
             return superSetting;
         }
 
-        public Result UpdateSuperBetSetting(ICriteria criteria)
+        public IList<Result> UpdateSuperBetSetting(ICriteria criteria)
         {
             return this.UpdateSetting(criteria);
         }
 
-        public Result UpdateSuperPositionTaking(ICriteria criteria)
+        public IList<Result> UpdateSuperPositionTaking(ICriteria criteria)
         {
             return this.UpdateSetting(criteria);
         }
@@ -131,9 +127,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
                 var bettingSetting = new SuperPositionTaking
                 {
                     BetTypeId = dataReader.ToInt("IBCBetTypeID"),
+                    S4 = dataReader.ToDouble("spositiontaking"),
                     N4 = dataReader.ToDouble("minpositiontaking"),
                     L4 = 0.85,
-                    S4 = dataReader.ToDouble("spositiontaking"),
                     SComm = dataReader.ToDouble("sdiscount"),
                     SCommMax = dataReader.ToDouble("smaxdiscount")
                 };

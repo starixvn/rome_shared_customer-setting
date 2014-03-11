@@ -9,8 +9,8 @@
 
 namespace Fanex.CustomerSetting.Module.Keno.ViewModels
 {
-    using System;
     using System.Collections.Generic;
+    using System.Linq;
     using Fanex.CustomerSetting.Module.Keno.Entities;
 
     /// <summary>
@@ -19,5 +19,47 @@ namespace Fanex.CustomerSetting.Module.Keno.ViewModels
     public class SuperSetting : CustomerSettingBase
     {
         public IList<SuperPositionTaking> PositionTakings { get; set; }
+
+        /// <summary>
+        /// Updates the position takings in case of copy all.
+        /// </summary>
+        internal override void UpdatePositionTakingsInCaseOfCopyAll()
+        {
+            if (this.CopyAllIsValidForPositionTaking())
+            {
+                var copiedSuperPositionTaking = this.PositionTakings.Where(p => p.BetTypeId == this.PositionTakingCopyAll.BettypeId).FirstOrDefault();
+
+                if (copiedSuperPositionTaking == null)
+                {
+                    return;
+                }
+
+                foreach (var superPositionTaking in this.PositionTakings)
+                {
+                    if (this.IsCopyToItself(superPositionTaking.BetTypeId, this.PositionTakingCopyAll.BettypeId))
+                    {
+                        continue;
+                    }
+
+                    this.CopyToOnePositionTaking(copiedSuperPositionTaking, superPositionTaking);
+                }
+            }
+        }
+
+        internal void CopyToOnePositionTaking(SuperPositionTaking copiedSuperPositionTaking, SuperPositionTaking superPositionTaking)
+        {
+            superPositionTaking.S4 = copiedSuperPositionTaking.S4;
+            superPositionTaking.N4 = copiedSuperPositionTaking.N4;
+            superPositionTaking.AComm = copiedSuperPositionTaking.AComm;
+            superPositionTaking.IsUpdatePT = copiedSuperPositionTaking.IsUpdatePT;
+            superPositionTaking.IsUpdateS4 = copiedSuperPositionTaking.IsUpdateS4;
+            superPositionTaking.IsUpdateN4 = copiedSuperPositionTaking.IsUpdateN4;
+            superPositionTaking.IsUpdateSCo = copiedSuperPositionTaking.IsUpdateSCo;
+        }
+
+        internal bool CopyAllIsValidForPositionTaking()
+        {
+            return this.PositionTakingCopyAll.IsCopiedAll && this.PositionTakings != null && this.PositionTakings.Count > 0;
+        }
     }
 }

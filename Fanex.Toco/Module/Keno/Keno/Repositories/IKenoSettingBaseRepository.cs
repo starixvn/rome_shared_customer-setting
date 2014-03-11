@@ -10,12 +10,11 @@
 namespace Fanex.CustomerSetting.Module.Keno.Repositories
 {
     using System.Collections.Generic;
-    using Fanex.CustomerSetting.Module.Keno.Entities;
-    using Fanex.CustomerSetting.Module.Keno.ViewModels;
+    using Fanex.CustomerSetting.Module.Core.Models;
     using Fanex.NAP.Framework.Data;
 
     public interface IKenoSettingBaseRepository
     {
-        Result UpdateSetting(ICriteria criteria);
+        IList<Result> UpdateSetting(ICriteria criteria);
     }
 }

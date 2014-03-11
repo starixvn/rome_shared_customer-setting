@@ -10,7 +10,7 @@
 namespace Fanex.CustomerSetting.Module.Keno.Repositories
 {
     using System.Collections.Generic;
-    using Fanex.CustomerSetting.Module.Keno.Entities;
+    using Fanex.CustomerSetting.Module.Core.Models;
     using Fanex.CustomerSetting.Module.Keno.ViewModels;
     using Fanex.NAP.Framework.Data;
    
@@ -18,8 +18,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
     {
         SuperSetting GetSuperSetting(ICriteria criteria);
 
-        Result UpdateSuperBetSetting(ICriteria criteria);
+        IList<Result> UpdateSuperBetSetting(ICriteria criteria);
 
-        Result UpdateSuperPositionTaking(ICriteria criteria);
+        IList<Result> UpdateSuperPositionTaking(ICriteria criteria);
     }
 }

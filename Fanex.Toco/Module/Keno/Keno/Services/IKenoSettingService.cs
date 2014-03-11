@@ -10,7 +10,7 @@
 namespace Fanex.CustomerSetting.Module.Keno.Services
 {
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
+    using Fanex.CustomerSetting.Module.Core.Models;
     using Fanex.CustomerSetting.Module.Keno.Entities;
     using Fanex.CustomerSetting.Module.Keno.ViewModels;
 
@@ -18,9 +18,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
     {
         SuperSetting GetSuperSetting(int custId);
 
-        Result UpdateSuperBetSetting(CustomerInformation customerInformation, BetSetting betSetting);
+        IList<Result> UpdateSuperBetSetting(CustomerInformation customerInformation, BetSetting betSetting);
 
-        Result UpdateSuperPositionTaking(CustomerInformation customerInformation, SuperPositionTaking superPositionTaking);
+        IList<Result> UpdateSuperPositionTaking(CustomerInformation customerInformation, SuperPositionTaking superPositionTaking);
 
         IList<Result> UpdateSuperBetSettings(CustomerInformation customerInformation, IList<BetSetting> betSettings);
 

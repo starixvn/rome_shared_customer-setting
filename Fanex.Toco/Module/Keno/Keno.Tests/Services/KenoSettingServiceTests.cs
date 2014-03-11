@@ -193,7 +193,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
                 }
             };
 
-            return View(Constants.EDIT_SUPER_CSHTML, customerSetting);
+            return View(Constants.EditSuperCshtml, customerSetting);
         }
 
         [HttpPost]
@@ -214,7 +214,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditMaster")]
         public ActionResult EditMaster(int custId)
         {
-            return View(Constants.EDIT_MASTER_CSHTML);
+            return View(Constants.EditMasterCshtml);
         }
 
         [HttpPost]
@@ -235,7 +235,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditAgent")]
         public ActionResult EditAgent(int custId)
         {
-            return View(Constants.EDIT_AGENT_CSHTML);
+            return View(Constants.EditAgentCshtml);
         }
 
         [HttpPost]

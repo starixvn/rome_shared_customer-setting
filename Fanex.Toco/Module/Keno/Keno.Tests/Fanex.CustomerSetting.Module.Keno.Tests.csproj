@@ -63,6 +63,7 @@
     <Compile Include="Criteria\GetSuperSettingCriteriaTests.cs" />
     <Compile Include="Criteria\UpdateSuperBetSettingCriteriaTests.cs" />
     <Compile Include="Criteria\UpdateSuperPositionTakingCriteriaTests.cs" />
+    <Compile Include="Entities\CustomerSettingBaseTests.cs" />
     <Compile Include="Helper\MessageHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\KenoSettingBaseRepositoryTests.cs" />
@@ -89,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Start\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

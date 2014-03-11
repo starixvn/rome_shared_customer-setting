@@ -9,8 +9,8 @@
 
 namespace Fanex.CustomerSetting.Module.Keno.Entities
 {
-    using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     /// The CustomerSettingBase entity.
@@ -24,5 +24,67 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
         public CopyAll BetSettingCopyAll { get; set; }
 
         public CopyAll PositionTakingCopyAll { get; set; }
+
+        public void UpdateSettingInCaseOfCopyAll()
+        {
+            this.UpdateBetSettingsInCaseOfCopyAll();
+            this.UpdatePositionTakingsInCaseOfCopyAll();
+        }
+
+        internal virtual void UpdatePositionTakingsInCaseOfCopyAll()
+        {
+        }
+
+        /// <summary>
+        /// Updates the bet settings in case of copy all.
+        /// </summary>
+        internal void UpdateBetSettingsInCaseOfCopyAll()
+        {
+            if (this.CopyAllIsValidForBetSetting())
+            {
+                var copiedBetSetting = this.GetCopiedBetSetting();
+
+                if (copiedBetSetting == null)
+                {
+                    return;
+                }
+
+                foreach (var betSetting in this.BetSettings)
+                {
+                    if (this.IsCopyToItself(betSetting.BetTypeId, this.BetSettingCopyAll.BettypeId))
+                    {
+                        return;
+                    }
+
+                    this.CopyToOneBetSetting(copiedBetSetting, betSetting);
+                }
+            }
+        }
+
+        internal BetSetting GetCopiedBetSetting()
+        {
+            return this.BetSettings.Where(b => b.BetTypeId == this.BetSettingCopyAll.BettypeId).FirstOrDefault();
+        }
+
+        internal void CopyToOneBetSetting(BetSetting copiedBetSetting, BetSetting betSetting)
+        {
+            betSetting.MinBet = copiedBetSetting.MinBet;
+            betSetting.MaxBet = copiedBetSetting.MaxBet;
+            betSetting.MaxPerMatch = copiedBetSetting.MinBet;
+            betSetting.IsEnabled = copiedBetSetting.IsEnabled;
+            betSetting.IsDownlinesEnabled = copiedBetSetting.IsDownlinesEnabled;
+            betSetting.IsBetSettingUpdated = copiedBetSetting.IsBetSettingUpdated;
+            betSetting.IsStatusUpdated = copiedBetSetting.IsStatusUpdated;
+        }
+
+        internal bool IsCopyToItself(int currentBetTypeId, int copiedBetTypeId)
+        {
+            return currentBetTypeId == copiedBetTypeId;
+        }
+
+        internal bool CopyAllIsValidForBetSetting()
+        {
+            return this.BetSettingCopyAll.IsCopiedAll && this.BetSettings != null && this.BetSettings.Count > 0;
+        }
     }
 }

@@ -9,14 +9,13 @@
 
 namespace Fanex.CustomerSetting.Module.Keno.Helper
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
     using Fanex.CustomerSetting.Module.Core.Models;
 
     public interface IMessageHelper
     {
+        void SetErrorCodeAndErrorMessage(string errorCode, string errorMessage);
+
         List<Result> GetErrors();
     }
 }

@@ -11,11 +11,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Helper
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Globalization;
-    using Fanex.Common;
     using Fanex.CustomerSetting.Module.Core.Models;
-    using Fanex.CustomerSetting.Module.Keno.Services;
 
     /// <summary>
     /// TODO: Update summary.
@@ -46,6 +42,12 @@ namespace Fanex.CustomerSetting.Module.Keno.Helper
             get { return _errorResults; }
         }
 
+        public void SetErrorCodeAndErrorMessage(string errorCode, string errorMessage)
+        {
+            _errorCode = errorCode;
+            _errorMsg = errorMessage;
+        }
+
         /// <summary>
         /// Gets the errors.
         /// </summary>
@@ -72,6 +74,11 @@ namespace Fanex.CustomerSetting.Module.Keno.Helper
         internal static string GetResourceFromErrorCode(string errorCode)
         {
             return errorCode;
+        }
+
+        internal static bool IfThisIsAnError(int errorCode)
+        {
+            return errorCode != 0;
         }
 
         internal bool NoDataIsChanged()
@@ -112,11 +119,6 @@ namespace Fanex.CustomerSetting.Module.Keno.Helper
                     ErrorMessage = errorCode > 0 ? errorMsg : GetResourceFromErrorCode(errorCode.ToString())
                 });
             }
-        }
-
-        internal static bool IfThisIsAnError(int errorCode)
-        {
-            return errorCode != 0;
         }
 
         internal void AddNotificationMessageWhenClientDataIsNotChanged()

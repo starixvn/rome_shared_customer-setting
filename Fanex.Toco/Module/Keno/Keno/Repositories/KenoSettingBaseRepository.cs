@@ -10,15 +10,9 @@
 namespace Fanex.CustomerSetting.Module.Keno.Repositories
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
-    using System.Data;
-    using System.Linq;
-    using Fanex.Common;
-    using Fanex.Common.Extensions;
-    using Fanex.CustomerSetting.Module.Keno.Criteria;
-    using Fanex.CustomerSetting.Module.Keno.Entities;
-    using Fanex.CustomerSetting.Module.Keno.ViewModels;
+    using Fanex.CustomerSetting.Module.Core.Models;
+    using Fanex.CustomerSetting.Module.Keno.Helper;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
     using Fanex.NAP.Framework.Exceptions;
@@ -28,12 +22,24 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
     /// </summary>
     public class KenoSettingBaseRepository : IKenoSettingBaseRepository
     {
+        private readonly IMessageHelper _messageHelper;
+
+        public KenoSettingBaseRepository()
+            : this(null)
+        {
+        }
+
+        public KenoSettingBaseRepository(IMessageHelper messageHelper)
+        {
+            _messageHelper = messageHelper ?? new MessageHelper();
+        }
+
         /// <summary>
         /// Updates the setting.
         /// </summary>
         /// <param name="criteria">The criteria.</param>
         /// <returns>The Result object.</returns>
-        public Result UpdateSetting(ICriteria criteria)
+        public IList<Result> UpdateSetting(ICriteria criteria)
         {
             if (criteria == null || !criteria.IsValid())
             {
@@ -48,17 +54,14 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
         /// </summary>
         /// <param name="criteria">The criteria.</param>
         /// <returns>The Result object.</returns>
-        internal virtual Result ExecuteUpdateSetting(ICriteria criteria)
+        internal virtual IList<Result> ExecuteUpdateSetting(ICriteria criteria)
         {
             using (var objDb = new ObjectDb(criteria.GetSettingKey()))
             {
                 objDb.ExecuteNonQuery(criteria.GetSpParams());
                 var outputParams = objDb.GetOuputParams();
-                return new Result()
-                {
-                    ErrCode = Convert.ToInt32(outputParams["errcode"]),
-                    ErrMsg = Convert.ToString(outputParams["errmsg"])
-                };
+                _messageHelper.SetErrorCodeAndErrorMessage(Convert.ToString(outputParams["errcode"]), Convert.ToString(outputParams["errmsg"]));
+                return _messageHelper.GetErrors();
             }
         }
     }

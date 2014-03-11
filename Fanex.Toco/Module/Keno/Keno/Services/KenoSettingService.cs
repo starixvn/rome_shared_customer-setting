@@ -9,20 +9,12 @@
 
 namespace Fanex.CustomerSetting.Module.Keno.Services
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Xml.Linq;
-    using Fanex.Common;
-    using Fanex.CustomerSetting.Module.Core;
-    using Fanex.CustomerSetting.Module.Core.Web;
+    using Fanex.CustomerSetting.Module.Core.Models;
     using Fanex.CustomerSetting.Module.Keno.Criteria;
     using Fanex.CustomerSetting.Module.Keno.Entities;
     using Fanex.CustomerSetting.Module.Keno.Repositories;
     using Fanex.CustomerSetting.Module.Keno.ViewModels;
-    using Fanex.NAP.Framework.Data;
-    using Newtonsoft.Json;
 
     /// <summary>
     /// Customer Service.
@@ -49,13 +41,13 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
             return _kenoSettingRepository.GetSuperSetting(criteria);
         }
 
-        public Result UpdateSuperBetSetting(CustomerInformation customerInformation, BetSetting betSetting)
+        public IList<Result> UpdateSuperBetSetting(CustomerInformation customerInformation, BetSetting betSetting)
         {
             var criteria = CreateUpdateSuperBetSettingCriteria(customerInformation, betSetting);
             return _kenoSettingRepository.UpdateSuperBetSetting(criteria);
         }
 
-        public Result UpdateSuperPositionTaking(CustomerInformation customerInformation, SuperPositionTaking superPositionTaking)
+        public IList<Result> UpdateSuperPositionTaking(CustomerInformation customerInformation, SuperPositionTaking superPositionTaking)
         {
             var criteria = CreateUpdateSuperPositionTakingCriteria(customerInformation, superPositionTaking);
             return _kenoSettingRepository.UpdateSuperPositionTaking(criteria);
@@ -67,7 +59,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
 
             foreach (var betSetting in betSettings)
             {
-                results.Add(this.UpdateSuperBetSetting(customerInformation, betSetting));
+                results.AddRange(this.UpdateSuperBetSetting(customerInformation, betSetting));
             }
 
             return results;
@@ -79,7 +71,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
 
             foreach (var positionTaking in positionTakings)
             {
-                results.Add(this.UpdateSuperPositionTaking(customerInformation, positionTaking));
+                results.AddRange(this.UpdateSuperPositionTaking(customerInformation, positionTaking));
             }
 
             return results;
@@ -87,6 +79,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
 
         public IList<Result> UpdateSuperCustomerSetting(SuperSetting superSetting)
         {
+            superSetting.UpdateSettingInCaseOfCopyAll();
             var results = new List<Result>();
             results.AddRange(this.UpdateSuperBetSettings(superSetting.CustomerInformation, superSetting.BetSettings));
             results.AddRange(this.UpdateSuperPositionTakings(superSetting.CustomerInformation, superSetting.PositionTakings));
@@ -134,10 +127,10 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
                 CustId = customerInformation.CustId,
                 SportType = superPositionTaking.SportTypeId,
                 BetType = superPositionTaking.BetTypeId,
-                SPositionTaking = superPositionTaking.L4,
+                SPositionTaking = superPositionTaking.S4,
                 Min_PositionTaking = superPositionTaking.N4,
                 Discount = superPositionTaking.SComm,
-                UpdatePositionTaking = superPositionTaking.IsUpdatePT,
+                UpdatePositionTaking = superPositionTaking.IsUpdateS4,
                 UpdateMinPositionTaking = superPositionTaking.IsUpdateN4,
                 UpdateCommission = superPositionTaking.IsUpdateSCo,
                 UserId = _kenoSession.UserId,
