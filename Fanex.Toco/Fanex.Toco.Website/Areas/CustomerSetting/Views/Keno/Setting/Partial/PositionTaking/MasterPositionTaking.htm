@@ -1,5 +1,5 @@
 ﻿<td class="formatCol l">
-    <span>{{positionTaking.betTypeName}}</span>
+    <span ng-bind="positionTaking.betTypeName"></span>
     <div style="display: inline-block; float: right;" ng-switch="index == 0">
         <input ng-class="{'btnCopyAll' : $parent.$parent.isCopyAll, 'btnUnCopyAll' : !$parent.$parent.isCopyAll}"
             ng-switch-when="true" ng-class-name="btnCopyAll" ng-model="$parent.$parent.isCopyAll"
@@ -7,24 +7,29 @@
             type="button" /></div>
 </td>
 <td class="formatCol c b">
-    <select  ng-disabled="$parent.$parent.isCopyAll && index != 0" ng-show="!positionTaking.iS3" class="col60" ng-model="positionTaking.s3" ng-options="value for value in s3Range">
+    <select ng-disabled="$parent.$parent.isCopyAll && index != 0" ng-show="!positionTaking.iS3"
+        class="col60" ng-model="positionTaking.s3" ng-options="value for value in s3Range">
     </select>
-    <select  ng-disabled="$parent.$parent.isCopyAll && index != 0" ng-show="positionTaking.iS3" class="col60" ng-model="positionTaking.uS3"
-        ng-options="value for value in uS3Range">
-    </select>
-</td>
-<td class="formatCol c b">
-    <input  ng-disabled="$parent.$parent.isCopyAll && index != 0" class="chb" type="checkbox" ng-model="positionTaking.iS3" />
-</td>
-<td class="formatCol c b">
-    <select  ng-disabled="$parent.$parent.isCopyAll && index != 0" class="col60" ng-model="positionTaking.m3" ng-options="value for value in maxPTRange">
+    <select ng-disabled="$parent.$parent.isCopyAll && index != 0" ng-show="positionTaking.iS3"
+        class="col60" ng-model="positionTaking.uS3" ng-options="value for value in uS3Range">
     </select>
 </td>
 <td class="formatCol c b">
-    <select  ng-disabled="$parent.$parent.isCopyAll && index != 0" class="col60" ng-model="positionTaking.n3" ng-options="value for value in minPTRange">
+    <input ng-disabled="$parent.$parent.isCopyAll && index != 0" class="chb" type="checkbox"
+        ng-model="positionTaking.iS3" />
+</td>
+<td class="formatCol c b">
+    <select ng-disabled="$parent.$parent.isCopyAll && index != 0" class="col60" ng-model="positionTaking.m3"
+        ng-options="value for value in maxPTRange">
     </select>
 </td>
 <td class="formatCol c b">
-    <select  ng-disabled="$parent.$parent.isCopyAll && index != 0" class="col60" ng-model="positionTaking.mComm" ng-options="value for value in commRange">
+    <select ng-disabled="$parent.$parent.isCopyAll && index != 0" class="col60" ng-model="positionTaking.n3"
+        ng-options="value for value in minPTRange">
+    </select>
+</td>
+<td class="formatCol c b">
+    <select ng-disabled="$parent.$parent.isCopyAll && index != 0" class="col60" ng-model="positionTaking.mComm"
+        ng-options="value for value in commRange">
     </select>
 </td>

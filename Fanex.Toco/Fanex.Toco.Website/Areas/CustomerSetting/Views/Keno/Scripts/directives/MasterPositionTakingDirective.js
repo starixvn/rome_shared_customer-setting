@@ -9,7 +9,7 @@ KenoModule.directive('masterPositionTakingElement', ['commonService', function (
         },
         templateUrl: '/Areas/CustomerSetting/Views/Keno/Setting/Partial/PositionTaking/MasterPositionTaking.htm',
         link: function ($scope, elem, attr, ctrl) {
-            console.log($scope.positionTaking);
+            //            console.log($scope.positionTaking);
 
             $scope.originalPositionTaking = angular.copy($scope.positionTaking);
 
@@ -17,10 +17,7 @@ KenoModule.directive('masterPositionTakingElement', ['commonService', function (
             $scope.maxPTRange = {};
             $scope.minPTRange = {};
             $scope.commRange = commonService.getRangeCommValue($scope.positionTaking.sComm, 0);
-
-            //            $scope.broadcastUpdateIsAuto = function () {
-            //                $scope.$emit('confirmIsAuto', true);
-            //            };
+            $scope.memberNewValueRange = {};
 
             $scope.monitorSaveButton = function () {
                 if ($scope.positionTaking.isUpdateUS3
@@ -38,18 +35,22 @@ KenoModule.directive('masterPositionTakingElement', ['commonService', function (
 
             $scope.$watch('[positionTaking.s3, positionTaking.uS3, positionTaking.iS3]', function () {
                 if ($scope.originalPositionTaking.iS3) { // Load in case within isAuto
+                    //                    $("confirm").html();
                     if ($scope.positionTaking.iS3) {
                         $scope.positionTaking.l3 = $scope.positionTaking.s4;
                         $scope.positionTaking.isUpdateS3 = false;
                         $scope.positionTaking.isUpdateUS3 = (($scope.originalPositionTaking.uS3 != $scope.positionTaking.uS3)
                                                     || ($scope.originalPositionTaking.iS3 != $scope.positionTaking.iS3)) == true ? true : false;
+                        $scope.positionTaking.isConfirmIsAuto = false;
+                        $scope.$emit('confirmIsAuto', { "betTypeId": $scope.positionTaking.betTypeId, "isAdd": false });
                     }
                     else {
                         $scope.positionTaking.l3 = Math.round(($scope.positionTaking.s4 - $scope.positionTaking.s3) * 100) / 100;
                         $scope.positionTaking.isUpdateS3 = true;
                         $scope.positionTaking.isUpdateUS3 = true;
-                        $scope.positionTaking.newMemberPTMax = $scope.positionTaking.l3;
-                        $scope.$emit('confirmIsAuto', $scope.betTypeId);
+                        $scope.positionTaking.isConfirmIsAuto = true;
+                        $scope.memberNewValueRange = commonService.getRangePTValue($scope.positionTaking.l3, 0);
+                        $scope.$emit('confirmIsAuto', { "betTypeId": $scope.positionTaking.betTypeId, "isAdd": true });
                     }
                 }
                 else {

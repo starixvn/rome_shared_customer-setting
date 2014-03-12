@@ -1,5 +1,5 @@
 ﻿<td class="formatCol l">
-    <span>{{positionTaking.betTypeName}}</span>
+    <span ng-bind="positionTaking.betTypeName"></span>
     <div style="display: inline-block; float: right;" ng-switch="index == 0">
         <input ng-class="{'btnCopyAll' : $parent.$parent.isCopyAll, 'btnUnCopyAll' : !$parent.$parent.isCopyAll}"
             ng-switch-when="true" ng-class-name="btnCopyAll" ng-model="$parent.$parent.isCopyAll"

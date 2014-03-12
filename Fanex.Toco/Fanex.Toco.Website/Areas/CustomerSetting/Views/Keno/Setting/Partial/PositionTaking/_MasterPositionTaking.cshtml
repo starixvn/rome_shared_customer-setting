@@ -1,10 +1,10 @@
 ﻿@using Fanex.CustomerSetting.Module.Keno.Resources;
 <table class="tableColor tableWidth" ng-controller="positionTakingController">
     <tr>
-         <td colspan="6" class="header c b">
-             <span>@LayoutTexts.PositionTaking</span>
-           <input ng-class-name="btnSave" check-disable-element ng-model="isPositionTakingPartial"
-                    ng-click="updated(true, 'PositionTaking')" type="button" />
+        <td colspan="6" class="header c b">
+            <span>@LayoutTexts.PositionTaking</span>
+            <input ng-class-name="btnSave" check-disable-element ng-model="isPositionTakingPartial"
+                ng-click="updated(true, 'PositionTaking')" type="button" />
         </td>
     </tr>
     <tr>
@@ -27,6 +27,19 @@
             @LayoutTexts.MasterComm
         </td>
     </tr>
-    <tr ng-repeat="positionTaking in positionTakingList" master-position-taking-element ng-model="positionTaking" index="$index">
+    <tr ng-repeat="positionTaking in positionTakingList" master-position-taking-element
+        ng-model="positionTaking" index="$index">
+    </tr>
+    <tr style="display: none;">
+        <td>
+            <div id="dialogMemberPT" style="display: none;">
+                <div>
+                    You have changed this Master not to take auto position taking.</div>
+                <div>
+                    Do you want to update all member's position taking to:</div>
+                <div ng-repeat="positionTaking in positionTakingList"  ng-model="positionTaking" confirm-is-auto>
+                </div>
+            </div>
+        </td>
     </tr>
 </table>

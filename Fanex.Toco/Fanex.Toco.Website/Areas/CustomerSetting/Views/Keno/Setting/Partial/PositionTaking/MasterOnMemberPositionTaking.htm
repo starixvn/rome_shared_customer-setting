@@ -1,5 +1,5 @@
 ﻿<td class="formatCol l">
-    <span>{{positionTaking.betTypeName}}</span>
+    <span ng-bind="positionTaking.betTypeName"></span>
     <div style="display: inline-block; float: right;" ng-switch="index == 0">
         <input ng-class="{'btnCopyAll' : $parent.$parent.isCopyAll, 'btnUnCopyAll' : !$parent.$parent.isCopyAll}"
             ng-switch-when="true" ng-class-name="btnCopyAll" ng-model="$parent.$parent.isCopyAll"
@@ -17,13 +17,13 @@
     <input  ng-disabled="$parent.$parent.isCopyAll && index != 0" class="chb" type="checkbox" ng-model="positionTaking.iM1" />
 </td>
 <td class="formatCol c">
-    <span>{{positionTaking.a1}}</span>
+    <span ng-bind="positionTaking.a1"></span>
 </td>
 <td class="formatCol c">
-    <span>{{positionTaking.aComm}}</span>
+    <span ng-bind="positionTaking.aComm"></span>
 </td>
 <td class="formatCol c">
-    <span>{{positionTaking.comm}}</span>
+    <span ng-bind="positionTaking.comm"></span>
 </td>
 
 

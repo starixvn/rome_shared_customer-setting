@@ -11,7 +11,16 @@
         rel="stylesheet" type="text/css" />
     <link href="~/Areas/CustomerSetting/Views/Keno/Styles/Accounting/theme-color.less"
         rel="stylesheet" type="text/css" />
-      <link href="~/Areas/CustomerSetting/Styles/jquery-ui.css" rel="stylesheet"
+      @*<link href="~/Areas/CustomerSetting/Styles/jquery-ui.css" rel="stylesheet"
+        type="text/css" />*@
+    <link href="~/Areas/CustomerSetting/Views/Keno/Styles/Accounting/JqueryUI/jquery-ui-1.8.10.custom.css" rel="stylesheet"
+        type="text/css" />
+
+            <link href="~/Areas/CustomerSetting/Views/Keno/Scripts/directives/dialog/ngDialog.css" rel="stylesheet"
+        type="text/css" />
+          <link href="~/Areas/CustomerSetting/Views/Keno/Scripts/directives/dialog/ngDialog-theme-default.css" rel="stylesheet"
+        type="text/css" />
+          <link href="~/Areas/CustomerSetting/Views/Keno/Scripts/directives/dialog/ngDialog-theme-plain.css" rel="stylesheet"
         type="text/css" />
     @{
         string positionTakingJsName = string.Empty;
@@ -48,7 +57,6 @@
             type="button" class="btnUpdate b" />
     </div>
 </div>
-
 </body>
 
 <script src="@Url.Content("~/Areas/CustomerSetting/Scripts/jquery.js")" type="text/javascript"></script>
@@ -71,6 +79,8 @@
 <script src="@Url.Content("~/Areas/CustomerSetting/Views/Keno/Scripts/controllers/customer-information.controller.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Areas/CustomerSetting/Views/Keno/Scripts/controllers/bet-setting.controller.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Areas/CustomerSetting/Views/Keno/Scripts/controllers/position-taking.controller.js")" type="text/javascript"></script>
+
+<script src="@Url.Content("~/Areas/CustomerSetting/Views/Keno/Scripts/directives/dialog/ngDialog.js")" type="text/javascript"></script>
 
 <script type="text/javascript">
     var model = JSON.parse(Fanex.CustomerSetting.Core.DecodeHtml('@KenoSetting'));

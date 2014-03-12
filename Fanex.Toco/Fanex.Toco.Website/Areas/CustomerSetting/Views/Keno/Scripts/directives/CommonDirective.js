@@ -13,3 +13,17 @@ KenoModule.directive('checkDisableElement', function () {
 });
 
 
+KenoModule.directive('confirmIsAuto', function () {
+    return {
+        restrict: 'EA',
+        scope: {
+            positionTaking: "=ngModel",
+            isAuto: "=isAuto"
+        },
+        templateUrl: '/Areas/CustomerSetting/Views/Keno/Setting/Partial/PositionTaking/ConfirmIsAuto.htm',
+        controller: ['$scope', 'commonService', function ($scope, commonService) {
+//            console.log($scope.positionTaking);
+            $scope.memberNewValueRange = commonService.getRangePTValue($scope.positionTaking.l3, 0);
+        } ]
+    };
+});

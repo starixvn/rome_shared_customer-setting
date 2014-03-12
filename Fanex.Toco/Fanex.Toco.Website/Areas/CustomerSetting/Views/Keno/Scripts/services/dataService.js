@@ -1,7 +1,7 @@
 ﻿"use strict";
 
 KenoModule.service('dataService', function () {
-    var  roleId = 0;
+    var roleId = 0;
     var createCustomerInfo = function (id) {
         roleId = id;
         return {
@@ -50,8 +50,8 @@ KenoModule.service('dataService', function () {
 
     var createPositionTaking = function (betTypeId, boolValue1, boolValue2, betTypeName, roleId) {
         var positionTaking = {
-            "sportTypeId": betTypeId,
-            "betTypeId": 202,
+            "sportTypeId": 202,
+            "betTypeId": betTypeId,
             "betTypeName": betTypeName,
             "s4": 0.9,
             "m4": 0.6,
@@ -93,22 +93,24 @@ KenoModule.service('dataService', function () {
                 break;
             case 3:
                 positionTaking.isUpdatePT = false;
-                positionTaking.IsUpdateS3 = false;
-                positionTaking.IsUpdateUS3 = false;
-                positionTaking.IsUpdateN3 = false;
-                positionTaking.IsUpdateMComm = false;
-                positionTaking.IsUpdateAllMember = false;
-                positionTaking.NewMemberPT = 0;
+                positionTaking.isUpdateS3 = false;
+                positionTaking.isUpdateUS3 = false;
+                positionTaking.isUpdateN3 = false;
+                positionTaking.isUpdateMComm = false;
+                positionTaking.isUpdateAllMember = false;
+                positionTaking.newMemberPT = 0;
+                positionTaking.isConfirmIsAuto = false;
                 break;
             case 2:
-                positionTaking.IsDisabledMPT = false;
+                positionTaking.isDisabledMPT = false;
                 positionTaking.isUpdatePT = false;
-                positionTaking.IsUpdateM2 = false;
-                positionTaking.IsUpdateUM2 = false;
-                positionTaking.IsUpdateN2 = false;
-                positionTaking.IsUpdateACO = false;
-                positionTaking.IsUpdateAllMember = false;
-                positionTaking.NewMemberPT = 0;
+                positionTaking.isUpdateM2 = false;
+                positionTaking.isUpdateUM2 = false;
+                positionTaking.isUpdateN2 = false;
+                positionTaking.isUpdateACO = false;
+                positionTaking.isUpdateAllMember = false;
+                positionTaking.newMemberPT = 0;
+                positionTaking.isConfirmIsAuto = false;
                 break;
             case 1:
                 positionTaking.isUpdatePT = false;
@@ -116,13 +118,13 @@ KenoModule.service('dataService', function () {
                 break;
             case 41:
                 positionTaking.isUpdatePT = false;
-                positionTaking.IsUpdateS1 = false;
-                positionTaking.IsUpdateUS1 = false;
+                positionTaking.isUpdateS1 = false;
+                positionTaking.isUpdateUS1 = false;
                 break;
             case 31:
                 positionTaking.isUpdatePT = false;
-                positionTaking.IsUpdateM1 = false;
-                positionTaking.IsUpdateUM1 = false;
+                positionTaking.isUpdateM1 = false;
+                positionTaking.isUpdateUM1 = false;
                 break;
             default:
                 break;

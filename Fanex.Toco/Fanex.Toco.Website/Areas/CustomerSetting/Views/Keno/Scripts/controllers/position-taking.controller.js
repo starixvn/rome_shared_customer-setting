@@ -26,19 +26,18 @@ KenoModule.controller('positionTakingController', function ($scope, kenoReposito
         $scope.isPositionTakingPartial = false;
     });
 
-
     $scope.$on('confirmIsAuto', function (event, data) {
-        
-        var length = $scope.positionTakingList.length;
-        for (var i = 0; i < length; i++) {
-            var positionTakingTmp = $scope.positionTakingList[i];
-            if (positionTakingTmp.isUpdatePT) {
-                $scope.isPositionTakingPartial = true;
-                return true;
-            }
+        var index = $scope.$parent.confirmIsAutoArray.indexOf(data.betTypeId);
+
+        if (data.isAdd && index == -1) {
+            $scope.$parent.confirmIsAutoArray.push(data.betTypeId);
         }
 
-        $scope.isPositionTakingPartial = false;
+        if (!data.isAdd && index != -1) {
+            $scope.$parent.confirmIsAutoArray.splice(index, 1);
+        }
+
+        return false;
     });
 
     $scope.$watch('isCopyAll', function (newValue, oldValue) {
