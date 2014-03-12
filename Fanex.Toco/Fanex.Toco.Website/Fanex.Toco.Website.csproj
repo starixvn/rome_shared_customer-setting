@@ -258,6 +258,7 @@
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\AgentPositionTaking.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\ConfirmIsAuto.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\MasterOnMemberPositionTaking.htm" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\Popup.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\SuperOnMemberPositionTaking.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\MemberPositionTaking.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\MasterPositionTaking.htm" />

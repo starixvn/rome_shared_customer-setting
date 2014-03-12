@@ -6,11 +6,24 @@
     <p ng-show="ngDialogData.foo">
         Data passed through directive: <code>{{ngDialogData.foo}}</code></p>
 </div>
+
+ <div ng-repeat="positionTaking in  kenoSetting.positionTakings"  ng-model="positionTaking" confirm-is-auto>
+                </div>
+
+<!-- <div ng-repeat="positionTaking in kenoSetting.positionTakings"  ng-model="positionTaking">
+ <div ng-if="positionTaking.isConfirmIsAuto" style="margin-top: 5px; padding-left: 50px;" >
+    <span ng-bind="positionTaking.betTypeName" style="margin-right : 10px;"></span>
+    <select class="col60" ng-model="positionTaking.newMemberPT" ng-options="value for value in memberNewValueRange">
+    </select>
+</div>
+
+ </div>-->
+
 <div class="ngdialog-buttons">
-    <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-dialog="secondDialogId"
-        ng-dialog-class="ngdialog-theme-default" ng-dialog-controller="SecondModalCtrl"
+    <button type="button" class="ngdialog-button ngdialog-button-secondary"
+        ng-dialog-class="ngdialog-theme-default" ng-click="setValueAllMember(false);"
         ng-dialog-close-previous>
-        Close</button>
-    <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="openSecond()">
-        Open next</button>
+        NO</button>
+    <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="setValueAllMember(true);">
+        YES</button>
 </div>
