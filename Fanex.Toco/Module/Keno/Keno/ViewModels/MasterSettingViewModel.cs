@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------
-// <copyright file="MasterSetting.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="MasterSettingViewModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -16,7 +16,7 @@ namespace Fanex.CustomerSetting.Module.Keno.ViewModels
     /// <summary>
     /// The MasterSetting view model.
     /// </summary>
-    public class MasterSetting : CustomerSettingBase
+    public class MasterSettingViewModel : CustomerSettingBase
     {
         public IList<MasterPositionTaking> PositionTakings { get; set; }
     }

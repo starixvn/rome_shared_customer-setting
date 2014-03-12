@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------
-// <copyright file="MemberSetting.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="AgentSettingViewModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -14,10 +14,10 @@ namespace Fanex.CustomerSetting.Module.Keno.ViewModels
     using Fanex.CustomerSetting.Module.Keno.Entities;
 
     /// <summary>
-    /// The MemberSetting view model.
+    /// The AgentSetting view model.
     /// </summary>
-    public class MemberSetting : CustomerSettingBase
+    public class AgentSettingViewModel : CustomerSettingBase
     {
-        public IList<MemberPositionTaking> MemberPositionTakings { get; set; }
+        public IList<AgentPositionTaking> PositionTakings { get; set; }
     }
 }

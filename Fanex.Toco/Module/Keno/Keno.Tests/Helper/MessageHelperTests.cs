@@ -10,7 +10,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Helper
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using Fanex.CustomerSetting.Module.Keno.Helper;
+    using Fanex.CustomerSetting.Module.Keno.Helpers;
     using NUnit.Framework;
     using Rhino.Mocks;
 

@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------
-// <copyright file="SuperSetting.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="SuperSettingViewModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -16,7 +16,7 @@ namespace Fanex.CustomerSetting.Module.Keno.ViewModels
     /// <summary>
     /// The SuperSetting view model.
     /// </summary>
-    public class SuperSetting : CustomerSettingBase
+    public class SuperSettingViewModel : CustomerSettingBase
     {
         public IList<SuperPositionTaking> PositionTakings { get; set; }
 

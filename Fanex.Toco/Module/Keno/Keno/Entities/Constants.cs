@@ -32,5 +32,11 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
         public const string GetAgentSettingCriteriaKeyName = "Acc_CustomerSelEditSuperKeno";
         public const string UpdateAgentBetSettingCriteriaKeyName = "Acc_CustomerUpdSuperKeno_BetSetting";
         public const string UpdateAgentPositionTakingCriteriaKeyName = "Acc_CustomerUpdSuperKeno_Positiontaking";
+
+        public const string GetMemberSettingCriteriaKeyName = "Acc_CustomerSelEditSuperKeno";
+        public const string AgentUpdateMemberBetSettingCriteriaKeyName = "Acc_CustomerSelEditSuperKeno";
+        public const string AgentUpdateMemberPositionTakingCriteriaKeyName = "Acc_CustomerSelEditSuperKeno";
+        public const string SuperUpdateMemberPositionTakingCriteriaKeyName = "Acc_CustomerSelEditSuperKeno";
+        public const string MasterUpdateMemberPositionTakingCriteriaKeyName = "Acc_CustomerSelEditSuperKeno";
     }
 }

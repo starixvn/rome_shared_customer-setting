@@ -12,7 +12,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
     using System.Collections.Generic;
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.Keno.Entities;
-    using Fanex.CustomerSetting.Module.Keno.Helper;
+    using Fanex.CustomerSetting.Module.Keno.Helpers;
     using Fanex.CustomerSetting.Module.Keno.Services;
     using Fanex.CustomerSetting.Module.Keno.ViewModels;
     using Fanex.CustomerSetting.Security.Authenticate;
@@ -42,7 +42,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditSuper")]
         public ActionResult EditSuper(int custId)
         {
-            var customerSetting = new SuperSetting();
+            var customerSetting = new SuperSettingViewModel();
 
             customerSetting.CustomerInformation = new CustomerInformation()
             {
@@ -197,7 +197,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         }
 
         [HttpPost]
-        public JsonResult EditSuper(SuperSetting superSetting)
+        public JsonResult EditSuper(SuperSettingViewModel superSetting)
         {
             return Json(new
             {
@@ -218,7 +218,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         }
 
         [HttpPost]
-        public JsonResult EditMaster(MasterSetting masterSetting)
+        public JsonResult EditMaster(MasterSettingViewModel masterSetting)
         {
             return Json(new
             {
@@ -239,7 +239,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         }
 
         [HttpPost]
-        public JsonResult EditAgent(MasterSetting agentSetting)
+        public JsonResult EditAgent(MasterSettingViewModel agentSetting)
         {
             return Json(new
             {
@@ -260,7 +260,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         }
 
         [HttpPost]
-        public JsonResult SuperEditMember(MemberSetting memberSetting)
+        public JsonResult SuperEditMember(MemberSettingViewModel memberSetting)
         {
             return Json(new
             {
@@ -281,7 +281,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         }
 
         [HttpPost]
-        public JsonResult MasterEditMember(MemberSetting memberSetting)
+        public JsonResult MasterEditMember(MemberSettingViewModel memberSetting)
         {
             return Json(new
             {
@@ -302,7 +302,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         }
 
         [HttpPost]
-        public JsonResult AgentEditMember(MemberSetting memberSetting)
+        public JsonResult AgentEditMember(MemberSettingViewModel memberSetting)
         {
             return Json(new
             {

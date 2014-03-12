@@ -8,7 +8,7 @@
 // </history>
 // ************************************************************************************
 
-namespace Fanex.CustomerSetting.Module.Keno.Helper
+namespace Fanex.CustomerSetting.Module.Keno.Helpers
 {
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;

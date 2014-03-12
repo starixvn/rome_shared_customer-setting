@@ -7,7 +7,7 @@
 //   <change who="Paul.Nguyen" date="2014/02/20">Created.</change>
 // </history>
 
-namespace Fanex.CustomerSetting.Module.Keno.Helper
+namespace Fanex.CustomerSetting.Module.Keno.Helpers
 {
     using System.Collections.Generic;
     using Fanex.CustomerSetting.Module.Core.Models;

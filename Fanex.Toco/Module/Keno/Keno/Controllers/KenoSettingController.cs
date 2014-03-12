@@ -12,7 +12,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
     using System.Collections.Generic;
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.Keno.Entities;
-    using Fanex.CustomerSetting.Module.Keno.Helper;
+    using Fanex.CustomerSetting.Module.Keno.Helpers;
     using Fanex.CustomerSetting.Module.Keno.Services;
     using Fanex.CustomerSetting.Module.Keno.ViewModels;
     using Fanex.CustomerSetting.Security.Authenticate;
@@ -42,7 +42,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         }
 
         [HttpPost]
-        public JsonResult EditSuper(SuperSetting superSetting)
+        public JsonResult EditSuper(SuperSettingViewModel superSetting)
         {
             var results = _kenoSettingService.UpdateSuperCustomerSetting(superSetting);
             return Json(results);
@@ -56,17 +56,12 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         }
 
         [HttpPost]
-        public JsonResult EditMaster(MasterSetting masterSetting)
+        public JsonResult EditMaster(MasterSettingViewModel masterSetting)
         {
             var results = _kenoSettingService.UpdateMasterCustomerSetting(masterSetting);
             return Json(results);
         }
 
-        /// <summary>
-        /// Change name controller to clear.
-        /// </summary>
-        /// <param name="custId">The customer identifier.</param>
-        /// <returns>The ActionResult of EditAgent.</returns>
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditAgent")]
         public ActionResult EditAgent(int custId)
         {
@@ -75,41 +70,26 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         }
 
         [HttpPost]
-        public JsonResult EditAgent(MasterSetting agentSetting)
+        public JsonResult EditAgent(AgentSettingViewModel agentSetting)
         {
-            return Json(new
-            {
-                ErrCode = 1,
-                ErrMsg = "Reponded From ServerSide: Not Implemented Yet"
-            });
+            var results = _kenoSettingService.UpdateAgentCustomerSetting(agentSetting);
+            return Json(results);
         }
 
-        /// <summary>
-        /// Change name controller to clear.
-        /// </summary>
-        /// <param name="custId">The customer identifier.</param>
-        /// <returns>The ActionResult of SuperEditMember.</returns>
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "SuperEditMember")]
         public ActionResult SuperEditMember(int custId)
         {
-            return View(Constants.SuperEditMemberCshtml);
+            var customerSetting = _kenoSettingService.GetSettingInCaseOfSuperEditMember(custId);
+            return View(Constants.SuperEditMemberCshtml, customerSetting);
         }
 
         [HttpPost]
-        public JsonResult SuperEditMember(MemberSetting memberSetting)
+        public JsonResult SuperEditMember(MemberSettingViewModel memberSetting)
         {
-            return Json(new
-            {
-                ErrCode = 1,
-                ErrMsg = "Reponded From ServerSide: Not Implemented Yet"
-            });
+            var results = _kenoSettingService.UpdateMemberCustomerSettingInCaseOfSuperEditMember(memberSetting);
+            return Json(results);
         }
 
-        /// <summary>
-        /// Change name controller to clear.
-        /// </summary>
-        /// <param name="custId">The customer identifier.</param>
-        /// <returns>The ActionResult of MasterEditMember.</returns>
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "MasterEditMember")]
         public ActionResult MasterEditMember(int custId)
         {
@@ -117,20 +97,12 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         }
 
         [HttpPost]
-        public JsonResult MasterEditMember(MemberSetting memberSetting)
+        public JsonResult MasterEditMember(MemberSettingViewModel memberSetting)
         {
-            return Json(new
-            {
-                ErrCode = 1,
-                ErrMsg = "Reponded From ServerSide: Not Implemented Yet"
-            });
+            var results = _kenoSettingService.UpdateMemberCustomerSettingInCaseOfMasterEditMember(memberSetting);
+            return Json(results);
         }
 
-        /// <summary>
-        /// Change name controller to clear.
-        /// </summary>
-        /// <param name="custId">The customer identifier.</param>
-        /// <returns>The ActionResult of MasterEditMember.</returns>
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "AgentEditMember")]
         public ActionResult AgentEditMember(int custId)
         {
@@ -138,13 +110,10 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         }
 
         [HttpPost]
-        public JsonResult AgentEditMember(MemberSetting memberSetting)
+        public JsonResult AgentEditMember(MemberSettingViewModel memberSetting)
         {
-            return Json(new
-            {
-                ErrCode = 1,
-                ErrMsg = "Reponded From ServerSide: Not Implemented Yet"
-            });
+            var results = _kenoSettingService.UpdateMemberCustomerSettingInCaseOfAgentEditMember(memberSetting);
+            return Json(results);
         }
     }
 }

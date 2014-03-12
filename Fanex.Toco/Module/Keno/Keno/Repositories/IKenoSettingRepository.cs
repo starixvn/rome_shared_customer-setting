@@ -13,25 +13,37 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
     using Fanex.CustomerSetting.Module.Core.Models;
     using Fanex.CustomerSetting.Module.Keno.ViewModels;
     using Fanex.NAP.Framework.Data;
-   
+
     public interface IKenoSettingRepository
     {
-        SuperSetting GetSuperSetting(ICriteria criteria);
+        SuperSettingViewModel GetSuperSetting(ICriteria criteria);
 
         IList<Result> UpdateSuperBetSetting(ICriteria criteria);
 
         IList<Result> UpdateSuperPositionTaking(ICriteria criteria);
 
-        MasterSetting GetMasterSetting(ICriteria criteria);
+        MasterSettingViewModel GetMasterSetting(ICriteria criteria);
 
         IList<Result> UpdateMasterBetSetting(ICriteria criteria);
 
         IList<Result> UpdateMasterPositionTaking(ICriteria criteria);
 
-        AgentSetting GetAgentSetting(ICriteria criteria);
+        AgentSettingViewModel GetAgentSetting(ICriteria criteria);
 
         IList<Result> UpdateAgentBetSetting(ICriteria criteria);
 
         IList<Result> UpdateAgentPositionTaking(ICriteria criteria);
+
+        MemberSettingViewModel GetSettingInCaseOfAgentEditMember(ICriteria criteria);
+
+        MemberSettingViewModel GetSettingInCaseOfSuperEditMember(ICriteria criteria);
+
+        MemberSettingViewModel GetSettingInCaseOfMasterEditMember(ICriteria criteria);
+
+        IList<Result> UpdateMemberPositionTakingInCaseOfSuperEditMember(ICriteria criteria);
+
+        IList<Result> UpdateMemberPositionTakingInCaseOfMasterEditMember(ICriteria criteria);
+
+        IList<Result> UpdateMemberPositionTakingInCaseOfAgentEditMember(ICriteria criteria);
     }
 }

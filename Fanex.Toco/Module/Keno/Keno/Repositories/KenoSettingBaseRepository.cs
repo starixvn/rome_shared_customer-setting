@@ -12,7 +12,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
     using System;
     using System.Collections.Generic;
     using Fanex.CustomerSetting.Module.Core.Models;
-    using Fanex.CustomerSetting.Module.Keno.Helper;
+    using Fanex.CustomerSetting.Module.Keno.Helpers;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
     using Fanex.NAP.Framework.Exceptions;

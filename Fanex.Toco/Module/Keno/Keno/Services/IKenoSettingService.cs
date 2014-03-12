@@ -16,16 +16,28 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
 
     public interface IKenoSettingService
     {
-        SuperSetting GetSuperSetting(int custId);
+        SuperSettingViewModel GetSuperSetting(int custId);
 
-        IList<Result> UpdateSuperCustomerSetting(SuperSetting superSetting);
+        IList<Result> UpdateSuperCustomerSetting(SuperSettingViewModel superSetting);
 
-        MasterSetting GetMasterSetting(int custId);
+        MasterSettingViewModel GetMasterSetting(int custId);
 
-        IList<Result> UpdateMasterCustomerSetting(MasterSetting masterSetting);
+        IList<Result> UpdateMasterCustomerSetting(MasterSettingViewModel masterSetting);
 
-        AgentSetting GetAgentSetting(int custId);
+        AgentSettingViewModel GetAgentSetting(int custId);
 
-        IList<Result> UpdateAgentCustomerSetting(AgentSetting agentSetting);
+        IList<Result> UpdateAgentCustomerSetting(AgentSettingViewModel agentSetting);
+
+        MemberSettingViewModel GetSettingInCaseOfAgentEditMember(int custId);
+
+        IList<Result> UpdateMemberCustomerSettingInCaseOfAgentEditMember(MemberSettingViewModel memberSetting);
+
+        MemberSettingViewModel GetSettingInCaseOfSuperEditMember(int custId);
+
+        IList<Result> UpdateMemberCustomerSettingInCaseOfSuperEditMember(MemberSettingViewModel memberSetting);
+
+        MemberSettingViewModel GetSettingInCaseOfMasterEditMember(int custId);
+
+        IList<Result> UpdateMemberCustomerSettingInCaseOfMasterEditMember(MemberSettingViewModel memberSetting);
     }
 }

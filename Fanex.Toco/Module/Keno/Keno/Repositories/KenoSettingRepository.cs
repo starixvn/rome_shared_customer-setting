@@ -29,14 +29,14 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
         /// </summary>
         /// <param name="criteria">The criteria.</param>
         /// <returns>The SuperSetting object.</returns>
-        public SuperSetting GetSuperSetting(ICriteria criteria)
+        public SuperSettingViewModel GetSuperSetting(ICriteria criteria)
         {
             if (!criteria.IsValid())
             {
                 throw new NapDataAccessException();
             }
 
-            var superSetting = new SuperSetting();
+            var superSetting = new SuperSettingViewModel();
 
             using (var objDb = new ObjectDb(criteria.GetSettingKey()))
             {
@@ -56,14 +56,14 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
         /// </summary>
         /// <param name="criteria">The criteria.</param>
         /// <returns>The MasterSetting object.</returns>
-        public MasterSetting GetMasterSetting(ICriteria criteria)
+        public MasterSettingViewModel GetMasterSetting(ICriteria criteria)
         {
             if (!criteria.IsValid())
             {
                 throw new NapDataAccessException();
             }
 
-            var masterSetting = new MasterSetting();
+            var masterSetting = new MasterSettingViewModel();
 
             using (var objDb = new ObjectDb(criteria.GetSettingKey()))
             {
@@ -83,14 +83,14 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
         /// </summary>
         /// <param name="criteria">The criteria.</param>
         /// <returns>The AgentSetting object.</returns>
-        public AgentSetting GetAgentSetting(ICriteria criteria)
+        public AgentSettingViewModel GetAgentSetting(ICriteria criteria)
         {
             if (!criteria.IsValid())
             {
                 throw new NapDataAccessException();
             }
 
-            var agentSetting = new AgentSetting();
+            var agentSetting = new AgentSettingViewModel();
 
             using (var objDb = new ObjectDb(criteria.GetSettingKey()))
             {
@@ -103,6 +103,87 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
             }
 
             return agentSetting;
+        }
+
+        /// <summary>
+        /// Gets the member setting.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>The MemberSetting object.</returns>
+        public MemberSettingViewModel GetSettingInCaseOfAgentEditMember(ICriteria criteria)
+        {
+            if (!criteria.IsValid())
+            {
+                throw new NapDataAccessException();
+            }
+
+            var memberSetting = new MemberSettingViewModel();
+
+            using (var objDb = new ObjectDb(criteria.GetSettingKey()))
+            {
+                using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
+                {
+                    memberSetting.CustomerInformation = ReadAgentInformationData(reader);
+                    memberSetting.BetSettings = ReadBetLimitData(reader);
+                    memberSetting.PositionTakings = ReadMemberPositionTakingInCaseOfAgentEditMember(reader);
+                }
+            }
+
+            return memberSetting;
+        }
+
+        /// <summary>
+        /// Gets the member setting.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>The MemberSetting object.</returns>
+        public MemberSettingViewModel GetSettingInCaseOfSuperEditMember(ICriteria criteria)
+        {
+            if (!criteria.IsValid())
+            {
+                throw new NapDataAccessException();
+            }
+
+            var memberSetting = new MemberSettingViewModel();
+
+            using (var objDb = new ObjectDb(criteria.GetSettingKey()))
+            {
+                using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
+                {
+                    memberSetting.CustomerInformation = ReadAgentInformationData(reader);
+                    memberSetting.BetSettings = ReadBetLimitData(reader);
+                    memberSetting.PositionTakings = ReadMemberPositionTakingInCaseOfSuperEditMember(reader);
+                }
+            }
+
+            return memberSetting;
+        }
+
+        /// <summary>
+        /// Gets the member setting.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>The MemberSetting object.</returns>
+        public MemberSettingViewModel GetSettingInCaseOfMasterEditMember(ICriteria criteria)
+        {
+            if (!criteria.IsValid())
+            {
+                throw new NapDataAccessException();
+            }
+
+            var memberSetting = new MemberSettingViewModel();
+
+            using (var objDb = new ObjectDb(criteria.GetSettingKey()))
+            {
+                using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
+                {
+                    memberSetting.CustomerInformation = ReadAgentInformationData(reader);
+                    memberSetting.BetSettings = ReadBetLimitData(reader);
+                    memberSetting.PositionTakings = ReadMemberPositionTakingInCaseOfMasterEditMember(reader);
+                }
+            }
+
+            return memberSetting;
         }
 
         public IList<Result> UpdateSuperBetSetting(ICriteria criteria)
@@ -131,6 +212,21 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
         }
 
         public IList<Result> UpdateAgentPositionTaking(ICriteria criteria)
+        {
+            return this.UpdateSetting(criteria);
+        }
+
+        public IList<Result> UpdateMemberPositionTakingInCaseOfSuperEditMember(ICriteria criteria)
+        {
+            return this.UpdateSetting(criteria);
+        }
+
+        public IList<Result> UpdateMemberPositionTakingInCaseOfMasterEditMember(ICriteria criteria)
+        {
+            return this.UpdateSetting(criteria);
+        }
+
+        public IList<Result> UpdateMemberPositionTakingInCaseOfAgentEditMember(ICriteria criteria)
         {
             return this.UpdateSetting(criteria);
         }
@@ -277,7 +373,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
         /// </summary>
         /// <param name="dataReader">The data reader.</param>
         /// <returns>The list of MasterPositionTaking.</returns>
-        internal IList<MemberPositionTaking> ReadAgentEditMemberPositionTakingData(IDataReader dataReader)
+        internal IList<MemberPositionTaking> ReadMemberPositionTakingInCaseOfAgentEditMember(IDataReader dataReader)
         {
             var positionTakings = new List<MemberPositionTaking>();
             while (dataReader.Read())
@@ -286,6 +382,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
                 {
                     BetTypeId = dataReader.ToInt("IBCBetTypeID"),
                     A1 = dataReader.ToDouble("positiontaking"),
+                    N2 = dataReader.ToDouble("aminpositiontaking"),
                     L2 = dataReader.ToDouble("maxpositiontaking"),
                     A4 = dataReader.ToDouble("amaxminpositiontaking"),
                     A2 = dataReader.ToDouble("a2"),
@@ -304,7 +401,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
         /// </summary>
         /// <param name="dataReader">The data reader.</param>
         /// <returns>The list of MasterPositionTaking.</returns>
-        internal IList<MemberPositionTaking> ReadSuperEditMemberPositionTakingData(IDataReader dataReader)
+        internal IList<MemberPositionTaking> ReadMemberPositionTakingInCaseOfSuperEditMember(IDataReader dataReader)
         {
             var positionTakings = new List<MemberPositionTaking>();
             while (dataReader.Read())
@@ -329,7 +426,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
         /// </summary>
         /// <param name="dataReader">The data reader.</param>
         /// <returns>The list of MasterPositionTaking.</returns>
-        internal IList<MemberPositionTaking> ReadMasterEditMemberPositionTakingData(IDataReader dataReader)
+        internal IList<MemberPositionTaking> ReadMemberPositionTakingInCaseOfMasterEditMember(IDataReader dataReader)
         {
             var positionTakings = new List<MemberPositionTaking>();
             while (dataReader.Read())
