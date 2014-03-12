@@ -93,7 +93,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "MasterEditMember")]
         public ActionResult MasterEditMember(int custId)
         {
-            return View(Constants.MasterEditMemberCshtml);
+            var customerSetting = _kenoSettingService.GetSettingInCaseOfMasterEditMember(custId);
+            return View(Constants.MasterEditMemberCshtml, customerSetting);
         }
 
         [HttpPost]
@@ -106,7 +107,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "AgentEditMember")]
         public ActionResult AgentEditMember(int custId)
         {
-            return View(Constants.AgentEditMemberCshtml);
+            var customerSetting = _kenoSettingService.GetSettingInCaseOfAgentEditMember(custId);
+            return View(Constants.AgentEditMemberCshtml, customerSetting);
         }
 
         [HttpPost]

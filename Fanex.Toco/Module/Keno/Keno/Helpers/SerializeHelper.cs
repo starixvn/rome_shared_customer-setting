@@ -16,8 +16,12 @@ namespace Fanex.CustomerSetting.Module.Keno.Helpers
     /// <summary>
     /// Class SerializeHelper.
     /// </summary>
-    public class SerializeHelper
+    public sealed class SerializeHelper
     {
+        private SerializeHelper()
+        { 
+        }
+
         /// <summary>
         /// Gets the JSON serializer setting.
         /// </summary>

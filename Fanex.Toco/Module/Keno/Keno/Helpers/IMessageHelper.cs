@@ -16,6 +16,6 @@ namespace Fanex.CustomerSetting.Module.Keno.Helpers
     {
         void SetErrorCodeAndErrorMessage(string errorCode, string errorMessage);
 
-        List<Result> GetErrors();
+        IList<Result> GetErrors();
     }
 }

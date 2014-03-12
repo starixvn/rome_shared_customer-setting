@@ -20,6 +20,17 @@ namespace Fanex.CustomerSetting.Module.Keno.ViewModels
     {
         public IList<SuperPositionTaking> PositionTakings { get; set; }
 
+        internal static void CopyToOnePositionTaking(SuperPositionTaking copiedSuperPositionTaking, SuperPositionTaking superPositionTaking)
+        {
+            superPositionTaking.S4 = copiedSuperPositionTaking.S4;
+            superPositionTaking.N4 = copiedSuperPositionTaking.N4;
+            superPositionTaking.AComm = copiedSuperPositionTaking.AComm;
+            superPositionTaking.IsUpdatePT = copiedSuperPositionTaking.IsUpdatePT;
+            superPositionTaking.IsUpdateS4 = copiedSuperPositionTaking.IsUpdateS4;
+            superPositionTaking.IsUpdateN4 = copiedSuperPositionTaking.IsUpdateN4;
+            superPositionTaking.IsUpdateSCo = copiedSuperPositionTaking.IsUpdateSCo;
+        }
+
         /// <summary>
         /// Updates the position takings in case of copy all.
         /// </summary>
@@ -36,25 +47,14 @@ namespace Fanex.CustomerSetting.Module.Keno.ViewModels
 
                 foreach (var superPositionTaking in this.PositionTakings)
                 {
-                    if (this.IsCopyToItself(superPositionTaking.BetTypeId, this.PositionTakingCopyAll.BettypeId))
+                    if (IsCopyToItself(superPositionTaking.BetTypeId, this.PositionTakingCopyAll.BettypeId))
                     {
                         continue;
                     }
 
-                    this.CopyToOnePositionTaking(copiedSuperPositionTaking, superPositionTaking);
+                    CopyToOnePositionTaking(copiedSuperPositionTaking, superPositionTaking);
                 }
             }
-        }
-
-        internal void CopyToOnePositionTaking(SuperPositionTaking copiedSuperPositionTaking, SuperPositionTaking superPositionTaking)
-        {
-            superPositionTaking.S4 = copiedSuperPositionTaking.S4;
-            superPositionTaking.N4 = copiedSuperPositionTaking.N4;
-            superPositionTaking.AComm = copiedSuperPositionTaking.AComm;
-            superPositionTaking.IsUpdatePT = copiedSuperPositionTaking.IsUpdatePT;
-            superPositionTaking.IsUpdateS4 = copiedSuperPositionTaking.IsUpdateS4;
-            superPositionTaking.IsUpdateN4 = copiedSuperPositionTaking.IsUpdateN4;
-            superPositionTaking.IsUpdateSCo = copiedSuperPositionTaking.IsUpdateSCo;
         }
 
         internal bool CopyAllIsValidForPositionTaking()

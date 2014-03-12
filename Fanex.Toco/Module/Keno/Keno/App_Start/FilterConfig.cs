@@ -14,8 +14,12 @@ namespace Fanex.CustomerSetting.Module.Keno.App_Start
     /// <summary>
     /// The FilterConfig class.
     /// </summary>
-    public class FilterConfig
+    public sealed class FilterConfig
     {
+        private FilterConfig()
+        { 
+        }
+
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());

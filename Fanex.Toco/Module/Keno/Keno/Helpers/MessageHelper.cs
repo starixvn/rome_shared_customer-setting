@@ -23,7 +23,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Helpers
         private const int MessageIsNotValidCode = 1001;
         private string _errorCode = string.Empty;
         private string _errorMsg = string.Empty;
-        private List<Result> _errorResults;
+        private IList<Result> _errorResults;
 
         public MessageHelper()
         {
@@ -37,7 +37,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Helpers
             _errorMsg = errorMsg;
         }
 
-        internal List<Result> ErrorResults
+        internal IList<Result> ErrorResults
         {
             get { return _errorResults; }
         }
@@ -52,7 +52,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Helpers
         /// Gets the errors.
         /// </summary>
         /// <returns>The list of errors.</returns>
-        public List<Result> GetErrors()
+        public IList<Result> GetErrors()
         {
             if (NoDataIsChanged())
             {

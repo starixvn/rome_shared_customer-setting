@@ -21,11 +21,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Entities
         [Test]
         public void IsCopyToItself_CurrentBetTypeIsSameCopiedBetType_ShouldReturnTrue()
         {
-            // Arrange
-            var customerSettingBase = new CustomerSettingBase();
-
             // Act
-            var result = customerSettingBase.IsCopyToItself(10, 10);
+            var result = CustomerSettingBase.IsCopyToItself(10, 10);
 
             // Assert
             Assert.AreEqual(true, result);
@@ -34,11 +31,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Entities
         [Test]
         public void IsCopyToItself_CurrentBetTypeIsDifferentCopiedBetType_ShouldReturnFalse()
         {
-            // Arrange
-            var customerSettingBase = new CustomerSettingBase();
-
             // Act
-            var result = customerSettingBase.IsCopyToItself(1, 10);
+            var result = CustomerSettingBase.IsCopyToItself(1, 10);
 
             // Assert
             Assert.AreEqual(false, result);
