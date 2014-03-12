@@ -57,6 +57,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.CustomerSetting.Modul
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.CustomerSetting.Module.Core.Tests", "Module\Core.Tests\Fanex.CustomerSetting.Module.Core.Tests.csproj", "{D4D75F47-BEE4-4F2F-A8B7-F2A81D368D28}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.CustomerSetting.Module.Keno.IntegrationTests", "Module\Core.IntegrationTests\Fanex.CustomerSetting.Module.Keno.IntegrationTests.csproj", "{EC2F4327-7018-455B-BB08-611FF9779A1D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -139,6 +141,10 @@ Global
 		{D4D75F47-BEE4-4F2F-A8B7-F2A81D368D28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4D75F47-BEE4-4F2F-A8B7-F2A81D368D28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4D75F47-BEE4-4F2F-A8B7-F2A81D368D28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC2F4327-7018-455B-BB08-611FF9779A1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC2F4327-7018-455B-BB08-611FF9779A1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC2F4327-7018-455B-BB08-611FF9779A1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC2F4327-7018-455B-BB08-611FF9779A1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -166,6 +172,7 @@ Global
 		{F317B419-340B-418D-B2AB-8C43F18B85D6} = {6879CEAE-B0E8-4C47-AB8C-CEF00D5A9E54}
 		{7954F23F-567D-457D-99DC-A92224A50A99} = {6879CEAE-B0E8-4C47-AB8C-CEF00D5A9E54}
 		{933DF1A4-78C3-407E-86E9-A2F557434BF0} = {2D3875C3-8D99-424C-B5F8-058295F74E6C}
+		{EC2F4327-7018-455B-BB08-611FF9779A1D} = {2D3875C3-8D99-424C-B5F8-058295F74E6C}
 		{07B083E4-AA0A-41BF-A0FC-172C0E2A49B2} = {0DB2F24A-02A3-4DEC-BCCE-590CC9B7C7A0}
 		{D4D75F47-BEE4-4F2F-A8B7-F2A81D368D28} = {0DB2F24A-02A3-4DEC-BCCE-590CC9B7C7A0}
 	EndGlobalSection
