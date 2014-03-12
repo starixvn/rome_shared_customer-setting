@@ -17,9 +17,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
         public const string EditSuperCshtml = "~/Areas/CustomerSetting/Views/Keno/Setting/Super/EditSuper.cshtml";
         public const string EditMasterCshtml = "~/Areas/CustomerSetting/Views/Keno/Setting/Master/EditMaster.cshtml";
         public const string EditAgentCshtml = "~/Areas/CustomerSetting/Views/Keno/Setting/Agent/EditAgent.cshtml";
-        public const string SuperEditMemberCshtml = "~/Areas/CustomerSetting/Views/Keno/KenoSetting/SuperEditMember.cshtml";
-        public const string AgentEditMemberCshtml = "~/Areas/CustomerSetting/Views/Keno/KenoSetting/AgentEditMember.cshtml";
-        public const string MasterEditMemberCshtml = "~/Areas/CustomerSetting/Views/Keno/KenoSetting/MasterEditMember.cshtml";
+        public const string SuperEditMemberCshtml = "~/Areas/CustomerSetting/Views/Keno/Setting/SuperOnMember/SuperEditMember.cshtml";
+        public const string AgentEditMemberCshtml = "~/Areas/CustomerSetting/Views/Keno/Setting/Member/AgentEditMember.cshtml";
+        public const string MasterEditMemberCshtml = "~/Areas/CustomerSetting/Views/Keno/Setting/MasterOnMember/MasterEditMember.cshtml";
 
         public const string GetSuperSettingCriteriaKeyName = "Acc_CustomerSelEditSuperKeno";
         public const string UpdateSuperBetSettingCriteriaKeyName = "Acc_CustomerUpdSuperKeno_BetSetting";

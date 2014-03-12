@@ -256,7 +256,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "SuperEditMember")]
         public ActionResult SuperEditMember(int custId)
         {
-            return View(Constants.SUPER_EDIT_MEMBER_CSHTML);
+            return View(Constants.SuperEditMemberCshtml);
         }
 
         [HttpPost]
@@ -277,7 +277,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "MasterEditMember")]
         public ActionResult MasterEditMember(int custId)
         {
-            return View(Constants.MASTER_EDIT_MEMBER_CSHTML);
+            return View(Constants.MasterEditMemberCshtml);
         }
 
         [HttpPost]
@@ -298,7 +298,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "AgentEditMember")]
         public ActionResult AgentEditMember(int custId)
         {
-            return View(Constants.AGENT_EDIT_MEMBER_CSHTML);
+            return View(Constants.AgentEditMemberCshtml);
         }
 
         [HttpPost]
