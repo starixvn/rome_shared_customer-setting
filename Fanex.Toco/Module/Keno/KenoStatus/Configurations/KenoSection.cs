@@ -58,6 +58,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Configurations
             get
             {
                 return (bool)base["showBetListResult"];
+
             }
         }
     }

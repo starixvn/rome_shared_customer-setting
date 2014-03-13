@@ -103,6 +103,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
                 CustId=newStatus.CustID,
                 UserID=newStatus.UserID,
                 SubAccID=newStatus.SubAccID,
+                UplineId =newStatus.UplineID,
                 Language=AppSession.CurrentSession.Language,
                 IP = AppSession.CurrentContext.Ip4Address
             };
