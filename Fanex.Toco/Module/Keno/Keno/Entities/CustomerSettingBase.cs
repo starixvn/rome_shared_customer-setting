@@ -84,7 +84,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
 
         internal bool CopyAllIsValidForBetSetting()
         {
-            return this.BetSettingCopyAll.IsCopiedAll && this.BetSettings != null && this.BetSettings.Count > 0;
+            return this.BetSettingCopyAll != null && this.BetSettingCopyAll.IsCopiedAll && this.BetSettings != null && this.BetSettings.Count > 0;
         }
     }
 }

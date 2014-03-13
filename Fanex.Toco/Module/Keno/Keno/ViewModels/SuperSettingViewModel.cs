@@ -59,7 +59,7 @@ namespace Fanex.CustomerSetting.Module.Keno.ViewModels
 
         internal bool CopyAllIsValidForPositionTaking()
         {
-            return this.PositionTakingCopyAll.IsCopiedAll && this.PositionTakings != null && this.PositionTakings.Count > 0;
+            return this.PositionTakingCopyAll != null && this.PositionTakingCopyAll.IsCopiedAll && this.PositionTakings != null && this.PositionTakings.Count > 0;
         }
     }
 }

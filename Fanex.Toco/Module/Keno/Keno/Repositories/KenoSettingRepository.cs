@@ -186,47 +186,12 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
             return memberSetting;
         }
 
-        public IList<Result> UpdateSuperBetSetting(ICriteria criteria)
+        public IList<Result> UpdateBetSetting(ICriteria criteria)
         {
             return this.UpdateSetting(criteria);
         }
 
-        public IList<Result> UpdateSuperPositionTaking(ICriteria criteria)
-        {
-            return this.UpdateSetting(criteria);
-        }
-
-        public IList<Result> UpdateMasterBetSetting(ICriteria criteria)
-        {
-            return this.UpdateSetting(criteria);
-        }
-
-        public IList<Result> UpdateMasterPositionTaking(ICriteria criteria)
-        {
-            return this.UpdateSetting(criteria);
-        }
-
-        public IList<Result> UpdateAgentBetSetting(ICriteria criteria)
-        {
-            return this.UpdateSetting(criteria);
-        }
-
-        public IList<Result> UpdateAgentPositionTaking(ICriteria criteria)
-        {
-            return this.UpdateSetting(criteria);
-        }
-
-        public IList<Result> UpdateMemberPositionTakingInCaseOfSuperEditMember(ICriteria criteria)
-        {
-            return this.UpdateSetting(criteria);
-        }
-
-        public IList<Result> UpdateMemberPositionTakingInCaseOfMasterEditMember(ICriteria criteria)
-        {
-            return this.UpdateSetting(criteria);
-        }
-
-        public IList<Result> UpdateMemberPositionTakingInCaseOfAgentEditMember(ICriteria criteria)
+        public IList<Result> UpdatePositionTaking(ICriteria criteria)
         {
             return this.UpdateSetting(criteria);
         }

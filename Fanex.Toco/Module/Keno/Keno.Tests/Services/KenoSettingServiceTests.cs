@@ -1,50 +1,185 @@
-// --------------------------------------------------------------------------
-// <copyright file="KenoSettingController.cs" company="Nexcel Solutions Vietnam">
+
+// -----------------------------------------------------------------------
+// <copyright file="KenoSettingServiceTests.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Paul.Nguyen" date="2014/02/20">Created.</change>
+//   <change who="Paul.Nguyen" date="2014/03/04">Created.</change>
 // </history>
 
-namespace Fanex.CustomerSetting.Module.Keno.Controllers
+namespace Fanex.CustomerSetting.Module.Keno.Tests.Services
 {
+    using System;
     using System.Collections.Generic;
-    using System.Web.Mvc;
+    using Fanex.CustomerSetting.Module.Core.Models;
+    using Fanex.CustomerSetting.Module.Keno.Criteria;
     using Fanex.CustomerSetting.Module.Keno.Entities;
-    using Fanex.CustomerSetting.Module.Keno.Helpers;
+    using Fanex.CustomerSetting.Module.Keno.Repositories;
     using Fanex.CustomerSetting.Module.Keno.Services;
     using Fanex.CustomerSetting.Module.Keno.ViewModels;
-    using Fanex.CustomerSetting.Security.Authenticate;
+    using Fanex.NAP.Framework.Data;
+    using NUnit.Framework;
+    using Rhino.Mocks;
 
     /// <summary>
-    /// Base racing controller.
+    /// TODO: Update summary.
     /// </summary>
-    public class KenoSettingController : KenoSettingBaseController
+    [TestFixture]
+    public class KenoSettingServiceTests
     {
-        private static IKenoSettingService _kenoSettingService;
+        private IKenoSettingRepository _mockRepository;
+        private IKenoSettingRepository _stubRepository;
+        private IKenoSession _stubKenoSession;
+        private SuperSettingViewModel _superSetting;
 
-        public KenoSettingController()
-            : this(null)
+        [TestFixtureSetUp]
+        public void TestFixtureSetUp()
         {
+            _superSetting = GenerateFakeSuperSettingViewModel(100);
+            _stubKenoSession = MockRepository.GenerateStub<IKenoSession>();
         }
 
-        public KenoSettingController(IKenoSettingService kenoSettingService)
+        [SetUp]
+        public void SetUp()
         {
-            _kenoSettingService = kenoSettingService ?? new KenoSettingService();
+            _mockRepository = MockRepository.GenerateMock<IKenoSettingRepository>();
+            _stubRepository = MockRepository.GenerateStub<IKenoSettingRepository>();
         }
 
-        /// <summary>
-        /// Change name controller to clear.
-        /// </summary>
-        /// <param name="custId">The customer identifier.</param>
-        /// <returns>The ActionResult of EditSuper.</returns>
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditSuper")]
-        public ActionResult EditSuper(int custId)
+        [Test]
+        public void GetSuperSetting_CustIdIsValid_ShouldReturnValidSuperSetting()
         {
-            var customerSetting = new SuperSettingViewModel();
+            // Arrange
+            _mockRepository.Stub(s => s.GetSuperSetting(null))
+                .IgnoreArguments()
+                .Repeat.Any()
+                .Do((Func<ICriteria, SuperSettingViewModel>)(c => GenerateFakeSuperSettingViewModel(c)));
+            var kenoSettingService = new KenoSettingService(_mockRepository, _stubKenoSession);
 
-            customerSetting.CustomerInformation = new CustomerInformation()
+            // Act
+            var superSetting = kenoSettingService.GetSuperSetting(200);
+
+            // Assert
+            Assert.IsInstanceOf<SuperSettingViewModel>(superSetting);
+            Assert.AreEqual(200, superSetting.CustomerInformation.CustId);
+            Assert.AreEqual("Paul", superSetting.CustomerInformation.FirstName);
+            Assert.AreEqual(3, superSetting.BetSettings.Count);
+            Assert.AreEqual(3, superSetting.PositionTakings.Count);
+        }
+
+        [Test]
+        public void UpdateSuperBetSetting_ParamsAreValid_ShouldReturnInstanceOfResult()
+        {
+            // Arrange
+            _stubRepository.Stub(s => s.UpdateBetSetting(Arg<ICriteria>.Is.Anything))
+                .IgnoreArguments()
+                .Return(new List<Result>() { });
+            var kenoSettingService = new KenoSettingService(_stubRepository, _stubKenoSession);
+
+            // Act
+            var result = kenoSettingService.UpdateBetSetting(_superSetting.CustomerInformation, _superSetting.BetSettings[0]);
+
+            // Assert
+            Assert.IsInstanceOf<List<Result>>(result);
+        }
+
+        [Test]
+        [ExpectedException(typeof(Exception), ExpectedMessage = "Exception from DB...")]
+        public void UpdateSuperBetSetting_RepositoryOccursException_ShouldThrowsException()
+        {
+            // Arrange
+            _mockRepository.Stub(s => s.UpdateBetSetting(Arg<ICriteria>.Is.Anything))
+                .IgnoreArguments()
+                .Throw(new Exception("Exception from DB..."));
+            var kenoSettingService = new KenoSettingService(_mockRepository, _stubKenoSession);
+
+            // Act
+            var result = kenoSettingService.UpdateBetSetting(_superSetting.CustomerInformation, _superSetting.BetSettings[0]);
+        }
+
+        [Test]
+        public void UpdateSuperCustomerSetting_ValidCustomerSetting_ShouldReturnAListOfResults()
+        {
+            // Arrange
+            _mockRepository.Expect(r => r.UpdateBetSetting(Arg<ICriteria>.Is.Anything)).Return(new List<Result>() { });
+            _mockRepository.Expect(r => r.UpdatePositionTaking(Arg<ICriteria>.Is.Anything)).Return(new List<Result>() { });
+            var kenoSettingService = new KenoSettingService(_stubRepository, _stubKenoSession);
+
+            // Act
+            var results = kenoSettingService.UpdateSuperCustomerSetting(_superSetting);
+
+            // Assert
+            Assert.IsInstanceOf<IList<Result>>(results);
+            Assert.AreEqual(0, results.Count);
+        }
+
+        [Test]
+        public void CreateUpdateSuperBetSettingCriteria_ShouldReturnExactCriteria()
+        {
+            // Arrange
+            var kenoSettingService = new KenoSettingService(null, _stubKenoSession);
+
+            // Act
+            var criteria = kenoSettingService.CreateUpdateSuperBetSettingCriteria(_superSetting.CustomerInformation, _superSetting.BetSettings[0]);
+
+            // Assert
+            Assert.IsInstanceOf<UpdateSuperBetSettingCriteria>(criteria);
+            Assert.AreEqual(_superSetting.CustomerInformation.CustId, criteria.CustId);
+            Assert.AreEqual(_superSetting.BetSettings[0].BetTypeId, criteria.BetTypeId);
+            Assert.AreEqual(!_superSetting.BetSettings[0].IsEnabled, criteria.Disable);
+            Assert.AreEqual(!_superSetting.BetSettings[0].IsDownlinesEnabled, criteria.DisableDownLines);
+            Assert.AreEqual(_superSetting.BetSettings[0].MinBet, criteria.MinBet);
+            Assert.AreEqual(_superSetting.BetSettings[0].MaxBet, criteria.MaxBet);
+            Assert.AreEqual(_superSetting.BetSettings[0].MaxPerMatch, criteria.MaxPerMatch);
+        }
+
+        [Test]
+        public void CreateUpdateSuperPositionTakingCriteria_ShouldReturnExactCriteria()
+        {
+            // Arrange
+            var kenoSettingService = new KenoSettingService(null, _stubKenoSession);
+
+            // Act
+            var criteria = kenoSettingService.CreateUpdateSuperPositionTakingCriteria(_superSetting.CustomerInformation, _superSetting.PositionTakings[0]);
+
+            // Assert
+            Assert.IsInstanceOf<UpdateSuperPositionTakingCriteria>(criteria);
+            Assert.AreEqual(_superSetting.CustomerInformation.CustId, criteria.CustId);
+            Assert.AreEqual(_superSetting.PositionTakings[0].SportTypeId, criteria.SportType);
+            Assert.AreEqual(_superSetting.PositionTakings[0].BetTypeId, criteria.BetType);
+            Assert.AreEqual(_superSetting.PositionTakings[0].L4, criteria.SPositionTaking);
+            Assert.AreEqual(_superSetting.PositionTakings[0].N4, criteria.Min_PositionTaking);
+            Assert.AreEqual(_superSetting.PositionTakings[0].SComm, criteria.Discount);
+            Assert.AreEqual(_superSetting.PositionTakings[0].IsUpdatePT, criteria.UpdatePositionTaking);
+            Assert.AreEqual(_superSetting.PositionTakings[0].IsUpdateN4, criteria.UpdateMinPositionTaking);
+            Assert.AreEqual(_superSetting.PositionTakings[0].IsUpdateSCo, criteria.UpdateCommission);
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            _mockRepository = null;
+            _stubRepository = null;
+        }
+
+        [TestFixtureTearDown]
+        public void TestFixtureTearDown()
+        {
+            _superSetting = null;
+            _stubKenoSession = null;
+        }
+
+        private SuperSettingViewModel GenerateFakeSuperSettingViewModel(ICriteria criteria)
+        {
+            return GenerateFakeSuperSettingViewModel(((GetSuperSettingCriteria)criteria).CustId);
+        }
+
+        private SuperSettingViewModel GenerateFakeSuperSettingViewModel(int custId)
+        {
+            var superSetting = new SuperSettingViewModel();
+
+            superSetting.CustomerInformation = new CustomerInformation()
             {
                 CustId = custId,
                 FirstName = "Paul",
@@ -55,7 +190,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
                 Username = "Super001"
             };
 
-            customerSetting.BetSettings = new List<BetSetting>() 
+            superSetting.BetSettings = new List<BetSetting>() 
             {
                 new BetSetting()
                 {
@@ -70,9 +205,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
                     {
                         MinBet = 10,
                         MaxBet = 0,
-                        MaxPerMatch = 0,
-                        IsEnabled = true,
-                        IsDownlinesEnabled = true
+                        MaxPerMatch = 0
                     }
                 },
                 new BetSetting()
@@ -83,14 +216,12 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
                     MaxBet = 0,
                     MaxPerMatch = 0,
                     IsEnabled = false,
-                    IsDownlinesEnabled = false,
+                    IsDownlinesEnabled = true,
                     Upline = new BetSetting() 
                     {
                         MinBet = 10,
                         MaxBet = 50,
-                        MaxPerMatch = 400,
-                        IsEnabled = true,
-                        IsDownlinesEnabled = false
+                        MaxPerMatch = 400
                     }
                 },
                 new BetSetting()
@@ -106,51 +237,12 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
                     {
                         MinBet = 10,
                         MaxBet = 50,
-                        MaxPerMatch = 300,
-                        IsEnabled = false,
-                        IsDownlinesEnabled = false
-                    }
-                },
-
-                 new BetSetting()
-                {
-                    BetTypeId = 4,
-                    BetTypeName = "Vienam",
-                    MinBet = 10,
-                    MaxBet = 0,
-                    MaxPerMatch = 0,
-                    IsEnabled = false,
-                    IsDownlinesEnabled = false,
-                    Upline = new BetSetting() 
-                    {
-                        MinBet = 10,
-                        MaxBet = 50,
-                        MaxPerMatch = 400,
-                        IsEnabled = true,
-                        IsDownlinesEnabled = true
-                    }
-                },
-                new BetSetting()
-                {
-                    BetTypeId = 4,
-                    BetTypeName = "Thai",
-                    MinBet = 0,
-                    MaxBet = 0,
-                    MaxPerMatch = 0,
-                    IsEnabled = true,
-                    IsDownlinesEnabled = false,
-                    Upline = new BetSetting() 
-                    {
-                        MinBet = 10,
-                        MaxBet = 50,
-                        MaxPerMatch = 300,
-                        IsEnabled = true,
-                        IsDownlinesEnabled = true
+                        MaxPerMatch = 300
                     }
                 },
             };
 
-            customerSetting.PositionTakings = new List<SuperPositionTaking>() 
+            superSetting.PositionTakings = new List<SuperPositionTaking>() 
             {
                 new SuperPositionTaking()
                 {
@@ -193,122 +285,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
                 }
             };
 
-            return View(Constants.EditSuperCshtml, customerSetting);
-        }
-
-        [HttpPost]
-        public JsonResult EditSuper(SuperSettingViewModel superSetting)
-        {
-            return Json(new
-            {
-                ErrCode = 1,
-                ErrMsg = "Reponded From ServerSide: Not Implemented Yet"
-            });
-        }
-
-        /// <summary>
-        /// Change name controller to clear.
-        /// </summary>
-        /// <param name="custId">The customer identifier.</param>
-        /// <returns>The ActionResult of EditMaster.</returns>
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditMaster")]
-        public ActionResult EditMaster(int custId)
-        {
-            return View(Constants.EditMasterCshtml);
-        }
-
-        [HttpPost]
-        public JsonResult EditMaster(MasterSettingViewModel masterSetting)
-        {
-            return Json(new
-            {
-                ErrCode = 1,
-                ErrMsg = "Reponded From ServerSide: Not Implemented Yet"
-            });
-        }
-
-        /// <summary>
-        /// Change name controller to clear.
-        /// </summary>
-        /// <param name="custId">The customer identifier.</param>
-        /// <returns>The ActionResult of EditAgent.</returns>
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditAgent")]
-        public ActionResult EditAgent(int custId)
-        {
-            return View(Constants.EditAgentCshtml);
-        }
-
-        [HttpPost]
-        public JsonResult EditAgent(MasterSettingViewModel agentSetting)
-        {
-            return Json(new
-            {
-                ErrCode = 1,
-                ErrMsg = "Reponded From ServerSide: Not Implemented Yet"
-            });
-        }
-
-        /// <summary>
-        /// Change name controller to clear.
-        /// </summary>
-        /// <param name="custId">The customer identifier.</param>
-        /// <returns>The ActionResult of SuperEditMember.</returns>
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "SuperEditMember")]
-        public ActionResult SuperEditMember(int custId)
-        {
-            return View(Constants.SuperEditMemberCshtml);
-        }
-
-        [HttpPost]
-        public JsonResult SuperEditMember(MemberSettingViewModel memberSetting)
-        {
-            return Json(new
-            {
-                ErrCode = 1,
-                ErrMsg = "Reponded From ServerSide: Not Implemented Yet"
-            });
-        }
-
-        /// <summary>
-        /// Change name controller to clear.
-        /// </summary>
-        /// <param name="custId">The customer identifier.</param>
-        /// <returns>The ActionResult of MasterEditMember.</returns>
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "MasterEditMember")]
-        public ActionResult MasterEditMember(int custId)
-        {
-            return View(Constants.MasterEditMemberCshtml);
-        }
-
-        [HttpPost]
-        public JsonResult MasterEditMember(MemberSettingViewModel memberSetting)
-        {
-            return Json(new
-            {
-                ErrCode = 1,
-                ErrMsg = "Reponded From ServerSide: Not Implemented Yet"
-            });
-        }
-
-        /// <summary>
-        /// Change name controller to clear.
-        /// </summary>
-        /// <param name="custId">The customer identifier.</param>
-        /// <returns>The ActionResult of MasterEditMember.</returns>
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "AgentEditMember")]
-        public ActionResult AgentEditMember(int custId)
-        {
-            return View(Constants.AgentEditMemberCshtml);
-        }
-
-        [HttpPost]
-        public JsonResult AgentEditMember(MemberSettingViewModel memberSetting)
-        {
-            return Json(new
-            {
-                ErrCode = 1,
-                ErrMsg = "Reponded From ServerSide: Not Implemented Yet"
-            });
+            return superSetting;
         }
     }
 }
