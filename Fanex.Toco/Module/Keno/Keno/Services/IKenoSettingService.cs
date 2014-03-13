@@ -11,7 +11,6 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
 {
     using System.Collections.Generic;
     using Fanex.CustomerSetting.Module.Core.Models;
-    using Fanex.CustomerSetting.Module.Keno.Entities;
     using Fanex.CustomerSetting.Module.Keno.ViewModels;
 
     public interface IKenoSettingService

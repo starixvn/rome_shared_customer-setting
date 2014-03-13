@@ -69,6 +69,7 @@
     <Compile Include="Repositories\KenoSettingBaseRepositoryTests.cs" />
     <Compile Include="Repositories\KenoSettingRepositoryTests.cs" />
     <Compile Include="Repositories\TestableKenoSettingBaseRepository.cs" />
+    <Compile Include="Services\CriteriaGeneratorServiceTests.cs" />
     <Compile Include="Services\KenoSettingServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>

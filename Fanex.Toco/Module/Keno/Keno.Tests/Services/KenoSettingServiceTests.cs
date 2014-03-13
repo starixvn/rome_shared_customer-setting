@@ -1,4 +1,3 @@
-
 // -----------------------------------------------------------------------
 // <copyright file="KenoSettingServiceTests.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
@@ -30,14 +29,13 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Services
     {
         private IKenoSettingRepository _mockRepository;
         private IKenoSettingRepository _stubRepository;
-        private IKenoSession _stubKenoSession;
-        private SuperSettingViewModel _superSetting;
+        private ICriteriaGeneratorService _stubCriteriaGenerator;
+        private SuperSettingViewModel _customerSetting;
 
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
-            _superSetting = GenerateFakeSuperSettingViewModel(100);
-            _stubKenoSession = MockRepository.GenerateStub<IKenoSession>();
+            _customerSetting = GenerateFakeCustomerSettingViewModel(100);
         }
 
         [SetUp]
@@ -45,6 +43,21 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Services
         {
             _mockRepository = MockRepository.GenerateMock<IKenoSettingRepository>();
             _stubRepository = MockRepository.GenerateStub<IKenoSettingRepository>();
+            _stubCriteriaGenerator = MockRepository.GenerateStub<ICriteriaGeneratorService>();
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            _mockRepository = null;
+            _stubRepository = null;
+            _stubCriteriaGenerator = null;
+        }
+
+        [TestFixtureTearDown]
+        public void TestFixtureTearDown()
+        {
+            _customerSetting = null;
         }
 
         [Test]
@@ -54,8 +67,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Services
             _mockRepository.Stub(s => s.GetSuperSetting(null))
                 .IgnoreArguments()
                 .Repeat.Any()
-                .Do((Func<ICriteria, SuperSettingViewModel>)(c => GenerateFakeSuperSettingViewModel(c)));
-            var kenoSettingService = new KenoSettingService(_mockRepository, _stubKenoSession);
+                .Do((Func<ICriteria, SuperSettingViewModel>)(c => GenerateFakeCustomerSettingViewModel(c)));
+            var kenoSettingService = new KenoSettingService(_mockRepository, null);
 
             // Act
             var superSetting = kenoSettingService.GetSuperSetting(200);
@@ -69,16 +82,16 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Services
         }
 
         [Test]
-        public void UpdateSuperBetSetting_ParamsAreValid_ShouldReturnInstanceOfResult()
+        public void UpdateSuperBetSetting_ParamsAreValid_ShouldReturnInstanceOfResultList()
         {
             // Arrange
             _stubRepository.Stub(s => s.UpdateBetSetting(Arg<ICriteria>.Is.Anything))
                 .IgnoreArguments()
                 .Return(new List<Result>() { });
-            var kenoSettingService = new KenoSettingService(_stubRepository, _stubKenoSession);
+            var kenoSettingService = new KenoSettingService(_stubRepository, _stubCriteriaGenerator);
 
             // Act
-            var result = kenoSettingService.UpdateBetSetting(_superSetting.CustomerInformation, _superSetting.BetSettings[0]);
+            var result = kenoSettingService.UpdateBetSetting(_customerSetting.CustomerInformation, _customerSetting.BetSettings[0], _customerSetting.ActionType);
 
             // Assert
             Assert.IsInstanceOf<List<Result>>(result);
@@ -92,92 +105,38 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Services
             _mockRepository.Stub(s => s.UpdateBetSetting(Arg<ICriteria>.Is.Anything))
                 .IgnoreArguments()
                 .Throw(new Exception("Exception from DB..."));
-            var kenoSettingService = new KenoSettingService(_mockRepository, _stubKenoSession);
+            var kenoSettingService = new KenoSettingService(_mockRepository, _stubCriteriaGenerator);
 
             // Act
-            var result = kenoSettingService.UpdateBetSetting(_superSetting.CustomerInformation, _superSetting.BetSettings[0]);
+            var result = kenoSettingService.UpdateBetSetting(_customerSetting.CustomerInformation, _customerSetting.BetSettings[0], _customerSetting.ActionType);
         }
 
         [Test]
         public void UpdateSuperCustomerSetting_ValidCustomerSetting_ShouldReturnAListOfResults()
         {
             // Arrange
-            _mockRepository.Expect(r => r.UpdateBetSetting(Arg<ICriteria>.Is.Anything)).Return(new List<Result>() { });
-            _mockRepository.Expect(r => r.UpdatePositionTaking(Arg<ICriteria>.Is.Anything)).Return(new List<Result>() { });
-            var kenoSettingService = new KenoSettingService(_stubRepository, _stubKenoSession);
+            _stubRepository.Stub(r => r.UpdateBetSetting(Arg<ICriteria>.Is.Anything)).Return(new List<Result>() { new Result() });
+            _stubRepository.Stub(r => r.UpdatePositionTaking(Arg<ICriteria>.Is.Anything)).Return(new List<Result>() { new Result() });
+            var kenoSettingService = new KenoSettingService(_stubRepository, _stubCriteriaGenerator);
 
             // Act
-            var results = kenoSettingService.UpdateSuperCustomerSetting(_superSetting);
+            var results = kenoSettingService.UpdateSuperCustomerSetting(_customerSetting);
 
             // Assert
             Assert.IsInstanceOf<IList<Result>>(results);
-            Assert.AreEqual(0, results.Count);
+            Assert.AreEqual(6, results.Count);
         }
 
-        [Test]
-        public void CreateUpdateSuperBetSettingCriteria_ShouldReturnExactCriteria()
+        private SuperSettingViewModel GenerateFakeCustomerSettingViewModel(ICriteria criteria)
         {
-            // Arrange
-            var kenoSettingService = new KenoSettingService(null, _stubKenoSession);
-
-            // Act
-            var criteria = kenoSettingService.CreateUpdateSuperBetSettingCriteria(_superSetting.CustomerInformation, _superSetting.BetSettings[0]);
-
-            // Assert
-            Assert.IsInstanceOf<UpdateSuperBetSettingCriteria>(criteria);
-            Assert.AreEqual(_superSetting.CustomerInformation.CustId, criteria.CustId);
-            Assert.AreEqual(_superSetting.BetSettings[0].BetTypeId, criteria.BetTypeId);
-            Assert.AreEqual(!_superSetting.BetSettings[0].IsEnabled, criteria.Disable);
-            Assert.AreEqual(!_superSetting.BetSettings[0].IsDownlinesEnabled, criteria.DisableDownLines);
-            Assert.AreEqual(_superSetting.BetSettings[0].MinBet, criteria.MinBet);
-            Assert.AreEqual(_superSetting.BetSettings[0].MaxBet, criteria.MaxBet);
-            Assert.AreEqual(_superSetting.BetSettings[0].MaxPerMatch, criteria.MaxPerMatch);
+            return GenerateFakeCustomerSettingViewModel(((GetSuperSettingCriteria)criteria).CustId);
         }
 
-        [Test]
-        public void CreateUpdateSuperPositionTakingCriteria_ShouldReturnExactCriteria()
-        {
-            // Arrange
-            var kenoSettingService = new KenoSettingService(null, _stubKenoSession);
-
-            // Act
-            var criteria = kenoSettingService.CreateUpdateSuperPositionTakingCriteria(_superSetting.CustomerInformation, _superSetting.PositionTakings[0]);
-
-            // Assert
-            Assert.IsInstanceOf<UpdateSuperPositionTakingCriteria>(criteria);
-            Assert.AreEqual(_superSetting.CustomerInformation.CustId, criteria.CustId);
-            Assert.AreEqual(_superSetting.PositionTakings[0].SportTypeId, criteria.SportType);
-            Assert.AreEqual(_superSetting.PositionTakings[0].BetTypeId, criteria.BetType);
-            Assert.AreEqual(_superSetting.PositionTakings[0].L4, criteria.SPositionTaking);
-            Assert.AreEqual(_superSetting.PositionTakings[0].N4, criteria.Min_PositionTaking);
-            Assert.AreEqual(_superSetting.PositionTakings[0].SComm, criteria.Discount);
-            Assert.AreEqual(_superSetting.PositionTakings[0].IsUpdatePT, criteria.UpdatePositionTaking);
-            Assert.AreEqual(_superSetting.PositionTakings[0].IsUpdateN4, criteria.UpdateMinPositionTaking);
-            Assert.AreEqual(_superSetting.PositionTakings[0].IsUpdateSCo, criteria.UpdateCommission);
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            _mockRepository = null;
-            _stubRepository = null;
-        }
-
-        [TestFixtureTearDown]
-        public void TestFixtureTearDown()
-        {
-            _superSetting = null;
-            _stubKenoSession = null;
-        }
-
-        private SuperSettingViewModel GenerateFakeSuperSettingViewModel(ICriteria criteria)
-        {
-            return GenerateFakeSuperSettingViewModel(((GetSuperSettingCriteria)criteria).CustId);
-        }
-
-        private SuperSettingViewModel GenerateFakeSuperSettingViewModel(int custId)
+        private SuperSettingViewModel GenerateFakeCustomerSettingViewModel(int custId)
         {
             var superSetting = new SuperSettingViewModel();
+
+            superSetting.ActionType = ActionType.EditSuper;
 
             superSetting.CustomerInformation = new CustomerInformation()
             {
@@ -242,7 +201,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Services
                 },
             };
 
-            superSetting.PositionTakings = new List<SuperPositionTaking>() 
+            superSetting.PositionTakings = new List<dynamic>() 
             {
                 new SuperPositionTaking()
                 {

@@ -18,49 +18,16 @@ namespace Fanex.CustomerSetting.Module.Keno.ViewModels
     /// </summary>
     public class AgentSettingViewModel : CustomerSettingBase
     {
-        public IList<AgentPositionTaking> PositionTakings { get; set; }
-
-        internal static void CopyToOnePositionTaking(AgentPositionTaking copiedAgentPositionTaking, AgentPositionTaking agentPositionTaking)
+        internal override void CopyToOnePositionTaking(dynamic sourceAgentPositionTaking, dynamic destinationAgentPositionTaking)
         {
-            agentPositionTaking.IM2 = copiedAgentPositionTaking.IM2;
-            agentPositionTaking.M2 = copiedAgentPositionTaking.M2;
-            agentPositionTaking.UM2 = copiedAgentPositionTaking.UM2;
-            agentPositionTaking.M3 = copiedAgentPositionTaking.M3;
-            agentPositionTaking.A2 = copiedAgentPositionTaking.A2;
-            agentPositionTaking.N2 = copiedAgentPositionTaking.N2;
-            agentPositionTaking.AComm = copiedAgentPositionTaking.AComm;
-            agentPositionTaking.MComm = copiedAgentPositionTaking.MComm;
-        }
-
-        /// <summary>
-        /// Updates the position takings in case of copy all.
-        /// </summary>
-        internal override void UpdatePositionTakingsInCaseOfCopyAll()
-        {
-            if (this.CopyAllIsValidForPositionTaking())
-            {
-                var copiedAgentPositionTaking = this.PositionTakings.Where(p => p.BetTypeId == this.PositionTakingCopyAll.BettypeId).FirstOrDefault();
-
-                if (copiedAgentPositionTaking == null)
-                {
-                    return;
-                }
-
-                foreach (var agentPositionTaking in this.PositionTakings)
-                {
-                    if (IsCopyToItself(agentPositionTaking.BetTypeId, this.PositionTakingCopyAll.BettypeId))
-                    {
-                        continue;
-                    }
-
-                    CopyToOnePositionTaking(copiedAgentPositionTaking, agentPositionTaking);
-                }
-            }
-        }
-
-        internal bool CopyAllIsValidForPositionTaking()
-        {
-            return this.PositionTakingCopyAll != null && this.PositionTakingCopyAll.IsCopiedAll && this.PositionTakings != null && this.PositionTakings.Count > 0;
+            destinationAgentPositionTaking.IM2 = sourceAgentPositionTaking.IM2;
+            destinationAgentPositionTaking.M2 = sourceAgentPositionTaking.M2;
+            destinationAgentPositionTaking.UM2 = sourceAgentPositionTaking.UM2;
+            destinationAgentPositionTaking.M3 = sourceAgentPositionTaking.M3;
+            destinationAgentPositionTaking.A2 = sourceAgentPositionTaking.A2;
+            destinationAgentPositionTaking.N2 = sourceAgentPositionTaking.N2;
+            destinationAgentPositionTaking.AComm = sourceAgentPositionTaking.AComm;
+            destinationAgentPositionTaking.MComm = sourceAgentPositionTaking.MComm;
         }
     }
 }

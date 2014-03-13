@@ -18,48 +18,15 @@ namespace Fanex.CustomerSetting.Module.Keno.ViewModels
     /// </summary>
     public class SuperSettingViewModel : CustomerSettingBase
     {
-        public IList<SuperPositionTaking> PositionTakings { get; set; }
-
-        internal static void CopyToOnePositionTaking(SuperPositionTaking copiedSuperPositionTaking, SuperPositionTaking superPositionTaking)
+        internal override void CopyToOnePositionTaking(dynamic sourceSuperPositionTaking, dynamic destinationSuperPositionTaking)
         {
-            superPositionTaking.S4 = copiedSuperPositionTaking.S4;
-            superPositionTaking.N4 = copiedSuperPositionTaking.N4;
-            superPositionTaking.AComm = copiedSuperPositionTaking.AComm;
-            superPositionTaking.IsUpdatePT = copiedSuperPositionTaking.IsUpdatePT;
-            superPositionTaking.IsUpdateS4 = copiedSuperPositionTaking.IsUpdateS4;
-            superPositionTaking.IsUpdateN4 = copiedSuperPositionTaking.IsUpdateN4;
-            superPositionTaking.IsUpdateSCo = copiedSuperPositionTaking.IsUpdateSCo;
-        }
-
-        /// <summary>
-        /// Updates the position takings in case of copy all.
-        /// </summary>
-        internal override void UpdatePositionTakingsInCaseOfCopyAll()
-        {
-            if (this.CopyAllIsValidForPositionTaking())
-            {
-                var copiedSuperPositionTaking = this.PositionTakings.Where(p => p.BetTypeId == this.PositionTakingCopyAll.BettypeId).FirstOrDefault();
-
-                if (copiedSuperPositionTaking == null)
-                {
-                    return;
-                }
-
-                foreach (var superPositionTaking in this.PositionTakings)
-                {
-                    if (IsCopyToItself(superPositionTaking.BetTypeId, this.PositionTakingCopyAll.BettypeId))
-                    {
-                        continue;
-                    }
-
-                    CopyToOnePositionTaking(copiedSuperPositionTaking, superPositionTaking);
-                }
-            }
-        }
-
-        internal bool CopyAllIsValidForPositionTaking()
-        {
-            return this.PositionTakingCopyAll != null && this.PositionTakingCopyAll.IsCopiedAll && this.PositionTakings != null && this.PositionTakings.Count > 0;
+            destinationSuperPositionTaking.S4 = sourceSuperPositionTaking.S4;
+            destinationSuperPositionTaking.N4 = sourceSuperPositionTaking.N4;
+            destinationSuperPositionTaking.AComm = sourceSuperPositionTaking.AComm;
+            destinationSuperPositionTaking.IsUpdatePT = sourceSuperPositionTaking.IsUpdatePT;
+            destinationSuperPositionTaking.IsUpdateS4 = sourceSuperPositionTaking.IsUpdateS4;
+            destinationSuperPositionTaking.IsUpdateN4 = sourceSuperPositionTaking.IsUpdateN4;
+            destinationSuperPositionTaking.IsUpdateSCo = sourceSuperPositionTaking.IsUpdateSCo;
         }
     }
 }

@@ -254,9 +254,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
         /// </summary>
         /// <param name="dataReader">The data reader.</param>
         /// <returns>The list of SuperPositionTaking.</returns>
-        internal static IList<SuperPositionTaking> ReadSuperPositionTakingData(IDataReader dataReader)
+        internal static IList<dynamic> ReadSuperPositionTakingData(IDataReader dataReader)
         {
-            var positionTakings = new List<SuperPositionTaking>();
+            var positionTakings = new List<dynamic>();
             while (dataReader.Read())
             {
                 var bettingSetting = new SuperPositionTaking
@@ -280,9 +280,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
         /// </summary>
         /// <param name="dataReader">The data reader.</param>
         /// <returns>The list of MasterPositionTaking.</returns>
-        internal static IList<MasterPositionTaking> ReadMasterPositionTakingData(IDataReader dataReader)
+        internal static IList<dynamic> ReadMasterPositionTakingData(IDataReader dataReader)
         {
-            var positionTakings = new List<MasterPositionTaking>();
+            var positionTakings = new List<dynamic>();
             while (dataReader.Read())
             {
                 var bettingSetting = new MasterPositionTaking
@@ -309,9 +309,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
         /// </summary>
         /// <param name="dataReader">The data reader.</param>
         /// <returns>The list of MasterPositionTaking.</returns>
-        internal static IList<AgentPositionTaking> ReadAgentPositionTakingData(IDataReader dataReader)
+        internal static IList<dynamic> ReadAgentPositionTakingData(IDataReader dataReader)
         {
-            var positionTakings = new List<AgentPositionTaking>();
+            var positionTakings = new List<dynamic>();
             while (dataReader.Read())
             {
                 var bettingSetting = new AgentPositionTaking
@@ -338,9 +338,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
         /// </summary>
         /// <param name="dataReader">The data reader.</param>
         /// <returns>The list of MasterPositionTaking.</returns>
-        internal static IList<MemberPositionTaking> ReadMemberPositionTakingInCaseOfAgentEditMember(IDataReader dataReader)
+        internal static IList<dynamic> ReadMemberPositionTakingInCaseOfAgentEditMember(IDataReader dataReader)
         {
-            var positionTakings = new List<MemberPositionTaking>();
+            var positionTakings = new List<dynamic>();
             while (dataReader.Read())
             {
                 var bettingSetting = new MemberPositionTaking
@@ -366,9 +366,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
         /// </summary>
         /// <param name="dataReader">The data reader.</param>
         /// <returns>The list of MasterPositionTaking.</returns>
-        internal static IList<MemberPositionTaking> ReadMemberPositionTakingInCaseOfSuperEditMember(IDataReader dataReader)
+        internal static IList<dynamic> ReadMemberPositionTakingInCaseOfSuperEditMember(IDataReader dataReader)
         {
-            var positionTakings = new List<MemberPositionTaking>();
+            var positionTakings = new List<dynamic>();
             while (dataReader.Read())
             {
                 var bettingSetting = new MemberPositionTaking
@@ -391,9 +391,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
         /// </summary>
         /// <param name="dataReader">The data reader.</param>
         /// <returns>The list of MasterPositionTaking.</returns>
-        internal static IList<MemberPositionTaking> ReadMemberPositionTakingInCaseOfMasterEditMember(IDataReader dataReader)
+        internal static IList<dynamic> ReadMemberPositionTakingInCaseOfMasterEditMember(IDataReader dataReader)
         {
-            var positionTakings = new List<MemberPositionTaking>();
+            var positionTakings = new List<dynamic>();
             while (dataReader.Read())
             {
                 var bettingSetting = new MemberPositionTaking

@@ -17,9 +17,13 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
     /// </summary>
     public class CustomerSettingBase
     {
+        public ActionType ActionType { get; set; }
+
         public CustomerInformation CustomerInformation { get; set; }
 
         public IList<BetSetting> BetSettings { get; set; }
+
+        public IList<dynamic> PositionTakings { get; set; }
 
         public CopyAll BetSettingCopyAll { get; set; }
 
@@ -36,6 +40,11 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
             return currentBetTypeId == copiedBetTypeId;
         }
 
+        /// <summary>
+        /// Copies to one bet setting.
+        /// </summary>
+        /// <param name="copiedBetSetting">The copied bet setting.</param>
+        /// <param name="betSetting">The bet setting.</param>
         internal static void CopyToOneBetSetting(BetSetting copiedBetSetting, BetSetting betSetting)
         {
             betSetting.MinBet = copiedBetSetting.MinBet;
@@ -47,8 +56,41 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
             betSetting.IsStatusUpdated = copiedBetSetting.IsStatusUpdated;
         }
 
-        internal virtual void UpdatePositionTakingsInCaseOfCopyAll()
+        /// <summary>
+        /// Updates the position takings in case of copy all.
+        /// </summary>
+        internal void UpdatePositionTakingsInCaseOfCopyAll()
         {
+            if (!this.CopyAllIsValidForPositionTaking())
+            {
+                return;
+            }
+
+            var copiedSuperPositionTaking = this.PositionTakings.Where(p => p.BetTypeId == this.PositionTakingCopyAll.BettypeId).FirstOrDefault();
+
+            if (copiedSuperPositionTaking == null)
+            {
+                return;
+            }
+
+            foreach (var superPositionTaking in this.PositionTakings)
+            {
+                if (IsCopyToItself(superPositionTaking.BetTypeId, this.PositionTakingCopyAll.BettypeId))
+                {
+                    continue;
+                }
+
+                CopyToOnePositionTaking(copiedSuperPositionTaking, superPositionTaking);
+            }
+        }
+
+        internal virtual void CopyToOnePositionTaking(dynamic sourcePositionTaking, dynamic destinationPositionTaking)
+        {
+        }
+
+        internal bool CopyAllIsValidForPositionTaking()
+        {
+            return this.PositionTakingCopyAll != null && this.PositionTakingCopyAll.IsCopiedAll && this.PositionTakings != null && this.PositionTakings.Count > 0;
         }
 
         /// <summary>
