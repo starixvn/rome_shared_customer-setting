@@ -81,11 +81,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Impl\StatusRepository.cs" />
     <Compile Include="Repositories\Interface\IStatusRepository.cs" />
-    <Compile Include="Resources\ViewLang.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ViewLang.resx</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\BetTypeStatus.cs" />
     <Compile Include="ViewModels\KenoEnableStatus.cs" />
   </ItemGroup>
@@ -106,13 +101,8 @@
   <ItemGroup>
     <Folder Include="Entities\" />
     <Folder Include="Helper\" />
+    <Folder Include="Resources\" />
     <Folder Include="Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\ViewLang.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ViewLang.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

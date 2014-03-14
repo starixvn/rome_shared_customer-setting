@@ -8,7 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fanex.CustomerSetting.Module.KenoStatus.Resources {
+namespace Fanex.CustomerSetting.Module.Keno.Resources
+{
     using System;
     
     

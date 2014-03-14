@@ -49,12 +49,6 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Criteria
         public int SubAccID { get; set; }
 
         /// <summary>
-        /// Gets or sets the Id of the Up line. 
-        /// </summary>
-        /// <value>The up line id of a customer.</value>
-        public int UplineId { get; set; }
-
-        /// <summary>
         /// Gets or sets a value indicating whether User Id.
         /// </summary>
         /// <value>The account id of an admin.</value>
