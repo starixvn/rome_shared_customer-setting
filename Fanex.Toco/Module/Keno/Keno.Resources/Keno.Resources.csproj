@@ -58,6 +58,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="LayoutTexts.ko-KR.resx" />
+    <EmbeddedResource Include="LayoutTexts.ja-JP.resx" />
+    <EmbeddedResource Include="LayoutTexts.th-TH.resx" />
+    <EmbeddedResource Include="LayoutTexts.zh-TW.resx" />
     <EmbeddedResource Include="ViewLang.th-TH.resx" />
     <EmbeddedResource Include="ViewLang.ko-KR.resx" />
     <EmbeddedResource Include="ViewLang.js-JP.resx" />
