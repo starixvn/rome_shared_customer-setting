@@ -203,7 +203,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
         /// <returns>The CustomerInformation object.</returns>
         internal static CustomerInformation ReadAgentInformationData(IDataReader dataReader)
         {
-            CustomerInformation customerInformation = null;
+            CustomerInformation customerInformation = new CustomerInformation();
             while (dataReader.Read())
             {
                 customerInformation = new CustomerInformation();

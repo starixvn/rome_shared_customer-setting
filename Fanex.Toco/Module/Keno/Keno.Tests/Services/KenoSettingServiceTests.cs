@@ -82,7 +82,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Services
         }
 
         [Test]
-        public void UpdateSuperBetSetting_ParamsAreValid_ShouldReturnInstanceOfResultList()
+        public void UpdateBetSetting_ParamsAreValid_ShouldReturnInstanceOfResultList()
         {
             // Arrange
             _stubRepository.Stub(s => s.UpdateBetSetting(Arg<ICriteria>.Is.Anything))
@@ -99,7 +99,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Services
 
         [Test]
         [ExpectedException(typeof(Exception), ExpectedMessage = "Exception from DB...")]
-        public void UpdateSuperBetSetting_RepositoryOccursException_ShouldThrowsException()
+        public void UpdateBetSetting_RepositoryOccursException_ShouldThrowsException()
         {
             // Arrange
             _mockRepository.Stub(s => s.UpdateBetSetting(Arg<ICriteria>.Is.Anything))
@@ -109,6 +109,23 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Services
 
             // Act
             var result = kenoSettingService.UpdateBetSetting(_customerSetting.CustomerInformation, _customerSetting.BetSettings[0], _customerSetting.ActionType);
+        }
+
+        [Test]
+        public void UpdateBetSettings_ParamsAreValid_ShouldReturnInstanceOfResultList()
+        {
+            // Arrange
+            _stubRepository.Stub(s => s.UpdateBetSetting(Arg<ICriteria>.Is.Anything))
+                .IgnoreArguments()
+                .Return(new List<Result>() { });
+            var kenoSettingService = new KenoSettingService(_stubRepository, _stubCriteriaGenerator);
+
+            // Act
+            var result = kenoSettingService.UpdateBetSettings(_customerSetting);
+
+            // Assert
+            Assert.IsInstanceOf<List<Result>>(result);
+            Assert.AreEqual(0, result.Count);
         }
 
         [Test]

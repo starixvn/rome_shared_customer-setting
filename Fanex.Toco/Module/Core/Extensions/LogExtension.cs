@@ -20,10 +20,10 @@ namespace Fanex.CustomerSetting.Module.Core.Extensions
         {
             string message = ex.Message +
                        "\r\nSOURCE: " + ex.Source +
-                       "\r\nDOMAIN: " + HttpContext.Current.Request.Headers["Host"] +
-                        "\r\nREFERRER: " + HttpContext.Current.Request.UrlReferrer +
-                       "\r\nFORM: " + HttpContext.Current.Request.Form.ToString() +
-                       "\r\nQUERYSTRING: " + HttpContext.Current.Request.QueryString.ToString() +
+                           "\r\nDOMAIN: " + HttpContext.Current.Request.Headers["Host"] +
+                            "\r\nREFERRER: " + HttpContext.Current.Request.UrlReferrer +
+                           "\r\nFORM: " + HttpContext.Current.Request.Form.ToString() +
+                           "\r\nQUERYSTRING: " + HttpContext.Current.Request.QueryString.ToString() +
                        "\r\nTARGETSITE: " + ex.TargetSite +
                        "\r\nSTACKTRACE: " + ex.StackTrace;
 

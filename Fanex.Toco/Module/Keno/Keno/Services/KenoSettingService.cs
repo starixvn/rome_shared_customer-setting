@@ -130,11 +130,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
 
             foreach (var betSetting in customerSetting.BetSettings)
             {
-                var resultsForEachBetSetting = this.UpdateBetSetting(customerSetting.CustomerInformation, betSetting, customerSetting.ActionType);
-                if (resultsForEachBetSetting != null && resultsForEachBetSetting.Count > 0)
-                {
-                    results.AddRange(resultsForEachBetSetting);
-                }
+                results.AddRange(this.UpdateBetSetting(customerSetting.CustomerInformation, betSetting, customerSetting.ActionType));
             }
 
             return results;
@@ -159,11 +155,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
 
             foreach (var positionTaking in customerSetting.PositionTakings)
             {
-                var resultsForEachPositionTaking = this.UpdatePositionTaking(customerSetting.CustomerInformation, positionTaking, customerSetting.ActionType);
-                if (resultsForEachPositionTaking != null && resultsForEachPositionTaking.Count > 0)
-                {
-                    results.AddRange(resultsForEachPositionTaking);
-                }
+                results.AddRange(this.UpdatePositionTaking(customerSetting.CustomerInformation, positionTaking, customerSetting.ActionType));
             }
 
             return results;

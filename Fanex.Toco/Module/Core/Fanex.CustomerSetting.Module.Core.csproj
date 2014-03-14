@@ -91,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\AppSettings.cs" />
+    <Compile Include="Criteria\InvalidCriteria.cs" />
     <Compile Include="Entities\Constants.cs" />
     <Compile Include="Controllers\Base\ControllerExtentions.cs" />
     <Compile Include="Controllers\Base\JsonBase.cs" />

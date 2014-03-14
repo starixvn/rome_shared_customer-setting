@@ -66,9 +66,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
                 return;
             }
 
-            var copiedSuperPositionTaking = this.PositionTakings.Where(p => p.BetTypeId == this.PositionTakingCopyAll.BettypeId).FirstOrDefault();
-
-            if (copiedSuperPositionTaking == null)
+            var copiedSuperPositionTaking = GetCopiedPositionTaking();
+            if (copiedSuperPositionTaking.BetTypeId <= 0)
             {
                 return;
             }
@@ -98,35 +97,43 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
         /// </summary>
         internal void UpdateBetSettingsInCaseOfCopyAll()
         {
-            if (this.CopyAllIsValidForBetSetting())
+            if (!this.CopyAllIsValidForBetSetting())
             {
-                var copiedBetSetting = this.GetCopiedBetSetting();
+                return;
+            }
 
-                if (copiedBetSetting == null)
+            var copiedBetSetting = this.GetCopiedBetSetting();
+            if (copiedBetSetting.BetTypeId <= 0)
+            {
+                return;
+            }
+
+            foreach (var betSetting in this.BetSettings)
+            {
+                if (IsCopyToItself(betSetting.BetTypeId, this.BetSettingCopyAll.BettypeId))
                 {
                     return;
                 }
 
-                foreach (var betSetting in this.BetSettings)
-                {
-                    if (IsCopyToItself(betSetting.BetTypeId, this.BetSettingCopyAll.BettypeId))
-                    {
-                        return;
-                    }
-
-                    CopyToOneBetSetting(copiedBetSetting, betSetting);
-                }
+                CopyToOneBetSetting(copiedBetSetting, betSetting);
             }
         }
 
         internal BetSetting GetCopiedBetSetting()
         {
-            return this.BetSettings.Where(b => b.BetTypeId == this.BetSettingCopyAll.BettypeId).FirstOrDefault();
+            var betSetting = this.BetSettings.Where(b => b.BetTypeId == this.BetSettingCopyAll.BettypeId).FirstOrDefault();
+            return betSetting == null ? new BetSetting() : betSetting;
         }
 
         internal bool CopyAllIsValidForBetSetting()
         {
             return this.BetSettingCopyAll != null && this.BetSettingCopyAll.IsCopiedAll && this.BetSettings != null && this.BetSettings.Count > 0;
+        }
+
+        internal dynamic GetCopiedPositionTaking()
+        {
+            var positionTaking = this.PositionTakings.Where(p => p.BetTypeId == this.PositionTakingCopyAll.BettypeId).FirstOrDefault();
+            return positionTaking == null ? new PositionTakingBase() : positionTaking;
         }
     }
 }

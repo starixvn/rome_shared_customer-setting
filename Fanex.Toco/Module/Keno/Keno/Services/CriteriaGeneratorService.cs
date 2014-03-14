@@ -9,6 +9,7 @@
 
 namespace Fanex.CustomerSetting.Module.Keno.Services
 {
+    using Fanex.CustomerSetting.Module.Core.Criteria;
     using Fanex.CustomerSetting.Module.Keno.Criteria;
     using Fanex.CustomerSetting.Module.Keno.Entities;
     using Fanex.NAP.Framework.Data;
@@ -54,7 +55,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
                 return CreateUpdateAgentBetSettingCriteria(customerInformation, betSetting);
             }
 
-            return null;
+            return new InvalidCriteria();
         }
 
         /// <summary>
@@ -93,7 +94,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
                 return CreateUpdateMemberPositionTakingCriteria(customerInformation, positionTaking);
             }
 
-            return null;
+            return new InvalidCriteria();
         }
 
         /// <summary>
