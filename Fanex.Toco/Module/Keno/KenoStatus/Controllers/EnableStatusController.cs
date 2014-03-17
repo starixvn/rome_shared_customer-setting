@@ -10,6 +10,7 @@
 namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
 {
     using System;
+    using System.Web;
     using System.Collections.Generic;
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.Core.Web;
