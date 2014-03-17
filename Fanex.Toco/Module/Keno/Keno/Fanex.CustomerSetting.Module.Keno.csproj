@@ -137,7 +137,6 @@
     <Compile Include="App_Start\ModuleRegistrator.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="Controllers\KenoSettingBaseController.cs" />
-    <Compile Include="Controllers\KenoSettingController.cs" />
     <Compile Include="Criteria\Super\GetSuperSettingCriteria.cs" />
     <Compile Include="Criteria\Super\UpdateSuperPositionTakingCriteria.cs" />
     <Compile Include="Criteria\Super\UpdateSuperBetSettingCriteria.cs" />
