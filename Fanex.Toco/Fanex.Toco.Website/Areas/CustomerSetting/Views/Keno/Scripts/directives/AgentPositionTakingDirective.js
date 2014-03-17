@@ -18,10 +18,6 @@ KenoModule.directive('agentPositionTakingElement', ['commonService', function (c
             $scope.minPTRange = {};
             $scope.commRange = commonService.getRangeCommValue($scope.positionTaking.mComm, 0);
 
-            $scope.broadcastUpdateIsAuto = function () {///
-                $scope.$emit('confirmIsAuto', true);
-            };
-
             $scope.monitorSaveButton = function () {
                 if ($scope.positionTaking.isUpdateUM2
                     || $scope.positionTaking.isUpdateM2
@@ -42,12 +38,16 @@ KenoModule.directive('agentPositionTakingElement', ['commonService', function (c
                         $scope.positionTaking.isUpdateM2 = false;
                         $scope.positionTaking.isUpdateUM2 = (($scope.originalPositionTaking.uM2 != $scope.positionTaking.uM2)
                                                     || ($scope.originalPositionTaking.iM2 != $scope.positionTaking.iM2)) == true ? true : false;
+                        $scope.positionTaking.isConfirmIsAuto = false;
+                        $scope.$emit('confirmIsAuto', { "betTypeId": $scope.positionTaking.betTypeId, "isAdd": false });
                     }
                     else {
                         $scope.positionTaking.l2 = Math.round(($scope.positionTaking.m3 - $scope.positionTaking.m2) * 100) / 100;
                         $scope.positionTaking.isUpdateM2 = true;
                         $scope.positionTaking.isUpdateUM2 = true;
-                        $scope.broadcastUpdateIsAuto();
+                        var newMemberValueMax = Math.min($scope.positionTaking.l3, $scope.positionTaking.m3) - $scope.positionTaking.a2;
+                        $scope.memberNewValueRange = commonService.getRangePTValue(newMemberValueMax, 0);
+                        $scope.$emit('confirmIsAuto', { "betTypeId": $scope.positionTaking.betTypeId, "isAdd": true });
                     }
                 }
                 else {

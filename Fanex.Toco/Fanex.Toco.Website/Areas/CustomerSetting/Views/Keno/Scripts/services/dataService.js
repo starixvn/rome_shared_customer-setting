@@ -39,7 +39,7 @@ KenoModule.service('dataService', function () {
     var createBetSettingList = function () {
         var betSettings = [];
 
-        for (var i = 1; i < 6; i++) {
+        for (var i = 6; i > 1; i--) {
             var betSettingTmp = createBetSetting(i, 100 * i, true, false);
             betSettings.push(betSettingTmp);
         }

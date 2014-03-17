@@ -22,7 +22,7 @@ KenoModule.controller('positionTakingController', function ($scope, kenoReposito
             }
         } else {
             for (var i = 0; i < length; i++) {
-                $scope.positionTakingLists[i].isUpdateAllMember = false;
+                $scope.positionTakingList[i].isUpdateAllMember = false;
             }
         }
         ngDialog.close();
@@ -31,10 +31,10 @@ KenoModule.controller('positionTakingController', function ($scope, kenoReposito
     $scope.$on('updateAllMember', function (event) {
         if ($scope.confirmIsAutoArray.length > 0) {
             ngDialog.open({
-                template: '/Areas/CustomerSetting/Views/Keno/Setting/Partial/PositionTaking/Popup.htm',
+//                template: '/Areas/CustomerSetting/Views/Keno/Setting/Partial/PositionTaking/Popup.htm',
+                 template: 'popupId',
                 scope: $scope
             });
-            ngDialog.close();
         }
     });
 
