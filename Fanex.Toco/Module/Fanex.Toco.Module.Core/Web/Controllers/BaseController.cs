@@ -49,12 +49,24 @@ using System.Web;
 		/// <param name="filterContext"></param>
 		protected override void OnActionExecuting(ActionExecutingContext filterContext)
 		{
+            string cultureName = AppSession.Language;
+            //if (string.IsNullOrEmpty(cultureName))
+            {
+                cultureName = "zh-CN"; // default
+                //AppSession.Language = cultureName;
+            }
+
+            // Modify current thread's cultures
+            Thread.CurrentThread.CurrentCulture = new CultureInfo(cultureName);
+            Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
+
 			AppSession.CurrentActionName = filterContext.ActionDescriptor.ActionName;
 			base.OnActionExecuting(filterContext);
 		}
 
 		protected override void OnResultExecuting(ResultExecutingContext filterContext)
 		{
+           
 			// Get current working on menu for getting display name,... on webpage
 			if (filterContext.Result is ViewResult && string.Equals(AppSession.CurrentActionName, "Index", StringComparison.OrdinalIgnoreCase))
 			{
@@ -133,23 +145,7 @@ using System.Web;
 		{
 			get { return true; }
 		}
-
-		protected override void ExecuteCore()
-		{
-			string cultureName = AppSession.Language;
-			if (string.IsNullOrEmpty(cultureName))
-			{
-				cultureName = "en-US"; // default
-				AppSession.Language = cultureName;
-			}
-
-			// Modify current thread's cultures
-			Thread.CurrentThread.CurrentCulture = new CultureInfo(cultureName);
-			Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
-
-			base.ExecuteCore();
-		}
-
+		
         protected ActionResult ActionDenied(HttpRequestBase request)
         {
             if (request.IsAjaxRequest())
