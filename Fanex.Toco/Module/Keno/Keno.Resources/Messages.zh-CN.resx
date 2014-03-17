@@ -118,9 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccountDisabled" xml:space="preserve">
-    <value>Account was disabled.</value>
+    <value>账号已禁用</value>
   </data>
   <data name="UpdatedSuccess" xml:space="preserve">
-    <value>Status updated successfully.</value>
+    <value>状态已成功更新</value>
   </data>
 </root>

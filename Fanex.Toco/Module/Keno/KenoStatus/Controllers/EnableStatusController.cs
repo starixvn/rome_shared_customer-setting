@@ -10,6 +10,7 @@
 namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
 {
     using System;
+    using System.Web;
     using System.Collections.Generic;
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.Core.Web;
@@ -23,7 +24,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
 
-    public class EnableStatusController: BaseController
+    public class EnableStatusController : KenoBaseController
     {
         private static IStatusRepository _statusRepository;
 
@@ -52,10 +53,6 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
             ViewBag.uplineId = uplineId;
             ViewBag.subAccountId = subAccountId;
             ViewBag.userId = userId;
-            System.Globalization.CultureInfo def = System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
-            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(AppSession.CurrentSession.Language);
-            System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.CreateSpecificCulture(AppSession.CurrentSession.Language);
-
             return this.PartialViewBase(null, "~/Areas/CustomerSetting/Views/Keno/EnableStatus/Index.cshtml");
         }
 
@@ -66,18 +63,16 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
         /// <param name="uplineId">Upper customer id.</param>
         /// <param name="roleId">Customer role id.</param>
         /// <returns>ActionResult object.</returns>        
-        public ActionResult GetKenoStatusData(int id, int uplineId, int roleId, int subAccountId = 0, int userId = 0)
+        public ActionResult GetKenoStatusData(int id, int uplineId, int roleId, int subAccountId = 0)
         {
             ViewBag.subAccountId = subAccountId;
-            ViewBag.userId = userId;
             var selectCriteria = new SelectStatusCriteria();
             selectCriteria.CustID = id;
             var model = _statusRepository.GetStatus(selectCriteria);
             model.CustID = selectCriteria.CustID;
             model.RoleID = roleId;
             model.UplineID = uplineId;
-            model.SubAccID = subAccountId;
-            model.UserID = userId;
+            model.SubAccID = subAccountId;           
 
             var result = "var model = " + JsonConvert.SerializeObject(
                 model,

@@ -8,7 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fanex.CustomerSetting.Module.KenoStatus.Resources {
+namespace Fanex.CustomerSetting.Module.Keno.Resources
+{
     using System;
     
     
@@ -39,7 +40,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Fanex.CustomerSetting.Module.KenoStatus.Resources.ViewLang", typeof(ViewLang).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Fanex.CustomerSetting.Module.Keno.Resources.ViewLang", typeof(ViewLang).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
