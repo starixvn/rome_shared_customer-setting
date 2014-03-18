@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="CriteriaGeneratorServiceTests.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="SuperCriteriaGeneratorServiceTests.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -25,7 +25,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Services
     /// TODO: Update summary.
     /// </summary>
     [TestFixture]
-    public class CriteriaGeneratorServiceTests
+    public class SuperCriteriaGeneratorServiceTests
     {
         private IKenoSession _stubKenoSession;
         private SuperSettingViewModel _superSetting;
@@ -47,27 +47,27 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Services
         public void CreateUpdateSuperBetSettingCriteria_ShouldReturnExactCriteria()
         {
             // Arrange
-            var criteriaGeneratorService = new CriteriaGeneratorService(_stubKenoSession);
+            var criteriaGeneratorService = new SuperCriteriaGeneratorService(_stubKenoSession);
 
             // Act
-            var criteria = criteriaGeneratorService.CreateUpdateSuperBetSettingCriteria(_superSetting.CustomerInformation, _superSetting.BetSettings[0]);
+            var criteria = criteriaGeneratorService.CreateUpdateBetSettingCriteria(_superSetting.CustomerInformation, _superSetting.BetSettings[0]);
 
             // Assert
             Assert.IsInstanceOf<UpdateSuperBetSettingCriteria>(criteria);
-            Assert.AreEqual(_superSetting.CustomerInformation.CustId, criteria.CustId);
-            Assert.AreEqual(_superSetting.BetSettings[0].BetTypeId, criteria.BetTypeId);
-            Assert.AreEqual(!_superSetting.BetSettings[0].IsEnabled, criteria.Disable);
-            Assert.AreEqual(!_superSetting.BetSettings[0].IsDownlinesEnabled, criteria.DisableDownLines);
-            Assert.AreEqual(_superSetting.BetSettings[0].MinBet, criteria.MinBet);
-            Assert.AreEqual(_superSetting.BetSettings[0].MaxBet, criteria.MaxBet);
-            Assert.AreEqual(_superSetting.BetSettings[0].MaxPerMatch, criteria.MaxPerMatch);
+            Assert.AreEqual(_superSetting.CustomerInformation.CustId, ((UpdateSuperBetSettingCriteria)criteria).CustId);
+            Assert.AreEqual(_superSetting.BetSettings[0].BetTypeId, ((UpdateSuperBetSettingCriteria)criteria).BetTypeId);
+            Assert.AreEqual(!_superSetting.BetSettings[0].IsEnabled, ((UpdateSuperBetSettingCriteria)criteria).Disable);
+            Assert.AreEqual(!_superSetting.BetSettings[0].IsDownlinesEnabled, ((UpdateSuperBetSettingCriteria)criteria).DisableDownLines);
+            Assert.AreEqual(_superSetting.BetSettings[0].MinBet, ((UpdateSuperBetSettingCriteria)criteria).MinBet);
+            Assert.AreEqual(_superSetting.BetSettings[0].MaxBet, ((UpdateSuperBetSettingCriteria)criteria).MaxBet);
+            Assert.AreEqual(_superSetting.BetSettings[0].MaxPerMatch, ((UpdateSuperBetSettingCriteria)criteria).MaxPerMatch);
         }
 
         [Test]
         public void CreateUpdateSuperPositionTakingCriteria_ShouldReturnExactCriteria()
         {
             // Arrange
-            var criteriaGeneratorService = new CriteriaGeneratorService(_stubKenoSession);
+            var criteriaGeneratorService = new SuperCriteriaGeneratorService(_stubKenoSession);
 
             // Act
             var criteria = criteriaGeneratorService.CreateUpdateSuperPositionTakingCriteria(_superSetting.CustomerInformation, _superSetting.PositionTakings[0]);

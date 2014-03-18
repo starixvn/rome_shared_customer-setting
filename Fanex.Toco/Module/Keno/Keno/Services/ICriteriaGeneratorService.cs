@@ -14,8 +14,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
 
     public interface ICriteriaGeneratorService
     {
-        ICriteria CreateUpdateBetSettingCriteria(CustomerInformation customerInformation, BetSetting betSetting, ActionType actionType);
+        ICriteria CreateUpdateBetSettingCriteria(CustomerInformation customerInformation, BetSetting betSetting);
 
-        ICriteria CreateUpdatePositionTakingCriteria(CustomerInformation customerInformation, dynamic positionTaking, ActionType actionType);
+        ICriteria CreateUpdatePositionTakingCriteria(CustomerInformation customerInformation, dynamic positionTaking);
     }
 }

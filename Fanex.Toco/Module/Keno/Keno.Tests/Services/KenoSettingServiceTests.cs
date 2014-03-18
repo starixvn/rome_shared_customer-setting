@@ -91,7 +91,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Services
             var kenoSettingService = new KenoSettingService(_stubRepository, _stubCriteriaGenerator);
 
             // Act
-            var result = kenoSettingService.UpdateBetSetting(_customerSetting.CustomerInformation, _customerSetting.BetSettings[0], _customerSetting.ActionType);
+            var result = kenoSettingService.UpdateBetSetting(_customerSetting.CustomerInformation, _customerSetting.BetSettings[0]);
 
             // Assert
             Assert.IsInstanceOf<List<Result>>(result);
@@ -108,7 +108,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Services
             var kenoSettingService = new KenoSettingService(_mockRepository, _stubCriteriaGenerator);
 
             // Act
-            var result = kenoSettingService.UpdateBetSetting(_customerSetting.CustomerInformation, _customerSetting.BetSettings[0], _customerSetting.ActionType);
+            var result = kenoSettingService.UpdateBetSetting(_customerSetting.CustomerInformation, _customerSetting.BetSettings[0]);
         }
 
         [Test]
@@ -152,8 +152,6 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Services
         private SuperSettingViewModel GenerateFakeCustomerSettingViewModel(int custId)
         {
             var superSetting = new SuperSettingViewModel();
-
-            superSetting.ActionType = ActionType.EditSuper;
 
             superSetting.CustomerInformation = new CustomerInformation()
             {

@@ -23,7 +23,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
     public class KenoSettingService : IKenoSettingService
     {
         private readonly IKenoSettingRepository _kenoSettingRepository;
-        private readonly ICriteriaGeneratorService _criteriaGeneratorService;
+        private ICriteriaGeneratorService _criteriaGeneratorService;
 
         public KenoSettingService()
             : this(null, null)
@@ -33,7 +33,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
         public KenoSettingService(IKenoSettingRepository kenoSettingRepository, ICriteriaGeneratorService criteriaGeneratorService)
         {
             _kenoSettingRepository = kenoSettingRepository ?? new KenoSettingRepository();
-            _criteriaGeneratorService = criteriaGeneratorService ?? new CriteriaGeneratorService();
+            _criteriaGeneratorService = criteriaGeneratorService ?? null;
         }
 
         public SuperSettingViewModel GetSuperSetting(int custId)
@@ -74,37 +74,37 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
 
         public IList<Result> UpdateSuperCustomerSetting(SuperSettingViewModel superSetting)
         {
-            superSetting.ActionType = ActionType.EditSuper;
+            _criteriaGeneratorService = new SuperCriteriaGeneratorService();
             return UpdateCustomerSetting(superSetting);
         }
 
         public IList<Result> UpdateMasterCustomerSetting(MasterSettingViewModel masterSetting)
         {
-            masterSetting.ActionType = ActionType.EditMaster;
+            _criteriaGeneratorService = new MasterCriteriaGeneratorService();
             return UpdateCustomerSetting(masterSetting);
         }
 
         public IList<Result> UpdateAgentCustomerSetting(AgentSettingViewModel agentSetting)
         {
-            agentSetting.ActionType = ActionType.EditMaster;
+            _criteriaGeneratorService = new AgentCriteriaGeneratorService();
             return UpdateCustomerSetting(agentSetting);
         }
 
         public IList<Result> UpdateMemberCustomerSettingInCaseOfAgentEditMember(MemberSettingViewModel memberSetting)
         {
-            memberSetting.ActionType = ActionType.AgentEditMember;
+            _criteriaGeneratorService = new AgentEditMemberCriteriaGeneratorService();
             return UpdateCustomerSetting(memberSetting);
         }
 
         public IList<Result> UpdateMemberCustomerSettingInCaseOfSuperEditMember(MemberSettingViewModel memberSetting)
         {
-            memberSetting.ActionType = ActionType.SuperEditMember;
+            _criteriaGeneratorService = new SuperEditMemberCriteriaGeneratorService();
             return UpdateCustomerSetting(memberSetting);
         }
 
         public IList<Result> UpdateMemberCustomerSettingInCaseOfMasterEditMember(MemberSettingViewModel memberSetting)
         {
-            memberSetting.ActionType = ActionType.MasterEditMember;
+            _criteriaGeneratorService = new MasterEditMemberCriteriaGeneratorService();
             return UpdateCustomerSetting(memberSetting);
         }
 
@@ -130,15 +130,15 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
 
             foreach (var betSetting in customerSetting.BetSettings)
             {
-                results.AddRange(this.UpdateBetSetting(customerSetting.CustomerInformation, betSetting, customerSetting.ActionType));
+                results.AddRange(this.UpdateBetSetting(customerSetting.CustomerInformation, betSetting));
             }
 
             return results;
         }
 
-        internal IList<Result> UpdateBetSetting(CustomerInformation customerInformation, BetSetting betSetting, ActionType actionType)
+        internal IList<Result> UpdateBetSetting(CustomerInformation customerInformation, BetSetting betSetting)
         {
-            var criteria = _criteriaGeneratorService.CreateUpdateBetSettingCriteria(customerInformation, betSetting, actionType);
+            var criteria = _criteriaGeneratorService.CreateUpdateBetSettingCriteria(customerInformation, betSetting);
             return _kenoSettingRepository.UpdateBetSetting(criteria);
         }
 
@@ -155,15 +155,15 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
 
             foreach (var positionTaking in customerSetting.PositionTakings)
             {
-                results.AddRange(this.UpdatePositionTaking(customerSetting.CustomerInformation, positionTaking, customerSetting.ActionType));
+                results.AddRange(this.UpdatePositionTaking(customerSetting.CustomerInformation, positionTaking));
             }
 
             return results;
         }
 
-        internal IList<Result> UpdatePositionTaking(CustomerInformation customerInformation, PositionTakingBase positionTaking, ActionType actionType)
+        internal IList<Result> UpdatePositionTaking(CustomerInformation customerInformation, PositionTakingBase positionTaking)
         {
-            var criteria = _criteriaGeneratorService.CreateUpdatePositionTakingCriteria(customerInformation, positionTaking, actionType);
+            var criteria = _criteriaGeneratorService.CreateUpdatePositionTakingCriteria(customerInformation, positionTaking);
             return _kenoSettingRepository.UpdatePositionTaking(criteria);
         }
     }

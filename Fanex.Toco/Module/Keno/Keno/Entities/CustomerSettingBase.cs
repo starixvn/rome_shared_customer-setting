@@ -17,8 +17,6 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
     /// </summary>
     public class CustomerSettingBase
     {
-        public ActionType ActionType { get; set; }
-
         public CustomerInformation CustomerInformation { get; set; }
 
         public IList<BetSetting> BetSettings { get; set; }

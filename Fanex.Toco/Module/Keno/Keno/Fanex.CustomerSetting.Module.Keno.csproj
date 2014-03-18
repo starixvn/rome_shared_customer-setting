@@ -171,8 +171,14 @@
     <Compile Include="Entities\BetSetting.cs" />
     <Compile Include="Entities\CustomerInformation.cs" />
     <Compile Include="Entities\PositionTakingBase.cs" />
+    <Compile Include="Services\CriteriaGeneratorService\AgentCriteriaGeneratorService.cs" />
+    <Compile Include="Services\CriteriaGeneratorService\AgentEditMemberCriteriaGeneratorService.cs" />
+    <Compile Include="Services\CriteriaGeneratorService\SuperEditMemberCriteriaGeneratorService.cs" />
+    <Compile Include="Services\CriteriaGeneratorService\MasterEditMemberCriteriaGeneratorService.cs" />
+    <Compile Include="Services\CriteriaGeneratorService\MasterCriteriaGeneratorService.cs" />
+    <Compile Include="Services\CriteriaGeneratorService\SuperCriteriaGeneratorService.cs" />
     <Compile Include="Services\ICriteriaGeneratorService.cs" />
-    <Compile Include="Services\CriteriaGeneratorService.cs" />
+    <Compile Include="Services\CriteriaGeneratorServiceBase.cs" />
     <Compile Include="Services\IKenoSession.cs" />
     <Compile Include="Services\IKenoSettingService.cs" />
     <Compile Include="Services\KenoSession.cs" />
