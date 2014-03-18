@@ -14,12 +14,17 @@ namespace Fanex.CustomerSetting.Module.Core.Entities
     public enum LogType : int
     {
         /// <summary>
-        /// The information.
+        /// The none item.
+        /// </summary>
+        None = 0,
+
+        /// <summary>
+        /// The information item.
         /// </summary>
         Info = 1,
 
         /// <summary>
-        /// The error.
+        /// The error item.
         /// </summary>
         Error = 2
     }

@@ -19,7 +19,7 @@ namespace Fanex.CustomerSetting.Module.Core.Controllers.Base
     using System.Web;
     using System.Web.Mvc;
     using Newtonsoft.Json;
-        
+
     /// <summary>
     /// JSON class for render JSON to output stream
     /// </summary>
@@ -73,27 +73,30 @@ namespace Fanex.CustomerSetting.Module.Core.Controllers.Base
             }
 
             var response = context.HttpContext.Response;
-
+            response.ContentType = GetContentType();
             // set content type
-            if (!string.IsNullOrEmpty(this.ContentType))
-            {
-                response.ContentType = this.ContentType;
-            }
-            else
-            {
-                response.ContentType = "application/json";
-            }
+            WriteResponseBody(response);
+        }
 
             // set content encoding
+        {
             if (this.ContentEncoding != null)
             {
                 response.ContentEncoding = this.ContentEncoding;
             }
+        }
 
+        private void WriteResponseBody(HttpResponseBase response)
+        {
             if (this.ResponseBody != null)
             {
                 response.Write(JsonConvert.SerializeObject(this.ResponseBody, this.Formatting, this.Settings));
             }
+        }
+
+        private string GetContentType()
+        {
+            return !string.IsNullOrEmpty(this.ContentType) ? this.ContentType : "application/json";
         }
     }
 }

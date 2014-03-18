@@ -65,6 +65,7 @@
     <Compile Include="Services\PermissionServiceTests.cs" />
     <Compile Include="Utility\UtilityTests.cs" />
     <Compile Include="Web\Controllers\BaseControllerTests.cs" />
+    <Compile Include="Web\CurrentContext\CurrentContextTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -76,7 +77,6 @@
     <Folder Include="Exceptions\" />
     <Folder Include="Repository\" />
     <Folder Include="Web\App_Start\" />
-    <Folder Include="Web\CurrentContext\" />
     <Folder Include="Web\CurrentSession\" />
     <Folder Include="Web\CustomResults\" />
   </ItemGroup>
