@@ -4,7 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Anders.Le" date="2012.10.11">Created</change>
+//   <change who="Anders.Le" date="2012/10/11">Created.</change>
 // </history>
 
 namespace Fanex.CustomerSetting.Module.Core.Extensions
@@ -29,12 +29,7 @@ namespace Fanex.CustomerSetting.Module.Core.Extensions
 
         public static string ToShortFormatedDate(this DateTime? date)
         {
-            if (date.HasValue)
-            {
-                return date.Value.ToShortFormatedDate();
-            }
-
-            return string.Empty;
+            return date.HasValue ? date.Value.ToShortFormatedDate() : string.Empty;
         }
 
         public static string ToShortFormatedDate(this DateTime date)
@@ -44,12 +39,7 @@ namespace Fanex.CustomerSetting.Module.Core.Extensions
 
         public static string ToLongFormatedDate(this DateTime? date)
         {
-            if (date.HasValue)
-            {
-                return date.Value.ToLongFormatedDate();
-            }
-
-            return string.Empty;
+            return date.HasValue ? date.Value.ToLongFormatedDate() : string.Empty;
         }
 
         public static string ToLongFormatedDate(this DateTime date)
@@ -59,12 +49,7 @@ namespace Fanex.CustomerSetting.Module.Core.Extensions
 
         public static string ToMonthAndDay(this DateTime? date)
         {
-            if (date.HasValue)
-            {
-                return date.Value.ToMonthAndDay();
-            }
-
-            return string.Empty;
+            return date.HasValue ? date.Value.ToMonthAndDay() : string.Empty;
         }
 
         public static string ToMonthAndDay(this DateTime date)
@@ -74,12 +59,7 @@ namespace Fanex.CustomerSetting.Module.Core.Extensions
 
         public static string ToMonthYear(this DateTime? date)
         {
-            if (date.HasValue)
-            {
-                return date.Value.ToMonthYear();
-            }
-
-            return string.Empty;
+            return date.HasValue ? date.Value.ToMonthYear() : string.Empty;
         }
 
         public static string ToMonthYear(this DateTime date)
@@ -89,12 +69,7 @@ namespace Fanex.CustomerSetting.Module.Core.Extensions
 
         public static string ToShortFormatedDateWithSlash(this DateTime? date)
         {
-            if (date.HasValue)
-            {
-                return date.Value.ToShortFormatedDateWithSlash();
-            }
-
-            return string.Empty;
+            return date.HasValue ? date.Value.ToShortFormatedDateWithSlash() : string.Empty;
         }
 
         public static string ToLongFormatedDateWithSlash(this DateTime date)
@@ -109,12 +84,7 @@ namespace Fanex.CustomerSetting.Module.Core.Extensions
 
         public static string ToMonthYearWithSlash(this DateTime? date)
         {
-            if (date.HasValue)
-            {
-                return date.Value.ToMonthYearWithSlash();
-            }
-
-            return string.Empty;
+            return date.HasValue ? date.Value.ToMonthYearWithSlash() : string.Empty;
         }
 
         public static string ToMonthYearWithSlash(this DateTime date)

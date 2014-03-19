@@ -19,16 +19,11 @@ namespace Fanex.CustomerSetting.Module.Core.Extensions
             try
             {
                 var globalResourceObject = HttpContext.GetGlobalResourceObject(resourceClass, key);
-                if (globalResourceObject != null)
-                    return globalResourceObject.ToString();
-            }
+                return globalResourceObject != null ? globalResourceObject.ToString() : string.Empty;
             catch (Exception)
             {
-                
-                throw new Exception("Key: " + key + " does not exist in resource: " + resourceClass);
+                throw new Exception(string.Format("Key: {0} does not exist in resource: {1}", resourceKey, resourceClass));
             }
-
-            return string.Empty;
         }
     }
 }
