@@ -17,7 +17,7 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Interfaces
     /// </summary>
     public interface ICoreService
     {
-        IList<Bettypes> GetBettypes(GetBettypeCriteria criteria);
+        IList<BetType> GetBettypes(GetBettypeCriteria criteria);
         IList<Currency> GetCurrency();
         
     }

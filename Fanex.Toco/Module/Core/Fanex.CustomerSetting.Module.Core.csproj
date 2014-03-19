@@ -114,9 +114,10 @@
     <Compile Include="Extensions\NumberExtensions.cs" />
     <Compile Include="Extensions\ResourceExtension.cs" />
     <Compile Include="Models\BaseModel.cs" />
-    <Compile Include="Models\Bettype.cs" />
+    <Compile Include="Models\BetType.cs" />
+    <Compile Include="Models\MailAttachment.cs" />
     <Compile Include="Models\Currency.cs" />
-    <Compile Include="Models\Enums.cs" />
+    <Compile Include="Models\ProductType.cs" />
     <Compile Include="Models\Licensee.cs" />
     <Compile Include="Models\MailItem.cs" />
     <Compile Include="Models\Result.cs" />
@@ -136,7 +137,7 @@
     <Compile Include="Services\Interfaces\ICoreService.cs" />
     <Compile Include="Services\Interfaces\IMessageService.cs" />
     <Compile Include="Services\Interfaces\IServiceBase.cs" />
-    <Compile Include="Utility\FormatKey.cs" />
+    <Compile Include="Entities\FormatKey.cs" />
     <Compile Include="Utility\Utility.cs" />
     <Compile Include="Web\AppSession.cs" />
     <Compile Include="Web\App_Start\AppAreaRegistrator.cs" />

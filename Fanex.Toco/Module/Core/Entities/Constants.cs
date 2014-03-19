@@ -4,43 +4,40 @@
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Ricky.Nguyen" date="2012.11.12">Created</change>
+//   <change who="Paul.Nguyen" date="2014/03/19">Created.</change>
 // </history>
 
 namespace Fanex.CustomerSetting.Module.Core.Entities
 {
-    using System.Diagnostics.CodeAnalysis;
-
     /// <summary>
     /// The Constants class.
     /// </summary>
-    [SuppressMessage("Microsoft.StyleCop.CSharp.NamingRules", "SA1310:FieldNamesMustNotContainUnderscore", Justification = "Old SourceCode")]
     public static class Constants
     {
-        public const string SHORT_DATE_FORMAT = "MMM dd, yyyy";
-        public const string MONTH_YEAR_DATE_FORMAT = "MMM yyyy";
-        public const string SHORT_DATE_FORMAT_WITH_SLASH = "MM/dd/yyyy";
-        public const string LONG_DATE_FORMAT_WITH_SLASH = "MM/dd/yyyy hh:mm:ss tt";
-        public const string MONTH_YEAR_DATE_FORMAT_WITH_SLASH = "MM/yyyy";
-        public const string LONG_DATE_FORMAT = "dd MMM, yyyy hh:mm:ss tt";
-        public const string CURRENT_LOG_IN_USER = "Contants.AppSession.CurrentLogInUser";
-        public const string CURRENT_USER_MENU = "Contants.AppSession.CurrentUserMenu";
-        public const string CURRENT_USER_ROLE_ACCESS = "Contants.AppSession.CurrentUserRoleAccess";
-        public const string CURRENT_WORKING_ON_MENU = "Contants.AppSession.CurrentWorkingOnMenu";
-        public const string CURRENT_ACTION_NAME = "Contants.AppSession.CurrentActionName";
-        public const string TWO_DECIMAL_DIGIT_FORMAT = ".00";
-        public const string FOUR_DECIMAL_DIGIT_FORMAT = ".0000";
-        public const string SP_PARAMS_SEPERATOR = ",";
-        public const string VIEW_IP_VN = "ViewIPVN";
+        public const string ShortDateFormat = "MMM dd, yyyy";
+        public const string MonthYearDateFormat = "MMM yyyy";
+        public const string ShortDateFormatWithSlash = "MM/dd/yyyy";
+        public const string LongDateFormatWithSlash = "MM/dd/yyyy hh:mm:ss tt";
+        public const string MonthYearDateFormatWithSlash = "MM/yyyy";
+        public const string LongDateFormat = "dd MMM, yyyy hh:mm:ss tt";
+        public const string CurrentLogInUser = "Contants.AppSession.CurrentLogInUser";
+        public const string CurrentUserMenu = "Contants.AppSession.CurrentUserMenu";
+        public const string CurrentUserRoleAccess = "Contants.AppSession.CurrentUserRoleAccess";
+        public const string CurrentWorkingOnMenu = "Contants.AppSession.CurrentWorkingOnMenu";
+        public const string CurrentActionName = "Contants.AppSession.CurrentActionName";
+        public const string TwoDecimalDigitFormat = ".00";
+        public const string FourDecimalDigitFormat = ".0000";
+        public const string SpParamsSeperator = ",";
+        public const string ViewIPVN = "ViewIPVN";
 
-        public const string ADMIN_ID = "Contants.AppSession.AdminId";
-        public const string ADMIN_USERNAME = "Contants.AppSession.AdminUsername";
-        public const string ADMIN_ROLEID = "Contants.AppSession.AdminRoleId";
-        public const string IS_ALLOW_PROGRESSIVE_BONUS = "Contants.AppSession.IsAllowProgressiveBonus";
-        public const string USER_ROLEID = "Contants.AppSession.UserRoleId";
+        public const string AdminId = "Contants.AppSession.AdminId";
+        public const string AdminUsername = "Contants.AppSession.AdminUsername";
+        public const string AdminRoleId = "Contants.AppSession.AdminRoleId";
+        public const string IsAllowProgressiveBonus = "Contants.AppSession.IsAllowProgressiveBonus";
+        public const string UserRoleId = "Contants.AppSession.UserRoleId";
 
-        public const string SUB_ACCOUNT_ID = "Contants.AppSession.SubAccountId";
-        public const string LANGUAGE = "Contants.AppSession.Language";
-        public const string PROGRESSIVE_BONUS_OLD_VALUE = "Contants.AppSession.ProgressiveBonusOldValue";
+        public const string SubAccountId = "Contants.AppSession.SubAccountId";
+        public const string Language = "Contants.AppSession.Language";
+        public const string ProgressiveBonusOldValue = "Contants.AppSession.ProgressiveBonusOldValue";
     }
 }

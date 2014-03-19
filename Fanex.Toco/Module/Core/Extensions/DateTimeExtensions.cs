@@ -34,7 +34,7 @@ namespace Fanex.CustomerSetting.Module.Core.Extensions
 
         public static string ToShortFormatedDate(this DateTime date)
         {
-            return date.ToString(Constants.SHORT_DATE_FORMAT);
+            return date.ToString(Constants.ShortDateFormat);
         }
 
         public static string ToLongFormatedDate(this DateTime? date)
@@ -44,7 +44,7 @@ namespace Fanex.CustomerSetting.Module.Core.Extensions
 
         public static string ToLongFormatedDate(this DateTime date)
         {
-            return date.ToString(Constants.LONG_DATE_FORMAT);
+            return date.ToString(Constants.LongDateFormat);
         }
 
         public static string ToMonthAndDay(this DateTime? date)
@@ -64,7 +64,7 @@ namespace Fanex.CustomerSetting.Module.Core.Extensions
 
         public static string ToMonthYear(this DateTime date)
         {
-            return date.ToString(Constants.MONTH_YEAR_DATE_FORMAT);
+            return date.ToString(Constants.MonthYearDateFormat);
         }
 
         public static string ToShortFormatedDateWithSlash(this DateTime? date)
@@ -74,12 +74,12 @@ namespace Fanex.CustomerSetting.Module.Core.Extensions
 
         public static string ToLongFormatedDateWithSlash(this DateTime date)
         {
-            return date.ToString(Constants.LONG_DATE_FORMAT_WITH_SLASH);
+            return date.ToString(Constants.LongDateFormatWithSlash);
         }
 
         public static string ToShortFormatedDateWithSlash(this DateTime date)
         {
-            return date.ToString(Constants.SHORT_DATE_FORMAT_WITH_SLASH);
+            return date.ToString(Constants.ShortDateFormatWithSlash);
         }
 
         public static string ToMonthYearWithSlash(this DateTime? date)
@@ -89,7 +89,7 @@ namespace Fanex.CustomerSetting.Module.Core.Extensions
 
         public static string ToMonthYearWithSlash(this DateTime date)
         {
-            return date.ToString(Constants.MONTH_YEAR_DATE_FORMAT_WITH_SLASH);
+            return date.ToString(Constants.MonthYearDateFormatWithSlash);
         }
     }
 }

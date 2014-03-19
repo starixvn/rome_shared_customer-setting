@@ -32,10 +32,10 @@ namespace Fanex.CustomerSetting.Module.Core.Services
         {
         }
 
-        public IList<Bettypes> GetBettypes(GetBettypeCriteria criteria)
+        public IList<BetType> GetBettypes(GetBettypeCriteria criteria)
         {
-            Func<IDataReader, Bettypes> mappingFunc = r => {
-                return new Bettypes { 
+            Func<IDataReader, BetType> mappingFunc = r => {
+                return new BetType { 
                     Id = r.ToString("typeId"),
                     Name = r.ToString("BetTypeName"),
                     Type = r.ToInt("type"),
@@ -43,7 +43,7 @@ namespace Fanex.CustomerSetting.Module.Core.Services
                 };
             };
 
-            IList<Bettypes> bettypes = _repository.Fetch<Bettypes>(criteria, mappingFunc);
+            IList<BetType> bettypes = _Repository.Fetch<BetType>(criteria, mappingFunc);
             return bettypes;
         }
 
@@ -58,7 +58,7 @@ namespace Fanex.CustomerSetting.Module.Core.Services
                 };
             };
 
-            var obj = _repository.Fetch<Currency>(new GetCurrencyCriteria(), mappingFunc);
+            var obj = _Repository.Fetch<Currency>(new GetCurrencyCriteria(), mappingFunc);
             return obj;
         }
 

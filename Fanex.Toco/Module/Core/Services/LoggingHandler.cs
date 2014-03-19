@@ -14,7 +14,7 @@ namespace Fanex.CustomerSetting.Module.Core.Services
     using Fanex.Logging;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// The Logging Handler.
     /// </summary>
     public class LoggingHandler : ILoggingHandler
     {
