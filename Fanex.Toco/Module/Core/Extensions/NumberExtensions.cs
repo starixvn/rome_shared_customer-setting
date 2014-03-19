@@ -51,19 +51,19 @@ namespace Fanex.CustomerSetting.Module.Core.Extensions
             return value < 0 ? "(" + DoFormat(-value, decimalDigits) + ")" : DoFormat(value, decimalDigits);
         }
 
-        private static string DoFormat(object value, byte decimalDigits)
+        internal static string DoFormat(object value, byte decimalDigits)
         {
             ThrowExceptionWhenInputValueIsNull(value);
             return DoFormatInCaseInputValueIsValid(value, decimalDigits);
         }
 
-        private static string DoFormatInCaseInputValueIsValid(object value, byte decimalDigits)
+        internal static string DoFormatInCaseInputValueIsValid(object value, byte decimalDigits)
         {
             string formatString = "{0:n" + decimalDigits.ToString() + "}";
             return string.Format(formatString, value);
         }
 
-        private static void ThrowExceptionWhenInputValueIsNull(object value)
+        internal static void ThrowExceptionWhenInputValueIsNull(object value)
         {
             if (value == null)
             {
