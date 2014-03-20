@@ -26,6 +26,8 @@ KenoModule.service('dataService', function () {
             "isEnabled": isEnabled,
             "isBetSettingUpdated": false,
             "isDownlinesEnabled": isDownlinesEnabled,
+            "isStatusUpdated" : false,
+            "isValid" : true,
             "upline": {
                 "minBet": betValue - 1,
                 "maxBet": roleId == 4 ? 0 : (betValue + 1) * 10,

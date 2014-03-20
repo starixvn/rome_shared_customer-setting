@@ -17,8 +17,7 @@ KenoModule.directive('confirmIsAuto', function () {
     return {
         restrict: 'EA',
         scope: {
-            positionTaking: "=ngModel",
-            isAuto: "=isAuto"
+            positionTaking: "=ngModel"
         },
         templateUrl: '/Areas/CustomerSetting/Views/Keno/Setting/Partial/PositionTaking/ConfirmIsAuto.htm',
         controller: ['$scope', 'commonService', function ($scope, commonService) {

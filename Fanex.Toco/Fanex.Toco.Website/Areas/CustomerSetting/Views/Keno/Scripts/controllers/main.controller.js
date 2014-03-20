@@ -18,11 +18,11 @@ KenoModule.controller('mainController', function ($scope, $timeout, kenoReposito
         $scope.isUpdatedKeno = false;
     });
 
-    $scope.$on('betSettingBlock', function (event, data) {
+    $scope.$on('betSettingPartial', function (event, data) {
         $scope.isUpdateBetSetting = data;
     });
 
-    $scope.$on('positionTakingBlock', function (event, data) {
+    $scope.$on('positionTakingPartial', function (event, data) {
         $scope.isUpdatePT = data;
     });
 

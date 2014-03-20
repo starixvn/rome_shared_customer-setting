@@ -3,7 +3,7 @@
 KenoModule.controller('positionTakingController', function ($scope, kenoRepositories, ngDialog) {
     $scope.positionTakingList = kenoRepositories.kenoSetting.positionTakings;
 
-    $scope.positionTakingCopyAll = kenoRepositories.kenoSetting.betSettingCopyAll;
+    $scope.positionTakingCopyAll = kenoRepositories.kenoSetting.positionTakingCopyAll;
     $scope.isPositionTakingPartial = false;
     $scope.isCopyAll = false;
     $scope.confirmIsAutoArray = [];
@@ -78,7 +78,7 @@ KenoModule.controller('positionTakingController', function ($scope, kenoReposito
 
     $scope.$watch('isPositionTakingPartial', function (newValue, oldValue) {
         if (newValue !== oldValue) {
-            $scope.$emit('positionTakingBlock', $scope.isPositionTakingPartial);
+            $scope.$emit('positionTakingPartial', $scope.isPositionTakingPartial);
         }
     }, true);
 });

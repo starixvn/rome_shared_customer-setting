@@ -250,10 +250,15 @@
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\directives\MasterPositionTakingDirective.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\directives\SuperPositionTakingDirective.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\directives\BetSettingDirective.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\directives\tooltip\bootstrap-combined.min.css" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\directives\tooltip\tooltip-popup.htm" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\directives\tooltip\tootip.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\modules\module.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\repositories\repository.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\services\commonService.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\services\dataService.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\Tipsy\jquery.tipsy.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\Tipsy\tipsy.css" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\BetSetting\BetSetting.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\AgentPositionTaking.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\ConfirmIsAuto.htm" />
