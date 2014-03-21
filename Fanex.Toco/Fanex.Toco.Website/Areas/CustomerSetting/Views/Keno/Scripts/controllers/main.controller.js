@@ -43,47 +43,6 @@ KenoModule.controller('mainController', function ($scope, $timeout, kenoReposito
         $scope.$broadcast("updateAllMember");
 
         $scope.doUpdated();
-
-        //        if ($scope.confirmIsAutoArray.length > 0) {
-        //            var length = $scope.kenoSetting.positionTakings.length;
-        //            $("#dialogMemberPT").dialog({
-        //                title: "Confirm Update Member's PT",
-        //                autoOpen: false,
-        //                height: 200,
-        //                width: 400,
-        //                modal: true,
-        //                buttons: {
-        //                    "YES": function () {
-        //                        for (var i = 0; i < length; i++) {
-        //                            $scope.kenoSetting.positionTakings[i].isUpdateAllMember = true;
-        //                        }
-        ////                        $scope.$apply($scope.doUpdated(true));
-        //                        $scope.doUpdated();
-        //                        $("#dialogMemberPT").dialog("close");
-        //                        return true;
-        //                    },
-        //                    "NO": function () {
-        //                        for (var i = 0; i < length; i++) {
-        //                            $scope.kenoSetting.positionTakings[i].isUpdateAllMember = false;
-        //                        }
-        //                        $scope.doUpdated();
-        //                        $("#dialogMemberPT").dialog("close");
-        //                        return true;
-        //                    }
-        //                },
-        //                close: function (event, ui) {
-        //                }
-        //            });
-        //            $('a.ui-dialog-titlebar-close').show();
-        //            $("#dialogMemberPT").dialog("open");
-
-        //            $('.ui-button-text').each(function (i) {
-        //                $(this).html($(this).parent().attr('text'))
-        //            })
-        //        }
-        //        else {
-        //        }
-        //        $scope.doUpdated();
     };
 
     $scope.doUpdated = function (isConfirmIsAuto, isUpdateAllMember) {

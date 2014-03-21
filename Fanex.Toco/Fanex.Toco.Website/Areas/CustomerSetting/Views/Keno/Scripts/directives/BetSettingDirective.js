@@ -22,20 +22,6 @@ KenoModule.directive('betSettingElement', function () {
                 $scope.isStatuschkDisabled = true;
             }
 
-            $scope.$on('betSettingChild', function (event, data) {
-                if (data.isCopyAll) {
-                    $scope.betSetting.minBet = data.betSetting.minBet;
-                    $scope.betSetting.maxBet = data.betSetting.maxBet;
-                    $scope.betSetting.maxPerMatch = data.betSetting.maxPerMatch;
-                }
-                else {
-                    $scope.betSetting.minBet = $scope.originalBetSetting.minBet;
-                    $scope.betSetting.maxBet = $scope.originalBetSetting.maxBet;
-                    $scope.betSetting.maxPerMatch = $scope.originalBetSetting.maxPerMatch;
-                }
-            })
-
-
             $scope.$on('betSetting.minBet', function (event, isValid) {
                 $scope.valids.minBet = isValid;
             });
@@ -157,15 +143,15 @@ KenoModule.directive('betSettingInput', ['$filter', '$parse', function ($filter,
                         scope.$emit(attrs.ngModel, false);
 
                          scope.title = "Value must be more than or equal to " + minValue;
-                          element.parent().tipsy({
-                            delayIn: 0,
-                            delayOut: 0,
-                            gravity: "s",
-                            opacity: 1,
-                            title: function() {
-                                return scope.title;
-                            }
-                        });
+//                          element.parent().tipsy({
+//                            delayIn: 0,
+//                            delayOut: 0,
+//                            gravity: "s",
+//                            opacity: 1,
+//                            title: function() {
+//                                return scope.title;
+//                            }
+//                        });
 
                         return false;
                     }
@@ -178,41 +164,38 @@ KenoModule.directive('betSettingInput', ['$filter', '$parse', function ($filter,
                         scope.$emit(attrs.ngModel, false);
 
                          scope.title = "Value must be less than or equal to " + maxValue;
-                          element.parent().tipsy({
-                            delayIn: 0,
-                            delayOut: 0,
-                            gravity: "s",
-                            opacity: 1,
-                            title: function() {
-                                return scope.title;
-                            }
-                        });
+//                          element.parent().tipsy({
+//                            delayIn: 0,
+//                            delayOut: 0,
+//                            gravity: "s",
+//                            opacity: 1,
+//                            title: function() {
+//                                return scope.title;
+//                            }
+//                        });
                         return false;
                     }
 
                     scope.title="";
 
-                    element.parent().tipsy({
-                            delayIn: 0,
-                            delayOut: 0,
-                            gravity: "s",
-//                            live: true,  
-                            opacity: 1,
-                            title: function() {
-                                return scope.title;
-                            },
-//                            trigger: 'manual'
-                            //                html: true
-                        });
+//                    element.parent().tipsy({
+//                            delayIn: 0,
+//                            delayOut: 0,
+//                            gravity: "s",
+////                            live: true,  
+//                            opacity: 1,
+//                            title: function() {
+//                                return scope.title;
+//                            },
+////                            trigger: 'manual'
+//                            //                html: true
+//                        });
 
                     element.removeClass('invalidValue');
                     scope.$emit(attrs.ngModel, true);
                 }
             }, true);
 
-           element.bind('blur', function () {
-                 $(".tipsy").remove();
-           });
 //            element.bind('blur', function () {
 //                var maxValue = eval(attrs.maxValue);
 //                var minValue = eval(attrs.minValue);

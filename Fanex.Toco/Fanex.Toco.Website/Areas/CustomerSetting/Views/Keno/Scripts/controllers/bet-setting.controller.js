@@ -16,27 +16,33 @@ KenoModule.controller('betSettingController', function ($scope, kenoRepositories
         $scope.betSettingCopyAll.bettypeId = isCopy == true ? betTypeID : -1;
         $scope.betSettingCopyAll.isCopiedAll = isCopy;
 
-        $scope.$broadcast('betSettingChild', { "betSetting": $scope.betSettingList[0], "isCopyAll": $scope.isCopyAll });
+        $scope.$broadcast('betSettingChecking');
     };
 
     $scope.$on('betSettingChecking', function (event) {
         var length = $scope.betSettingList.length;
         var updatedCount = 0;
 
-        for (var i = 0; i < length; i++) {
-            var betSettingTmp = $scope.betSettingList[i];
-            if (!betSettingTmp.isValid) {
-                $scope.isBetSettingPartial = false;
-                return false;
-            }
-            else {
-                if (betSettingTmp.isBetSettingUpdated || betSettingTmp.isStatusUpdated) {
-                    updatedCount = updatedCount + 1;
+        if ($scope.isCopyAll) {
+            $scope.isBetSettingPartial = true;
+            return true;
+        }
+        else {
+            for (var i = 0; i < length; i++) {
+                var betSettingTmp = $scope.betSettingList[i];
+                if (!betSettingTmp.isValid) {
+                    $scope.isBetSettingPartial = false;
+                    return false;
+                }
+                else {
+                    if (betSettingTmp.isBetSettingUpdated || betSettingTmp.isStatusUpdated) {
+                        updatedCount = updatedCount + 1;
+                    }
                 }
             }
-        }
 
-        $scope.isBetSettingPartial = updatedCount > 0 ? true : false;
+            $scope.isBetSettingPartial = updatedCount > 0 ? true : false;
+        }
     });
 
     $scope.$on('betSettingValid', function (event) {
@@ -53,17 +59,6 @@ KenoModule.controller('betSettingController', function ($scope, kenoRepositories
         $scope.isValid = true;
     });
 
-
-    $scope.$watch('isCopyAll', function (newValue, oldValue) {
-        if (newValue !== oldValue) {
-            if ($scope.isCopyAll) {
-                $scope.isBetSettingPartial = true;
-            }
-            else {
-                $scope.$broadcast('betSettingRow');
-            }
-        }
-    }, true);
 
     $scope.$watch('isBetSettingPartial', function (newValue, oldValue) {
         if (newValue !== oldValue) {
