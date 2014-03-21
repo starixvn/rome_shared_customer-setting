@@ -33,6 +33,8 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.ViewModels
 
         public int SubAccID { get; set; }
 
+        public bool HasDownline { get; set; }
+
         public KenoEnableStatus()
         {
             this.BetTypeStatusList = new List<BetTypeStatus>();

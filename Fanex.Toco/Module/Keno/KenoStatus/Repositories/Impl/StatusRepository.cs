@@ -55,6 +55,8 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Repositories.Impl
                         }
                         
                         kenoEnableStatus.UserName = dt.Rows.Count>0 ? Convert.ToString(dt.Rows[0]["UserName"]) : string.Empty;
+                        kenoEnableStatus.HasDownline = Utils.ToBoolean(db.GetOuputParams()["hasdownline"]);
+
                         return kenoEnableStatus;
 					}
 				}
