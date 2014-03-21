@@ -96,12 +96,12 @@ namespace Fanex.CustomerSetting.Module.Core.Web
         {
             get
             {
-                return Utils.ToString(this.Session[_Language]);
+                return Utils.ToString(this.Session[this.Session.SessionID + "_" + _Language]);
             }
 
             set
             {
-                this.Session[_Language] = value;
+                this.Session[this.Session.SessionID + "_" + _Language] = value;
             }
         }
     }

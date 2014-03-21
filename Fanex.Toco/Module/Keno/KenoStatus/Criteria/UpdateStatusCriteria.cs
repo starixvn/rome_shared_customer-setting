@@ -39,7 +39,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Criteria
         /// <summary>
         /// Gets or sets a value indicating whether disable status.
         /// </summary>
-        /// <value>The true of false status of the customer.</value>
+        /// <value> 0|1: 0 affect to downlines and vice versa.</value>
         public bool DisableDownLines { get; set; }
 
         /// <summary>
@@ -53,6 +53,12 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Criteria
         /// </summary>
         /// <value>The account id of an admin.</value>
         public int UserID { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether User Id.
+        /// </summary>
+        /// <value>The account id of an admin.</value>
+        public int UplineID { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether language.
