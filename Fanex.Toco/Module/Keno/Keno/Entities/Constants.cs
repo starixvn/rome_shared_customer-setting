@@ -23,20 +23,24 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
 
         public const string GetSuperSettingCriteriaKeyName = "Acc_CustomerSelEditSuperKeno";
         public const string UpdateSuperBetSettingCriteriaKeyName = "Acc_CustomerUpdSuperKeno_BetSetting";
-        public const string UpdateSuperPositionTakingCriteriaKeyName = "Acc_CustomerUpdSuperKeno_Positiontaking";
+        public const string UpdateSuperPositionTakingCriteriaKeyName = "Acc_CustomerUpdSuperKeno";
 
-        public const string GetMasterSettingCriteriaKeyName = "Acc_CustomerSelEditSuperKeno";
-        public const string UpdateMasterBetSettingCriteriaKeyName = "Acc_CustomerUpdSuperKeno_BetSetting";
-        public const string UpdateMasterPositionTakingCriteriaKeyName = "Acc_CustomerUpdSuperKeno_Positiontaking";
+        public const string GetMasterSettingCriteriaKeyName = "Acc_CustomerSelEditMasterKeno";
+        public const string UpdateMasterBetSettingCriteriaKeyName = "Acc_CustomerUpdMasterKeno_BetSetting";
+        public const string UpdateMasterPositionTakingCriteriaKeyName = "Acc_CustomerUpdMasterKeno";
 
-        public const string GetAgentSettingCriteriaKeyName = "Acc_CustomerSelEditSuperKeno";
-        public const string UpdateAgentBetSettingCriteriaKeyName = "Acc_CustomerUpdSuperKeno_BetSetting";
-        public const string UpdateAgentPositionTakingCriteriaKeyName = "Acc_CustomerUpdSuperKeno_Positiontaking";
+        public const string GetAgentSettingCriteriaKeyName = "Acc_CustomerSelEditAgentKeno";
+        public const string UpdateAgentBetSettingCriteriaKeyName = "Acc_CustomerUpdAgentKeno_BetSetting";
+        public const string UpdateAgentPositionTakingCriteriaKeyName = "Acc_CustomerUpdAgentKeno";
 
-        public const string GetMemberSettingCriteriaKeyName = "Acc_CustomerSelEditSuperKeno";
-        public const string AgentUpdateMemberBetSettingCriteriaKeyName = "Acc_CustomerSelEditSuperKeno";
-        public const string AgentUpdateMemberPositionTakingCriteriaKeyName = "Acc_CustomerSelEditSuperKeno";
-        public const string SuperUpdateMemberPositionTakingCriteriaKeyName = "Acc_CustomerSelEditSuperKeno";
-        public const string MasterUpdateMemberPositionTakingCriteriaKeyName = "Acc_CustomerSelEditSuperKeno";
+        public const string AgentGetMemberSettingCriteriaKeyName = "Acc_CustomerSelEditMemberKeno";
+        public const string AgentUpdateMemberBetSettingCriteriaKeyName = "Acc_CustomerUpdMemberKeno_BetSetting";
+        public const string AgentUpdateMemberPositionTakingCriteriaKeyName = "Acc_CustomerUpdMemberKeno_Positiontaking";
+
+        public const string SuperGetMemberSettingCriteriaKeyName = "Acc_CustomerSelSEditCustomerKeno";
+        public const string SuperUpdateMemberPositionTakingCriteriaKeyName = "Acc_CustomerUpdMemberKeno_SAg";
+
+        public const string MasterGetMemberSettingCriteriaKeyName = "Acc_CustomerSelMEditCustomerKeno";
+        public const string MasterUpdateMemberPositionTakingCriteriaKeyName = "Acc_CustomerUpdMemberKeno_MAg";
     }
 }

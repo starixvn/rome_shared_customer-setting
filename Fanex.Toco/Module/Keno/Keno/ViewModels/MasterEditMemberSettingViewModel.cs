@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------
-// <copyright file="MemberSettingViewModel.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="MasterEditMemberSettingViewModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -14,9 +14,9 @@ namespace Fanex.CustomerSetting.Module.Keno.ViewModels
     using Fanex.CustomerSetting.Module.Keno.Entities;
 
     /// <summary>
-    /// The MemberSetting view model.
+    /// The MasterEditMemberSetting view model.
     /// </summary>
-    public class MemberSettingViewModel : CustomerSettingBase
+    public class MasterEditMemberSettingViewModel : CustomerSettingBase
     {
         internal override void CopyToOnePositionTaking(dynamic sourceMemberPositionTaking, dynamic destinationMemberPositionTaking)
         {

@@ -37,7 +37,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Repositories
             mockDataReader.Stub(d => d.Read()).Return(true).Repeat.Times(1);
 
             // Act
-            var customerInformation = KenoSettingRepository.ReadAgentInformationData(mockDataReader);
+            var customerInformation = KenoSettingRepository.ReadCustomerInformationData(mockDataReader);
 
             // Assert
             Assert.NotNull(customerInformation);
@@ -63,9 +63,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Repositories
             mockDataReader.Stub(d => d["MaxPerGameType"]).Return(1000);
             mockDataReader.Stub(d => d["IsDisabled"]).Return(false);
             mockDataReader.Stub(d => d["DisableDownlinesKeno"]).Return(true);
-            mockDataReader.Stub(d => d["MaxMinBet"]).Return(0);
-            mockDataReader.Stub(d => d["MinMaxBet"]).Return(120);
-            mockDataReader.Stub(d => d["MinMaxPerMatch"]).Return(1500);
+            mockDataReader.Stub(d => d["MinBet_Min"]).Return(10);
+            mockDataReader.Stub(d => d["MaxBet_Max"]).Return(120);
+            mockDataReader.Stub(d => d["MaxPerMatch_Max"]).Return(1500);
             mockDataReader.Stub(d => d.Read()).Return(true).Repeat.Times(5);
 
             // Act
@@ -80,7 +80,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Repositories
             Assert.AreEqual(1000, betLimits[0].MaxPerMatch);
             Assert.AreEqual(true, betLimits[0].IsEnabled);
             Assert.AreEqual(false, betLimits[0].IsDownlinesEnabled);
-            Assert.AreEqual(0, betLimits[0].Upline.MinBet);
+            Assert.AreEqual(10, betLimits[0].Upline.MinBet);
             Assert.AreEqual(120, betLimits[0].Upline.MaxBet);
             Assert.AreEqual(1500, betLimits[0].Upline.MaxPerMatch);
 
@@ -95,34 +95,199 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Repositories
         {
             // Arrange
             var mockDataReader = MockRepository.GenerateMock<IDataReader>();
-            mockDataReader.Stub(d => d["IBCBetTypeID"]).Return(1).Repeat.Twice();
-            mockDataReader.Stub(d => d["IBCBetTypeID"]).Return(2).Repeat.Twice();
-            mockDataReader.Stub(d => d["IBCBetTypeID"]).Return(3).Repeat.Twice();
-            mockDataReader.Stub(d => d["IBCBetTypeID"]).Return(4).Repeat.Twice();
-            mockDataReader.Stub(d => d["IBCBetTypeID"]).Return(5).Repeat.Twice();
+            mockDataReader.Stub(d => d["BetType"]).Return(1).Repeat.Twice();
+            mockDataReader.Stub(d => d["BetType"]).Return(2).Repeat.Twice();
+            mockDataReader.Stub(d => d["BetType"]).Return(3).Repeat.Twice();
+            mockDataReader.Stub(d => d["BetType"]).Return(4).Repeat.Twice();
+            mockDataReader.Stub(d => d["BetType"]).Return(5).Repeat.Twice();
             mockDataReader.Stub(d => d["minpositiontaking"]).Return(10);
             mockDataReader.Stub(d => d["spositiontaking"]).Return(100);
+            mockDataReader.Stub(d => d["MaxPositiontaking"]).Return(0.85);
             mockDataReader.Stub(d => d["sdiscount"]).Return(10);
             mockDataReader.Stub(d => d["smaxdiscount"]).Return(20);
             mockDataReader.Stub(d => d.Read()).Return(true).Repeat.Times(5);
 
             // Act
-            var betLimits = KenoSettingRepository.ReadSuperPositionTakingData(mockDataReader);
+            var positionTakings = KenoSettingRepository.ReadSuperPositionTakingData(mockDataReader);
 
             // Assert
-            Assert.NotNull(betLimits);
-            Assert.AreEqual(5, betLimits.Count);
-            Assert.AreEqual(1, betLimits[0].BetTypeId);
-            Assert.AreEqual(10, betLimits[0].N4);
-            Assert.AreEqual(0.85, betLimits[0].L4);
-            Assert.AreEqual(100, betLimits[0].S4);
-            Assert.AreEqual(10, betLimits[0].SComm);
-            Assert.AreEqual(20, betLimits[0].SCommMax);
+            Assert.NotNull(positionTakings);
+            Assert.AreEqual(5, positionTakings.Count);
+            Assert.AreEqual(1, positionTakings[0].BetTypeId);
+            Assert.AreEqual(10, positionTakings[0].N4);
+            Assert.AreEqual(0.85, positionTakings[0].L4);
+            Assert.AreEqual(100, positionTakings[0].S4);
+            Assert.AreEqual(10, positionTakings[0].SComm);
+            Assert.AreEqual(20, positionTakings[0].SCommMax);
 
-            Assert.AreEqual(2, betLimits[1].BetTypeId);
-            Assert.AreEqual(3, betLimits[2].BetTypeId);
-            Assert.AreEqual(4, betLimits[3].BetTypeId);
-            Assert.AreEqual(5, betLimits[4].BetTypeId);
+            Assert.AreEqual(2, positionTakings[1].BetTypeId);
+            Assert.AreEqual(3, positionTakings[2].BetTypeId);
+            Assert.AreEqual(4, positionTakings[3].BetTypeId);
+            Assert.AreEqual(5, positionTakings[4].BetTypeId);
+        }
+
+        [Test]
+        public void ReadAgentPositionTakingData_ShouldMappingCorrectly()
+        {
+            // Arrange
+            var mockDataReader = MockRepository.GenerateMock<IDataReader>();
+            mockDataReader.Stub(d => d["BetType"]).Return(1).Repeat.Twice();
+            mockDataReader.Stub(d => d["BetType"]).Return(2).Repeat.Twice();
+            mockDataReader.Stub(d => d["BetType"]).Return(3).Repeat.Twice();
+            mockDataReader.Stub(d => d["BetType"]).Return(4).Repeat.Twice();
+            mockDataReader.Stub(d => d["BetType"]).Return(5).Repeat.Twice();
+            mockDataReader.Stub(d => d["isauto_mpositiontaking"]).Return(true);
+            mockDataReader.Stub(d => d["mpositiontaking"]).Return(10);
+            mockDataReader.Stub(d => d["auto_mpositiontaking"]).Return(100);
+            mockDataReader.Stub(d => d["mpositiontaking_max"]).Return(50);
+            mockDataReader.Stub(d => d["apositiontaking"]).Return(10);
+            mockDataReader.Stub(d => d["apositiontaking_min"]).Return(20);
+            mockDataReader.Stub(d => d["discount"]).Return(20);
+            mockDataReader.Stub(d => d["discount_max"]).Return(20);
+            mockDataReader.Stub(d => d.Read()).Return(true).Repeat.Times(5);
+
+            // Act
+            var positionTakings = KenoSettingRepository.ReadAgentPositionTakingData(mockDataReader);
+
+            // Assert
+            Assert.NotNull(positionTakings);
+            Assert.AreEqual(5, positionTakings.Count);
+            Assert.AreEqual(1, positionTakings[0].BetTypeId);
+            Assert.AreEqual(true, positionTakings[0].IM2);
+            Assert.AreEqual(10, positionTakings[0].M2);
+            Assert.AreEqual(100, positionTakings[0].UM2);
+            Assert.AreEqual(50, positionTakings[0].M3);
+            Assert.AreEqual(10, positionTakings[0].A2);
+            Assert.AreEqual(20, positionTakings[0].N2);
+            Assert.AreEqual(20, positionTakings[0].AComm);
+            Assert.AreEqual(20, positionTakings[0].MComm);
+
+            Assert.AreEqual(2, positionTakings[1].BetTypeId);
+            Assert.AreEqual(3, positionTakings[2].BetTypeId);
+            Assert.AreEqual(4, positionTakings[3].BetTypeId);
+            Assert.AreEqual(5, positionTakings[4].BetTypeId);
+        }
+
+        [Test]
+        public void ReadMemberPositionTakingInCaseOfAgentEditMember_ShouldMappingCorrectly()
+        {
+            // Arrange
+            var mockDataReader = MockRepository.GenerateMock<IDataReader>();
+            mockDataReader.Stub(d => d["BetType"]).Return(1).Repeat.Twice();
+            mockDataReader.Stub(d => d["BetType"]).Return(2).Repeat.Twice();
+            mockDataReader.Stub(d => d["BetType"]).Return(3).Repeat.Twice();
+            mockDataReader.Stub(d => d["BetType"]).Return(4).Repeat.Twice();
+            mockDataReader.Stub(d => d["BetType"]).Return(5).Repeat.Twice();
+            mockDataReader.Stub(d => d["apositiontaking"]).Return(100);
+            mockDataReader.Stub(d => d["minpositiontaking"]).Return(10);
+            mockDataReader.Stub(d => d["maxpositiontaking"]).Return(100);
+            mockDataReader.Stub(d => d["playerdiscount"]).Return(50);
+            mockDataReader.Stub(d => d["playerdiscount_max"]).Return(10);
+            mockDataReader.Stub(d => d.Read()).Return(true).Repeat.Times(5);
+
+            // Act
+            var positionTakings = KenoSettingRepository.ReadMemberPositionTakingInCaseOfAgentEditMember(mockDataReader);
+
+            // Assert
+            Assert.NotNull(positionTakings);
+            Assert.AreEqual(5, positionTakings.Count);
+            Assert.AreEqual(1, positionTakings[0].BetTypeId);
+            Assert.AreEqual(100, positionTakings[0].A1);
+            Assert.AreEqual(10, positionTakings[0].N2);
+            Assert.AreEqual(100, positionTakings[0].A2);
+            Assert.AreEqual(50, positionTakings[0].Comm);
+            Assert.AreEqual(10, positionTakings[0].AComm);
+
+            Assert.AreEqual(2, positionTakings[1].BetTypeId);
+            Assert.AreEqual(3, positionTakings[2].BetTypeId);
+            Assert.AreEqual(4, positionTakings[3].BetTypeId);
+            Assert.AreEqual(5, positionTakings[4].BetTypeId);
+        }
+
+        [Test]
+        public void ReadMemberPositionTakingInCaseOfSuperEditMember_ShouldMappingCorrectly()
+        {
+            // Arrange
+            var mockDataReader = MockRepository.GenerateMock<IDataReader>();
+            mockDataReader.Stub(d => d["BetType"]).Return(1).Repeat.Twice();
+            mockDataReader.Stub(d => d["BetType"]).Return(2).Repeat.Twice();
+            mockDataReader.Stub(d => d["BetType"]).Return(3).Repeat.Twice();
+            mockDataReader.Stub(d => d["BetType"]).Return(4).Repeat.Twice();
+            mockDataReader.Stub(d => d["BetType"]).Return(5).Repeat.Twice();
+            mockDataReader.Stub(d => d["APositionTaking"]).Return(100);
+            mockDataReader.Stub(d => d["MPositionTaking"]).Return(10);
+            mockDataReader.Stub(d => d["SPositionTaking"]).Return(100);
+            mockDataReader.Stub(d => d["IsAuto_SPositionTaking_Mem"]).Return(true);
+            mockDataReader.Stub(d => d["Auto_SPositionTaking_Mem"]).Return(10);
+            mockDataReader.Stub(d => d["IsAuto_SPositionTaking"]).Return(false);
+            mockDataReader.Stub(d => d["SPositionTaking_Min"]).Return(10);
+            mockDataReader.Stub(d => d["SPositionTaking_Max"]).Return(10);
+            mockDataReader.Stub(d => d["Auto_SPositionTaking_Max"]).Return(10);
+            mockDataReader.Stub(d => d.Read()).Return(true).Repeat.Times(5);
+
+            // Act
+            var positionTakings = KenoSettingRepository.ReadMemberPositionTakingInCaseOfSuperEditMember(mockDataReader);
+
+            // Assert
+            Assert.NotNull(positionTakings);
+            Assert.AreEqual(5, positionTakings.Count);
+            Assert.AreEqual(1, positionTakings[0].BetTypeId);
+            Assert.AreEqual(100, positionTakings[0].A1);
+            Assert.AreEqual(10, positionTakings[0].M1);
+            Assert.AreEqual(100, positionTakings[0].S1);
+            Assert.AreEqual(true, positionTakings[0].IS1);
+            Assert.AreEqual(10, positionTakings[0].US1);
+            Assert.AreEqual(false, positionTakings[0].IS3);
+            Assert.AreEqual(10, positionTakings[0].S1US1Min);
+            Assert.AreEqual(10, positionTakings[0].S1Max);
+            Assert.AreEqual(10, positionTakings[0].S4);
+
+            Assert.AreEqual(2, positionTakings[1].BetTypeId);
+            Assert.AreEqual(3, positionTakings[2].BetTypeId);
+            Assert.AreEqual(4, positionTakings[3].BetTypeId);
+            Assert.AreEqual(5, positionTakings[4].BetTypeId);
+        }
+
+        [Test]
+        public void ReadMemberPositionTakingInCaseOfMasterEditMember_ShouldMappingCorrectly()
+        {
+            // Arrange
+            var mockDataReader = MockRepository.GenerateMock<IDataReader>();
+            mockDataReader.Stub(d => d["BetType"]).Return(1).Repeat.Twice();
+            mockDataReader.Stub(d => d["BetType"]).Return(2).Repeat.Twice();
+            mockDataReader.Stub(d => d["BetType"]).Return(3).Repeat.Twice();
+            mockDataReader.Stub(d => d["BetType"]).Return(4).Repeat.Twice();
+            mockDataReader.Stub(d => d["BetType"]).Return(5).Repeat.Twice();
+            mockDataReader.Stub(d => d["apositiontaking"]).Return(100);
+            mockDataReader.Stub(d => d["mpositiontaking"]).Return(10);
+            mockDataReader.Stub(d => d["IsAuto_MPositionTaking"]).Return(true);
+            mockDataReader.Stub(d => d["IsAuto_MPositionTaking_Mem"]).Return(false);
+            mockDataReader.Stub(d => d["Auto_MPositionTaking_Mem"]).Return(120);
+            mockDataReader.Stub(d => d["MPositionTaking_Max"]).Return(10);
+            mockDataReader.Stub(d => d["MPositionTaking_Min"]).Return(10);
+            mockDataReader.Stub(d => d["Auto_MPositionTaking_Max"]).Return(10);
+            mockDataReader.Stub(d => d.Read()).Return(true).Repeat.Times(5);
+
+            // Act
+            var positionTakings = KenoSettingRepository.ReadMemberPositionTakingInCaseOfMasterEditMember(mockDataReader);
+
+            // Assert
+            Assert.NotNull(positionTakings);
+            Assert.AreEqual(5, positionTakings.Count);
+            Assert.AreEqual(1, positionTakings[0].BetTypeId);
+            Assert.AreEqual(100, positionTakings[0].A1);
+            Assert.AreEqual(10, positionTakings[0].M1);
+            Assert.AreEqual(true, positionTakings[0].IM2);
+            Assert.AreEqual(false, positionTakings[0].IM1);
+            Assert.AreEqual(120, positionTakings[0].UM1);
+            Assert.AreEqual(10, positionTakings[0].M1Max);
+            Assert.AreEqual(10, positionTakings[0].M1UM1Min);
+            Assert.AreEqual(10, positionTakings[0].M3);
+
+            Assert.AreEqual(2, positionTakings[1].BetTypeId);
+            Assert.AreEqual(3, positionTakings[2].BetTypeId);
+            Assert.AreEqual(4, positionTakings[3].BetTypeId);
+            Assert.AreEqual(5, positionTakings[4].BetTypeId);
         }
     }
 }

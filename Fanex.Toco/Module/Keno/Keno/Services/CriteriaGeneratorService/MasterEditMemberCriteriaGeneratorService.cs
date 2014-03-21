@@ -63,7 +63,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
         /// <returns>The AgentUpdateMemberPositionTakingCriteria object.</returns>
         internal AgentUpdateMemberPositionTakingCriteria CreateUpdateMemberPositionTakingCriteria(
             CustomerInformation customerInformation,
-            MemberPositionTaking memberPositionTaking)
+            AgentEditMemberPositionTaking memberPositionTaking)
         {
             return new AgentUpdateMemberPositionTakingCriteria()
             {

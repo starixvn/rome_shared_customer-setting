@@ -13,8 +13,8 @@ KenoModule.directive('masterOnMemberPositionTakingElement', ['commonService', fu
 
             $scope.originalPositionTaking = angular.copy($scope.positionTaking);
 
-            $scope.m1Range = commonService.getRangePTValue($scope.positionTaking.m2, 0);
-            $scope.uM1Range = commonService.getRangePTValue($scope.positionTaking.m3, 0);
+            $scope.m1Range = commonService.getRangePTValue($scope.positionTaking.m1max, $scope.positionTaking.m1um1min);
+            $scope.uM1Range = commonService.getRangePTValue($scope.positionTaking.m3, $scope.positionTaking.m1um1min);
 
             $scope.monitorSaveButton = function () {
                 if ($scope.positionTaking.isUpdateM1

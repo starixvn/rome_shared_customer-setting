@@ -144,9 +144,11 @@
     <Compile Include="Criteria\Master\GetMasterSettingCriteria.cs" />
     <Compile Include="Criteria\Master\UpdateMasterBetSettingCriteria.cs" />
     <Compile Include="Criteria\Master\UpdateMasterPositionTakingCriteria.cs" />
+    <Compile Include="Criteria\Member\SuperAgentGetMemberSettingCriteria.cs" />
+    <Compile Include="Criteria\Member\MasterGetMemberSettingCriteria.cs" />
     <Compile Include="Criteria\Member\SuperUpdateMemberPositionTakingCriteria.cs" />
     <Compile Include="Criteria\Member\MasterUpdateMemberPositionTakingCriteria.cs" />
-    <Compile Include="Criteria\Member\GetMemberSettingCriteria.cs" />
+    <Compile Include="Criteria\Member\AgentGetMemberSettingCriteria.cs" />
     <Compile Include="Criteria\Member\AgentUpdateMemberBetSettingCriteria.cs" />
     <Compile Include="Criteria\Member\AgentUpdateMemberPositionTakingCriteria.cs" />
     <Compile Include="Criteria\Super\GetSuperSettingCriteria.cs" />
@@ -155,8 +157,10 @@
     <Compile Include="Entities\ActionType.cs" />
     <Compile Include="Entities\Constants.cs" />
     <Compile Include="Entities\AgentPositionTaking.cs" />
+    <Compile Include="Entities\SuperEditMemberPositionTaking.cs" />
+    <Compile Include="Entities\MasterEditMemberPositionTaking.cs" />
     <Compile Include="Entities\CopyAll.cs" />
-    <Compile Include="Entities\MemberPositionTaking.cs" />
+    <Compile Include="Entities\AgentEditMemberPositionTaking.cs" />
     <Compile Include="Entities\MasterPositionTaking.cs" />
     <Compile Include="Entities\SuperPositionTaking.cs" />
     <Compile Include="Entities\CustomerSettingBase.cs" />
@@ -184,7 +188,9 @@
     <Compile Include="Services\KenoSession.cs" />
     <Compile Include="Services\KenoSettingService.cs" />
     <Compile Include="ViewModels\AgentSettingViewModel.cs" />
-    <Compile Include="ViewModels\MemberSettingViewModel.cs" />
+    <Compile Include="ViewModels\AgentEditMemberSettingViewModel.cs" />
+    <Compile Include="ViewModels\SuperEditMemberSettingViewModel.cs" />
+    <Compile Include="ViewModels\MasterEditMemberSettingViewModel.cs" />
     <Compile Include="ViewModels\MasterSettingViewModel.cs" />
     <Compile Include="ViewModels\SuperSettingViewModel.cs" />
   </ItemGroup>

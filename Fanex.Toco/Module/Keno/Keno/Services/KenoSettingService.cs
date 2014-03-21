@@ -54,57 +54,57 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
             return _kenoSettingRepository.GetAgentSetting(criteria);
         }
 
-        public MemberSettingViewModel GetSettingInCaseOfAgentEditMember(int custId)
+        public AgentEditMemberSettingViewModel GetSettingInCaseOfAgentEditMember(int custId)
         {
-            var criteria = new GetMemberSettingCriteria() { CustId = custId };
+            var criteria = new AgentGetMemberSettingCriteria() { CustId = custId };
             return _kenoSettingRepository.GetSettingInCaseOfAgentEditMember(criteria);
         }
 
-        public MemberSettingViewModel GetSettingInCaseOfSuperEditMember(int custId)
+        public SuperEditMemberSettingViewModel GetSettingInCaseOfSuperEditMember(int custId)
         {
-            var criteria = new GetMemberSettingCriteria() { CustId = custId };
+            var criteria = new SuperGetMemberSettingCriteria() { CustId = custId };
             return _kenoSettingRepository.GetSettingInCaseOfSuperEditMember(criteria);
         }
 
-        public MemberSettingViewModel GetSettingInCaseOfMasterEditMember(int custId)
+        public MasterEditMemberSettingViewModel GetSettingInCaseOfMasterEditMember(int custId)
         {
-            var criteria = new GetMemberSettingCriteria() { CustId = custId };
+            var criteria = new SuperGetMemberSettingCriteria() { CustId = custId };
             return _kenoSettingRepository.GetSettingInCaseOfMasterEditMember(criteria);
         }
 
         public IList<Result> UpdateSuperCustomerSetting(SuperSettingViewModel superSetting)
         {
-            _criteriaGeneratorService = new SuperCriteriaGeneratorService();
+            _criteriaGeneratorService = _criteriaGeneratorService ?? new SuperCriteriaGeneratorService();
             return UpdateCustomerSetting(superSetting);
         }
 
         public IList<Result> UpdateMasterCustomerSetting(MasterSettingViewModel masterSetting)
         {
-            _criteriaGeneratorService = new MasterCriteriaGeneratorService();
+            _criteriaGeneratorService = _criteriaGeneratorService ?? new MasterCriteriaGeneratorService();
             return UpdateCustomerSetting(masterSetting);
         }
 
         public IList<Result> UpdateAgentCustomerSetting(AgentSettingViewModel agentSetting)
         {
-            _criteriaGeneratorService = new AgentCriteriaGeneratorService();
+            _criteriaGeneratorService = _criteriaGeneratorService ?? new AgentCriteriaGeneratorService();
             return UpdateCustomerSetting(agentSetting);
         }
 
-        public IList<Result> UpdateMemberCustomerSettingInCaseOfAgentEditMember(MemberSettingViewModel memberSetting)
+        public IList<Result> UpdateMemberCustomerSettingInCaseOfAgentEditMember(AgentEditMemberSettingViewModel memberSetting)
         {
-            _criteriaGeneratorService = new AgentEditMemberCriteriaGeneratorService();
+            _criteriaGeneratorService = _criteriaGeneratorService ?? new AgentEditMemberCriteriaGeneratorService();
             return UpdateCustomerSetting(memberSetting);
         }
 
-        public IList<Result> UpdateMemberCustomerSettingInCaseOfSuperEditMember(MemberSettingViewModel memberSetting)
+        public IList<Result> UpdateMemberCustomerSettingInCaseOfSuperEditMember(AgentEditMemberSettingViewModel memberSetting)
         {
-            _criteriaGeneratorService = new SuperEditMemberCriteriaGeneratorService();
+            _criteriaGeneratorService = _criteriaGeneratorService ?? new SuperEditMemberCriteriaGeneratorService();
             return UpdateCustomerSetting(memberSetting);
         }
 
-        public IList<Result> UpdateMemberCustomerSettingInCaseOfMasterEditMember(MemberSettingViewModel memberSetting)
+        public IList<Result> UpdateMemberCustomerSettingInCaseOfMasterEditMember(AgentEditMemberSettingViewModel memberSetting)
         {
-            _criteriaGeneratorService = new MasterEditMemberCriteriaGeneratorService();
+            _criteriaGeneratorService = _criteriaGeneratorService ?? new MasterEditMemberCriteriaGeneratorService();
             return UpdateCustomerSetting(memberSetting);
         }
 

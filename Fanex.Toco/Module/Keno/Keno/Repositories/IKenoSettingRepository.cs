@@ -22,11 +22,11 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
 
         AgentSettingViewModel GetAgentSetting(ICriteria criteria);
 
-        MemberSettingViewModel GetSettingInCaseOfAgentEditMember(ICriteria criteria);
+        AgentEditMemberSettingViewModel GetSettingInCaseOfAgentEditMember(ICriteria criteria);
 
-        MemberSettingViewModel GetSettingInCaseOfSuperEditMember(ICriteria criteria);
+        SuperEditMemberSettingViewModel GetSettingInCaseOfSuperEditMember(ICriteria criteria);
 
-        MemberSettingViewModel GetSettingInCaseOfMasterEditMember(ICriteria criteria);
+        MasterEditMemberSettingViewModel GetSettingInCaseOfMasterEditMember(ICriteria criteria);
 
         IList<Result> UpdateBetSetting(ICriteria criteria);
 

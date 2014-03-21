@@ -30,7 +30,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Criteria
             var keyName = criteria.GetSettingKey();
 
             // Assert
-            Assert.That(keyName, Is.EqualTo("Acc_CustomerUpdSuperKeno_Positiontaking"));
+            Assert.That(keyName, Is.EqualTo("Acc_CustomerUpdSuperKeno"));
         }
 
         [Test]

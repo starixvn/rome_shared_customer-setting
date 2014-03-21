@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------
-// <copyright file="MemberPositionTaking.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="SuperEditMemberPositionTaking.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -10,14 +10,18 @@
 namespace Fanex.CustomerSetting.Module.Keno.Entities
 {
     /// <summary>
-    /// The MemberPositionTaking entity.
+    /// The SuperEditMemberPositionTaking entity.
     /// </summary>
-    public class MemberPositionTaking : PositionTakingBase
+    public class SuperEditMemberPositionTaking : PositionTakingBase
     {
         public bool IsUpdatePT { get; set; }
 
         public bool IsUpdateA1 { get; set; }
 
         public bool IsUpdateComm { get; set; }
+
+        public double S1US1Min { get; set; }
+
+        public double S1Max { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="GetMemberSettingCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="AgentGetMemberSettingCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -13,15 +13,15 @@ namespace Fanex.CustomerSetting.Module.Keno.Criteria
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// GetSuperSettingCriteria class.
+    /// AgentGetMemberSettingCriteria class.
     /// </summary>
-    public class GetMemberSettingCriteria : CriteriaBase
+    public class AgentGetMemberSettingCriteria : CriteriaBase
     {
         public int CustId { get; set; }
 
         public override string GetSettingKey()
         {
-            return Constants.GetMemberSettingCriteriaKeyName;
+            return Constants.AgentGetMemberSettingCriteriaKeyName;
         }
 
         public override bool IsValid()

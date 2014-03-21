@@ -21,7 +21,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
             _kenoSession = kenoSession ?? new KenoSession();
         }
 
-        protected IKenoSession KenoSession
+        public IKenoSession KenoSession
         {
             get { return _kenoSession; }
         }

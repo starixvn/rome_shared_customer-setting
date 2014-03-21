@@ -17,15 +17,15 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
     /// </summary>
     public class KenoSession : IKenoSession
     {
-        public int UserId 
-        { 
-            get 
+        public int UserId
+        {
+            get
             {
                 return AppSession.AccId;
             }
         }
 
-        public int SubAccId 
+        public int SubAccId
         {
             get
             {
@@ -33,7 +33,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
             }
         }
 
-        public string Ip 
+        public string Ip
         {
             get
             {

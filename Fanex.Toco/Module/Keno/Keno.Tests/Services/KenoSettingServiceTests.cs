@@ -44,6 +44,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Services
             _mockRepository = MockRepository.GenerateMock<IKenoSettingRepository>();
             _stubRepository = MockRepository.GenerateStub<IKenoSettingRepository>();
             _stubCriteriaGenerator = MockRepository.GenerateStub<ICriteriaGeneratorService>();
+            var stubKenoSession = MockRepository.GenerateStub<IKenoSession>();
+            _stubCriteriaGenerator.Stub(r => r.KenoSession).Return(stubKenoSession);
         }
 
         [TearDown]
