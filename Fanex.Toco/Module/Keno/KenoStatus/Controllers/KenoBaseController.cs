@@ -17,5 +17,18 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
         {
            base.OnActionExecuting(filterContext);
         }
+
+        public static string TWLang(string lang)
+        {
+            switch (lang)
+            {
+                case "en-US": return "en";
+                case "zh-TW": return "ch"; // Traditional
+                case "zh-CN": return "cs"; // Simplified
+                case "ja-JP": return "jp";
+                case "th-TH": return "th"; // Thai
+                default: return "en";
+            }
+        }
     }
 }

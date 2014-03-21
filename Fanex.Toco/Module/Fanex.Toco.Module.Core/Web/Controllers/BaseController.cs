@@ -50,9 +50,9 @@ using System.Web;
 		protected override void OnActionExecuting(ActionExecutingContext filterContext)
 		{
             string cultureName = AppSession.Language;
-            //if (string.IsNullOrEmpty(cultureName))
+            if (string.IsNullOrEmpty(cultureName))
             {
-                cultureName = "zh-CN"; // default
+                cultureName = "en-US"; // default
                 //AppSession.Language = cultureName;
             }
 

@@ -63,7 +63,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
         /// <param name="uplineId">Upper customer id.</param>
         /// <param name="roleId">Customer role id.</param>
         /// <returns>ActionResult object.</returns>        
-        public ActionResult GetKenoStatusData(int id, int uplineId, int roleId, int subAccountId = 0)
+        public ActionResult GetKenoStatusData(int id, int uplineId, int roleId, int subAccountId = 0, int userId = 0)
         {
             ViewBag.subAccountId = subAccountId;
             var selectCriteria = new SelectStatusCriteria();
@@ -72,8 +72,9 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
             model.CustID = selectCriteria.CustID;
             model.RoleID = roleId;
             model.UplineID = uplineId;
-            model.SubAccID = subAccountId;           
-
+            model.SubAccID = subAccountId;
+            model.UserID = userId;
+            model.Language = AppSession.Language;
             var result = "var model = " + JsonConvert.SerializeObject(
                 model,
                 Formatting.None,
@@ -97,8 +98,9 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
             {
                 CustId=newStatus.CustID,
                 UserID=newStatus.UserID,
+                UplineID=newStatus.UplineID,
                 SubAccID=newStatus.SubAccID,
-                Language=AppSession.CurrentSession.Language,
+                Language = TWLang(AppSession.Language),
                 IP = AppSession.CurrentContext.Ip4Address
             };
             List<string> errCode = new List<string>();
