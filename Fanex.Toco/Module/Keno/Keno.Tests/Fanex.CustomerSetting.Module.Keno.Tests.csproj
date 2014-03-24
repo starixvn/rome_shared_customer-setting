@@ -71,6 +71,7 @@
     <Compile Include="Repositories\TestableKenoSettingBaseRepository.cs" />
     <Compile Include="Services\SuperCriteriaGeneratorServiceTests.cs" />
     <Compile Include="Services\KenoSettingServiceTests.cs" />
+    <Compile Include="ViewModels\SuperSettingViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -91,7 +92,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Start\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

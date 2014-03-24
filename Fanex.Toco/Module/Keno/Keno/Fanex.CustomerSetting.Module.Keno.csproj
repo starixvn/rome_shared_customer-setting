@@ -144,7 +144,7 @@
     <Compile Include="Criteria\Master\GetMasterSettingCriteria.cs" />
     <Compile Include="Criteria\Master\UpdateMasterBetSettingCriteria.cs" />
     <Compile Include="Criteria\Master\UpdateMasterPositionTakingCriteria.cs" />
-    <Compile Include="Criteria\Member\SuperAgentGetMemberSettingCriteria.cs" />
+    <Compile Include="Criteria\Member\SuperGetMemberSettingCriteria.cs" />
     <Compile Include="Criteria\Member\MasterGetMemberSettingCriteria.cs" />
     <Compile Include="Criteria\Member\SuperUpdateMemberPositionTakingCriteria.cs" />
     <Compile Include="Criteria\Member\MasterUpdateMemberPositionTakingCriteria.cs" />

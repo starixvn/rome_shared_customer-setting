@@ -14,6 +14,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
     /// </summary>
     public static class Constants
     {
+        public const int SportType = 202;
+
         public const string EditSuperCshtml = "~/Areas/CustomerSetting/Views/Keno/Setting/Super/EditSuper.cshtml";
         public const string EditMasterCshtml = "~/Areas/CustomerSetting/Views/Keno/Setting/Master/EditMaster.cshtml";
         public const string EditAgentCshtml = "~/Areas/CustomerSetting/Views/Keno/Setting/Agent/EditAgent.cshtml";

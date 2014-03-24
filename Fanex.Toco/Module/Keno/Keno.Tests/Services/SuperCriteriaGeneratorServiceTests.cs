@@ -9,15 +9,11 @@
 
 namespace Fanex.CustomerSetting.Module.Keno.Tests.Services
 {
-    using System;
     using System.Collections.Generic;
-    using Fanex.CustomerSetting.Module.Core.Models;
     using Fanex.CustomerSetting.Module.Keno.Criteria;
     using Fanex.CustomerSetting.Module.Keno.Entities;
-    using Fanex.CustomerSetting.Module.Keno.Repositories;
     using Fanex.CustomerSetting.Module.Keno.Services;
     using Fanex.CustomerSetting.Module.Keno.ViewModels;
-    using Fanex.NAP.Framework.Data;
     using NUnit.Framework;
     using Rhino.Mocks;
 
@@ -55,7 +51,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Services
             // Assert
             Assert.IsInstanceOf<UpdateSuperBetSettingCriteria>(criteria);
             Assert.AreEqual(_superSetting.CustomerInformation.CustId, ((UpdateSuperBetSettingCriteria)criteria).CustId);
-            Assert.AreEqual(_superSetting.BetSettings[0].BetTypeId, ((UpdateSuperBetSettingCriteria)criteria).BetTypeId);
+            Assert.AreEqual(_superSetting.BetSettings[0].BetTypeId, ((UpdateSuperBetSettingCriteria)criteria).BetType);
             Assert.AreEqual(!_superSetting.BetSettings[0].IsEnabled, ((UpdateSuperBetSettingCriteria)criteria).Disable);
             Assert.AreEqual(!_superSetting.BetSettings[0].IsDownlinesEnabled, ((UpdateSuperBetSettingCriteria)criteria).DisableDownLines);
             Assert.AreEqual(_superSetting.BetSettings[0].MinBet, ((UpdateSuperBetSettingCriteria)criteria).MinBet);
@@ -75,14 +71,14 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Services
             // Assert
             Assert.IsInstanceOf<UpdateSuperPositionTakingCriteria>(criteria);
             Assert.AreEqual(_superSetting.CustomerInformation.CustId, criteria.CustId);
-            Assert.AreEqual(_superSetting.PositionTakings[0].SportTypeId, criteria.SportType);
+            Assert.AreEqual(202, criteria.SportType);
             Assert.AreEqual(_superSetting.PositionTakings[0].BetTypeId, criteria.BetType);
-            Assert.AreEqual(_superSetting.PositionTakings[0].L4, criteria.SPositionTaking);
+            Assert.AreEqual(_superSetting.PositionTakings[0].S4, criteria.SPositionTaking);
             Assert.AreEqual(_superSetting.PositionTakings[0].N4, criteria.Min_PositionTaking);
-            Assert.AreEqual(_superSetting.PositionTakings[0].SComm, criteria.Discount);
-            Assert.AreEqual(_superSetting.PositionTakings[0].IsUpdatePT, criteria.UpdatePositionTaking);
+            Assert.AreEqual(0, criteria.Discount);
+            Assert.AreEqual(_superSetting.PositionTakings[0].IsUpdateS4, criteria.UpdatePositionTaking);
             Assert.AreEqual(_superSetting.PositionTakings[0].IsUpdateN4, criteria.UpdateMinPositionTaking);
-            Assert.AreEqual(_superSetting.PositionTakings[0].IsUpdateSCo, criteria.UpdateCommission);
+            Assert.AreEqual(false, criteria.UpdateCommission);
         }
 
         private SuperSettingViewModel GenerateFakeSuperSettingViewModel(int custId)

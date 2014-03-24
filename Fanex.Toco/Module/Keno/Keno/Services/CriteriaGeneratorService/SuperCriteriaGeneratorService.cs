@@ -42,7 +42,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
             return new UpdateSuperBetSettingCriteria()
             {
                 CustId = customerInformation.CustId,
-                BetTypeId = betSetting.BetTypeId,
+                SportType = Constants.SportType,
+                BetType = betSetting.BetTypeId,
                 UpdateStatus = betSetting.IsStatusUpdated,
                 Disable = !betSetting.IsEnabled,
                 DisableDownLines = !betSetting.IsDownlinesEnabled,
@@ -83,14 +84,14 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
             return new UpdateSuperPositionTakingCriteria()
             {
                 CustId = customerInformation.CustId,
-                SportType = superPositionTaking.SportTypeId,
+                SportType = Constants.SportType,
                 BetType = superPositionTaking.BetTypeId,
                 SPositionTaking = superPositionTaking.S4,
                 Min_PositionTaking = superPositionTaking.N4,
-                Discount = superPositionTaking.SComm,
+                Discount = 0,
                 UpdatePositionTaking = superPositionTaking.IsUpdateS4,
                 UpdateMinPositionTaking = superPositionTaking.IsUpdateN4,
-                UpdateCommission = superPositionTaking.IsUpdateSCo,
+                UpdateCommission = false,
                 UserId = KenoSession.UserId,
                 Ip = KenoSession.Ip,
                 Language = customerInformation.Language

@@ -23,15 +23,57 @@ namespace Fanex.CustomerSetting.Module.Keno.Criteria
 
         public int BetType { get; set; }
 
-        public double SPositionTaking { get; set; }
+        /// <summary>
+        /// Gets or sets the position taking of M2.
+        /// </summary>
+        /// <value>
+        /// The position taking of M2.
+        /// </value>
+        public double MPositionTaking { get; set; }
 
-        public double Min_PositionTaking { get; set; }
+        /// <summary>
+        /// Gets or sets the value of UM2.
+        /// </summary>
+        /// <value>
+        /// The value of UM2.
+        /// </value>
+        public double Auto_MPositionTaking { get; set; }
+
+        /// <summary>
+        /// Gets or sets the value of IM2.
+        /// </summary>
+        /// <value>
+        /// The value of IM2.
+        /// </value>
+        public bool IsAuto_MPositionTaking { get; set; }
+
+        /// <summary>
+        /// Gets or sets the position taking of A2.
+        /// </summary>
+        /// <value>
+        /// The position taking of A2.
+        /// </value>
+        public double APositionTaking { get; set; }
+
+        /// <summary>
+        /// Gets or sets the position taking of N2.
+        /// </summary>
+        /// <value>
+        /// The position taking of N2.
+        /// </value>
+        public double APositionTaking_Min { get; set; }
+
+        public bool UpdateAllMembers { get; set; }
+
+        public double NewMPositionTaking { get; set; }
 
         public double Discount { get; set; }
 
         public bool UpdatePositionTaking { get; set; }
 
         public bool UpdateMinPositionTaking { get; set; }
+
+        public bool UpdateAutoPositionTaking { get; set; }
 
         public bool UpdateCommission { get; set; }
 
@@ -41,7 +83,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Criteria
 
         public string Language { get; set; }
 
-        public int ErrCode { get; set; }
+        public string ErrCode { get; set; }
 
         public string ErrMsg { get; set; }
 

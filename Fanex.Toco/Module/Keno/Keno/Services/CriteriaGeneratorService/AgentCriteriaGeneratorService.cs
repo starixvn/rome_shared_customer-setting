@@ -9,7 +9,6 @@
 
 namespace Fanex.CustomerSetting.Module.Keno.Services
 {
-    using Fanex.CustomerSetting.Module.Core.Criteria;
     using Fanex.CustomerSetting.Module.Keno.Criteria;
     using Fanex.CustomerSetting.Module.Keno.Entities;
     using Fanex.NAP.Framework.Data;
@@ -42,6 +41,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
             return new UpdateAgentBetSettingCriteria()
             {
                 CustId = customerInformation.CustId,
+                SportType = Constants.SportType,
                 BetTypeId = betSetting.BetTypeId,
                 UpdateStatus = betSetting.IsStatusUpdated,
                 Disable = !betSetting.IsEnabled,
@@ -83,11 +83,20 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
             return new UpdateAgentPositionTakingCriteria()
             {
                 CustId = customerInformation.CustId,
-                SportType = agentPositionTaking.SportTypeId,
+                SportType = Constants.SportType,
                 BetType = agentPositionTaking.BetTypeId,
-                SPositionTaking = agentPositionTaking.S4,
-                Min_PositionTaking = agentPositionTaking.N4,
-                Discount = agentPositionTaking.SComm,
+                MPositionTaking = agentPositionTaking.M2,
+                Auto_MPositionTaking = agentPositionTaking.UM2,
+                IsAuto_MPositionTaking = agentPositionTaking.IM2,
+                APositionTaking = agentPositionTaking.A2,
+                APositionTaking_Min = agentPositionTaking.N2,
+                UpdateAllMembers = agentPositionTaking.IsUpdateAllMembers,
+                NewMPositionTaking = agentPositionTaking.NewMemberPT,
+                Discount = 0,
+                UpdatePositionTaking = agentPositionTaking.IsUpdateA2,
+                UpdateMinPositionTaking = agentPositionTaking.IsUpdateN2,
+                UpdateAutoPositionTaking = agentPositionTaking.IsUpdateUM2,
+                UpdateCommission = false,
                 UserId = KenoSession.UserId,
                 Ip = KenoSession.Ip,
                 Language = customerInformation.Language

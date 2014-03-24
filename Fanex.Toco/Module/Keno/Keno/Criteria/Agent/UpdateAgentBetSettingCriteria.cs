@@ -19,6 +19,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Criteria
     {
         public int CustId { get; set; }
 
+        public int SportType { get; set; }
+
         public int BetTypeId { get; set; }
 
         public bool UpdateStatus { get; set; }
@@ -43,7 +45,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Criteria
 
         public string Language { get; set; }
 
-        public int ErrCode { get; set; }
+        public string ErrCode { get; set; }
 
         public string ErrMsg { get; set; }
 
@@ -54,7 +56,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Criteria
 
         public override bool IsValid()
         {
-            return CustId > 0 && BetTypeId > 0;
+            return CustId > 0 && SportType > 0 && BetTypeId > 0;
         }
     }
 }

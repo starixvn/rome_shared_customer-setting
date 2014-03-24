@@ -23,8 +23,20 @@ namespace Fanex.CustomerSetting.Module.Keno.Criteria
 
         public int BetType { get; set; }
 
+        /// <summary>
+        /// Gets or sets the position taking of S4.
+        /// </summary>
+        /// <value>
+        /// The position taking of S4.
+        /// </value>
         public double SPositionTaking { get; set; }
 
+        /// <summary>
+        /// Gets or sets the position taking of N4.
+        /// </summary>
+        /// <value>
+        /// The position taking of N4.
+        /// </value>
         public double Min_PositionTaking { get; set; }
 
         public double Discount { get; set; }
@@ -41,7 +53,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Criteria
 
         public string Language { get; set; }
 
-        public int ErrCode { get; set; }
+        public string ErrCode { get; set; }
 
         public string ErrMsg { get; set; }
 

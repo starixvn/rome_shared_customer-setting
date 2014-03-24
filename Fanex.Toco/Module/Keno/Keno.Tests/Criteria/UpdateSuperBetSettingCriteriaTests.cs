@@ -37,7 +37,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Criteria
         public void IsValid_CustIdAndBetTypeIdIsValid_ShouldReturnTrue()
         {
             // Arrange
-            var criteria = new UpdateSuperBetSettingCriteria() { CustId = 10, BetTypeId = 5 };
+            var criteria = new UpdateSuperBetSettingCriteria() { CustId = 10, BetType = 5, SportType = 202 };
 
             // Act
             var isValid = criteria.IsValid();
@@ -45,14 +45,14 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Criteria
             // Assert
             Assert.That(isValid, Is.EqualTo(true));
             Assert.That(criteria.CustId, Is.EqualTo(10));
-            Assert.That(criteria.BetTypeId, Is.EqualTo(5));
+            Assert.That(criteria.BetType, Is.EqualTo(5));
         }
 
         [Test]
         public void IsValid_CustIdEqualsZero_ShouldReturnFalse()
         {
             // Arrange
-            var criteria = new UpdateSuperBetSettingCriteria() { CustId = 0, BetTypeId = 15 };
+            var criteria = new UpdateSuperBetSettingCriteria() { CustId = 0, BetType = 15 };
 
             // Act
             var isValid = criteria.IsValid();
@@ -60,7 +60,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Criteria
             // Assert
             Assert.That(isValid, Is.EqualTo(false));
             Assert.That(criteria.CustId, Is.EqualTo(0));
-            Assert.That(criteria.BetTypeId, Is.EqualTo(15));
+            Assert.That(criteria.BetType, Is.EqualTo(15));
         }
     }
 }

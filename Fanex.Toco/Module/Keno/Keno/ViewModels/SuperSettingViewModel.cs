@@ -22,8 +22,7 @@ namespace Fanex.CustomerSetting.Module.Keno.ViewModels
         {
             destinationSuperPositionTaking.S4 = sourceSuperPositionTaking.S4;
             destinationSuperPositionTaking.N4 = sourceSuperPositionTaking.N4;
-            destinationSuperPositionTaking.AComm = sourceSuperPositionTaking.AComm;
-            destinationSuperPositionTaking.IsUpdatePT = sourceSuperPositionTaking.IsUpdatePT;
+            destinationSuperPositionTaking.SComm = sourceSuperPositionTaking.SComm;
             destinationSuperPositionTaking.IsUpdateS4 = sourceSuperPositionTaking.IsUpdateS4;
             destinationSuperPositionTaking.IsUpdateN4 = sourceSuperPositionTaking.IsUpdateN4;
             destinationSuperPositionTaking.IsUpdateSCo = sourceSuperPositionTaking.IsUpdateSCo;

@@ -14,9 +14,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
     /// </summary>
     public class AgentPositionTaking : PositionTakingBase
     {
-        public bool IsDisabledMPT { get; set; }
-
-        public bool IsUpdatePT { get; set; }
+        public bool IsUpdateA2 { get; set; }
 
         public bool IsUpdateM2 { get; set; }
 
@@ -26,7 +24,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
 
         public bool IsUpdateACO { get; set; }
 
-        public bool IsUpdateAllMember { get; set; }
+        public bool IsUpdateAllMembers { get; set; }
 
         public double NewMemberPT { get; set; }
     }
