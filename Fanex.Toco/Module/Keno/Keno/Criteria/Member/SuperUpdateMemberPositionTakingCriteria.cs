@@ -23,9 +23,35 @@ namespace Fanex.CustomerSetting.Module.Keno.Criteria
 
         public int BetType { get; set; }
 
+        /// <summary>
+        /// Gets or sets the position taking of S1.
+        /// </summary>
+        /// <value>
+        /// The position taking of S1.
+        /// </value>
         public double SPositionTaking { get; set; }
 
+        /// <summary>
+        /// Gets or sets the value of US1.
+        /// </summary>
+        /// <value>
+        /// The value of US1.
+        /// </value>
+        public double Auto_SPositionTaking { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether IS1 is true or not.
+        /// </summary>
+        /// <value>
+        /// The value of IS1.
+        /// </value>
+        public bool IsAuto_SPositionTaking { get; set; }
+
         public bool UpdatePositionTaking { get; set; }
+
+        public bool UpdateAutoPositionTaking { get; set; }
+
+        public int SubAccId { get; set; }
 
         public int UserId { get; set; }
 
@@ -33,7 +59,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Criteria
 
         public string Language { get; set; }
 
-        public int ErrCode { get; set; }
+        public string ErrCode { get; set; }
 
         public string ErrMsg { get; set; }
 

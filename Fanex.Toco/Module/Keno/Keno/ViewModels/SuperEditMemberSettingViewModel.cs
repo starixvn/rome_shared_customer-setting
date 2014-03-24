@@ -20,9 +20,11 @@ namespace Fanex.CustomerSetting.Module.Keno.ViewModels
     {
         internal override void CopyToOnePositionTaking(dynamic sourceMemberPositionTaking, dynamic destinationMemberPositionTaking)
         {
-            destinationMemberPositionTaking.S4 = sourceMemberPositionTaking.S4;
-            destinationMemberPositionTaking.N4 = sourceMemberPositionTaking.N4;
-            destinationMemberPositionTaking.AComm = sourceMemberPositionTaking.AComm;
+            destinationMemberPositionTaking.S1 = sourceMemberPositionTaking.S1;
+            destinationMemberPositionTaking.IS1 = sourceMemberPositionTaking.IS1;
+            destinationMemberPositionTaking.US1 = sourceMemberPositionTaking.US1;
+            destinationMemberPositionTaking.IsUpdateS1 = sourceMemberPositionTaking.IsUpdateS1;
+            destinationMemberPositionTaking.IsUpdateUS1 = sourceMemberPositionTaking.IsUpdateUS1;
         }
     }
 }

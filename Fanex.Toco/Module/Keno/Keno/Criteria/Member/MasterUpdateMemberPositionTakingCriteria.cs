@@ -23,17 +23,51 @@ namespace Fanex.CustomerSetting.Module.Keno.Criteria
 
         public int BetType { get; set; }
 
+        /// <summary>
+        /// Gets or sets the position taking of M1.
+        /// </summary>
+        /// <value>
+        /// The position taking of M1.
+        /// </value>
         public double MPositionTaking { get; set; }
+
+        /// <summary>
+        /// Gets or sets the value of UM1.
+        /// </summary>
+        /// <value>
+        /// The value of UM1.
+        /// </value>
+        public double Auto_MPositionTaking_Mem { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether IM1 is true or not.
+        /// </summary>
+        /// <value>
+        /// The value of IM1.
+        /// </value>
+        public bool IsAuto_MPositionTaking_Mem { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether IM2 is true or not.
+        /// </summary>
+        /// <value>
+        /// The value of IM2.
+        /// </value>
+        public bool IsAuto_MPositionTaking { get; set; }
 
         public bool UpdatePositionTaking { get; set; }
 
+        public bool UpdateAutoPositionTaking { get; set; }
+
         public int UserId { get; set; }
+
+        public int SubAccId { get; set; }
 
         public string Ip { get; set; }
 
         public string Language { get; set; }
 
-        public int ErrCode { get; set; }
+        public string ErrCode { get; set; }
 
         public string ErrMsg { get; set; }
 

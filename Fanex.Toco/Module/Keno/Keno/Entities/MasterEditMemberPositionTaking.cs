@@ -14,11 +14,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
     /// </summary>
     public class MasterEditMemberPositionTaking : PositionTakingBase
     {
-        public bool IsUpdatePT { get; set; }
+        public bool IsUpdateM1 { get; set; }
 
-        public bool IsUpdateA1 { get; set; }
-
-        public bool IsUpdateComm { get; set; }
+        public bool IsUpdateUM1 { get; set; }
 
         public double M1UM1Min { get; set; }
 

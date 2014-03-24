@@ -16,6 +16,11 @@ namespace Fanex.CustomerSetting.Module.Keno.ViewModels
     /// </summary>
     public class AgentSettingViewModel : CustomerSettingBase
     {
+        /// <summary>
+        /// Copies to one position taking.
+        /// </summary>
+        /// <param name="sourceAgentPositionTaking">The source agent position taking.</param>
+        /// <param name="destinationAgentPositionTaking">The destination agent position taking.</param>
         internal override void CopyToOnePositionTaking(dynamic sourceAgentPositionTaking, dynamic destinationAgentPositionTaking)
         {
             destinationAgentPositionTaking.M2 = sourceAgentPositionTaking.M2;

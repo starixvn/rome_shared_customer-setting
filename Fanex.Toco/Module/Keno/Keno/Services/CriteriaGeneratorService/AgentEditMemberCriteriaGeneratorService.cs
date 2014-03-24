@@ -39,7 +39,22 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
         /// </returns>
         public ICriteria CreateUpdateBetSettingCriteria(CustomerInformation customerInformation, BetSetting betSetting)
         {
-            return new InvalidCriteria();
+            return new AgentUpdateMemberBetSettingCriteria()
+            {
+                CustId = customerInformation.CustId,
+                SportType = Constants.SportType,
+                BetType = betSetting.BetTypeId,
+                UpdateStatus = betSetting.IsStatusUpdated,
+                Disable = !betSetting.IsEnabled,
+                UpdateMinMaxBet = betSetting.IsBetSettingUpdated,
+                MinBet = betSetting.MinBet,
+                MaxBet = betSetting.MaxBet,
+                MaxPerMatch = betSetting.MaxPerMatch,
+                UserId = KenoSession.UserId,
+                SubAccId = KenoSession.SubAccId,
+                Ip = KenoSession.Ip,
+                Language = customerInformation.Language
+            };
         }
 
         /// <summary>
@@ -68,9 +83,13 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
             return new AgentUpdateMemberPositionTakingCriteria()
             {
                 CustId = customerInformation.CustId,
-                SportType = memberPositionTaking.SportTypeId,
+                SportType = Constants.SportType,
                 BetType = memberPositionTaking.BetTypeId,
-                Discount = memberPositionTaking.SComm,
+                UpdatePT = memberPositionTaking.IsUpdateA1,
+                APositionTaking = memberPositionTaking.A1,
+                UpdateComm = false,
+                Discount = 0,
+                SubAccId = KenoSession.SubAccId,
                 UserId = KenoSession.UserId,
                 Ip = KenoSession.Ip,
                 Language = customerInformation.Language

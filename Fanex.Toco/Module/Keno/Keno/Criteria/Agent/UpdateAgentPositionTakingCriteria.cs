@@ -40,7 +40,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Criteria
         public double Auto_MPositionTaking { get; set; }
 
         /// <summary>
-        /// Gets or sets the value of IM2.
+        /// Gets or sets a value indicating whether IM2 is true or not.
         /// </summary>
         /// <value>
         /// The value of IM2.

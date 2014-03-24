@@ -60,17 +60,22 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
         /// </summary>
         /// <param name="customerInformation">The customer information.</param>
         /// <param name="memberPositionTaking">The member position taking.</param>
-        /// <returns>The AgentUpdateMemberPositionTakingCriteria object.</returns>
-        internal AgentUpdateMemberPositionTakingCriteria CreateUpdateMemberPositionTakingCriteria(
+        /// <returns>The SuperUpdateMemberPositionTakingCriteria object.</returns>
+        internal SuperUpdateMemberPositionTakingCriteria CreateUpdateMemberPositionTakingCriteria(
             CustomerInformation customerInformation,
-            AgentEditMemberPositionTaking memberPositionTaking)
+            SuperEditMemberPositionTaking memberPositionTaking)
         {
-            return new AgentUpdateMemberPositionTakingCriteria()
+            return new SuperUpdateMemberPositionTakingCriteria()
             {
                 CustId = customerInformation.CustId,
-                SportType = memberPositionTaking.SportTypeId,
+                SportType = Constants.SportType,
                 BetType = memberPositionTaking.BetTypeId,
-                Discount = memberPositionTaking.SComm,
+                SPositionTaking = memberPositionTaking.S1,
+                Auto_SPositionTaking = memberPositionTaking.US1,
+                IsAuto_SPositionTaking = memberPositionTaking.IS1,
+                UpdatePositionTaking = memberPositionTaking.IsUpdateS1,
+                UpdateAutoPositionTaking = memberPositionTaking.IsUpdateUS1,
+                SubAccId = KenoSession.SubAccId,
                 UserId = KenoSession.UserId,
                 Ip = KenoSession.Ip,
                 Language = customerInformation.Language

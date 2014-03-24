@@ -23,13 +23,21 @@ namespace Fanex.CustomerSetting.Module.Keno.Criteria
 
         public int BetType { get; set; }
 
+        public bool UpdatePT { get; set; }
+
+        /// <summary>
+        /// Gets or sets the position taking of A1.
+        /// </summary>
+        /// <value>
+        /// The position taking of A1.
+        /// </value>
         public double APositionTaking { get; set; }
 
         public double Discount { get; set; }
 
-        public bool UpdatePositionTaking { get; set; }
+        public bool UpdateComm { get; set; }
 
-        public bool UpdateCommission { get; set; }
+        public int SubAccId { get; set; }
 
         public int UserId { get; set; }
 
@@ -37,7 +45,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Criteria
 
         public string Language { get; set; }
 
-        public int ErrCode { get; set; }
+        public string ErrCode { get; set; }
 
         public string ErrMsg { get; set; }
 
