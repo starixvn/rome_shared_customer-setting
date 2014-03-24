@@ -17,6 +17,7 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
     using Rhino.Mocks;
     using Fanex.CustomerSetting.Module.Keno.Criteria;
     using Fanex.CustomerSetting.Module.Keno.Repositories;
+    using Fanex.Data.Configuration;
 
     /// <summary>
     /// TODO: Update summary.
@@ -25,6 +26,12 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
     public class KenoSettingRepositoryTests
     {
         private KenoSettingRepository _kenoSettingRepository;
+
+        [TestFixtureSetUp]
+        public void TestFixtureSetUp()
+        {
+            DbSettingProviderManager.Current.Start();
+        }
 
         [SetUp]
         public void SetUp()

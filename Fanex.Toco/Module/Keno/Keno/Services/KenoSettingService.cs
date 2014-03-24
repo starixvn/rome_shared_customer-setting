@@ -10,13 +10,12 @@
 namespace Fanex.CustomerSetting.Module.Keno.Services
 {
     using System.Collections.Generic;
+    using Fanex.CustomerSetting.Module.Core.Criteria;
     using Fanex.CustomerSetting.Module.Core.Models;
     using Fanex.CustomerSetting.Module.Keno.Criteria;
     using Fanex.CustomerSetting.Module.Keno.Entities;
     using Fanex.CustomerSetting.Module.Keno.Repositories;
     using Fanex.CustomerSetting.Module.Keno.ViewModels;
-    using Fanex.NAP.Framework.Data;
-    using Fanex.CustomerSetting.Module.Core.Criteria;
 
     /// <summary>
     /// Customer Service.

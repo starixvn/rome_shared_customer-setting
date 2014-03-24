@@ -14,6 +14,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
     using Fanex.Common.Extensions;
     using Fanex.CustomerSetting.Module.Core.Models;
     using Fanex.CustomerSetting.Module.Keno.Entities;
+    using Fanex.CustomerSetting.Module.Keno.Helpers;
     using Fanex.CustomerSetting.Module.Keno.ViewModels;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
@@ -43,8 +44,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
                 using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
                 {
                     superSetting.CustomerInformation = ReadCustomerInformationData(reader);
-                    superSetting.BetSettings = ReadBetLimitData(reader);
-                    superSetting.PositionTakings = ReadSuperPositionTakingData(reader);
+                    superSetting.BetSettings = reader.NextResult() ? ReadBetLimitData(reader) : null;
+                    superSetting.PositionTakings = reader.NextResult() ? ReadSuperPositionTakingData(reader) : null;
                 }
             }
 
@@ -70,8 +71,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
                 using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
                 {
                     masterSetting.CustomerInformation = ReadCustomerInformationData(reader);
-                    masterSetting.BetSettings = ReadBetLimitData(reader);
-                    masterSetting.PositionTakings = ReadMasterPositionTakingData(reader);
+                    masterSetting.BetSettings = reader.NextResult() ? ReadBetLimitData(reader) : null;
+                    masterSetting.PositionTakings = reader.NextResult() ? ReadMasterPositionTakingData(reader) : null;
                 }
             }
 
@@ -97,8 +98,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
                 using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
                 {
                     agentSetting.CustomerInformation = ReadCustomerInformationData(reader);
-                    agentSetting.BetSettings = ReadBetLimitData(reader);
-                    agentSetting.PositionTakings = ReadAgentPositionTakingData(reader);
+                    agentSetting.BetSettings = reader.NextResult() ? ReadBetLimitData(reader) : null;
+                    agentSetting.PositionTakings = reader.NextResult() ? ReadAgentPositionTakingData(reader) : null;
                 }
             }
 
@@ -124,8 +125,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
                 using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
                 {
                     memberSetting.CustomerInformation = ReadCustomerInformationData(reader);
-                    memberSetting.BetSettings = ReadBetLimitData(reader);
-                    memberSetting.PositionTakings = ReadMemberPositionTakingInCaseOfAgentEditMember(reader);
+                    memberSetting.BetSettings = reader.NextResult() ? ReadBetLimitData(reader) : null;
+                    memberSetting.PositionTakings = reader.NextResult() ? ReadMemberPositionTakingInCaseOfAgentEditMember(reader) : null;
                 }
             }
 
@@ -151,8 +152,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
                 using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
                 {
                     memberSetting.CustomerInformation = ReadCustomerInformationData(reader);
-                    memberSetting.BetSettings = ReadBetLimitData(reader);
-                    memberSetting.PositionTakings = ReadMemberPositionTakingInCaseOfSuperEditMember(reader);
+                    memberSetting.BetSettings = reader.NextResult() ? ReadBetLimitData(reader) : null;
+                    memberSetting.PositionTakings = reader.NextResult() ? ReadMemberPositionTakingInCaseOfSuperEditMember(reader) : null;
                 }
             }
 
@@ -178,8 +179,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
                 using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
                 {
                     memberSetting.CustomerInformation = ReadCustomerInformationData(reader);
-                    memberSetting.BetSettings = ReadBetLimitData(reader);
-                    memberSetting.PositionTakings = ReadMemberPositionTakingInCaseOfMasterEditMember(reader);
+                    memberSetting.BetSettings = reader.NextResult() ? ReadBetLimitData(reader) : null;
+                    memberSetting.PositionTakings = reader.NextResult() ? ReadMemberPositionTakingInCaseOfMasterEditMember(reader) : null;
                 }
             }
 
@@ -207,6 +208,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
             while (dataReader.Read())
             {
                 customerInformation = new CustomerInformation();
+                customerInformation.CustId = dataReader.HasColumn("custid") ? dataReader.ToInt("custid") : 0;
+                customerInformation.Username = dataReader.HasColumn("username") ? dataReader.ToString("username") : string.Empty;
                 customerInformation.FirstName = dataReader.ToString("firstname");
                 customerInformation.LastName = dataReader.ToString("lastname");
                 customerInformation.Phone = dataReader.ToString("phone");
@@ -229,17 +232,17 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
             {
                 var bettingSetting = new BetSetting
                 {
-                    BetTypeId = dataReader.ToInt("IBCBetTypeID"),
-                    MinBet = dataReader.ToDecimal("MinBet"),
-                    MaxBet = dataReader.ToDecimal("MaxBet"),
-                    MaxPerMatch = dataReader.ToDecimal("MaxPerGameType"),
-                    IsEnabled = !dataReader.ToBool("IsDisabled"),
-                    IsDownlinesEnabled = !dataReader.ToBool("DisableDownlinesKeno"),
+                    BetTypeId = dataReader.HasColumn("IBCBetTypeID") ? dataReader.ToInt("IBCBetTypeID") : 0,
+                    MinBet = dataReader.HasColumn("MinBet") ? dataReader.ToDecimal("MinBet") : 0,
+                    MaxBet = dataReader.HasColumn("MaxBet") ? dataReader.ToDecimal("MaxBet") : 0,
+                    MaxPerMatch = dataReader.HasColumn("MaxPerGameType") ? dataReader.ToDecimal("MaxPerGameType") : 0,
+                    IsEnabled = dataReader.HasColumn("IsDisabled") ? !dataReader.ToBool("IsDisabled") : false,
+                    IsDownlinesEnabled = dataReader.HasColumn("DisableDownlinesKeno") ? !dataReader.ToBool("DisableDownlinesKeno") : false,
                     Upline = new BetSetting()
                     {
-                        MinBet = !dataReader.IsDBNull("MinBet_Min") ? dataReader.ToDecimal("MinBet_Min") : 0,
-                        MaxBet = !dataReader.IsDBNull("MaxBet_Max") ? dataReader.ToDecimal("MaxBet_Max") : 0,
-                        MaxPerMatch = !dataReader.IsDBNull("MaxPerMatch_Max") ? dataReader.ToDecimal("MaxPerMatch_Max") : 0
+                        MinBet = dataReader.HasColumn("MinBet_Min") ? dataReader.ToDecimal("MinBet_Min") : 0,
+                        MaxBet = dataReader.HasColumn("MaxBet_Max") ? dataReader.ToDecimal("MaxBet_Max") : 0,
+                        MaxPerMatch = dataReader.HasColumn("MaxPerMatch_Max") ? dataReader.ToDecimal("MaxPerMatch_Max") : 0
                     }
                 };
 
@@ -347,8 +350,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
                 {
                     BetTypeId = dataReader.ToInt("BetType"),
                     A1 = dataReader.ToDouble("apositiontaking"),
-                    N2 = dataReader.ToDouble("minpositiontaking"),
-                    A2 = dataReader.ToDouble("maxpositiontaking"),
+                    N2 = dataReader.ToDouble("apositiontaking_min"),
+                    A2 = dataReader.ToDouble("apositiontaking_max"),
                     Comm = dataReader.ToDouble("playerdiscount"),
                     AComm = dataReader.ToDouble("playerdiscount_max")
                 };

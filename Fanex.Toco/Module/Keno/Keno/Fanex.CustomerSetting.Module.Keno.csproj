@@ -164,6 +164,7 @@
     <Compile Include="Entities\MasterPositionTaking.cs" />
     <Compile Include="Entities\SuperPositionTaking.cs" />
     <Compile Include="Entities\CustomerSettingBase.cs" />
+    <Compile Include="Helpers\DataRecordExtensions.cs" />
     <Compile Include="Helpers\IMessageHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helpers\MessageHelper.cs" />
