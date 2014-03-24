@@ -26,8 +26,8 @@ KenoModule.service('dataService', function () {
             "isEnabled": isEnabled,
             "isBetSettingUpdated": false,
             "isDownlinesEnabled": isDownlinesEnabled,
-            "isStatusUpdated" : false,
-            "isValid" : true,
+            "isStatusUpdated": false,
+            "isValid": true,
             "upline": {
                 "minBet": betValue - 1,
                 "maxBet": roleId == 4 ? 0 : (betValue + 1) * 10,
@@ -42,7 +42,31 @@ KenoModule.service('dataService', function () {
         var betSettings = [];
 
         for (var i = 6; i > 1; i--) {
-            var betSettingTmp = createBetSetting(i, 100 * i, true, false);
+            var isEnable = false;
+            var isDownlineEnable = false;
+            switch (i) {
+                case 6:
+                    isEnable = false;
+                    isDownlineEnable = false;
+                    break;
+                case 5:
+                    isEnable = false;
+                    isDownlineEnable = false;
+                    break;
+                case 4:
+                    isEnable = true;
+                    isDownlineEnable = true;
+                    break;
+                case 3:
+                    isEnable = true;
+                    isDownlineEnable = false;
+                    break;
+                case 2:
+                    isEnable = true;
+                    isDownlineEnable = false;
+                    break;
+            }
+            var betSettingTmp = createBetSetting(i, 100 * i, isEnable, isDownlineEnable);
             betSettings.push(betSettingTmp);
         }
 
@@ -81,7 +105,7 @@ KenoModule.service('dataService', function () {
             "s1": 0.2,
             "uS1": 0.4,
             "iS1": boolValue2,
-            "m1": 0.1,
+            "m1": 0.7,
             "uM1": 0.2,
             "iM1": boolValue2
         };
@@ -122,11 +146,15 @@ KenoModule.service('dataService', function () {
                 positionTaking.isUpdatePT = false;
                 positionTaking.isUpdateS1 = false;
                 positionTaking.isUpdateUS1 = false;
+                positionTaking.s1max = 0.9;
+                positionTaking.s1us1min = 0.1;
                 break;
             case 31:
                 positionTaking.isUpdatePT = false;
                 positionTaking.isUpdateM1 = false;
                 positionTaking.isUpdateUM1 = false;
+                positionTaking.m1max = 0.5;
+                positionTaking.m1um1min = 0.1;
                 break;
             default:
                 break;

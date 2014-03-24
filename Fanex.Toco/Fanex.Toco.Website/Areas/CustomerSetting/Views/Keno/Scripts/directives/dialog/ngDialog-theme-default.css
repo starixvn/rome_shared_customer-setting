@@ -72,14 +72,13 @@
   -webkit-animation: ngdialog-flyin .5s;
   animation: ngdialog-flyin .5s;
   background: #f0f0f0;
-  border-radius: 5px;
   color: #444;
-  font-family: 'Helvetica',sans-serif;
-  font-size: 1.1em;
+  font-family: Tahoma,Arial,helvetica,sans-serif;
+  font-size:8pt;
   line-height: 1.5em;
   margin: 0 auto;
   max-width: 100%;
-  padding: 1em;
+  padding: 1px;
   position: relative;
   width: 450px;
 }
@@ -95,16 +94,16 @@
 .ngdialog.ngdialog-theme-default .ngdialog-close:before {
   background: transparent;
   border-radius: 3px;
-  color: #bbb;
+  color: #D00000 ;
   content: '\00D7';
   font-size: 26px;
   font-weight: 400;
   height: 30px;
   line-height: 26px;
   position: absolute;
-  right: 3px;
+  right: 0px;
   text-align: center;
-  top: 3px;
+  top: 0px;
   width: 30px;
 }
 
@@ -115,6 +114,11 @@
 
 .ngdialog.ngdialog-theme-default .ngdialog-message {
   margin-bottom: .5em;
+    background: #3C3C3C;
+  color: #FFFFFF;
+    height: 26px;
+     font-weight: bold;
+       padding: 5px;
 }
 
 .ngdialog.ngdialog-theme-default .ngdialog-input {
@@ -194,3 +198,4 @@
   background: #e0e0e0;
   color: #777;
 }
+

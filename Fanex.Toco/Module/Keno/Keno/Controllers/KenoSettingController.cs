@@ -49,8 +49,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditMaster")]
         public ActionResult EditMaster(int custId)
         {
-            var customerSetting = _kenoSettingService.GetMasterSetting(custId);
-            return View(Constants.EditMasterCshtml, customerSetting);
+            //var customerSetting = _kenoSettingService.GetMasterSetting(custId);
+            //return View(Constants.EditMasterCshtml, customerSetting);
+            return View(Constants.EditMasterCshtml);
         }
 
         [HttpPost]
@@ -91,8 +92,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "MasterEditMember")]
         public ActionResult MasterEditMember(int custId)
         {
-            var customerSetting = _kenoSettingService.GetSettingInCaseOfMasterEditMember(custId);
-            return View(Constants.MasterEditMemberCshtml, customerSetting);
+            //var customerSetting = _kenoSettingService.GetSettingInCaseOfMasterEditMember(custId);
+            //return View(Constants.MasterEditMemberCshtml, customerSetting);
+            return View(Constants.MasterEditMemberCshtml);
         }
 
         [HttpPost]

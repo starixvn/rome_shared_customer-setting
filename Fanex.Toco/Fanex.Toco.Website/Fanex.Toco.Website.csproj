@@ -235,7 +235,7 @@
     <Content Include="Areas\CustomerSetting\Views\Keno\EnableStatus\Scripts\KenoStatusController.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\EnableStatus\Styles\EnableRacing.css" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\controllers\bet-setting.controller.js" />
-    <Content Include="Areas\CustomerSetting\customer-information.controller.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\controllers\customer-information.controller.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\controllers\main.controller.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\controllers\position-taking.controller.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\directives\CommonDirective.js" />
