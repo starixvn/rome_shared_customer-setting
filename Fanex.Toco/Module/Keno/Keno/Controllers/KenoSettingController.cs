@@ -64,8 +64,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditAgent")]
         public ActionResult EditAgent(int custId)
         {
-            var customerSetting = _kenoSettingService.GetAgentSetting(custId);
-            return View(Constants.EditAgentCshtml, customerSetting);
+            //var customerSetting = _kenoSettingService.GetAgentSetting(custId);
+            //return View(Constants.EditAgentCshtml, customerSetting);
+            return View(Constants.EditAgentCshtml);
         }
 
         [HttpPost]

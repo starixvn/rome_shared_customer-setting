@@ -1,10 +1,10 @@
 ﻿<div class="ngdialog-message">
     Confirm Update Members's PT
 </div>
-<div>
-        You have changed this Master not to take auto position taking.</div>
-    <div>
-        Do you want to update all member's position taking to:</div>
+<div style="padding-left: 15px;">
+    You have changed this Master not to take auto position taking.</div>
+<div style="padding-left: 15px;">
+    Do you want to update all member's position taking to:</div>
 <div ng-repeat="positionTaking in positionTakingList " ng-model="positionTaking">
     <div ng-if="positionTaking.isConfirmIsAuto" style="margin-top: 5px; padding-left: 50px;">
         <span ng-bind="positionTaking.betTypeName" style="margin-right: 10px;"></span>

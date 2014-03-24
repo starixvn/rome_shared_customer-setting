@@ -30,23 +30,4 @@
     </tr>
     <tr ng-repeat="positionTaking in positionTakingList" agent-position-taking-element ng-model="positionTaking" index="$index">
     </tr>
-    <script type="text/ng-template"  id="popupId">
-        <div class="ngdialog-message">
-            <h3>
-                ngDialog template</h3>
-        <div ng-repeat="positionTaking in  positionTakingList" ng-model="positionTaking">
-            <div ng-if="positionTaking.isConfirmIsAuto" style="margin-top: 5px; padding-left: 50px;">
-                <span ng-bind="positionTaking.betTypeName" style="margin-right: 10px;"></span>
-                <select class="col60" ng-model="positionTaking.newMemberPT" ng-options="value for value in memberNewValueRange">
-                </select>
-            </div>
-        </div>
-        <div class="ngdialog-buttons">
-            <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-dialog-class="ngdialog-theme-default"
-                ng-click="setValueAllMember(false);" ng-dialog-close-previous>
-                NO</button>
-            <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="setValueAllMember(true);">
-                YES</button>
-        </div>
-    </script>
 </table>
