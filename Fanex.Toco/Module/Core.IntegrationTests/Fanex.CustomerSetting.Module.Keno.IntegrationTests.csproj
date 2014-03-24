@@ -34,11 +34,23 @@
     <Reference Include="ExpectedObjects">
       <HintPath>..\..\packages\ExpectedObjects.1.1.1\lib\net40\ExpectedObjects.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.Data">
+      <HintPath>..\..\_Dependencies\Fanex\Fanex.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.NAP.Framework">
+      <HintPath>..\..\_Dependencies\Fanex\Fanex.NAP.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
+      <HintPath>..\..\_Dependencies\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
     <Reference Include="Moq">
       <HintPath>..\..\packages\Moq.4.2.1402.2112\lib\net40\Moq.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.Mocks">
+      <HintPath>..\..\packages\RhinoMocks.3.6.1\lib\net\Rhino.Mocks.dll</HintPath>
     </Reference>
     <Reference Include="Should">
       <HintPath>..\..\packages\Should.1.1.20\lib\Should.dll</HintPath>
@@ -61,11 +73,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KenoSettingRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Fanex.CustomerSetting.Module.Core.csproj">
+      <Project>{07B083E4-AA0A-41BF-A0FC-172C0E2A49B2}</Project>
+      <Name>Fanex.CustomerSetting.Module.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Keno\Keno\Fanex.CustomerSetting.Module.Keno.csproj">
+      <Project>{4204CDC3-7A3E-46C6-A97F-4CB07D2DF45E}</Project>
+      <Name>Fanex.CustomerSetting.Module.Keno</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SpNames.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -20,6 +20,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Services
     using Fanex.NAP.Framework.Data;
     using NUnit.Framework;
     using Rhino.Mocks;
+    using Fanex.CustomerSetting.Module.Core.Criteria;
 
     /// <summary>
     /// TODO: Update summary.
@@ -97,6 +98,22 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Services
 
             // Assert
             Assert.IsInstanceOf<List<Result>>(result);
+        }
+
+        [Test]
+        public void UpdateBetSetting_IsInvalidCriteria_ShouldReturnEmptyList()
+        {
+            // Arrange
+            var kenoSettingService = new KenoSettingService(_stubRepository, _stubCriteriaGenerator);
+            _stubCriteriaGenerator.Stub(c => c.CreateUpdateBetSettingCriteria(Arg<CustomerInformation>.Is.Anything, Arg<BetSetting>.Is.Anything))
+                .IgnoreArguments()
+                .Return(new InvalidCriteria());
+
+            // Act
+            var result = kenoSettingService.UpdateBetSetting(_customerSetting.CustomerInformation, _customerSetting.BetSettings[0]);
+
+            // Assert
+            Assert.AreEqual(0, result.Count);
         }
 
         [Test]

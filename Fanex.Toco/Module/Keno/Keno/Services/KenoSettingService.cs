@@ -16,6 +16,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
     using Fanex.CustomerSetting.Module.Keno.Repositories;
     using Fanex.CustomerSetting.Module.Keno.ViewModels;
     using Fanex.NAP.Framework.Data;
+    using Fanex.CustomerSetting.Module.Core.Criteria;
 
     /// <summary>
     /// Customer Service.
@@ -139,7 +140,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
         internal IList<Result> UpdateBetSetting(CustomerInformation customerInformation, BetSetting betSetting)
         {
             var criteria = _criteriaGeneratorService.CreateUpdateBetSettingCriteria(customerInformation, betSetting);
-            return _kenoSettingRepository.UpdateBetSetting(criteria);
+            return criteria is InvalidCriteria ? new List<Result>() : _kenoSettingRepository.UpdateBetSetting(criteria);
         }
 
         /// <summary>
