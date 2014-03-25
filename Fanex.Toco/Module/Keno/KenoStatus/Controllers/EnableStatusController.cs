@@ -108,12 +108,15 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
 
             foreach (BetTypeStatus status in newStatus.BetTypeStatusList)
             {
-                criteria.Bettype = status.BetTypeID;
-                criteria.Disable = status.IsDisabled;
-                criteria.DisableDownLines = status.IsDisabledDownlines;
-                var result=_statusRepository.UpdateStatus(criteria);
-                errCode.Add(Convert.ToString(result["errcode"]));
-                errMsg.Add(Convert.ToString(result["errmsg"]));
+                if (!status.IsDisabledUpline)
+                {
+                    criteria.Bettype = status.BetTypeID;
+                    criteria.Disable = status.IsDisabled;
+                    criteria.DisableDownLines = status.IsDisabledDownlines;
+                    var result = _statusRepository.UpdateStatus(criteria);
+                    errCode.Add(Convert.ToString(result["errcode"]));
+                    errMsg.Add(Convert.ToString(result["errmsg"]));
+                }
             }
 
             return this.JsonBase(new {
