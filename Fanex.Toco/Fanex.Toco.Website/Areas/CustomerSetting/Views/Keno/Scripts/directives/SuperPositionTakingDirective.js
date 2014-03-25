@@ -14,11 +14,9 @@ KenoModule.directive('superPositionTakingElement', ['commonService', function (c
             $scope.originalPositionTaking = angular.copy($scope.positionTaking);
 
             $scope.maxPTRange = commonService.getRangePTValue($scope.positionTaking.l4, 0);
-            $scope.commRange = commonService.getRangeCommValue($scope.positionTaking.sCommMax, 0);
 
             $scope.monitorSaveButton = function () {
                 if ($scope.positionTaking.isUpdateS4
-                    || $scope.positionTaking.isUpdateSCO
                     || $scope.positionTaking.isUpdateN4) {
                     $scope.positionTaking.isUpdatePT = true;
                 }
@@ -36,11 +34,6 @@ KenoModule.directive('superPositionTakingElement', ['commonService', function (c
                 }
 
                 $scope.minPTRange = commonService.getRangePTValue($scope.positionTaking.s4, 0);
-                $scope.monitorSaveButton();
-            }, true);
-
-            $scope.$watch('positionTaking.sComm', function () {
-                $scope.positionTaking.isUpdateSCO = $scope.originalPositionTaking.sComm != $scope.positionTaking.sComm ? true : false;
                 $scope.monitorSaveButton();
             }, true);
 

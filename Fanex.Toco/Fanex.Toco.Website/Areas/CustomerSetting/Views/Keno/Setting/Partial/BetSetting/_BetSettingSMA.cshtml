@@ -23,15 +23,15 @@
             <td class="formatCol c b header col23percent">
                 <span>@LayoutTexts.MaxPerMatch</span>
             </td>
-            <td class=" formatCol c b header col8percent">
-                  <div class=" divInline" ng-switch="roleId">
-                    <span ng-switch-when="4">@LayoutTexts.Super </span>
-                    <span ng-switch-when="3">@LayoutTexts.Master </span>
-                    <span ng-switch-when="2">@LayoutTexts.Agent </span>
-                    <span ng-switch-default>@LayoutTexts.Member</span>
+            <td class=" formatCol c b header ">
+                  <div ng-switch="roleId">
+                    <span class="col8percent" ng-switch-when="4">@LayoutTexts.Super </span>
+                    <span class="col8percent" ng-switch-when="3">@LayoutTexts.Master </span>
+                    <span class="col8percent" ng-switch-when="2">@LayoutTexts.Agent </span>
+                    <span class="col17percent" ng-switch-default>@LayoutTexts.Member</span>
                 </div>
             </td>
-            <td class=" formatCol c b header col8percent">
+            <td  ng-if="roleId != 1" class=" formatCol c b header col8percent">
                 <span>@LayoutTexts.Downlines</span>
             </td>
         </tr>

@@ -100,7 +100,7 @@ KenoModule.service('dataService', function () {
             "n2": 0.1,
             "l2": 0.6,
             "aComm": 0.0045,
-            "a1": 0.5,
+            "a1": 0.2,
             "comm": 0.0035,
             "s1": 0.2,
             "uS1": 0.4,

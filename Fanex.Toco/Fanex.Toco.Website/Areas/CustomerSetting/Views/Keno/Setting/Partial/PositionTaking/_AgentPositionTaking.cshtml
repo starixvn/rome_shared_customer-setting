@@ -12,20 +12,17 @@
         <td class="col15percent formatCol c b">
             @LayoutTexts.CountryMarket
         </td>
-        <td class="col19percent formatCol c b">
+        <td class="col26percent formatCol c b">
             @LayoutTexts.MasterPT
         </td>
         <td class="col9percent formatCol c b" ng-hide="positionTakingList[0].isDisabledMPT">
             @LayoutTexts.IsAuto
         </td>
-        <td class="col19percent formatCol c b">
+        <td class="col25percent formatCol c b">
             @LayoutTexts.AgentMaxPT
         </td>
-        <td class="col19percent formatCol c b">
+        <td class="col25percent formatCol c b">
             @LayoutTexts.AgentMinPT
-        </td>
-        <td class="col19percent formatCol c b">
-            @LayoutTexts.AgentComm
         </td>
     </tr>
     <tr ng-repeat="positionTaking in positionTakingList" agent-position-taking-element ng-model="positionTaking" index="$index">

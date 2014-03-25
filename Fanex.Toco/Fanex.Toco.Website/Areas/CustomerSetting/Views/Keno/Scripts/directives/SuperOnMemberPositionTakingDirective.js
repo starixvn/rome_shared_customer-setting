@@ -9,7 +9,7 @@ KenoModule.directive('superOnMemberPositionTakingElement', ['commonService', fun
         },
         templateUrl: '/Areas/CustomerSetting/Views/Keno/Setting/Partial/PositionTaking/SuperOnMemberPositionTaking.htm',
         link: function ($scope, elem, attr, ctrl) {
-            console.log($scope.positionTaking)hh`;
+//            console.log($scope.positionTaking);
 
             $scope.originalPositionTaking = angular.copy($scope.positionTaking);
 

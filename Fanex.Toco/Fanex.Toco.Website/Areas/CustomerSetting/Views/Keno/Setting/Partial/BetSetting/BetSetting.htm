@@ -10,15 +10,16 @@
     <label>
         <input ng-disabled="$parent.$parent.isCopyAll && index != 0" class="r col50percent"
             type="text" ng-model="betSetting.minBet" bet-setting-input min-value="{{betSetting.upline.minBet}}"
-            max-value="{{betSetting.maxBet}}" /></label> <span ng-model="betSetting.upline.minBet"
-                bet-setting-constrain="1"></span>
+            max-value="{{betSetting.maxBet}}" /></label>
+    <span ng-model="betSetting.upline.minBet" bet-setting-constrain="1"></span>
 </td>
 <td class="formatCol">
     <div>
         <input ng-disabled="$parent.$parent.isCopyAll  && index != 0" class="r col50percent"
             type="text" ng-model="betSetting.maxBet" bet-setting-input min-value="{{betSetting.minBet}}"
             max-value="{Math.min({{betSetting.upline.maxBet}},{{betSetting.maxPerMatch}})}" />
-    <span ng-model="betSetting.upline.maxBet" bet-setting-constrain="2"></span></div>
+        <span ng-model="betSetting.upline.maxBet" bet-setting-constrain="2"></span>
+    </div>
 </td>
 <td class=" formatCol ">
     <span>
@@ -28,14 +29,10 @@
                 bet-setting-constrain="2"></span>
 </td>
 <td class="formatCol c">
-    <label class="checkbox">
-        <input ng-disabled="isStatusUIDisabled || ($parent.$parent.isCopyAll  && index != 0)"
-            type="checkbox" ng-model="betSetting.isEnabled" />
-    </label>
+    <input ng-disabled="isStatusUIDisabled || ($parent.$parent.isCopyAll  && index != 0)"
+        type="checkbox" ng-model="betSetting.isEnabled" />
 </td>
-<td class="formatCol c">
-    <label class="checkbox">
-        <input ng-disabled="isDownlinechkDisabled || ($parent.$parent.isCopyAll  && index != 0)"
-            type="checkbox" ng-model="betSetting.isDownlinesEnabled" />
-    </label>
+<td ng-if="$parent.roleId != 1" class="formatCol c">
+    <input ng-disabled="isDownlinechkDisabled || ($parent.$parent.isCopyAll  && index != 0)"
+        type="checkbox" ng-model="betSetting.isDownlinesEnabled" />
 </td>
