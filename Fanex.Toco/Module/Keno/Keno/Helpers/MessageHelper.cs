@@ -21,6 +21,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Helpers
         private const string Separator = "\a";
         private const int NoDataIsChangedCode = 1000;
         private const int MessageIsNotValidCode = 1001;
+        private const int SuccessfulCode = 0;
         private string _errorCode = string.Empty;
         private string _errorMsg = string.Empty;
         private IList<Result> _errorResults;
@@ -76,9 +77,11 @@ namespace Fanex.CustomerSetting.Module.Keno.Helpers
             return errorCode;
         }
 
-        internal static bool IfThisIsAnError(int errorCode)
+        internal static bool IfThisIsAnError(string errorCode)
         {
-            return errorCode != 0;
+            int formattedErrorCode = SuccessfulCode;
+            int.TryParse(errorCode, out formattedErrorCode);
+            return string.IsNullOrEmpty(errorCode) ? false : formattedErrorCode != SuccessfulCode;
         }
 
         internal bool NoDataIsChanged()
@@ -93,7 +96,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Helpers
 
             for (int i = 0; i < errorCodes.Length; i++)
             {
-                AddErrorMessage(Convert.ToInt32(errorCodes[i]), errorMsgs[i]);
+                AddErrorMessage(errorCodes[i], errorMsgs[i]);
             }
         }
 
@@ -103,20 +106,20 @@ namespace Fanex.CustomerSetting.Module.Keno.Helpers
             {
                 _errorResults.Add(new Result()
                 {
-                    ErrorCode = 0,
-                    ErrorMessage = GetResourceFromErrorCode("0")
+                    ErrorCode = SuccessfulCode,
+                    ErrorMessage = GetResourceFromErrorCode(SuccessfulCode.ToString())
                 });
             }
         }
 
-        internal void AddErrorMessage(int errorCode, string errorMsg)
+        internal void AddErrorMessage(string errorCode, string errorMsg)
         {
             if (IfThisIsAnError(errorCode))
             {
                 _errorResults.Add(new Result()
                 {
-                    ErrorCode = errorCode,
-                    ErrorMessage = errorCode > 0 ? errorMsg : GetResourceFromErrorCode(errorCode.ToString())
+                    ErrorCode = Convert.ToInt32(errorCode),
+                    ErrorMessage = Convert.ToInt32(errorCode) > 0 ? errorMsg : GetResourceFromErrorCode(errorCode)
                 });
             }
         }

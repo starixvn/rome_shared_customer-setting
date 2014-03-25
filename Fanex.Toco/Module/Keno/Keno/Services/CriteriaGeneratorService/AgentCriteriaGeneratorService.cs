@@ -42,7 +42,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
             {
                 CustId = customerInformation.CustId,
                 SportType = Constants.SportType,
-                BetTypeId = betSetting.BetTypeId,
+                BetType = betSetting.BetTypeId,
                 UpdateStatus = betSetting.IsStatusUpdated,
                 Disable = !betSetting.IsEnabled,
                 DisableDownLines = !betSetting.IsDownlinesEnabled,

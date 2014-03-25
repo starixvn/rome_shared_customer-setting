@@ -66,6 +66,16 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Repositories
             mockDataReader.Stub(d => d["MinBet_Min"]).Return(10);
             mockDataReader.Stub(d => d["MaxBet_Max"]).Return(120);
             mockDataReader.Stub(d => d["MaxPerMatch_Max"]).Return(1500);
+            mockDataReader.Stub(d => d.FieldCount).Return(9);
+            mockDataReader.Stub(d => d.GetName(0)).Return("IBCBetTypeID");
+            mockDataReader.Stub(d => d.GetName(1)).Return("MinBet");
+            mockDataReader.Stub(d => d.GetName(2)).Return("MaxBet");
+            mockDataReader.Stub(d => d.GetName(3)).Return("MaxPerGameType");
+            mockDataReader.Stub(d => d.GetName(4)).Return("IsDisabled");
+            mockDataReader.Stub(d => d.GetName(5)).Return("DisableDownlinesKeno");
+            mockDataReader.Stub(d => d.GetName(6)).Return("MinBet_Min");
+            mockDataReader.Stub(d => d.GetName(7)).Return("MaxBet_Max");
+            mockDataReader.Stub(d => d.GetName(8)).Return("MaxPerMatch_Max");
             mockDataReader.Stub(d => d.Read()).Return(true).Repeat.Times(5);
 
             // Act
@@ -179,8 +189,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Repositories
             mockDataReader.Stub(d => d["BetType"]).Return(4).Repeat.Twice();
             mockDataReader.Stub(d => d["BetType"]).Return(5).Repeat.Twice();
             mockDataReader.Stub(d => d["apositiontaking"]).Return(100);
-            mockDataReader.Stub(d => d["minpositiontaking"]).Return(10);
-            mockDataReader.Stub(d => d["maxpositiontaking"]).Return(100);
+            mockDataReader.Stub(d => d["apositiontaking_min"]).Return(10);
+            mockDataReader.Stub(d => d["apositiontaking_max"]).Return(100);
             mockDataReader.Stub(d => d["playerdiscount"]).Return(50);
             mockDataReader.Stub(d => d["playerdiscount_max"]).Return(10);
             mockDataReader.Stub(d => d.Read()).Return(true).Repeat.Times(5);

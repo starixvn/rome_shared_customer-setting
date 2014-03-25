@@ -50,7 +50,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Helper
             var messageHelper = new MessageHelper(string.Empty, string.Empty);
 
             // Act
-            messageHelper.AddErrorMessage(0, string.Empty);
+            messageHelper.AddErrorMessage("0", string.Empty);
 
             // Assert
             Assert.AreEqual(0, messageHelper.ErrorResults.Count());
@@ -63,7 +63,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Helper
             var messageHelper = new MessageHelper(string.Empty, string.Empty);
 
             // Act
-            messageHelper.AddErrorMessage(100, "Error Message for 100");
+            messageHelper.AddErrorMessage("100", "Error Message for 100");
 
             // Assert
             Assert.AreEqual(1, messageHelper.ErrorResults.Count());
