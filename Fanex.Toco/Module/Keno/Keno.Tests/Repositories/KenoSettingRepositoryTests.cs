@@ -114,7 +114,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Repositories
             mockDataReader.Stub(d => d["spositiontaking"]).Return(100);
             mockDataReader.Stub(d => d["MaxPositiontaking"]).Return(0.85);
             mockDataReader.Stub(d => d["sdiscount"]).Return(10);
-            mockDataReader.Stub(d => d["smaxdiscount"]).Return(20);
+            mockDataReader.Stub(d => d["maxsdiscount"]).Return(20);
             mockDataReader.Stub(d => d.Read()).Return(true).Repeat.Times(5);
 
             // Act

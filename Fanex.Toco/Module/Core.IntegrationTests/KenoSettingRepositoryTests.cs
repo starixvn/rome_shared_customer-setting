@@ -44,8 +44,18 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
         [Test]
         public void GetSuperSetting_ShouldRunNormally()
         {
-            var criteria = new GetSuperSettingCriteria() { CustId = 137509707 };
+            // Arrange
+            var criteria = new GetSuperSettingCriteria() { CustId = 137509731 };
+
+            // Act
             var result = _kenoSettingRepository.GetSuperSetting(criteria);
+
+            // Assert
+            Assert.IsNotNull(result.CustomerInformation);
+            Assert.IsNotNull(result.BetSettings);
+            Assert.AreEqual(7, result.BetSettings.Count);
+            Assert.IsNotNull(result.PositionTakings);
+            Assert.AreEqual(7, result.PositionTakings.Count);
         }
 
         [Test]

@@ -269,7 +269,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
                     N4 = dataReader.ToDouble("minpositiontaking"),
                     L4 = dataReader.ToDouble("MaxPositiontaking"),
                     SComm = dataReader.ToDouble("sdiscount"),
-                    SCommMax = dataReader.ToDouble("smaxdiscount")
+                    SCommMax = dataReader.ToDouble("maxsdiscount")
                 };
 
                 positionTakings.Add(bettingSetting);
