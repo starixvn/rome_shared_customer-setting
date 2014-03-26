@@ -149,7 +149,7 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
                 MPositionTaking = 10,
                 MPositionTaking_Min = 10,
                 UpdateAllMembers = true,
-                NewMPositionTaking = 10,
+                NewSPositionTaking = 10,
                 Discount = 0,
                 UpdatePositiontaking = false,
                 UpdateMinPositiontaking = false,

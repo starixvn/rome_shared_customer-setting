@@ -65,7 +65,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Criteria
 
         public bool UpdateAllMembers { get; set; }
 
-        public double NewMPositionTaking { get; set; }
+        public double NewSPositionTaking { get; set; }
 
         public double Discount { get; set; }
 

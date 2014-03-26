@@ -91,7 +91,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
                 MPositionTaking = masterPositionTaking.M3,
                 MPositionTaking_Min = masterPositionTaking.N3,
                 UpdateAllMembers = masterPositionTaking.IsUpdateAllMember,
-                NewMPositionTaking = masterPositionTaking.NewMemberPT,
+                NewSPositionTaking = masterPositionTaking.NewMemberPT,
                 Discount = 0,
                 UpdatePositiontaking = masterPositionTaking.IsUpdateM3,
                 UpdateMinPositiontaking = masterPositionTaking.IsUpdateN3,
