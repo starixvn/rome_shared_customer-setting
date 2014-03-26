@@ -4,7 +4,7 @@
     color: black;
     font-family: Tahoma,Arial,helvetica,sans-serif;
     font-size: 11px;
-    max-width: 200px;
+    min-width: 200px;
     padding: 5px 8px 4px;
     text-align: center;}
 

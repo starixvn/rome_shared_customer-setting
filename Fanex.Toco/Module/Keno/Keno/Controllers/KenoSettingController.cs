@@ -35,9 +35,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditSuper")]
         public ActionResult EditSuper(int custId)
         {
-            //var customerSetting = _kenoSettingService.GetSuperSetting(custId);
-            //return View(Constants.EditSuperCshtml, customerSetting);
-            return View(Constants.EditSuperCshtml);
+            var customerSetting = _kenoSettingService.GetSuperSetting(custId);
+            return View(Constants.EditSuperCshtml, customerSetting);
+            //return View(Constants.EditSuperCshtml);
         }
 
         [HttpPost]
