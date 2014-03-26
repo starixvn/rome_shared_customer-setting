@@ -9,11 +9,8 @@
 
 namespace Fanex.CustomerSetting.Module.Keno.Tests.Repositories
 {
-    using System;
     using System.Data;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
+    using Fanex.CustomerSetting.Module.Keno.Entities;
     using Fanex.CustomerSetting.Module.Keno.Repositories;
     using NUnit.Framework;
     using Rhino.Mocks;
@@ -37,7 +34,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Repositories
             mockDataReader.Stub(d => d.Read()).Return(true).Repeat.Times(1);
 
             // Act
-            var customerInformation = KenoSettingRepository.ReadCustomerInformationData(mockDataReader);
+            var customerInformation = KenoSettingRepository.ReadCustomerInformationData(mockDataReader, Roles.Agent);
 
             // Assert
             Assert.NotNull(customerInformation);
