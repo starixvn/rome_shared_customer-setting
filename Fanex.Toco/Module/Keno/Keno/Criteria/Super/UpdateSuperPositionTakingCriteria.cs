@@ -24,18 +24,18 @@ namespace Fanex.CustomerSetting.Module.Keno.Criteria
         public int BetType { get; set; }
 
         /// <summary>
-        /// Gets or sets the position taking of S4.
+        /// Gets or sets the value of S4.
         /// </summary>
         /// <value>
-        /// The position taking of S4.
+        /// The value of S4.
         /// </value>
         public double SPositionTaking { get; set; }
 
         /// <summary>
-        /// Gets or sets the position taking of N4.
+        /// Gets or sets the value of N4.
         /// </summary>
         /// <value>
-        /// The position taking of N4.
+        /// The value of N4.
         /// </value>
         public double Min_PositionTaking { get; set; }
 

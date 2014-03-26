@@ -116,9 +116,23 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
         {
             var criteria = new UpdateMasterBetSettingCriteria()
             {
+                CustId = 137509707,
+                SportType = Constants.SportType,
+                BetType = 1,
+                UpdateStatus = false,
+                Disable = true,
+                DisableDownLines = true,
+                UpdateMinMaxBet = false,
+                MinBet = 10,
+                MaxBet = 10,
+                MaxPerMatch = 10,
+                UserId = 1,
+                SubAccId = 1,
+                Ip = string.Empty,
+                Language = null
             };
 
-            //var result = _kenoSettingRepository.UpdateBetSetting(criteria);
+            var result = _kenoSettingRepository.UpdateBetSetting(criteria);
         }
 
         [Test]
@@ -126,9 +140,27 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
         {
             var criteria = new UpdateMasterPositionTakingCriteria()
             {
+                CustId = 1,
+                SportType = Constants.SportType,
+                BetType = 1,
+                SPositionTaking = 10,
+                Auto_SPositionTaking = 10,
+                IsAuto_SPositionTaking = true,
+                MPositionTaking = 10,
+                MPositionTaking_Min = 10,
+                UpdateAllMembers = true,
+                NewMPositionTaking = 10,
+                Discount = 0,
+                UpdatePositiontaking = false,
+                UpdateMinPositiontaking = false,
+                UpdateAutoPositionTaking = false,
+                UpdateCommission = false,
+                UserId = 1,
+                Ip = string.Empty,
+                Language = null
             };
 
-            //var result = _kenoSettingRepository.UpdatePositionTaking(criteria);
+            var result = _kenoSettingRepository.UpdatePositionTaking(criteria);
         }
 
         [Test]

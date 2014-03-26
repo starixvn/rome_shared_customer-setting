@@ -9,7 +9,6 @@
 
 namespace Fanex.CustomerSetting.Module.Keno.Services
 {
-    using Fanex.CustomerSetting.Module.Core.Criteria;
     using Fanex.CustomerSetting.Module.Keno.Criteria;
     using Fanex.CustomerSetting.Module.Keno.Entities;
     using Fanex.NAP.Framework.Data;
@@ -42,7 +41,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
             return new UpdateMasterBetSettingCriteria()
             {
                 CustId = customerInformation.CustId,
-                BetTypeId = betSetting.BetTypeId,
+                SportType = Constants.SportType,
+                BetType = betSetting.BetTypeId,
                 UpdateStatus = betSetting.IsStatusUpdated,
                 Disable = !betSetting.IsEnabled,
                 DisableDownLines = !betSetting.IsDownlinesEnabled,
@@ -83,12 +83,20 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
             return new UpdateMasterPositionTakingCriteria()
             {
                 CustId = customerInformation.CustId,
-                SportType = masterPositionTaking.SportTypeId,
+                SportType = Constants.SportType,
                 BetType = masterPositionTaking.BetTypeId,
-                SPositionTaking = masterPositionTaking.S4,
-                Min_PositionTaking = masterPositionTaking.N4,
-                Discount = masterPositionTaking.SComm,
-                UpdatePositionTaking = masterPositionTaking.IsUpdateS3,
+                SPositionTaking = masterPositionTaking.S3,
+                Auto_SPositionTaking = masterPositionTaking.US3,
+                IsAuto_SPositionTaking = masterPositionTaking.IS3,
+                MPositionTaking = masterPositionTaking.M3,
+                MPositionTaking_Min = masterPositionTaking.N3,
+                UpdateAllMembers = masterPositionTaking.IsUpdateAllMember,
+                NewMPositionTaking = masterPositionTaking.NewMemberPT,
+                Discount = 0,
+                UpdatePositiontaking = masterPositionTaking.IsUpdateM3,
+                UpdateMinPositiontaking = masterPositionTaking.IsUpdateN3,
+                UpdateAutoPositionTaking = masterPositionTaking.IsUpdateUS3,
+                UpdateCommission = false,
                 UserId = KenoSession.UserId,
                 Ip = KenoSession.Ip,
                 Language = customerInformation.Language

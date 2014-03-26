@@ -13,7 +13,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Criteria
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// UpdateSuperPositionTakingCriteria class.
+    /// UpdateMasterPositionTakingCriteria class.
     /// </summary>
     public class UpdateMasterPositionTakingCriteria : CriteriaBase
     {
@@ -23,15 +23,57 @@ namespace Fanex.CustomerSetting.Module.Keno.Criteria
 
         public int BetType { get; set; }
 
+        /// <summary>
+        /// Gets or sets the value of S3.
+        /// </summary>
+        /// <value>
+        /// The value of S3.
+        /// </value>
         public double SPositionTaking { get; set; }
 
-        public double Min_PositionTaking { get; set; }
+        /// <summary>
+        /// Gets or sets the value of US3.
+        /// </summary>
+        /// <value>
+        /// The value of US3.
+        /// </value>
+        public double Auto_SPositionTaking { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether IS3 is true or not.
+        /// </summary>
+        /// <value>
+        /// The value of IS3.
+        /// </value>
+        public bool IsAuto_SPositionTaking { get; set; }
+
+        /// <summary>
+        /// Gets or sets the value of M3.
+        /// </summary>
+        /// <value>
+        /// The value of M3.
+        /// </value>
+        public double MPositionTaking { get; set; }
+
+        /// <summary>
+        /// Gets or sets the value of N3.
+        /// </summary>
+        /// <value>
+        /// The value of N3.
+        /// </value>
+        public double MPositionTaking_Min { get; set; }
+
+        public bool UpdateAllMembers { get; set; }
+
+        public double NewMPositionTaking { get; set; }
 
         public double Discount { get; set; }
 
-        public bool UpdatePositionTaking { get; set; }
+        public bool UpdatePositiontaking { get; set; }
 
-        public bool UpdateMinPositionTaking { get; set; }
+        public bool UpdateMinPositiontaking { get; set; }
+
+        public bool UpdateAutoPositionTaking { get; set; }
 
         public bool UpdateCommission { get; set; }
 
@@ -41,7 +83,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Criteria
 
         public string Language { get; set; }
 
-        public int ErrCode { get; set; }
+        public string ErrCode { get; set; }
 
         public string ErrMsg { get; set; }
 

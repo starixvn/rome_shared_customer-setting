@@ -18,16 +18,23 @@ namespace Fanex.CustomerSetting.Module.Keno.ViewModels
     /// </summary>
     public class MasterSettingViewModel : CustomerSettingBase
     {
+        /// <summary>
+        /// Copies to one position taking.
+        /// </summary>
+        /// <param name="sourceMasterPositionTaking">The source master position taking.</param>
+        /// <param name="destinationMasterPositionTaking">The destination master position taking.</param>
         internal override void CopyToOnePositionTaking(dynamic sourceMasterPositionTaking, dynamic destinationMasterPositionTaking)
         {
-            destinationMasterPositionTaking.IS3 = sourceMasterPositionTaking.IS3;
             destinationMasterPositionTaking.S3 = sourceMasterPositionTaking.S3;
             destinationMasterPositionTaking.US3 = sourceMasterPositionTaking.US3;
-            destinationMasterPositionTaking.S4 = sourceMasterPositionTaking.S4;
+            destinationMasterPositionTaking.IS3 = sourceMasterPositionTaking.IS3;
             destinationMasterPositionTaking.M3 = sourceMasterPositionTaking.M3;
             destinationMasterPositionTaking.N3 = sourceMasterPositionTaking.N3;
-            destinationMasterPositionTaking.MComm = sourceMasterPositionTaking.MComm;
-            destinationMasterPositionTaking.SComm = sourceMasterPositionTaking.SComm;
+            destinationMasterPositionTaking.IsUpdateAllMember = sourceMasterPositionTaking.IsUpdateAllMember;
+            destinationMasterPositionTaking.NewMemberPT = sourceMasterPositionTaking.NewMemberPT;
+            destinationMasterPositionTaking.IsUpdateM3 = sourceMasterPositionTaking.IsUpdateM3;
+            destinationMasterPositionTaking.IsUpdateN3 = sourceMasterPositionTaking.IsUpdateN3;
+            destinationMasterPositionTaking.IsUpdateUS3 = sourceMasterPositionTaking.IsUpdateUS3;
         }
     }
 }

@@ -291,14 +291,14 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
                 var bettingSetting = new MasterPositionTaking
                 {
                     BetTypeId = dataReader.ToInt("IBCBetTypeID"),
-                    IS3 = dataReader.ToBool("IS3"),
-                    S3 = dataReader.ToDouble("spresetpositiontaking"),
-                    US3 = dataReader.ToDouble("US3"),
-                    S4 = dataReader.ToDouble("spositiontaking"),
-                    M3 = dataReader.ToDouble("m3"),
-                    N3 = dataReader.ToDouble("n3"),
-                    MComm = dataReader.ToDouble("mdiscount"),
-                    SComm = dataReader.ToDouble("mmaxdiscount")
+                    S4 = dataReader.ToDouble("spositiontaking_max"),
+                    S3 = dataReader.ToDouble("spositiontaking"),
+                    M3 = dataReader.ToDouble("mpositiontaking"),
+                    N3 = dataReader.ToDouble("minpositiontaking"),
+                    IS3 = dataReader.ToBool("isautopositiontaking"),
+                    US3 = dataReader.ToDouble("autopositiontaking"),
+                    MComm = dataReader.ToDouble("adiscount"),
+                    SComm = dataReader.ToDouble("discount_max")
                 };
 
                 positionTakings.Add(bettingSetting);
