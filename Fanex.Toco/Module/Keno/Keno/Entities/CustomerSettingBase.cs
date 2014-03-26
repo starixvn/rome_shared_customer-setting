@@ -11,6 +11,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
 {
     using System.Collections.Generic;
     using System.Linq;
+    using Fanex.CustomerSetting.Module.Core.Services;
 
     /// <summary>
     /// The CustomerSettingBase entity.
@@ -33,6 +34,13 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
             this.UpdatePositionTakingsInCaseOfCopyAll();
         }
 
+        public void UpdateRemainingInformation()
+        {
+            this.UpdateCopyAllInformation();
+            this.UpdateBetTypeNameForBetSetting();
+            this.UpdateBetTypeNameForPositionTaking();
+        }
+
         internal static bool IsCopyToItself(int currentBetTypeId, int copiedBetTypeId)
         {
             return currentBetTypeId == copiedBetTypeId;
@@ -52,6 +60,44 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
             betSetting.IsDownlinesEnabled = copiedBetSetting.IsDownlinesEnabled;
             betSetting.IsBetSettingUpdated = copiedBetSetting.IsBetSettingUpdated;
             betSetting.IsStatusUpdated = copiedBetSetting.IsStatusUpdated;
+        }
+
+        /// <summary>
+        /// Updates the bet type name for position taking.
+        /// </summary>
+        internal void UpdateBetTypeNameForPositionTaking()
+        {
+            if (this.PositionTakings == null || this.PositionTakings.Count == 0)
+            {
+                return;
+            }
+
+            foreach (var positionTaking in this.PositionTakings)
+            {
+                positionTaking.BetTypeName = CacheRef.GetBettype(positionTaking.BetTypeId);
+            }
+        }
+
+        /// <summary>
+        /// Updates the bet type name for bet setting.
+        /// </summary>
+        internal void UpdateBetTypeNameForBetSetting()
+        {
+            if (this.BetSettings == null || this.BetSettings.Count == 0)
+            {
+                return;
+            }
+
+            foreach (var betSetting in this.BetSettings)
+            {
+                betSetting.BetTypeName = CacheRef.GetBettype(betSetting.BetTypeId);
+            }
+        }
+
+        internal void UpdateCopyAllInformation()
+        {
+            this.PositionTakingCopyAll = new CopyAll();
+            this.BetSettingCopyAll = new CopyAll();
         }
 
         /// <summary>

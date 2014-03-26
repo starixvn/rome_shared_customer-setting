@@ -39,37 +39,49 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
         public SuperSettingViewModel GetSuperSetting(int custId)
         {
             var criteria = new GetSuperSettingCriteria() { CustId = custId };
-            return _kenoSettingRepository.GetSuperSetting(criteria);
+            var superSetting = _kenoSettingRepository.GetSuperSetting(criteria);
+            superSetting.UpdateRemainingInformation();
+            return superSetting;
         }
 
         public MasterSettingViewModel GetMasterSetting(int custId)
         {
             var criteria = new GetMasterSettingCriteria() { CustId = custId };
-            return _kenoSettingRepository.GetMasterSetting(criteria);
+            var masterSetting = _kenoSettingRepository.GetMasterSetting(criteria);
+            masterSetting.UpdateRemainingInformation();
+            return masterSetting;
         }
 
         public AgentSettingViewModel GetAgentSetting(int custId)
         {
             var criteria = new GetAgentSettingCriteria() { CustId = custId };
-            return _kenoSettingRepository.GetAgentSetting(criteria);
+            var agentSetting = _kenoSettingRepository.GetAgentSetting(criteria);
+            agentSetting.UpdateRemainingInformation();
+            return agentSetting;
         }
 
         public AgentEditMemberSettingViewModel GetSettingInCaseOfAgentEditMember(int custId)
         {
             var criteria = new AgentGetMemberSettingCriteria() { CustId = custId };
-            return _kenoSettingRepository.GetSettingInCaseOfAgentEditMember(criteria);
+            var memberSetting = _kenoSettingRepository.GetSettingInCaseOfAgentEditMember(criteria);
+            memberSetting.UpdateRemainingInformation();
+            return memberSetting;
         }
 
         public SuperEditMemberSettingViewModel GetSettingInCaseOfSuperEditMember(int custId)
         {
             var criteria = new SuperGetMemberSettingCriteria() { CustId = custId };
-            return _kenoSettingRepository.GetSettingInCaseOfSuperEditMember(criteria);
+            var memberSetting = _kenoSettingRepository.GetSettingInCaseOfSuperEditMember(criteria);
+            memberSetting.UpdateRemainingInformation();
+            return memberSetting;
         }
 
         public MasterEditMemberSettingViewModel GetSettingInCaseOfMasterEditMember(int custId)
         {
             var criteria = new SuperGetMemberSettingCriteria() { CustId = custId };
-            return _kenoSettingRepository.GetSettingInCaseOfMasterEditMember(criteria);
+            var memberSetting = _kenoSettingRepository.GetSettingInCaseOfMasterEditMember(criteria);
+            memberSetting.UpdateRemainingInformation();
+            return memberSetting;
         }
 
         public IList<Result> UpdateSuperCustomerSetting(SuperSettingViewModel superSetting)

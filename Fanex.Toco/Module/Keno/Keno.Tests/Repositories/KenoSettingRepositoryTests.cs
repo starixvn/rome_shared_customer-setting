@@ -43,6 +43,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Repositories
             Assert.AreEqual("0908201560", customerInformation.Phone);
             Assert.AreEqual("0908201560", customerInformation.MobilePhone);
             Assert.AreEqual("fax_test", customerInformation.Fax);
+            Assert.AreEqual(2, customerInformation.RoleId);
         }
 
         [Test]
