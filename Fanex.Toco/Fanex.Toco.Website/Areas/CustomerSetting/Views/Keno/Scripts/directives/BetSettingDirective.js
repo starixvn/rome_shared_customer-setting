@@ -17,6 +17,9 @@ KenoModule.directive('betSettingElement', function () {
 
                 $scope.isStatuschkDisabled = false;
                 $scope.isDownlinechkDisabled = true;
+
+                $scope.isDisabledByCopyAll = false;
+
                 $scope.valids = {
                     "minBet": true,
                     "maxBet": true,
@@ -37,6 +40,10 @@ KenoModule.directive('betSettingElement', function () {
 
                 $scope.$on('betSetting.maxPerMatch', function (event, isValid) {
                     $scope.valids.maxPerMatch = isValid;
+                });
+
+                $scope.$on('betSettingChecking', function (event, isCopiedAll) {
+                    $scope.isDisabledByCopyAll = (isCopiedAll && $scope.index != 0);
                 });
 
                 $scope.$watch('[betSetting.minBet,betSetting.maxBet,betSetting.maxPerMatch, valids]', function (newValue, oldValue) {
@@ -109,119 +116,55 @@ KenoModule.directive('betSettingInput', ['$filter', '$parse',
                     return plainNumber;
                 });
 
-                scope.title = "141";
-
-                scope.createTooltip = function () {
-                    element.parent().tipsy({
-                        delayIn: 0,
-                        delayOut: 0,
-                        gravity: "s",
-                        opacity: 1,
-                        title: function () {
-                            return scope.title;
-                        }
-                    });
-                };
-
-
 
                 scope.$watch(attrs.ngModel, function (newValue, oldValue) {
                     if (newValue !== oldValue) {
+                        scope.title = "";
+
+                        scope.createTooltip = function () {
+                            element.tipsy({
+                                delayIn: 0,
+                                delayOut: 0,
+                                gravity: "s",
+                                opacity: 1,
+                                autoHide: { isAuto: true, timeOut: 7 },
+                                title: function () {
+                                    return scope.title;
+                                }
+                            });
+                        };
+
+                        scope.emitToParent = function (isValid, titleTootip) {
+                            scope.title = titleTootip;
+                            if (isValid) {
+                                element.removeClass('invalidValue');
+                                scope.$emit(attrs.ngModel, true);
+                            }
+                            else {
+                                element.addClass('invalidValue');
+                                scope.$emit(attrs.ngModel, false);
+                            }
+                        };
+
                         var maxValue = eval(attrs.maxValue);
                         var minValue = eval(attrs.minValue);
 
-                        var resetValue = function () {
-                            ctrl.$modelValue = initValueModel;
-                            //                        ctrl.$setViewValue(initValueViewModel);
-                            //                        scope.$apply();
-                        };
-
                         if (ctrl.$modelValue < minValue) {
-                            //                        alert("Value must be more than or equal to " + minValue);
-                            console.log("Value must be more than or equal to " + minValue);
-                            resetValue();
-                            element.addClass('invalidValue');
-                            scope.$emit(attrs.ngModel, false);
-
-                            scope.title = "Value must be more than or equal to " + minValue;
-                            //                          element.parent().tipsy({
-                            //                            delayIn: 0,
-                            //                            delayOut: 0,
-                            //                            gravity: "s",
-                            //                            opacity: 1,
-                            //                            title: function() {
-                            //                                return scope.title;
-                            //                            }
-                            //                        });
-
+                            scope.createTooltip();
+                            scope.emitToParent(false, "Value must be more than or equal to " + minValue);
                             return false;
                         }
 
                         if (ctrl.$modelValue > maxValue) {
-                            //                    alert("Value must be less than or equal to " + maxValue);
-                            console.log("Value must be less than or equal to " + maxValue);
-                            resetValue();
-                            element.addClass('invalidValue');
-                            scope.$emit(attrs.ngModel, false);
-
-                            scope.title = "Value must be less than or equal to " + maxValue;
-                            //                          element.parent().tipsy({
-                            //                            delayIn: 0,
-                            //                            delayOut: 0,
-                            //                            gravity: "s",
-                            //                            opacity: 1,
-                            //                            title: function() {
-                            //                                return scope.title;
-                            //                            }
-                            //                        });
+                            scope.createTooltip();
+                            scope.emitToParent(false, "Value must be less than or equal to " + maxValue);
                             return false;
                         }
 
-                        scope.title = "";
-
-                        //                    element.parent().tipsy({
-                        //                            delayIn: 0,
-                        //                            delayOut: 0,
-                        //                            gravity: "s",
-                        ////                            live: true,  
-                        //                            opacity: 1,
-                        //                            title: function() {
-                        //                                return scope.title;
-                        //                            },
-                        ////                            trigger: 'manual'
-                        //                            //                html: true
-                        //                        });
-
-                        element.removeClass('invalidValue');
-                        scope.$emit(attrs.ngModel, true);
+                        scope.createTooltip();
+                        scope.emitToParent(true, "");
                     }
                 }, true);
-
-                //            element.bind('blur', function () {
-                //                var maxValue = eval(attrs.maxValue);
-                //                var minValue = eval(attrs.minValue);
-
-                //                var resetValue = function () {
-                //                    ctrl.$modelValue = initValueModel;
-                //                    ctrl.$setViewValue(initValueViewModel);
-                //                    scope.$apply();
-                //                };
-
-                //                if (ctrl.$modelValue < minValue) {
-                //                    alert("Value must be more than or equal to " + minValue);
-                //                      console.log("Value must be more than or equal to " + minValue);
-                //                    resetValue();
-                //                    return false;
-                //                }
-
-                //                if (ctrl.$modelValue > maxValue) {
-                ////                    alert("Value must be less than or equal to " + maxValue);
-                //                     console.log("Value must be less than or equal to " + maxValue);
-                //                    resetValue();
-                //                    return false;
-                //                }
-
-                //            });
             }
         };
     }

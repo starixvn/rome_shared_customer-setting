@@ -257,6 +257,7 @@
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\repositories\repository.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\services\commonService.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\services\dataService.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\Tipsy\Images\pointer.png" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\Tipsy\jquery.tipsy.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\Tipsy\tipsy.css" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\BetSetting\BetSetting.htm" />
