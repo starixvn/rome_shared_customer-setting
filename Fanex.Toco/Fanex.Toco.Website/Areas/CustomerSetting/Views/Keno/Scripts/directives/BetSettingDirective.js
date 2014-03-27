@@ -19,6 +19,7 @@ KenoModule.directive('betSettingElement', function () {
                 $scope.isDownlinechkDisabled = true;
 
                 $scope.isDisabledByCopyAll = false;
+                $scope.isCopyAll = false;
 
                 $scope.valids = {
                     "minBet": true,
@@ -43,6 +44,7 @@ KenoModule.directive('betSettingElement', function () {
                 });
 
                 $scope.$on('betSettingChecking', function (event, isCopiedAll) {
+                    $scope.isCopyAll = isCopiedAll;
                     $scope.isDisabledByCopyAll = (isCopiedAll && $scope.index != 0);
                 });
 
@@ -60,7 +62,7 @@ KenoModule.directive('betSettingElement', function () {
                             $scope.betSetting.isBetSettingUpdated = false;
                         }
 
-                        $scope.$emit('betSettingChecking');
+                        $scope.$emit('betSettingChecking', $scope.isCopyAll);
                     }
                 }, true);
 
@@ -82,7 +84,7 @@ KenoModule.directive('betSettingElement', function () {
                             $scope.isDownlinechkDisabled = $scope.betSetting.isEnabled == false;
                         }
 
-                        $scope.$emit('betSettingChecking');
+                        $scope.$emit('betSettingChecking', $scope.isCopyAll);
                     }
                 }, true);
             }
@@ -94,7 +96,7 @@ KenoModule.directive('betSettingElement', function () {
 KenoModule.directive('betSettingInput', ['$filter', '$parse',
     function ($filter, $parse) {
         return {
-            require: '?ngModel',
+            require: '^ngModel',
             link: function (scope, element, attrs, ctrl) {
                 if (!ctrl) return;
 
@@ -116,55 +118,65 @@ KenoModule.directive('betSettingInput', ['$filter', '$parse',
                     return plainNumber;
                 });
 
+                scope.setConstrain = function () {
+                    scope.createTooltip = function (titleTootip) {
+                        element.attr('title', titleTootip);
+                        element.attr('original-title', titleTootip);
+                        element.tipsy({
+                            delayIn: 0,
+                            delayOut: 0,
+                            gravity: "s",
+                            opacity: 1,
+                            autoHide: { isAuto: true, timeOut: 7 }
+                        });
+                    };
+
+                    scope.emitToParent = function (isValid) {
+                        if (isValid) {
+                            element.removeClass('invalidValue');
+                            scope.$emit(attrs.ngModel, true);
+                        }
+                        else {
+                            element.addClass('invalidValue');
+                            scope.$emit(attrs.ngModel, false);
+                        }
+                    };
+
+                    var maxValue = eval(attrs.maxValue);
+                    var minValue = eval(attrs.minValue);
+
+                    if (ctrl.$modelValue < minValue && minValue > -1) {
+                        scope.createTooltip("Value must be more than or equal to " + scope.formatNumber(minValue));
+                        scope.emitToParent(false);
+                        return false;
+                    }
+
+                    if (ctrl.$modelValue > maxValue && maxValue > -1) {
+                        scope.createTooltip("Value must be less than or equal to " + scope.formatNumber(maxValue));
+                        scope.emitToParent(false);
+                        return false;
+                    }
+
+                    scope.createTooltip("");
+                    scope.emitToParent(true);
+                }
 
                 scope.$watch(attrs.ngModel, function (newValue, oldValue) {
-                    if (newValue !== oldValue) {
-                        scope.title = "";
-
-                        scope.createTooltip = function () {
-                            element.tipsy({
-                                delayIn: 0,
-                                delayOut: 0,
-                                gravity: "s",
-                                opacity: 1,
-                                autoHide: { isAuto: true, timeOut: 7 },
-                                title: function () {
-                                    return scope.title;
-                                }
-                            });
-                        };
-
-                        scope.emitToParent = function (isValid, titleTootip) {
-                            scope.title = titleTootip;
-                            if (isValid) {
-                                element.removeClass('invalidValue');
-                                scope.$emit(attrs.ngModel, true);
-                            }
-                            else {
-                                element.addClass('invalidValue');
-                                scope.$emit(attrs.ngModel, false);
-                            }
-                        };
-
-                        var maxValue = eval(attrs.maxValue);
-                        var minValue = eval(attrs.minValue);
-
-                        if (ctrl.$modelValue < minValue) {
-                            scope.createTooltip();
-                            scope.emitToParent(false, "Value must be more than or equal to " + minValue);
-                            return false;
-                        }
-
-                        if (ctrl.$modelValue > maxValue) {
-                            scope.createTooltip();
-                            scope.emitToParent(false, "Value must be less than or equal to " + maxValue);
-                            return false;
-                        }
-
-                        scope.createTooltip();
-                        scope.emitToParent(true, "");
-                    }
+                    scope.setConstrain();
                 }, true);
+
+                attrs.$observe(
+                    "minValue",
+                    function (value) {
+                        scope.setConstrain();
+                    });
+
+                attrs.$observe(
+                "maxValue",
+                function (value) {
+                    scope.setConstrain();
+                });
+
             }
         };
     }
