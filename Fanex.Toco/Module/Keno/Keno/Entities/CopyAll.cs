@@ -14,7 +14,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
     /// </summary>
     public class CopyAll
     {
-        public int BettypeId { get; set; }
+        public int BetTypeId { get; set; }
 
         public bool IsCopiedAll { get; set; }
     }

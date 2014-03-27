@@ -87,36 +87,42 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
         public IList<Result> UpdateSuperCustomerSetting(SuperSettingViewModel superSetting)
         {
             _criteriaGeneratorService = _criteriaGeneratorService ?? new SuperCriteriaGeneratorService();
+            superSetting.CastPositionTakings<SuperSettingViewModel>();
             return UpdateCustomerSetting(superSetting);
         }
 
         public IList<Result> UpdateMasterCustomerSetting(MasterSettingViewModel masterSetting)
         {
             _criteriaGeneratorService = _criteriaGeneratorService ?? new MasterCriteriaGeneratorService();
+            masterSetting.CastPositionTakings<MasterSettingViewModel>();
             return UpdateCustomerSetting(masterSetting);
         }
 
         public IList<Result> UpdateAgentCustomerSetting(AgentSettingViewModel agentSetting)
         {
             _criteriaGeneratorService = _criteriaGeneratorService ?? new AgentCriteriaGeneratorService();
+            agentSetting.CastPositionTakings<AgentSettingViewModel>();
             return UpdateCustomerSetting(agentSetting);
         }
 
         public IList<Result> UpdateMemberCustomerSettingInCaseOfAgentEditMember(AgentEditMemberSettingViewModel memberSetting)
         {
             _criteriaGeneratorService = _criteriaGeneratorService ?? new AgentEditMemberCriteriaGeneratorService();
+            memberSetting.CastPositionTakings<AgentEditMemberPositionTaking>();
             return UpdateCustomerSetting(memberSetting);
         }
 
         public IList<Result> UpdateMemberCustomerSettingInCaseOfSuperEditMember(AgentEditMemberSettingViewModel memberSetting)
         {
             _criteriaGeneratorService = _criteriaGeneratorService ?? new SuperEditMemberCriteriaGeneratorService();
+            memberSetting.CastPositionTakings<SuperEditMemberPositionTaking>();
             return UpdateCustomerSetting(memberSetting);
         }
 
         public IList<Result> UpdateMemberCustomerSettingInCaseOfMasterEditMember(AgentEditMemberSettingViewModel memberSetting)
         {
             _criteriaGeneratorService = _criteriaGeneratorService ?? new MasterEditMemberCriteriaGeneratorService();
+            memberSetting.CastPositionTakings<MasterEditMemberPositionTaking>();
             return UpdateCustomerSetting(memberSetting);
         }
 

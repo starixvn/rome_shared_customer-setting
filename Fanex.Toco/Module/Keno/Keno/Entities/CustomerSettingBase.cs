@@ -41,6 +41,14 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
             this.UpdateBetTypeNameForPositionTaking();
         }
 
+        public void CastPositionTakings<T>()
+        {
+            for (int i = 0; i < this.PositionTakings.Count; i++)
+            {
+                this.PositionTakings[i] = (T)this.PositionTakings[i];
+            }
+        }
+
         internal static bool IsCopyToItself(int currentBetTypeId, int copiedBetTypeId)
         {
             return currentBetTypeId == copiedBetTypeId;
@@ -118,7 +126,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
 
             foreach (var superPositionTaking in this.PositionTakings)
             {
-                if (IsCopyToItself(superPositionTaking.BetTypeId, this.PositionTakingCopyAll.BettypeId))
+                if (IsCopyToItself(superPositionTaking.BetTypeId, this.PositionTakingCopyAll.BetTypeId))
                 {
                     continue;
                 }
@@ -154,7 +162,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
 
             foreach (var betSetting in this.BetSettings)
             {
-                if (IsCopyToItself(betSetting.BetTypeId, this.BetSettingCopyAll.BettypeId))
+                if (IsCopyToItself(betSetting.BetTypeId, this.BetSettingCopyAll.BetTypeId))
                 {
                     return;
                 }
@@ -165,7 +173,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
 
         internal BetSetting GetCopiedBetSetting()
         {
-            var betSetting = this.BetSettings.Where(b => b.BetTypeId == this.BetSettingCopyAll.BettypeId).FirstOrDefault();
+            var betSetting = this.BetSettings.Where(b => b.BetTypeId == this.BetSettingCopyAll.BetTypeId).FirstOrDefault();
             return betSetting == null ? new BetSetting() : betSetting;
         }
 
@@ -176,7 +184,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
 
         internal dynamic GetCopiedPositionTaking()
         {
-            var positionTaking = this.PositionTakings.Where(p => p.BetTypeId == this.PositionTakingCopyAll.BettypeId).FirstOrDefault();
+            var positionTaking = this.PositionTakings.Where(p => p.BetTypeId == this.PositionTakingCopyAll.BetTypeId).FirstOrDefault();
             return positionTaking == null ? new PositionTakingBase() : positionTaking;
         }
     }

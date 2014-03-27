@@ -53,14 +53,26 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="LayoutTexts.ja-JP.resx" />
+    <EmbeddedResource Include="LayoutTexts.ko-KR.resx" />
     <EmbeddedResource Include="LayoutTexts.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>LayoutTexts.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="LayoutTexts.th-TH.resx" />
+    <EmbeddedResource Include="LayoutTexts.vi-VN.resx" />
+    <EmbeddedResource Include="LayoutTexts.zh-CN.resx" />
+    <EmbeddedResource Include="LayoutTexts.zh-TW.resx" />
+    <EmbeddedResource Include="Messages.ja-JP.resx" />
+    <EmbeddedResource Include="Messages.ko-KR.resx" />
     <EmbeddedResource Include="Messages.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Messages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Messages.th-TH.resx" />
+    <EmbeddedResource Include="Messages.vi-VN.resx" />
+    <EmbeddedResource Include="Messages.zh-CN.resx" />
+    <EmbeddedResource Include="Messages.zh-TW.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
