@@ -16,7 +16,6 @@ KenoModule.directive('betSettingElement', function () {
                 $scope.isStatuschkDisabled = false;
                 $scope.isDownlinechkDisabled = true;
 
-                $scope.isDisabledByCopyAll = false;
                 $scope.isCopyAll = false;
 
                 $scope.valids = {
@@ -41,10 +40,6 @@ KenoModule.directive('betSettingElement', function () {
                     $scope.valids.maxPerMatch = isValid;
                 });
 
-                $scope.$on('betSettingChecking', function (event, isCopiedAll) {
-                    $scope.isCopyAll = isCopiedAll;
-                    $scope.isDisabledByCopyAll = (isCopiedAll && $scope.index != 0);
-                });
 
                 $scope.$watch('[betSetting.minBet,betSetting.maxBet,betSetting.maxPerMatch, valids]', function (newValue, oldValue) {
                     if (newValue !== oldValue) {
@@ -114,6 +109,20 @@ KenoModule.directive('betSettingInput', ['$filter', '$parse',
                     ctrl.$modelValue = eval(plainNumber);
                     element.val(scope.formatNumber(plainNumber));
                     return plainNumber;
+                });
+
+                scope.$on('betSettingChecking', function (event, isCopiedAll) {
+                    if(isCopiedAll && scope.index != 0) 
+                    {
+                        element.addClass('inputDisabled');
+                        $(element).attr('disabled', true); 
+                    }
+                    else {
+                        element.removeClass('inputDisabled');
+                        $(element).removeAttr('disabled');
+                    } 
+
+
                 });
 
                 scope.setConstrain = function () {

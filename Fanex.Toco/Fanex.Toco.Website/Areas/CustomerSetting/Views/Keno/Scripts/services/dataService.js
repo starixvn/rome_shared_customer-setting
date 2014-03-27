@@ -30,8 +30,8 @@ KenoModule.service('dataService', function () {
             "isValid": true,
             "upline": {
                 "minBet": betValue - 1,
-                "maxBet": roleId == 4 ? 0 : (betValue + 1) * 10,
-                "maxPerMatch": roleId == 4 ? 0 : (betValue + 1) * 100,
+                "maxBet": roleId == 4 ? -1 : (betValue + 1) * 10,
+                "maxPerMatch": roleId == 4 ? -1 : (betValue + 1) * 100,
                 "isEnabled": isEnabled,
                 "isDownlinesEnabled": isDownlinesEnabled
             }

@@ -8,10 +8,8 @@ KenoModule.controller('mainController', function ($scope, $timeout, kenoReposito
 
     $scope.errors = {};
 
-    $scope.roleId = 0;
-
     $scope.$watch(function () {
-        if ($scope.isUpdatePT && $scope.isUpdateBetSetting) {
+        if ($scope.isUpdatePT || $scope.isUpdateBetSetting) {
             $scope.isUpdatedKeno = true;
             return;
         }
