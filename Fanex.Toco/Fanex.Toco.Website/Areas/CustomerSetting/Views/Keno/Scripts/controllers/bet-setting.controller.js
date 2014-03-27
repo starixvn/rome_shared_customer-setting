@@ -11,9 +11,9 @@ KenoModule.controller('betSettingController', function ($scope, kenoRepositories
 
     console.log($scope.betSettingList);
 
-    $scope.copyAll = function (isCopy, betTypeID) {
+    $scope.copyAll = function (isCopy, betTypeId) {
         $scope.isCopyAll = isCopy;
-        $scope.betSettingCopyAll.bettypeId = isCopy == true ? betTypeID : -1;
+        $scope.betSettingCopyAll.betTypeId = isCopy == true ? betTypeId : -1;
         $scope.betSettingCopyAll.isCopiedAll = isCopy;
 
         $scope.$broadcast('betSettingChecking', isCopy);

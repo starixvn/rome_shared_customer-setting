@@ -1,8 +1,8 @@
 ﻿"use strict";
 
-KenoModule.controller('mainController', function ($scope, $timeout, kenoRepositories, ngDialog) {
+KenoModule.controller('mainController', function ($scope, $timeout, kenoRepositories, ngDialog, commonService) {
     $scope.kenoSetting = kenoRepositories.kenoSetting;
-
+    console.log($scope.kenoSetting),
     $scope.isUpdatedKeno = false;
     $scope.isUpdatePT = false;
     $scope.isUpdateBetSetting = false;
@@ -49,44 +49,43 @@ KenoModule.controller('mainController', function ($scope, $timeout, kenoReposito
 
         console.log($scope.kenoSetting);
 
+        commonService.blockUI();
+        var url = domain + 'customersetting/keno/kenosetting/EditSuper';
+        kenoRepositories.save(url, $scope.kenoSetting).then(
+            function (results) {
+                $("#divShowInfo").empty();
+                if (typeof results != 'undefined') {
+                    var length = results.length;
+                    var isError = false;
+                    for (var i = 0; i < length; i++) {
+                        var className = results[i].ErrorCode > 0 ? "alerterror" : "alertsuccess";
+                        var html = '<div class="' + className + '">' + results[i].ErrorMessage + '</div>';
+                        $("#divShowInfo").append(html);
+                        if (results[i].ErrorCode > 0) {
+                            isError = true;
+                        }
+                    }
 
-        //        BlockUI();
-        //        var url = domain + 'customersetting/opuscasino/OpusCasinoSuperSetting/UpdateSuper';
-        //        opusRepositories.save(url, $scope.opusSetting).then(
-        //            function (results) {
-        //                $("#divShowInfo").empty();
-        //                if (typeof results != 'undefined') {
-        //                    var length = results.length;
-        //                    var isError = false;
-        //                    for (var i = 0; i < length; i++) {
-        //                        var className = results[i].ErrorCode > 0 ? "alerterror" : "alertsuccess";
-        //                        var html = '<div class="' + className + '">' + results[i].ErrorMessage + '</div>';
-        //                        $("#divShowInfo").append(html);
-        //                        if (results[i].ErrorCode > 0) {
-        //                            isError = true;
-        //                        }
-        //                    }
-
-        //                    if (!isError) {
-        //                        $timeout(function () {
-        //                            UnBlockUI();
-        //                            location.reload();
-        //                            parent.frames["centerFr"].location.reload();
-        //                        }, 5000);
-        //                    } else {
-        //                        UnBlockUI();
-        //                    }
-        //                }
-        //                else {
-        //                    var html = '<div class="alerterror">Updated fail.</div>';
-        //                    $("#divShowInfo").append(html);
-        //                    UnBlockUI();
-        //                }
-        //            },
-        //            function () {
-        //                var html = '<div class="alerterror">Updated fail.</div>';
-        //                $("#divShowInfo").append(html);
-        //                UnBlockUI();
-        //            });
+                    if (!isError) {
+                        $timeout(function () {
+                            commonService.unblockUI();
+                            location.reload();
+                            parent.frames["centerFr"].location.reload();
+                        }, 5000);
+                    } else {
+                        commonService.unblockUI();
+                    }
+                }
+                else {
+                    var html = '<div class="alerterror">Updated fail.</div>';
+                    $("#divShowInfo").append(html);
+                    commonService.unblockUI();
+                }
+            },
+            function () {
+                var html = '<div class="alerterror">Updated fail.</div>';
+                $("#divShowInfo").append(html);
+                commonService.unblockUI();
+            });
     };
 });

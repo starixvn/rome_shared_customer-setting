@@ -11,8 +11,6 @@ KenoModule.directive('betSettingElement', function () {
         templateUrl: '/Areas/CustomerSetting/Views/Keno/Setting/Partial/BetSetting/BetSetting.htm',
         controller: ['$scope',
             function ($scope) {
-                //            console.log($scope);
-
                 $scope.originalBetSetting = angular.copy($scope.betSetting);
 
                 $scope.isStatuschkDisabled = false;
