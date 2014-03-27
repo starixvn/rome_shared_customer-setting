@@ -2,12 +2,13 @@
 
 KenoModule.controller('mainController', function ($scope, $timeout, kenoRepositories, ngDialog, commonService) {
     $scope.kenoSetting = kenoRepositories.kenoSetting;
-    console.log($scope.kenoSetting),
     $scope.isUpdatedKeno = false;
     $scope.isUpdatePT = false;
     $scope.isUpdateBetSetting = false;
 
     $scope.errors = {};
+
+    $scope.roleId = 0;
 
     $scope.$watch(function () {
         if ($scope.isUpdatePT && $scope.isUpdateBetSetting) {
@@ -23,7 +24,8 @@ KenoModule.controller('mainController', function ($scope, $timeout, kenoReposito
     });
 
     $scope.$on('positionTakingPartial', function (event, data) {
-        $scope.isUpdatePT = data;
+        $scope.isUpdatePT = data.isUpdatePT;
+        $scope.roleId = data.roleId
     });
 
     $scope.updated = function (isUpdatePartial, partialName) {
@@ -42,15 +44,34 @@ KenoModule.controller('mainController', function ($scope, $timeout, kenoReposito
 
         $scope.$broadcast("updateAllMember");
 
-        $scope.doUpdated();
+        $scope.doUpdated($scope.getUrlUpdated());
     };
 
-    $scope.doUpdated = function (isConfirmIsAuto, isUpdateAllMember) {
+    $scope.getUrlUpdated = function () {
+        var url = "";
+        switch (kenoRepositories.kenoSetting.customerInformation.roleId) {
+            case 4: url = 'customersetting/keno/kenosetting/EditSuper';
+                break;
+            case 3: url = 'customersetting/keno/kenosetting/EditMaster';
+                break;
+            case 2: url = 'customersetting/keno/kenosetting/EditAgent';
+                break;
+            //            case 1: 'customersetting/keno/kenosetting/EditSuper';  
+            //                break;  
+            //            case 41: 'customersetting/keno/kenosetting/EditSuper';  
+            //                break;  
+            //            case 41: 'customersetting/keno/kenosetting/EditSuper';  
+            //                break;  
+            default:
+                break;
+        }
 
-        console.log($scope.kenoSetting);
+        return domain + url;
+    }
+
+    $scope.doUpdated = function (url) {
 
         commonService.blockUI();
-        var url = domain + 'customersetting/keno/kenosetting/EditSuper';
         kenoRepositories.save(url, $scope.kenoSetting).then(
             function (results) {
                 $("#divShowInfo").empty();

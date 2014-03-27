@@ -8,9 +8,9 @@ KenoModule.controller('positionTakingController', function ($scope, kenoReposito
     $scope.isCopyAll = false;
     $scope.confirmIsAutoArray = [];
 
-    $scope.copyAll = function (isCopy, betTypeId) {
+    $scope.copyAll = function (isCopy, betTypeID) {
         $scope.isCopyAll = isCopy;
-        $scope.positionTakingCopyAll.betTypeId = isCopy == true ? betTypeId : -1; ;
+        $scope.positionTakingCopyAll.betTypeId = isCopy == true ? betTypeID : -1; ;
         $scope.positionTakingCopyAll.isCopiedAll = isCopy
     };
 
