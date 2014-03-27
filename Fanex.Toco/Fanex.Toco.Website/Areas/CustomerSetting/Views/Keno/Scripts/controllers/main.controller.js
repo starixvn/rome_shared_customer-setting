@@ -24,8 +24,7 @@ KenoModule.controller('mainController', function ($scope, $timeout, kenoReposito
     });
 
     $scope.$on('positionTakingPartial', function (event, data) {
-        $scope.isUpdatePT = data.isUpdatePT;
-        $scope.roleId = data.roleId
+        $scope.isUpdatePT = data;
     });
 
     $scope.updated = function (isUpdatePartial, partialName) {
