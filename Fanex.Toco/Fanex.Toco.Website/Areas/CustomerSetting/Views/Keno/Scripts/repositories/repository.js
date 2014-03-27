@@ -1,4 +1,4 @@
-﻿"use strict";
+"use strict";
 
 KenoModule.factory('kenoRepositories', function ($http, $q, dataService) {
     return {
