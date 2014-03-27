@@ -10,13 +10,12 @@
 namespace Fanex.CustomerSetting.Module.Keno.ViewModels
 {
     using System.Collections.Generic;
-    using System.Linq;
     using Fanex.CustomerSetting.Module.Keno.Entities;
 
     /// <summary>
     /// The SuperEditMemberSetting view model.
     /// </summary>
-    public class SuperEditMemberSettingViewModel : CustomerSettingBase
+    public class SuperEditMemberSettingViewModel : CustomerSettingBase<SuperEditMemberPositionTaking>
     {
         internal override void CopyToOnePositionTaking(dynamic sourceMemberPositionTaking, dynamic destinationMemberPositionTaking)
         {

@@ -9,12 +9,13 @@
 
 namespace Fanex.CustomerSetting.Module.Keno.ViewModels
 {
+    using System.Collections.Generic;
     using Fanex.CustomerSetting.Module.Keno.Entities;
 
     /// <summary>
     /// The AgentSetting view model.
     /// </summary>
-    public class AgentSettingViewModel : CustomerSettingBase
+    public class AgentSettingViewModel : CustomerSettingBase<AgentPositionTaking>
     {
         /// <summary>
         /// Copies to one position taking.

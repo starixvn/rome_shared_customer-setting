@@ -87,46 +87,40 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
         public IList<Result> UpdateSuperCustomerSetting(SuperSettingViewModel superSetting)
         {
             _criteriaGeneratorService = _criteriaGeneratorService ?? new SuperCriteriaGeneratorService();
-            superSetting.CastPositionTakings<SuperSettingViewModel>();
             return UpdateCustomerSetting(superSetting);
         }
 
         public IList<Result> UpdateMasterCustomerSetting(MasterSettingViewModel masterSetting)
         {
             _criteriaGeneratorService = _criteriaGeneratorService ?? new MasterCriteriaGeneratorService();
-            masterSetting.CastPositionTakings<MasterSettingViewModel>();
             return UpdateCustomerSetting(masterSetting);
         }
 
         public IList<Result> UpdateAgentCustomerSetting(AgentSettingViewModel agentSetting)
         {
             _criteriaGeneratorService = _criteriaGeneratorService ?? new AgentCriteriaGeneratorService();
-            agentSetting.CastPositionTakings<AgentSettingViewModel>();
             return UpdateCustomerSetting(agentSetting);
         }
 
         public IList<Result> UpdateMemberCustomerSettingInCaseOfAgentEditMember(AgentEditMemberSettingViewModel memberSetting)
         {
             _criteriaGeneratorService = _criteriaGeneratorService ?? new AgentEditMemberCriteriaGeneratorService();
-            memberSetting.CastPositionTakings<AgentEditMemberPositionTaking>();
             return UpdateCustomerSetting(memberSetting);
         }
 
         public IList<Result> UpdateMemberCustomerSettingInCaseOfSuperEditMember(AgentEditMemberSettingViewModel memberSetting)
         {
             _criteriaGeneratorService = _criteriaGeneratorService ?? new SuperEditMemberCriteriaGeneratorService();
-            memberSetting.CastPositionTakings<SuperEditMemberPositionTaking>();
             return UpdateCustomerSetting(memberSetting);
         }
 
         public IList<Result> UpdateMemberCustomerSettingInCaseOfMasterEditMember(AgentEditMemberSettingViewModel memberSetting)
         {
             _criteriaGeneratorService = _criteriaGeneratorService ?? new MasterEditMemberCriteriaGeneratorService();
-            memberSetting.CastPositionTakings<MasterEditMemberPositionTaking>();
             return UpdateCustomerSetting(memberSetting);
         }
 
-        internal List<Result> UpdateCustomerSetting(CustomerSettingBase customerSetting)
+        internal List<Result> UpdateCustomerSetting(dynamic customerSetting)
         {
             customerSetting.UpdateSettingInCaseOfCopyAll();
             var results = new List<Result>();
@@ -142,7 +136,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
         /// <returns>
         /// The list of results.
         /// </returns>
-        internal IList<Result> UpdateBetSettings(CustomerSettingBase customerSetting)
+        internal IList<Result> UpdateBetSettings(SuperSettingViewModel customerSetting)
         {
             var results = new List<Result>();
 
@@ -167,7 +161,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
         /// <returns>
         /// The list of results.
         /// </returns>
-        internal IList<Result> UpdatePositionTakings(CustomerSettingBase customerSetting)
+        internal IList<Result> UpdatePositionTakings(dynamic customerSetting)
         {
             var results = new List<Result>();
 
@@ -179,7 +173,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
             return results;
         }
 
-        internal IList<Result> UpdatePositionTaking(CustomerInformation customerInformation, PositionTakingBase positionTaking)
+        internal IList<Result> UpdatePositionTaking<T>(CustomerInformation customerInformation, T positionTaking)
         {
             var criteria = _criteriaGeneratorService.CreateUpdatePositionTakingCriteria(customerInformation, positionTaking);
             return _kenoSettingRepository.UpdatePositionTaking(criteria);

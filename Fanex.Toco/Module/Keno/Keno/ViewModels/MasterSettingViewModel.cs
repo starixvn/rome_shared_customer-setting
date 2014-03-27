@@ -10,13 +10,12 @@
 namespace Fanex.CustomerSetting.Module.Keno.ViewModels
 {
     using System.Collections.Generic;
-    using System.Linq;
     using Fanex.CustomerSetting.Module.Keno.Entities;
 
     /// <summary>
     /// The MasterSetting view model.
     /// </summary>
-    public class MasterSettingViewModel : CustomerSettingBase
+    public class MasterSettingViewModel : CustomerSettingBase<MasterPositionTaking>
     {
         /// <summary>
         /// Copies to one position taking.

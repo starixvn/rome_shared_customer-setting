@@ -16,13 +16,13 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
     /// <summary>
     /// The CustomerSettingBase entity.
     /// </summary>
-    public class CustomerSettingBase
+    public class CustomerSettingBase<T> where T : PositionTakingBase
     {
         public CustomerInformation CustomerInformation { get; set; }
 
         public IList<BetSetting> BetSettings { get; set; }
 
-        public IList<dynamic> PositionTakings { get; set; }
+        public IList<T> PositionTakings { get; set; }
 
         public CopyAll BetSettingCopyAll { get; set; }
 
@@ -39,14 +39,6 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
             this.UpdateCopyAllInformation();
             this.UpdateBetTypeNameForBetSetting();
             this.UpdateBetTypeNameForPositionTaking();
-        }
-
-        public void CastPositionTakings<T>()
-        {
-            for (int i = 0; i < this.PositionTakings.Count; i++)
-            {
-                this.PositionTakings[i] = (T)this.PositionTakings[i];
-            }
         }
 
         internal static bool IsCopyToItself(int currentBetTypeId, int copiedBetTypeId)
