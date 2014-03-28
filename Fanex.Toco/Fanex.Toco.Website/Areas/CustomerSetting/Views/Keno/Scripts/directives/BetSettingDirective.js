@@ -40,7 +40,6 @@ KenoModule.directive('betSettingElement', function () {
                     $scope.valids.maxPerMatch = isValid;
                 });
 
-
                 $scope.$watch('[betSetting.minBet,betSetting.maxBet,betSetting.maxPerMatch, valids]', function (newValue, oldValue) {
                     if (newValue !== oldValue) {
                         if ($scope.valids.minBet && $scope.valids.maxBet && $scope.valids.maxPerMatch) {
@@ -55,7 +54,7 @@ KenoModule.directive('betSettingElement', function () {
                             $scope.betSetting.isBetSettingUpdated = false;
                         }
 
-                        $scope.$emit('betSettingChecking', $scope.isCopyAll);
+                        $scope.$emit('totallyChecking', $scope.isCopyAll);
                     }
                 }, true);
 
@@ -77,7 +76,7 @@ KenoModule.directive('betSettingElement', function () {
                             $scope.isDownlinechkDisabled = $scope.betSetting.isEnabled == false;
                         }
 
-                        $scope.$emit('betSettingChecking', $scope.isCopyAll);
+                        $scope.$emit('totallyChecking', $scope.isCopyAll);
                     }
                 }, true);
             }
@@ -111,18 +110,15 @@ KenoModule.directive('betSettingInput', ['$filter', '$parse',
                     return plainNumber;
                 });
 
-                scope.$on('betSettingChecking', function (event, isCopiedAll) {
-                    if(isCopiedAll && scope.index != 0) 
-                    {
+                scope.$on('inputDisabledChecking', function (event, isCopiedAll) {
+                    if (isCopiedAll && scope.index != 0) {
                         element.addClass('inputDisabled');
-                        $(element).attr('disabled', true); 
+                        $(element).attr('disabled', true);
                     }
                     else {
                         element.removeClass('inputDisabled');
                         $(element).removeAttr('disabled');
-                    } 
-
-
+                    }
                 });
 
                 scope.setConstrain = function () {
@@ -149,17 +145,20 @@ KenoModule.directive('betSettingInput', ['$filter', '$parse',
                         }
                     };
 
-                    var maxValue = eval(attrs.maxValue);
-                    var minValue = eval(attrs.minValue);
-
+                    var valueRange = scope.$eval(attrs.valueRange);
+                    var minValue = valueRange.min;
+                    var maxValue = valueRange.max;
+                    var minName = minValue > -1 ? (valueRange.minName + " = " + scope.formatNumber(minValue)) : valueRange.minName;
+                    var maxName = maxValue > -1 ? (valueRange.maxName + " = " + scope.formatNumber(maxName)) : valueRange.maxName;
+                  
                     if (ctrl.$modelValue < minValue && minValue > -1) {
-                        scope.createTooltip("Value must be more than or equal to " + scope.formatNumber(minValue));
+                        scope.createTooltip("The " + valueRange.model + " should be more than or equal to " + minName);
                         scope.emitToParent(false);
                         return false;
                     }
 
                     if (ctrl.$modelValue > maxValue && maxValue > -1) {
-                        scope.createTooltip("Value must be less than or equal to " + scope.formatNumber(maxValue));
+                        scope.createTooltip("The " + valueRange.model + " should be less than or equal to " + maxName);
                         scope.emitToParent(false);
                         return false;
                     }
@@ -173,16 +172,10 @@ KenoModule.directive('betSettingInput', ['$filter', '$parse',
                 }, true);
 
                 attrs.$observe(
-                    "minValue",
+                    "valueRange",
                     function (value) {
                         scope.setConstrain();
                     });
-
-                attrs.$observe(
-                "maxValue",
-                function (value) {
-                    scope.setConstrain();
-                });
 
             }
         };

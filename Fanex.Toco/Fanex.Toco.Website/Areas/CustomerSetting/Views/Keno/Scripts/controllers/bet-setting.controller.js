@@ -16,10 +16,11 @@ KenoModule.controller('betSettingController', function ($scope, kenoRepositories
         $scope.betSettingCopyAll.betTypeId = isCopy == true ? betTypeId : -1;
         $scope.betSettingCopyAll.isCopiedAll = isCopy;
 
-        $scope.$broadcast('betSettingChecking', isCopy);
+        $scope.$broadcast('totallyChecking', isCopy);
+        $scope.$broadcast('inputDisabledChecking', isCopy);
     };
 
-    $scope.$on('betSettingChecking', function (event, isCopiedAll) {
+    $scope.$on('totallyChecking', function (event, isCopiedAll) {
         var length = $scope.betSettingList.length;
         var updatedCount = 0;
 
