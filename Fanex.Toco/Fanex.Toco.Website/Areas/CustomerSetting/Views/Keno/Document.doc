@@ -79,13 +79,13 @@
 - /customersetting/keno/kenosetting/EditAgent?custid=137509799
 
 • Agent Edit Member
-- /customersetting/keno/kenosetting/AgentEditMember?custid=1
+- /customersetting/keno/kenosetting/AgentEditMember?custid=137509810
 
 • Super Edit member
-- /customersetting/keno/kenosetting/SuperEditMember?custid=1
+- /customersetting/keno/kenosetting/SuperEditMember?custid=137509810
 
 • Master Edit Member
-- /customersetting/keno/kenosetting/MasterEditMember?custid=1
+- /customersetting/keno/kenosetting/MasterEditMember?custid=137509810
 
 • Edit Keno Status
 - /customersetting/keno/enablestatus/index?id=xxx&uplineId=yyy&roleId=zzz (xxx, yyy, zzz is integer occording to custId, uplineId, roleId)

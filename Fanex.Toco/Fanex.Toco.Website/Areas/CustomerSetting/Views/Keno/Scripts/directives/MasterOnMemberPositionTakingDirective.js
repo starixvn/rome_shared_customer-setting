@@ -13,10 +13,10 @@ KenoModule.directive('masterOnMemberPositionTakingElement', ['commonService', fu
 
             $scope.originalPositionTaking = angular.copy($scope.positionTaking);
 
-            $scope.m1Range = commonService.getRangePTValue($scope.positionTaking.m1max, $scope.positionTaking.m1um1min);
-            $scope.uM1Range = commonService.getRangePTValue($scope.positionTaking.m3, $scope.positionTaking.m1um1min);
+            $scope.m1Range = commonService.getRangePTValue($scope.positionTaking.m1Max, $scope.positionTaking.m1UM1Min);
+            $scope.uM1Range = commonService.getRangePTValue($scope.positionTaking.m3, $scope.positionTaking.m1UM1Min);
 
-            if ($scope.positionTaking.m1max < $scope.positionTaking.m1) {
+            if ($scope.positionTaking.m1Max < $scope.positionTaking.m1) {
                 $scope.m1Range.unshift($scope.positionTaking.m1);
             }
 
@@ -33,8 +33,8 @@ KenoModule.directive('masterOnMemberPositionTakingElement', ['commonService', fu
             };
 
             $scope.$watch('[positionTaking.m1, positionTaking.uM1,  positionTaking.iM1]', function () {
-                if ($scope.positionTaking.m1max >= $scope.positionTaking.m1) {
-                    $scope.m1Range = commonService.getRangePTValue($scope.positionTaking.m1max, $scope.positionTaking.m1um1min);
+                if ($scope.positionTaking.m1Max >= $scope.positionTaking.m1) {
+                    $scope.m1Range = commonService.getRangePTValue($scope.positionTaking.m1Max, $scope.positionTaking.m1UM1Min);
                 }
 
                 if ($scope.originalPositionTaking.iM1) { // Load in case within isAuto
