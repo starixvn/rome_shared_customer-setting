@@ -148,17 +148,17 @@ KenoModule.directive('betSettingInput', ['$filter', '$parse',
                     var valueRange = scope.$eval(attrs.valueRange);
                     var minValue = valueRange.min;
                     var maxValue = valueRange.max;
-                    var minName = minValue > -1 ? (valueRange.minName + " = " + scope.formatNumber(minValue)) : valueRange.minName;
-                    var maxName = maxValue > -1 ? (valueRange.maxName + " = " + scope.formatNumber(maxName)) : valueRange.maxName;
+//                    var minName = minValue > -1 ? (valueRange.minName + " = " + scope.formatNumber(minValue)) : valueRange.minName;
+//                    var maxName = maxValue > -1 ? (valueRange.maxName + " = " + scope.formatNumber(maxName)) : valueRange.maxName;
                   
                     if (ctrl.$modelValue < minValue && minValue > -1) {
-                        scope.createTooltip("The " + valueRange.model + " should be more than or equal to " + minName);
+                        scope.createTooltip("The " + valueRange.model + " should be more than or equal to " + valueRange.minName);
                         scope.emitToParent(false);
                         return false;
                     }
 
                     if (ctrl.$modelValue > maxValue && maxValue > -1) {
-                        scope.createTooltip("The " + valueRange.model + " should be less than or equal to " + maxName);
+                        scope.createTooltip("The " + valueRange.model + " should be less than or equal to " + valueRange.maxName);
                         scope.emitToParent(false);
                         return false;
                     }

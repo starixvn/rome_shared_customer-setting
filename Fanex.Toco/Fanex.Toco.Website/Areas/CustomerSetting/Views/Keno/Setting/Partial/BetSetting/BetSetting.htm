@@ -7,7 +7,7 @@
 </td>
 <td class="formatCol">
         <input bet-setting-input  ng-model="betSetting.minBet" 
-             value-range = "{'minName': '' , 'min':{{betSetting.upline.minBet}}, 'maxName': 'Max Bet', 'max':{{betSetting.maxBet}}, 'model' :'Min Bet' }"
+             value-range = "{'minName': '{{betSetting.upline.minBet}}' , 'min':{{betSetting.upline.minBet}}, 'maxName': 'Max Bet', 'max':{{betSetting.maxBet}}, 'model' :'Min Bet' }"
              ng-disabled="isDisabledByCopyAll"  class="r col50percent" type="text"title =""/>
         <span ng-model="betSetting.upline.minBet" bet-setting-constrain="1"></span>
 </td>
