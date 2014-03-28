@@ -158,7 +158,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
             {
                 if (IsCopyToItself(betSetting.BetTypeId, this.BetSettingCopyAll.BetTypeId))
                 {
-                    return;
+                    continue;
                 }
 
                 CopyToOneBetSetting(copiedBetSetting, betSetting);
