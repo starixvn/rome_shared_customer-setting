@@ -51,17 +51,17 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
         /// <summary>
         /// Copies to one bet setting.
         /// </summary>
-        /// <param name="copiedBetSetting">The copied bet setting.</param>
-        /// <param name="betSetting">The bet setting.</param>
-        internal static void CopyToOneBetSetting(BetSetting copiedBetSetting, BetSetting betSetting)
+        /// <param name="sourceBetSetting">The copied bet setting.</param>
+        /// <param name="destinationBetSetting">The bet setting.</param>
+        internal static void CopyToOneBetSetting(BetSetting sourceBetSetting, BetSetting destinationBetSetting)
         {
-            betSetting.MinBet = copiedBetSetting.MinBet;
-            betSetting.MaxBet = copiedBetSetting.MaxBet;
-            betSetting.MaxPerMatch = copiedBetSetting.MaxPerMatch;
-            betSetting.IsEnabled = copiedBetSetting.IsEnabled;
-            betSetting.IsDownlinesEnabled = copiedBetSetting.IsDownlinesEnabled;
-            betSetting.IsBetSettingUpdated = copiedBetSetting.IsBetSettingUpdated;
-            betSetting.IsStatusUpdated = copiedBetSetting.IsStatusUpdated;
+            destinationBetSetting.MinBet = sourceBetSetting.MinBet;
+            destinationBetSetting.MaxBet = sourceBetSetting.MaxBet;
+            destinationBetSetting.MaxPerMatch = sourceBetSetting.MaxPerMatch;
+            destinationBetSetting.IsEnabled = sourceBetSetting.IsEnabled;
+            destinationBetSetting.IsDownlinesEnabled = sourceBetSetting.IsDownlinesEnabled;
+            destinationBetSetting.IsBetSettingUpdated = sourceBetSetting.IsBetSettingUpdated;
+            destinationBetSetting.IsStatusUpdated = sourceBetSetting.IsStatusUpdated;
         }
 
         /// <summary>

@@ -78,7 +78,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
 
         public MasterEditMemberSettingViewModel GetSettingInCaseOfMasterEditMember(int custId)
         {
-            var criteria = new SuperGetMemberSettingCriteria() { CustId = custId };
+            var criteria = new MasterGetMemberSettingCriteria() { CustId = custId };
             var memberSetting = _kenoSettingRepository.GetSettingInCaseOfMasterEditMember(criteria);
             memberSetting.UpdateRemainingInformation(custId);
             return memberSetting;

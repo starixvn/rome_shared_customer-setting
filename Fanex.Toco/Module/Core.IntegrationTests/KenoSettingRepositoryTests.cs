@@ -315,7 +315,7 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
         {
             var criteria = new MasterUpdateMemberPositionTakingCriteria()
             {
-                CustId = 137509707,
+                CustId = 137509810,
                 SportType = Constants.SportType,
                 BetType = 1,
                 MPositionTaking = 10,
