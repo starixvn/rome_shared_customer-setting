@@ -28,7 +28,7 @@ KenoModule.controller('mainController', function ($scope, $timeout, kenoReposito
     $scope.updated = function (isUpdatePartial, partialName) {
         if (isUpdatePartial) {
             switch (partialName) {
-                case "PositionTalking":
+                case "PositionTaking":
                     $scope.kenoSetting.betSettings = null;
                     break;
                 case "BetSetting":
