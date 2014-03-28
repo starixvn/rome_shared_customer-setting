@@ -109,10 +109,6 @@ namespace Fanex.CustomerSetting.Module.Keno.Helpers
                     ErrorMessage = !string.IsNullOrEmpty(errorMsg) ? errorMsg : GetResourceFromErrorCode(errorCode)
                 });
             }
-            else
-            {
-                AddMessageInCaseDatabaseResponseIsNotValid();
-            }
         }
 
         internal void AddMessageWhenDataIsNotChangedOrNotUpdated()
