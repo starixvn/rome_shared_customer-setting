@@ -21,16 +21,6 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Helper
     public class MessageHelperTests
     {
         [Test]
-        public void GetResourceFromErrorCode_CertainValue_ShouldReturnExactValue()
-        {
-            // Act
-            var value = MessageHelper.GetResourceFromErrorCode("100");
-
-            // Assert
-            Assert.AreEqual("100", value);
-        }
-
-        [Test]
         public void NoDataIsChanged_ErrorCodeIsNullOrEmpty_ShouldReturnTrue()
         {
             // Arrange
@@ -98,7 +88,6 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Helper
             // Assert
             Assert.AreEqual(1, messageHelper.ErrorResults.Count());
             Assert.AreEqual(1001, messageHelper.ErrorResults[0].ErrorCode);
-            Assert.AreEqual("1001", messageHelper.ErrorResults[0].ErrorMessage);
         }
 
         [Test]
@@ -128,7 +117,6 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Helper
             // Assert
             Assert.AreEqual(1, messageHelper.ErrorResults.Count());
             Assert.AreEqual(1000, messageHelper.ErrorResults[0].ErrorCode);
-            Assert.AreEqual("1000", messageHelper.ErrorResults[0].ErrorMessage);
         }
 
         [Test]
@@ -143,7 +131,6 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Helper
             // Assert
             Assert.AreEqual(1, messageHelper.ErrorResults.Count());
             Assert.AreEqual(0, messageHelper.ErrorResults[0].ErrorCode);
-            Assert.AreEqual("0", messageHelper.ErrorResults[0].ErrorMessage);
         }
     }
 }

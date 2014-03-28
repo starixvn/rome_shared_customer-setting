@@ -12,6 +12,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Helpers
     using System;
     using System.Collections.Generic;
     using Fanex.CustomerSetting.Module.Core.Models;
+    using Fanex.CustomerSetting.Module.Keno.Resources;
 
     /// <summary>
     /// TODO: Update summary.
@@ -21,6 +22,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Helpers
         private const string Separator = "\a";
         private const int NoDataIsChangedCode = 1000;
         private const int MessageIsNotValidCode = 1001;
+        private const string MessageFormat = "Msg_{0}";
         private const int SuccessfulCode = 0;
         private string _errorCode = string.Empty;
         private string _errorMsg = string.Empty;
@@ -73,7 +75,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Helpers
 
         internal static string GetResourceFromErrorCode(string errorCode)
         {
-            return errorCode;
+            return Messages.ResourceManager.GetString(string.Format(MessageFormat, errorCode));
         }
 
         internal static bool IfThisIsAnError(string errorCode)
