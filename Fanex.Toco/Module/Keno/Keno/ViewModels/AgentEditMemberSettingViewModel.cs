@@ -17,12 +17,14 @@ namespace Fanex.CustomerSetting.Module.Keno.ViewModels
     /// </summary>
     public class AgentEditMemberSettingViewModel : CustomerSettingBase<AgentEditMemberPositionTaking>
     {
-        internal override void CopyToOnePositionTaking(dynamic sourceMemberPositionTaking, dynamic destinationMemberPositionTaking)
+        internal override void CopyToOnePositionTaking(
+            AgentEditMemberPositionTaking sourceMemberPositionTaking, 
+            AgentEditMemberPositionTaking destinationMemberPositionTaking)
         {
             destinationMemberPositionTaking.A1 = sourceMemberPositionTaking.A1;
             destinationMemberPositionTaking.IsUpdateA1 = sourceMemberPositionTaking.IsUpdateA1;
-            destinationMemberPositionTaking.Discount = sourceMemberPositionTaking.Discount;
-            destinationMemberPositionTaking.UpdateComm = sourceMemberPositionTaking.UpdateComm;
+            destinationMemberPositionTaking.IsUpdateComm = sourceMemberPositionTaking.IsUpdateComm;
+            destinationMemberPositionTaking.Comm = sourceMemberPositionTaking.Comm;
         }
     }
 }

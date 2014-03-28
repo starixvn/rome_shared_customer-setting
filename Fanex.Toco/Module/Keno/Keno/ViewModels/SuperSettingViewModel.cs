@@ -17,7 +17,7 @@ namespace Fanex.CustomerSetting.Module.Keno.ViewModels
     /// </summary>
     public class SuperSettingViewModel : CustomerSettingBase<SuperPositionTaking>
     {
-        internal override void CopyToOnePositionTaking(dynamic sourceSuperPositionTaking, dynamic destinationSuperPositionTaking)
+        internal override void CopyToOnePositionTaking(SuperPositionTaking sourceSuperPositionTaking, SuperPositionTaking destinationSuperPositionTaking)
         {
             destinationSuperPositionTaking.S4 = sourceSuperPositionTaking.S4;
             destinationSuperPositionTaking.N4 = sourceSuperPositionTaking.N4;

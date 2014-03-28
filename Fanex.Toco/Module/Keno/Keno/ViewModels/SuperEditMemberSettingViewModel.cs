@@ -17,7 +17,9 @@ namespace Fanex.CustomerSetting.Module.Keno.ViewModels
     /// </summary>
     public class SuperEditMemberSettingViewModel : CustomerSettingBase<SuperEditMemberPositionTaking>
     {
-        internal override void CopyToOnePositionTaking(dynamic sourceMemberPositionTaking, dynamic destinationMemberPositionTaking)
+        internal override void CopyToOnePositionTaking(
+            SuperEditMemberPositionTaking sourceMemberPositionTaking, 
+            SuperEditMemberPositionTaking destinationMemberPositionTaking)
         {
             destinationMemberPositionTaking.S1 = sourceMemberPositionTaking.S1;
             destinationMemberPositionTaking.IS1 = sourceMemberPositionTaking.IS1;

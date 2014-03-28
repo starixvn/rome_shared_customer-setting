@@ -22,7 +22,7 @@ namespace Fanex.CustomerSetting.Module.Keno.ViewModels
         /// </summary>
         /// <param name="sourceMasterPositionTaking">The source master position taking.</param>
         /// <param name="destinationMasterPositionTaking">The destination master position taking.</param>
-        internal override void CopyToOnePositionTaking(dynamic sourceMasterPositionTaking, dynamic destinationMasterPositionTaking)
+        internal override void CopyToOnePositionTaking(MasterPositionTaking sourceMasterPositionTaking, MasterPositionTaking destinationMasterPositionTaking)
         {
             destinationMasterPositionTaking.S3 = sourceMasterPositionTaking.S3;
             destinationMasterPositionTaking.US3 = sourceMasterPositionTaking.US3;

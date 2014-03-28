@@ -129,7 +129,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
             }
         }
 
-        internal virtual void CopyToOnePositionTaking(dynamic sourcePositionTaking, dynamic destinationPositionTaking)
+        internal virtual void CopyToOnePositionTaking(T sourcePositionTaking, T destinationPositionTaking)
         {
         }
 
