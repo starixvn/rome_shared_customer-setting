@@ -150,8 +150,8 @@ KenoModule.directive('betSettingInput', ['$filter', '$parse',
                     };
 
                     var valueRange = scope.$eval(attrs.valueRange);
-                    var minValue = valueRange.min;
-                    var maxValue = valueRange.max;
+                    var minValue = eval(valueRange.min);
+                    var maxValue = eval(valueRange.max);
                   
                     if (ctrl.$modelValue < minValue && minValue > -1) {
                         scope.createTooltip("The " + valueRange.model + " should be more than or equal to " + valueRange.minName);
