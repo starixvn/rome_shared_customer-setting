@@ -11,7 +11,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
 {
     using System.Collections.Generic;
     using System.Linq;
-    using Fanex.CustomerSetting.Module.Core.Services;
+    using Fanex.CustomerSetting.Module.Core.Services.Impl;
 
     /// <summary>
     /// The CustomerSettingBase entity.
@@ -34,8 +34,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
             this.UpdatePositionTakingsInCaseOfCopyAll();
         }
 
-        public void UpdateRemainingInformation()
+        public void UpdateRemainingInformation(int custId)
         {
+            this.CustomerInformation.CustId = custId;
             this.UpdateCopyAllInformation();
             this.UpdateBetTypeNameForBetSetting();
             this.UpdateBetTypeNameForPositionTaking();

@@ -204,9 +204,9 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\Fanex.CustomerSetting.Module.Core.csproj">
-      <Project>{07B083E4-AA0A-41BF-A0FC-172C0E2A49B2}</Project>
-      <Name>Fanex.CustomerSetting.Module.Core</Name>
+    <ProjectReference Include="..\..\Fanex.Toco.Module.Core\_Core.csproj">
+      <Project>{FA7AFDA2-F599-4DB2-B733-2992043C9D10}</Project>
+      <Name>_Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\_Security\Security.csproj">
       <Project>{91E16AE3-1209-4BF2-8846-7E36363167B3}</Project>

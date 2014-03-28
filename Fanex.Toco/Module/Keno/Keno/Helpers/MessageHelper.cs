@@ -28,7 +28,6 @@ namespace Fanex.CustomerSetting.Module.Keno.Helpers
 
         public MessageHelper()
         {
-            _errorResults = new List<Result>();
         }
 
         public MessageHelper(string errorCode, string errorMsg)
@@ -55,6 +54,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Helpers
         /// <returns>The list of errors.</returns>
         public IList<Result> GetErrors()
         {
+            ClearData();
+
             if (NoDataIsChanged())
             {
                 AddNotificationMessageWhenClientDataIsNotChanged();
@@ -70,6 +71,11 @@ namespace Fanex.CustomerSetting.Module.Keno.Helpers
             }
 
             return _errorResults;
+        }
+
+        private void ClearData()
+        {
+            _errorResults = new List<Result>();
         }
 
         internal static string GetResourceFromErrorCode(string errorCode)

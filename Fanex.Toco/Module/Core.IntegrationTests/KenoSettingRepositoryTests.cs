@@ -49,7 +49,7 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
 
             // Act
             var result = _kenoSettingRepository.GetSuperSetting(criteria);
-            result.UpdateRemainingInformation();
+            result.UpdateRemainingInformation(137509731);
 
             // Assert
             Assert.IsNotNull(result.CustomerInformation);

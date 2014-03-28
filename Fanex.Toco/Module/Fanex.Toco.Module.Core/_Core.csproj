@@ -100,6 +100,7 @@
     <Compile Include="Criteria\GetCurrencyCriteria.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Criteria\InvalidCriteria.cs" />
     <Compile Include="Exceptions\HandleActionErrorAttribute.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\ExcelExtensions.cs" />

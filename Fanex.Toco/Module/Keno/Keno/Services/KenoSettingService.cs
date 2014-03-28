@@ -40,7 +40,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
         {
             var criteria = new GetSuperSettingCriteria() { CustId = custId };
             var superSetting = _kenoSettingRepository.GetSuperSetting(criteria);
-            superSetting.UpdateRemainingInformation();
+            superSetting.UpdateRemainingInformation(custId);
             return superSetting;
         }
 
@@ -48,7 +48,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
         {
             var criteria = new GetMasterSettingCriteria() { CustId = custId };
             var masterSetting = _kenoSettingRepository.GetMasterSetting(criteria);
-            masterSetting.UpdateRemainingInformation();
+            masterSetting.UpdateRemainingInformation(custId);
             return masterSetting;
         }
 
@@ -56,7 +56,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
         {
             var criteria = new GetAgentSettingCriteria() { CustId = custId };
             var agentSetting = _kenoSettingRepository.GetAgentSetting(criteria);
-            agentSetting.UpdateRemainingInformation();
+            agentSetting.UpdateRemainingInformation(custId);
             return agentSetting;
         }
 
@@ -64,7 +64,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
         {
             var criteria = new AgentGetMemberSettingCriteria() { CustId = custId };
             var memberSetting = _kenoSettingRepository.GetSettingInCaseOfAgentEditMember(criteria);
-            memberSetting.UpdateRemainingInformation();
+            memberSetting.UpdateRemainingInformation(custId);
             return memberSetting;
         }
 
@@ -72,7 +72,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
         {
             var criteria = new SuperGetMemberSettingCriteria() { CustId = custId };
             var memberSetting = _kenoSettingRepository.GetSettingInCaseOfSuperEditMember(criteria);
-            memberSetting.UpdateRemainingInformation();
+            memberSetting.UpdateRemainingInformation(custId);
             return memberSetting;
         }
 
@@ -80,7 +80,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
         {
             var criteria = new SuperGetMemberSettingCriteria() { CustId = custId };
             var memberSetting = _kenoSettingRepository.GetSettingInCaseOfMasterEditMember(criteria);
-            memberSetting.UpdateRemainingInformation();
+            memberSetting.UpdateRemainingInformation(custId);
             return memberSetting;
         }
 
@@ -136,7 +136,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
         /// <returns>
         /// The list of results.
         /// </returns>
-        internal IList<Result> UpdateBetSettings(SuperSettingViewModel customerSetting)
+        internal IList<Result> UpdateBetSettings(dynamic customerSetting)
         {
             var results = new List<Result>();
 
