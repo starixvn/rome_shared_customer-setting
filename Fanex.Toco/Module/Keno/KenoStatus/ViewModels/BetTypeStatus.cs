@@ -9,16 +9,19 @@
 // ************************************************************************************
 namespace Fanex.CustomerSetting.Module.KenoStatus.ViewModels
 {
-
     /// <summary>
-    /// Enable Status by Bet Type
+    /// Enable Status by Bet Type.
     /// </summary>
     public class BetTypeStatus
     {
         public int BetTypeID { get; set; }
+
         public string BetTypeName { get; set; }
+
         public bool IsDisabled { get; set; }
+
         public bool IsDisabledUpline { get; set; }
+
         public bool IsDisabledDownlines { get; set; }
     }
 }

@@ -9,21 +9,20 @@
 // ************************************************************************************
 namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
 {
-    using System;
-    using System.Web;
     using System.Collections.Generic;
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.Core.Web;
-    using Fanex.CustomerSetting.Module.Core.Web.Controllers;
     using Fanex.CustomerSetting.Module.KenoStatus.Criteria;
     using Fanex.CustomerSetting.Module.KenoStatus.Repositories.Impl;
     using Fanex.CustomerSetting.Module.KenoStatus.Repositories.Interface;
     using Fanex.CustomerSetting.Module.KenoStatus.ViewModels;
     using Fanex.CustomerSetting.Security.Authenticate;
-    using Fanex.CustomerSetting.Security.Configurations;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
 
+    /// <summary>
+    /// Enable Status Controller.
+    /// </summary>
     public class EnableStatusController : KenoBaseController
     {
         private static IStatusRepository _statusRepository;
@@ -33,6 +32,10 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EnableStatusController"/> class.
+        /// </summary>
+        /// <param name="statusRepository">The status repository.</param>
         public EnableStatusController(IStatusRepository statusRepository)
         {
             _statusRepository = statusRepository ?? new StatusRepository();
@@ -44,6 +47,8 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
         /// <param name="id">Customer id.</param>
         /// <param name="uplineId">Upper customer id.</param>
         /// <param name="roleId">Customer role id.</param>
+        /// <param name="subAccountId">Customer sub account id.</param>
+        /// <param name="userId">User login id.</param>
         /// <returns>ActionResult object.</returns>
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Keno")]
         public ActionResult Index(int id, int uplineId, int roleId, int subAccountId = 0, int userId = 0)
@@ -62,7 +67,9 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
         /// <param name="id">Customer id.</param>
         /// <param name="uplineId">Upper customer id.</param>
         /// <param name="roleId">Customer role id.</param>
-        /// <returns>ActionResult object.</returns>        
+        /// <param name="subAccountId">Customer sub account id.</param>
+        /// <param name="userId">User login id.</param>
+        /// <returns>ActionResult object.</returns>
         public ActionResult GetKenoStatusData(int id, int uplineId, int roleId, int subAccountId = 0, int userId = 0)
         {
             ViewBag.subAccountId = subAccountId;
@@ -87,6 +94,11 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
             return this.Content(result);
         }
 
+        /// <summary>
+        /// Updates the specified model.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>ActionResult object.</returns>
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Keno")]
         public ActionResult Update(string model)
         {
@@ -96,10 +108,10 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
             var newStatus = JsonConvert.DeserializeObject<KenoEnableStatus>(model, settings);
             var criteria = new UpdateStatusCriteria()
             {
-                CustId=newStatus.CustID,
-                UserID=newStatus.UserID,
-                UplineID=newStatus.UplineID,
-                SubAccID=newStatus.SubAccID,
+                CustId = newStatus.CustID,
+                UserID = newStatus.UserID,
+                UplineID = newStatus.UplineID,
+                SubAccID = newStatus.SubAccID,
                 Language = TWLang(AppSession.Language),
                 IP = AppSession.CurrentContext.Ip4Address
             };
@@ -114,14 +126,15 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
                     criteria.Disable = status.IsDisabled;
                     criteria.DisableDownLines = status.IsDisabledDownlines;
                     var result = _statusRepository.UpdateStatus(criteria);
-                    errCode.Add(Convert.ToString(result["errcode"]));
-                    errMsg.Add(Convert.ToString(result["errmsg"]));
+                    errCode.Add(result["errcode"].ToString());
+                    errMsg.Add(result["errmsg"].ToString());
                 }
             }
 
-            return this.JsonBase(new {
-                ErrorCode = String.Join("\u0007", errCode.ToArray()),
-                ErrorMessage = String.Join("\u0007", errMsg.ToArray()) 
+            return this.JsonBase(new
+                {
+                    ErrorCode = string.Join("\u0007", errCode.ToArray()),
+                    ErrorMessage = string.Join("\u0007", errMsg.ToArray())
                 });
         }
 
@@ -135,6 +148,5 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
         {
             return string.IsNullOrWhiteSpace(viewName) ? this.PartialView(objModel) : this.PartialView(viewName, objModel);
         }
-
     }
 }

@@ -1,5 +1,5 @@
 ﻿// ************************************************************************************
-// <copyright file="SelectAgentCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="UpdateStatusCriteria.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ************************************************************************************
@@ -9,8 +9,8 @@
 // ************************************************************************************
 namespace Fanex.CustomerSetting.Module.KenoStatus.Criteria
 {
-    using Fanex.NAP.Framework.Data;
     using System.Diagnostics.CodeAnalysis;
+    using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// Update Enable Status for Keno.
@@ -19,15 +19,15 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Criteria
     public class UpdateStatusCriteria : CriteriaBase
     {
         /// <summary>
-        /// Gets or sets the Id of the customer. 
+        /// Gets or sets the Id of the customer.
         /// </summary>
         /// <value>The id of the customer.</value>
         public int CustId { get; set; }
 
         /// <summary>
-        /// Gets or sets the Bet Type 
+        /// Gets or sets the Bet Type.
         /// </summary>
-        /// <value>The Bet Type</value>
+        /// <value>The Bet Type.</value>
         public int Bettype { get; set; }
 
         /// <summary>
@@ -39,11 +39,11 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Criteria
         /// <summary>
         /// Gets or sets a value indicating whether disable status.
         /// </summary>
-        /// <value> 0|1: 0 affect to downlines and vice versa.</value>
+        /// <value> 0|1: 0 affect to down lines and vice versa.</value>
         public bool DisableDownLines { get; set; }
 
         /// <summary>
-        /// Gets or sets the Id of the Sub account. 
+        /// Gets or sets the Id of the Sub account.
         /// </summary>
         /// <value>The sub account id of a customer.</value>
         public int SubAccID { get; set; }

@@ -1,5 +1,5 @@
 ﻿// ************************************************************************************
-// <copyright file="BetTypeStatus.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="KenoEnableStatus.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ************************************************************************************
@@ -9,18 +9,20 @@
 // ************************************************************************************
 namespace Fanex.CustomerSetting.Module.KenoStatus.ViewModels
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
     /// <summary>
-    /// 
+    /// Keno Enable Status Object.
     /// </summary>
     public class KenoEnableStatus
     {
+        public KenoEnableStatus()
+        {
+            this.BetTypeStatusList = new List<BetTypeStatus>();
+        }
+
         public List<BetTypeStatus> BetTypeStatusList { get; set; }
-        
+
         public int CustID { get; set; }
 
         public string UserName { get; set; }
@@ -34,12 +36,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.ViewModels
         public int SubAccID { get; set; }
 
         public string Language { get; set; }
-        
+
         public bool HasDownline { get; set; }
-        
-        public KenoEnableStatus()
-        {
-            this.BetTypeStatusList = new List<BetTypeStatus>();
-        }
     }
 }

@@ -16,7 +16,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Configurations
     {
         private static KenoSection _instance;
 
-       /// <summary>
+        /// <summary>
         /// Gets the instance.
         /// </summary>
         /// <value>
@@ -58,7 +58,6 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Configurations
             get
             {
                 return (bool)base["showBetListResult"];
-
             }
         }
     }

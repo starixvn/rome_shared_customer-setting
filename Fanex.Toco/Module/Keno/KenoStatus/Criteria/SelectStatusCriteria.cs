@@ -1,5 +1,5 @@
 ﻿// ************************************************************************************
-// <copyright file="SelectAgentCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="SelectStatusCriteria.cs" company="Nexcel Solutions Vietnam">
 //     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // ************************************************************************************
@@ -9,8 +9,8 @@
 // ************************************************************************************
 namespace Fanex.CustomerSetting.Module.KenoStatus.Criteria
 {
-    using Fanex.NAP.Framework.Data;
     using System.Diagnostics.CodeAnalysis;
+    using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// Select Enable Status for Keno.
@@ -19,7 +19,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Criteria
     public class SelectStatusCriteria : CriteriaBase
     {
         /// <summary>
-        /// Gets or sets the Id of the customer. 
+        /// Gets or sets the Id of the customer.
         /// </summary>
         /// <value>The id of the customer.</value>
         public int CustID { get; set; }
