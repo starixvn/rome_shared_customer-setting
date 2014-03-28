@@ -40,6 +40,10 @@ KenoModule.directive('betSettingElement', function () {
                     $scope.valids.maxPerMatch = isValid;
                 });
 
+                $scope.$on('inputDisabledChecking', function (event, isCopiedAll) {
+                    $scope.isCopyAll = isCopiedAll;
+                });
+
                 $scope.$watch('[betSetting.minBet,betSetting.maxBet,betSetting.maxPerMatch, valids]', function (newValue, oldValue) {
                     if (newValue !== oldValue) {
                         if ($scope.valids.minBet && $scope.valids.maxBet && $scope.valids.maxPerMatch) {
