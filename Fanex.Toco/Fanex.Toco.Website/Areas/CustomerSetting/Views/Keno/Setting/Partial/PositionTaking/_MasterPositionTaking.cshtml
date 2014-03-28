@@ -24,7 +24,7 @@
             @LayoutTexts.MasterMinPT
         </td>
     </tr>
-    <tr ng-repeat="positionTaking in positionTakingList" master-position-taking-element
-        ng-model="positionTaking" index="$index">
+    <tr ng-repeat="positionTaking in positionTakingList track by $index" master-position-taking-element
+        ng-model="positionTaking" index="$index"  ng-class="{'betTypeInactive': $parent.isCopyAll && index != 0}">
     </tr>
 </table>
