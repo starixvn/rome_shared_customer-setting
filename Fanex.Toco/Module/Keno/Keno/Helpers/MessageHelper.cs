@@ -45,7 +45,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Helpers
 
         public void SetErrorCodeAndErrorMessage(string errorCode, string errorMessage)
         {
-            ClearData();
+            _errorResults = new List<Result>();
             _errorCode = errorCode;
             _errorMsg = errorMessage;
         }
@@ -84,11 +84,6 @@ namespace Fanex.CustomerSetting.Module.Keno.Helpers
             int formattedErrorCode = SuccessfulCode;
             int.TryParse(errorCode, out formattedErrorCode);
             return string.IsNullOrEmpty(errorCode) ? false : formattedErrorCode != SuccessfulCode;
-        }
-
-        internal void ClearData()
-        {
-            _errorResults = new List<Result>();
         }
 
         internal bool NoDataIsChanged()

@@ -108,7 +108,7 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
         [Test]
         public void GetMasterSetting_ShouldRunNormally()
         {
-            var criteria = new GetMasterSettingCriteria() { CustId = 1 };
+            var criteria = new GetMasterSettingCriteria() { CustId = 137509798 };
             var result = _kenoSettingRepository.GetMasterSetting(criteria);
         }
 

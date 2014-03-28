@@ -294,7 +294,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
             {
                 var bettingSetting = new MasterPositionTaking
                 {
-                    BetTypeId = dataReader.ToInt("IBCBetTypeID"),
+                    BetTypeId = dataReader.ToInt("BetType"),
                     S4 = dataReader.ToDouble("spositiontaking_max"),
                     S3 = dataReader.ToDouble("spositiontaking"),
                     M3 = dataReader.ToDouble("mpositiontaking"),
