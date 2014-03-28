@@ -9,6 +9,8 @@
 
 namespace Fanex.CustomerSetting.Module.Keno.Controllers
 {
+    using System.Globalization;
+    using System.Threading;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
     using Fanex.CustomerSetting.Module.Keno.App_Start;
     using Fanex.CustomerSetting.Module.Keno.Services;
@@ -25,9 +27,26 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         /// <param name="filterContext">The filter context.</param>
         protected override void OnActionExecuting(System.Web.Mvc.ActionExecutingContext filterContext)
         {
+            SetCurrentCulture();
             var rootUrl = Url.Content("~") + filterContext.RouteData.DataTokens["area"].ToString() + "/" + ModuleRegistrator.Module + "/";
             ViewBag.RootUrl = rootUrl;
             base.OnActionExecuting(filterContext);
+        }
+
+        /// <summary>
+        /// Sets the current culture.
+        /// </summary>
+        private static void SetCurrentCulture()
+        {
+            string cultureName = new KenoSession().Language;
+
+            if (string.IsNullOrEmpty(cultureName))
+            {
+                cultureName = "zh-CN";
+            }
+
+            Thread.CurrentThread.CurrentCulture = new CultureInfo(cultureName);
+            Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
         }
     }
 }

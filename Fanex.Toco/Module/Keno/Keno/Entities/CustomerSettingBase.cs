@@ -16,6 +16,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
     /// <summary>
     /// The CustomerSettingBase entity.
     /// </summary>
+    /// <typeparam name="T">The type of PositionTaking.</typeparam>
     public class CustomerSettingBase<T> where T : PositionTakingBase
     {
         public CustomerInformation CustomerInformation { get; set; }

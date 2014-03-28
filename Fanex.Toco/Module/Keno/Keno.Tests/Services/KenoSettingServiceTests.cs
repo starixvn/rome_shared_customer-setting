@@ -235,7 +235,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Services
                 },
             };
 
-            superSetting.PositionTakings = new List<dynamic>() 
+            superSetting.PositionTakings = new List<SuperPositionTaking>() 
             {
                 new SuperPositionTaking()
                 {

@@ -40,5 +40,13 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
                 return Utils.GetClientIP();
             }
         }
+
+        public string Language
+        {
+            get
+            {
+                return AppSession.Language;
+            }
+        }
     }
 }

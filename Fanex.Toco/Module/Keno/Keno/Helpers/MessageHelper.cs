@@ -30,11 +30,10 @@ namespace Fanex.CustomerSetting.Module.Keno.Helpers
         {
         }
 
-        public MessageHelper(string errorCode, string errorMsg)
+        public MessageHelper(string errorCode, string errorMessage)
             : this()
         {
-            _errorCode = errorCode;
-            _errorMsg = errorMsg;
+            SetErrorCodeAndErrorMessage(errorCode, errorMessage);
         }
 
         internal IList<Result> ErrorResults
@@ -44,6 +43,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Helpers
 
         public void SetErrorCodeAndErrorMessage(string errorCode, string errorMessage)
         {
+            ClearData();
             _errorCode = errorCode;
             _errorMsg = errorMessage;
         }
@@ -54,8 +54,6 @@ namespace Fanex.CustomerSetting.Module.Keno.Helpers
         /// <returns>The list of errors.</returns>
         public IList<Result> GetErrors()
         {
-            ClearData();
-
             if (NoDataIsChanged())
             {
                 AddNotificationMessageWhenClientDataIsNotChanged();
@@ -73,11 +71,6 @@ namespace Fanex.CustomerSetting.Module.Keno.Helpers
             return _errorResults;
         }
 
-        private void ClearData()
-        {
-            _errorResults = new List<Result>();
-        }
-
         internal static string GetResourceFromErrorCode(string errorCode)
         {
             return errorCode;
@@ -88,6 +81,11 @@ namespace Fanex.CustomerSetting.Module.Keno.Helpers
             int formattedErrorCode = SuccessfulCode;
             int.TryParse(errorCode, out formattedErrorCode);
             return string.IsNullOrEmpty(errorCode) ? false : formattedErrorCode != SuccessfulCode;
+        }
+
+        internal void ClearData()
+        {
+            _errorResults = new List<Result>();
         }
 
         internal bool NoDataIsChanged()

@@ -22,7 +22,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Entities
         public void IsCopyToItself_CurrentBetTypeIsSameCopiedBetType_ShouldReturnTrue()
         {
             // Act
-            var result = CustomerSettingBase.IsCopyToItself(10, 10);
+            var result = CustomerSettingBase<SuperPositionTaking>.IsCopyToItself(10, 10);
 
             // Assert
             Assert.AreEqual(true, result);
@@ -32,7 +32,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Entities
         public void IsCopyToItself_CurrentBetTypeIsDifferentCopiedBetType_ShouldReturnFalse()
         {
             // Act
-            var result = CustomerSettingBase.IsCopyToItself(1, 10);
+            var result = CustomerSettingBase<SuperPositionTaking>.IsCopyToItself(1, 10);
 
             // Assert
             Assert.AreEqual(false, result);
