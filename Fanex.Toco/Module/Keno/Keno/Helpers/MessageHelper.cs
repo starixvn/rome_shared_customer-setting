@@ -75,7 +75,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Helpers
 
         internal static string GetResourceFromErrorCode(string errorCode)
         {
-            return Messages.ResourceManager.GetString(string.Format(MessageFormat, errorCode));
+            string result = Messages.ResourceManager.GetString(string.Format(MessageFormat, errorCode));
+            return !string.IsNullOrEmpty(result) ? result : errorCode;
         }
 
         internal static bool IfThisIsAnError(string errorCode)
