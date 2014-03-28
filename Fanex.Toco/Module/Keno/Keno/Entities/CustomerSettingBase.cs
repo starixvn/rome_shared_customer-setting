@@ -57,7 +57,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
         {
             betSetting.MinBet = copiedBetSetting.MinBet;
             betSetting.MaxBet = copiedBetSetting.MaxBet;
-            betSetting.MaxPerMatch = copiedBetSetting.MinBet;
+            betSetting.MaxPerMatch = copiedBetSetting.MaxPerMatch;
             betSetting.IsEnabled = copiedBetSetting.IsEnabled;
             betSetting.IsDownlinesEnabled = copiedBetSetting.IsDownlinesEnabled;
             betSetting.IsBetSettingUpdated = copiedBetSetting.IsBetSettingUpdated;
