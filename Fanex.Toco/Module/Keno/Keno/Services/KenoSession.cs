@@ -21,7 +21,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
         {
             get
             {
-                return AppSession.AccId;
+                //return AppSession.AccId;
+                return 8;
             }
         }
 

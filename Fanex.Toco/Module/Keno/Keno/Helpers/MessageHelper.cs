@@ -20,10 +20,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Helpers
     public class MessageHelper : IMessageHelper
     {
         private const string Separator = "\a";
-        private const int NoDataIsChangedCode = 1000;
-        private const int MessageIsNotValidCode = 1001;
+        private const int DataIsNotChangedCode = 1000;
+        private const int DatabaseResponseIsNotValidCode = 1001;
         private const string MessageFormat = "Msg_{0}";
-        private const int SuccessfulCode = 0;
         private string _errorCode = string.Empty;
         private string _errorMsg = string.Empty;
         private IList<Result> _errorResults;
@@ -56,18 +55,17 @@ namespace Fanex.CustomerSetting.Module.Keno.Helpers
         /// <returns>The list of errors.</returns>
         public IList<Result> GetErrors()
         {
-            if (NoDataIsChanged())
+            if (DataIsNotChangedOrNotUpdated())
             {
-                AddNotificationMessageWhenClientDataIsNotChanged();
+                AddMessageWhenDataIsNotChangedOrNotUpdated();
             }
-            else if (MessageIsNotValid())
+            else if (DatabaseResponseIsNotValid())
             {
-                AddErrorMessageInCaseMessageIsNotValid();
+                AddMessageInCaseDatabaseResponseIsNotValid();
             }
             else
             {
-                AddErrorMessageWhenClientDataIsChanged();
-                AddSuccessfulMessageInCaseThereIsNoError();
+                AddMessageWhenDataIsUpdated();
             }
 
             return _errorResults;
@@ -79,19 +77,18 @@ namespace Fanex.CustomerSetting.Module.Keno.Helpers
             return !string.IsNullOrEmpty(result) ? result : errorCode;
         }
 
-        internal static bool IfThisIsAnError(string errorCode)
+        internal static bool IfErrorCodeIsValid(string errorCode)
         {
-            int formattedErrorCode = SuccessfulCode;
-            int.TryParse(errorCode, out formattedErrorCode);
-            return string.IsNullOrEmpty(errorCode) ? false : formattedErrorCode != SuccessfulCode;
+            int formattedErrorCode = 0;
+            return int.TryParse(errorCode, out formattedErrorCode);
         }
 
-        internal bool NoDataIsChanged()
+        internal bool DataIsNotChangedOrNotUpdated()
         {
             return string.IsNullOrEmpty(this._errorCode);
         }
 
-        internal void AddErrorMessageWhenClientDataIsChanged()
+        internal void AddMessageWhenDataIsUpdated()
         {
             var errorCodes = _errorCode.Split(new[] { Separator }, StringSplitOptions.None);
             var errorMsgs = _errorMsg.Split(new[] { Separator }, StringSplitOptions.None);
@@ -102,44 +99,38 @@ namespace Fanex.CustomerSetting.Module.Keno.Helpers
             }
         }
 
-        internal void AddSuccessfulMessageInCaseThereIsNoError()
-        {
-            if (_errorResults.Count == 0)
-            {
-                _errorResults.Add(new Result()
-                {
-                    ErrorCode = SuccessfulCode,
-                    ErrorMessage = GetResourceFromErrorCode(SuccessfulCode.ToString())
-                });
-            }
-        }
-
         internal void AddErrorMessage(string errorCode, string errorMsg)
         {
-            if (IfThisIsAnError(errorCode))
+            if (IfErrorCodeIsValid(errorCode))
             {
                 _errorResults.Add(new Result()
                 {
                     ErrorCode = Convert.ToInt32(errorCode),
-                    ErrorMessage = Convert.ToInt32(errorCode) > 0 ? errorMsg : GetResourceFromErrorCode(errorCode)
+                    ErrorMessage = !string.IsNullOrEmpty(errorMsg) ? errorMsg : GetResourceFromErrorCode(errorCode)
                 });
+            }
+            else
+            {
+                AddMessageInCaseDatabaseResponseIsNotValid();
             }
         }
 
-        internal void AddNotificationMessageWhenClientDataIsNotChanged()
+        internal void AddMessageWhenDataIsNotChangedOrNotUpdated()
         {
             _errorResults.Add(new Result()
             {
-                ErrorCode = NoDataIsChangedCode,
-                ErrorMessage = GetResourceFromErrorCode(NoDataIsChangedCode.ToString())
+                ErrorCode = DataIsNotChangedCode,
+                ErrorMessage = GetResourceFromErrorCode(DataIsNotChangedCode.ToString())
             });
         }
 
         /// <summary>
-        /// Messages the is not valid.
+        /// Database response is not valid.
         /// </summary>
-        /// <returns>Whether the message is valid or not.</returns>
-        internal bool MessageIsNotValid()
+        /// <returns>
+        /// Whether the database response is valid or not.
+        /// </returns>
+        internal bool DatabaseResponseIsNotValid()
         {
             if (!string.IsNullOrEmpty(_errorCode) && string.IsNullOrEmpty(_errorMsg))
             {
@@ -157,12 +148,12 @@ namespace Fanex.CustomerSetting.Module.Keno.Helpers
             return false;
         }
 
-        internal void AddErrorMessageInCaseMessageIsNotValid()
+        internal void AddMessageInCaseDatabaseResponseIsNotValid()
         {
             _errorResults.Add(new Result()
             {
-                ErrorCode = MessageIsNotValidCode,
-                ErrorMessage = GetResourceFromErrorCode(MessageIsNotValidCode.ToString())
+                ErrorCode = DatabaseResponseIsNotValidCode,
+                ErrorMessage = GetResourceFromErrorCode(DatabaseResponseIsNotValidCode.ToString())
             });
         }
     }

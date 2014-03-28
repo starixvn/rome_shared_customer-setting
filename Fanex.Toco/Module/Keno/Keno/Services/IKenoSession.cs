@@ -19,5 +19,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
         int SubAccId { get; }
 
         string Ip { get; }
+
+        string Language { get; }
     }
 }

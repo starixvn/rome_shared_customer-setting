@@ -27,23 +27,10 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Helper
             var messageHelper = new MessageHelper(string.Empty, string.Empty);
 
             // Act
-            var isNoDataChanged = messageHelper.NoDataIsChanged();
+            var isNoDataChanged = messageHelper.DataIsNotChangedOrNotUpdated();
 
             // Assert
             Assert.AreEqual(true, isNoDataChanged);
-        }
-
-        [Test]
-        public void AddErrorMessage_ErrorCodeEqualsZero_ShouldNotAddError()
-        {
-            // Arrange
-            var messageHelper = new MessageHelper(string.Empty, string.Empty);
-
-            // Act
-            messageHelper.AddErrorMessage("0", string.Empty);
-
-            // Assert
-            Assert.AreEqual(0, messageHelper.ErrorResults.Count());
         }
 
         [Test]
@@ -68,12 +55,12 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Helper
             var messageHelper = new MessageHelper("0\a100\a-200", "Msg0\aMsg100\aMsg-200");
 
             // Act
-            messageHelper.AddErrorMessageWhenClientDataIsChanged();
+            messageHelper.AddMessageWhenDataIsUpdated();
 
             // Assert
-            Assert.AreEqual(2, messageHelper.ErrorResults.Count());
-            Assert.AreEqual(100, messageHelper.ErrorResults[0].ErrorCode);
-            Assert.AreEqual("Msg100", messageHelper.ErrorResults[0].ErrorMessage);
+            Assert.AreEqual(3, messageHelper.ErrorResults.Count());
+            Assert.AreEqual(0, messageHelper.ErrorResults[0].ErrorCode);
+            Assert.AreEqual("Msg0", messageHelper.ErrorResults[0].ErrorMessage);
         }
 
         [Test]
@@ -100,9 +87,9 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Helper
             messageHelper.GetErrors();
 
             // Assert
-            Assert.AreEqual(2, messageHelper.ErrorResults.Count());
-            Assert.AreEqual(100, messageHelper.ErrorResults[0].ErrorCode);
-            Assert.AreEqual("Msg100", messageHelper.ErrorResults[0].ErrorMessage);
+            Assert.AreEqual(3, messageHelper.ErrorResults.Count());
+            Assert.AreEqual(0, messageHelper.ErrorResults[0].ErrorCode);
+            Assert.AreEqual("Msg0", messageHelper.ErrorResults[0].ErrorMessage);
         }
 
         [Test]
@@ -117,20 +104,6 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Helper
             // Assert
             Assert.AreEqual(1, messageHelper.ErrorResults.Count());
             Assert.AreEqual(1000, messageHelper.ErrorResults[0].ErrorCode);
-        }
-
-        [Test]
-        public void GetErrors_DontHaveErrors_ShouldReturnSuccessfulMessage()
-        {
-            // Arrange
-            var messageHelper = new MessageHelper("0\a0\a0", "Msg0\aMsg0\aMsg0");
-
-            // Act
-            messageHelper.GetErrors();
-
-            // Assert
-            Assert.AreEqual(1, messageHelper.ErrorResults.Count());
-            Assert.AreEqual(0, messageHelper.ErrorResults[0].ErrorCode);
         }
     }
 }
