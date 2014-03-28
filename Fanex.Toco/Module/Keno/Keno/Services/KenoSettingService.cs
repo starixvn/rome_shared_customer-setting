@@ -142,7 +142,10 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
 
             foreach (var betSetting in customerSetting.BetSettings)
             {
-                results.AddRange(this.UpdateBetSetting(customerSetting.CustomerInformation, betSetting));
+                if (betSetting.IsDataChanged())
+                {
+                    results.AddRange(this.UpdateBetSetting(customerSetting.CustomerInformation, betSetting));
+                }
             }
 
             return results;
@@ -167,7 +170,10 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
 
             foreach (var positionTaking in customerSetting.PositionTakings)
             {
-                results.AddRange(this.UpdatePositionTaking(customerSetting.CustomerInformation, positionTaking));
+                if (positionTaking.IsDataChanged())
+                {
+                    results.AddRange(this.UpdatePositionTaking(customerSetting.CustomerInformation, positionTaking));
+                }
             }
 
             return results;

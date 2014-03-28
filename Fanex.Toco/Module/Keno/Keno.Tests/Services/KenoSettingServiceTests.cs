@@ -160,7 +160,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Services
 
             // Assert
             Assert.IsInstanceOf<IList<Result>>(results);
-            Assert.AreEqual(6, results.Count);
+            Assert.AreEqual(0, results.Count);
         }
 
         private SuperSettingViewModel GenerateFakeCustomerSettingViewModel(ICriteria criteria)

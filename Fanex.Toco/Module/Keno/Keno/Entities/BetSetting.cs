@@ -35,5 +35,10 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
         public bool IsStatusUpdated { get; set; }
 
         public BetSetting Upline { get; set; }
+
+        public bool IsDataChanged()
+        {
+            return this.IsBetSettingUpdated || this.IsStatusUpdated;
+        }
     }
 }

@@ -27,5 +27,10 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
         public bool IsUpdateAllMember { get; set; }
 
         public double NewMemberPT { get; set; }
+
+        public bool IsDataChanged()
+        {
+            return this.IsUpdateS3 || this.IsUpdateUS3 || this.IsUpdateM3 || this.IsUpdateN3 || this.IsUpdateMComm;
+        }
     }
 }

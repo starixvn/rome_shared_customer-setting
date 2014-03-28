@@ -21,5 +21,10 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
         public double M1UM1Min { get; set; }
 
         public double M1Max { get; set; }
+
+        public bool IsDataChanged()
+        {
+            return this.IsUpdateM1 || this.IsUpdateUM1;
+        }
     }
 }

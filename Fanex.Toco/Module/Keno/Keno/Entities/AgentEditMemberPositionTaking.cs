@@ -17,5 +17,10 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
         public bool IsUpdateA1 { get; set; }
 
         public bool IsUpdateComm { get; set; }
+
+        public bool IsDataChanged()
+        {
+            return this.IsUpdateA1 || this.IsUpdateComm;
+        }
     }
 }
