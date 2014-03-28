@@ -60,8 +60,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
             destinationBetSetting.MaxPerMatch = sourceBetSetting.MaxPerMatch;
             destinationBetSetting.IsEnabled = sourceBetSetting.IsEnabled;
             destinationBetSetting.IsDownlinesEnabled = sourceBetSetting.IsDownlinesEnabled;
-            destinationBetSetting.IsBetSettingUpdated = sourceBetSetting.IsBetSettingUpdated;
-            destinationBetSetting.IsStatusUpdated = sourceBetSetting.IsStatusUpdated;
+            destinationBetSetting.IsBetSettingUpdated = true;
+            destinationBetSetting.IsStatusUpdated = true;
         }
 
         /// <summary>

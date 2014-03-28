@@ -50,7 +50,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.ViewModels
             Assert.AreEqual(0.2, destination.N4);
             Assert.AreEqual(0.0095, destination.SComm);
             Assert.AreEqual(true, destination.IsUpdateN4);
-            Assert.AreEqual(false, destination.IsUpdateS4);
+            Assert.AreEqual(true, destination.IsUpdateS4);
             Assert.AreEqual(true, destination.IsUpdateSCo);
         }
     }

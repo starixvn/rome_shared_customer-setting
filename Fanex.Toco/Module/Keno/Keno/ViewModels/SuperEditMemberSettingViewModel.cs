@@ -24,8 +24,8 @@ namespace Fanex.CustomerSetting.Module.Keno.ViewModels
             destinationMemberPositionTaking.S1 = sourceMemberPositionTaking.S1;
             destinationMemberPositionTaking.IS1 = sourceMemberPositionTaking.IS1;
             destinationMemberPositionTaking.US1 = sourceMemberPositionTaking.US1;
-            destinationMemberPositionTaking.IsUpdateS1 = sourceMemberPositionTaking.IsUpdateS1;
-            destinationMemberPositionTaking.IsUpdateUS1 = sourceMemberPositionTaking.IsUpdateUS1;
+            destinationMemberPositionTaking.IsUpdateS1 = true;
+            destinationMemberPositionTaking.IsUpdateUS1 = true;
         }
     }
 }
