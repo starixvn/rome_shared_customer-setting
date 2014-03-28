@@ -46,7 +46,7 @@ KenoModule.controller('betSettingController', function ($scope, kenoRepositories
         }
     });
 
-    $scope.$on('betSettingValid', function (event) {
+    $scope.$on('totallyChecking', function (event) {
         var length = $scope.betSettingList.length;
 
         for (var i = 0; i < length; i++) {

@@ -76,15 +76,16 @@ KenoModule.controller('mainController', function ($scope, $timeout, kenoReposito
                     var length = results.length;
                     var isError = false;
                     for (var i = 0; i < length; i++) {
-                        var className = results[i].ErrorCode > 0 ? "alerterror" : "alertsuccess";
-                        var html = '<div class="' + className + '">' + results[i].ErrorMessage + '</div>';
-                        $("#divShowInfo").append(html);
                         if (results[i].ErrorCode > 0) {
+                            var html = '<div class="alerterror">' + results[i].ErrorMessage + '</div>';
+                            $("#divShowInfo").append(html);
                             isError = true;
                         }
                     }
 
                     if (!isError) {
+                        var html = '<div class="alertsuccess">Updated successful.</div>';
+                        $("#divShowInfo").append(html);
                         $timeout(function () {
                             commonService.unblockUI();
                             location.reload();
