@@ -62,6 +62,7 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
         [Test]
         public void UpdateSuperBetSetting_ShouldRunNormally()
         {
+            // Arrange
             var criteria = new UpdateSuperBetSettingCriteria()
             {
                 CustId = 137509707,
@@ -80,12 +81,14 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
                 Language = null
             };
 
+            // Act
             var result = _kenoSettingRepository.UpdateBetSetting(criteria);
         }
 
         [Test]
         public void UpdateSuperPositionTaking_ShouldRunNormally()
         {
+            // Arrange
             var criteria = new UpdateSuperPositionTakingCriteria()
             {
                 CustId = 137509707,
@@ -102,6 +105,7 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
                 Language = null
             };
 
+            // Act
             var result = _kenoSettingRepository.UpdatePositionTaking(criteria);
         }
 
@@ -115,6 +119,7 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
         [Test]
         public void UpdateMasterBetSetting_ShouldRunNormally()
         {
+            // Arrange
             var criteria = new UpdateMasterBetSettingCriteria()
             {
                 CustId = 137509707,
@@ -133,12 +138,14 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
                 Language = null
             };
 
+            // Act
             var result = _kenoSettingRepository.UpdateBetSetting(criteria);
         }
 
         [Test]
         public void UpdateMasterPositionTaking_ShouldRunNormally()
         {
+            // Arrange
             var criteria = new UpdateMasterPositionTakingCriteria()
             {
                 CustId = 1,
@@ -161,19 +168,24 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
                 Language = null
             };
 
+            // Act
             var result = _kenoSettingRepository.UpdatePositionTaking(criteria);
         }
 
         [Test]
         public void GetAgentSetting_ShouldRunNormally()
         {
+            // Arrange
             var criteria = new GetAgentSettingCriteria() { CustId = 1 };
+
+            // Act
             var result = _kenoSettingRepository.GetAgentSetting(criteria);
         }
 
         [Test]
         public void UpdateAgentBetSetting_ShouldRunNormally()
         {
+            // Arrange
             var criteria = new UpdateAgentBetSettingCriteria()
             {
                 CustId = 137509707,
@@ -192,12 +204,14 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
                 Language = null
             };
 
+            // Act
             var result = _kenoSettingRepository.UpdateBetSetting(criteria);
         }
 
         [Test]
         public void UpdateAgentPositionTaking_ShouldRunNormally()
         {
+            // Arrange
             var criteria = new UpdateAgentPositionTakingCriteria()
             {
                 CustId = 137509707,
@@ -220,19 +234,24 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
                 Language = null
             };
 
+            // Act
             var result = _kenoSettingRepository.UpdatePositionTaking(criteria);
         }
 
         [Test]
         public void GetSettingInCaseOfAgentEditMember_ShouldRunNormally()
         {
+            // Arrange
             var criteria = new AgentGetMemberSettingCriteria() { CustId = 137459563 };
+
+            // Act
             var result = _kenoSettingRepository.GetSettingInCaseOfAgentEditMember(criteria);
         }
 
         [Test]
         public void AgentUpdateMemberBetSetting_ShouldRunNormally()
         {
+            // Arrange
             var criteria = new AgentUpdateMemberBetSettingCriteria()
             {
                 CustId = 137509707,
@@ -250,12 +269,14 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
                 Language = null
             };
 
+            // Act
             var result = _kenoSettingRepository.UpdateBetSetting(criteria);
         }
 
         [Test]
         public void AgentUpdateMemberPositionTaking_ShouldRunNormally()
         {
+            // Arrange
             var criteria = new AgentUpdateMemberPositionTakingCriteria()
             {
                 CustId = 137509707,
@@ -271,19 +292,24 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
                 Language = null
             };
 
+            // Act
             var result = _kenoSettingRepository.UpdatePositionTaking(criteria);
         }
 
         [Test]
         public void GetSettingInCaseOfSuperEditMember_ShouldRunNormally()
         {
+            // Arrange
             var criteria = new SuperGetMemberSettingCriteria() { CustId = 137459563 };
+
+            // Act
             var result = _kenoSettingRepository.GetSettingInCaseOfSuperEditMember(criteria);
         }
 
         [Test]
         public void SuperUpdateMemberPositionTaking_ShouldRunNormally()
         {
+            // Arrange
             var criteria = new SuperUpdateMemberPositionTakingCriteria()
             {
                 CustId = 137509707,
@@ -300,19 +326,24 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
                 Language = null
             };
 
+            // Act
             var result = _kenoSettingRepository.UpdatePositionTaking(criteria);
         }
 
         [Test]
         public void GetSettingInCaseOfMasterEditMember_ShouldRunNormally()
         {
+            // Arrange
             var criteria = new MasterGetMemberSettingCriteria() { CustId = 137459563 };
+
+            // Act
             var result = _kenoSettingRepository.GetSettingInCaseOfMasterEditMember(criteria);
         }
 
         [Test]
         public void MasterUpdateMemberPositionTaking_ShouldRunNormally()
         {
+            // Arrange
             var criteria = new MasterUpdateMemberPositionTakingCriteria()
             {
                 CustId = 137509810,
@@ -330,6 +361,7 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
                 Language = null
             };
 
+            // Act
             var result = _kenoSettingRepository.UpdatePositionTaking(criteria);
         }
     }
