@@ -19,31 +19,31 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
         /// <summary>
         /// Edit super action.
         /// </summary>
-        EditSuper = 1,
+        EditSuper = 4,
 
         /// <summary>
         /// Edit master action.
         /// </summary>
-        EditMaster = 2,
+        EditMaster = 3,
 
         /// <summary>
         /// Edit agent action.
         /// </summary>
-        EditAgent = 3,
+        EditAgent = 2,
 
         /// <summary>
         /// Agent edit member action.
         /// </summary>
-        AgentEditMember = 4,
+        AgentEditMember = 21,
 
         /// <summary>
         /// Super edit member action.
         /// </summary>
-        SuperEditMember = 5,
+        SuperEditMember = 41,
 
         /// <summary>
         /// Master edit member action.
         /// </summary>
-        MasterEditMember = 6
+        MasterEditMember = 31
     }
 }

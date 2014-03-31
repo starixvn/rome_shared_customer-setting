@@ -34,7 +34,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Tests.Repositories
             mockDataReader.Stub(d => d.Read()).Return(true).Repeat.Times(1);
 
             // Act
-            var customerInformation = KenoSettingRepository.ReadCustomerInformationData(mockDataReader, Roles.Agent);
+            var customerInformation = KenoSettingRepository.ReadCustomerInformationData(mockDataReader, Roles.Agent, ActionType.EditAgent);
 
             // Assert
             Assert.NotNull(customerInformation);

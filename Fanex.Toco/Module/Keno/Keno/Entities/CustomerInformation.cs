@@ -20,6 +20,8 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
 
         public int RoleId { get; set; }
 
+        public int ActionType { get; set; }
+
         public string Username { get; set; }
 
         public string FirstName { get; set; }

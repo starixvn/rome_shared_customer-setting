@@ -43,7 +43,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
             {
                 using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
                 {
-                    superSetting.CustomerInformation = ReadCustomerInformationData(reader, Roles.Super);
+                    superSetting.CustomerInformation = ReadCustomerInformationData(reader, Roles.Super, ActionType.EditSuper);
                     superSetting.BetSettings = reader.NextResult() ? ReadBetLimitData(reader) : null;
                     superSetting.PositionTakings = reader.NextResult() ? ReadSuperPositionTakingData(reader) : null;
                 }
@@ -70,7 +70,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
             {
                 using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
                 {
-                    masterSetting.CustomerInformation = ReadCustomerInformationData(reader, Roles.Master);
+                    masterSetting.CustomerInformation = ReadCustomerInformationData(reader, Roles.Master, ActionType.EditMaster);
                     masterSetting.BetSettings = reader.NextResult() ? ReadBetLimitData(reader) : null;
                     masterSetting.PositionTakings = reader.NextResult() ? ReadMasterPositionTakingData(reader) : null;
                 }
@@ -97,7 +97,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
             {
                 using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
                 {
-                    agentSetting.CustomerInformation = ReadCustomerInformationData(reader, Roles.Agent);
+                    agentSetting.CustomerInformation = ReadCustomerInformationData(reader, Roles.Agent, ActionType.EditAgent);
                     agentSetting.BetSettings = reader.NextResult() ? ReadBetLimitData(reader) : null;
                     agentSetting.PositionTakings = reader.NextResult() ? ReadAgentPositionTakingData(reader) : null;
                 }
@@ -124,7 +124,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
             {
                 using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
                 {
-                    memberSetting.CustomerInformation = ReadCustomerInformationData(reader, Roles.Member);
+                    memberSetting.CustomerInformation = ReadCustomerInformationData(reader, Roles.Member, ActionType.AgentEditMember);
                     memberSetting.BetSettings = reader.NextResult() ? ReadBetLimitData(reader) : null;
                     memberSetting.PositionTakings = reader.NextResult() ? ReadMemberPositionTakingInCaseOfAgentEditMember(reader) : null;
                 }
@@ -151,7 +151,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
             {
                 using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
                 {
-                    memberSetting.CustomerInformation = ReadCustomerInformationData(reader, Roles.Member);
+                    memberSetting.CustomerInformation = ReadCustomerInformationData(reader, Roles.Member, ActionType.SuperEditMember);
                     memberSetting.BetSettings = reader.NextResult() ? ReadBetLimitData(reader) : null;
                     memberSetting.PositionTakings = reader.NextResult() ? ReadMemberPositionTakingInCaseOfSuperEditMember(reader) : null;
                 }
@@ -178,7 +178,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
             {
                 using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
                 {
-                    memberSetting.CustomerInformation = ReadCustomerInformationData(reader, Roles.Member);
+                    memberSetting.CustomerInformation = ReadCustomerInformationData(reader, Roles.Member, ActionType.MasterEditMember);
                     memberSetting.BetSettings = reader.NextResult() ? ReadBetLimitData(reader) : null;
                     memberSetting.PositionTakings = reader.NextResult() ? ReadMemberPositionTakingInCaseOfMasterEditMember(reader) : null;
                 }
@@ -202,10 +202,11 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
         /// </summary>
         /// <param name="dataReader">The data reader.</param>
         /// <param name="role">The role of target user.</param>
+        /// <param name="actionType">Type of the action.</param>
         /// <returns>
         /// The CustomerInformation object.
         /// </returns>
-        internal static CustomerInformation ReadCustomerInformationData(IDataReader dataReader, Roles role)
+        internal static CustomerInformation ReadCustomerInformationData(IDataReader dataReader, Roles role, ActionType actionType)
         {
             CustomerInformation customerInformation = new CustomerInformation();
             while (dataReader.Read())
@@ -219,6 +220,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Repositories
                 customerInformation.MobilePhone = dataReader.ToString("mobilephone");
                 customerInformation.Fax = dataReader.ToString("fax");
                 customerInformation.RoleId = (int)role;
+                customerInformation.ActionType = (int)actionType;
             }
 
             return customerInformation;
