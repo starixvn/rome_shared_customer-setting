@@ -20,7 +20,8 @@ KenoModule.directive('masterPositionTakingElement', ['commonService', function (
             $scope.monitorSaveButton = function () {
                 if ($scope.positionTaking.isUpdateUS3
                     || $scope.positionTaking.isUpdateS3
-                    || $scope.positionTaking.isUpdateN3) {
+                    || $scope.positionTaking.isUpdateN3
+                    || $scope.positionTaking.isUpdateM3) {
                     $scope.positionTaking.isUpdatePT = true;
                 }
                 else {
