@@ -46,21 +46,6 @@ KenoModule.controller('betSettingController', function ($scope, kenoRepositories
         }
     });
 
-    $scope.$on('totallyChecking', function (event) {
-        var length = $scope.betSettingList.length;
-
-        for (var i = 0; i < length; i++) {
-            var betSettingTmp = $scope.betSettingList[i];
-            if (!betSettingTmp.isValid) {
-                $scope.isValid = false;
-                return false;
-            }
-        }
-
-        $scope.isValid = true;
-    });
-
-
     $scope.$watch('isBetSettingPartial', function (newValue, oldValue) {
         if (newValue !== oldValue) {
             $scope.$emit('betSettingPartial', $scope.isBetSettingPartial);
