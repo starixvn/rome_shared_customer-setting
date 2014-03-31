@@ -3,9 +3,14 @@
 KenoModule.service('commonService', function () {
     var getRangeValue = function (max, min, stepValue, roundValue) {
         var rangeValueArray = new Array();
-        while (max >= min) {
-            rangeValueArray.push(max);
-            max = Math.round((max - stepValue) * roundValue) / roundValue;
+        if (max >= min) {
+            while (max >= min) {
+                rangeValueArray.push(max);
+                max = Math.round((max - stepValue) * roundValue) / roundValue;
+            }
+        }
+        else {
+            rangeValueArray = [];
         }
         return rangeValueArray;
     }
