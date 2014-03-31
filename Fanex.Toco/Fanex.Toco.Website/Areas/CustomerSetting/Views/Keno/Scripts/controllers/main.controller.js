@@ -61,11 +61,11 @@ KenoModule.controller('mainController', function ($scope, $timeout, kenoReposito
                 break;
             case 2: url = 'customersetting/keno/kenosetting/EditAgent';
                 break;
-            case 1: 'customersetting/keno/kenosetting/AgentEditMember';
+            case 1: url = 'customersetting/keno/kenosetting/AgentEditMember';
                 break;
-            case 41: 'customersetting/keno/kenosetting/SuperEditMember';
+            case 41: url = 'customersetting/keno/kenosetting/SuperEditMember';
                 break;
-            case 31: 'customersetting/keno/kenosetting/MasterEditMember';
+            case 31: url = 'customersetting/keno/kenosetting/MasterEditMember';
                 break;     
             default:
                 break;
