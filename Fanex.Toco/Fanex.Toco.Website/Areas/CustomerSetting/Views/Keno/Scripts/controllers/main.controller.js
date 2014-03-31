@@ -94,11 +94,11 @@ KenoModule.controller('mainController', function ($scope, $timeout, kenoReposito
                     if (!isError) {
                         var html = '<div class="alertsuccess">Updated successful.</div>';
                         $("#divShowInfo").append(html);
-//                        $timeout(function () {
-//                            commonService.unblockUI();
-//                            location.reload();
-//                            parent.frames["centerFr"].location.reload();
-//                        }, 5000);
+                        $timeout(function () {
+                            commonService.unblockUI();
+                            location.reload();
+                            parent.frames["centerFr"].location.reload();
+                        }, 5000);
                     } else {
                         commonService.unblockUI();
                     }
