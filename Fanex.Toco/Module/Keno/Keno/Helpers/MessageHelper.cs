@@ -128,11 +128,6 @@ namespace Fanex.CustomerSetting.Module.Keno.Helpers
         /// </returns>
         internal bool DatabaseResponseIsNotValid()
         {
-            if (!string.IsNullOrEmpty(_errorCode) && string.IsNullOrEmpty(_errorMsg))
-            {
-                return true;
-            }
-
             var errorCodes = _errorCode.Split(new[] { Separator }, StringSplitOptions.None);
             var errorMsgs = _errorMsg.Split(new[] { Separator }, StringSplitOptions.None);
 
