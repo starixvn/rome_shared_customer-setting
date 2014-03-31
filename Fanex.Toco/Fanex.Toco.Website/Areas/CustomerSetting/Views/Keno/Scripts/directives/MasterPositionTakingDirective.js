@@ -76,7 +76,7 @@ KenoModule.directive('masterPositionTakingElement', ['commonService', function (
             }, true);
 
             $scope.$watch('positionTaking.m3', function () {
-                $scope.positionTaking.isUpdateS3 = $scope.originalPositionTaking.m3 != $scope.positionTaking.m3 ? true : false;
+                $scope.positionTaking.isUpdateM3 = $scope.originalPositionTaking.m3 != $scope.positionTaking.m3 ? true : false;
 
                 if ($scope.positionTaking.m3 <= $scope.positionTaking.n3) {
                     $scope.positionTaking.n3 = $scope.positionTaking.m3;
