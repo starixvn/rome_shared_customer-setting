@@ -64,6 +64,7 @@
     <Compile Include="Criteria\UpdateSuperBetSettingCriteriaTests.cs" />
     <Compile Include="Criteria\UpdateSuperPositionTakingCriteriaTests.cs" />
     <Compile Include="Entities\CustomerSettingBaseTests.cs" />
+    <Compile Include="Entities\PositionTakingBaseTests.cs" />
     <Compile Include="Helper\MessageHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\KenoSettingBaseRepositoryTests.cs" />

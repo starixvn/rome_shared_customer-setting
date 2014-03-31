@@ -22,6 +22,10 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
     public class KenoSettingRepositoryTests
     {
         private KenoSettingRepository _kenoSettingRepository;
+        private const int SuperId = 14195486;
+        private const int MasterId = 14195487;
+        private const int AgentId = 14195488;
+        private const int MemberId = 14195489;
 
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
@@ -45,18 +49,18 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
         public void GetSuperSetting_ShouldRunNormally()
         {
             // Arrange
-            var criteria = new GetSuperSettingCriteria() { CustId = 14195486 };
+            var criteria = new GetSuperSettingCriteria() { CustId = SuperId };
 
             // Act
             var result = _kenoSettingRepository.GetSuperSetting(criteria);
-            result.AdjustInformationWhenLoadSetting(14195486);
+            result.AdjustInformationWhenLoadSetting(SuperId);
 
             // Assert
             Assert.IsNotNull(result.CustomerInformation);
             Assert.IsNotNull(result.BetSettings);
-            Assert.AreEqual(7, result.BetSettings.Count);
+            Assert.Greater(result.BetSettings.Count, 0);
             Assert.IsNotNull(result.PositionTakings);
-            Assert.AreEqual(7, result.PositionTakings.Count);
+            Assert.Greater(result.PositionTakings.Count, 0);
         }
 
         [Test]
@@ -65,7 +69,7 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
             // Arrange
             var criteria = new UpdateSuperBetSettingCriteria()
             {
-                CustId = 137509707,
+                CustId = SuperId,
                 SportType = Constants.SportType,
                 BetType = 1,
                 UpdateStatus = false,
@@ -83,6 +87,9 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
 
             // Act
             var result = _kenoSettingRepository.UpdateBetSetting(criteria);
+
+            // Assert
+            Assert.AreEqual(1, result.Count);
         }
 
         [Test]
@@ -91,7 +98,7 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
             // Arrange
             var criteria = new UpdateSuperPositionTakingCriteria()
             {
-                CustId = 137509707,
+                CustId = SuperId,
                 SportType = Constants.SportType,
                 BetType = 1,
                 SPositionTaking = 10,
@@ -107,13 +114,26 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
 
             // Act
             var result = _kenoSettingRepository.UpdatePositionTaking(criteria);
+
+            // Assert
+            Assert.AreEqual(1, result.Count);
         }
 
         [Test]
         public void GetMasterSetting_ShouldRunNormally()
         {
-            var criteria = new GetMasterSettingCriteria() { CustId = 137509798 };
+            // Arrange
+            var criteria = new GetMasterSettingCriteria() { CustId = MasterId };
+
+            // Act
             var result = _kenoSettingRepository.GetMasterSetting(criteria);
+
+            // Assert
+            Assert.IsNotNull(result.CustomerInformation);
+            Assert.IsNotNull(result.BetSettings);
+            Assert.Greater(result.BetSettings.Count, 0);
+            Assert.IsNotNull(result.PositionTakings);
+            Assert.Greater(result.PositionTakings.Count, 0);
         }
 
         [Test]
@@ -122,7 +142,7 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
             // Arrange
             var criteria = new UpdateMasterBetSettingCriteria()
             {
-                CustId = 137509707,
+                CustId = MasterId,
                 SportType = Constants.SportType,
                 BetType = 1,
                 UpdateStatus = false,
@@ -140,6 +160,9 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
 
             // Act
             var result = _kenoSettingRepository.UpdateBetSetting(criteria);
+
+            // Assert
+            Assert.AreEqual(1, result.Count);
         }
 
         [Test]
@@ -148,7 +171,7 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
             // Arrange
             var criteria = new UpdateMasterPositionTakingCriteria()
             {
-                CustId = 1,
+                CustId = MasterId,
                 SportType = Constants.SportType,
                 BetType = 1,
                 SPositionTaking = 10,
@@ -170,16 +193,26 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
 
             // Act
             var result = _kenoSettingRepository.UpdatePositionTaking(criteria);
+
+            // Assert
+            Assert.AreEqual(1, result.Count);
         }
 
         [Test]
         public void GetAgentSetting_ShouldRunNormally()
         {
             // Arrange
-            var criteria = new GetAgentSettingCriteria() { CustId = 1 };
+            var criteria = new GetAgentSettingCriteria() { CustId = AgentId };
 
             // Act
             var result = _kenoSettingRepository.GetAgentSetting(criteria);
+
+            // Assert
+            Assert.IsNotNull(result.CustomerInformation);
+            Assert.IsNotNull(result.BetSettings);
+            Assert.Greater(result.BetSettings.Count, 0);
+            Assert.IsNotNull(result.PositionTakings);
+            Assert.Greater(result.PositionTakings.Count, 0);
         }
 
         [Test]
@@ -188,7 +221,7 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
             // Arrange
             var criteria = new UpdateAgentBetSettingCriteria()
             {
-                CustId = 137509707,
+                CustId = AgentId,
                 SportType = Constants.SportType,
                 BetType = 1,
                 UpdateStatus = false,
@@ -206,6 +239,9 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
 
             // Act
             var result = _kenoSettingRepository.UpdateBetSetting(criteria);
+
+            // Assert
+            Assert.AreEqual(1, result.Count);
         }
 
         [Test]
@@ -214,7 +250,7 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
             // Arrange
             var criteria = new UpdateAgentPositionTakingCriteria()
             {
-                CustId = 137509707,
+                CustId = AgentId,
                 SportType = Constants.SportType,
                 BetType = 1,
                 MPositionTaking = 10,
@@ -236,16 +272,26 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
 
             // Act
             var result = _kenoSettingRepository.UpdatePositionTaking(criteria);
+
+            // Assert
+            Assert.AreEqual(1, result.Count);
         }
 
         [Test]
         public void GetSettingInCaseOfAgentEditMember_ShouldRunNormally()
         {
             // Arrange
-            var criteria = new AgentGetMemberSettingCriteria() { CustId = 137459563 };
+            var criteria = new AgentGetMemberSettingCriteria() { CustId = MemberId };
 
             // Act
             var result = _kenoSettingRepository.GetSettingInCaseOfAgentEditMember(criteria);
+
+            // Assert
+            Assert.IsNotNull(result.CustomerInformation);
+            Assert.IsNotNull(result.BetSettings);
+            Assert.Greater(result.BetSettings.Count, 0);
+            Assert.IsNotNull(result.PositionTakings);
+            Assert.Greater(result.PositionTakings.Count, 0);
         }
 
         [Test]
@@ -254,7 +300,7 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
             // Arrange
             var criteria = new AgentUpdateMemberBetSettingCriteria()
             {
-                CustId = 137509707,
+                CustId = MemberId,
                 SportType = Constants.SportType,
                 BetType = 1,
                 UpdateStatus = false,
@@ -271,6 +317,9 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
 
             // Act
             var result = _kenoSettingRepository.UpdateBetSetting(criteria);
+
+            // Assert
+            Assert.AreEqual(1, result.Count);
         }
 
         [Test]
@@ -279,7 +328,7 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
             // Arrange
             var criteria = new AgentUpdateMemberPositionTakingCriteria()
             {
-                CustId = 137509707,
+                CustId = MemberId,
                 SportType = Constants.SportType,
                 BetType = 1,
                 UpdatePT = false,
@@ -294,16 +343,26 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
 
             // Act
             var result = _kenoSettingRepository.UpdatePositionTaking(criteria);
+
+            // Assert
+            Assert.AreEqual(1, result.Count);
         }
 
         [Test]
         public void GetSettingInCaseOfSuperEditMember_ShouldRunNormally()
         {
             // Arrange
-            var criteria = new SuperGetMemberSettingCriteria() { CustId = 137459563 };
+            var criteria = new SuperGetMemberSettingCriteria() { CustId = MemberId };
 
             // Act
             var result = _kenoSettingRepository.GetSettingInCaseOfSuperEditMember(criteria);
+
+            // Assert
+            Assert.IsNotNull(result.CustomerInformation);
+            Assert.IsNotNull(result.BetSettings);
+            Assert.Greater(result.BetSettings.Count, 0);
+            Assert.IsNotNull(result.PositionTakings);
+            Assert.Greater(result.PositionTakings.Count, 0);
         }
 
         [Test]
@@ -312,7 +371,7 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
             // Arrange
             var criteria = new SuperUpdateMemberPositionTakingCriteria()
             {
-                CustId = 137509707,
+                CustId = MemberId,
                 SportType = Constants.SportType,
                 BetType = 1,
                 SPositionTaking = 10,
@@ -328,16 +387,26 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
 
             // Act
             var result = _kenoSettingRepository.UpdatePositionTaking(criteria);
+
+            // Assert
+            Assert.AreEqual(1, result.Count);
         }
 
         [Test]
         public void GetSettingInCaseOfMasterEditMember_ShouldRunNormally()
         {
             // Arrange
-            var criteria = new MasterGetMemberSettingCriteria() { CustId = 137459563 };
+            var criteria = new MasterGetMemberSettingCriteria() { CustId = MemberId };
 
             // Act
             var result = _kenoSettingRepository.GetSettingInCaseOfMasterEditMember(criteria);
+
+            // Assert
+            Assert.IsNotNull(result.CustomerInformation);
+            Assert.IsNotNull(result.BetSettings);
+            Assert.Greater(result.BetSettings.Count, 0);
+            Assert.IsNotNull(result.PositionTakings);
+            Assert.Greater(result.PositionTakings.Count, 0);
         }
 
         [Test]
@@ -346,7 +415,7 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
             // Arrange
             var criteria = new MasterUpdateMemberPositionTakingCriteria()
             {
-                CustId = 137509810,
+                CustId = MemberId,
                 SportType = Constants.SportType,
                 BetType = 1,
                 MPositionTaking = 10,
@@ -363,6 +432,9 @@ namespace Fanex.CustomerSetting.Module.Keno.IntegrationTests
 
             // Act
             var result = _kenoSettingRepository.UpdatePositionTaking(criteria);
+
+            // Assert
+            Assert.AreEqual(1, result.Count);
         }
     }
 }

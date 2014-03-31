@@ -1,0 +1,81 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="PositionTakingBaseTests.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Paul.Nguyen" date="2014/03/31">Created.</change>
+// </history>
+
+namespace Fanex.CustomerSetting.Module.Keno.Tests.Entities
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using NUnit.Framework;
+    using Fanex.CustomerSetting.Module.Keno.Entities;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    [TestFixture]
+    public class PositionTakingBaseTests
+    {
+        [Test]
+        public void AdjustAgent_IM2IsTrue_M2ShouldEqual0()
+        {
+            // Arrange
+            var postionTakingBase = new PositionTakingBase() { IM2 = true, M2 = 100 };
+
+            // Act
+            postionTakingBase.AdjustAgent();
+
+            // Assert
+            Assert.AreEqual(true, postionTakingBase.IM2);
+            Assert.AreEqual(0, postionTakingBase.M2);
+        }
+
+        [Test]
+        public void AdjustAgent_IM2IsFalse_UM2ShouldEqual0()
+        {
+            // Arrange
+            var postionTakingBase = new PositionTakingBase() { IM2 = false, UM2 = 100 };
+
+            // Act
+            postionTakingBase.AdjustAgent();
+
+            // Assert
+            Assert.AreEqual(false, postionTakingBase.IM2);
+            Assert.AreEqual(0, postionTakingBase.UM2);
+        }
+
+        [Test]
+        public void AdjustMaster_IS3IsTrue_S3ShouldEqual0()
+        {
+            // Arrange
+            var postionTakingBase = new PositionTakingBase() { IS3 = true, S3 = 100 };
+
+            // Act
+            postionTakingBase.AdjustMaster();
+
+            // Assert
+            Assert.AreEqual(true, postionTakingBase.IS3);
+            Assert.AreEqual(0, postionTakingBase.S3);
+        }
+
+        [Test]
+        public void AdjustMaster_IS3IsFalse_US3ShouldEqual0()
+        {
+            // Arrange
+            var postionTakingBase = new PositionTakingBase() { IS3 = false, US3 = 100 };
+
+            // Act
+            postionTakingBase.AdjustMaster();
+
+            // Assert
+            Assert.AreEqual(false, postionTakingBase.IS3);
+            Assert.AreEqual(0, postionTakingBase.US3);
+        }
+    }
+}

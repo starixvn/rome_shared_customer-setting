@@ -84,7 +84,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
             AdjustAgent();
         }
 
-        private void AdjustAgent()
+        internal void AdjustAgent()
         {
             if (IM2)
             {
@@ -96,7 +96,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
             }
         }
 
-        private void AdjustMaster()
+        internal void AdjustMaster()
         {
             if (IS3)
             {
