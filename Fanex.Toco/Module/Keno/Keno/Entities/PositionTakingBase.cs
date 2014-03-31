@@ -77,5 +77,35 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
         public double UM1 { get; set; }
 
         public bool IM1 { get; set; }
+
+        public void AdjustValues()
+        {
+            AdjustMaster();
+            AdjustAgent();
+        }
+
+        private void AdjustAgent()
+        {
+            if (IM2)
+            {
+                M2 = 0;
+            }
+            else
+            {
+                UM2 = 0;
+            }
+        }
+
+        private void AdjustMaster()
+        {
+            if (IS3)
+            {
+                S3 = 0;
+            }
+            else
+            {
+                US3 = 0;
+            }
+        }
     }
 }

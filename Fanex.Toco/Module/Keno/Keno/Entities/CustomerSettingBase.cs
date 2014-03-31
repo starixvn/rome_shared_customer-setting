@@ -29,13 +29,14 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
 
         public CopyAll PositionTakingCopyAll { get; set; }
 
-        public void UpdateSettingInCaseOfCopyAll()
+        public void AdjustInformationWhenUpdateSetting()
         {
-            this.UpdateBetSettingsInCaseOfCopyAll();
-            this.UpdatePositionTakingsInCaseOfCopyAll();
+            this.CopyBetSettingInCaseOfCopyAll();
+            this.CopyPositionTakingInCaseOfCopyAll();
+            this.AdjustValuesOfPositionTakings();
         }
 
-        public void UpdateRemainingInformation(int custId)
+        public void AdjustInformationWhenLoadSetting(int custId)
         {
             this.CustomerInformation.CustId = custId;
             this.UpdateCopyAllInformation();
@@ -105,27 +106,35 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
         /// <summary>
         /// Updates the position takings in case of copy all.
         /// </summary>
-        internal void UpdatePositionTakingsInCaseOfCopyAll()
+        internal void CopyPositionTakingInCaseOfCopyAll()
         {
             if (!this.CopyAllIsValidForPositionTaking())
             {
                 return;
             }
 
-            var copiedSuperPositionTaking = GetCopiedPositionTaking();
-            if (copiedSuperPositionTaking.BetTypeId <= 0)
+            var copiedPositionTaking = GetCopiedPositionTaking();
+            if (copiedPositionTaking.BetTypeId <= 0)
             {
                 return;
             }
 
-            foreach (var superPositionTaking in this.PositionTakings)
+            foreach (var positionTaking in this.PositionTakings)
             {
-                if (IsCopyToItself(superPositionTaking.BetTypeId, this.PositionTakingCopyAll.BetTypeId))
+                if (IsCopyToItself(positionTaking.BetTypeId, this.PositionTakingCopyAll.BetTypeId))
                 {
                     continue;
                 }
 
-                CopyToOnePositionTaking(copiedSuperPositionTaking, superPositionTaking);
+                CopyToOnePositionTaking(copiedPositionTaking, positionTaking);
+            }
+        }
+
+        internal void AdjustValuesOfPositionTakings()
+        {
+            foreach (var positionTaking in this.PositionTakings)
+            {
+                positionTaking.AdjustValues();
             }
         }
 
@@ -141,7 +150,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Entities
         /// <summary>
         /// Updates the bet settings in case of copy all.
         /// </summary>
-        internal void UpdateBetSettingsInCaseOfCopyAll()
+        internal void CopyBetSettingInCaseOfCopyAll()
         {
             if (!this.CopyAllIsValidForBetSetting())
             {
