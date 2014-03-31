@@ -61,7 +61,7 @@ KenoModule.controller('mainController', function ($scope, $timeout, kenoReposito
                 break;
             case 2: url = 'customersetting/keno/kenosetting/EditAgent';
                 break;
-            case 1: url = 'customersetting/keno/kenosetting/AgentEditMember';
+            case 21: url = 'customersetting/keno/kenosetting/AgentEditMember';
                 break;
             case 41: url = 'customersetting/keno/kenosetting/SuperEditMember';
                 break;

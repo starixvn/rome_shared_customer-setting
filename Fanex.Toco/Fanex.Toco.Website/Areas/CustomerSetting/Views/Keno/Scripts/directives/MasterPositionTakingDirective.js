@@ -47,7 +47,12 @@ KenoModule.directive('masterPositionTakingElement', ['commonService', function (
                         $scope.positionTaking.isUpdateS3 = true;
                         $scope.positionTaking.isUpdateUS3 = true;
                         $scope.positionTaking.isConfirmIsAuto = true;
-                        $scope.positionTaking.memberNewValueRange = commonService.getRangePTValue($scope.positionTaking.l3, 0);
+                        if ($scope.positionTaking.l3 <= 0) {
+                            $scope.positionTaking.memberNewValueRange = [0];
+                        }
+                        else {
+                            $scope.positionTaking.memberNewValueRange = commonService.getRangePTValue($scope.positionTaking.l3, 0);
+                        }
                         $scope.$emit('confirmIsAuto', { "betTypeId": $scope.positionTaking.betTypeId, "isAdd": true });
                     }
                 }

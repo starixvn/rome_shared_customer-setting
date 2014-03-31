@@ -9,7 +9,7 @@ KenoModule.directive('agentPositionTakingElement', ['commonService', function (c
         },
         templateUrl: '/Areas/CustomerSetting/Views/Keno/Setting/Partial/PositionTaking/AgentPositionTaking.htm',
         link: function ($scope, elem, attr, ctrl) {
-//            console.log($scope.positionTaking);
+            //            console.log($scope.positionTaking);
 
             $scope.originalPositionTaking = angular.copy($scope.positionTaking);
 
@@ -44,8 +44,13 @@ KenoModule.directive('agentPositionTakingElement', ['commonService', function (c
                         $scope.positionTaking.l2 = Math.round(($scope.positionTaking.m3 - $scope.positionTaking.m2) * 100) / 100;
                         $scope.positionTaking.isUpdateM2 = true;
                         $scope.positionTaking.isUpdateUM2 = true;
-                        var newMemberValueMax =  Math.round((Math.min($scope.positionTaking.l3, $scope.positionTaking.m3) - $scope.positionTaking.a2) * 100) / 100;
-                        $scope.positionTaking.memberNewValueRange = commonService.getRangePTValue(newMemberValueMax, 0);
+                        var newMemberValueMax = Math.round((Math.min($scope.positionTaking.l3, $scope.positionTaking.m3) - $scope.positionTaking.a2) * 100) / 100;
+                        if (newMemberValueMax <= 0) {
+                            $scope.positionTaking.memberNewValueRange = [0];
+                        }
+                        else {
+                            $scope.positionTaking.memberNewValueRange = commonService.getRangePTValue(newMemberValueMax, 0);
+                        }
                         $scope.positionTaking.isConfirmIsAuto = true;
                         $scope.$emit('confirmIsAuto', { "betTypeId": $scope.positionTaking.betTypeId, "isAdd": true });
                     }
