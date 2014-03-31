@@ -38,6 +38,7 @@ KenoModule.controller('mainController', function ($scope, $timeout, kenoReposito
                     break;
             }
         }
+
         if ($scope.confirmIsAutoArray.length > 0) {
             $scope.$broadcast("updateAllMember");
             $scope.$on('confirmUpdateAllMember', function (event) {

@@ -32,7 +32,8 @@ KenoModule.controller('positionTakingController', function ($scope, kenoReposito
         if ($scope.confirmIsAutoArray.length > 0) {
             ngDialog.open({
                 template: '/Areas/CustomerSetting/Views/Keno/Setting/Partial/PositionTaking/ConfirmUpdateAllMembers.htm',
-                scope: $scope
+                scope: $scope,
+                closeByCloseButton: true
             });
         }
     });
