@@ -9,7 +9,6 @@ KenoModule.directive('masterPositionTakingElement', ['commonService', function (
         },
         templateUrl: '/Areas/CustomerSetting/Views/Keno/Setting/Partial/PositionTaking/MasterPositionTaking.htm',
         link: function ($scope, elem, attr, ctrl) {
-            //            console.log($scope.positionTaking);
 
             $scope.originalPositionTaking = angular.copy($scope.positionTaking);
 

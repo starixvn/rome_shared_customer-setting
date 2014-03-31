@@ -8,8 +8,10 @@ KenoModule.controller('mainController', function ($scope, $timeout, kenoReposito
     $scope.confirmIsAutoArray = [];
     $scope.errors = {};
 
+    console.log($scope.kenoSetting);
+
     $scope.$watch(function () {
-        if ($scope.isUpdatePT || $scope.isUpdateBetSetting) {
+        if ($scope.isUpdatePT && $scope.isUpdateBetSetting) {
             $scope.isUpdatedKeno = true;
             return;
         }
