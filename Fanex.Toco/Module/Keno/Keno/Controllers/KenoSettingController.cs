@@ -82,7 +82,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         }
 
         [HttpPost]
-        public JsonResult SuperEditMember(AgentEditMemberSettingViewModel memberSetting)
+        public JsonResult SuperEditMember(SuperEditMemberSettingViewModel memberSetting)
         {
             var results = _kenoSettingService.UpdateMemberCustomerSettingInCaseOfSuperEditMember(memberSetting);
             return Json(results);
@@ -96,7 +96,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Controllers
         }
 
         [HttpPost]
-        public JsonResult MasterEditMember(AgentEditMemberSettingViewModel memberSetting)
+        public JsonResult MasterEditMember(MasterEditMemberSettingViewModel memberSetting)
         {
             var results = _kenoSettingService.UpdateMemberCustomerSettingInCaseOfMasterEditMember(memberSetting);
             return Json(results);

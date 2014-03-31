@@ -33,10 +33,10 @@ namespace Fanex.CustomerSetting.Module.Keno.Services
 
         SuperEditMemberSettingViewModel GetSettingInCaseOfSuperEditMember(int custId);
 
-        IList<Result> UpdateMemberCustomerSettingInCaseOfSuperEditMember(AgentEditMemberSettingViewModel memberSetting);
+        IList<Result> UpdateMemberCustomerSettingInCaseOfSuperEditMember(SuperEditMemberSettingViewModel memberSetting);
 
         MasterEditMemberSettingViewModel GetSettingInCaseOfMasterEditMember(int custId);
 
-        IList<Result> UpdateMemberCustomerSettingInCaseOfMasterEditMember(AgentEditMemberSettingViewModel memberSetting);
+        IList<Result> UpdateMemberCustomerSettingInCaseOfMasterEditMember(MasterEditMemberSettingViewModel memberSetting);
     }
 }
