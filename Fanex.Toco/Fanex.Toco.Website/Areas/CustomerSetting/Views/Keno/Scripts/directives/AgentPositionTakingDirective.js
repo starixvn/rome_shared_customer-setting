@@ -76,7 +76,7 @@ KenoModule.directive('agentPositionTakingElement', ['commonService', function (c
             }, true);
 
             $scope.$watch('positionTaking.a2', function () {
-                $scope.positionTaking.isUpdateM2 = $scope.originalPositionTaking.a2 != $scope.positionTaking.a2 ? true : false;
+                $scope.positionTaking.isUpdateA2 = $scope.originalPositionTaking.a2 != $scope.positionTaking.a2 ? true : false;
 
                 if ($scope.positionTaking.a2 <= $scope.positionTaking.n2) {
                     $scope.positionTaking.n2 = $scope.positionTaking.a2;
