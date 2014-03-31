@@ -5,7 +5,7 @@ KenoModule.controller('mainController', function ($scope, $timeout, kenoReposito
     $scope.isUpdatedKeno = false;
     $scope.isUpdatePT = false;
     $scope.isUpdateBetSetting = false;
-
+    $scope.confirmIsAutoArray = [];
     $scope.errors = {};
 
     $scope.$watch(function () {
@@ -38,10 +38,15 @@ KenoModule.controller('mainController', function ($scope, $timeout, kenoReposito
                     break;
             }
         }
-
-        $scope.$broadcast("updateAllMember");
-
-        $scope.doUpdated($scope.getUrlUpdated());
+        if ($scope.confirmIsAutoArray.length > 0) {
+            $scope.$broadcast("updateAllMember");
+            $scope.$on('confirmUpdateAllMember', function (event) {
+                $scope.doUpdated($scope.getUrlUpdated());
+            });
+        }
+        else {
+            $scope.doUpdated($scope.getUrlUpdated());
+        }
     };
 
     $scope.getUrlUpdated = function () {
@@ -53,12 +58,12 @@ KenoModule.controller('mainController', function ($scope, $timeout, kenoReposito
                 break;
             case 2: url = 'customersetting/keno/kenosetting/EditAgent';
                 break;
-            //            case 1: 'customersetting/keno/kenosetting/EditSuper';  
-            //                break;  
-            //            case 41: 'customersetting/keno/kenosetting/EditSuper';  
-            //                break;  
-            //            case 41: 'customersetting/keno/kenosetting/EditSuper';  
-            //                break;  
+            //            case 1: 'customersetting/keno/kenosetting/EditSuper';     
+            //                break;     
+            //            case 41: 'customersetting/keno/kenosetting/EditSuper';     
+            //                break;     
+            //            case 41: 'customersetting/keno/kenosetting/EditSuper';     
+            //                break;     
             default:
                 break;
         }

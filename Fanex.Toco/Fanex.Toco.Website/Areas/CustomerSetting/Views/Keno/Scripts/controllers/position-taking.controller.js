@@ -6,7 +6,6 @@ KenoModule.controller('positionTakingController', function ($scope, kenoReposito
     $scope.positionTakingCopyAll = kenoRepositories.kenoSetting.positionTakingCopyAll;
     $scope.isPositionTakingPartial = false;
     $scope.isCopyAll = false;
-    $scope.confirmIsAutoArray = [];
 
     $scope.copyAll = function (isCopy, betTypeId) {
         $scope.isCopyAll = isCopy;
@@ -26,6 +25,7 @@ KenoModule.controller('positionTakingController', function ($scope, kenoReposito
             }
         }
         ngDialog.close();
+        $scope.$emit('confirmUpdateAllMember');
     };
 
     $scope.$on('updateAllMember', function (event) {
@@ -51,14 +51,14 @@ KenoModule.controller('positionTakingController', function ($scope, kenoReposito
     });
 
     $scope.$on('confirmIsAuto', function (event, data) {
-        var index = $scope.confirmIsAutoArray.indexOf(data.betTypeId);
+        var index = $scope.$parent.confirmIsAutoArray.indexOf(data.betTypeId);
 
         if (data.isAdd && index == -1) {
-            $scope.confirmIsAutoArray.push(data.betTypeId);
+            $scope.$parent.confirmIsAutoArray.push(data.betTypeId);
         }
 
         if (!data.isAdd && index != -1) {
-            $scope.confirmIsAutoArray.splice(index, 1);
+            $scope.$parent.confirmIsAutoArray.splice(index, 1);
         }
 
         return false;
