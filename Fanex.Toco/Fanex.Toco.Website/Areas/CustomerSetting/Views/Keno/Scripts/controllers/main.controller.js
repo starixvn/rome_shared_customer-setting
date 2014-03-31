@@ -54,19 +54,19 @@ KenoModule.controller('mainController', function ($scope, $timeout, kenoReposito
 
     $scope.getUrlUpdated = function () {
         var url = "";
-        switch (kenoRepositories.kenoSetting.customerInformation.roleId) {
+        switch (kenoRepositories.kenoSetting.customerInformation.actionType) {
             case 4: url = 'customersetting/keno/kenosetting/EditSuper';
                 break;
             case 3: url = 'customersetting/keno/kenosetting/EditMaster';
                 break;
             case 2: url = 'customersetting/keno/kenosetting/EditAgent';
                 break;
-            //            case 1: 'customersetting/keno/kenosetting/EditSuper';     
-            //                break;     
-            //            case 41: 'customersetting/keno/kenosetting/EditSuper';     
-            //                break;     
-            //            case 41: 'customersetting/keno/kenosetting/EditSuper';     
-            //                break;     
+            case 1: 'customersetting/keno/kenosetting/AgentEditMember';     
+                break;
+            case 41: 'customersetting/keno/kenosetting/SuperEditMember';     
+                break;
+            case 31: 'customersetting/keno/kenosetting/MasterEditMember';     
+                break;     
             default:
                 break;
         }
