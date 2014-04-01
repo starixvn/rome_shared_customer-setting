@@ -31,7 +31,7 @@ KenoModule.controller('positionTakingController', function ($scope, kenoReposito
     $scope.$on('updateAllMember', function (event) {
         if ($scope.confirmIsAutoArray.length > 0) {
             ngDialog.open({
-                template: domain +  'Areas/CustomerSetting/Views/Keno/Setting/Partial/PositionTaking/ConfirmUpdateAllMembers.htm',
+                template: domain + 'Areas/CustomerSetting/Views/Keno/Setting/Views/Partial/PositionTaking/ConfirmUpdateAllMembers.htm',
                 scope: $scope,
                 closeByCloseButton: true
             });
@@ -40,15 +40,21 @@ KenoModule.controller('positionTakingController', function ($scope, kenoReposito
 
     $scope.$on('positionTakingRow', function (event) {
         var length = $scope.positionTakingList.length;
-        for (var i = 0; i < length; i++) {
-            var positionTakingTmp = $scope.positionTakingList[i];
-            if (positionTakingTmp.isUpdatePT) {
-                $scope.isPositionTakingPartial = true;
-                return true;
-            }
-        }
 
-        $scope.isPositionTakingPartial = false;
+        if ($scope.isCopyAll) {
+            $scope.isBetSettingPartial = true;
+        }
+        else {
+            for (var i = 0; i < length; i++) {
+                var positionTakingTmp = $scope.positionTakingList[i];
+                if (positionTakingTmp.isUpdatePT) {
+                    $scope.isPositionTakingPartial = true;
+                    return true;
+                }
+            }
+
+            $scope.isPositionTakingPartial = false;
+        }
     });
 
     $scope.$on('confirmIsAuto', function (event, data) {
