@@ -1,0 +1,28 @@
+﻿// -----------------------------------------------------------------------
+// <copyright file="MessageHelperTests.cs" company="Nexcel Solutions Vietnam">
+// TODO: Update copyright text.
+// </copyright>
+// -----------------------------------------------------------------------
+
+namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Tests.Helper
+{
+    using Fanex.CustomerSetting.Module.Keno.KenoSetting.Helpers;
+    using NUnit.Framework;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    [TestFixture]
+    public class MessageHelperTests
+    {
+        [Test]
+        public void GetResourceFromErrorCode_CertainValue_ShouldReturnExactValue()
+        {
+            // Act
+            var value = MessageHelper.GetResourceFromErrorCode("1000");
+
+            // Assert
+            Assert.AreEqual("Data isn't changed.", value);
+        }
+    }
+}

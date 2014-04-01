@@ -1,0 +1,211 @@
+﻿// -----------------------------------------------------------------------
+// <copyright file="MasterCriteriaGeneratorServiceTests.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Paul.Nguyen" date="2014/03/04">Created.</change>
+// </history>
+
+namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Tests.Services
+{
+    using System.Collections.Generic;
+    using Fanex.CustomerSetting.Module.Keno.KenoSetting.Criteria;
+    using Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities;
+    using Fanex.CustomerSetting.Module.Keno.KenoSetting.Services;
+    using Fanex.CustomerSetting.Module.Keno.KenoSetting.ViewModels;
+    using NUnit.Framework;
+    using Rhino.Mocks;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    [TestFixture]
+    public class MasterCriteriaGeneratorServiceTests
+    {
+        private IKenoSession _stubKenoSession;
+        private MasterSettingViewModel _masterSetting;
+
+        [TestFixtureSetUp]
+        public void TestFixtureSetUp()
+        {
+            _masterSetting = GenerateFakeMasterSettingViewModel(100);
+            _stubKenoSession = MockRepository.GenerateStub<IKenoSession>();
+        }
+
+        [TestFixtureTearDown]
+        public void TestFixtureTearDown()
+        {
+            _stubKenoSession = null;
+        }
+
+        [Test]
+        public void CreateUpdateMasterBetSettingCriteria_ShouldReturnExactCriteria()
+        {
+            // Arrange
+            var criteriaGeneratorService = new MasterCriteriaGeneratorService(_stubKenoSession);
+
+            // Act
+            var criteria = criteriaGeneratorService.CreateUpdateBetSettingCriteria(_masterSetting.CustomerInformation, _masterSetting.BetSettings[0]);
+
+            // Assert
+            Assert.IsInstanceOf<UpdateMasterBetSettingCriteria>(criteria);
+            Assert.AreEqual(_masterSetting.CustomerInformation.CustId, ((UpdateMasterBetSettingCriteria)criteria).CustId);
+            Assert.AreEqual(_masterSetting.BetSettings[0].BetTypeId, ((UpdateMasterBetSettingCriteria)criteria).BetType);
+            Assert.AreEqual(!_masterSetting.BetSettings[0].IsEnabled, ((UpdateMasterBetSettingCriteria)criteria).Disable);
+            Assert.AreEqual(!_masterSetting.BetSettings[0].IsDownlinesEnabled, ((UpdateMasterBetSettingCriteria)criteria).DisableDownLines);
+            Assert.AreEqual(_masterSetting.BetSettings[0].MinBet, ((UpdateMasterBetSettingCriteria)criteria).MinBet);
+            Assert.AreEqual(_masterSetting.BetSettings[0].MaxBet, ((UpdateMasterBetSettingCriteria)criteria).MaxBet);
+            Assert.AreEqual(_masterSetting.BetSettings[0].MaxPerMatch, ((UpdateMasterBetSettingCriteria)criteria).MaxPerMatch);
+        }
+
+        [Test]
+        public void CreateUpdateMasterPositionTakingCriteria_ShouldReturnExactCriteria()
+        {
+            // Arrange
+            var criteriaGeneratorService = new MasterCriteriaGeneratorService(_stubKenoSession);
+
+            // Act
+            var criteria = criteriaGeneratorService.CreateUpdateMasterPositionTakingCriteria(_masterSetting.CustomerInformation, _masterSetting.PositionTakings[0]);
+
+            // Assert
+            Assert.IsInstanceOf<UpdateMasterPositionTakingCriteria>(criteria);
+            Assert.AreEqual(_masterSetting.CustomerInformation.CustId, criteria.CustId);
+            Assert.AreEqual(202, criteria.SportType);
+            Assert.AreEqual(_masterSetting.PositionTakings[0].BetTypeId, criteria.BetType);
+            Assert.AreEqual(_masterSetting.PositionTakings[0].S3, criteria.SPositionTaking);
+            Assert.AreEqual(_masterSetting.PositionTakings[0].US3, criteria.Auto_SPositionTaking);
+            Assert.AreEqual(_masterSetting.PositionTakings[0].IS3, criteria.IsAuto_SPositionTaking);
+            Assert.AreEqual(_masterSetting.PositionTakings[0].N3, criteria.MPositionTaking_Min);
+            Assert.AreEqual(_masterSetting.PositionTakings[0].IsUpdateAllMember, criteria.UpdateAllMembers);
+            Assert.AreEqual(_masterSetting.PositionTakings[0].NewMemberPT, criteria.NewSPositionTaking);
+            Assert.AreEqual(_masterSetting.PositionTakings[0].IsUpdateM3, criteria.UpdatePositiontaking);
+            Assert.AreEqual(_masterSetting.PositionTakings[0].IsUpdateN3, criteria.UpdateMinPositiontaking);
+            Assert.AreEqual(_masterSetting.PositionTakings[0].IsUpdateUS3, criteria.UpdateAutoPositionTaking);
+            Assert.AreEqual(0, criteria.Discount);
+            Assert.AreEqual(false, criteria.UpdateCommission);
+        }
+
+        private MasterSettingViewModel GenerateFakeMasterSettingViewModel(int custId)
+        {
+            var masterSetting = new MasterSettingViewModel();
+
+            masterSetting.CustomerInformation = new CustomerInformation()
+            {
+                CustId = custId,
+                FirstName = "Paul",
+                LastName = "Nguyen",
+                Phone = "---",
+                MobilePhone = "---",
+                Fax = "---",
+                Username = "Master001"
+            };
+
+            masterSetting.BetSettings = new List<BetSetting>() 
+            {
+                new BetSetting()
+                {
+                    BetTypeId = 1,
+                    BetTypeName = "Beijing",
+                    MinBet = 0,
+                    MaxBet = 0,
+                    MaxPerMatch = 0,
+                    IsEnabled = true,
+                    IsDownlinesEnabled = true,
+                    Upline = new BetSetting() 
+                    {
+                        MinBet = 10,
+                        MaxBet = 0,
+                        MaxPerMatch = 0
+                    }
+                },
+                new BetSetting()
+                {
+                    BetTypeId = 2,
+                    BetTypeName = "Canada",
+                    MinBet = 10,
+                    MaxBet = 0,
+                    MaxPerMatch = 0,
+                    IsEnabled = false,
+                    IsDownlinesEnabled = true,
+                    Upline = new BetSetting() 
+                    {
+                        MinBet = 10,
+                        MaxBet = 50,
+                        MaxPerMatch = 400
+                    }
+                },
+                new BetSetting()
+                {
+                    BetTypeId = 3,
+                    BetTypeName = "Australia",
+                    MinBet = 0,
+                    MaxBet = 0,
+                    MaxPerMatch = 0,
+                    IsEnabled = true,
+                    IsDownlinesEnabled = false,
+                    Upline = new BetSetting() 
+                    {
+                        MinBet = 10,
+                        MaxBet = 50,
+                        MaxPerMatch = 300
+                    }
+                },
+            };
+
+            masterSetting.PositionTakings = new List<MasterPositionTaking>() 
+            {
+                new MasterPositionTaking()
+                {
+                    SportTypeId = 202,
+                    BetTypeId = 1,
+                    BetTypeName = "Bejing",
+                    S3 = 0.2,
+                    US3 = 0.3,
+                    IS3 = true,
+                    M3 = 0.4,
+                    N3 = 0.5,
+                    IsUpdateAllMember = true,
+                    NewMemberPT = 0.6,
+                    IsUpdateM3 = true,
+                    IsUpdateN3 = true,
+                    IsUpdateUS3 = true
+                },
+                new MasterPositionTaking()
+                {
+                    SportTypeId = 202,
+                    BetTypeId = 2,
+                    BetTypeName = "Canada",
+                    S3 = 0.2,
+                    US3 = 0.3,
+                    IS3 = true,
+                    M3 = 0.4,
+                    N3 = 0.5,
+                    IsUpdateAllMember = true,
+                    NewMemberPT = 0.6,
+                    IsUpdateM3 = true,
+                    IsUpdateN3 = true,
+                    IsUpdateUS3 = true
+                },
+                new MasterPositionTaking()
+                {
+                    SportTypeId = 202,
+                    BetTypeId = 3,
+                    BetTypeName = "Australia",
+                    S3 = 0.2,
+                    US3 = 0.3,
+                    IS3 = true,
+                    M3 = 0.4,
+                    N3 = 0.5,
+                    IsUpdateAllMember = true,
+                    NewMemberPT = 0.6,
+                    IsUpdateM3 = true,
+                    IsUpdateN3 = true,
+                    IsUpdateUS3 = true
+                }
+            };
+
+            return masterSetting;
+        }
+    }
+}

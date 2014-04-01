@@ -1,0 +1,64 @@
+﻿// -----------------------------------------------------------------------
+// <copyright file="GetSuperSettingCriteriaTests.cs" company="">
+// TODO: Update copyright text.
+// </copyright>
+// -----------------------------------------------------------------------
+
+namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Tests.Criteria
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using Fanex.CustomerSetting.Module.Keno.KenoSetting.Criteria;
+    using NUnit.Framework;
+    using Rhino.Mocks;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    [TestFixture]
+    public class GetSuperSettingCriteriaTests
+    {
+        [Test]
+        public void GetSettingKey_AlwaysReturnExactSpKeyName()
+        {
+            // Arrange
+            var getSuperSettingCriteria = new GetSuperSettingCriteria();
+
+            // Act
+            var keyName = getSuperSettingCriteria.GetSettingKey();
+
+            // Assert
+            Assert.That(keyName, Is.EqualTo("Acc_CustomerSelEditSuperKeno"));
+        }
+
+        [Test]
+        public void IsValid_CustIdIsGreaterZero_ShouldReturnTrue()
+        {
+            // Arrange
+            var getSuperSettingCriteria = new GetSuperSettingCriteria() { CustId = 10 };
+
+            // Act
+            var isValid = getSuperSettingCriteria.IsValid();
+
+            // Assert
+            Assert.That(isValid, Is.EqualTo(true));
+            Assert.That(getSuperSettingCriteria.CustId, Is.EqualTo(10));
+        }
+
+        [Test]
+        public void IsValid_CustIdEqualsZero_ShouldReturnFalse()
+        {
+            // Arrange
+            var getSuperSettingCriteria = new GetSuperSettingCriteria() { CustId = 0 };
+
+            // Act
+            var isValid = getSuperSettingCriteria.IsValid();
+
+            // Assert
+            Assert.That(isValid, Is.EqualTo(false));
+            Assert.That(getSuperSettingCriteria.CustId, Is.EqualTo(0));
+        }
+    }
+}

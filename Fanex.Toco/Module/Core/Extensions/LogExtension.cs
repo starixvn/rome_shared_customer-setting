@@ -16,16 +16,14 @@ namespace Fanex.CustomerSetting.Module.Core.Extensions
     /// </summary>
     public class LogExtension
     {
-        public static void Log(Exception ex)
-        {
-            string message = ex.Message +
-                       "\r\nSOURCE: " + ex.Source +
-                           "\r\nDOMAIN: " + HttpContext.Current.Request.Headers["Host"] +
-                            "\r\nREFERRER: " + HttpContext.Current.Request.UrlReferrer +
-                           "\r\nFORM: " + HttpContext.Current.Request.Form.ToString() +
-                           "\r\nQUERYSTRING: " + HttpContext.Current.Request.QueryString.ToString() +
-                       "\r\nTARGETSITE: " + ex.TargetSite +
-                       "\r\nSTACKTRACE: " + ex.StackTrace;
+            string message = exception.Message +
+                       "\r\nSOURCE: " + exception.Source +
+                       "\r\nDOMAIN: " + HttpContext.Current.Request.Headers["Host"] +
+                        "\r\nREFERRER: " + HttpContext.Current.Request.UrlReferrer +
+                       "\r\nFORM: " + HttpContext.Current.Request.Form.ToString() +
+                       "\r\nQUERYSTRING: " + HttpContext.Current.Request.QueryString.ToString() +
+                       "\r\nTARGETSITE: " + exception.TargetSite +
+                       "\r\nSTACKTRACE: " + exception.StackTrace;
 
             Fanex.Logging.Logger.Log.Error(message);
         }
