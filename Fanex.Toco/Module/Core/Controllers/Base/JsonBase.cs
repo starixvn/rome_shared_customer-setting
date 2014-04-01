@@ -84,6 +84,10 @@ namespace Fanex.CustomerSetting.Module.Core.Controllers.Base
                 response.ContentType = "application/json";
             }
 
+            {
+                response.ContentType = "application/json";
+            }
+
             if (this.ContentEncoding != null)
             {
                 response.ContentEncoding = this.ContentEncoding;

@@ -9,13 +9,17 @@
 using System;
 using System.Web;
 
-namespace Fanex.CustomerSetting.Module.Core.Extensions
-{
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class LogExtension
+    public class LogExtension : ILogExtension
     {
+        /// <summary>
+        /// Logs the specified ex.
+        /// </summary>
+        /// <param name="exception">The exception.</param>
+        public void Log(Exception exception)
+        {
             string message = exception.Message +
                        "\r\nSOURCE: " + exception.Source +
                        "\r\nDOMAIN: " + HttpContext.Current.Request.Headers["Host"] +

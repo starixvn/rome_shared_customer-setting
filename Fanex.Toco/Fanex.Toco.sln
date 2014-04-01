@@ -44,9 +44,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPEntities", "Module\IPEntities\IPEntities\IPEntities.csproj", "{6570D17C-FEF2-4C1C-A1EB-841266DF380D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Keno", "Keno", "{6879CEAE-B0E8-4C47-AB8C-CEF00D5A9E54}"
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.CustomerSetting.Module.Keno.Resources", "Module\Keno\Keno.Resources\Fanex.CustomerSetting.Module.Keno.Resources.csproj", "{F317B419-340B-418D-B2AB-8C43F18B85D6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeAnalysis", "CodeAnalysis", "{0ED45B3C-5617-4FDC-9FE8-AB3B61B07F65}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keno.Resources", "Module\Keno\Keno.Resources\Keno.Resources.csproj", "{F317B419-340B-418D-B2AB-8C43F18B85D6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KenoStatus", "Module\Keno\KenoStatus\KenoStatus.csproj", "{7954F23F-567D-457D-99DC-A92224A50A99}"
 EndProject
