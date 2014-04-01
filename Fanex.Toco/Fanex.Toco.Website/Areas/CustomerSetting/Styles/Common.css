@@ -394,3 +394,9 @@ select,.select
 {
     float: left;
 }
+.enableTitle {
+    background-color: #E7F7FF;
+}
+.bold {
+    font-weight: bold;
+}

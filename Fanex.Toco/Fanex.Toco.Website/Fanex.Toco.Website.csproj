@@ -47,6 +47,9 @@
       <HintPath>..\_Dependencies\Fanex\Fanex.Data.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
+      <HintPath>..\_Dependencies\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -130,6 +133,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Error.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\ViewLang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ViewLang.resx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -220,6 +228,115 @@
     <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Message.css" />
     <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\table.css" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditSuperController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Configurations\KenoSpNames.xml" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\EnableStatus\Scripts\KenoStatusController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\EnableStatus\Styles\EnableRacing.css" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\controllers\bet-setting.controller.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\controllers\customer-information.controller.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\controllers\main.controller.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\controllers\position-taking.controller.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\directives\directive.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\directives\_BetSetting.html" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\modules\module.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\repositories\repository.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\services\betSettingService.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\services\commissionSettingService.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\services\commonService.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Scripts\services\position-taking.service.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\BetSetting\_BetSetting.htm" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Accounting\Images\bgHeader.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Accounting\Images\bg_head_tb.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Accounting\Images\C_content_tab.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Accounting\Images\L_content_tab.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Accounting\Images\R_content_tab.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Accounting\Images\Update.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Agent\Images\bgHeader.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Agent\Images\b_left.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Agent\Images\b_right.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Agent\Images\Update.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\accessDenied.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\back.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\Banner\bg_banner.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\Banner\bg_head_tb.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\Banner\bg_menu.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\Banner\down.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\Banner\down_up.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\Banner\icn_user.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\Banner\in.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\Banner\left_right.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\Banner\logo.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\Banner\L_main_btn.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\Banner\out.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\Banner\right_left.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\Banner\R_main_btn.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\Banner\up.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\Banner\up_down.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\bg_checkbox.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\btUpdateL.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\btUpdateR.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\Buttons\bgred1_btn.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\Buttons\bgred_btn.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\Buttons\bg_btn.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\Buttons\check.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\Buttons\checked-icon.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\Buttons\check_hover.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\Buttons\icn_date.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\Buttons\uncheck.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\Buttons\uncheck_hover.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\Buttons\unverify-icon.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\calendar1.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\close.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\copyChecked.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\copyUnChecked.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\C_content_tab.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\dec1.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\dec1_disable.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\dec2.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\dec2_disable.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\dec3.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\dec3_disable.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\dec4.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\dec4_disable.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\email.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\emsg_1_1.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\emsg_1_2.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\emsg_1_3.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\emsg_2_1.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\emsg_2_2.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\emsg_3_1.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\emsg_3_2.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\emsg_3_3.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\error.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\excel.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\folder.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\help.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\icn_add.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\icn_del.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\icn_edit.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\icn_top.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\icn_view.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\ico1.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\ico_clear.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\ico_login1.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\ico_login2.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\ico_warning.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\loading51.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\L_content_tab.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\opened_folder.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\ptL.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\ptR.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\ptRp.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\ptR_down.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\refresh_icon.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\R_content_tab.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\Save.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\Save1.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\save_s.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\sorting_asc.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\sorting_bg.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\sorting_desc.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\sucess.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\undo.png" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\common.js" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\CommonPT.js" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Setting\AgentMinMaxPT.js" />
@@ -892,6 +1009,31 @@
     <Content Include="Areas\CustomerSetting\Views\Racebook\Config\RacingSection.config" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\AgentMinMaxPT.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Config\SearchCopySetting.config" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Configurations\PTRacingMappingSection.config" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Configurations\RacingBettingCommSettingMappingSection.config" />
+    <None Include="Areas\CustomerSetting\Views\Keno\Document.doc" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Agent\EditAgent.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\MasterOnMember\MasterEditMember.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Master\EditMaster.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Member\AgentEditMember.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\BetSetting\_BetSettingMember.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\BetSetting\_BetSettingSMA.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\CustomerInfo\_Information.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\AgentPositionTaking.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\MasterPositionTaking.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\MemberPositionTakingEditedByAgent.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\MemberPositionTakingEditedByMaster.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\MemberPositionTakingEditedBySuper.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\_SuperPositionTaking.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\SuperOnMember\SuperEditMember.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Super\EditSuper.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Shared\_Layout.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\EnableStatus\Index.cshtml" />
+    <None Include="Areas\CustomerSetting\Views\Keno\Styles\Accounting\theme-color.less" />
+    <None Include="Areas\CustomerSetting\Views\Keno\Styles\Agent\theme-color.less" />
+    <None Include="Areas\CustomerSetting\Views\Keno\Styles\Common.less" />
+    <None Include="Areas\CustomerSetting\Views\Keno\Styles\keno-setting.less" />
+    <None Include="Areas\CustomerSetting\Views\Keno\Styles\Variables.less" />
     <None Include="Areas\CustomerSetting\Views\SearchCopy\Document.doc" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Super\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Shared\_Layout.cshtml" />
@@ -923,6 +1065,14 @@
     <None Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3-custom.less" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Module\Keno\Keno.Resources\Keno.Resources.csproj">
+      <Project>{F317B419-340B-418D-B2AB-8C43F18B85D6}</Project>
+      <Name>Keno.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Module\Keno\KenoStatus\KenoStatus.csproj">
+      <Project>{7954F23F-567D-457D-99DC-A92224A50A99}</Project>
+      <Name>KenoStatus</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Module\Racebook\Racebook.csproj">
       <Project>{63D0DC31-9FEF-4BEE-9D43-E1E3A3BE42A5}</Project>
       <Name>Racebook</Name>
@@ -936,6 +1086,12 @@
     <Content Include="App_GlobalResources\Error.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Error.Designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\ViewLang.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>ViewLang.Designer.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <PropertyGroup>

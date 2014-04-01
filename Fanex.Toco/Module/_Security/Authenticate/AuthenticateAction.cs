@@ -27,7 +27,7 @@ namespace Fanex.CustomerSetting.Security.Authenticate
             var controlName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
             var actionPath = controlName + "/" + _mainAction;
             var authenticateFactory = AuthenticateFactory.Create(_authenticationType, _mainAction);
-
+            
             switch (_authenticationType)
             {
                 case AuthenticationType.Read:                    
