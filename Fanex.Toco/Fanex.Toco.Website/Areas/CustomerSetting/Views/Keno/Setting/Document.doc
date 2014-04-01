@@ -70,22 +70,22 @@
 3. Action in detail
 
 • Super Setting
-- /customersetting/keno/kenosetting/EditSuper?custid=14195486
+- /customersetting/KenoSetting/kenosetting/EditSuper?custid=14195486
 
 • Master Setting
-- /customersetting/keno/kenosetting/EditMaster?custid=14195487
+- /customersetting/KenoSetting/kenosetting/EditMaster?custid=14195487
 
 • Agent Setting
-- /customersetting/keno/kenosetting/EditAgent?custid=14195488
+- /customersetting/KenoSetting/kenosetting/EditAgent?custid=14195488
 
 • Agent Edit Member
-- /customersetting/keno/kenosetting/AgentEditMember?custid=14195489
+- /customersetting/KenoSetting/kenosetting/AgentEditMember?custid=14195489
 
 • Super Edit member
-- /customersetting/keno/kenosetting/SuperEditMember?custid=14195489
+- /customersetting/KenoSetting/kenosetting/SuperEditMember?custid=14195489
 
 • Master Edit Member
-- /customersetting/keno/kenosetting/MasterEditMember?custid=14195489
+- /customersetting/KenoSetting/kenosetting/MasterEditMember?custid=14195489
 
 • Edit Keno Status
 - /customersetting/keno/enablestatus/index?id=xxx&uplineId=yyy&roleId=zzz (xxx, yyy, zzz is integer occording to custId, uplineId, roleId)

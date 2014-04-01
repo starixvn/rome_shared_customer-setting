@@ -17,7 +17,7 @@ namespace Fanex.CustomerSetting.Module.Keno.App_Start
     /// </summary>
     public class ModuleRegistrator : AppAreaRegistrator
     {
-        public const string Module = "Keno";
+        public const string Module = "KenoSetting";
 
         /// <summary>
         /// Gets the name of the controller.

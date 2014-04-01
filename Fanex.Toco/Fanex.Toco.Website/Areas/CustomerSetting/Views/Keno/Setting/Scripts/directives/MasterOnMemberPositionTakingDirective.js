@@ -7,7 +7,7 @@ KenoModule.directive('masterOnMemberPositionTakingElement', ['commonService', fu
             positionTaking: "=ngModel",
             index: "=index"
         },
-        templateUrl: '/Areas/CustomerSetting/Views/Keno/Setting/Views/Partial/PositionTaking/MasterOnMemberPositionTaking.htm',
+        templateUrl: domain +  'Areas/CustomerSetting/Views/Keno/Setting/Views/Partial/PositionTaking/MasterOnMemberPositionTaking.htm',
         link: function ($scope, elem, attr, ctrl) {
             console.log($scope.positionTaking);
 
