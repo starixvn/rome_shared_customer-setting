@@ -261,6 +261,9 @@
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\Tipsy\Images\pointer.png" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\Tipsy\jquery.tipsy.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\Tipsy\tipsy.css" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Images\bgHeader.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Images\bg_head_tb.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Images\Update.png" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Partial\BetSetting\BetSetting.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Partial\PositionTaking\AgentPositionTaking.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Partial\PositionTaking\MasterOnMemberPositionTaking.htm" />
@@ -269,14 +272,6 @@
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Partial\PositionTaking\MemberPositionTaking.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Partial\PositionTaking\MasterPositionTaking.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Partial\PositionTaking\SuperPositionTaking.htm" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Accounting\Images\bgHeader.jpg" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Accounting\Images\bg_head_tb.jpg" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Accounting\Images\C_content_tab.png" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Accounting\Images\error.gif" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Accounting\Images\L_content_tab.png" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Accounting\Images\R_content_tab.png" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Accounting\Images\sucess.gif" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Accounting\Images\Update.png" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Accounting\JqueryUI\images\ui-bg_flat_55_999999_40x100.png" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Accounting\JqueryUI\images\ui-bg_flat_75_aaaaaa_40x100.png" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Accounting\JqueryUI\images\ui-bg_glass_45_0078ae_1x400.png" />
