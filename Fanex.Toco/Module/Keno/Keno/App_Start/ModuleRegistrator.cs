@@ -50,7 +50,7 @@ namespace Fanex.CustomerSetting.Module.Keno.App_Start
         /// <param name="context">The context.</param>
         public override void RegisterArea(System.Web.Mvc.AreaRegistrationContext context)
         {
-            base.RegisterArea(context);
+            //base.RegisterArea(context);
             BundleConfig.RegisterBundles(System.Web.Optimization.BundleTable.Bundles);
         }
     }
