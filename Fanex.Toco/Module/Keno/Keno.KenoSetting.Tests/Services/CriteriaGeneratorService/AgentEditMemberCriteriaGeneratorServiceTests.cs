@@ -24,12 +24,12 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Tests.Services
     public class AgentEditMemberCriteriaGeneratorServiceTests
     {
         private IKenoSession _stubKenoSession;
-        private SuperSettingViewModel _superSetting;
+        private AgentEditMemberSettingViewModel _agentEditMemberSetting;
 
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
-            _superSetting = GenerateFakeSuperSettingViewModel(100);
+            _agentEditMemberSetting = GenerateFakeAgentEditMemberSettingViewModel(100);
             _stubKenoSession = MockRepository.GenerateStub<IKenoSession>();
         }
 
@@ -43,49 +43,46 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Tests.Services
         public void CreateUpdateSuperBetSettingCriteria_ShouldReturnExactCriteria()
         {
             // Arrange
-            var criteriaGeneratorService = new SuperCriteriaGeneratorService(_stubKenoSession);
+            var criteriaGeneratorService = new AgentEditMemberCriteriaGeneratorService(_stubKenoSession);
 
             // Act
-            var criteria = criteriaGeneratorService.CreateUpdateBetSettingCriteria(_superSetting.CustomerInformation, _superSetting.BetSettings[0]);
+            var criteria = criteriaGeneratorService.CreateUpdateBetSettingCriteria(_agentEditMemberSetting.CustomerInformation, _agentEditMemberSetting.BetSettings[0]);
 
             // Assert
-            Assert.IsInstanceOf<UpdateSuperBetSettingCriteria>(criteria);
-            Assert.AreEqual(_superSetting.CustomerInformation.CustId, ((UpdateSuperBetSettingCriteria)criteria).CustId);
-            Assert.AreEqual(_superSetting.BetSettings[0].BetTypeId, ((UpdateSuperBetSettingCriteria)criteria).BetType);
-            Assert.AreEqual(!_superSetting.BetSettings[0].IsEnabled, ((UpdateSuperBetSettingCriteria)criteria).Disable);
-            Assert.AreEqual(!_superSetting.BetSettings[0].IsDownlinesEnabled, ((UpdateSuperBetSettingCriteria)criteria).DisableDownLines);
-            Assert.AreEqual(_superSetting.BetSettings[0].MinBet, ((UpdateSuperBetSettingCriteria)criteria).MinBet);
-            Assert.AreEqual(_superSetting.BetSettings[0].MaxBet, ((UpdateSuperBetSettingCriteria)criteria).MaxBet);
-            Assert.AreEqual(_superSetting.BetSettings[0].MaxPerMatch, ((UpdateSuperBetSettingCriteria)criteria).MaxPerMatch);
+            Assert.IsInstanceOf<AgentUpdateMemberBetSettingCriteria>(criteria);
+            Assert.AreEqual(_agentEditMemberSetting.CustomerInformation.CustId, ((AgentUpdateMemberBetSettingCriteria)criteria).CustId);
+            Assert.AreEqual(_agentEditMemberSetting.BetSettings[0].BetTypeId, ((AgentUpdateMemberBetSettingCriteria)criteria).BetType);
+            Assert.AreEqual(!_agentEditMemberSetting.BetSettings[0].IsEnabled, ((AgentUpdateMemberBetSettingCriteria)criteria).Disable);
+            Assert.AreEqual(_agentEditMemberSetting.BetSettings[0].MinBet, ((AgentUpdateMemberBetSettingCriteria)criteria).MinBet);
+            Assert.AreEqual(_agentEditMemberSetting.BetSettings[0].MaxBet, ((AgentUpdateMemberBetSettingCriteria)criteria).MaxBet);
+            Assert.AreEqual(_agentEditMemberSetting.BetSettings[0].MaxPerMatch, ((AgentUpdateMemberBetSettingCriteria)criteria).MaxPerMatch);
         }
 
         [Test]
         public void CreateUpdateSuperPositionTakingCriteria_ShouldReturnExactCriteria()
         {
             // Arrange
-            var criteriaGeneratorService = new SuperCriteriaGeneratorService(_stubKenoSession);
+            var criteriaGeneratorService = new AgentEditMemberCriteriaGeneratorService(_stubKenoSession);
 
             // Act
-            var criteria = criteriaGeneratorService.CreateUpdateSuperPositionTakingCriteria(_superSetting.CustomerInformation, _superSetting.PositionTakings[0]);
+            var criteria = criteriaGeneratorService.CreateUpdateMemberPositionTakingCriteria(_agentEditMemberSetting.CustomerInformation, _agentEditMemberSetting.PositionTakings[0]);
 
             // Assert
-            Assert.IsInstanceOf<UpdateSuperPositionTakingCriteria>(criteria);
-            Assert.AreEqual(_superSetting.CustomerInformation.CustId, criteria.CustId);
+            Assert.IsInstanceOf<AgentUpdateMemberPositionTakingCriteria>(criteria);
+            Assert.AreEqual(_agentEditMemberSetting.CustomerInformation.CustId, criteria.CustId);
             Assert.AreEqual(202, criteria.SportType);
-            Assert.AreEqual(_superSetting.PositionTakings[0].BetTypeId, criteria.BetType);
-            Assert.AreEqual(_superSetting.PositionTakings[0].S4, criteria.SPositionTaking);
-            Assert.AreEqual(_superSetting.PositionTakings[0].N4, criteria.Min_PositionTaking);
+            Assert.AreEqual(_agentEditMemberSetting.PositionTakings[0].BetTypeId, criteria.BetType);
+            Assert.AreEqual(_agentEditMemberSetting.PositionTakings[0].IsUpdateA1, criteria.UpdatePT);
+            Assert.AreEqual(_agentEditMemberSetting.PositionTakings[0].A1, criteria.APositionTaking);
             Assert.AreEqual(0, criteria.Discount);
-            Assert.AreEqual(_superSetting.PositionTakings[0].IsUpdateS4, criteria.UpdatePositionTaking);
-            Assert.AreEqual(_superSetting.PositionTakings[0].IsUpdateN4, criteria.UpdateMinPositionTaking);
-            Assert.AreEqual(false, criteria.UpdateCommission);
+            Assert.AreEqual(false, criteria.UpdateComm);
         }
 
-        private SuperSettingViewModel GenerateFakeSuperSettingViewModel(int custId)
+        private AgentEditMemberSettingViewModel GenerateFakeAgentEditMemberSettingViewModel(int custId)
         {
-            var superSetting = new SuperSettingViewModel();
+            var agentEditMemberSetting = new AgentEditMemberSettingViewModel();
 
-            superSetting.CustomerInformation = new CustomerInformation()
+            agentEditMemberSetting.CustomerInformation = new CustomerInformation()
             {
                 CustId = custId,
                 FirstName = "Paul",
@@ -96,7 +93,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Tests.Services
                 Username = "Super001"
             };
 
-            superSetting.BetSettings = new List<BetSetting>() 
+            agentEditMemberSetting.BetSettings = new List<BetSetting>() 
             {
                 new BetSetting()
                 {
@@ -148,50 +145,35 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Tests.Services
                 },
             };
 
-            superSetting.PositionTakings = new List<SuperPositionTaking>() 
+            agentEditMemberSetting.PositionTakings = new List<AgentEditMemberPositionTaking>() 
             {
-                new SuperPositionTaking()
+                new AgentEditMemberPositionTaking()
                 {
                     SportTypeId = 202,
                     BetTypeId = 1,
                     BetTypeName = "Bejing",
-                    S4 = 0.85,
-                    M4 = 0.6,
-                    A4 = 0.5,
-                    N4 = 0,
-                    L4 = 0.85,
-                    SComm = 0.0095,
-                    SCommMax = 0.01
+                    IsUpdateA1 = true,
+                    A1 = 0.8
                 },
-                new SuperPositionTaking()
+                new AgentEditMemberPositionTaking()
                 {
                     SportTypeId = 202,
                     BetTypeId = 2,
                     BetTypeName = "Canada",
-                    S4 = 0.85,
-                    M4 = 0.6,
-                    A4 = 0.5,
-                    N4 = 0,
-                    L4 = 0.85,
-                    SComm = 0.0095,
-                    SCommMax = 0.01
+                    IsUpdateA1 = true,
+                    A1 = 0.8
                 },
-                new SuperPositionTaking()
+                new AgentEditMemberPositionTaking()
                 {
                     SportTypeId = 202,
                     BetTypeId = 3,
                     BetTypeName = "Australia",
-                    S4 = 0.85,
-                    M4 = 0.6,
-                    A4 = 0.5,
-                    N4 = 0,
-                    L4 = 0.85,
-                    SComm = 0.0095,
-                    SCommMax = 0.01
+                    IsUpdateA1 = true,
+                    A1 = 0.8
                 }
             };
 
-            return superSetting;
+            return agentEditMemberSetting;
         }
     }
 }
