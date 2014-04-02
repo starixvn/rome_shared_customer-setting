@@ -20,7 +20,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Helpers
     public class MessageHelper : IMessageHelper
     {
         private const string Separator = "\a";
-        private const int DataIsNotChangedCode = 1000;
+        private const int SuccessfulCode = 0;
         private const int DatabaseResponseIsNotValidCode = 1001;
         private const string MessageFormat = "Msg_{0}";
         private string _errorCode = string.Empty;
@@ -55,9 +55,9 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Helpers
         /// <returns>The list of errors.</returns>
         public IList<Result> GetErrors()
         {
-            if (DataIsNotChangedOrNotUpdated())
+            if (DataIsNotChanged())
             {
-                AddMessageWhenDataIsNotChangedOrNotUpdated();
+                AddMessageWhenDataIsNotChanged();
             }
             else if (DatabaseResponseIsNotValid())
             {
@@ -83,7 +83,17 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Helpers
             return int.TryParse(errorCode, out formattedErrorCode);
         }
 
-        internal bool DataIsNotChangedOrNotUpdated()
+        internal static string UpdateErrorCodeBecomesSuccessfulCodeWhenItIsEmpty(string[] errorCodes, int index)
+        {
+            if (index < errorCodes.Length - 1 && string.IsNullOrEmpty(errorCodes[index]))
+            {
+                return SuccessfulCode.ToString();
+            }
+
+            return errorCodes[index];
+        }
+
+        internal bool DataIsNotChanged()
         {
             return string.IsNullOrEmpty(this._errorCode);
         }
@@ -95,6 +105,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Helpers
 
             for (int i = 0; i < errorCodes.Length; i++)
             {
+                errorCodes[i] = UpdateErrorCodeBecomesSuccessfulCodeWhenItIsEmpty(errorCodes, i);
                 AddErrorMessage(errorCodes[i], errorMsgs[i]);
             }
         }
@@ -111,12 +122,12 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Helpers
             }
         }
 
-        internal void AddMessageWhenDataIsNotChangedOrNotUpdated()
+        internal void AddMessageWhenDataIsNotChanged()
         {
             _errorResults.Add(new Result()
             {
-                ErrorCode = DataIsNotChangedCode,
-                ErrorMessage = GetResourceFromErrorCode(DataIsNotChangedCode.ToString())
+                ErrorCode = SuccessfulCode,
+                ErrorMessage = GetResourceFromErrorCode(SuccessfulCode.ToString())
             });
         }
 

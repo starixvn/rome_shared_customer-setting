@@ -123,12 +123,22 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
 
         internal static string ReformatErrorMessageForBetSetting(int betTypeId, string inputMessage)
         {
-            return string.Format("{0} - {1} - {2}", Resources.Messages.BetSetting, CacheRef.GetBettype(betTypeId), inputMessage);
+            string betTypeName = CacheRef.GetBettype(betTypeId);
+            return string.Format(
+                "{0} - {1} - {2}",
+                Resources.Messages.BetSetting,
+                !string.IsNullOrEmpty(betTypeName) ? betTypeName : betTypeId.ToString(),
+                inputMessage);
         }
 
         internal static string ReformatErrorMessageForPositionTaking(int betTypeId, string inputMessage)
         {
-            return string.Format("{0} - {1} - {2}", Resources.Messages.PositionTaking, CacheRef.GetBettype(betTypeId), inputMessage);
+            string betTypeName = CacheRef.GetBettype(betTypeId);
+            return string.Format(
+                "{0} - {1} - {2}",
+                Resources.Messages.PositionTaking,
+                !string.IsNullOrEmpty(betTypeName) ? betTypeName : betTypeId.ToString(),
+                inputMessage);
         }
 
         internal List<Result> UpdateCustomerSetting(dynamic customerSetting)

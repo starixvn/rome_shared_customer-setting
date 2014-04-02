@@ -79,11 +79,11 @@ namespace Fanex.CustomerSetting.Module.Keno.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Data isn&apos;t changed..
+        ///   Looks up a localized string similar to Updated successfully..
         /// </summary>
-        public static string Msg_1000 {
+        public static string Msg_0 {
             get {
-                return ResourceManager.GetString("Msg_1000", resourceCulture);
+                return ResourceManager.GetString("Msg_0", resourceCulture);
             }
         }
         
