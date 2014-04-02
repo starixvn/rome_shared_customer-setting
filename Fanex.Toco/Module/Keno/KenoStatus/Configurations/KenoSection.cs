@@ -52,12 +52,12 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Configurations
             }
         }
 
-        [ConfigurationProperty("showBetListResult", IsRequired = false)]
-        public bool ShowBetListResult
+        [ConfigurationProperty("showsetting", IsRequired = false)]
+        public bool ShowSetting
         {
             get
             {
-                return (bool)base["showBetListResult"];
+                return (bool)base["showsetting"];
             }
         }
     }

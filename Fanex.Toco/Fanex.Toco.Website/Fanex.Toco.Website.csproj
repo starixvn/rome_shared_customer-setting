@@ -957,6 +957,7 @@
     </Content>
     <Content Include="Web.Configuration\Store\KenoSpNames.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
