@@ -70,6 +70,15 @@ namespace Fanex.CustomerSetting.Module.Keno.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bet Setting.
+        /// </summary>
+        public static string BetSetting {
+            get {
+                return ResourceManager.GetString("BetSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Data isn&apos;t changed..
         /// </summary>
         public static string Msg_1000 {
@@ -84,6 +93,15 @@ namespace Fanex.CustomerSetting.Module.Keno.Resources {
         public static string Msg_1001 {
             get {
                 return ResourceManager.GetString("Msg_1001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Position Taking.
+        /// </summary>
+        public static string PositionTaking {
+            get {
+                return ResourceManager.GetString("PositionTaking", resourceCulture);
             }
         }
         

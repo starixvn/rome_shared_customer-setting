@@ -12,6 +12,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
     using System.Collections.Generic;
     using Fanex.CustomerSetting.Module.Core.Criteria;
     using Fanex.CustomerSetting.Module.Core.Models;
+    using Fanex.CustomerSetting.Module.Core.Services.Impl;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.Criteria;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories;
@@ -120,6 +121,16 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
             return UpdateCustomerSetting(memberSetting);
         }
 
+        internal static string ReformatErrorMessageForBetSetting(int betTypeId, string inputMessage)
+        {
+            return string.Format("{0} - {1} - {2}", Resources.Messages.BetSetting, CacheRef.GetBettype(betTypeId), inputMessage);
+        }
+
+        internal static string ReformatErrorMessageForPositionTaking(int betTypeId, string inputMessage)
+        {
+            return string.Format("{0} - {1} - {2}", Resources.Messages.PositionTaking, CacheRef.GetBettype(betTypeId), inputMessage);
+        }
+
         internal List<Result> UpdateCustomerSetting(dynamic customerSetting)
         {
             customerSetting.AdjustInformationWhenUpdateSetting();
@@ -151,10 +162,23 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
             return results;
         }
 
+        /// <summary>
+        /// Updates the bet setting.
+        /// </summary>
+        /// <param name="customerInformation">The customer information.</param>
+        /// <param name="betSetting">The bet setting.</param>
+        /// <returns>The list of results.</returns>
         internal IList<Result> UpdateBetSetting(CustomerInformation customerInformation, BetSetting betSetting)
         {
             var criteria = _criteriaGeneratorService.CreateUpdateBetSettingCriteria(customerInformation, betSetting);
-            return criteria is InvalidCriteria ? new List<Result>() : _kenoSettingRepository.UpdateBetSetting(criteria);
+            IList<Result> results = criteria is InvalidCriteria ? new List<Result>() : _kenoSettingRepository.UpdateBetSetting(criteria);
+
+            foreach (var result in results)
+            {
+                result.ErrorMessage = ReformatErrorMessageForBetSetting(betSetting.BetTypeId, result.ErrorMessage);
+            }
+
+            return results;
         }
 
         /// <summary>
@@ -179,10 +203,26 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
             return results;
         }
 
-        internal IList<Result> UpdatePositionTaking<T>(CustomerInformation customerInformation, T positionTaking)
+        /// <summary>
+        /// Updates the position taking.
+        /// </summary>
+        /// <typeparam name="T">The type of PositionTakingBase.</typeparam>
+        /// <param name="customerInformation">The customer information.</param>
+        /// <param name="positionTaking">The position taking.</param>
+        /// <returns>
+        /// The list of results.
+        /// </returns>
+        internal IList<Result> UpdatePositionTaking<T>(CustomerInformation customerInformation, T positionTaking) where T : PositionTakingBase
         {
             var criteria = _criteriaGeneratorService.CreateUpdatePositionTakingCriteria(customerInformation, positionTaking);
-            return _kenoSettingRepository.UpdatePositionTaking(criteria);
+            var results = _kenoSettingRepository.UpdatePositionTaking(criteria);
+
+            foreach (var result in results)
+            {
+                result.ErrorMessage = ReformatErrorMessageForPositionTaking(positionTaking.BetTypeId, result.ErrorMessage);
+            }
+
+            return results;
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
     using Fanex.CustomerSetting.Security.Authenticate;
 
     /// <summary>
-    /// Base racing controller.
+    /// Keno controller.
     /// </summary>
     public class KenoSettingController : KenoSettingBaseController
     {
