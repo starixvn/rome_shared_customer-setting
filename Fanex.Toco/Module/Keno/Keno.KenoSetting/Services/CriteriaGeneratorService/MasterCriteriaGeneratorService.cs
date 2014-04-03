@@ -93,7 +93,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
                 UpdateAllMembers = masterPositionTaking.IsUpdateAllMember,
                 NewSPositionTaking = masterPositionTaking.NewMemberPT,
                 Discount = 0,
-                UpdatePositiontaking = masterPositionTaking.IsUpdateM3,
+                UpdatePositiontaking = masterPositionTaking.IsUpdateM3 || masterPositionTaking.IsUpdateS3,
                 UpdateMinPositiontaking = masterPositionTaking.IsUpdateN3,
                 UpdateAutoPositionTaking = masterPositionTaking.IsUpdateUS3,
                 UpdateCommission = false,
