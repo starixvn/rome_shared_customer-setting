@@ -89,11 +89,10 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
             if (IM2)
             {
                 M2 = 0;
+                return;
             }
-            else
-            {
-                UM2 = 0;
-            }
+
+            UM2 = 0;
         }
 
         internal void AdjustMaster()
@@ -101,11 +100,10 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
             if (IS3)
             {
                 S3 = 0;
+                return;
             }
-            else
-            {
-                US3 = 0;
-            }
+
+            US3 = 0;
         }
     }
 }
