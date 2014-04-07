@@ -19,25 +19,24 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
     /// </summary>
     public class SuperEditMemberCriteriaGeneratorService : CriteriaGeneratorServiceBase, ICriteriaGeneratorService
     {
-        public SuperEditMemberCriteriaGeneratorService()
-            : base(null)
+        public SuperEditMemberCriteriaGeneratorService(CustomerInformation customerInformation)
+            : base(null, customerInformation)
         {
         }
 
-        public SuperEditMemberCriteriaGeneratorService(IKenoSession kenoSession)
-            : base(kenoSession)
+        public SuperEditMemberCriteriaGeneratorService(IKenoSession kenoSession, CustomerInformation customerInformation)
+            : base(kenoSession, customerInformation)
         {
         }
 
         /// <summary>
         /// Creates the update bet setting criteria.
         /// </summary>
-        /// <param name="customerInformation">The customer information.</param>
         /// <param name="betSetting">The bet setting.</param>
         /// <returns>
         /// The instance of ICriteria.
         /// </returns>
-        public ICriteria CreateUpdateBetSettingCriteria(CustomerInformation customerInformation, BetSetting betSetting)
+        public ICriteria CreateUpdateBetSettingCriteria(BetSetting betSetting)
         {
             return new InvalidCriteria();
         }
@@ -45,29 +44,27 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
         /// <summary>
         /// Creates the update position taking criteria.
         /// </summary>
-        /// <param name="customerInformation">The customer information.</param>
         /// <param name="positionTaking">The position taking.</param>
         /// <returns>
         /// The instance of ICriteria.
         /// </returns>
-        public ICriteria CreateUpdatePositionTakingCriteria(CustomerInformation customerInformation, dynamic positionTaking)
+        public ICriteria CreateUpdatePositionTakingCriteria(dynamic positionTaking)
         {
-            return CreateUpdateMemberPositionTakingCriteria(customerInformation, positionTaking);
+            return CreateUpdateMemberPositionTakingCriteria(positionTaking);
         }
 
         /// <summary>
         /// Creates the update member position taking criteria.
         /// </summary>
-        /// <param name="customerInformation">The customer information.</param>
         /// <param name="memberPositionTaking">The member position taking.</param>
-        /// <returns>The SuperUpdateMemberPositionTakingCriteria object.</returns>
-        internal SuperUpdateMemberPositionTakingCriteria CreateUpdateMemberPositionTakingCriteria(
-            CustomerInformation customerInformation,
-            SuperEditMemberPositionTaking memberPositionTaking)
+        /// <returns>
+        /// The SuperUpdateMemberPositionTakingCriteria object.
+        /// </returns>
+        internal SuperUpdateMemberPositionTakingCriteria CreateUpdateMemberPositionTakingCriteria(SuperEditMemberPositionTaking memberPositionTaking)
         {
             return new SuperUpdateMemberPositionTakingCriteria()
             {
-                CustId = customerInformation.CustId,
+                CustId = CustomerInformation.CustId,
                 SportType = Constants.SportType,
                 BetType = memberPositionTaking.BetTypeId,
                 SPositionTaking = memberPositionTaking.S1,
@@ -75,10 +72,10 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
                 IsAuto_SPositionTaking = memberPositionTaking.IS1,
                 UpdatePositionTaking = memberPositionTaking.IsUpdateS1,
                 UpdateAutoPositionTaking = memberPositionTaking.IsUpdateUS1,
-                SubAccId = KenoSession.SubAccId,
-                UserId = KenoSession.UserId,
+                SubAccId = CustomerInformation.SubAccId,
+                UserId = CustomerInformation.UserId,
                 Ip = KenoSession.Ip,
-                Language = customerInformation.Language
+                Language = CustomerInformation.Language
             };
         }
     }

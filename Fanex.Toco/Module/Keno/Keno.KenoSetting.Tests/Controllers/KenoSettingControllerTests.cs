@@ -35,7 +35,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Tests.Controllers
             var kenoSettingController = new KenoSettingController(kenoSettingService);
 
             // Act
-            var result = kenoSettingController.EditSuper(1);
+            var result = kenoSettingController.EditSuper(new CustomerInformationViewModel() { CustId = 1 });
 
             // Assert
             Assert.IsInstanceOf<ActionResult>(result);
@@ -50,7 +50,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Tests.Controllers
             var kenoSettingController = new KenoSettingController(kenoSettingService);
 
             // Act
-            var result = kenoSettingController.EditSuper(1);
+            var result = kenoSettingController.EditSuper(new CustomerInformationViewModel() { CustId = 1 });
             var model = ((ViewResult)result).Model;
 
             // Assert

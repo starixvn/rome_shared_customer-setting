@@ -37,87 +37,87 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
             _criteriaGeneratorService = criteriaGeneratorService ?? null;
         }
 
-        public SuperSettingViewModel GetSuperSetting(int custId)
+        public SuperSettingViewModel GetSuperSetting(CustomerInformationViewModel customerInformationViewModel)
         {
-            var criteria = new GetSuperSettingCriteria() { CustId = custId };
+            var criteria = new GetSuperSettingCriteria() { CustId = customerInformationViewModel.CustId };
             var superSetting = _kenoSettingRepository.GetSuperSetting(criteria);
-            superSetting.AdjustInformationWhenLoadSetting(custId);
+            superSetting.AdjustInformationWhenLoadSetting(customerInformationViewModel);
             return superSetting;
         }
 
-        public MasterSettingViewModel GetMasterSetting(int custId)
+        public MasterSettingViewModel GetMasterSetting(CustomerInformationViewModel customerInformationViewModel)
         {
-            var criteria = new GetMasterSettingCriteria() { CustId = custId };
+            var criteria = new GetMasterSettingCriteria() { CustId = customerInformationViewModel.CustId };
             var masterSetting = _kenoSettingRepository.GetMasterSetting(criteria);
-            masterSetting.AdjustInformationWhenLoadSetting(custId);
+            masterSetting.AdjustInformationWhenLoadSetting(customerInformationViewModel);
             return masterSetting;
         }
 
-        public AgentSettingViewModel GetAgentSetting(int custId)
+        public AgentSettingViewModel GetAgentSetting(CustomerInformationViewModel customerInformationViewModel)
         {
-            var criteria = new GetAgentSettingCriteria() { CustId = custId };
+            var criteria = new GetAgentSettingCriteria() { CustId = customerInformationViewModel.CustId };
             var agentSetting = _kenoSettingRepository.GetAgentSetting(criteria);
-            agentSetting.AdjustInformationWhenLoadSetting(custId);
+            agentSetting.AdjustInformationWhenLoadSetting(customerInformationViewModel);
             return agentSetting;
         }
 
-        public AgentEditMemberSettingViewModel GetSettingInCaseOfAgentEditMember(int custId)
+        public AgentEditMemberSettingViewModel GetSettingInCaseOfAgentEditMember(CustomerInformationViewModel customerInformationViewModel)
         {
-            var criteria = new AgentGetMemberSettingCriteria() { CustId = custId };
+            var criteria = new AgentGetMemberSettingCriteria() { CustId = customerInformationViewModel.CustId };
             var memberSetting = _kenoSettingRepository.GetSettingInCaseOfAgentEditMember(criteria);
-            memberSetting.AdjustInformationWhenLoadSetting(custId);
+            memberSetting.AdjustInformationWhenLoadSetting(customerInformationViewModel);
             return memberSetting;
         }
 
-        public SuperEditMemberSettingViewModel GetSettingInCaseOfSuperEditMember(int custId)
+        public SuperEditMemberSettingViewModel GetSettingInCaseOfSuperEditMember(CustomerInformationViewModel customerInformationViewModel)
         {
-            var criteria = new SuperGetMemberSettingCriteria() { CustId = custId };
+            var criteria = new SuperGetMemberSettingCriteria() { CustId = customerInformationViewModel.CustId };
             var memberSetting = _kenoSettingRepository.GetSettingInCaseOfSuperEditMember(criteria);
-            memberSetting.AdjustInformationWhenLoadSetting(custId);
+            memberSetting.AdjustInformationWhenLoadSetting(customerInformationViewModel);
             return memberSetting;
         }
 
-        public MasterEditMemberSettingViewModel GetSettingInCaseOfMasterEditMember(int custId)
+        public MasterEditMemberSettingViewModel GetSettingInCaseOfMasterEditMember(CustomerInformationViewModel customerInformationViewModel)
         {
-            var criteria = new MasterGetMemberSettingCriteria() { CustId = custId };
+            var criteria = new MasterGetMemberSettingCriteria() { CustId = customerInformationViewModel.CustId };
             var memberSetting = _kenoSettingRepository.GetSettingInCaseOfMasterEditMember(criteria);
-            memberSetting.AdjustInformationWhenLoadSetting(custId);
+            memberSetting.AdjustInformationWhenLoadSetting(customerInformationViewModel);
             return memberSetting;
         }
 
         public IList<Result> UpdateSuperCustomerSetting(SuperSettingViewModel superSetting)
         {
-            _criteriaGeneratorService = _criteriaGeneratorService ?? new SuperCriteriaGeneratorService();
+            _criteriaGeneratorService = _criteriaGeneratorService ?? new SuperCriteriaGeneratorService(superSetting.CustomerInformation);
             return UpdateCustomerSetting(superSetting);
         }
 
         public IList<Result> UpdateMasterCustomerSetting(MasterSettingViewModel masterSetting)
         {
-            _criteriaGeneratorService = _criteriaGeneratorService ?? new MasterCriteriaGeneratorService();
+            _criteriaGeneratorService = _criteriaGeneratorService ?? new MasterCriteriaGeneratorService(masterSetting.CustomerInformation);
             return UpdateCustomerSetting(masterSetting);
         }
 
         public IList<Result> UpdateAgentCustomerSetting(AgentSettingViewModel agentSetting)
         {
-            _criteriaGeneratorService = _criteriaGeneratorService ?? new AgentCriteriaGeneratorService();
+            _criteriaGeneratorService = _criteriaGeneratorService ?? new AgentCriteriaGeneratorService(agentSetting.CustomerInformation);
             return UpdateCustomerSetting(agentSetting);
         }
 
         public IList<Result> UpdateMemberCustomerSettingInCaseOfAgentEditMember(AgentEditMemberSettingViewModel memberSetting)
         {
-            _criteriaGeneratorService = _criteriaGeneratorService ?? new AgentEditMemberCriteriaGeneratorService();
+            _criteriaGeneratorService = _criteriaGeneratorService ?? new AgentEditMemberCriteriaGeneratorService(memberSetting.CustomerInformation);
             return UpdateCustomerSetting(memberSetting);
         }
 
         public IList<Result> UpdateMemberCustomerSettingInCaseOfSuperEditMember(SuperEditMemberSettingViewModel memberSetting)
         {
-            _criteriaGeneratorService = _criteriaGeneratorService ?? new SuperEditMemberCriteriaGeneratorService();
+            _criteriaGeneratorService = _criteriaGeneratorService ?? new SuperEditMemberCriteriaGeneratorService(memberSetting.CustomerInformation);
             return UpdateCustomerSetting(memberSetting);
         }
 
         public IList<Result> UpdateMemberCustomerSettingInCaseOfMasterEditMember(MasterEditMemberSettingViewModel memberSetting)
         {
-            _criteriaGeneratorService = _criteriaGeneratorService ?? new MasterEditMemberCriteriaGeneratorService();
+            _criteriaGeneratorService = _criteriaGeneratorService ?? new MasterEditMemberCriteriaGeneratorService(memberSetting.CustomerInformation);
             return UpdateCustomerSetting(memberSetting);
         }
 
@@ -165,7 +165,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
             {
                 if (betSetting.IsDataChanged())
                 {
-                    results.AddRange(this.UpdateBetSetting(customerSetting.CustomerInformation, betSetting));
+                    results.AddRange(this.UpdateBetSetting(betSetting));
                 }
             }
 
@@ -175,12 +175,13 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
         /// <summary>
         /// Updates the bet setting.
         /// </summary>
-        /// <param name="customerInformation">The customer information.</param>
         /// <param name="betSetting">The bet setting.</param>
-        /// <returns>The list of results.</returns>
-        internal IList<Result> UpdateBetSetting(CustomerInformation customerInformation, BetSetting betSetting)
+        /// <returns>
+        /// The list of results.
+        /// </returns>
+        internal IList<Result> UpdateBetSetting(BetSetting betSetting)
         {
-            var criteria = _criteriaGeneratorService.CreateUpdateBetSettingCriteria(customerInformation, betSetting);
+            var criteria = _criteriaGeneratorService.CreateUpdateBetSettingCriteria(betSetting);
             IList<Result> results = criteria is InvalidCriteria ? new List<Result>() : _kenoSettingRepository.UpdateBetSetting(criteria);
 
             foreach (var result in results)
@@ -206,7 +207,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
             {
                 if (positionTaking.IsDataChanged())
                 {
-                    results.AddRange(this.UpdatePositionTaking(customerSetting.CustomerInformation, positionTaking));
+                    results.AddRange(this.UpdatePositionTaking(positionTaking));
                 }
             }
 
@@ -217,14 +218,13 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
         /// Updates the position taking.
         /// </summary>
         /// <typeparam name="T">The type of PositionTakingBase.</typeparam>
-        /// <param name="customerInformation">The customer information.</param>
         /// <param name="positionTaking">The position taking.</param>
         /// <returns>
         /// The list of results.
         /// </returns>
-        internal IList<Result> UpdatePositionTaking<T>(CustomerInformation customerInformation, T positionTaking) where T : PositionTakingBase
+        internal IList<Result> UpdatePositionTaking<T>(T positionTaking) where T : PositionTakingBase
         {
-            var criteria = _criteriaGeneratorService.CreateUpdatePositionTakingCriteria(customerInformation, positionTaking);
+            var criteria = _criteriaGeneratorService.CreateUpdatePositionTakingCriteria(positionTaking);
             var results = _kenoSettingRepository.UpdatePositionTaking(criteria);
 
             foreach (var result in results)

@@ -10,6 +10,7 @@
 namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
 {
     using Fanex.CustomerSetting.Module.Core;
+    using Fanex.CustomerSetting.Module.Core.Configurations;
     using Fanex.CustomerSetting.Module.Core.Web;
 
     /// <summary>
@@ -21,7 +22,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
         {
             get
             {
-               return AppSession.AccId;
+                return AppSession.AccId;
             }
         }
 
@@ -46,6 +47,14 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
             get
             {
                 return AppSession.Language;
+            }
+        }
+
+        public bool IsLocalTest
+        {
+            get
+            {
+                return AppSettings.IsLocalTest;
             }
         }
     }

@@ -21,5 +21,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
         string Ip { get; }
 
         string Language { get; }
+
+        bool IsLocalTest { get; }
     }
 }

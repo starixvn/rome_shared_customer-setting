@@ -44,10 +44,10 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Tests.Services
         public void CreateUpdateSuperBetSettingCriteria_ShouldReturnExactCriteria()
         {
             // Arrange
-            var criteriaGeneratorService = new MasterEditMemberCriteriaGeneratorService(_stubKenoSession);
+            var criteriaGeneratorService = new MasterEditMemberCriteriaGeneratorService(_stubKenoSession, _masterEditMemberSetting.CustomerInformation);
 
             // Act
-            var criteria = criteriaGeneratorService.CreateUpdateBetSettingCriteria(_masterEditMemberSetting.CustomerInformation, _masterEditMemberSetting.BetSettings[0]);
+            var criteria = criteriaGeneratorService.CreateUpdateBetSettingCriteria(_masterEditMemberSetting.BetSettings[0]);
 
             // Assert
             Assert.IsInstanceOf<InvalidCriteria>(criteria);
@@ -57,10 +57,10 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Tests.Services
         public void CreateUpdateSuperPositionTakingCriteria_ShouldReturnExactCriteria()
         {
             // Arrange
-            var criteriaGeneratorService = new MasterEditMemberCriteriaGeneratorService(_stubKenoSession);
+            var criteriaGeneratorService = new MasterEditMemberCriteriaGeneratorService(_stubKenoSession, _masterEditMemberSetting.CustomerInformation);
 
             // Act
-            var criteria = criteriaGeneratorService.CreateUpdateMemberPositionTakingCriteria(_masterEditMemberSetting.CustomerInformation, _masterEditMemberSetting.PositionTakings[0]);
+            var criteria = criteriaGeneratorService.CreateUpdateMemberPositionTakingCriteria(_masterEditMemberSetting.PositionTakings[0]);
 
             // Assert
             Assert.IsInstanceOf<MasterUpdateMemberPositionTakingCriteria>(criteria);

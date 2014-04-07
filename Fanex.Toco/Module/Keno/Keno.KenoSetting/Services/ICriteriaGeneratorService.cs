@@ -16,8 +16,8 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
     {
         IKenoSession KenoSession { get; }
 
-        ICriteria CreateUpdateBetSettingCriteria(CustomerInformation customerInformation, BetSetting betSetting);
+        ICriteria CreateUpdateBetSettingCriteria(BetSetting betSetting);
 
-        ICriteria CreateUpdatePositionTakingCriteria(CustomerInformation customerInformation, dynamic positionTaking);
+        ICriteria CreateUpdatePositionTakingCriteria(dynamic positionTaking);
     }
 }

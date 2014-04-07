@@ -33,9 +33,9 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditSuper")]
-        public ActionResult EditSuper(int custId)
+        public ActionResult EditSuper(CustomerInformationViewModel customerInformationViewModel)
         {
-            var customerSetting = _kenoSettingService.GetSuperSetting(custId);
+            var customerSetting = _kenoSettingService.GetSuperSetting(customerInformationViewModel);
             return View(Constants.EditSuperCshtml, customerSetting);
         }
 
@@ -48,9 +48,9 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditMaster")]
-        public ActionResult EditMaster(int custId)
+        public ActionResult EditMaster(CustomerInformationViewModel customerInformationViewModel)
         {
-            var customerSetting = _kenoSettingService.GetMasterSetting(custId);
+            var customerSetting = _kenoSettingService.GetMasterSetting(customerInformationViewModel);
             return View(Constants.EditMasterCshtml, customerSetting);
         }
 
@@ -63,9 +63,9 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditAgent")]
-        public ActionResult EditAgent(int custId)
+        public ActionResult EditAgent(CustomerInformationViewModel customerInformationViewModel)
         {
-            var customerSetting = _kenoSettingService.GetAgentSetting(custId);
+            var customerSetting = _kenoSettingService.GetAgentSetting(customerInformationViewModel);
             return View(Constants.EditAgentCshtml, customerSetting);
         }
 
@@ -78,9 +78,9 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "SuperEditMember")]
-        public ActionResult SuperEditMember(int custId)
+        public ActionResult SuperEditMember(CustomerInformationViewModel customerInformationViewModel)
         {
-            var customerSetting = _kenoSettingService.GetSettingInCaseOfSuperEditMember(custId);
+            var customerSetting = _kenoSettingService.GetSettingInCaseOfSuperEditMember(customerInformationViewModel);
             return View(Constants.SuperEditMemberCshtml, customerSetting);
         }
 
@@ -93,9 +93,9 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "MasterEditMember")]
-        public ActionResult MasterEditMember(int custId)
+        public ActionResult MasterEditMember(CustomerInformationViewModel customerInformationViewModel)
         {
-            var customerSetting = _kenoSettingService.GetSettingInCaseOfMasterEditMember(custId);
+            var customerSetting = _kenoSettingService.GetSettingInCaseOfMasterEditMember(customerInformationViewModel);
             return View(Constants.MasterEditMemberCshtml, customerSetting);
         }
 
@@ -108,9 +108,9 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "AgentEditMember")]
-        public ActionResult AgentEditMember(int custId)
+        public ActionResult AgentEditMember(CustomerInformationViewModel customerInformationViewModel)
         {
-            var customerSetting = _kenoSettingService.GetSettingInCaseOfAgentEditMember(custId);
+            var customerSetting = _kenoSettingService.GetSettingInCaseOfAgentEditMember(customerInformationViewModel);
             return View(Constants.AgentEditMemberCshtml, customerSetting);
         }
 

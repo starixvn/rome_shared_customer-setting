@@ -195,6 +195,7 @@
     <Compile Include="Services\KenoSettingService.cs" />
     <Compile Include="ViewModels\AgentSettingViewModel.cs" />
     <Compile Include="ViewModels\AgentEditMemberSettingViewModel.cs" />
+    <Compile Include="ViewModels\CustomerInformationViewModel.cs" />
     <Compile Include="ViewModels\SuperEditMemberSettingViewModel.cs" />
     <Compile Include="ViewModels\MasterEditMemberSettingViewModel.cs" />
     <Compile Include="ViewModels\MasterSettingViewModel.cs" />

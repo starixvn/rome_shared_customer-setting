@@ -74,7 +74,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Tests.Services
             var kenoSettingService = new KenoSettingService(_mockRepository, null);
 
             // Act
-            var superSetting = kenoSettingService.GetSuperSetting(200);
+            var superSetting = kenoSettingService.GetSuperSetting(new CustomerInformationViewModel() { CustId = 200 });
 
             // Assert
             Assert.IsInstanceOf<SuperSettingViewModel>(superSetting);
@@ -94,7 +94,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Tests.Services
             var kenoSettingService = new KenoSettingService(_stubRepository, _stubCriteriaGenerator);
 
             // Act
-            var result = kenoSettingService.UpdateBetSetting(_customerSetting.CustomerInformation, _customerSetting.BetSettings[0]);
+            var result = kenoSettingService.UpdateBetSetting(_customerSetting.BetSettings[0]);
 
             // Assert
             Assert.IsInstanceOf<List<Result>>(result);
@@ -105,12 +105,12 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Tests.Services
         {
             // Arrange
             var kenoSettingService = new KenoSettingService(_stubRepository, _stubCriteriaGenerator);
-            _stubCriteriaGenerator.Stub(c => c.CreateUpdateBetSettingCriteria(Arg<CustomerInformation>.Is.Anything, Arg<BetSetting>.Is.Anything))
+            _stubCriteriaGenerator.Stub(c => c.CreateUpdateBetSettingCriteria(Arg<BetSetting>.Is.Anything))
                 .IgnoreArguments()
                 .Return(new InvalidCriteria());
 
             // Act
-            var result = kenoSettingService.UpdateBetSetting(_customerSetting.CustomerInformation, _customerSetting.BetSettings[0]);
+            var result = kenoSettingService.UpdateBetSetting(_customerSetting.BetSettings[0]);
 
             // Assert
             Assert.AreEqual(0, result.Count);
@@ -127,7 +127,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Tests.Services
             var kenoSettingService = new KenoSettingService(_mockRepository, _stubCriteriaGenerator);
 
             // Act
-            var result = kenoSettingService.UpdateBetSetting(_customerSetting.CustomerInformation, _customerSetting.BetSettings[0]);
+            var result = kenoSettingService.UpdateBetSetting(_customerSetting.BetSettings[0]);
         }
 
         [Test]

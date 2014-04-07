@@ -12,6 +12,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.IntegrationTests
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.Criteria;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories;
+    using Fanex.CustomerSetting.Module.Keno.KenoSetting.ViewModels;
     using Fanex.Data.Configuration;
     using NUnit.Framework;
 
@@ -53,7 +54,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.IntegrationTests
 
             // Act
             var result = _kenoSettingRepository.GetSuperSetting(criteria);
-            result.AdjustInformationWhenLoadSetting(SuperId);
+            result.AdjustInformationWhenLoadSetting(new CustomerInformationViewModel() { CustId = SuperId });
 
             // Assert
             Assert.IsNotNull(result.CustomerInformation);

@@ -12,6 +12,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
     using System.Collections.Generic;
     using System.Linq;
     using Fanex.CustomerSetting.Module.Core.Services.Impl;
+    using Fanex.CustomerSetting.Module.Keno.KenoSetting.ViewModels;
 
     /// <summary>
     /// The CustomerSettingBase entity.
@@ -36,9 +37,9 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
             this.AdjustValuesOfPositionTakings();
         }
 
-        public void AdjustInformationWhenLoadSetting(int custId)
+        public void AdjustInformationWhenLoadSetting(CustomerInformationViewModel customerInformationViewModel)
         {
-            this.CustomerInformation.CustId = custId;
+            this.UpdateCustomerInformation(customerInformationViewModel);
             this.UpdateCopyAllInformation();
             this.UpdateBetTypeNameForBetSetting();
             this.UpdateBetTypeNameForPositionTaking();
@@ -101,6 +102,13 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
         {
             this.PositionTakingCopyAll = new CopyAll();
             this.BetSettingCopyAll = new CopyAll();
+        }
+
+        internal void UpdateCustomerInformation(CustomerInformationViewModel customerInformationViewModel)
+        {
+            this.CustomerInformation.CustId = customerInformationViewModel.CustId;
+            this.CustomerInformation.UserId = customerInformationViewModel.UserId;
+            this.CustomerInformation.SubAccId = customerInformationViewModel.SubAccId;
         }
 
         /// <summary>

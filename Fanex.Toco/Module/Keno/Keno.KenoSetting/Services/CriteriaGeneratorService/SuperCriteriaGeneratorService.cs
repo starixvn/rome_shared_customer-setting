@@ -19,29 +19,28 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
     /// </summary>
     public class SuperCriteriaGeneratorService : CriteriaGeneratorServiceBase, ICriteriaGeneratorService
     {
-        public SuperCriteriaGeneratorService()
-            : base(null)
+        public SuperCriteriaGeneratorService(CustomerInformation customerInformation)
+            : base(null, customerInformation)
         {
         }
 
-        public SuperCriteriaGeneratorService(IKenoSession kenoSession)
-            : base(kenoSession)
+        public SuperCriteriaGeneratorService(IKenoSession kenoSession, CustomerInformation customerInformation)
+            : base(kenoSession, customerInformation)
         {
         }
 
         /// <summary>
         /// Creates the update bet setting criteria.
         /// </summary>
-        /// <param name="customerInformation">The customer information.</param>
         /// <param name="betSetting">The bet setting.</param>
         /// <returns>
         /// The instance of ICriteria.
         /// </returns>
-        public ICriteria CreateUpdateBetSettingCriteria(CustomerInformation customerInformation, BetSetting betSetting)
+        public ICriteria CreateUpdateBetSettingCriteria(BetSetting betSetting)
         {
             return new UpdateSuperBetSettingCriteria()
             {
-                CustId = customerInformation.CustId,
+                CustId = CustomerInformation.CustId,
                 SportType = Constants.SportType,
                 BetType = betSetting.BetTypeId,
                 UpdateStatus = betSetting.IsStatusUpdated,
@@ -51,39 +50,37 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
                 MinBet = betSetting.MinBet,
                 MaxBet = betSetting.MaxBet,
                 MaxPerMatch = betSetting.MaxPerMatch,
-                UserId = KenoSession.UserId,
-                SubAccId = KenoSession.SubAccId,
+                UserId = CustomerInformation.UserId,
+                SubAccId = CustomerInformation.SubAccId,
                 Ip = KenoSession.Ip,
-                Language = customerInformation.Language
+                Language = CustomerInformation.Language
             };
         }
 
         /// <summary>
         /// Creates the update position taking criteria.
         /// </summary>
-        /// <param name="customerInformation">The customer information.</param>
         /// <param name="positionTaking">The position taking.</param>
         /// <returns>
         /// The instance of ICriteria.
         /// </returns>
-        public ICriteria CreateUpdatePositionTakingCriteria(CustomerInformation customerInformation, dynamic positionTaking)
+        public ICriteria CreateUpdatePositionTakingCriteria(dynamic positionTaking)
         {
-            return CreateUpdateSuperPositionTakingCriteria(customerInformation, positionTaking);
+            return CreateUpdateSuperPositionTakingCriteria(positionTaking);
         }
 
         /// <summary>
         /// Creates the update super position taking criteria.
         /// </summary>
-        /// <param name="customerInformation">The customer information.</param>
         /// <param name="superPositionTaking">The super position taking.</param>
-        /// <returns>The UpdateSuperPositionTakingCriteria object.</returns>
-        internal UpdateSuperPositionTakingCriteria CreateUpdateSuperPositionTakingCriteria(
-            CustomerInformation customerInformation,
-            SuperPositionTaking superPositionTaking)
+        /// <returns>
+        /// The UpdateSuperPositionTakingCriteria object.
+        /// </returns>
+        internal UpdateSuperPositionTakingCriteria CreateUpdateSuperPositionTakingCriteria(SuperPositionTaking superPositionTaking)
         {
             return new UpdateSuperPositionTakingCriteria()
             {
-                CustId = customerInformation.CustId,
+                CustId = CustomerInformation.CustId,
                 SportType = Constants.SportType,
                 BetType = superPositionTaking.BetTypeId,
                 SPositionTaking = superPositionTaking.S4,
@@ -92,9 +89,9 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
                 UpdatePositionTaking = superPositionTaking.IsUpdateS4,
                 UpdateMinPositionTaking = superPositionTaking.IsUpdateN4,
                 UpdateCommission = false,
-                UserId = KenoSession.UserId,
+                UserId = CustomerInformation.UserId,
                 Ip = KenoSession.Ip,
-                Language = customerInformation.Language
+                Language = CustomerInformation.Language
             };
         }
     }
