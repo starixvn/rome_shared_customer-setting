@@ -266,6 +266,7 @@
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Accounting\Images\sucess.gif" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Accounting\Images\Update.png" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Agent\Images\bgHeader.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Agent\Images\bg_header02.jpg" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Agent\Images\b_left.gif" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Agent\Images\b_right.gif" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Agent\Images\Update.png" />

@@ -7,6 +7,7 @@ KenoModule.directive('masterPositionTakingElement', ['commonService', function (
             positionTaking: "=ngModel",
             index: "=index"
         },
+        transclude: true,
         templateUrl: domain + 'Areas/CustomerSetting/Views/Keno/Setting/Views/Partial/PositionTaking/MasterPositionTaking.htm',
         link: function ($scope, elem, attr, ctrl) {
 
@@ -78,6 +79,10 @@ KenoModule.directive('masterPositionTakingElement', ['commonService', function (
                 }
 
                 $scope.maxPTRange = commonService.getRangePTValue($scope.positionTaking.l3, $scope.positionTaking.n3);
+
+                elem.multiselect('refresh');
+                elem.multiselectfilter("updateCache");
+                
                 $scope.monitorSaveButton();
             }, true);
 

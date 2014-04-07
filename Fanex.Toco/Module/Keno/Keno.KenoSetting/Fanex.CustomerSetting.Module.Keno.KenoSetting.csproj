@@ -52,9 +52,9 @@
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
       <HintPath>..\..\..\_Dependencies\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Newtonsoft.Json, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\ACCOUNT-GITTO\Master-accountingsite\Dependency\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\_Dependencies\Web\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RemotingRef, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -206,7 +206,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Fanex.Toco.Module.Core\_Core.csproj">
-      <Project>{FA7AFDA2-F599-4DB2-B733-2992043C9D10}</Project>
+      <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
       <Name>_Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\_Security\Security.csproj">
