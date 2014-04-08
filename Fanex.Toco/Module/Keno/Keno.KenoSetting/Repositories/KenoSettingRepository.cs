@@ -239,16 +239,16 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
                 var bettingSetting = new BetSetting
                 {
                     BetTypeId = dataReader.HasColumn("IBCBetTypeID") ? dataReader.ToInt("IBCBetTypeID") : 0,
-                    MinBet = dataReader.HasColumn("MinBet") ? dataReader.ToDecimal("MinBet") : 0,
-                    MaxBet = dataReader.HasColumn("MaxBet") ? dataReader.ToDecimal("MaxBet") : 0,
-                    MaxPerMatch = dataReader.HasColumn("MaxPerGameType") ? dataReader.ToDecimal("MaxPerGameType") : 0,
+                    MinBet = dataReader.HasColumn("MinBet") ? dataReader.ToDouble("MinBet") : 0,
+                    MaxBet = dataReader.HasColumn("MaxBet") ? dataReader.ToDouble("MaxBet") : 0,
+                    MaxPerMatch = dataReader.HasColumn("MaxPerGameType") ? dataReader.ToDouble("MaxPerGameType") : 0,
                     IsEnabled = dataReader.HasColumn("IsDisabled") ? !dataReader.ToBool("IsDisabled") : false,
                     IsDownlinesEnabled = dataReader.HasColumn("DisableDownlinesKeno") ? !dataReader.ToBool("DisableDownlinesKeno") : false,
                     Upline = new BetSetting()
                     {
-                        MinBet = dataReader.HasColumn("MinBet_Min") ? dataReader.ToDecimal("MinBet_Min") : 0,
-                        MaxBet = dataReader.HasColumn("MaxBet_Max") ? dataReader.ToDecimal("MaxBet_Max") : 0,
-                        MaxPerMatch = dataReader.HasColumn("MaxPerMatch_Max") ? dataReader.ToDecimal("MaxPerMatch_Max") : 0
+                        MinBet = dataReader.HasColumn("MinBet_Min") ? dataReader.ToDouble("MinBet_Min") : 0,
+                        MaxBet = dataReader.HasColumn("MaxBet_Max") ? dataReader.ToDouble("MaxBet_Max") : 0,
+                        MaxPerMatch = dataReader.HasColumn("MaxPerMatch_Max") ? dataReader.ToDouble("MaxPerMatch_Max") : 0
                     }
                 };
 

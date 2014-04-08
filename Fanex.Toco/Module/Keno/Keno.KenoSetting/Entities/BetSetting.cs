@@ -20,11 +20,11 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
 
         public string BetTypeName { get; set; }
 
-        public decimal MinBet { get; set; }
+        public double MinBet { get; set; }
 
-        public decimal MaxBet { get; set; }
+        public double MaxBet { get; set; }
 
-        public decimal MaxPerMatch { get; set; }
+        public double MaxPerMatch { get; set; }
 
         public bool IsBetSettingUpdated { get; set; }
 

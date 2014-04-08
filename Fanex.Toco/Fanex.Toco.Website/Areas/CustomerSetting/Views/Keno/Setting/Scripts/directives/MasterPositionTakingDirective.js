@@ -79,9 +79,6 @@ KenoModule.directive('masterPositionTakingElement', ['commonService', function (
                 }
 
                 $scope.maxPTRange = commonService.getRangePTValue($scope.positionTaking.l3, $scope.positionTaking.n3);
-
-                elem.multiselect('refresh');
-                elem.multiselectfilter("updateCache");
                 
                 $scope.monitorSaveButton();
             }, true);
