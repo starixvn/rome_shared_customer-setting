@@ -132,6 +132,9 @@
   <data name="PositionTaking" xml:space="preserve">
     <value>Position Taking</value>
   </data>
+  <data name="UpdatedFail" xml:space="preserve">
+    <value>Updated failed.</value>
+  </data>
   <data name="UpdatedSuccess" xml:space="preserve">
     <value>Status updated successfully</value>
   </data>
