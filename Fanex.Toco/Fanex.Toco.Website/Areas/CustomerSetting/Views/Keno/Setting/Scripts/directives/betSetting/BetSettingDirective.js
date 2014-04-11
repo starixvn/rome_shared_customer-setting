@@ -91,8 +91,100 @@ KenoModule.directive('betSettingElement', function () {
     };
 });
 
+    KenoModule.directive('betSettingInput', ['$filter', '$parse',
+    function ($filter, $parse) {
+        return {
+            require: '^ngModel',
+            link: function (scope, element, attrs, ctrl) {
+                if (!ctrl) return;
 
-KenoModule.directive('betSettingInput', ['$filter', '$parse',
+                scope.formatNumber = function (value) {
+                    return $filter("number")(value);
+                };
+
+                var initValueModel = eval("scope." + attrs.ngModel);
+                var initValueViewModel = scope.formatNumber(initValueModel);
+
+                ctrl.$formatters.unshift(function () {
+                    return scope.formatNumber(ctrl.$modelValue);
+                });
+
+                ctrl.$parsers.unshift(function (viewValue) {
+                    var plainNumber = viewValue.replace(/[^\d|\-+|\.+]/g, '');
+                    ctrl.$modelValue = eval(plainNumber);
+                    element.val(scope.formatNumber(plainNumber));
+                    return plainNumber;
+                });
+
+                scope.$on('inputDisabledChecking', function (event, isCopiedAll) {
+                    if (isCopiedAll && scope.index != 0) {
+                        element.addClass('inputDisabled');
+                        $(element).attr('disabled', true);
+                    } else {
+                        element.removeClass('inputDisabled');
+                        $(element).removeAttr('disabled');
+                    }
+                });
+
+                scope.setConstrain = function () {
+                    scope.createTooltip = function (titleTootip) {
+                        element.attr('title', titleTootip);
+                        element.attr('original-title', titleTootip);
+                        element.tipsy({
+                            delayIn: 0,
+                            delayOut: 0,
+                            gravity: "s",
+                            opacity: 1,
+                            autoHide: {
+                                isAuto: true,
+                                timeOut: 7
+                            }
+                        });
+                    };
+
+                    scope.emitToParent = function (isValid) {
+                        //                        scope.valids[attrs.ngModel] = isValid;
+                        scope.$emit(attrs.ngModel, isValid);
+                        isValid == true ? element.removeClass('invalidValue') : element.addClass('invalidValue');
+                    };
+
+                    var valueRange = scope.$eval(attrs.valueRange);
+                    var minValue = eval(valueRange.min);
+                    var maxValue = eval(valueRange.max);
+                    var unlimited = eval(valueRange.unlimited);
+
+                    if (ctrl.$modelValue < minValue && minValue > -1 && minValue < MAX_VALUE && !unlimited) {
+                        scope.createTooltip(scope.betSetting.betTypeName + " - " + valueRange.model + " " + resources.more_than + " " + valueRange.minName);
+                        scope.emitToParent(false);
+                        return false;
+                    }
+
+                    if (ctrl.$modelValue > maxValue && maxValue > -1 && maxValue < MAX_VALUE && !unlimited) {
+                        scope.createTooltip(scope.betSetting.betTypeName + " - " + valueRange.model + " " + resources.less_than + " " + valueRange.maxName);
+                        scope.emitToParent(false);
+                        return false;
+                    }
+
+                    scope.createTooltip("");
+                    scope.emitToParent(true);
+                }
+
+                scope.$watch(attrs.ngModel, function () {
+                    scope.setConstrain();
+                }, true);
+
+                attrs.$observe(
+                    "valueRange",
+                    function (value) {
+                        scope.setConstrain();
+                    });
+
+            }
+        };
+    }
+]);
+
+KenoModule.directive('minBetInput', ['$filter', '$parse',
     function ($filter, $parse) {
         return {
             require: '^ngModel',

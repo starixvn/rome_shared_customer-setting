@@ -248,7 +248,8 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
                     {
                         MinBet = dataReader.HasColumn("MinBet_Min") ? dataReader.ToDouble("MinBet_Min") : 0,
                         MaxBet = dataReader.HasColumn("MaxBet_Max") ? dataReader.ToDouble("MaxBet_Max") : 0,
-                        MaxPerMatch = dataReader.HasColumn("MaxPerMatch_Max") ? dataReader.ToDouble("MaxPerMatch_Max") : 0
+                        MaxPerMatch = dataReader.HasColumn("MaxPerMatch_Max") ? dataReader.ToDouble("MaxPerMatch_Max") : 0,
+                        IsEnabled = dataReader.HasColumn("DisableUplinesKeno") ? !dataReader.ToBool("DisableUplinesKeno") : true
                     }
                 };
 
