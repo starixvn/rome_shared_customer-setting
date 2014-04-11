@@ -18,7 +18,7 @@ KenoModule.directive('maxPerMatchInput', ['$filter', '$parse', 'commonService',
                     var maxValue = $scope.betSetting.upline.maxPerMatch;
 
                     if (modelValue > maxValue && maxValue < MAX_VALUE && !$scope.unlimited) {
-                        commonService.createTooltip(element, $scope.betSetting.betTypeName + " - Min Per Match " + resources.less_than + " " + maxValue);
+                        commonService.createTooltip(element, $scope.betSetting.betTypeName + " - Max Per Match " + resources.less_than + " " + maxValue);
                         $scope.valids.maxPerMatch = false;
                         element.addClass('invalidValue');
                         return false;

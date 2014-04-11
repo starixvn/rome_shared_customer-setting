@@ -11,3 +11,22 @@ KenoModule.directive('checkDisableElement', function () {
         }
     }
 });
+
+KenoModule.directive('betSettingConstrain', ['$filter',
+    function ($filter) {
+        return {
+            require: '?ngModel',
+            link: function ($scope, element, attrs, ctrl) {
+                if (!ctrl) return;
+
+                var valueModel = eval("$scope." + attrs.ngModel);
+
+                if (valueModel > 0 && valueModel < MAX_VALUE) {
+                    var symbol = attrs.betSettingConstrain == 1 ? " >= " : " <= ";
+
+                    element.text(symbol + $scope.formatNumber(valueModel));
+                }
+            }
+        };
+    }
+]);
