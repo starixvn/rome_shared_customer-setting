@@ -79,6 +79,24 @@ namespace Fanex.CustomerSetting.Module.Keno.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to should be less than or equal to.
+        /// </summary>
+        public static string LessThan {
+            get {
+                return ResourceManager.GetString("LessThan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to should be more than or equal to.
+        /// </summary>
+        public static string MoreThan {
+            get {
+                return ResourceManager.GetString("MoreThan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Updated successfully..
         /// </summary>
         public static string Msg_0 {

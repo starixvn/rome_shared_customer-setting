@@ -36,7 +36,7 @@
     </thead>
     <tbody>
         <tr ng-repeat="betSetting in betSettingList track by $index" bet-setting-element
-            ng-model="betSetting" index="$index" ng-class="{'betTypeInactive': $parent.isCopyAll && index != 0}">
+            ng-model="betSetting" index="$index" copy-all= "$parent.betSettingCopyAll.isCopiedAll" ng-class="{'betTypeInactive': $parent.betSettingCopyAll.isCopiedAll && index != 0}">
         </tr>
     </tbody>
 </table>

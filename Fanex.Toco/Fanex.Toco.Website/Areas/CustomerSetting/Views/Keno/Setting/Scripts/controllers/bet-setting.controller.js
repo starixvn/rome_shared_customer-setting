@@ -6,32 +6,23 @@ KenoModule.controller('betSettingController', function ($scope, kenoRepositories
 
     $scope.betSettingCopyAll = kenoRepositories.kenoSetting.betSettingCopyAll;
     $scope.isBetSettingPartial = false;
-    $scope.isCopyAll = false;
     $scope.isValid = false;
 
-    if ($scope.roleId == 4) {
-        var length = $scope.betSettingList.length;
-        for (var i = 0; i < length; i++) {
-            var betSetting = $scope.betSettingList[i];
-            betSetting.upline.maxBet = betSetting.upline.maxPerMatch = Number.MAX_VALUE;
-            } 
-    }
     //    console.log($scope.betSettingList);
 
     $scope.copyAll = function (isCopy, betTypeId) {
-        $scope.isCopyAll = isCopy;
         $scope.betSettingCopyAll.betTypeId = isCopy == true ? betTypeId : -1;
         $scope.betSettingCopyAll.isCopiedAll = isCopy;
 
-        $scope.$broadcast('totallyChecking', isCopy);
+        $scope.$broadcast('totallyChecking');
         $scope.$broadcast('inputDisabledChecking', isCopy);
     };
 
-    $scope.$on('totallyChecking', function (event, isCopiedAll) {
+    $scope.$on('totallyChecking', function (event) {
         var length = $scope.betSettingList.length;
         var updatedCount = 0;
 
-        if (isCopiedAll) {
+        if ($scope.betSettingCopyAll.isCopiedAll) {
             $scope.isBetSettingPartial = $scope.betSettingList[0].isValid;
             return true;
         }

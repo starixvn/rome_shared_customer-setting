@@ -123,6 +123,12 @@
   <data name="BetSetting" xml:space="preserve">
     <value>Bet Setting</value>
   </data>
+  <data name="LessThan" xml:space="preserve">
+    <value>should be less than or equal to</value>
+  </data>
+  <data name="MoreThan" xml:space="preserve">
+    <value>should be more than or equal to</value>
+  </data>
   <data name="Msg_0" xml:space="preserve">
     <value>Updated successfully.</value>
   </data>
