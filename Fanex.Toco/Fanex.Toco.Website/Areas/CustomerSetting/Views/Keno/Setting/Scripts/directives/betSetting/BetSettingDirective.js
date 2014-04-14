@@ -1,12 +1,11 @@
 ﻿"use strict";
-var MAX_VALUE = Math.pow(2, 53);
 
-KenoModule.directive('betSettingElement', function () {
+KenoModule.directive('betSettingElement',['$templateCache', function ($templateCache) {
     return {
         restrict: 'EA',
         priority: 1,
         $scope: {},
-        templateUrl: domain + 'Areas/CustomerSetting/Views/Keno/Setting/Views/Partial/BetSetting/BetSetting.htm',
+        templateUrl: $templateCache.get('betSettingTemplate'),
         controller: ['$scope', '$filter', '$parse',
             function ($scope, $filter, $parse) {
                 $scope.originalBetSetting = angular.copy($scope.betSetting);
@@ -90,4 +89,4 @@ KenoModule.directive('betSettingElement', function () {
             }
         ]
     };
-});
+}]);

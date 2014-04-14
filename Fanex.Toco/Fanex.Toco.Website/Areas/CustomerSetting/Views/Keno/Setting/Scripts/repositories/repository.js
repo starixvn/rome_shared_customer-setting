@@ -2,8 +2,13 @@
 
 KenoModule.factory('kenoRepositories', function ($http, $q, dataService) {
     return {
-        //kenoSetting: dataService.getKenoSetting(3),
-        kenoSetting: model,
+        getData: 
+        function (url, kenoSetting) {
+            var deferred = $q.defer();
+             deferred.resolve(model);
+//            deferred.resolve(dataService.getKenoSetting(3));
+            return deferred.promise;
+        },
         save: function (url, kenoSetting) {
             var deferred = $q.defer();
             $http.post(url, kenoSetting)

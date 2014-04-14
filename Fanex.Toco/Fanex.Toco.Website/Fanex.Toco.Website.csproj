@@ -239,9 +239,9 @@
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\controllers\main.controller.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\controllers\position-taking.controller.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\directives\positionTaking\AgentPositionTakingDirective.js" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\directives\betSetting\BetSettingDirective.js" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\directives\CommonDirective.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\directives\betSetting\BetSettingDirectiveDemo.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\directives\CommonDirective.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\directives\betSetting\BetSettingDirective.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\directives\betSetting\MinBetDirective.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\directives\betSetting\MaxBetDirective.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\directives\betSetting\MaxPerMatchDirective.js" />
@@ -360,8 +360,8 @@
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Images\sucess.gif" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Images\undo.png" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Images\Update.png" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Partial\BetSetting\BetSetting.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Partial\BetSetting\BetSettingDemo.htm" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Partial\BetSetting\BetSetting.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Partial\PositionTaking\AgentPositionTaking.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Partial\PositionTaking\ConfirmUpdateAllMembers.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Partial\PositionTaking\MasterOnMemberPositionTaking.htm" />
