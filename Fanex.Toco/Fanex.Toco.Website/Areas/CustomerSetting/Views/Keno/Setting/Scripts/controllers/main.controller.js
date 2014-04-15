@@ -14,20 +14,25 @@ KenoModule.controller('mainController', function ($scope, $timeout, kenoReposito
             $scope.isUpdatedKeno = false;
             $scope.isPositionTakingPartial = false;
             $scope.isBetSettingPartial = false;
-
             $scope.confirmIsAutoArray = [];
             $scope.errors = {};
 
-            console.log($scope.kenoSetting);
+            switch ($scope.kenoSetting.customerInformation.actionType) {
+                case 41:
+                    $scope.isBetSettingPartial = true;
+                    break;
+                case 31:
+                    $scope.isBetSettingPartial = true;
+                    break;
+                default:
+                    break;
+            }
 
-            $scope.$watch(function () {
-                if ($scope.isPositionTakingPartial && $scope.isBetSettingPartial) {
-                    $scope.isUpdatedKeno = true;
-                    return;
+            $scope.$watch('[isBetSettingPartial, isPositionTakingPartial]', function (newValue, oldValue) {
+                if (newValue !== oldValue) {
+                    $scope.isUpdatedKeno = $scope.isPositionTakingPartial && $scope.isBetSettingPartial;
                 }
-
-                $scope.isUpdatedKeno = false;
-            });
+            }, true);
 
             $scope.updated = function (isUpdatePartial, partialName) {
                 if (isUpdatePartial) {
@@ -119,5 +124,5 @@ KenoModule.controller('mainController', function ($scope, $timeout, kenoReposito
                         $scope.showMesseges('<div class="alerterror">' + resources.failed + '</div>');
                     });
             };
-        })
+        }, function (reason) { }, function (update) { });
 });
