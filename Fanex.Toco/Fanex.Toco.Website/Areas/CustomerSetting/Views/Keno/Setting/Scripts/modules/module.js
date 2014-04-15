@@ -10,5 +10,6 @@ KenoModule.run(function ($templateCache) {
     $templateCache.put('memberPositionTakingTemplate', domain + 'Areas/CustomerSetting/Views/Keno/Setting/Views/Partial/PositionTaking/MemberPositionTaking.htm');
     $templateCache.put('superOnMemberPositionTakingTemplate', domain + 'Areas/CustomerSetting/Views/Keno/Setting/Views/Partial/PositionTaking/SuperOnMemberPositionTaking.htm');
     $templateCache.put('masterOnMemberPositionTakingTemplate', domain + 'Areas/CustomerSetting/Views/Keno/Setting/Views/Partial/PositionTaking/MasterOnMemberPositionTaking.htm');
+    $templateCache.put('confirmUpdateAllMember', domain + 'Areas/CustomerSetting/Views/Keno/Setting/Views/Partial/PositionTaking/ConfirmUpdateAllMembers.htm');
 });
 

@@ -1,6 +1,6 @@
 ﻿"use strict";
 
-KenoModule.controller('positionTakingController', function ($scope, kenoRepositories, ngDialog) {
+KenoModule.controller('positionTakingController', function ($scope, kenoRepositories, ngDialog, $templateCache) {
     kenoRepositories.getData().then(
         function () {
             $scope.isCopyAll = false;
@@ -30,7 +30,7 @@ KenoModule.controller('positionTakingController', function ($scope, kenoReposito
             $scope.$on('updateAllMember', function (event) {
                 if ($scope.confirmIsAutoArray.length > 0) {
                     ngDialog.open({
-                        template: domain + 'Areas/CustomerSetting/Views/Keno/Setting/Views/Partial/PositionTaking/ConfirmUpdateAllMembers.htm',
+                        template: $templateCache.get('confirmUpdateAllMember'),
                         scope: $scope,
                         closeByCloseButton: true
                     });
