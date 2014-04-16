@@ -19,5 +19,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.ViewModels
         public int UserId { get; set; }
 
         public int SubAccId { get; set; }
+
+        public int IsMultipleEdit { get; set; }
     }
 }

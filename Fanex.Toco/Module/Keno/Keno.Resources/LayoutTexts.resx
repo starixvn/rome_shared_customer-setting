@@ -273,4 +273,7 @@
   <data name="EnableDownlines" xml:space="preserve">
     <value>Enable Downlines</value>
   </data>
+  <data name="EditMultipleKeno" xml:space="preserve">
+    <value>Edit Multiple Keno</value>
+  </data>
 </root>
