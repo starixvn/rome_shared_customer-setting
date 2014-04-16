@@ -74,9 +74,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="KenoSettingRepositoryTests.cs" />
-    <Compile Include="KenoSettingServiceTests.cs" />
-    <Compile Include="MessageHelperTests.cs" />
+    <Compile Include="KenoSettingRepositoryTests.cs">
+		<ExcludeFromStyleCop>true</ExcludeFromStyleCop> 
+	</Compile>
+    <Compile Include="KenoSettingServiceTests.cs">
+		<ExcludeFromStyleCop>true</ExcludeFromStyleCop> 
+	</Compile>
+    <Compile Include="MessageHelperTests.cs">
+		<ExcludeFromStyleCop>true</ExcludeFromStyleCop> 
+	</Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
