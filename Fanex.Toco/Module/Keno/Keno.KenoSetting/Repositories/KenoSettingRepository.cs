@@ -304,6 +304,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
                     N3 = dataReader.ToDouble("minpositiontaking"),
                     IS3 = dataReader.ToBool("isautopositiontaking"),
                     US3 = dataReader.ToDouble("autopositiontaking"),
+                    N4 = dataReader.ToDouble("n4"),
                     MComm = dataReader.ToDouble("adiscount"),
                     SComm = dataReader.ToDouble("discount_max")
                 };
@@ -333,6 +334,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
                     M3 = dataReader.ToDouble("mpositiontaking_max"),
                     A2 = dataReader.ToDouble("apositiontaking"),
                     N2 = dataReader.ToDouble("apositiontaking_min"),
+                    N3 = dataReader.ToDouble("n3"),
                     AComm = dataReader.ToDouble("discount"),
                     MComm = dataReader.ToDouble("discount_max")
                 };
