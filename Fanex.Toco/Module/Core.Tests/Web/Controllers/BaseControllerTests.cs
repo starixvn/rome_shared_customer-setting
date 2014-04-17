@@ -11,6 +11,7 @@
 
 namespace Fanex.CustomerSetting.Module.Core.Tests.Web.Controllers
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
     using NUnit.Framework;
@@ -18,6 +19,7 @@ namespace Fanex.CustomerSetting.Module.Core.Tests.Web.Controllers
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
+    [SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable", Justification = "Ignored in unit testing project.")]
     [TestFixture]
     public class BaseControllerTests
     {
