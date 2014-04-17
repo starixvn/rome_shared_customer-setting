@@ -15,13 +15,14 @@ namespace Fanex.CustomerSetting.Module.Core.Tests.Web.Controllers
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
     using NUnit.Framework;
+    using System;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     [SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable", Justification = "Ignored in unit testing project.")]
     [TestFixture]
-    public class BaseControllerTests
+    public class BaseControllerTests : IDisposable
     {
         private BaseController baseController = null;
 
@@ -75,6 +76,20 @@ namespace Fanex.CustomerSetting.Module.Core.Tests.Web.Controllers
         public void TearDown()
         {
             baseController = null;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                baseController.Dispose();
+            }
         }
 
         private class FakeControllerWithoutAction

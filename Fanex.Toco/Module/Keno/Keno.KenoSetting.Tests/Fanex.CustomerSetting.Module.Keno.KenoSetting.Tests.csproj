@@ -60,63 +60,65 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\KenoSettingControllerTests.cs">
-		<ExcludeFromStyleCop>true</ExcludeFromStyleCop> 
-	</Compile>
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Criteria\GetSuperSettingCriteriaTests.cs">
-		<ExcludeFromStyleCop>true</ExcludeFromStyleCop> 
-	</Compile>
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Criteria\UpdateSuperBetSettingCriteriaTests.cs">
-		<ExcludeFromStyleCop>true</ExcludeFromStyleCop> 
-	</Compile>
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Criteria\UpdateSuperPositionTakingCriteriaTests.cs">
-		<ExcludeFromStyleCop>true</ExcludeFromStyleCop> 
-	</Compile>
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Entities\CustomerSettingBaseTests.cs">
-		<ExcludeFromStyleCop>true</ExcludeFromStyleCop> 
-	</Compile>
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Entities\PositionTakingBaseTests.cs">
-		<ExcludeFromStyleCop>true</ExcludeFromStyleCop> 
-	</Compile>
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Helper\MessageHelperTests.cs">
-		<ExcludeFromStyleCop>true</ExcludeFromStyleCop> 
-	</Compile>
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\KenoSettingBaseRepositoryTests.cs">
-		<ExcludeFromStyleCop>true</ExcludeFromStyleCop> 
-	</Compile>
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Repositories\KenoSettingRepositoryTests.cs">
-		<ExcludeFromStyleCop>true</ExcludeFromStyleCop> 
-	</Compile>
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Repositories\TestableKenoSettingBaseRepository.cs">
-		<ExcludeFromStyleCop>true</ExcludeFromStyleCop> 
-	</Compile>
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Services\CriteriaGeneratorService\AgentCriteriaGeneratorServiceTests.cs">
-		<ExcludeFromStyleCop>true</ExcludeFromStyleCop> 
-	</Compile>
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Services\CriteriaGeneratorService\AgentEditMemberCriteriaGeneratorServiceTests.cs">
-		<ExcludeFromStyleCop>true</ExcludeFromStyleCop> 
-	</Compile>
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Services\CriteriaGeneratorService\MasterCriteriaGeneratorServiceTests.cs">
-		<ExcludeFromStyleCop>true</ExcludeFromStyleCop> 
-	</Compile>
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Services\CriteriaGeneratorService\MasterEditMemberCriteriaGeneratorService.cs">
-		<ExcludeFromStyleCop>true</ExcludeFromStyleCop> 
-	</Compile>
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Services\CriteriaGeneratorService\SuperEditMemberCriteriaGeneratorServiceTests.cs">
-		<ExcludeFromStyleCop>true</ExcludeFromStyleCop> 
-	</Compile>
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Services\CriteriaGeneratorService\SuperCriteriaGeneratorServiceTests.cs">
-		<ExcludeFromStyleCop>true</ExcludeFromStyleCop> 
-	</Compile>
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Services\KenoSettingServiceTests.cs">
-		<ExcludeFromStyleCop>true</ExcludeFromStyleCop> 
-	</Compile>
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="ViewModels\SuperSettingViewModelTests.cs">
-		<ExcludeFromStyleCop>true</ExcludeFromStyleCop> 
-	</Compile>
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Fanex.Toco.Module.Core\_Core.csproj">
