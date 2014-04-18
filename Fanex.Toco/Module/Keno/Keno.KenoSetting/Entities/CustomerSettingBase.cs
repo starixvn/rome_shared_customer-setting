@@ -28,6 +28,8 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
 
         public CopyAll BetSettingCopyAll { get; set; }
 
+        public CopyAll StatusCopyAll { get; set; }
+
         public CopyAll PositionTakingCopyAll { get; set; }
 
         public void AdjustInformationWhenUpdateSetting()
