@@ -35,6 +35,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
         public void AdjustInformationWhenUpdateSetting()
         {
             this.CopyBetSettingInCaseOfCopyAll();
+            this.CopyStatusInCaseOfCopyAll();
             this.CopyPositionTakingInCaseOfCopyAll();
             this.AdjustValuesOfPositionTakings();
         }
@@ -62,9 +63,18 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
             destinationBetSetting.MinBet = sourceBetSetting.MinBet;
             destinationBetSetting.MaxBet = sourceBetSetting.MaxBet;
             destinationBetSetting.MaxPerMatch = sourceBetSetting.MaxPerMatch;
+            destinationBetSetting.IsBetSettingUpdated = true;
+        }
+
+        /// <summary>
+        /// Copies to one status.
+        /// </summary>
+        /// <param name="sourceBetSetting">The copied status.</param>
+        /// <param name="destinationBetSetting">The status.</param>
+        internal static void CopyToOneStatus(BetSetting sourceBetSetting, BetSetting destinationBetSetting)
+        {
             destinationBetSetting.IsEnabled = sourceBetSetting.IsEnabled;
             destinationBetSetting.IsDownlinesEnabled = sourceBetSetting.IsDownlinesEnabled;
-            destinationBetSetting.IsBetSettingUpdated = true;
             destinationBetSetting.IsStatusUpdated = true;
         }
 
@@ -104,6 +114,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
         {
             this.PositionTakingCopyAll = new CopyAll();
             this.BetSettingCopyAll = new CopyAll();
+            this.StatusCopyAll = new CopyAll();
         }
 
         internal void UpdateCustomerInformation(CustomerInformationViewModel customerInformationViewModel)
@@ -184,15 +195,53 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
             }
         }
 
+        /// <summary>
+        /// Updates the status in case of copy all.
+        /// </summary>
+        internal void CopyStatusInCaseOfCopyAll()
+        {
+            if (!this.CopyAllIsValidForStatus())
+            {
+                return;
+            }
+
+            var copiedBetSetting = this.GetCopiedStatus();
+            if (copiedBetSetting.BetTypeId <= 0)
+            {
+                return;
+            }
+
+            foreach (var betSetting in this.BetSettings)
+            {
+                if (IsCopyToItself(betSetting.BetTypeId, this.BetSettingCopyAll.BetTypeId))
+                {
+                    continue;
+                }
+
+                CopyToOneStatus(copiedBetSetting, betSetting);
+            }
+        }
+
         internal BetSetting GetCopiedBetSetting()
         {
             var betSetting = this.BetSettings.Where(b => b.BetTypeId == this.BetSettingCopyAll.BetTypeId).FirstOrDefault();
             return betSetting == null ? new BetSetting() : betSetting;
         }
 
+        internal BetSetting GetCopiedStatus()
+        {
+            var betSetting = this.BetSettings.Where(b => b.BetTypeId == this.StatusCopyAll.BetTypeId).FirstOrDefault();
+            return betSetting == null ? new BetSetting() : betSetting;
+        }
+
         internal bool CopyAllIsValidForBetSetting()
         {
             return this.BetSettingCopyAll != null && this.BetSettingCopyAll.IsCopiedAll && this.BetSettings != null && this.BetSettings.Count > 0;
+        }
+
+        internal bool CopyAllIsValidForStatus()
+        {
+            return this.StatusCopyAll != null && this.StatusCopyAll.IsCopiedAll && this.BetSettings != null && this.BetSettings.Count > 0;
         }
 
         internal dynamic GetCopiedPositionTaking()

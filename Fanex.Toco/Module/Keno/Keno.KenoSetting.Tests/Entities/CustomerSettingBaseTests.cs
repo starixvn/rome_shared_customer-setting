@@ -63,9 +63,31 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Tests.Entities
             Assert.AreEqual(100, destination.MinBet);
             Assert.AreEqual(1000, destination.MaxBet);
             Assert.AreEqual(5000, destination.MaxPerMatch);
+            Assert.AreEqual(true, destination.IsBetSettingUpdated);
+        }
+
+        [Test]
+        public void CopyToOneStatus_ShouldMappingCorrectly()
+        {
+            // Arrange
+            var source = new BetSetting()
+            {
+                MinBet = 100,
+                MaxBet = 1000,
+                MaxPerMatch = 5000,
+                IsEnabled = true,
+                IsDownlinesEnabled = true,
+                IsBetSettingUpdated = true,
+                IsStatusUpdated = true
+            };
+            var destination = new BetSetting();
+
+            // Act
+            CustomerSettingBase<SuperPositionTaking>.CopyToOneStatus(source, destination);
+
+            // Assert
             Assert.AreEqual(true, destination.IsEnabled);
             Assert.AreEqual(true, destination.IsDownlinesEnabled);
-            Assert.AreEqual(true, destination.IsBetSettingUpdated);
             Assert.AreEqual(true, destination.IsStatusUpdated);
         }
     }
