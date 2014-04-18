@@ -52,13 +52,15 @@ KenoModule.directive('agentPositionTakingElement', ['commonService', '$templateC
                         if ($scope.positionTaking.iM2) {
                             $scope.positionTaking.isUpdateM2 = false;
                             $scope.positionTaking.isUpdateUM2 = (($scope.originalPositionTaking.uM2 != $scope.positionTaking.uM2)
-                                                    || ($scope.originalPositionTaking.iM2 != $scope.positionTaking.iM2)) == true ? true : false;
+                                                    || ($scope.originalPositionTaking.iM2 != $scope.positionTaking.iM2)) == true;
+
                             $scope.positionTaking.isConfirmIsAuto = false;
                             $scope.$emit('confirmIsAuto', { "betTypeId": $scope.positionTaking.betTypeId, "isAdd": false });
                         }
                         else {
                             $scope.positionTaking.isUpdateM2 = true;
                             $scope.positionTaking.isUpdateUM2 = true;
+
                             if ($scope.positionTaking.l2 <= 0) {
                                 $scope.positionTaking.memberNewValueRange = [0];
                             }
@@ -75,7 +77,7 @@ KenoModule.directive('agentPositionTakingElement', ['commonService', '$templateC
                             $scope.positionTaking.isUpdateUM2 = true;
                         }
                         else {
-                            $scope.positionTaking.isUpdateM2 = $scope.originalPositionTaking.m2 != $scope.positionTaking.m2 ? true : false;
+                            $scope.positionTaking.isUpdateM2 = $scope.originalPositionTaking.m2 != $scope.positionTaking.m2;
                             $scope.positionTaking.isUpdateUM2 = false;
                         }
                     }
@@ -86,7 +88,7 @@ KenoModule.directive('agentPositionTakingElement', ['commonService', '$templateC
 
             $scope.$watch('positionTaking.a2', function () {
                 if (newValue !== oldValue) {
-                    $scope.positionTaking.isUpdateA2 = $scope.originalPositionTaking.a2 != $scope.positionTaking.a2 ? true : false;
+                    $scope.positionTaking.isUpdateA2 = $scope.originalPositionTaking.a2 != $scope.positionTaking.a2;
 
                     if ($scope.positionTaking.a2 <= $scope.positionTaking.n2) {
                         $scope.positionTaking.n2 = $scope.positionTaking.a2;
@@ -99,7 +101,7 @@ KenoModule.directive('agentPositionTakingElement', ['commonService', '$templateC
 
             $scope.$watch('positionTaking.n2', function (newValue, oldValue) {
                 if (newValue !== oldValue) {
-                    $scope.positionTaking.isUpdateN2 = $scope.originalPositionTaking.n2 != $scope.positionTaking.n2 ? true : false;
+                    $scope.positionTaking.isUpdateN2 = $scope.originalPositionTaking.n2 != $scope.positionTaking.n2;
                     $scope.monitorSaveButton();
                 }
             }, true)

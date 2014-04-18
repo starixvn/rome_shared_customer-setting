@@ -9,8 +9,6 @@ KenoModule.directive('superOnMemberPositionTakingElement', ['commonService', '$t
         },
         templateUrl: $templateCache.get('superOnMemberPositionTakingTemplate'),
         link: function ($scope, elem, attr, ctrl) {
-            //            console.log($scope.positionTaking);
-
             $scope.originalPositionTaking = angular.copy($scope.positionTaking);
 
             $scope.isAutoPTCount = 0;
@@ -74,7 +72,7 @@ KenoModule.directive('superOnMemberPositionTakingElement', ['commonService', '$t
                         if ($scope.positionTaking.iS1) {
                             $scope.positionTaking.isUpdateS1 = false;
                             $scope.positionTaking.isUpdateUS1 = (($scope.originalPositionTaking.uS1 != $scope.positionTaking.uS1)
-                                                    || ($scope.originalPositionTaking.iS1 != $scope.positionTaking.iS1)) == true ? true : false;
+                                                    || ($scope.originalPositionTaking.iS1 != $scope.positionTaking.iS1)) == true;
                         }
                         else {
                             $scope.positionTaking.isUpdateS1 = true;
@@ -87,7 +85,7 @@ KenoModule.directive('superOnMemberPositionTakingElement', ['commonService', '$t
                             $scope.positionTaking.isUpdateUS1 = true;
                         }
                         else {
-                            $scope.positionTaking.isUpdateS1 = $scope.originalPositionTaking.s1 != $scope.positionTaking.s1 ? true : false;
+                            $scope.positionTaking.isUpdateS1 = $scope.originalPositionTaking.s1 != $scope.positionTaking.s1;
                             $scope.positionTaking.isUpdateUS1 = false;
                         }
 

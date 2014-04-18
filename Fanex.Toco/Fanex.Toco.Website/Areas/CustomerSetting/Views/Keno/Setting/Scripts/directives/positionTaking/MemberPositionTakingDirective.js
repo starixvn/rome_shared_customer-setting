@@ -24,7 +24,7 @@ KenoModule.directive('memberPositionTakingElement', ['commonService', '$template
                     $scope.a1Range = commonService.getRangePTValue($scope.positionTaking.a2, 0);
                 }
 
-                $scope.positionTaking.isUpdateA1 = $scope.originalPositionTaking.a1 != $scope.positionTaking.a1 ? true : false;
+                $scope.positionTaking.isUpdateA1 = $scope.originalPositionTaking.a1 != $scope.positionTaking.a1;
                 $scope.positionTaking.isUpdatePT = $scope.positionTaking.isUpdateA1;
 
                 $scope.fixIECount++;
