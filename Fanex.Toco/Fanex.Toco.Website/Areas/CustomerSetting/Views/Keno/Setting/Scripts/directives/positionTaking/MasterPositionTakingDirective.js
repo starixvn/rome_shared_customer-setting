@@ -38,7 +38,17 @@ KenoModule.directive('masterPositionTakingElement', ['commonService', '$template
 
                     var minRange = commonService.roundPTValue($scope.positionTaking.n4 - ($scope.positionTaking.iS3 ? $scope.positionTaking.uS3 : $scope.positionTaking.s3));
                     $scope.maxPTRange = commonService.getRangePTValue($scope.positionTaking.l3, Math.max(minRange, 0));
-                    $scope.positionTaking.m3 =  commonService.roundPTValue($scope.positionTaking.s4 - ($scope.positionTaking.iS3 ? $scope.positionTaking.uS3 : $scope.positionTaking.s3));
+//                    $scope.positionTaking.m3 = $scope.positionTaking.iS3 == true ? $scope.positionTaking.m3 : commonService.roundPTValue($scope.positionTaking.s4 -  $scope.positionTaking.s3);
+
+                    if($scope.positionTaking.iS3) {
+                        if ($scope.positionTaking.m3 < minRange || $scope.positionTaking.m3 > $scope.positionTaking.l3) {
+                            $scope.positionTaking.m3 = $scope.positionTaking.l3;
+                        }
+                    }
+                    else{
+                         $scope.positionTaking.m3 = commonService.roundPTValue($scope.positionTaking.s4 -  $scope.positionTaking.s3);
+                    }
+                    
 
                     if ($scope.originalPositionTaking.iS3) { // Load in case within isAuto
                         if ($scope.positionTaking.iS3) {

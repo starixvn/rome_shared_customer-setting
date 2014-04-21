@@ -37,7 +37,16 @@ KenoModule.directive('agentPositionTakingElement', ['commonService', '$templateC
 
                     var minRange = commonService.roundPTValue($scope.positionTaking.n3 - ($scope.positionTaking.iM2 ? $scope.positionTaking.uM2 : $scope.positionTaking.m2));
                     $scope.maxPTRange = commonService.getRangePTValue($scope.positionTaking.l2, Math.max(minRange, 0));
-                    $scope.positionTaking.a2 =  commonService.roundPTValue($scope.positionTaking.m3 - ($scope.positionTaking.iM2 ? $scope.positionTaking.uM2 : $scope.positionTaking.m2));
+//                    //$scope.positionTaking.a2 =  commonService.roundPTValue($scope.positionTaking.m3 - ($scope.positionTaking.iM2 ? $scope.positionTaking.uM2 : $scope.positionTaking.m2));
+
+                    if ($scope.positionTaking.iM2) {
+                        if ($scope.positionTaking.a2 < minRange || $scope.positionTaking.a2 > $scope.positionTaking.l2) {
+                            $scope.positionTaking.a2 = $scope.positionTaking.l2;
+                        }
+                    }
+                    else {
+                        $scope.positionTaking.a2 = commonService.roundPTValue($scope.positionTaking.m3 -  $scope.positionTaking.m2);
+                    }
 
                     if ($scope.originalPositionTaking.iM2) { // Load in case within isAuto
                         if ($scope.positionTaking.iM2) {
@@ -77,7 +86,7 @@ KenoModule.directive('agentPositionTakingElement', ['commonService', '$templateC
                 }
             }, true);
 
-            $scope.$watch('positionTaking.a2', function () {
+            $scope.$watch('positionTaking.a2', function (newValue, oldValue) {
                 if (newValue !== oldValue) {
                     $scope.positionTaking.isUpdateA2 = $scope.originalPositionTaking.a2 != $scope.positionTaking.a2;
 
