@@ -38,35 +38,30 @@ KenoModule.directive('superOnMemberPositionTakingElement', ['commonService', '$t
 
             $scope.setRangePTWhenInit();
 
-            $scope.setRangePTAfterChosen = function () {
-                if ($scope.isAutoPTCount == 1) {
-                    if ($scope.positionTaking.s4 >= $scope.positionTaking.uS1 || $scope.positionTaking.s1US1Min <= $scope.positionTaking.uS1) {
+            $scope.setRangePTIfFirstChange = function () {
+                if ($scope.originalPositionTaking.uS1 != $scope.positionTaking.uS1) {
+                    $scope.isAutoPTCount++;
+                    if ($scope.isAutoPTCount == 1) {
                         $scope.uS1Range = commonService.getRangePTValue($scope.positionTaking.s4, $scope.positionTaking.s1US1Min);
                     }
                 }
 
-                if ($scope.ptCount == 1) {
-                    if ($scope.positionTaking.s1Max >= $scope.positionTaking.s1 || $scope.positionTaking.s1US1Min <= $scope.positionTaking.s1) {
+                if ($scope.originalPositionTaking.s1 != $scope.positionTaking.s1) {
+                    $scope.ptCount++;
+                    if ($scope.ptCount == 1) {
                         $scope.s1Range = commonService.getRangePTValue($scope.positionTaking.s1Max, $scope.positionTaking.s1US1Min);
                     }
                 }
             };
 
             $scope.monitorSaveButton = function () {
-                if ($scope.positionTaking.isUpdateS1
-                    || $scope.positionTaking.isUpdateUS1) {
-                    $scope.positionTaking.isUpdatePT = true;
-                }
-                else {
-                    $scope.positionTaking.isUpdatePT = false;
-                }
-
+                $scope.positionTaking.isUpdatePT = $scope.positionTaking.isUpdateS1 || $scope.positionTaking.isUpdateUS1;
                 $scope.fixIECount++;
                 $scope.$emit('totallyChecking');
             };
 
 
-            $scope.$watch('[positionTaking.s1, positionTaking.uS1,  positionTaking.iS1]', function (newValue, oldValue) {
+            $scope.$watch('[positionTaking.s1, positionTaking.uS1, positionTaking.iS1]', function (newValue, oldValue) {
                 if (newValue !== oldValue) {
                     if ($scope.originalPositionTaking.iS1) { // Load in case within isAuto
                         if ($scope.positionTaking.iS1) {
@@ -88,18 +83,9 @@ KenoModule.directive('superOnMemberPositionTakingElement', ['commonService', '$t
                             $scope.positionTaking.isUpdateS1 = $scope.originalPositionTaking.s1 != $scope.positionTaking.s1;
                             $scope.positionTaking.isUpdateUS1 = false;
                         }
-
                     }
 
-                    if ($scope.originalPositionTaking.uS1 != $scope.positionTaking.uS1) {
-                        $scope.isAutoPTCount++;
-                    }
-
-                    if ($scope.originalPositionTaking.s1 != $scope.positionTaking.s1) {
-                        $scope.ptCount++;
-                    }
-
-                    $scope.setRangePTAfterChosen();
+                    $scope.setRangePTIfFirstChange();
                     $scope.monitorSaveButton();
                 }
             }, true);

@@ -16,14 +16,7 @@ KenoModule.directive('superPositionTakingElement', ['commonService', '$templateC
             $scope.fixIECount = 0;
 
             $scope.monitorSaveButton = function () {
-                if ($scope.positionTaking.isUpdateS4
-                    || $scope.positionTaking.isUpdateN4) {
-                    $scope.positionTaking.isUpdatePT = true;
-                }
-                else {
-                    $scope.positionTaking.isUpdatePT = false;
-                }
-
+                $scope.positionTaking.isUpdatePT = $scope.positionTaking.isUpdateS4 || $scope.positionTaking.isUpdateN4;
                 $scope.fixIECount++;
                 $scope.$emit('totallyChecking');
             };
@@ -31,7 +24,7 @@ KenoModule.directive('superPositionTakingElement', ['commonService', '$templateC
             $scope.$watch('positionTaking.s4', function () {
                 $scope.positionTaking.isUpdateS4 = $scope.originalPositionTaking.s4 != $scope.positionTaking.s4;
 
-                if ($scope.positionTaking.s4 <= $scope.positionTaking.n4) {
+                if ($scope.positionTaking.s4 < $scope.positionTaking.n4) {
                     $scope.positionTaking.n4 = $scope.positionTaking.s4;
                 }
 

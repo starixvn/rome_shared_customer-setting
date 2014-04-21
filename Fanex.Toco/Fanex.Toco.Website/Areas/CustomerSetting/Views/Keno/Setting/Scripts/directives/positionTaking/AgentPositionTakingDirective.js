@@ -14,9 +14,9 @@ KenoModule.directive('agentPositionTakingElement', ['commonService', '$templateC
             $scope.m2Range = $scope.uM2Range = commonService.getRangePTValue($scope.positionTaking.m3, 0);
 
             $scope.positionTaking.l2 = $scope.positionTaking.iM2 ? $scope.positionTaking.m3 : commonService.roundPTValue($scope.positionTaking.m3 - $scope.positionTaking.m2);
-            $scope.minRange = commonService.roundPTValue($scope.positionTaking.n3 - ($scope.positionTaking.iM2 ? $scope.positionTaking.uM2 : $scope.positionTaking.m2));
-            $scope.maxPTRange = commonService.getRangePTValue($scope.positionTaking.l2, Math.max($scope.minRange, 0));
-            if ($scope.positionTaking.a2 < $scope.minRange) {
+            $scope.minOfMaxPTRange = commonService.roundPTValue($scope.positionTaking.n3 - ($scope.positionTaking.iM2 ? $scope.positionTaking.uM2 : $scope.positionTaking.m2));
+            $scope.maxPTRange = commonService.getRangePTValue($scope.positionTaking.l2, Math.max($scope.minOfMaxPTRange, 0));
+            if ($scope.positionTaking.a2 < $scope.minOfMaxPTRange) {
                 $scope.maxPTRange.push($scope.positionTaking.a2);
             }
 
@@ -26,16 +26,7 @@ KenoModule.directive('agentPositionTakingElement', ['commonService', '$templateC
             $scope.fixIECount = 0;
 
             $scope.monitorSaveButton = function () {
-                if ($scope.positionTaking.isUpdateUM2
-                    || $scope.positionTaking.isUpdateM2
-                    || $scope.positionTaking.isUpdateN2
-                    || $scope.positionTaking.isUpdateA2) {
-                    $scope.positionTaking.isUpdatePT = true;
-                }
-                else {
-                    $scope.positionTaking.isUpdatePT = false;
-                }
-
+                $scope.positionTaking.isUpdatePT = $scope.positionTaking.isUpdateUM2 || $scope.positionTaking.isUpdateM2 || $scope.positionTaking.isUpdateN2 || $scope.positionTaking.isUpdateA2;
                 $scope.fixIECount++;
                 $scope.$emit('totallyChecking');
             };
@@ -46,7 +37,7 @@ KenoModule.directive('agentPositionTakingElement', ['commonService', '$templateC
 
                     var minRange = commonService.roundPTValue($scope.positionTaking.n3 - ($scope.positionTaking.iM2 ? $scope.positionTaking.uM2 : $scope.positionTaking.m2));
                     $scope.maxPTRange = commonService.getRangePTValue($scope.positionTaking.l2, Math.max(minRange, 0));
-                    $scope.positionTaking.a2 = commonService.roundPTValue($scope.positionTaking.m3 - ($scope.positionTaking.iM2 ? $scope.positionTaking.uM2 : $scope.positionTaking.m2));
+                    $scope.positionTaking.a2 =  commonService.roundPTValue($scope.positionTaking.m3 - ($scope.positionTaking.iM2 ? $scope.positionTaking.uM2 : $scope.positionTaking.m2));
 
                     if ($scope.originalPositionTaking.iM2) { // Load in case within isAuto
                         if ($scope.positionTaking.iM2) {
