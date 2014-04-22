@@ -11,9 +11,9 @@ KenoModule.directive('superOnMemberPositionTakingElement', ['commonService', '$t
         link: function ($scope, elem, attr, ctrl) {
             $scope.originalPositionTaking = angular.copy($scope.positionTaking);
 
-            $scope.isAutoPTCount = 0;
-            $scope.ptCount = 0;
             $scope.fixIECount = 0;
+            $scope.isAutoPTFirstChanged = false;
+            $scope.isPTFirstChange = false;
 
             $scope.s1Range = commonService.getRangePTValue($scope.positionTaking.s1Max, $scope.positionTaking.s1US1Min);
             $scope.uS1Range = commonService.getRangePTValue($scope.positionTaking.s4, $scope.positionTaking.s1US1Min);
@@ -39,18 +39,14 @@ KenoModule.directive('superOnMemberPositionTakingElement', ['commonService', '$t
             $scope.setRangePTWhenInit();
 
             $scope.setRangePTIfFirstChange = function () {
-                if ($scope.originalPositionTaking.uS1 != $scope.positionTaking.uS1) {
-                    $scope.isAutoPTCount++;
-                    if ($scope.isAutoPTCount == 1) {
-                        $scope.uS1Range = commonService.getRangePTValue($scope.positionTaking.s4, $scope.positionTaking.s1US1Min);
-                    }
+                if (($scope.originalPositionTaking.uS1 != $scope.positionTaking.uS1) && !$scope.isAutoPTFirstChanged) {
+                    $scope.uS1Range = commonService.getRangePTValue($scope.positionTaking.s4, $scope.positionTaking.s1US1Min);
+                    $scope.isAutoPTFirstChanged = true;
                 }
 
-                if ($scope.originalPositionTaking.s1 != $scope.positionTaking.s1) {
-                    $scope.ptCount++;
-                    if ($scope.ptCount == 1) {
-                        $scope.s1Range = commonService.getRangePTValue($scope.positionTaking.s1Max, $scope.positionTaking.s1US1Min);
-                    }
+                if (($scope.originalPositionTaking.s1 != $scope.positionTaking.s1) && !$scope.isPTFirstChange) {
+                    $scope.s1Range = commonService.getRangePTValue($scope.positionTaking.s1Max, $scope.positionTaking.s1US1Min);
+                    $scope.isPTFirstChange = true;
                 }
             };
 

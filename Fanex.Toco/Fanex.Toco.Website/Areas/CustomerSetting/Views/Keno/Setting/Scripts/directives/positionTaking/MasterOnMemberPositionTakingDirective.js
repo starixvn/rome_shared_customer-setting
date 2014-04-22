@@ -11,10 +11,9 @@ KenoModule.directive('masterOnMemberPositionTakingElement', ['commonService', '$
         link: function ($scope, elem, attr, ctrl) {
             $scope.originalPositionTaking = angular.copy($scope.positionTaking);
 
-            $scope.isAutoPTCount = 0;
-            $scope.ptCount = 0;
-
             $scope.fixIECount = 0;
+            $scope.isAutoPTFirstChanged = false;
+            $scope.isPTFirstChange = false;
 
             $scope.m1Range = commonService.getRangePTValue($scope.positionTaking.m1Max, $scope.positionTaking.m1UM1Min);
             $scope.uM1Range = commonService.getRangePTValue($scope.positionTaking.m3, $scope.positionTaking.m1UM1Min);
@@ -40,18 +39,14 @@ KenoModule.directive('masterOnMemberPositionTakingElement', ['commonService', '$
             $scope.setRangePTWhenInit();
 
             $scope.setRangePTIfFirstChange = function () {
-                if ($scope.originalPositionTaking.uM1 != $scope.positionTaking.uM1) {
-                    $scope.isAutoPTCount++;
-                    if ($scope.isAutoPTCount == 1) {
-                        $scope.uM1Range = commonService.getRangePTValue($scope.positionTaking.m3, $scope.positionTaking.m1UM1Min);
-                    }
+                if (($scope.originalPositionTaking.uM1 != $scope.positionTaking.uM1 && !$scope.isAutoPTFirstChanged)) {
+                    $scope.uM1Range = commonService.getRangePTValue($scope.positionTaking.m3, $scope.positionTaking.m1UM1Min);
+                    $scope.isAutoPTFirstChanged = true;
                 }
 
-                if ($scope.originalPositionTaking.m1 != $scope.positionTaking.m1) {
-                    $scope.ptCount++;
-                    if ($scope.ptCount == 1) {
-                        $scope.m1Range = commonService.getRangePTValue($scope.positionTaking.m1Max, $scope.positionTaking.m1UM1Min);
-                    }
+                if (($scope.originalPositionTaking.m1 != $scope.positionTaking.m1 && !$scope.isPTFirstChange)) {
+                    $scope.m1Range = commonService.getRangePTValue($scope.positionTaking.m1Max, $scope.positionTaking.m1UM1Min);
+                    $scope.isPTFirstChange = true;
                 }
             };
 
