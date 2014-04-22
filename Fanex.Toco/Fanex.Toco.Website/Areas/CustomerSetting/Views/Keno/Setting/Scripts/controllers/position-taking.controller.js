@@ -7,7 +7,7 @@ KenoModule.controller('positionTakingController', function ($scope, kenoReposito
 
             $scope.copyAll = function (isCopy, betTypeId) {
                 $scope.isCopyAll = isCopy;
-                $scope.positionTakingCopyAll.betTypeId = isCopy == true ? betTypeId : -1; ;
+                $scope.positionTakingCopyAll.betTypeId = isCopy == true ? betTypeId : -1;
                 $scope.positionTakingCopyAll.isCopiedAll = isCopy;
                 $scope.$broadcast('totallyChecking');
             };
