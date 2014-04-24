@@ -4,6 +4,7 @@ KenoModule.controller('positionTakingController', function ($scope, kenoReposito
     kenoRepositories.getData().then(
         function () {
             $scope.isCopyAll = false;
+            $scope.isDisableAutoMPT = $scope.$parent.customerInformation.isDisableAutoMPT;
 
             $scope.copyAll = function (isCopy, betTypeId) {
                 $scope.isCopyAll = isCopy;

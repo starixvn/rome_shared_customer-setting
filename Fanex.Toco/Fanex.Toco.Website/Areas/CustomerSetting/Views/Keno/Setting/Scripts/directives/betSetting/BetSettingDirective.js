@@ -1,5 +1,5 @@
 ﻿"use strict";
-
+/* The code will be create Bet Setting Element that contain Min Bet, Max Bet, Max Per Match child directive. */
 KenoModule.directive('betSettingElement', ['$templateCache', function ($templateCache) {
     return {
         restrict: 'EA',
@@ -9,7 +9,9 @@ KenoModule.directive('betSettingElement', ['$templateCache', function ($template
         controller: ['$scope', '$filter', '$parse',
             function ($scope, $filter, $parse) {
                 $scope.originalBetSetting = angular.copy($scope.betSetting);
-                $scope.MAX_VALUE = Math.pow(2, 53);
+                $scope.MAX_VALUE = Math.pow(2, 53); // Value is mean unlimited value.
+
+                /*  Bet setting element is valid if all of it's child directive are valid.  */
                 $scope.valids = {
                     "minBet": true,
                     "maxBet": true,
@@ -19,6 +21,7 @@ KenoModule.directive('betSettingElement', ['$templateCache', function ($template
                 $scope.unlimited = false;
                 $scope.isDownlinechkDisabled = true;
 
+                /*  Upline's value are assign to Max Value if it's unlimited ( = 0)  */
                 if ($scope.betSetting.upline.minBet == 0) {
                     $scope.betSetting.upline.minBet = $scope.MAX_VALUE;
                 }
@@ -31,6 +34,11 @@ KenoModule.directive('betSettingElement', ['$templateCache', function ($template
                     $scope.betSetting.upline.maxPerMatch = $scope.MAX_VALUE;
                 }
 
+                /*
+                * Disable or enable element by copy all or not 
+                * @param {Object} options:
+                * - element {Object}
+                */
                 $scope.disabledInput = function (element) {
                     if ($scope.betSettingCopyAll.isCopiedAll && $scope.$index != 0) {
                         element.addClass('inputDisabled');
@@ -88,10 +96,18 @@ KenoModule.directive('betSettingElement', ['$templateCache', function ($template
                             }
                         } else {
                             $scope.betSetting.isStatusUpdated = $scope.betSetting.isEnabled != $scope.originalBetSetting.isEnabled;
-                            $scope.isDownlinechkDisabled = $scope.betSetting.isEnabled == false;
+                            $scope.isDownlinechkDisabled = !$scope.betSetting.isEnabled;
                         }
 
                         $scope.$emit('totallyChecking');
+                    }
+                }, true);
+
+                $scope.$watch('isDownlinechkDisabled', function (newValue, oldValue) {
+                    if (newValue !== oldValue) {
+                        if ($scope.isDownlinechkDisabled) {
+                            $scope.betSetting.isDownlinesEnabled = false;
+                        }
                     }
                 }, true);
             }

@@ -32,6 +32,8 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
 
         public string MobilePhone { get; set; }
 
+        public bool IsDisableAutoMPT { get; set; }
+
         public string Fax { get; set; }
 
         public string Language { get; set; }

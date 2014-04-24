@@ -214,11 +214,12 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
                 customerInformation = new CustomerInformation();
                 customerInformation.CustId = dataReader.HasColumn("custid") ? dataReader.ToInt("custid") : 0;
                 customerInformation.Username = dataReader.HasColumn("username") ? dataReader.ToString("username") : string.Empty;
-                customerInformation.FirstName = dataReader.ToString("firstname");
-                customerInformation.LastName = dataReader.ToString("lastname");
-                customerInformation.Phone = dataReader.ToString("phone");
-                customerInformation.MobilePhone = dataReader.ToString("mobilephone");
-                customerInformation.Fax = dataReader.ToString("fax");
+                customerInformation.FirstName = dataReader.HasColumn("firstname") ? dataReader.ToString("firstname") : string.Empty;
+                customerInformation.LastName = dataReader.HasColumn("lastname") ? dataReader.ToString("lastname") : string.Empty;
+                customerInformation.Phone = dataReader.HasColumn("phone") ? dataReader.ToString("phone") : string.Empty;
+                customerInformation.MobilePhone = dataReader.HasColumn("mobilephone") ? dataReader.ToString("mobilephone") : string.Empty;
+                customerInformation.Fax = dataReader.HasColumn("fax") ? dataReader.ToString("fax") : string.Empty;
+                customerInformation.IsDisableAutoMPT = dataReader.HasColumn("DisableAutoMPT") ? dataReader.ToBool("DisableAutoMPT") : false;
                 customerInformation.RoleId = (int)role;
                 customerInformation.ActionType = (int)actionType;
             }
