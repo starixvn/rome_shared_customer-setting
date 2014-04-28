@@ -9,6 +9,7 @@
 
 namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
 {
+    using System;
     using System.Collections.Generic;
     using Fanex.CustomerSetting.Module.Core.Criteria;
     using Fanex.CustomerSetting.Module.Core.Models;
@@ -141,12 +142,29 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
                 inputMessage);
         }
 
+        /// <summary>
+        /// Update customer setting.
+        /// </summary>
+        /// <param name="customerSetting">Customer setting.</param>
+        /// <returns>List result.</returns>
         internal List<Result> UpdateCustomerSetting(dynamic customerSetting)
         {
             customerSetting.AdjustInformationWhenUpdateSetting();
             var results = new List<Result>();
-            results.AddRange(this.UpdateBetSettings(customerSetting));
-            results.AddRange(this.UpdatePositionTakings(customerSetting));
+            try
+            {
+                results.AddRange(this.UpdateBetSettings(customerSetting));
+                results.AddRange(this.UpdatePositionTakings(customerSetting));
+            }
+            catch (Exception ex)
+            {
+                results.Add(new Result
+                {
+                    ErrorCode = 100,
+                    ErrorMessage = ex.Message
+                });
+            }
+
             return results;
         }
 

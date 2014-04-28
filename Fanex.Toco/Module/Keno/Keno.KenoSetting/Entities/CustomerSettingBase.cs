@@ -9,6 +9,7 @@
 
 namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Fanex.CustomerSetting.Module.Core.Services.Impl;
@@ -40,12 +41,23 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
             this.AdjustValuesOfPositionTakings();
         }
 
+        /// <summary>
+        /// Adjust information when load setting.
+        /// </summary>
+        /// <param name="customerInformationViewModel">Customer Information View Model.</param>
         public void AdjustInformationWhenLoadSetting(CustomerInformationViewModel customerInformationViewModel)
         {
-            this.UpdateCustomerInformation(customerInformationViewModel);
-            this.UpdateCopyAllInformation();
-            this.UpdateBetTypeNameForBetSetting();
-            this.UpdateBetTypeNameForPositionTaking();
+            try
+            {
+                this.UpdateCustomerInformation(customerInformationViewModel);
+                this.UpdateCopyAllInformation();
+                this.UpdateBetTypeNameForBetSetting();
+                this.UpdateBetTypeNameForPositionTaking();
+            }
+            catch (Exception ex)
+            {
+                LoggingHandler.Log(ex);
+            }
         }
 
         internal static bool IsCopyToItself(int currentBetTypeId, int copiedBetTypeId)
