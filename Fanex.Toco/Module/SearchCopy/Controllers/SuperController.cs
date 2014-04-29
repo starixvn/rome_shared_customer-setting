@@ -45,7 +45,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
         /// </summary>
         /// <param name="username">The username.</param>
         /// <returns>Return JSONRESULT.</returns>
-        public JsonResult SearchExistingSuper(string username)
+        public ActionResult SearchExistingSuper(string username)
         {
             var criteria = new SearchExistingUserCriteria
             {
@@ -64,7 +64,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                 StatusSports = new HideSports() ////userId > 0 ? GetSportsStatusByUserName(username) : new HideSports()
             };
 
-            return Json(customerSettingView, JsonRequestBehavior.AllowGet);
+            return JsonBase(customerSettingView);            
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
         /// <param name="criteria">The criteria for copying.</param>
         /// <returns>The JSONRESULT .</returns>        
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "SearchAndCopy")]
-        public JsonResult CopyExistingSuper(CustomerInsMemberCriteria criteria)
+        public ActionResult CopyExistingSuper(CustomerInsMemberCriteria criteria)
         {            
             criteria.Userpwd = IBCUtils.Encryption.CfsEnCode(criteria.Userpwd);
             criteria.FirstName = criteria.FirstName ?? string.Empty;
@@ -115,10 +115,10 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                 result.Code = -1;
                 result.Message = string.Join(null, new string[] { "<div class=\"alertboxerr\"><div>", Constants.CopyMessage.Failed, "</div></div>" });
 
-                return Json(result, JsonRequestBehavior.AllowGet);
-            }          
-                      
-            return Json(result, JsonRequestBehavior.AllowGet);
+                return JsonBase(result);                
+            }
+
+            return JsonBase(result);            
         }
 
         #region Update Sync
