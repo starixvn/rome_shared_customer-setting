@@ -273,9 +273,9 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
                 var bettingSetting = new SuperPositionTaking
                 {
                     BetTypeId = dataReader.ToInt("BetType"),
-                    S4 = dataReader.ToDouble("spositiontaking"),
-                    N4 = dataReader.ToDouble("minpositiontaking"),
-                    L4 = dataReader.ToDouble("MaxPositiontaking"),
+                    S4 = dataReader.ToDouble("s4"),
+                    N4 = dataReader.ToDouble("n4"),
+                    L4 = dataReader.ToDouble("l4"),
                     SComm = dataReader.ToDouble("sdiscount"),
                     SCommMax = dataReader.ToDouble("maxsdiscount")
                 };
@@ -299,12 +299,12 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
                 var bettingSetting = new MasterPositionTaking
                 {
                     BetTypeId = dataReader.ToInt("BetType"),
-                    S4 = dataReader.ToDouble("spositiontaking_max"),
-                    S3 = dataReader.ToDouble("spositiontaking"),
-                    M3 = dataReader.ToDouble("mpositiontaking"),
-                    N3 = dataReader.ToDouble("minpositiontaking"),
-                    IS3 = dataReader.ToBool("isautopositiontaking"),
-                    US3 = dataReader.ToDouble("autopositiontaking"),
+                    S4 = dataReader.ToDouble("s4"),
+                    S3 = dataReader.ToDouble("s3"),
+                    M3 = dataReader.ToDouble("m3"),
+                    N3 = dataReader.ToDouble("n3"),
+                    IS3 = dataReader.ToBool("is3"),
+                    US3 = dataReader.ToDouble("us3"),
                     N4 = dataReader.ToDouble("n4"),
                     MComm = dataReader.ToDouble("adiscount"),
                     SComm = dataReader.ToDouble("discount_max")
@@ -329,12 +329,12 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
                 var bettingSetting = new AgentPositionTaking
                 {
                     BetTypeId = dataReader.ToInt("BetType"),
-                    IM2 = dataReader.ToBool("isauto_mpositiontaking"),
-                    M2 = dataReader.ToDouble("mpositiontaking"),
-                    UM2 = dataReader.ToDouble("auto_mpositiontaking"),
-                    M3 = dataReader.ToDouble("mpositiontaking_max"),
-                    A2 = dataReader.ToDouble("apositiontaking"),
-                    N2 = dataReader.ToDouble("apositiontaking_min"),
+                    IM2 = dataReader.ToBool("i2"),
+                    M2 = dataReader.ToDouble("m2"),
+                    UM2 = dataReader.ToDouble("u2"),
+                    M3 = dataReader.ToDouble("m3"),
+                    A2 = dataReader.ToDouble("a2"),
+                    N2 = dataReader.ToDouble("n2"),
                     N3 = dataReader.ToDouble("n3"),
                     AComm = dataReader.ToDouble("discount"),
                     MComm = dataReader.ToDouble("discount_max")
@@ -359,9 +359,9 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
                 var bettingSetting = new AgentEditMemberPositionTaking
                 {
                     BetTypeId = dataReader.ToInt("BetType"),
-                    A1 = dataReader.ToDouble("apositiontaking"),
-                    N2 = dataReader.ToDouble("apositiontaking_min"),
-                    A2 = dataReader.ToDouble("apositiontaking_max"),
+                    A1 = dataReader.ToDouble("a1"),
+                    N2 = dataReader.ToDouble("a1_min"),
+                    A2 = dataReader.ToDouble("a1_max"),
                     Comm = dataReader.ToDouble("playerdiscount"),
                     AComm = dataReader.ToDouble("playerdiscount_max")
                 };
@@ -385,15 +385,15 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
                 var bettingSetting = new SuperEditMemberPositionTaking
                 {
                     BetTypeId = dataReader.ToInt("BetType"),
-                    A1 = dataReader.ToDouble("APositionTaking"),
-                    M1 = dataReader.ToDouble("MPositionTaking"),
-                    S1 = dataReader.ToDouble("SPositionTaking"),
-                    IS1 = dataReader.ToBool("IsAuto_SPositionTaking_Mem"),
-                    US1 = dataReader.ToDouble("Auto_SPositionTaking_Mem"),
-                    IS3 = dataReader.ToBool("IsAuto_SPositionTaking"),
-                    S1US1Min = dataReader.ToDouble("SPositionTaking_Min"),
-                    S1Max = dataReader.ToDouble("SPositionTaking_Max"),
-                    S4 = dataReader.ToDouble("Auto_SPositionTaking_Max")
+                    A1 = dataReader.ToDouble("a1"),
+                    M1 = dataReader.ToDouble("m1"),
+                    S1 = dataReader.ToDouble("s1"),
+                    IS1 = dataReader.ToBool("is1"),
+                    US1 = dataReader.ToDouble("us1"),
+                    IS3 = dataReader.ToBool("is3"),
+                    S1US1Min = dataReader.ToDouble("s1_min"),
+                    S1Max = dataReader.ToDouble("s1_max"),
+                    S4 = dataReader.ToDouble("us1_max")
                 };
 
                 positionTakings.Add(bettingSetting);
@@ -415,14 +415,14 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
                 var bettingSetting = new MasterEditMemberPositionTaking
                 {
                     BetTypeId = dataReader.ToInt("BetType"),
-                    A1 = dataReader.ToDouble("apositiontaking"),
-                    M1 = dataReader.ToDouble("mpositiontaking"),
-                    IM2 = dataReader.ToBool("IsAuto_MPositionTaking"),
-                    IM1 = dataReader.ToBool("IsAuto_MPositionTaking_Mem"),
-                    UM1 = dataReader.ToDouble("Auto_MPositionTaking_Mem"),
-                    M1Max = dataReader.ToDouble("MPositionTaking_Max"),
-                    M1UM1Min = dataReader.ToDouble("MPositionTaking_Min"),
-                    M3 = dataReader.ToDouble("Auto_MPositionTaking_Max"),
+                    A1 = dataReader.ToDouble("a1"),
+                    M1 = dataReader.ToDouble("m1"),
+                    IM2 = dataReader.ToBool("im2"),
+                    IM1 = dataReader.ToBool("im1"),
+                    UM1 = dataReader.ToDouble("um1"),
+                    M1Max = dataReader.ToDouble("m1_max"),
+                    M1UM1Min = dataReader.ToDouble("um1_min"),
+                    M3 = dataReader.ToDouble("um1_max"),
                 };
 
                 positionTakings.Add(bettingSetting);
