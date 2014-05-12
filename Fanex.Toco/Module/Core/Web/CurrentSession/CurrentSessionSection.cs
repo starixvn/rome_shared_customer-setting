@@ -39,14 +39,7 @@ namespace Fanex.CustomerSetting.Module.Core.Web
             {
                 if (_instance == null)
                 {
-                    try
-                    {
-                        _instance = (CurrentSessionSection)ConfigurationManager.GetSection("CurrentSession");
-                    }
-                    catch (Exception e)
-                    {
-                        throw new ConfigurationErrorsException("Error when parsing configuration section CurrentSession.", e);
-                    }
+                     _instance = (CurrentSessionSection)ConfigurationManager.GetSection("CurrentSession");
                 }
 
                 return _instance;

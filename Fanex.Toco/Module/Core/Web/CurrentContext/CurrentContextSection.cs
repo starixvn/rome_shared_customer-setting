@@ -39,14 +39,7 @@ namespace Fanex.CustomerSetting.Module.Core.Web
             {
                 if (_instance == null)
                 {
-                    try
-                    {
-                        _instance = (CurrentContextSection)ConfigurationManager.GetSection("CurrentContext");
-                    }
-                    catch (Exception e)
-                    {
-                        throw new ConfigurationErrorsException("Error when parsing configuration section CurrentContext.", e);
-                    }
+                      _instance = (CurrentContextSection)ConfigurationManager.GetSection("CurrentContext");
                 }
 
                 return _instance;

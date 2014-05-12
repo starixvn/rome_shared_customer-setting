@@ -29,14 +29,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Configurations
             {
                 if (_instance == null)
                 {
-                    try
-                    {
-                        _instance = (KenoSection)ConfigurationManager.GetSection("CustomerSetting/Keno");
-                    }
-                    catch (Exception e)
-                    {
-                        throw new ConfigurationErrorsException("Error when parsing configuration section CustomerSetting - Keno.", e);
-                    }
+                      _instance = (KenoSection)ConfigurationManager.GetSection("CustomerSetting/Keno");
                 }
 
                 return _instance;
