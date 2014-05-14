@@ -80,7 +80,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Tests.Services
             Assert.AreEqual(_agentSetting.PositionTakings[0].IM2, criteria.IsAuto_MPositionTaking);
             Assert.AreEqual(_agentSetting.PositionTakings[0].A2, criteria.APositionTaking);
             Assert.AreEqual(_agentSetting.PositionTakings[0].N2, criteria.APositionTaking_Min);
-            Assert.AreEqual(_agentSetting.PositionTakings[0].IsUpdateAllMembers, criteria.UpdateAllMembers);
+            Assert.AreEqual(_agentSetting.PositionTakings[0].IsUpdateAllMember, criteria.UpdateAllMembers);
             Assert.AreEqual(_agentSetting.PositionTakings[0].NewMemberPT, criteria.NewMPositionTaking);
             Assert.AreEqual(_agentSetting.PositionTakings[0].IsUpdateA2, criteria.UpdatePositionTaking);
             Assert.AreEqual(_agentSetting.PositionTakings[0].IsUpdateN2, criteria.UpdateMinPositionTaking);
@@ -168,7 +168,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Tests.Services
                     IM2 = true,
                     A2 = 0.7,
                     N2 = 0.8,
-                    IsUpdateAllMembers = true,
+                    IsUpdateAllMember = true,
                     NewMemberPT = 0.9,
                     IsUpdateA2 = true,
                     IsUpdateN2 = true,
@@ -184,7 +184,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Tests.Services
                     IM2 = true,
                     A2 = 0.7,
                     N2 = 0.8,
-                    IsUpdateAllMembers = true,
+                    IsUpdateAllMember = true,
                     NewMemberPT = 0.9,
                     IsUpdateA2 = true,
                     IsUpdateN2 = true,
@@ -200,7 +200,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Tests.Services
                     IM2 = true,
                     A2 = 0.7,
                     N2 = 0.8,
-                    IsUpdateAllMembers = true,
+                    IsUpdateAllMember = true,
                     NewMemberPT = 0.9,
                     IsUpdateA2 = true,
                     IsUpdateN2 = true,
