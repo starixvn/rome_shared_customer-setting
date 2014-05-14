@@ -24,7 +24,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
 
         public bool IsUpdateACO { get; set; }
 
-        public bool IsUpdateAllMembers { get; set; }
+        public bool IsUpdateAllMember { get; set; }
 
         public double NewMemberPT { get; set; }
 

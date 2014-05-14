@@ -87,7 +87,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
                 IsAuto_MPositionTaking = agentPositionTaking.IM2,
                 APositionTaking = agentPositionTaking.A2,
                 APositionTaking_Min = agentPositionTaking.N2,
-                UpdateAllMembers = agentPositionTaking.IsUpdateAllMembers,
+                UpdateAllMembers = agentPositionTaking.IsUpdateAllMember,
                 NewMPositionTaking = agentPositionTaking.NewMemberPT,
                 Discount = 0,
                 UpdatePositionTaking = agentPositionTaking.IsUpdateA2 || agentPositionTaking.IsUpdateM2,

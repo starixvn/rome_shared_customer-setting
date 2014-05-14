@@ -29,7 +29,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.ViewModels
             destinationAgentPositionTaking.IM2 = sourceAgentPositionTaking.IM2;
             destinationAgentPositionTaking.A2 = sourceAgentPositionTaking.A2;
             destinationAgentPositionTaking.N2 = sourceAgentPositionTaking.N2;
-            destinationAgentPositionTaking.IsUpdateAllMembers = sourceAgentPositionTaking.IsUpdateAllMembers;
+            destinationAgentPositionTaking.IsUpdateAllMember = sourceAgentPositionTaking.IsUpdateAllMember;
             destinationAgentPositionTaking.NewMemberPT = sourceAgentPositionTaking.NewMemberPT;
             destinationAgentPositionTaking.AComm = sourceAgentPositionTaking.AComm;
             destinationAgentPositionTaking.IsUpdateA2 = true;
