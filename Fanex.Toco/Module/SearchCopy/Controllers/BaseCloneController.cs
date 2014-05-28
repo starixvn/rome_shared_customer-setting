@@ -85,20 +85,20 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             return _searchCopyService.GetSportsStatusByUserName(username);
         }
 
-        public JsonResult GetCustomerInfoByUserId(int custid)
+        public ActionResult GetCustomerInfoByUserId(int custid)
         {
             var custInfo = _searchCopyService.GetCustomerInfoByUserId(new GetCustomerInfoByUserIdCriteria { Custid = custid });
-            return Json(custInfo, JsonRequestBehavior.AllowGet);
+            return JsonBase(custInfo);
         }
 
         /// <summary>
         /// Get sites.
         /// </summary>        
         /// <returns>Return list of sites.</returns>
-        public JsonResult GetSites()
+        public ActionResult GetSites()
         {
             var sites = _searchCopyService.GetSitesExistingSuper(new GetSitesCriteria());
-            return Json(sites, JsonRequestBehavior.AllowGet);
+            return JsonBase(sites);
         }
 
         /// <summary>
