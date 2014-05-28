@@ -2160,6 +2160,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var cust = new Customer();
             var stakeLevels = new List<StakeLevel>();
             var dt = custId != 0 ? cust.GetCustStakeLevel(custId, gameTypeID) : new BasicInfo().GetGameTypeStakeLevel(gameTypeID, exchangeId);
+            dt = dt == null ? new BasicInfo().GetGameTypeStakeLevel(gameTypeID, exchangeId) : dt;
 
             foreach (DataRow row in dt.Rows)
             {
@@ -2167,7 +2168,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 {
                     StakeLevelID = Utils.ToInt32(row["StakeLevelID"]),
                     StakeLevelName = Utils.ToString(row["StakeLevelName"]),
-                    IsChecked = Utils.ToBoolean(row["IsChecked"]),
+                    IsChecked = dt.Columns.IndexOf("IsChecked") != -1 ? Utils.ToBoolean(row["IsChecked"]) : false,
                 };
 
                 if (synced || stake.IsChecked)

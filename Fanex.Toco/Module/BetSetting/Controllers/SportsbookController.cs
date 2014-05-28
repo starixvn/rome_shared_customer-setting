@@ -130,7 +130,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
 
             var requestContext = new RequestContext()
             {
-                CustId = uplineId,
+                CustId = userId,
                 TargetCustId = id,
                 FormId = FormType.EditPT,
                 SubAccId = 0,
