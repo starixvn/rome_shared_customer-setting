@@ -22,9 +22,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.ViewModels
             AgentEditMemberPositionTaking destinationMemberPositionTaking)
         {
             destinationMemberPositionTaking.A1 = sourceMemberPositionTaking.A1;
-            destinationMemberPositionTaking.IsUpdateA1 = sourceMemberPositionTaking.IsUpdateA1;
-            destinationMemberPositionTaking.IsUpdateComm = sourceMemberPositionTaking.IsUpdateComm;
-            destinationMemberPositionTaking.Comm = sourceMemberPositionTaking.Comm;
+            destinationMemberPositionTaking.IsUpdateA1 = true;
         }
     }
 }

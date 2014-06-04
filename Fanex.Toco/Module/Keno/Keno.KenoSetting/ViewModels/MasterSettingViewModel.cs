@@ -31,9 +31,9 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.ViewModels
             destinationMasterPositionTaking.N3 = sourceMasterPositionTaking.N3;
             destinationMasterPositionTaking.IsUpdateAllMember = sourceMasterPositionTaking.IsUpdateAllMember;
             destinationMasterPositionTaking.NewMemberPT = sourceMasterPositionTaking.NewMemberPT;
-            destinationMasterPositionTaking.IsUpdateM3 = sourceMasterPositionTaking.IsUpdateM3;
-            destinationMasterPositionTaking.IsUpdateN3 = sourceMasterPositionTaking.IsUpdateN3;
-            destinationMasterPositionTaking.IsUpdateUS3 = sourceMasterPositionTaking.IsUpdateUS3;
+            destinationMasterPositionTaking.IsUpdateM3 = true;
+            destinationMasterPositionTaking.IsUpdateN3 = true;
+            destinationMasterPositionTaking.IsUpdateUS3 = true;
         }
     }
 }
