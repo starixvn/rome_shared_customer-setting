@@ -57,10 +57,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.CustomerSetting.Modul
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.CustomerSetting.Module.Keno.KenoSetting", "Module\Keno\Keno.KenoSetting\Fanex.CustomerSetting.Module.Keno.KenoSetting.csproj", "{4204CDC3-7A3E-46C6-A97F-4CB07D2DF45E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.CustomerSetting.Module.Keno.KenoSetting.IntegrationTests", "Module\Keno\Keno.KenoSetting.IntegrationTests\Fanex.CustomerSetting.Module.Keno.KenoSetting.IntegrationTests.csproj", "{EC2F4327-7018-455B-BB08-611FF9779A1D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.CustomerSetting.Module.Keno.KenoSetting.Tests", "Module\Keno\Keno.KenoSetting.Tests\Fanex.CustomerSetting.Module.Keno.KenoSetting.Tests.csproj", "{933DF1A4-78C3-407E-86E9-A2F557434BF0}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeAnalysis", "CodeAnalysis", "{662D8E05-3734-4202-804F-3345D06E1178}"
 	ProjectSection(SolutionItems) = preProject
 		CodeAnalysis\CodeAnalysisConfiguration.xml = CodeAnalysis\CodeAnalysisConfiguration.xml
@@ -152,14 +148,6 @@ Global
 		{4204CDC3-7A3E-46C6-A97F-4CB07D2DF45E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4204CDC3-7A3E-46C6-A97F-4CB07D2DF45E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4204CDC3-7A3E-46C6-A97F-4CB07D2DF45E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EC2F4327-7018-455B-BB08-611FF9779A1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EC2F4327-7018-455B-BB08-611FF9779A1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EC2F4327-7018-455B-BB08-611FF9779A1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EC2F4327-7018-455B-BB08-611FF9779A1D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{933DF1A4-78C3-407E-86E9-A2F557434BF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{933DF1A4-78C3-407E-86E9-A2F557434BF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{933DF1A4-78C3-407E-86E9-A2F557434BF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{933DF1A4-78C3-407E-86E9-A2F557434BF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -187,8 +175,6 @@ Global
 		{F317B419-340B-418D-B2AB-8C43F18B85D6} = {6879CEAE-B0E8-4C47-AB8C-CEF00D5A9E54}
 		{7954F23F-567D-457D-99DC-A92224A50A99} = {6879CEAE-B0E8-4C47-AB8C-CEF00D5A9E54}
 		{4204CDC3-7A3E-46C6-A97F-4CB07D2DF45E} = {6879CEAE-B0E8-4C47-AB8C-CEF00D5A9E54}
-		{EC2F4327-7018-455B-BB08-611FF9779A1D} = {6879CEAE-B0E8-4C47-AB8C-CEF00D5A9E54}
-		{933DF1A4-78C3-407E-86E9-A2F557434BF0} = {6879CEAE-B0E8-4C47-AB8C-CEF00D5A9E54}
 		{07B083E4-AA0A-41BF-A0FC-172C0E2A49B2} = {DCACF64F-2897-423B-B398-12B3D9681AC9}
 		{D4D75F47-BEE4-4F2F-A8B7-F2A81D368D28} = {DCACF64F-2897-423B-B398-12B3D9681AC9}
 	EndGlobalSection
