@@ -62,7 +62,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
             }
         }
 
-        internal void UpdateBetSettingWhenMultiple()
+        public void UpdateBetSettingWhenMultiple()
         {
             if (this.CustomerInformation.IsMultiple)
             {
@@ -74,8 +74,10 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
             }
         }
 
-
-        internal void UpdatePositionTakingWhenMultiple()
+        /// <summary>
+        /// Copy setting for multiple.
+        /// </summary>
+        public void UpdatePositionTakingWhenMultiple()
         {
             if (this.CustomerInformation.IsMultiple)
             {
@@ -90,11 +92,6 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
             {
                 this.ChangeSettingWhenMultiple(positionTaking, this.CustomerInformation.IsMultiple);
             }
-        }
-
-        internal virtual void ChangeSettingWhenMultiple(T positionTaking, bool isMultiple)
-        {
-
         }
 
         internal static bool IsCopyToItself(int currentBetTypeId, int copiedBetTypeId)
@@ -208,10 +205,6 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
             }
         }
 
-        internal virtual void CopyToOnePositionTaking(T sourcePositionTaking, T destinationPositionTaking)
-        {
-        }
-
         internal bool CopyAllIsValidForPositionTaking()
         {
             return this.PositionTakingCopyAll != null && this.PositionTakingCopyAll.IsCopiedAll && this.PositionTakings != null && this.PositionTakings.Count > 0;
@@ -297,6 +290,14 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
         {
             var positionTaking = this.PositionTakings.Where(p => p.BetTypeId == this.PositionTakingCopyAll.BetTypeId).FirstOrDefault();
             return positionTaking == null ? new PositionTakingBase() : positionTaking;
+        }
+
+        internal virtual void ChangeSettingWhenMultiple(T positionTaking, bool isMultiple)
+        {
+        }
+
+        internal virtual void CopyToOnePositionTaking(T sourcePositionTaking, T destinationPositionTaking)
+        {
         }
     }
 }
