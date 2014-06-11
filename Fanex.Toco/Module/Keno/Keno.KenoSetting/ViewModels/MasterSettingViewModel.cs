@@ -35,5 +35,15 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.ViewModels
             destinationMasterPositionTaking.IsUpdateN3 = true;
             destinationMasterPositionTaking.IsUpdateUS3 = true;
         }
+
+        internal override void ChangeSettingWhenMultiple(MasterPositionTaking positionTaking, bool isMultiple)
+        {
+            if (isMultiple)
+            {
+                positionTaking.IsUpdateM3 = true;
+                positionTaking.IsUpdateN3 = true;
+                positionTaking.IsUpdateUS3 = true;
+            }
+        }
     }
 }

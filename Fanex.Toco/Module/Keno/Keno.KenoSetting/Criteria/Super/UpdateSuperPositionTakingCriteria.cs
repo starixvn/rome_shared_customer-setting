@@ -23,27 +23,15 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Criteria
 
         public int BetType { get; set; }
 
-        /// <summary>
-        /// Gets or sets the value of S4.
-        /// </summary>
-        /// <value>
-        /// The value of S4.
-        /// </value>
-        public double SPositionTaking { get; set; }
+        public double S4 { get; set; }
 
-        /// <summary>
-        /// Gets or sets the value of N4.
-        /// </summary>
-        /// <value>
-        /// The value of N4.
-        /// </value>
-        public double Min_PositionTaking { get; set; }
-
-        public double Discount { get; set; }
+        public double N4 { get; set; }
 
         public bool UpdatePositionTaking { get; set; }
 
         public bool UpdateMinPositionTaking { get; set; }
+
+        public double Discount { get; set; }
 
         public bool UpdateCommission { get; set; }
 

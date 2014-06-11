@@ -25,13 +25,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Criteria
 
         public bool UpdatePT { get; set; }
 
-        /// <summary>
-        /// Gets or sets the position taking of A1.
-        /// </summary>
-        /// <value>
-        /// The position taking of A1.
-        /// </value>
-        public double APositionTaking { get; set; }
+        public double A1 { get; set; }
 
         public double Discount { get; set; }
 

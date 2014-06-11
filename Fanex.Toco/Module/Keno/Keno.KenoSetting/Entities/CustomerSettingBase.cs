@@ -39,6 +39,8 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
             this.CopyStatusInCaseOfCopyAll();
             this.CopyPositionTakingInCaseOfCopyAll();
             this.AdjustValuesOfPositionTakings();
+            this.UpdateBetSettingWhenMultiple();
+            this.UpdatePositionTakingWhenMultiple();
         }
 
         /// <summary>
@@ -58,6 +60,41 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
             {
                 LoggingHandler.Log(ex);
             }
+        }
+
+        internal void UpdateBetSettingWhenMultiple()
+        {
+            if (this.CustomerInformation.IsMultiple)
+            {
+                foreach (var betSetting in this.BetSettings)
+                {
+                    betSetting.IsBetSettingUpdated = true;
+                    betSetting.IsStatusUpdated = true;
+                }
+            }
+        }
+
+
+        internal void UpdatePositionTakingWhenMultiple()
+        {
+            if (this.CustomerInformation.IsMultiple)
+            {
+                foreach (var betSetting in this.BetSettings)
+                {
+                    betSetting.IsBetSettingUpdated = true;
+                    betSetting.IsStatusUpdated = true;
+                }
+            }
+
+            foreach (var positionTaking in this.PositionTakings)
+            {
+                this.ChangeSettingWhenMultiple(positionTaking, this.CustomerInformation.IsMultiple);
+            }
+        }
+
+        internal virtual void ChangeSettingWhenMultiple(T positionTaking, bool isMultiple)
+        {
+
         }
 
         internal static bool IsCopyToItself(int currentBetTypeId, int copiedBetTypeId)

@@ -83,7 +83,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
                 SportType = Constants.SportType,
                 BetType = memberPositionTaking.BetTypeId,
                 UpdatePT = memberPositionTaking.IsUpdateA1,
-                APositionTaking = memberPositionTaking.A1,
+                A1 = memberPositionTaking.A1,
                 UpdateComm = false,
                 Discount = 0,
                 SubAccId = KenoSession.SubAccId,

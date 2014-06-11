@@ -23,29 +23,13 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Criteria
 
         public int BetType { get; set; }
 
-        /// <summary>
-        /// Gets or sets the position taking of S1.
-        /// </summary>
-        /// <value>
-        /// The position taking of S1.
-        /// </value>
-        public double SPositionTaking { get; set; }
+        public double S1 { get; set; }
 
-        /// <summary>
-        /// Gets or sets the value of US1.
-        /// </summary>
-        /// <value>
-        /// The value of US1.
-        /// </value>
-        public double Auto_SPositionTaking { get; set; }
+        public double US1 { get; set; }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether IS1 is true or not.
-        /// </summary>
-        /// <value>
-        /// The value of IS1.
-        /// </value>
-        public bool IsAuto_SPositionTaking { get; set; }
+        public bool IS3 { get; set; }
+
+        public bool IS1 { get; set; }
 
         public bool UpdatePositionTaking { get; set; }
 
