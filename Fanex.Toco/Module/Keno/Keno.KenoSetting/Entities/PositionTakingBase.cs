@@ -127,6 +127,5 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
 
             UM1 = 0;
         }
-
     }
 }

@@ -26,7 +26,8 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.ViewModels
         {
             destinationMasterPositionTaking.IsUpdateM3 = destinationMasterPositionTaking.M3 != sourceMasterPositionTaking.M3;
             destinationMasterPositionTaking.IsUpdateN3 = destinationMasterPositionTaking.N3 != sourceMasterPositionTaking.N3;
-            destinationMasterPositionTaking.IsUpdateUS3 = (destinationMasterPositionTaking.US3 != sourceMasterPositionTaking.US3) || (destinationMasterPositionTaking.IS3 != sourceMasterPositionTaking.IS3);
+            destinationMasterPositionTaking.IsUpdateUS3 = (destinationMasterPositionTaking.US3 != sourceMasterPositionTaking.US3) 
+                                                          || (destinationMasterPositionTaking.IS3 != sourceMasterPositionTaking.IS3);
             destinationMasterPositionTaking.IsUpdateS3 = destinationMasterPositionTaking.S3 != sourceMasterPositionTaking.S3;
 
             destinationMasterPositionTaking.S3 = sourceMasterPositionTaking.S3;
@@ -36,7 +37,6 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.ViewModels
             destinationMasterPositionTaking.N3 = sourceMasterPositionTaking.N3;
             destinationMasterPositionTaking.IsUpdateAllMember = sourceMasterPositionTaking.IsUpdateAllMember;
             destinationMasterPositionTaking.NewMemberPT = sourceMasterPositionTaking.NewMemberPT;
-            
         }
 
         internal override void ChangeSettingWhenMultiple(MasterPositionTaking positionTaking, bool isMultiple)
