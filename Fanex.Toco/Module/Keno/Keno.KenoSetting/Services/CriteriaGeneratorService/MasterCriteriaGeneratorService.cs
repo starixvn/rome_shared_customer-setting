@@ -95,6 +95,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
                 UpdateAutoPositionTaking = masterPositionTaking.IsUpdateUS3,
                 UpdateCommission = false,
                 UserId = CustomerInformation.UserId,
+                SubAccId = CustomerInformation.SubAccId,
                 Ip = KenoSession.Ip,
                 Language = CustomerInformation.Language
             };

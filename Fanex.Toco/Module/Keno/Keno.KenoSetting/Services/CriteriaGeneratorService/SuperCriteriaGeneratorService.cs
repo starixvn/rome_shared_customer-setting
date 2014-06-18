@@ -90,6 +90,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
                 UpdateMinPositionTaking = superPositionTaking.IsUpdateN4,
                 UpdateCommission = false,
                 UserId = CustomerInformation.UserId,
+                SubAccId = CustomerInformation.SubAccId,
                 Ip = KenoSession.Ip,
                 Language = CustomerInformation.Language
             };

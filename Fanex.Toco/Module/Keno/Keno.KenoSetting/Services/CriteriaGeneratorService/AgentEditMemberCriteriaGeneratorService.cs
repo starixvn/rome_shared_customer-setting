@@ -86,7 +86,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
                 A1 = memberPositionTaking.A1,
                 UpdateComm = false,
                 Discount = 0,
-                SubAccId = KenoSession.SubAccId,
+                SubAccId = CustomerInformation.SubAccId,
                 UserId = CustomerInformation.UserId,
                 Ip = KenoSession.Ip,
                 Language = CustomerInformation.Language

@@ -82,6 +82,8 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
         {
             AdjustMaster();
             AdjustAgent();
+            AdjustSuperOnMember();
+            AdjustMasterOnMember();
         }
 
         internal void AdjustAgent()

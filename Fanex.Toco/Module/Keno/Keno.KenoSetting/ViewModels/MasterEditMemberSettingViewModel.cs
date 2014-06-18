@@ -21,7 +21,8 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.ViewModels
             MasterEditMemberPositionTaking sourceMemberPositionTaking, 
             MasterEditMemberPositionTaking destinationMemberPositionTaking)
         {
-            destinationMemberPositionTaking.IsUpdateM1 = destinationMemberPositionTaking.M1 != sourceMemberPositionTaking.M1;
+            destinationMemberPositionTaking.IsUpdateM1 = (destinationMemberPositionTaking.M1 != sourceMemberPositionTaking.M1)
+                                                        || (destinationMemberPositionTaking.IM1 != sourceMemberPositionTaking.IM1);
             destinationMemberPositionTaking.IsUpdateUM1 = (destinationMemberPositionTaking.UM1 != sourceMemberPositionTaking.UM1) 
                                                         || (destinationMemberPositionTaking.IM1 != sourceMemberPositionTaking.IM1);
 

@@ -49,6 +49,8 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Criteria
 
         public int UserId { get; set; }
 
+        public int SubAccId { get; set; }
+
         public string Ip { get; set; }
 
         public string Language { get; set; }
