@@ -105,5 +105,28 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
 
             US3 = 0;
         }
+
+        internal void AdjustSuperOnMember()
+        {
+            if (IS1)
+            {
+                S1 = 0;
+                return;
+            }
+
+            US1 = 0;
+        }
+
+        internal void AdjustMasterOnMember()
+        {
+            if (IM1)
+            {
+                M1 = 0;
+                return;
+            }
+
+            UM1 = 0;
+        }
+
     }
 }

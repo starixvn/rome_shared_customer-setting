@@ -21,8 +21,16 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.ViewModels
             AgentEditMemberPositionTaking sourceMemberPositionTaking, 
             AgentEditMemberPositionTaking destinationMemberPositionTaking)
         {
+            destinationMemberPositionTaking.IsUpdateA1 = destinationMemberPositionTaking.A1 != sourceMemberPositionTaking.A1;
             destinationMemberPositionTaking.A1 = sourceMemberPositionTaking.A1;
-            destinationMemberPositionTaking.IsUpdateA1 = true;
+        }
+
+        internal override void ChangeSettingWhenMultiple(AgentEditMemberPositionTaking positionTaking, bool isMultiple)
+        {
+            if (isMultiple)
+            {
+                positionTaking.IsUpdateA1 = true;
+            }
         }
     }
 }

@@ -21,11 +21,21 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.ViewModels
             MasterEditMemberPositionTaking sourceMemberPositionTaking, 
             MasterEditMemberPositionTaking destinationMemberPositionTaking)
         {
+            destinationMemberPositionTaking.IsUpdateM1 = destinationMemberPositionTaking.M1 != sourceMemberPositionTaking.M1;
+            destinationMemberPositionTaking.IsUpdateUM1 = (destinationMemberPositionTaking.UM1 != sourceMemberPositionTaking.UM1) || (destinationMemberPositionTaking.IM1 != sourceMemberPositionTaking.IM1);
+
             destinationMemberPositionTaking.M1 = sourceMemberPositionTaking.M1;
             destinationMemberPositionTaking.UM1 = sourceMemberPositionTaking.UM1;
             destinationMemberPositionTaking.IM1 = sourceMemberPositionTaking.IM1;
-            destinationMemberPositionTaking.IsUpdateM1 = true;
-            destinationMemberPositionTaking.IsUpdateUM1 = true;
+        }
+
+        internal override void ChangeSettingWhenMultiple(MasterEditMemberPositionTaking positionTaking, bool isMultiple)
+        {
+            if (isMultiple)
+            {
+                positionTaking.IsUpdateM1 = true;
+                positionTaking.IsUpdateUM1 = true;
+            }
         }
     }
 }

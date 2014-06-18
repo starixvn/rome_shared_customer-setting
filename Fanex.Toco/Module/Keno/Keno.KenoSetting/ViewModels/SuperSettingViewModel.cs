@@ -19,10 +19,20 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.ViewModels
     {
         internal override void CopyToOnePositionTaking(SuperPositionTaking sourceSuperPositionTaking, SuperPositionTaking destinationSuperPositionTaking)
         {
+            destinationSuperPositionTaking.IsUpdateS4 = destinationSuperPositionTaking.S4 != sourceSuperPositionTaking.S4;
+            destinationSuperPositionTaking.IsUpdateN4 = destinationSuperPositionTaking.N4 != sourceSuperPositionTaking.N4;
+
             destinationSuperPositionTaking.S4 = sourceSuperPositionTaking.S4;
             destinationSuperPositionTaking.N4 = sourceSuperPositionTaking.N4;
-            destinationSuperPositionTaking.IsUpdateS4 = true;
-            destinationSuperPositionTaking.IsUpdateN4 = true;
+        }
+
+        internal override void ChangeSettingWhenMultiple(SuperPositionTaking positionTaking, bool isMultiple)
+        {
+            if (isMultiple)
+            {
+                positionTaking.IsUpdateS4 = true;
+                positionTaking.IsUpdateN4 = true;
+            }
         }
     }
 }

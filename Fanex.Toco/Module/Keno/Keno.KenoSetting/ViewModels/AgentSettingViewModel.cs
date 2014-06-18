@@ -24,6 +24,11 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.ViewModels
         /// <param name="destinationAgentPositionTaking">The destination agent position taking.</param>
         internal override void CopyToOnePositionTaking(AgentPositionTaking sourceAgentPositionTaking, AgentPositionTaking destinationAgentPositionTaking)
         {
+            destinationAgentPositionTaking.IsUpdateA2 = destinationAgentPositionTaking.A2 != sourceAgentPositionTaking.A2;
+            destinationAgentPositionTaking.IsUpdateN2 = destinationAgentPositionTaking.N2 != sourceAgentPositionTaking.N2;
+            destinationAgentPositionTaking.IsUpdateM2 = destinationAgentPositionTaking.M2 != sourceAgentPositionTaking.M2;
+            destinationAgentPositionTaking.IsUpdateUM2 = (destinationAgentPositionTaking.UM2 != sourceAgentPositionTaking.UM2) || (destinationAgentPositionTaking.IM2 != sourceAgentPositionTaking.IM2);
+
             destinationAgentPositionTaking.M2 = sourceAgentPositionTaking.M2;
             destinationAgentPositionTaking.UM2 = sourceAgentPositionTaking.UM2;
             destinationAgentPositionTaking.IM2 = sourceAgentPositionTaking.IM2;
@@ -31,10 +36,17 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.ViewModels
             destinationAgentPositionTaking.N2 = sourceAgentPositionTaking.N2;
             destinationAgentPositionTaking.IsUpdateAllMember = sourceAgentPositionTaking.IsUpdateAllMember;
             destinationAgentPositionTaking.NewMemberPT = sourceAgentPositionTaking.NewMemberPT;
-            destinationAgentPositionTaking.IsUpdateA2 = true;
-            destinationAgentPositionTaking.IsUpdateN2 = true;
-            destinationAgentPositionTaking.IsUpdateM2 = true;
-            destinationAgentPositionTaking.IsUpdateUM2 = true;
+        }
+
+        internal override void ChangeSettingWhenMultiple(AgentPositionTaking positionTaking, bool isMultiple)
+        {
+            if (isMultiple)
+            {
+                positionTaking.IsUpdateA2 = true;
+                positionTaking.IsUpdateN2 = true;
+                positionTaking.IsUpdateM2 = true;
+                positionTaking.IsUpdateUM2 = true;
+            }
         }
     }
 }
