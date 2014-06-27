@@ -32,7 +32,8 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
             _kenoSettingService = kenoSettingService ?? new KenoSettingService();
         }
 
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditSuper")]
+        ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditSuper")]
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "KenoSetting")]
         public ActionResult EditSuper(CustomerInformationViewModel customerInformationViewModel)
         {
             SetTitleForMultipleEdit(customerInformationViewModel);
@@ -41,14 +42,16 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         }
 
         [HttpPost]
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "UpdateSuper")]
+        ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "UpdateSuper")]
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "KenoSetting")]
         public JsonResult UpdateSuper(SuperSettingViewModel superSetting)
         {
             var results = _kenoSettingService.UpdateSuperCustomerSetting(superSetting);
             return Json(results);
         }
 
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditMaster")]
+        ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditMaster")]
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "KenoSetting")]
         public ActionResult EditMaster(CustomerInformationViewModel customerInformationViewModel)
         {
             SetTitleForMultipleEdit(customerInformationViewModel);
@@ -57,14 +60,16 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         }
 
         [HttpPost]
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateMaster")]
+        ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateMaster")]
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "KenoSetting")]
         public JsonResult UpdateMaster(MasterSettingViewModel masterSetting)
         {
             var results = _kenoSettingService.UpdateMasterCustomerSetting(masterSetting);
             return Json(results);
         }
 
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditAgent")]
+        ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditAgent")]
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "KenoSetting")]
         public ActionResult EditAgent(CustomerInformationViewModel customerInformationViewModel)
         {
             SetTitleForMultipleEdit(customerInformationViewModel);
@@ -73,14 +78,16 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         }
 
         [HttpPost]
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateAgent")]
+        ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateAgent")]
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "KenoSetting")]
         public JsonResult UpdateAgent(AgentSettingViewModel agentSetting)
         {
             var results = _kenoSettingService.UpdateAgentCustomerSetting(agentSetting);
             return Json(results);
         }
 
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "SuperEditMember")]
+        ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "SuperEditMember")]
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "KenoSetting")]
         public ActionResult SuperEditMember(CustomerInformationViewModel customerInformationViewModel)
         {
             SetTitleForMultipleEdit(customerInformationViewModel);
@@ -89,14 +96,16 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         }
 
         [HttpPost]
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateSuperOnMember")]
+        ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateSuperOnMember")]
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "KenoSetting")]
         public JsonResult UpdateSuperOnMember(SuperEditMemberSettingViewModel memberSetting)
         {
             var results = _kenoSettingService.UpdateMemberCustomerSettingInCaseOfSuperEditMember(memberSetting);
             return Json(results);
         }
 
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "MasterEditMember")]
+        ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "MasterEditMember")]
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "KenoSetting")]
         public ActionResult MasterEditMember(CustomerInformationViewModel customerInformationViewModel)
         {
             SetTitleForMultipleEdit(customerInformationViewModel);
@@ -105,14 +114,16 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         }
 
         [HttpPost]
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateMasterOnMember")]
+        ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateMasterOnMember")]
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "KenoSetting")]
         public JsonResult UpdateMasterOnMember(MasterEditMemberSettingViewModel memberSetting)
         {
             var results = _kenoSettingService.UpdateMemberCustomerSettingInCaseOfMasterEditMember(memberSetting);
             return Json(results);
         }
 
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "AgentEditMember")]
+        ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "AgentEditMember")]
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "KenoSetting")]
         public ActionResult AgentEditMember(CustomerInformationViewModel customerInformationViewModel)
         {
             SetTitleForMultipleEdit(customerInformationViewModel);
@@ -121,7 +132,8 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         }
 
         [HttpPost]
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateAgentOnMember")]
+        ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateAgentOnMember")]
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "KenoSetting")]
         public JsonResult UpdateAgentOnMember(AgentEditMemberSettingViewModel memberSetting)
         {
             var results = _kenoSettingService.UpdateMemberCustomerSettingInCaseOfAgentEditMember(memberSetting);
