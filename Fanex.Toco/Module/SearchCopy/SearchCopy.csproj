@@ -156,6 +156,7 @@
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Controllers\BaseCloneController.cs" />
     <Compile Include="Controllers\SuperController.cs" />
+    <Compile Include="Criteria\CheckCustomerEnabledCriteria.cs" />
     <Compile Include="Criteria\UpdateSyncBaseForIBCCriteria.cs" />
     <Compile Include="Criteria\UpdateSyncLiveCasinoForIBCCriteria.cs" />
     <Compile Include="Criteria\UpdateSyncBingoForIBCCriteria.cs" />

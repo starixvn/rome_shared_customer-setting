@@ -143,6 +143,26 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
         }
 
         /// <summary>
+        /// Check user is enable or not.
+        /// </summary>
+        /// <param name="criteria">The new user.</param>
+        /// <returns>Object CommandResult.</returns>
+        public CommandResult CheckEnableCustomer(CheckCustomerEnabledCriteria criteria)
+        {
+            ////prepare SP parameters
+            Hashtable param = criteria.GetSpParams();
+
+            param = (new ResultCriteria()).AddSpParams(param);
+
+            using (var db = new ObjectDb(criteria.GetSettingKey()))
+            {
+                db.ExecuteNonQuery(param);
+                criteria.CustId = Convert.ToInt32(param["custid"]);
+                return GetCommandResult(param);
+            }
+        }
+
+        /// <summary>
         /// Update sync data.
         /// </summary>
         /// <param name="criteria">The criteria.</param>

@@ -27,7 +27,9 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
         CustomerInfo GetCustomerInfoByUserId(GetCustomerInfoByUserIdCriteria criteria);
 
         CommandResult CopyExistingUser(ref CustomerInsMemberCriteria criteria);
-        
+
+        CommandResult CheckEnableCustomer(CheckCustomerEnabledCriteria criteria);
+
         CommandResult UpdateSync(ICriteria criteria);
     }
 }
