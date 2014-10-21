@@ -18,6 +18,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
     using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
     using Fanex.CustomerSetting.Module.SearchCopy.Entities;
     using Fanex.CustomerSetting.Module.SearchCopy.Services;
+    using Fanex.LiveCasino.CoreSetting.Services;
 
     /// <summary>
     /// Class BaseCloneController.
@@ -25,15 +26,17 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
     public class BaseCloneController : BaseController
     {
         private static ISearchCopyService _searchCopyService;
+        protected ISettingService _settingService;
 
         public BaseCloneController()
-            : this(null)
+            : this(null, null)
         {
         }
 
-        public BaseCloneController(ISearchCopyService searchCopyService)
+        public BaseCloneController(ISearchCopyService searchCopyService, ISettingService settingService)
         {
             _searchCopyService = searchCopyService ?? new SearchCopyService();
+            _settingService = settingService ?? new SettingService();
         }
 
         protected ISearchCopyService SearchCopyServiceInstance
@@ -72,7 +75,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             string host = uri.Scheme + Uri.SchemeDelimiter + uri.Host + (uri.Port == 80 ? string.Empty : ":" + uri.Port);
 
             currentURL = string.Format(currentURL, host);
-            return currentURL.StartsWith("http") ? currentURL : "http://" + currentURL;  
+            return currentURL.StartsWith("http") ? currentURL : "http://" + currentURL;
         }
 
         public int SearchExistingUser(SearchExistingUserCriteria criteria)
