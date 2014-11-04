@@ -36,7 +36,7 @@ namespace Fanex.CustomerSetting.Module.Core.Web.Controllers
 
         public const int Member = 1;
 
-        public const int FromSystem = 4;
+        public const int FromSystem = 3;
 
         public BaseController()
         {
