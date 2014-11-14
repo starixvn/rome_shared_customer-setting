@@ -94,16 +94,22 @@ namespace Fanex.CustomerSetting.Module.Bingo.Services
 
                 ICustomerService customerService = BingoContainer.Current.Resolve<ICustomerService>();
                 string fromIP = AppSession.CurrentContext.Ip4Address;
+                CasinoCustomer custInfo = null, uplineInfo = null;
+                custInfo = CasinoManager.Instance.GetCustInfoIBC(customer.ID, customer.UplineID);
+                customer.SyncBingo = custInfo.BingoSync;
+                if (!custInfo.BingoSync)
+                {
+                    IResult getSettingResult = null;
+                    customerService.GetCustomerSetting(customer.ID, updatedByRoleID, ref getSettingResult);
+                }
+
                 IResult result = customerService.UpdateCustomerSetting(customer, updatedByRoleID, fromIP, modifiedUserId, modifiedUsername, fromSystem);
-                
+
                 if (result == null || !result.IsSuccessful || customer.SyncBingo)
                 {
                     return result;
                 }
-                
-                CasinoCustomer custInfo = null, uplineInfo = null;
-                custInfo = CasinoManager.Instance.GetCustInfoIBC(customer.ID, customer.UplineID);
-                
+
                 switch ((Enumerators.Role)customer.RoleId)
                 {
                     case Enumerators.Role.Member:
