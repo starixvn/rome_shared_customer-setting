@@ -139,7 +139,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
                 ICustomerService customerService = BingoContainer.Current.Resolve<ICustomerService>();
                 string ip = Request.UserHostAddress;
 
-                result = customerService.UpdateCustomerSetting(model, 5, ip == "::1" ? "127.0.0.1" : ip, userId, "Admin", 3);                            
+                result = customerService.UpdateCustomerSetting(model, 5, ip == "::1" ? "127.0.0.1" : ip, userId, customer.Username, FromSystem);                            
             }
             catch (Exception ex)
             {

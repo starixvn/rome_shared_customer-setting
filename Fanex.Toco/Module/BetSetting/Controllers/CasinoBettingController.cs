@@ -147,7 +147,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
                 4, 
                 Request.UserHostAddress, 
                 userId, 
-                "Admin", 
+                customer.Username, 
                 FromSystem, 
                 model.SettingModel, 
                 model.CustomerModel);
