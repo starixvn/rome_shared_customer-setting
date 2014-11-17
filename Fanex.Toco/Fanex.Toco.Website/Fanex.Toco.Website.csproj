@@ -49,7 +49,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
       <HintPath>..\_Dependencies\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
-    </Reference>   
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -237,17 +237,17 @@
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\controllers\bet-setting.controller.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\controllers\main.controller.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\controllers\position-taking.controller.js" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\directives\positionTaking\AgentPositionTakingDirective.js" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\directives\betSetting\BetSettingDirectiveDemo.js" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\directives\CommonDirective.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\directives\betSetting\BetSettingDirective.js" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\directives\betSetting\MinBetDirective.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\directives\betSetting\BetSettingDirectiveDemo.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\directives\betSetting\MaxBetDirective.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\directives\betSetting\MaxPerMatchDirective.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\directives\betSetting\MinBetDirective.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\directives\CommonDirective.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\directives\dialog\ngDialog-theme-default.css" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\directives\dialog\ngDialog-theme-plain.css" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\directives\dialog\ngDialog.css" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\directives\dialog\ngDialog.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\directives\positionTaking\AgentPositionTakingDirective.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\directives\positionTaking\MasterOnMemberPositionTakingDirective.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\directives\positionTaking\MasterPositionTakingDirective.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\directives\positionTaking\MemberPositionTakingDirective.js" />
@@ -268,11 +268,16 @@
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Accounting\Images\R_content_tab.png" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Accounting\Images\sucess.gif" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Accounting\Images\Update.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Agent\Images\ajax-loader.gif" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Agent\Images\bgHeader.jpg" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Agent\Images\bg_header02.jpg" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Agent\Images\b_left.gif" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Agent\Images\b_right.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Agent\Images\error.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Agent\Images\loader3.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Agent\Images\sucess.gif" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Agent\Images\Update.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Agent\Images\usergroup.gif" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Images\accessDenied.gif" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Images\back.png" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Images\Banner\bg_banner.jpg" />
@@ -368,9 +373,6 @@
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Partial\PositionTaking\MemberPositionTaking.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Partial\PositionTaking\SuperOnMemberPositionTaking.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Partial\PositionTaking\SuperPositionTaking.htm" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Partial\PositionTaking\_SuperPT.htm" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\sucess.gif" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Styles\Images\undo.png" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\common.js" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\CommonPT.js" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Scripts\Setting\AgentMinMaxPT.js" />
@@ -678,7 +680,6 @@
     <Content Include="Global.asax" />
     <Content Include="Areas\CustomerSetting\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Web.config" />
-    <Content Include="Areas\CustomerSetting\Views\Sample\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\ProgressiveBonus\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\ProgressiveBonus\Casino\Index.cshtml" />
@@ -686,7 +687,6 @@
     <Content Include="Web.Configuration\ProgressiveSection.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Areas\CustomerSetting\Views\LeftPanel\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Error.cshtml" />
     <None Include="Areas\CustomerSetting\Styles\Bootstrap\accordion.less" />
     <None Include="Areas\CustomerSetting\Styles\Bootstrap\alerts.less" />
@@ -1049,12 +1049,6 @@
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Config\SearchCopySetting.config" />
     <Content Include="Areas\CustomerSetting\Views\Keno\EnableStatus\Index.cshtml" />
     <None Include="Areas\CustomerSetting\Views\Keno\Setting\Document.doc" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Shared\_Layout.cshtml" />
-    <None Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Accounting\theme-color.less" />
-    <None Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Agent\theme-color.less" />
-    <None Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Common.less" />
-    <None Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\keno-setting.less" />
-    <None Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Variables.less" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Agent\EditAgent.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\MasterOnMember\MasterEditMember.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Master\EditMaster.cshtml" />
@@ -1070,29 +1064,13 @@
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Partial\PositionTaking\_SuperPositionTaking.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\SuperOnMember\SuperEditMember.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Super\EditSuper.cshtml" />
-    <None Include="Areas\CustomerSetting\Views\Keno\Document.doc" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Agent\EditAgent.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\MasterOnMember\MasterEditMember.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Master\EditMaster.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Member\AgentEditMember.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\BetSetting\_BetSettingMember.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\BetSetting\_BetSettingSMA.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\CustomerInfo\_Information.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\_AgentPositionTaking.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\_MasterPositionTaking.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\_MemberPositionTaking.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\_MasterOnMemberPositionTaking.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\_SuperOnMemberPositionTaking.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Partial\PositionTaking\_SuperPositionTaking.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\SuperOnMember\SuperEditMember.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Super\EditSuper.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Shared\_Layout.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Keno\EnableStatus\Index.cshtml" />
-    <None Include="Areas\CustomerSetting\Views\Keno\Styles\Accounting\theme-color.less" />
-    <None Include="Areas\CustomerSetting\Views\Keno\Styles\Agent\theme-color.less" />
-    <None Include="Areas\CustomerSetting\Views\Keno\Styles\Common.less" />
-    <None Include="Areas\CustomerSetting\Views\Keno\Styles\keno-setting.less" />
-    <None Include="Areas\CustomerSetting\Views\Keno\Styles\Variables.less" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Shared\_Layout.cshtml" />
+    <None Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Accounting\theme-color.less" />
+    <None Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Agent\theme-color.less" />
+    <None Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Common.less" />
+    <None Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\keno-setting.less" />
+    <None Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Variables.less" />
     <None Include="Areas\CustomerSetting\Views\SearchCopy\Document.doc" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Super\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Shared\_Layout.cshtml" />
