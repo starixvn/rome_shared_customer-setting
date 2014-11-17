@@ -34,7 +34,24 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
 
         public int SearchExistingUser(SearchExistingUserCriteria criteria)
         {
-            return _searchCopyRepository.SearchExistingUser(criteria);
+            var errorcode = _searchCopyRepository.SearchExistingUser(criteria);
+
+            if (errorcode.Equals(-1))
+            {
+                return -1;
+            }
+
+            var result = _searchCopyRepository.CheckEnableCustomer(new CheckCustomerEnabledCriteria
+            {
+                Username = criteria.Username
+            });
+
+            if (result.Code.Equals(600))
+            {
+                return result.Code;
+            }
+
+            return errorcode;
         }
 
         public HideSports GetSportsStatusByUserName(string username)
@@ -55,7 +72,12 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
         public CommandResult CopyExistingUser(ref CustomerInsMemberCriteria criteria)
         {
             return _searchCopyRepository.CopyExistingUser(ref criteria);
-        }        
+        }
+
+        public CommandResult CheckEnableCustomer(CheckCustomerEnabledCriteria criteria)
+        {
+            return _searchCopyRepository.CheckEnableCustomer(criteria);
+        } 
 
         public CommandResult UpdateSync(ICriteria criteria)
         {

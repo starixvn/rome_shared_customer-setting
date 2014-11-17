@@ -54,14 +54,7 @@ namespace Fanex.CustomerSetting.Security.Configurations
             {
                 if (_instance == null)
                 {
-                    try
-                    {
-                        _instance = (CustomerSettingSection)ConfigurationManager.GetSection("CustomerSetting/Security");
-                    }
-                    catch (Exception e)
-                    {
-                        throw new ConfigurationErrorsException("Error when parsing configuration section CustomerSetting.", e);
-                    }
+                      _instance = (CustomerSettingSection)ConfigurationManager.GetSection("CustomerSetting/Security");
                 }
 
                 return _instance;

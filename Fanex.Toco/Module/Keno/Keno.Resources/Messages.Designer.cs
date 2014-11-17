@@ -70,6 +70,69 @@ namespace Fanex.CustomerSetting.Module.Keno.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bet Setting.
+        /// </summary>
+        public static string BetSetting {
+            get {
+                return ResourceManager.GetString("BetSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to should be less than or equal to.
+        /// </summary>
+        public static string LessThan {
+            get {
+                return ResourceManager.GetString("LessThan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to should be more than or equal to.
+        /// </summary>
+        public static string MoreThan {
+            get {
+                return ResourceManager.GetString("MoreThan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updated successfully..
+        /// </summary>
+        public static string Msg_0 {
+            get {
+                return ResourceManager.GetString("Msg_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Database response isn&apos;t valid..
+        /// </summary>
+        public static string Msg_1001 {
+            get {
+                return ResourceManager.GetString("Msg_1001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Position Taking.
+        /// </summary>
+        public static string PositionTaking {
+            get {
+                return ResourceManager.GetString("PositionTaking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updated failed..
+        /// </summary>
+        public static string UpdatedFail {
+            get {
+                return ResourceManager.GetString("UpdatedFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Status updated successfully.
         /// </summary>
         public static string UpdatedSuccess {

@@ -120,6 +120,27 @@
   <data name="AccountDisabled" xml:space="preserve">
     <value>Account was disabled</value>
   </data>
+  <data name="BetSetting" xml:space="preserve">
+    <value>Bet Setting</value>
+  </data>
+  <data name="LessThan" xml:space="preserve">
+    <value>should be less than or equal to</value>
+  </data>
+  <data name="MoreThan" xml:space="preserve">
+    <value>should be more than or equal to</value>
+  </data>
+  <data name="Msg_0" xml:space="preserve">
+    <value>Updated successfully.</value>
+  </data>
+  <data name="Msg_1001" xml:space="preserve">
+    <value>Database response isn't valid.</value>
+  </data>
+  <data name="PositionTaking" xml:space="preserve">
+    <value>Position Taking</value>
+  </data>
+  <data name="UpdatedFail" xml:space="preserve">
+    <value>Updated failed.</value>
+  </data>
   <data name="UpdatedSuccess" xml:space="preserve">
     <value>Status updated successfully</value>
   </data>

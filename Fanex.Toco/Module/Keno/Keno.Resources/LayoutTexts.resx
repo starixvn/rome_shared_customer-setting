@@ -244,16 +244,16 @@
     <value>Downlines</value>
   </data>
   <data name="EnableStatus" xml:space="preserve">
-    <value>EnableStatus</value>
+    <value>Enable Status</value>
   </data>
   <data name="MaxBet" xml:space="preserve">
-    <value>MaxBet</value>
+    <value>Max Bet</value>
   </data>
   <data name="MaxPerMatch" xml:space="preserve">
-    <value>MaxPerMatch</value>
+    <value>Max Per Match</value>
   </data>
   <data name="MinBet" xml:space="preserve">
-    <value>MinBet</value>
+    <value>Min Bet</value>
   </data>
   <data name="CountryMarket" xml:space="preserve">
     <value>Country/Market</value>
@@ -272,5 +272,8 @@
   </data>
   <data name="EnableDownlines" xml:space="preserve">
     <value>Enable Downlines</value>
+  </data>
+  <data name="EditMultipleKeno" xml:space="preserve">
+    <value>Edit Multiple Keno</value>
   </data>
 </root>

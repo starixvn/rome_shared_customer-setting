@@ -49,6 +49,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keno.Resources", "Module\Ke
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KenoStatus", "Module\Keno\KenoStatus\KenoStatus.csproj", "{7954F23F-567D-457D-99DC-A92224A50A99}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.CustomerSetting.Module.Keno.KenoSetting", "Module\Keno\Keno.KenoSetting\Fanex.CustomerSetting.Module.Keno.KenoSetting.csproj", "{4204CDC3-7A3E-46C6-A97F-4CB07D2DF45E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeAnalysis", "CodeAnalysis", "{662D8E05-3734-4202-804F-3345D06E1178}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +127,10 @@ Global
 		{7954F23F-567D-457D-99DC-A92224A50A99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7954F23F-567D-457D-99DC-A92224A50A99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7954F23F-567D-457D-99DC-A92224A50A99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4204CDC3-7A3E-46C6-A97F-4CB07D2DF45E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4204CDC3-7A3E-46C6-A97F-4CB07D2DF45E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4204CDC3-7A3E-46C6-A97F-4CB07D2DF45E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4204CDC3-7A3E-46C6-A97F-4CB07D2DF45E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -148,5 +156,6 @@ Global
 		{B4ECC635-F693-4EF8-9AC2-84B8900DDBCC} = {AE9C3ED2-2BFE-47F9-8303-DCC37ED9BA32}
 		{F317B419-340B-418D-B2AB-8C43F18B85D6} = {6879CEAE-B0E8-4C47-AB8C-CEF00D5A9E54}
 		{7954F23F-567D-457D-99DC-A92224A50A99} = {6879CEAE-B0E8-4C47-AB8C-CEF00D5A9E54}
+		{4204CDC3-7A3E-46C6-A97F-4CB07D2DF45E} = {6879CEAE-B0E8-4C47-AB8C-CEF00D5A9E54}
 	EndGlobalSection
 EndGlobal

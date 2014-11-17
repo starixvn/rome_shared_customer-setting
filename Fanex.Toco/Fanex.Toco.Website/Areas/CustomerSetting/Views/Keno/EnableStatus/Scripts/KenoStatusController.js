@@ -8,6 +8,7 @@ function KenoStatusController($scope) {
     $scope.model = model;
     $scope.betTypes = $scope.model.betTypeStatusList;
     $scope.isDisabledAll = true;
+    $scope.isCheckeddAll = true;
 
     var length = $scope.model.betTypeStatusList.length;
     for (var i = 0; i < length; i++) {
@@ -36,6 +37,7 @@ function KenoStatusController($scope) {
 
         if (preVal) {
             if (scope.item.enable) {
+                scope.item.enableDownline = true;
                 scope.item.enableDownline = scope.item.preValDownline;
                 scope.item.disableDownline = true;
 
@@ -188,7 +190,12 @@ function KenoStatusController($scope) {
                 betTypeChexkboxes[i].checked = false;
                 betTypeChexkboxesDownlines[i].checked = false;
 
-                betTypeChexkboxesDownlines[i].disabled = true;
+                if ($scope.betTypes[i].preVal) {
+                    betTypeChexkboxesDownlines[i].disabled = true;
+                }
+                else {
+                    betTypeChexkboxesDownlines[i].disabled = true;
+                }
 
                 $scope.betTypes[i].isDisabled = true;
                 $scope.betTypes[i].isDisabledDownlines = true;

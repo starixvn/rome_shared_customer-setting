@@ -142,6 +142,24 @@ namespace Fanex.CustomerSetting.Module.Keno.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have changed this Master position taking..
+        /// </summary>
+        public static string ConfirmIsAutoMaster {
+            get {
+                return ResourceManager.GetString("ConfirmIsAutoMaster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have changed this Super position taking..
+        /// </summary>
+        public static string ConfirmIsAutoSuper {
+            get {
+                return ResourceManager.GetString("ConfirmIsAutoSuper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Country/Market.
         /// </summary>
         public static string CountryMarket {
@@ -187,6 +205,15 @@ namespace Fanex.CustomerSetting.Module.Keno.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Multiple Keno.
+        /// </summary>
+        public static string EditMultipleKeno {
+            get {
+                return ResourceManager.GetString("EditMultipleKeno", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable.
         /// </summary>
         public static string Enable {
@@ -205,7 +232,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EnableStatus.
+        ///   Looks up a localized string similar to Enable Status.
         /// </summary>
         public static string EnableStatus {
             get {
@@ -340,7 +367,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MaxBet.
+        ///   Looks up a localized string similar to Max Bet.
         /// </summary>
         public static string MaxBet {
             get {
@@ -349,7 +376,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MaxPerMatch.
+        ///   Looks up a localized string similar to Max Per Match.
         /// </summary>
         public static string MaxPerMatch {
             get {
@@ -385,7 +412,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MinBet.
+        ///   Looks up a localized string similar to Min Bet.
         /// </summary>
         public static string MinBet {
             get {
