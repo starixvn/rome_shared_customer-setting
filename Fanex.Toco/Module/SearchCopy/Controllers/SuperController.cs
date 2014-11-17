@@ -65,7 +65,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                 StatusSports = new HideSports() ////userId > 0 ? GetSportsStatusByUserName(username) : new HideSports()
             };
 
-            return JsonBase(customerSettingView);
+            ////return JsonBase(customerSettingView);
+            return base.Json(customerSettingView, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -116,10 +117,12 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                 result.Code = -1;
                 result.Message = string.Join(null, new string[] { "<div class=\"alertboxerr\"><div>", Constants.CopyMessage.Failed, "</div></div>" });
 
-                return JsonBase(result);
+                return base.Json(result, JsonRequestBehavior.AllowGet);
+                ////return JsonBase(result);
             }
 
-            return JsonBase(result);
+            return base.Json(result, JsonRequestBehavior.AllowGet);
+            ////return JsonBase(result);
         }
 
         #region Update Sync
@@ -337,15 +340,6 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                         result.Message = Constants.FailedSyncMessage.LiveCasino;
                         return result;
                     }
-                }
-
-                ////Sync data to IBC 
-                result = UpdateSyncDataToIBC(customer.CustId, new UpdateSyncLiveCasinoForIBCCriteria());
-                if (result.IsSuccessful == false)
-                {
-                    result.Code = -1;
-                    result.Message = Constants.FailedSyncMessage.LiveCasino;
-                    return result;
                 }
             }
             catch (Exception ex)

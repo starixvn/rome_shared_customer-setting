@@ -91,7 +91,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
         public ActionResult GetCustomerInfoByUserId(int custid)
         {
             var custInfo = _searchCopyService.GetCustomerInfoByUserId(new GetCustomerInfoByUserIdCriteria { Custid = custid });
-            return JsonBase(custInfo);
+            return base.Json(custInfo, JsonRequestBehavior.AllowGet);
+            ////return JsonBase(custInfo);
         }
 
         /// <summary>
@@ -101,7 +102,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
         public ActionResult GetSites()
         {
             var sites = _searchCopyService.GetSitesExistingSuper(new GetSitesCriteria());
-            return JsonBase(sites);
+            return base.Json(sites, JsonRequestBehavior.AllowGet);
+            ////return JsonBase(sites);
         }
 
         /// <summary>

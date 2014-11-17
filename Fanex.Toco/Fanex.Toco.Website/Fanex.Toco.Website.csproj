@@ -1000,11 +1000,6 @@
     <Folder Include="Scripts\_Libs\BlockUI\img\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config">
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Scripts\_Libs\FanexGrid\images.zip" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Shared\_Layout.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Sportsbook\Index.cshtml" />
