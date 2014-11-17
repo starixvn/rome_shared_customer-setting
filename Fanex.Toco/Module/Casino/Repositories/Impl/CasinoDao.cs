@@ -61,6 +61,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
                 customerDetail.GivenCredit = Utils.ToDecimal(row["credit"]).Format();
 
                 customerDetail.CasinoSync = Utils.ToBoolean(row["synccasino"]);
+                customerDetail.BingoSync = Utils.ToBoolean(row["syncbingo"]);
                 customerDetail.CasinoDisabled = Utils.ToBoolean(row["disablecasino"]);
 
                 customerDetail.LiveCasinoSync = Utils.ToBoolean(row["synclivecasino"]);
@@ -74,7 +75,13 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
 
                 // Get max transfer information
                 CasinoLibrary.SBAgent.Customer customer = new CasinoLibrary.SBAgent.Customer();
-                DataTable dt = !customerDetail.CasinoSync ? null : customer.GetDefaultMaxTransfer(customerDetail.UpperCustID, customerDetail.Currency, uplineId == 0);
+                DataTable dt = null;
+
+                try
+                {
+                   dt = !customerDetail.CasinoSync ? null : customer.GetDefaultMaxTransfer(customerDetail.UpperCustID, customerDetail.Currency, uplineId == 0);
+                }
+                catch { }
 
                 if (customerDetail.RoleId != 4 && dt != null && dt.Rows.Count > 0)
                 {
