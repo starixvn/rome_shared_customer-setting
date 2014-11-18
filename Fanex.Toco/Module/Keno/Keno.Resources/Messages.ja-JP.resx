@@ -139,7 +139,7 @@
     <value>Position Taking</value>
   </data>
   <data name="UpdatedFail" xml:space="preserve">
-    <value>Updated failed.</value>
+    <value>Update customer setting failed!</value>
   </data>
   <data name="UpdatedSuccess" xml:space="preserve">
     <value>Status updated successfully.</value>

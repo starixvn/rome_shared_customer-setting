@@ -124,7 +124,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Updated failed..
+        ///   Looks up a localized string similar to Update customer setting failed!.
         /// </summary>
         public static string UpdatedFail {
             get {

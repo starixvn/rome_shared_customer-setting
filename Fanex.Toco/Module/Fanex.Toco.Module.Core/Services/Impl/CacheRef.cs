@@ -9,6 +9,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Fanex.Common;
 using RemotingRef;
+using Fanex.CustomerSetting.Module.Core.Web;
 
 namespace Fanex.CustomerSetting.Module.Core.Services.Impl
 {
@@ -42,37 +43,37 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
                 resourceId = betID.ToString().Substring(1);
             }
 
-            return RefData.GetBetTypeName(bettypeId.ToString(), TWLang("en-US"), string.Empty, resourceId);
+            return RefData.GetBetTypeName(bettypeId.ToString(), TWLang(AppSession.Language), string.Empty, resourceId);
         }
 
         public static string GetSportName(object sportID)
         {
-            return RefData.GetSportName(Converter.ToString2(sportID), TWLang("en-US"), string.Empty);
+            return RefData.GetSportName(Converter.ToString2(sportID), TWLang(AppSession.Language), string.Empty);
         }
 
         public static string GetTeamName(object teamID)
         {
-            return RefData.GetTeamName(Converter.ToString2(teamID), TWLang("en-US"), string.Empty);
+            return RefData.GetTeamName(Converter.ToString2(teamID), TWLang(AppSession.Language), string.Empty);
         }
 
         public static string GetLeagueName(object leagueID)
         {
-            return RefData.GetLeagueName(Converter.ToString2(leagueID), TWLang("en-US"), string.Empty);
+            return RefData.GetLeagueName(Converter.ToString2(leagueID), TWLang(AppSession.Language), string.Empty);
         }
 
         public static string GetFncIndexName(object indexId)
         {
-            return RefData.GetFncIndexName(Converter.ToString2(indexId), TWLang("en-US"));
+            return RefData.GetFncIndexName(Converter.ToString2(indexId), TWLang(AppSession.Language));
         }
 
         public static string GetHorseTeamName(object codeID)
         {
-            return RefData.GetHorseTeamName(Converter.ToString2(codeID), TWLang("en-US"));
+            return RefData.GetHorseTeamName(Converter.ToString2(codeID), TWLang(AppSession.Language));
         }
 
         public static string GetOddsTypeName(object oddsType)
         {
-            return RefData.GetOddsTypeName(Converter.ToString2(oddsType), TWLang("en-US"));
+            return RefData.GetOddsTypeName(Converter.ToString2(oddsType), TWLang(AppSession.Language));
         }
 
         public static string GetCombinationName(string betteam)
@@ -130,29 +131,29 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
                     result = "P.Pair";
                     break;
             }*/
-            return RefData.GetCasinoBetItem(Converter.ToString2(resultId), TWLang("en-US"));
+            return RefData.GetCasinoBetItem(Converter.ToString2(resultId), TWLang(AppSession.Language));
         }
 
         public static string GetRouletteBetItem(int itemId)
         {
-            return RefData.GetRouletteBetItem(Converter.ToString2(itemId), TWLang("en-US"));
+            return RefData.GetRouletteBetItem(Converter.ToString2(itemId), TWLang(AppSession.Language));
         }
 
         public static string GetBettypeNameSportingSolution(object betypeId, string resourceId)
         {
             string bettypeName = string.Empty;
-            bettypeName = RefData.GetBetTypeName(Converter.ToString2(betypeId), TWLang("en-US"), string.Empty, resourceId);
+            bettypeName = RefData.GetBetTypeName(Converter.ToString2(betypeId), TWLang(AppSession.Language), string.Empty, resourceId);
             return bettypeName;
         }
 
         public static string GetCasinoBetItem(object betStatusId)
         {
-            return RefData.GetCasinoBetItem(betStatusId.ToString(), TWLang("en-US"), string.Empty);
+            return RefData.GetCasinoBetItem(betStatusId.ToString(), TWLang(AppSession.Language), string.Empty);
         }
 
         public static string GetRouletteBetItem(object itemId)
         {
-            return RefData.GetRouletteBetItem(itemId.ToString(), TWLang("en-US"), string.Empty);
+            return RefData.GetRouletteBetItem(itemId.ToString(), TWLang(AppSession.Language), string.Empty);
         }
     }
 }

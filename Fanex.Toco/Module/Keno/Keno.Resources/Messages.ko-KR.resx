@@ -121,7 +121,7 @@
     <value>계정이 비활성화되었습니다.</value>
   </data>
   <data name="BetSetting" xml:space="preserve">
-    <value>Bet Setting</value>
+    <value>배팅 설정</value>
   </data>
   <data name="LessThan" xml:space="preserve">
     <value>should be less than or equal to</value>
@@ -130,16 +130,16 @@
     <value>should be more than or equal to</value>
   </data>
   <data name="Msg_0" xml:space="preserve">
-    <value>Updated successfully.</value>
+    <value>성공적으로 업데이트하였습니다.</value>
   </data>
   <data name="Msg_1001" xml:space="preserve">
     <value>Database response isn't valid.</value>
   </data>
   <data name="PositionTaking" xml:space="preserve">
-    <value>Position Taking</value>
+    <value>거래 조건</value>
   </data>
   <data name="UpdatedFail" xml:space="preserve">
-    <value>Updated failed.</value>
+    <value>Cust 업데이트 설정에 실패하였습니다.</value>
   </data>
   <data name="UpdatedSuccess" xml:space="preserve">
     <value>상태가 성공적으로 업데이트되었습니다.</value>

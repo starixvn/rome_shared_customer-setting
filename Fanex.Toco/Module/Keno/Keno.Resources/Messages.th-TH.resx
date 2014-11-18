@@ -121,25 +121,25 @@
     <value>บัญชีถูกปิดการใช้งาน</value>
   </data>
   <data name="BetSetting" xml:space="preserve">
-    <value>Bet Setting</value>
+    <value>การกำหนดการวางเดิมพัน</value>
   </data>
   <data name="LessThan" xml:space="preserve">
-    <value>should be less than or equal to</value>
+    <value>ควรน้อยกว่า หรือ เท่ากับ</value>
   </data>
   <data name="MoreThan" xml:space="preserve">
-    <value>should be more than or equal to</value>
+    <value>ควรมากกว่า หรือ เท่ากับ</value>
   </data>
   <data name="Msg_0" xml:space="preserve">
-    <value>Updated successfully.</value>
+    <value>อัพเดทเสร็จสมบูรณ์</value>
   </data>
   <data name="Msg_1001" xml:space="preserve">
-    <value>Database response isn't valid.</value>
+    <value>การตอบสนองต่อฐานข้อมูลไม่ถูกต้อง</value>
   </data>
   <data name="PositionTaking" xml:space="preserve">
-    <value>Position Taking</value>
+    <value>ค่าความเสี่ยง</value>
   </data>
   <data name="UpdatedFail" xml:space="preserve">
-    <value>Updated failed.</value>
+    <value>อัพเดทการตั้งค่าของลูกค้าล้มเหลว</value>
   </data>
   <data name="UpdatedSuccess" xml:space="preserve">
     <value>สถานะการปรับปรุงเรียบร้อยแล้ว</value>

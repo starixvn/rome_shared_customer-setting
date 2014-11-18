@@ -118,159 +118,201 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Agent" xml:space="preserve">
-    <value>Agent</value>
+    <value>에이전트</value>
   </data>
   <data name="AgentComm" xml:space="preserve">
-    <value>Agent Comm</value>
+    <value>에이전트 수수료</value>
   </data>
   <data name="AgentMaxPT" xml:space="preserve">
-    <value>Agent Max PT</value>
+    <value>에이전트 최대 PT</value>
   </data>
   <data name="AgentMinPT" xml:space="preserve">
-    <value>Agent Min PT</value>
+    <value>에이전트 최소 PT</value>
   </data>
   <data name="AgentPresetPT" xml:space="preserve">
-    <value>Agent Preset PT</value>
+    <value>에이전트 프리셋 PT</value>
   </data>
   <data name="AgentPT" xml:space="preserve">
-    <value>Agent PT</value>
+    <value>에이전트 PT</value>
   </data>
   <data name="BetSetting" xml:space="preserve">
-    <value>Bet Setting</value>
+    <value>배팅 설정</value>
   </data>
   <data name="BettingLimit" xml:space="preserve">
-    <value>Betting Limit</value>
+    <value>베팅 한도</value>
   </data>
   <data name="CustomerInfo" xml:space="preserve">
-    <value>CustomerInfo</value>
+    <value>회원정보</value>
   </data>
   <data name="DailyAutoMessege" xml:space="preserve">
-    <value>Daily auto reset limit (at 12 noon GMT+8)</value>
+    <value>제한된 자동 새로설정 ( 낮 12시 GMT +8)</value>
   </data>
   <data name="Downline" xml:space="preserve">
-    <value>Downline</value>
+    <value>하부라인</value>
   </data>
   <data name="Enable" xml:space="preserve">
-    <value>Enable</value>
+    <value>활성화</value>
   </data>
   <data name="Fax" xml:space="preserve">
-    <value>Fax</value>
+    <value>팩스</value>
   </data>
   <data name="FirstName" xml:space="preserve">
-    <value>First Name</value>
+    <value>이름</value>
   </data>
   <data name="GameSetting" xml:space="preserve">
-    <value>Game Setting</value>
+    <value>게임셋팅</value>
   </data>
   <data name="GameType" xml:space="preserve">
-    <value>Game Type</value>
+    <value>게임 형식</value>
   </data>
   <data name="LastName" xml:space="preserve">
-    <value>Last Name</value>
+    <value>성</value>
   </data>
   <data name="Master" xml:space="preserve">
-    <value>Master</value>
+    <value>마스터</value>
   </data>
   <data name="MasterAutoPresetPT" xml:space="preserve">
-    <value>Master Auto Preset PT</value>
+    <value>자동으로 마스터 미리 조정하기</value>
   </data>
   <data name="MasterAutoPT" xml:space="preserve">
-    <value>Master Auto PT</value>
+    <value>마스터 자동 PT</value>
   </data>
   <data name="MasterComm" xml:space="preserve">
-    <value>Master Comm</value>
+    <value>마스터 수수료</value>
   </data>
   <data name="MasterMaxPT" xml:space="preserve">
-    <value>Master Max PT</value>
+    <value>마스터 최대 PT</value>
   </data>
   <data name="MasterMinPT" xml:space="preserve">
-    <value>Master Min PT</value>
+    <value>마스터 최소 PT</value>
   </data>
   <data name="MasterPresetPT" xml:space="preserve">
-    <value>Master Preset PT</value>
+    <value>마스터 프리셋 PT</value>
   </data>
   <data name="MasterPT" xml:space="preserve">
-    <value>Master PT</value>
+    <value>마스터 PT</value>
   </data>
   <data name="Member" xml:space="preserve">
-    <value>Member</value>
+    <value>회원</value>
   </data>
   <data name="MemberComm" xml:space="preserve">
-    <value>Member Comm</value>
+    <value>회원 수수료</value>
   </data>
   <data name="MemberMaxTransferCredit" xml:space="preserve">
-    <value>Member Max Transfer Credit</value>
+    <value>회원의 최대지급포인트(크레딧)</value>
   </data>
   <data name="MobilePhone" xml:space="preserve">
-    <value>Mobile Phone</value>
+    <value>핸드폰</value>
   </data>
   <data name="NickName" xml:space="preserve">
-    <value>Nick Name</value>
+    <value>닉네임</value>
   </data>
   <data name="Phone" xml:space="preserve">
-    <value>Phone</value>
+    <value>전화</value>
   </data>
   <data name="PTComm" xml:space="preserve">
-    <value>Postion Taking/Commission</value>
+    <value>포지션테이킹/수수료</value>
   </data>
   <data name="Super" xml:space="preserve">
-    <value>Super</value>
+    <value>슈퍼</value>
   </data>
   <data name="SuperAutoPresetPT" xml:space="preserve">
-    <value>Super Auto Preset PT</value>
+    <value>자동으로 슈퍼 미리 조정하기</value>
   </data>
   <data name="SuperAutoPT" xml:space="preserve">
-    <value>Super Auto PT</value>
+    <value>슈퍼 자동 PT</value>
   </data>
   <data name="SuperCommission" xml:space="preserve">
-    <value>Super Commission</value>
+    <value>슈퍼 수수료</value>
   </data>
   <data name="SuperMaxPT" xml:space="preserve">
-    <value>Super Max PT</value>
+    <value>슈퍼 최대 PT</value>
   </data>
   <data name="SuperPresetPT" xml:space="preserve">
-    <value>Super Preset PT</value>
+    <value>슈퍼 프리셋 PT</value>
   </data>
   <data name="SuperPT" xml:space="preserve">
-    <value>Super PT</value>
+    <value>슈퍼 PT</value>
   </data>
   <data name="UpdateKenoSetting" xml:space="preserve">
     <value>Update Keno Setting</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>Username</value>
+    <value>사용자 이름</value>
   </data>
   <data name="Downlines" xml:space="preserve">
-    <value>Downlines</value>
+    <value>하부라인</value>
   </data>
   <data name="EnableStatus" xml:space="preserve">
     <value>Enable Status</value>
   </data>
   <data name="MaxBet" xml:space="preserve">
-    <value>MaxBet</value>
+    <value>최대 배팅</value>
   </data>
   <data name="MaxPerMatch" xml:space="preserve">
-    <value>MaxPerMatch</value>
+    <value>경기당 최대 값</value>
   </data>
   <data name="MinBet" xml:space="preserve">
-    <value>MinBet</value>
+    <value>최소 배팅</value>
   </data>
   <data name="CountryMarket" xml:space="preserve">
     <value>Country/Market</value>
   </data>
   <data name="PositionTaking" xml:space="preserve">
-    <value>Position Taking</value>
+    <value>거래 조건</value>
   </data>
   <data name="SuperMinPT" xml:space="preserve">
-    <value>Super Min PT</value>
+    <value>슈퍼 최소PT</value>
   </data>
   <data name="IsAuto" xml:space="preserve">
-    <value>Is Auto</value>
+    <value>자동</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>모든</value>
   </data>
   <data name="EnableDownlines" xml:space="preserve">
     <value>다운라인 활성화하기</value>
+  </data>
+  <data name="lblChangePTTo" xml:space="preserve">
+    <value>모든회원의 거래조건을 바꾸기를 원하십니까</value>
+  </data>
+  <data name="lblConfirm" xml:space="preserve">
+    <value>Confirm Update Members's PT</value>
+  </data>
+  <data name="lblHaveChangeAgentPositionTaking" xml:space="preserve">
+    <value>해당 에이전트는 자동 거래조건을 설정 하지 못하게 변경 하였습니다</value>
+  </data>
+  <data name="lblHaveChangeMasterPositionTaking" xml:space="preserve">
+    <value>해당 마스터의 자동 거래조건을 설정 하지 못하게 변경 하였습니다</value>
+  </data>
+  <data name="lblYes" xml:space="preserve">
+    <value>예</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>업데이트</value>
+  </data>
+  <data name="EditKeno" xml:space="preserve">
+    <value>Edit Keno</value>
+  </data>
+  <data name="lblMaxBet" xml:space="preserve">
+    <value>최대 배팅</value>
+  </data>
+  <data name="lblMaxPerMatch" xml:space="preserve">
+    <value>경기당 최대 값</value>
+  </data>
+  <data name="lblMinBet" xml:space="preserve">
+    <value>최소 배팅</value>
+  </data>
+  <data name="EditMultipleKeno" xml:space="preserve">
+    <value>Edit Multiple Keno</value>
+  </data>
+  <data name="lblCopyAllBetSetting" xml:space="preserve">
+    <value>아래의 베팅 설정을 호주 으로 부터 모두 복사 </value>
+  </data>
+  <data name="lblCopyAllPT" xml:space="preserve">
+    <value>아래의 포지션 테이킹 설정을 호주으로 부터 모두 복사</value>
+  </data>
+  <data name="lblCopyAllStatus" xml:space="preserve">
+    <value>Copy all below status from Australia Acttab</value>
   </data>
 </root>

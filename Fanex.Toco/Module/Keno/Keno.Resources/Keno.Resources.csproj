@@ -58,10 +58,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ViewLang.vi-VN.resx" />
     <EmbeddedResource Include="LayoutTexts.ko-KR.resx" />
     <EmbeddedResource Include="LayoutTexts.ja-JP.resx" />
     <EmbeddedResource Include="LayoutTexts.th-TH.resx" />
+    <EmbeddedResource Include="LayoutTexts.vi-VN.resx" />
     <EmbeddedResource Include="LayoutTexts.zh-TW.resx" />
+    <EmbeddedResource Include="Messages.vi-VN.resx" />
     <EmbeddedResource Include="ViewLang.th-TH.resx" />
     <EmbeddedResource Include="ViewLang.ko-KR.resx" />
     <EmbeddedResource Include="ViewLang.js-JP.resx" />
