@@ -116,7 +116,7 @@
     <Setting Key="Acc_CustomerSelComEditOverride_SAg" SpName="Acc_CustomerSelComEditOverride_SAg" DbName="archive" Plain="0" />
     <Setting Key="Age_CustomerSelCheckBelonging_ByUsername" SpName="Age_CustomerSelCheckBelonging_ByUsername" DbName="archive" Plain="0" />
     <Setting Key="Acc_UpdBingoStatus" SpName="Acc_UpdBingoStatus" DbName="main" Plain="0" />
-    <Setting Key="Acc_UpdCSStatus" SpName="Acc_UpdCSStatus" DbName="main" Plain="0" />
+    <Setting Key="Acc_UpdCSStatus" SpName="Acc_UpdCSStatus_Cust" DbName="main" Plain="0" />
     <Setting Key="Age_GetCSStatus" SpName="Age_GetCSStatus" DbName="archive" Plain="0" />
     <Setting Key="Acc_Con_FileNameSelByCustID" SpName="Acc_Con_FileNameSelByCustID" DbName="archive" Plain="0" />
   </Function>
