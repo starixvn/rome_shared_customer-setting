@@ -42,6 +42,8 @@ namespace Fanex.CustomerSetting.Module.Casino.ViewModels
         public decimal? Um2 { get; set; }
         public decimal? Us1 { get; set; }
         public decimal? Us3 { get; set; }
+        public bool? IsUpdateAllMember { get; set; }
+        public decimal? NewMemberPT { get; set; }
     }
 
     public class Commission

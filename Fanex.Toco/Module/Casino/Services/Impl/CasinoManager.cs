@@ -209,6 +209,10 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 gameGroup.M3 = !synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
                 gameGroup.M2 = Utils.ToDecimal(row["MPositionTaking"]).Format(2); // !synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
 
+                // Master Auto PT
+                gameGroup.Im2 = Utils.ToBoolean(row["IsAutoMPositionTaking"]);
+                gameGroup.Um2 = Utils.ToDecimal(row["AutoMPositionTaking"]).Format(2);
+
                 // Agent Max PT
                 gameGroup.A2 = synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
 
@@ -542,7 +546,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     fromSystem,
                     customerModel.IsAutoReset,
                     false,
-                    false);
+                    false,
+                    customerModel.IsDisableAutoMPT);
             }
             catch (Exception)
             {
@@ -657,7 +662,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     fromSystem,
                     customerModel.IsAutoReset,
                     false,
-                    false);
+                    false,
+                    customerModel.IsDisableAutoMPT);
             }
             catch (Exception)
             {
@@ -772,7 +778,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     fromSystem,
                     customerModel.IsAutoReset,
                     false,
-                    false);
+                    false,
+                    customerModel.IsDisableAutoMPT);
             }
             catch (Exception)
             {
@@ -887,7 +894,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     fromSystem,
                     customerModel.IsAutoReset,
                     false,
-                    false);
+                    false,
+                    customerModel.IsDisableAutoMPT);
             }
             catch (Exception)
             {
@@ -1117,6 +1125,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 !(roleId == Agent || roleId == Member) ? null : (object)gameGroup.N3,
                                 gameGroup.Is3 == true ? 1 : 0,
                                 !gameGroup.Is3 == true ? null : (object)gameGroup.Us3,
+                                 gameGroup.Im2 == true ? 1 : 0,
+                                !gameGroup.Im2 == true ? null : (object)gameGroup.Um2,
                                 !(roleId == Super || roleId == Master || roleId == Agent) ? null : (object)gameGroup.N3,
                                 0,
                                 roleId != Super ? null : (object)gameGroup.Sco,
@@ -1145,6 +1155,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 !(roleId == Agent || roleId == Member) ? null : (object)gameType.N3,
                                 gameType.Is3 == true ? 1 : 0,
                                 !gameType.Is3 == true ? null : (object)gameType.Us3,
+                                 gameType.Im2 == true ? 1 : 0,
+                                !gameType.Im2 == true ? null : (object)gameType.Um2,
                                 !(roleId == Super || roleId == Master || roleId == Member) ? null : (object)gameType.N3,
                                 0,
                                 roleId != Super ? null : (object)gameType.Sco,
@@ -1239,6 +1251,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 !(roleId == Agent || roleId == Member) ? null : (object)gameGroup.A2,
                                 gameGroup.Is1 == true ? 1 : 0,
                                 !gameGroup.Is1 == true ? null : (object)gameGroup.Us1,
+                                gameGroup.Im2 == true ? 1 : 0,
+                                !gameGroup.Im2 == true ? null : (object)gameGroup.Um2,
                                 !(roleId == Super || roleId == Master || roleId == Agent) ? null : (object)gameGroup.N2,
                                 0,
                                 roleId != Super ? null : (object)gameGroup.Sco,
@@ -1267,6 +1281,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 !(roleId == Agent || roleId == Member) ? null : (object)gameType.A2,
                                 gameType.Is1 == true ? 1 : 0,
                                 !gameType.Is1 == true ? null : (object)gameType.Us1,
+                                 gameType.Im2 == true ? 1 : 0,
+                                !gameType.Im2 == true ? null : (object)gameType.Um2,
                                 !(roleId == Super || roleId == Master || roleId == Member) ? null : (object)gameType.N2,
                                 0,
                                 roleId != Super ? null : (object)gameType.Sco,
@@ -1360,6 +1376,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 !(roleId == Agent || roleId == Member) ? null : (object)gameGroup.M1,
                                 0,
                                 null,
+                                0,
+                                null,
                                 null,
                                 0,
                                 roleId != Super ? null : (object)gameGroup.Sco,
@@ -1387,6 +1405,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 !(roleId == Master || roleId == Agent) ? null : (object)gameType.M2,
                                 !(roleId == Agent || roleId == Member) ? null : (object)gameType.M1,
                                 0,
+                                null,
+                                 0,
                                 null,
                                 null,
                                 0,
@@ -1732,6 +1752,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     new DataColumn("APositionTaking"),
                     new DataColumn("IsAutoPositionTaking"),
                     new DataColumn("AutoPositionTaking"),
+                    new DataColumn("IsAutoMPositionTaking"),
+                    new DataColumn("AutoMPositionTaking"),
                     new DataColumn("MinPositionTaking"),
                     new DataColumn("MaxPositionTaking"),
                     new DataColumn("SMAgentRollingRate"),
@@ -1762,6 +1784,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     new DataColumn("APositionTaking"),
                     new DataColumn("IsAutoPositionTaking"),
                     new DataColumn("AutoPositionTaking"),
+                    new DataColumn("IsAutoMPositionTaking"),
+                    new DataColumn("AutoMPositionTaking"),
                     new DataColumn("MinPositionTaking"),
                     new DataColumn("MaxPositionTaking"),
                     new DataColumn("SMAgentRollingRate"),
@@ -1913,7 +1937,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var cust = new Customer();
             var gameTypes = new List<GameType>();
             var dt = cust.GetCustGameType(custId, gameKindID);
-            List<decimal?> mcos = new List<decimal?>(), m3s = new List<decimal?>(), a2s = new List<decimal?>(), n2s = new List<decimal?>();
+            List<decimal?> mcos = new List<decimal?>(), m3s = new List<decimal?>(), um2s = new List<decimal?>(), a2s = new List<decimal?>(), n2s = new List<decimal?>();
 
             foreach (DataRow row in dt.Rows)
             {
@@ -1939,6 +1963,10 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 // Agent Max PT
                 gameType.A2 = synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
 
+                // Master Auto PT
+                gameType.Im2 = Utils.ToBoolean(row["IsAutoPositionTaking"]);
+                gameType.Um2 = Utils.ToDecimal(row["AutoPositionTaking"]).Format(2);
+
                 // Agent Min PT
                 gameType.N2 = !synced ? 0 : Utils.ToDecimal(row["MinPositionTaking"]).Format(2);
 
@@ -1950,6 +1978,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 m3s.Add(gameType.M3);
                 a2s.Add(gameType.A2);
                 n2s.Add(gameType.N2);
+                um2s.Add(gameType.Um2);
 
                 gameTypes.Add(gameType);
             }
@@ -1960,6 +1989,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 gameGroup.M3 = m3s.Max();
                 gameGroup.A2 = a2s.Max();
                 gameGroup.N2 = n2s.Max();
+                gameGroup.Um2 = um2s.Max();
             }
 
             return gameTypes;
