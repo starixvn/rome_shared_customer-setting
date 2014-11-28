@@ -24,6 +24,8 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
                 case "zh-TW": return "ch"; // Traditional
                 case "zh-CN": return "cs"; // Simplified
                 case "ja-JP": return "jp";
+                case "ko-KR": return "ko";
+                case "vi-VN": return "vi";
                 case "th-TH": return "th"; // Thai
                 default: return "en";
             }
