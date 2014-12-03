@@ -410,7 +410,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var gameGroups = new List<GameGroup>();
             var custInfo = this.GetCustInfoIBC(custId, uplineId);
             var cust = new Customer();
-            var dt = cust.GetCustGameKind(custId);
+            var dt = cust.GetCustGameKind_EditMember(custId);
+            var dtmaster = cust.GetCustGameKind(custId);
 
             var casinoSettingUpline = new CasinoCustomer();
 
@@ -428,13 +429,23 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             foreach (DataRow row in dt.Rows)
             {
                 var gameGroup = new GameGroup();
+                var isAutoOnMember = false;
+
+                foreach (DataRow dtrow in dtmaster.Rows)
+                {
+                    if (row["GameKind"].Equals(dtrow["GameKind"]))
+                    {
+                        isAutoOnMember = Utils.ToBoolean(dtrow["MasterIsAutoMPositionTaking"]);
+                        break;
+                    }
+                }
 
                 // Game type info
                 gameGroup.GameGroupID = Utils.ToInt32(row["GameKind"]);
                 gameGroup.GameGroupName = Utils.ToString(row[Lang("GameKindName")]);
 
                 // Super preset PT
-                gameGroup.S4 = Utils.ToDecimal(row["MasterMaxPositionTalking"]).Format(2);
+                gameGroup.S4 = Utils.ToDecimal(row["MasterMaxPositionTaking"]).Format(2);
                 gameGroup.S3 = Utils.ToDecimal(row["SPositionTaking"]).Format(2);
 
                 // Agent preset PT
@@ -442,6 +453,11 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 gameGroup.M2 = Utils.ToDecimal(row["APositionTaking"]).Format(2);
                 var min = Utils.ToDecimal(row["MasterMinPositionTaking"]).Format(2) - Utils.ToDecimal(row["APositionTaking"]).Format(2);
                 gameGroup.N2 = min < 0 ? 0 : min;
+
+                // Master Auto PT
+                gameGroup.Im1 = Utils.ToBoolean(row["IsAutoPositionTaking"]);
+                gameGroup.Im2 = isAutoOnMember;
+                gameGroup.Um1 = Utils.ToDecimal(row["AutoPositionTaking"]).Format(2);
 
                 // Assign game types
                 var gameTypes = this.GetGameTypeMemberByMaster(custId, gameGroup.GameGroupID, ref gameGroup, gameModel.IsPtByGameType);
@@ -2163,6 +2179,11 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 gameType.M2 = Utils.ToDecimal(row["APositionTaking"]).Format(2);
                 var min = Utils.ToDecimal(row["MasterMinPositionTaking"]).Format(2) - Utils.ToDecimal(row["APositionTaking"]).Format(2);
                 gameType.N2 = min < 0 ? 0 : min;
+
+                // Master Auto PT
+                gameType.Im1 = Utils.ToBoolean(row["IsAutoPositionTaking"]);
+                gameType.Im2 = true;
+                gameType.Um1 = Utils.ToDecimal(row["AutoPositionTaking"]).Format(2);
 
                 // Betting limits
                 var stakes = this.GetStakeLevels(custId, gameType.GameTypeID);

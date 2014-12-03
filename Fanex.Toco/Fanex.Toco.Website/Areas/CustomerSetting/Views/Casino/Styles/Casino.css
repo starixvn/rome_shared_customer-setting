@@ -23,3 +23,10 @@
 {
     width: 263px;
 }
+
+.superAutoPtWidth {
+    width: 167px !important;
+}
+.masterAutoPtWidth {
+    width: 170px;
+}

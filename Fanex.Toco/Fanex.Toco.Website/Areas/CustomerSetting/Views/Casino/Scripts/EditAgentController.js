@@ -8,6 +8,9 @@ function EditAgentController($scope, $element) {
 
     $scope.customer = customerSetting;
 
+   customerModel.isDisableAutoMPT = false;
+   $scope.isDisableAutoMPT = customerModel.isDisableAutoMPT;
+
     $scope.$on('rendered', function () {
         p.appendChild(e);
     });
@@ -16,7 +19,7 @@ function EditAgentController($scope, $element) {
 function GameGroupController($scope) {
     $scope.gameGroup = $scope.$parent.gameGroup;
     var gameGroup = $scope.setting = $scope.gameGroup;
-
+    
     $scope.setupWatch = function () {
         $scope.$watch("setting.m2", function (newValue, oldValue) {
             if (newValue == oldValue) return; // Avoid $apply checking
@@ -89,12 +92,6 @@ function GameGroupController($scope) {
 
             if (newValue) {
                 gameGroup.max = gameGroup.m3;
-
-                ngDialog.open({
-                    template: "ConfirmDialogId",
-                    scope: gameGroup,
-                    closeByCloseButton: true
-                });
             }
             else {
                 var max = gameGroup.m3 - gameGroup.m2;
