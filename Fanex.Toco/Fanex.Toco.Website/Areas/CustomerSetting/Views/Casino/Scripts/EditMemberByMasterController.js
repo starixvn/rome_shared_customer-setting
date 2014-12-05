@@ -68,7 +68,7 @@ function GameGroupController($scope) {
     }
 
 
-    $scope.$watch("setting.im2", function (newValue, oldValue) {
+    $scope.$watch("setting.im1", function (newValue, oldValue) {
         if (newValue == oldValue) return; // Avoid $apply checking
 
         var min = gameGroup.n2;
@@ -87,7 +87,7 @@ function GameGroupController($scope) {
             for (var i = 0; i < c; i++) {
                 var gameType = $scope.gameGroup.gameTypes[i];
 
-                gameType.im2 = newValue;
+                gameType.im1 = newValue;
             }
         }
     });
@@ -99,7 +99,7 @@ function GameGroupController($scope) {
         var max = 0;
         var selected = 0;
 
-        max = gameGroup.m3;
+        max = gameGroup.s4;
         selected = Math.min(max, newValue).ptRound();
         var us3Group = Math.min(max, newValue).ptRound();
 
@@ -114,7 +114,7 @@ function GameGroupController($scope) {
             for (var i = 0; i < c; i++) {
                 var gameType = $scope.gameGroup.gameTypes[i];
 
-                max = gameType.m3;
+                max = gameType.s4;
                 selected = Math.min(max, newValue).ptRound();
 
                 gameType.$um1.warning = us3Group < min || us3Group > max;
@@ -157,14 +157,14 @@ function GameTypeController($scope) {
         });
     }
 
-    $scope.$watch("setting.im2", function (newValue, oldValue) {
+    $scope.$watch("setting.im1", function (newValue, oldValue) {
         // No need to watch, because it's already watched on render action
     });
 
     $scope.$watch("setting.um1", function (newValue, oldValue) {
         if (newValue == oldValue) return; // Avoid $apply checking
 
-        max = gameType.m3;
+        max = gameType.s4;
         selected = Math.min(max, newValue).ptRound();
 
         gameType.um1 = selected;

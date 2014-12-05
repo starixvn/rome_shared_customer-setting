@@ -455,9 +455,9 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 gameGroup.N2 = min < 0 ? 0 : min;
 
                 // Master Auto PT
-                gameGroup.Im1 = Utils.ToBoolean(row["IsAutoPositionTaking"]);
+                gameGroup.Im1 = Utils.ToBoolean(row["IsAutoMPositionTaking"]);
                 gameGroup.Im2 = isAutoOnMember;
-                gameGroup.Um1 = Utils.ToDecimal(row["AutoPositionTaking"]).Format(2);
+                gameGroup.Um1 = Utils.ToDecimal(row["AutoMPositionTaking"]).Format(2);
 
                 // Assign game types
                 var gameTypes = this.GetGameTypeMemberByMaster(custId, gameGroup.GameGroupID, ref gameGroup, gameModel.IsPtByGameType);
@@ -1265,8 +1265,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 !(roleId == Super || roleId == Master) || gameGroup.Is1 == true ? null : (object)gameGroup.M3,
                                 !(roleId == Master || roleId == Agent) ? null : (object)gameGroup.M2,
                                 !(roleId == Agent || roleId == Member) ? null : (object)gameGroup.A2,
-                                gameGroup.Is1 == true ? 1 : 0,
-                                !gameGroup.Is1 == true ? null : (object)gameGroup.Us1,
+                                0,
+                                null,
                                 gameGroup.Im2 == true ? 1 : 0,
                                 !gameGroup.Im2 == true ? null : (object)gameGroup.Um2,
                                 !(roleId == Super || roleId == Master || roleId == Agent) ? null : (object)gameGroup.N2,
@@ -1295,8 +1295,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 !(roleId == Super || roleId == Master) || gameType.Is1 == true ? null : (object)gameType.M3,
                                 !(roleId == Master || roleId == Agent) ? null : (object)gameType.M2,
                                 !(roleId == Agent || roleId == Member) ? null : (object)gameType.A2,
-                                gameType.Is1 == true ? 1 : 0,
-                                !gameType.Is1 == true ? null : (object)gameType.Us1,
+                                 0,
+                                null,
                                  gameType.Im2 == true ? 1 : 0,
                                 !gameType.Im2 == true ? null : (object)gameType.Um2,
                                 !(roleId == Super || roleId == Master || roleId == Member) ? null : (object)gameType.N2,
@@ -1515,6 +1515,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 !(uplineRoleId == Master || uplineRoleId == Agent) ? null : (object)gameGroup.M3,
                                 gameGroup.Is1 == true ? 1 : 0,
                                 !gameGroup.Is1 == true ? null : (object)gameGroup.Us3,
+                                0,
+                                null,
                                 uplineRoleId,
                                 ip,
                                 modifiedId,
@@ -1535,6 +1537,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 !(uplineRoleId == Master || uplineRoleId == Agent) ? null : (object)gameType.M3,
                                 gameType.Is1 == true ? 1 : 0,
                                 !gameType.Is1 == true ? null : (object)gameType.Us3,
+                                 0,
+                                null,
                                 uplineRoleId,
                                 ip,
                                 modifiedId,
@@ -1617,6 +1621,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 !(uplineRoleId == Master || uplineRoleId == Agent) ? null : (object)gameGroup.M3,
                                 0,
                                 null,
+                                 gameGroup.Im1 == true ? 1 : 0,
+                                !gameGroup.Im1 == true ? null : (object)gameGroup.Um1,
                                 uplineRoleId,
                                 ip,
                                 modifiedId,
@@ -1637,6 +1643,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 !(uplineRoleId == Master || uplineRoleId == Agent) ? null : (object)gameType.M3,
                                 0,
                                 null,
+                                 gameType.Im1 == true ? 1 : 0,
+                                !gameType.Im1 == true ? null : (object)gameType.Um1,
                                 uplineRoleId,
                                 ip,
                                 modifiedId,
@@ -1722,6 +1730,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     new DataColumn("MPositionTaking"),
                     new DataColumn("IsAutoPositionTaking"),
                     new DataColumn("AutoPositionTaking"),
+                    new DataColumn("IsAutoMPositionTaking"),
+                    new DataColumn("AutoMPositionTaking"),
                     new DataColumn("RoleId"),
                     new DataColumn("FromIP"),
                     new DataColumn("ModifyBy"),
@@ -1744,6 +1754,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     new DataColumn("MPositionTaking"),
                     new DataColumn("IsAutoPositionTaking"),
                     new DataColumn("AutoPositionTaking"),
+                    new DataColumn("IsAutoMPositionTaking"),
+                    new DataColumn("AutoMPositionTaking"),
                     new DataColumn("RoleId"),
                     new DataColumn("FromIP"),
                     new DataColumn("ModifyBy"),
@@ -1980,8 +1992,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 gameType.A2 = synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
 
                 // Master Auto PT
-                gameType.Im2 = Utils.ToBoolean(row["IsAutoPositionTaking"]);
-                gameType.Um2 = Utils.ToDecimal(row["AutoPositionTaking"]).Format(2);
+                gameType.Im2 = Utils.ToBoolean(row["IsAutoMPositionTaking"]);
+                gameType.Um2 = Utils.ToDecimal(row["AutoMPositionTaking"]).Format(2);
 
                 // Agent Min PT
                 gameType.N2 = !synced ? 0 : Utils.ToDecimal(row["MinPositionTaking"]).Format(2);
@@ -2159,19 +2171,30 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
         {
             var cust = new Customer();
             var gameTypes = new List<GameType>();
-            var dt = cust.GetCustGameType(custId, gameKindID);
+            var dtMaster = cust.GetCustGameType(custId, gameKindID);
+            var dt = cust.GetCustGameType_EditMember(custId, gameKindID);
             List<decimal?> s4s = new List<decimal?>(), m3s = new List<decimal?>(), n2s = new List<decimal?>();
 
             foreach (DataRow row in dt.Rows)
             {
                 var gameType = new GameType();
+                var isAutoOnMember = false;
+
+                foreach (DataRow dtrow in dtMaster.Rows)
+                {
+                    if (row["GameTypeID"].Equals(dtrow["GameTypeID"]))
+                    {
+                        isAutoOnMember = Utils.ToBoolean(dtrow["IsAutoMPositionTaking"]);
+                        break;
+                    }
+                }
 
                 // Game type info
                 gameType.GameTypeID = Utils.ToInt32(row["GameTypeID"]);
                 gameType.GameTypeName = Utils.ToString(row[Lang("GameTypeName")]);
 
                 // Super preset PT
-                gameType.S4 = Utils.ToDecimal(row["MasterMaxPositionTalking"]).Format(2);
+                gameType.S4 = Utils.ToDecimal(row["MasterMaxPositionTaking"]).Format(2);
                 gameType.S3 = Utils.ToDecimal(row["SPositionTaking"]).Format(2);
 
                 // Agent preset PT
@@ -2181,9 +2204,9 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 gameType.N2 = min < 0 ? 0 : min;
 
                 // Master Auto PT
-                gameType.Im1 = Utils.ToBoolean(row["IsAutoPositionTaking"]);
+                gameType.Im1 = Utils.ToBoolean(row["IsAutoMPositionTaking"]);
                 gameType.Im2 = true;
-                gameType.Um1 = Utils.ToDecimal(row["AutoPositionTaking"]).Format(2);
+                gameType.Um1 = Utils.ToDecimal(row["AutoMPositionTaking"]).Format(2);
 
                 // Betting limits
                 var stakes = this.GetStakeLevels(custId, gameType.GameTypeID);

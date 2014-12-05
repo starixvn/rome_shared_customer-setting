@@ -315,20 +315,20 @@ function GameTypeController($scope) {
             gameType.$a2 = toPTSource(gameType.$a2);
         });
 
-//        $scope.$watch("setting.im2", function (newValue, oldValue) {
-//            // No need to watch, because it's already watched on render action
-//        });
+        $scope.$watch("setting.im2", function (newValue, oldValue) {
+            // No need to watch, because it's already watched on render action
+        });
 
-//        $scope.$watch("setting.um2", function (newValue, oldValue) {
-//            if (newValue == oldValue) return; // Avoid $apply checking
+        $scope.$watch("setting.um2", function (newValue, oldValue) {
+            if (newValue == oldValue) return; // Avoid $apply checking
 
-//            max = gameType.m3;
-//            selected = Math.min(max, newValue).ptRound();
+            max = gameType.m3;
+            selected = Math.min(max, newValue).ptRound();
 
-//            gameType.um2 = selected;
-//            gameType.$um2.min = gameType.$um2.max = gameType.$um2.selected = selected;
-//            gameType.$um2 = toPTSource(gameType.$um2);
-//        });
+            gameType.um2 = selected;
+            gameType.$um2.min = gameType.$um2.max = gameType.$um2.selected = selected;
+            gameType.$um2 = toPTSource(gameType.$um2);
+        });
 
         $scope.$watch("setting.a2", function (newValue, oldValue) {
             if (newValue == oldValue) return; // Avoid $apply checking
