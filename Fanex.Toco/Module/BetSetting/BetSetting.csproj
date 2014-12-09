@@ -148,6 +148,7 @@
     <Compile Include="Base\BettingControllerBase.cs" />
     <Compile Include="Controllers\BingoBettingController.cs" />
     <Compile Include="Controllers\CasinoBettingController.cs" />
+    <Compile Include="Controllers\KenoBettingController.cs" />
     <Compile Include="Controllers\LiveCasinoBettingController.cs" />
     <Compile Include="Controllers\RacingBettingController.cs" />
     <Compile Include="Controllers\SportsbookController.cs" />
@@ -173,6 +174,10 @@
     <ProjectReference Include="..\Fanex.Toco.Module.Core\_Core.csproj">
       <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
       <Name>_Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Keno\Keno.KenoSetting\Fanex.CustomerSetting.Module.Keno.KenoSetting.csproj">
+      <Project>{4204CDC3-7A3E-46C6-A97F-4CB07D2DF45E}</Project>
+      <Name>Fanex.CustomerSetting.Module.Keno.KenoSetting</Name>
     </ProjectReference>
     <ProjectReference Include="..\_Security\Security.csproj">
       <Project>{91E16AE3-1209-4BF2-8846-7E36363167B3}</Project>

@@ -122,6 +122,53 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
             return UpdateCustomerSetting(memberSetting);
         }
 
+        /// <summary>
+        /// Updates the bet setting.
+        /// </summary>
+        /// <param name="betSetting">The bet setting.</param>
+        /// <returns>
+        /// The list of results.
+        /// </returns>
+        public IList<Result> UpdateBetSetting(BetSetting betSetting)
+        {
+            var criteria = _criteriaGeneratorService.CreateUpdateBetSettingCriteria(betSetting);
+            IList<Result> results = criteria is InvalidCriteria ? new List<Result>() : _kenoSettingRepository.UpdateBetSetting(criteria);
+
+            foreach (var result in results)
+            {
+                result.ErrorMessage = ReformatErrorMessageForBetSetting(betSetting.BetTypeId, result.ErrorMessage);
+            }
+
+            return results;
+        }
+
+        /// <summary>
+        /// Updates the bet setting.
+        /// </summary>
+        /// <param name="betSetting">The bet setting.</param>
+        /// <param name="custId">Customer id.</param>
+        /// <param name="userId">Admin user id.</param>
+        /// <returns>
+        /// The list of results.
+        /// </returns>
+        public IList<Result> UpdateBetSettingSuper(BetSetting betSetting, int custId, int userId)
+        {
+            _criteriaGeneratorService = new SuperCriteriaGeneratorService(new CustomerInformation()
+            {
+                CustId = custId,
+                UserId = userId
+            });
+            var criteria = _criteriaGeneratorService.CreateUpdateBetSettingCriteria(betSetting);
+            IList<Result> results = criteria is InvalidCriteria ? new List<Result>() : _kenoSettingRepository.UpdateBetSetting(criteria);
+
+            foreach (var result in results)
+            {
+                result.ErrorMessage = ReformatErrorMessageForBetSetting(betSetting.BetTypeId, result.ErrorMessage);
+            }
+
+            return results;
+        }
+
         internal static string ReformatErrorMessageForBetSetting(int betTypeId, string inputMessage)
         {
             string betTypeName = CacheRef.GetBettype(betTypeId);
@@ -189,27 +236,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
 
             return results;
         }
-
-        /// <summary>
-        /// Updates the bet setting.
-        /// </summary>
-        /// <param name="betSetting">The bet setting.</param>
-        /// <returns>
-        /// The list of results.
-        /// </returns>
-        internal IList<Result> UpdateBetSetting(BetSetting betSetting)
-        {
-            var criteria = _criteriaGeneratorService.CreateUpdateBetSettingCriteria(betSetting);
-            IList<Result> results = criteria is InvalidCriteria ? new List<Result>() : _kenoSettingRepository.UpdateBetSetting(criteria);
-
-            foreach (var result in results)
-            {
-                result.ErrorMessage = ReformatErrorMessageForBetSetting(betSetting.BetTypeId, result.ErrorMessage);
-            }
-
-            return results;
-        }
-
+        
         /// <summary>
         /// Updates the position takings.
         /// </summary>
