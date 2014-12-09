@@ -8,7 +8,6 @@ function EditMemberByMasterController($scope, $element) {
 
     $scope.customer = customerSetting;
 
-    customerModel.isDisableAutoMPT = false;
     $scope.isDisableAutoMPT = customerModel.isDisableAutoMPT;
 
     $scope.$on('rendered', function () {
@@ -88,6 +87,11 @@ function GameGroupController($scope) {
                 var gameType = $scope.gameGroup.gameTypes[i];
 
                 gameType.im1 = newValue;
+
+                if (newValue)
+                    gameType.$m3.max = gameType.s4;
+                else
+                    gameType.$m3.max = gameType.s4 - gameType.m2;
             }
         }
     });

@@ -8,7 +8,6 @@ function EditAgentController($scope, $element) {
 
     $scope.customer = customerSetting;
 
-   customerModel.isDisableAutoMPT = false;
    $scope.isDisableAutoMPT = customerModel.isDisableAutoMPT;
 
     $scope.$on('rendered', function () {

@@ -51,7 +51,7 @@
                                 <td class="C ptTitle noneBorderTop tdWidth">
                                     <span data-ng-init="gameGroup.l2 = gameGroup.m3 - gameGroup.m2" data-ng-click="gameGroup.l2 = gameGroup.m3 - gameGroup.m2" class="spanPT"  enable="gameGroup.im2" ptarea="true" min="0" max="m3" selected="m2" data-ng-model="setting"></span>
                                 </td>
-                                  <td   data-ng-hide="isDisableAutoMPT" class="C ptTitle noneBorderTop autoPtWidth">
+                                  <td  data-ng-hide="isDisableAutoMPT" class="C ptTitle noneBorderTop autoPtWidth">
                                     <input type="checkbox" data-ng-model="gameGroup.im2" />
                                     <span enable="gameGroup.im2 == false" class="spanPT" ptarea="true" min="0" max="m3" selected="um2" data-ng-model="setting"></span>
                                 </td>
@@ -126,17 +126,6 @@
     </div>
 </div>
 <script src="@Url.Content("~/Areas/CustomerSetting/Views/Casino/Scripts/EditAgentController.js")" type="text/javascript"></script>
-<script type="text/ng-template" id="withInlineController">
-		<div class="ngdialog-message">
-			<h3>ngDialog template</h3>
-			<p ng-show="theme">Test content for <code>{{theme}}</code></p>
-			<p ng-show="exampleExternalData">Example data from external service: <code>{{exampleExternalData}}</code></p>
-		</div>
-		<div class="ngdialog-buttons">
-			<button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog()">Close</button>
-		</div>
-	</script>
-<script type="text/javascript">
     var customerSetting = $.parseJSON(Fanex.CustomerSetting.Core.DecodeHtml('@settingModel'));
     try {
         //var casinoController = new CasinoController(custId, custName, IsMultiple, custIds, custNames);

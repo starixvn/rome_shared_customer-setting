@@ -498,6 +498,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 custIBC.RoleId = Utils.ToInt32(row["RoleId"]);
                 custIBC.UpperCustID = Utils.ToInt32(row["UpperCustId"]);
                 custIBC.IsAutoReset = Utils.ToBoolean(row["IsAutoReset"]);
+                custIBC.IsDisableAutoMPT = Utils.ToBoolean(row["DisableAutoMPT"]);
 
                 // Get max transfer information
                 if (custIBC.UpperCustID != 0)
@@ -1141,8 +1142,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 !(roleId == Agent || roleId == Member) ? null : (object)gameGroup.N3,
                                 gameGroup.Is3 == true ? 1 : 0,
                                 !gameGroup.Is3 == true ? null : (object)gameGroup.Us3,
-                                 gameGroup.Im2 == true ? 1 : 0,
-                                !gameGroup.Im2 == true ? null : (object)gameGroup.Um2,
+                                0,
+                                null,
                                 !(roleId == Super || roleId == Master || roleId == Agent) ? null : (object)gameGroup.N3,
                                 0,
                                 roleId != Super ? null : (object)gameGroup.Sco,
@@ -1161,7 +1162,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 foreach (var gameType in gameTypes)
                 {
                     gameTypeTable.Rows.Add(
-                        new object[]
+                       new object[]
                             {
                                 custId,
                                 gameType.GameTypeID,
@@ -1171,8 +1172,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 !(roleId == Agent || roleId == Member) ? null : (object)gameType.N3,
                                 gameType.Is3 == true ? 1 : 0,
                                 !gameType.Is3 == true ? null : (object)gameType.Us3,
-                                 gameType.Im2 == true ? 1 : 0,
-                                !gameType.Im2 == true ? null : (object)gameType.Um2,
+                                 0,
+                                 null,
                                 !(roleId == Super || roleId == Master || roleId == Member) ? null : (object)gameType.N3,
                                 0,
                                 roleId != Super ? null : (object)gameType.Sco,
@@ -1299,7 +1300,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 null,
                                  gameType.Im2 == true ? 1 : 0,
                                 !gameType.Im2 == true ? null : (object)gameType.Um2,
-                                !(roleId == Super || roleId == Master || roleId == Member) ? null : (object)gameType.N2,
+                                !(roleId == Super || roleId == Master || roleId == Agent) ? null : (object)gameType.N2,
                                 0,
                                 roleId != Super ? null : (object)gameType.Sco,
                                 roleId != Master ? null : (object)gameType.Mco,
@@ -1313,8 +1314,9 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 fromSystem
                             });
 
-                    gameStakeTable.Rows.Add(
-                        new object[]
+
+                    var gameStakeTableTmp =
+                          new object[]
                             {
                                 custId,
                                 gameType.GameTypeID,
@@ -1324,7 +1326,11 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 modifiedId,
                                 modifiedBy,
                                 fromSystem
-                            });
+                            };
+
+                    gameStakeTable.Rows.Add(
+                        gameStakeTableTmp
+                      );
                 }
             }
 
