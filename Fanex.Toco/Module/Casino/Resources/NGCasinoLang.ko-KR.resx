@@ -165,12 +165,6 @@
   <data name="lblDailyAutoResetLimit" xml:space="preserve">
     <value>제한된 자동 새로설정 ( 낮 12시 GMT +8)</value>
   </data>
-  <data name="lblEditLiveCasino" xml:space="preserve">
-    <value>라이브 카지노 편집</value>
-  </data>
-  <data name="lblEditMultipleLiveCasino" xml:space="preserve">
-    <value>라이브 카지노 멀티 수정</value>
-  </data>
   <data name="lblEnable" xml:space="preserve">
     <value>카지노 활성화</value>
   </data>
@@ -338,5 +332,11 @@
   </data>
   <data name="_104" xml:space="preserve">
     <value>최대 지급금액: 성공적으로 업데이트하였습니다.</value>
+  </data>
+  <data name="lbeditmultcasino" xml:space="preserve">
+    <value>멀티플 카지노 수정하기</value>
+  </data>
+  <data name="lbleditcasino" xml:space="preserve">
+    <value>카지노 수정</value>
   </data>
 </root>

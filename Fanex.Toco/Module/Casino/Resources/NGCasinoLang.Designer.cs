@@ -160,6 +160,15 @@ namespace Fanex.CustomerSetting.Module.Casino.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Multiple Casino.
+        /// </summary>
+        public static string lbeditmultcasino {
+            get {
+                return ResourceManager.GetString("lbeditmultcasino", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Accumulated transferable amount.
         /// </summary>
         public static string lblAccumulatedWinLoss {
@@ -286,20 +295,11 @@ namespace Fanex.CustomerSetting.Module.Casino.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit Live Casino.
+        ///   Looks up a localized string similar to Edit Casino.
         /// </summary>
-        public static string lblEditLiveCasino {
+        public static string lbleditcasino {
             get {
-                return ResourceManager.GetString("lblEditLiveCasino", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Edit Multiple Live Casino.
-        /// </summary>
-        public static string lblEditMultipleLiveCasino {
-            get {
-                return ResourceManager.GetString("lblEditMultipleLiveCasino", resourceCulture);
+                return ResourceManager.GetString("lbleditcasino", resourceCulture);
             }
         }
         
@@ -394,7 +394,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Master Auto Position Taking.
+        ///   Looks up a localized string similar to Master Auto PT.
         /// </summary>
         public static string lblMasterAutoPT {
             get {

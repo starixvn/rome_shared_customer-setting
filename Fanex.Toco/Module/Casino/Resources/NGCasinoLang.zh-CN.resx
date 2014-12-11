@@ -165,12 +165,6 @@
   <data name="lblDailyAutoResetLimit" xml:space="preserve">
     <value>每日限额自动重设. (GMT+8 中午12时正)</value>
   </data>
-  <data name="lblEditLiveCasino" xml:space="preserve">
-    <value>修改娱乐厅</value>
-  </data>
-  <data name="lblEditMultipleLiveCasino" xml:space="preserve">
-    <value>修改多重真人荷官</value>
-  </data>
   <data name="lblEnable" xml:space="preserve">
     <value>开启娱乐城</value>
   </data>
@@ -344,5 +338,11 @@
   </data>
   <data name="_104" xml:space="preserve">
     <value>最高赢取倍数: </value>
+  </data>
+  <data name="lbeditmultcasino" xml:space="preserve">
+    <value>修改多重娱乐城</value>
+  </data>
+  <data name="lbleditcasino" xml:space="preserve">
+    <value>修改娱乐城</value>
   </data>
 </root>

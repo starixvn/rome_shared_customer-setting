@@ -39,6 +39,9 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             customerInfo.UplineRoleId = uplineId != 0 ? customerUpline.RoleId : 5;
             customerInfo.IsAutoReset = !customerInfo.CasinoSync ? true : customerInfo.IsAutoReset;
 
+            //// For get autoMaster.
+            customerInfo.IsDisableAutoMPT = customerUpline.IsDisableAutoMPT;
+
             if (uplineId != 0 && customerUpline.RoleId == customerInfo.RoleId)
             {
                 customerInfo.RoleId = customerUpline.RoleId - 1;

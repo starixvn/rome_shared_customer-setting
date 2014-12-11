@@ -498,7 +498,11 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 custIBC.RoleId = Utils.ToInt32(row["RoleId"]);
                 custIBC.UpperCustID = Utils.ToInt32(row["UpperCustId"]);
                 custIBC.IsAutoReset = Utils.ToBoolean(row["IsAutoReset"]);
-                custIBC.IsDisableAutoMPT = Utils.ToBoolean(row["DisableAutoMPT"]);
+
+                if (custIBC.RoleId == Master)
+                {
+                    custIBC.IsDisableAutoMPT = Utils.ToBoolean(row["DisableAutoMPT"]);
+                }
 
                 // Get max transfer information
                 if (custIBC.UpperCustID != 0)

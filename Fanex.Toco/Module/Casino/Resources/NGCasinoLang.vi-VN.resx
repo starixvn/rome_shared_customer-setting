@@ -165,12 +165,6 @@
   <data name="lblDailyAutoResetLimit" xml:space="preserve">
     <value>Tự động reset giới hạn chuyển khoản  mỗi ngày (12 trưa GMT+8)</value>
   </data>
-  <data name="lblEditMultipleLiveCasino" xml:space="preserve">
-    <value>Tùy chỉnh đồng loạt cho Live Casino</value>
-  </data>
-  <data name="lblEnable" xml:space="preserve">
-    <value>Cho phép Casino</value>
-  </data>
   <data name="lblFax" xml:space="preserve">
     <value>Fax</value>
   </data>
@@ -338,5 +332,11 @@
   </data>
   <data name="_104" xml:space="preserve">
     <value>Tiền thắng cược lớn nhất: Câp nhật thành công</value>
+  </data>
+  <data name="lbeditmultcasino" xml:space="preserve">
+    <value>Tùy chỉnh đồng loạt cho  Casino</value>
+  </data>
+  <data name="lbleditcasino" xml:space="preserve">
+    <value>Cho phép Casino</value>
   </data>
 </root>

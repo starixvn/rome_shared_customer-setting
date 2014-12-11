@@ -88,7 +88,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\_Dependencies\Web\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\_Dependencies\Web\Newtonsoft.Json.dll-3.5\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Sunplus.Libraries.AOP, Version=1.0.4218.28561, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -170,7 +170,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\ModuleRegistrator.cs" />
+    <Compile Include="Controllers\App_Start\ModuleRegistrator.cs" />
     <Compile Include="Controllers\AgentController.cs" />
     <Compile Include="Controllers\SuperController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
@@ -227,6 +227,9 @@
     <EmbeddedResource Include="Resources\NGCasinoLang.zh-CN.resx" />
     <EmbeddedResource Include="Resources\NGCasinoLang.zh-TW.resx" />
     <EmbeddedResource Include="Resources\NGCasinoLang.ja-JP.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

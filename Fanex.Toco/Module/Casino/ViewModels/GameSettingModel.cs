@@ -13,6 +13,8 @@ namespace Fanex.CustomerSetting.Module.Casino.ViewModels
 
         public bool IsPtByGameType { get; set; }
 
+        public bool IsReadOnly { get; set; }
+
         public List<GameGroup> GameGroups { get; set; }
     }
 

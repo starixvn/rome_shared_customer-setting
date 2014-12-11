@@ -171,12 +171,6 @@
   <data name="lblDailyAutoResetLimit" xml:space="preserve">
     <value>Daily auto reset limit (at 12 noon GMT+8)</value>
   </data>
-  <data name="lblEditLiveCasino" xml:space="preserve">
-    <value>Edit Live Casino</value>
-  </data>
-  <data name="lblEditMultipleLiveCasino" xml:space="preserve">
-    <value>Edit Multiple Live Casino</value>
-  </data>
   <data name="lblEnable" xml:space="preserve">
     <value>Enable Casino</value>
   </data>
@@ -205,7 +199,7 @@
     <value>Auto Master Preset</value>
   </data>
   <data name="lblMasterAutoPT" xml:space="preserve">
-    <value>Master Auto Position Taking</value>
+    <value>Master Auto PT</value>
   </data>
   <data name="lblMasterComm" xml:space="preserve">
     <value>Master Commission</value>
@@ -362,5 +356,11 @@
   </data>
   <data name="reset" xml:space="preserve">
     <value>Reset</value>
+  </data>
+  <data name="lbeditmultcasino" xml:space="preserve">
+    <value>Edit Multiple Casino</value>
+  </data>
+  <data name="lbleditcasino" xml:space="preserve">
+    <value>Edit Casino</value>
   </data>
 </root>
