@@ -75,8 +75,10 @@
                 url.indexOf('virtualsportsbetting') != -1 ? 2 :
                 url.indexOf('livecasinobetting') != -1 ? 3 :
                 url.indexOf('bingobetting') != -1 ? 4 :
-                url.indexOf('casinobetting') != -1 ? 5 : 0;
-                url.indexOf('kenobetting') != -1 ? 6 : 0;
+                url.indexOf('casinobetting') != -1 ? 5 :
+            url.indexOf('kenobetting') != -1 ? 6 : 0;
+
+            console.log(index);
 
             $('#tabs').tabs({ selected: index });
 
