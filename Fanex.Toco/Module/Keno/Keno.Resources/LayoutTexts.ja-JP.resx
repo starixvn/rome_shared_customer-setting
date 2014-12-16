@@ -273,4 +273,49 @@
   <data name="EnableDownlines" xml:space="preserve">
     <value>Enable Downlines</value>
   </data>
+  <data name="lblChangePTTo" xml:space="preserve">
+    <value>Do you want to update all member's position taking to</value>
+  </data>
+  <data name="lblConfirm" xml:space="preserve">
+    <value>Confirm Update Members's PT</value>
+  </data>
+  <data name="lblHaveChangeAgentPositionTaking" xml:space="preserve">
+    <value>You have changed this agent not to take auto position taking.</value>
+  </data>
+  <data name="lblHaveChangeMasterPositionTaking" xml:space="preserve">
+    <value>You have changed this master not to take auto position taking.</value>
+  </data>
+  <data name="lblNo" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="lblYes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="EditKeno" xml:space="preserve">
+    <value>Edit Keno</value>
+  </data>
+  <data name="lblMaxBet" xml:space="preserve">
+    <value>Max Bet</value>
+  </data>
+  <data name="lblMaxPerMatch" xml:space="preserve">
+    <value>Max Per Match</value>
+  </data>
+  <data name="lblMinBet" xml:space="preserve">
+    <value>Min Bet</value>
+  </data>
+  <data name="EditMultipleKeno" xml:space="preserve">
+    <value>Edit Multiple Keno</value>
+  </data>
+  <data name="lblCopyAllBetSetting" xml:space="preserve">
+    <value>Copy All Bet Setting from Australia Acttab</value>
+  </data>
+  <data name="lblCopyAllPT" xml:space="preserve">
+    <value>Copy all Position Taking from Australia Acttab</value>
+  </data>
+  <data name="lblCopyAllStatus" xml:space="preserve">
+    <value>Copy all below status from Australia Acttab</value>
+  </data>
 </root>

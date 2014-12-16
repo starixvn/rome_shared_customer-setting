@@ -118,159 +118,204 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Agent" xml:space="preserve">
-    <value>Agent</value>
+    <value>ตัวแทน</value>
   </data>
   <data name="AgentComm" xml:space="preserve">
-    <value>Agent Comm</value>
+    <value>คอมมิชชั่นของ Agent</value>
   </data>
   <data name="AgentMaxPT" xml:space="preserve">
-    <value>Agent Max PT</value>
+    <value>ค่าแบ่งสู้สูงสุดของเอเย่น</value>
   </data>
   <data name="AgentMinPT" xml:space="preserve">
-    <value>Agent Min PT</value>
+    <value>ค่าแบ่งสู้ต่ำสุดของเอเย่น</value>
   </data>
   <data name="AgentPresetPT" xml:space="preserve">
-    <value>Agent Preset PT</value>
+    <value>เอี่ยของเอเย่นที่ตั้งไว้ก่อนหน้า</value>
   </data>
   <data name="AgentPT" xml:space="preserve">
-    <value>Agent PT</value>
+    <value>ค่าแบ่งสู้ของเอเย่น</value>
   </data>
   <data name="BetSetting" xml:space="preserve">
-    <value>Bet Setting</value>
+    <value>การกำหนดการวางเดิมพัน</value>
   </data>
   <data name="BettingLimit" xml:space="preserve">
-    <value>Betting Limit</value>
+    <value>จำกัดการเดิมพัน</value>
   </data>
   <data name="CustomerInfo" xml:space="preserve">
-    <value>CustomerInfo</value>
+    <value>ข้อมูลลูกค้า</value>
   </data>
   <data name="DailyAutoMessege" xml:space="preserve">
-    <value>Daily auto reset limit (at 12 noon GMT+8)</value>
+    <value>รีเซทร์อัตโนมัติรายวัน ( 12นาฬิกา GMT+8)</value>
   </data>
   <data name="Downline" xml:space="preserve">
-    <value>Downline</value>
+    <value>ดาวน์ไลน์</value>
   </data>
   <data name="Enable" xml:space="preserve">
-    <value>Enable</value>
+    <value>เปิดใช้งาน</value>
   </data>
   <data name="Fax" xml:space="preserve">
-    <value>Fax</value>
+    <value>แฟกซ์</value>
   </data>
   <data name="FirstName" xml:space="preserve">
-    <value>First Name</value>
+    <value>ชื่อ</value>
   </data>
   <data name="GameSetting" xml:space="preserve">
-    <value>Game Setting</value>
+    <value>การตั้งค่าเกม</value>
   </data>
   <data name="GameType" xml:space="preserve">
-    <value>Game Type</value>
+    <value>ประเภทเกม</value>
   </data>
   <data name="LastName" xml:space="preserve">
-    <value>Last Name</value>
+    <value>นามสกุล</value>
   </data>
   <data name="Master" xml:space="preserve">
-    <value>Master</value>
+    <value>ตัวแทนหลัก</value>
   </data>
   <data name="MasterAutoPresetPT" xml:space="preserve">
-    <value>Master Auto Preset PT</value>
+    <value>แบ่งสู้อัตโนมัติของมาสเตอร์</value>
   </data>
   <data name="MasterAutoPT" xml:space="preserve">
-    <value>Master Auto PT</value>
+    <value>ค่าแบ่งสู้อัตโนมัติของมาสเตอร์</value>
   </data>
   <data name="MasterComm" xml:space="preserve">
-    <value>Master Comm</value>
+    <value>คอมมิชชั่นของ Master</value>
   </data>
   <data name="MasterMaxPT" xml:space="preserve">
-    <value>Master Max PT</value>
+    <value>แบ่งสู้สูงสุดของมาสเตอร์</value>
   </data>
   <data name="MasterMinPT" xml:space="preserve">
-    <value>Master Min PT</value>
+    <value>ค่าแบ่งสู้ต่ำสุดของมาสเตอร์</value>
   </data>
   <data name="MasterPresetPT" xml:space="preserve">
-    <value>Master Preset PT</value>
+    <value>เอี่ยของมาสเตอร์ที่ตั้งไว้ก่อนหน้า</value>
   </data>
   <data name="MasterPT" xml:space="preserve">
-    <value>Master PT</value>
+    <value>ค่าแบ่งสู้ของมาสเตอร์</value>
   </data>
   <data name="Member" xml:space="preserve">
-    <value>Member</value>
+    <value>สมาชิก</value>
   </data>
   <data name="MemberComm" xml:space="preserve">
-    <value>Member Comm</value>
+    <value>คอมมิชชั่นของสมาชิก</value>
   </data>
   <data name="MemberMaxTransferCredit" xml:space="preserve">
-    <value>Member Max Transfer Credit</value>
+    <value>วงเงินเครดิตสูงสุดที่สามารถโอนได้</value>
   </data>
   <data name="MobilePhone" xml:space="preserve">
-    <value>Mobile Phone</value>
+    <value>โทรศัพท์มือถือ</value>
   </data>
   <data name="NickName" xml:space="preserve">
-    <value>Nick Name</value>
+    <value>ชื่อเล่น</value>
   </data>
   <data name="Phone" xml:space="preserve">
-    <value>Phone</value>
+    <value>โทรศัพท์</value>
   </data>
   <data name="PTComm" xml:space="preserve">
-    <value>Postion Taking/Commission</value>
+    <value>อัตราแบ่งสู้/คอมมิสชั่น</value>
   </data>
   <data name="Super" xml:space="preserve">
-    <value>Super</value>
+    <value>สูงสุด</value>
   </data>
   <data name="SuperAutoPresetPT" xml:space="preserve">
-    <value>Super Auto Preset PT</value>
+    <value>ระบบอัตโนมัติ ประสิทธิภาพสูงที่ได้ติดตั้งไว้ก่อนแล้ว</value>
   </data>
   <data name="SuperAutoPT" xml:space="preserve">
-    <value>Super Auto PT</value>
+    <value>แบ่งสู้อัตโนมัติของซุปเปอร์</value>
   </data>
   <data name="SuperCommission" xml:space="preserve">
-    <value>Super Commission</value>
+    <value>คอมมิชั่นของซุปเปอร์</value>
   </data>
   <data name="SuperMaxPT" xml:space="preserve">
-    <value>Super Max PT</value>
+    <value>แบ่งสู้สูงสุดของซุปเปรอ์</value>
   </data>
   <data name="SuperPresetPT" xml:space="preserve">
-    <value>Super Preset PT</value>
+    <value>เอี่ยของซุปเปรอ์ที่ตั้งไว้ก่อนหน้า</value>
   </data>
   <data name="SuperPT" xml:space="preserve">
-    <value>Super PT</value>
+    <value>ค่าแบ่งสู้ของซุปเปอร์</value>
   </data>
   <data name="UpdateKenoSetting" xml:space="preserve">
-    <value>Update Keno Setting</value>
+    <value>อัพเดทการตั้งค่าคีโน่</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>Username</value>
+    <value>ชื่อผู้ใช้ระบบ</value>
   </data>
   <data name="Downlines" xml:space="preserve">
-    <value>Downlines</value>
+    <value>ดาวน์ไลน์</value>
   </data>
   <data name="EnableStatus" xml:space="preserve">
-    <value>Enable Status</value>
+    <value>สถานะเปิด</value>
   </data>
   <data name="MaxBet" xml:space="preserve">
-    <value>MaxBet</value>
+    <value>ค่าเดิมพันสูงสุด</value>
   </data>
   <data name="MaxPerMatch" xml:space="preserve">
-    <value>MaxPerMatch</value>
+    <value>ค่าเดิมพันสูงสุดต่อคู่การแข่งขัน</value>
   </data>
   <data name="MinBet" xml:space="preserve">
-    <value>MinBet</value>
+    <value>ค่าเดิมพันต้ำสุด</value>
   </data>
   <data name="CountryMarket" xml:space="preserve">
-    <value>Country/Market</value>
+    <value>ประเทศ/ตลาด</value>
   </data>
   <data name="PositionTaking" xml:space="preserve">
-    <value>Position Taking</value>
+    <value>ค่าความเสี่ยง</value>
   </data>
   <data name="SuperMinPT" xml:space="preserve">
-    <value>Super Min PT</value>
+    <value>แบ่งสู้ต่ำสุดของซุปเปรอ์</value>
   </data>
   <data name="IsAuto" xml:space="preserve">
-    <value>Is Auto</value>
+    <value>คืออัตโนมัติ</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>ทั้งหมด</value>
   </data>
   <data name="EnableDownlines" xml:space="preserve">
     <value>เปิดใช้งาน ดาวไลน์</value>
+  </data>
+  <data name="lblChangePTTo" xml:space="preserve">
+    <value>คุณต้องการจะอัพเดทแบ่งสู้บนสมาชิกทั้งหมกหรือไม่</value>
+  </data>
+  <data name="lblHaveChangeAgentPositionTaking" xml:space="preserve">
+    <value>คุณได้เปลี่ยนเอเย่นท่านนี้ไม่ถือแบ่งสู้อัตโนมัติ</value>
+  </data>
+  <data name="lblHaveChangeMasterPositionTaking" xml:space="preserve">
+    <value>คุณได้ทำการเปลี่ยนตัวแทนหลักและ ไม่ได้เลือกตำแหน่งอัตโนมัติ</value>
+  </data>
+  <data name="lblConfirm" xml:space="preserve">
+    <value>ยืนยันการอัพเดทการตั้งค่าความเสี่ยง</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>ล่าสุด</value>
+  </data>
+  <data name="EditKeno" xml:space="preserve">
+    <value>แก้ไขคีโน่</value>
+  </data>
+  <data name="lblMaxBet" xml:space="preserve">
+    <value>ค่าเดิมพันสูงสุด</value>
+  </data>
+  <data name="lblMaxPerMatch" xml:space="preserve">
+    <value>ค่าเดิมพันสูงสุดต่อคู่การแข่งขัน</value>
+  </data>
+  <data name="lblMinBet" xml:space="preserve">
+    <value>ค่าเดิมพันต้ำสุด</value>
+  </data>
+  <data name="lblNo" xml:space="preserve">
+    <value>ไม่</value>
+  </data>
+  <data name="lblYes" xml:space="preserve">
+    <value>ตกลง</value>
+  </data>
+  <data name="EditMultipleKeno" xml:space="preserve">
+    <value>แก้ไขคีโน่หลายทาง</value>
+  </data>
+  <data name="lblCopyAllBetSetting" xml:space="preserve">
+    <value>คัดลอกการตั้งค่าการเดิมพันทั้งหมดจากออสเตรเลีย</value>
+  </data>
+  <data name="lblCopyAllPT" xml:space="preserve">
+    <value>คัดลอกการตั้งค่าความเสี่ยงตามด้านล่างทั้งหมดจากออสเตรเลีย</value>
+  </data>
+  <data name="lblCopyAllStatus" xml:space="preserve">
+    <value>คัดลอกการตั้งค่ากสถานะจากออสเตรเลีย</value>
   </data>
 </root>

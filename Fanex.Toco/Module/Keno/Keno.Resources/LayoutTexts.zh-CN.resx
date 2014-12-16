@@ -118,159 +118,204 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Agent" xml:space="preserve">
-    <value>Agent</value>
+    <value>代理</value>
   </data>
   <data name="AgentComm" xml:space="preserve">
-    <value>Agent Comm</value>
+    <value>代理佣金</value>
   </data>
   <data name="AgentMaxPT" xml:space="preserve">
-    <value>Agent Max PT</value>
+    <value>代理最高占成数</value>
   </data>
   <data name="AgentMinPT" xml:space="preserve">
-    <value>Agent Min PT</value>
+    <value>代理最低占成数</value>
   </data>
   <data name="AgentPresetPT" xml:space="preserve">
-    <value>Agent Preset PT</value>
+    <value>代理预定占成</value>
   </data>
   <data name="AgentPT" xml:space="preserve">
-    <value>Agent PT</value>
+    <value>代理占成数</value>
   </data>
   <data name="BetSetting" xml:space="preserve">
-    <value>Bet Setting</value>
+    <value>投注设定</value>
   </data>
   <data name="BettingLimit" xml:space="preserve">
-    <value>Betting Limit</value>
+    <value>投注限额</value>
   </data>
   <data name="CustomerInfo" xml:space="preserve">
-    <value>CustomerInfo</value>
+    <value>会员资料</value>
   </data>
   <data name="DailyAutoMessege" xml:space="preserve">
-    <value>Daily auto reset limit (at 12 noon GMT+8)</value>
+    <value>每日限额自动重设. (GMT+8 中午12时正)</value>
   </data>
   <data name="Downline" xml:space="preserve">
-    <value>Downline</value>
+    <value>下线</value>
   </data>
   <data name="Enable" xml:space="preserve">
-    <value>Enable</value>
+    <value>启用</value>
   </data>
   <data name="Fax" xml:space="preserve">
-    <value>Fax</value>
+    <value>传真</value>
   </data>
   <data name="FirstName" xml:space="preserve">
-    <value>First Name</value>
+    <value>名</value>
   </data>
   <data name="GameSetting" xml:space="preserve">
-    <value>Game Setting</value>
+    <value>游戏设定</value>
   </data>
   <data name="GameType" xml:space="preserve">
-    <value>Game Type</value>
+    <value>游戏类型</value>
   </data>
   <data name="LastName" xml:space="preserve">
-    <value>Last Name</value>
+    <value>姓</value>
   </data>
   <data name="Master" xml:space="preserve">
-    <value>Master</value>
+    <value>总代理</value>
   </data>
   <data name="MasterAutoPresetPT" xml:space="preserve">
-    <value>Master Auto Preset PT</value>
+    <value>总代理自动占成</value>
   </data>
   <data name="MasterAutoPT" xml:space="preserve">
-    <value>Master Auto PT</value>
+    <value>总代理自动占成</value>
   </data>
   <data name="MasterComm" xml:space="preserve">
-    <value>Master Comm</value>
+    <value>总代理佣金</value>
   </data>
   <data name="MasterMaxPT" xml:space="preserve">
-    <value>Master Max PT</value>
+    <value>总代理最高占成数</value>
   </data>
   <data name="MasterMinPT" xml:space="preserve">
-    <value>Master Min PT</value>
+    <value>总代理最低占成数</value>
   </data>
   <data name="MasterPresetPT" xml:space="preserve">
-    <value>Master Preset PT</value>
+    <value>总代理预定占成</value>
   </data>
   <data name="MasterPT" xml:space="preserve">
-    <value>Master PT</value>
+    <value>总代理占成数</value>
   </data>
   <data name="Member" xml:space="preserve">
-    <value>Member</value>
+    <value>会员</value>
   </data>
   <data name="MemberComm" xml:space="preserve">
-    <value>Member Comm</value>
+    <value>会员佣金</value>
   </data>
   <data name="MemberMaxTransferCredit" xml:space="preserve">
-    <value>Member Max Transfer Credit</value>
+    <value>最高调动信用额</value>
   </data>
   <data name="MobilePhone" xml:space="preserve">
-    <value>Mobile Phone</value>
+    <value>手机</value>
   </data>
   <data name="NickName" xml:space="preserve">
-    <value>Nick Name</value>
+    <value>昵称</value>
   </data>
   <data name="Phone" xml:space="preserve">
-    <value>Phone</value>
+    <value>电话</value>
   </data>
   <data name="PTComm" xml:space="preserve">
-    <value>Postion Taking/Commission</value>
+    <value>占成/佣金</value>
   </data>
   <data name="Super" xml:space="preserve">
-    <value>Super</value>
+    <value>超级</value>
   </data>
   <data name="SuperAutoPresetPT" xml:space="preserve">
-    <value>Super Auto Preset PT</value>
+    <value>超级总代理自动占成</value>
   </data>
   <data name="SuperAutoPT" xml:space="preserve">
-    <value>Super Auto PT</value>
+    <value>超级总代理自动占成</value>
   </data>
   <data name="SuperCommission" xml:space="preserve">
-    <value>Super Commission</value>
+    <value>超级总代理佣金</value>
   </data>
   <data name="SuperMaxPT" xml:space="preserve">
-    <value>Super Max PT</value>
+    <value>超级总代理最高占成</value>
   </data>
   <data name="SuperPresetPT" xml:space="preserve">
-    <value>Super Preset PT</value>
+    <value>超级总代理预定占成</value>
   </data>
   <data name="SuperPT" xml:space="preserve">
-    <value>Super PT</value>
+    <value>超级总代理占成数</value>
   </data>
   <data name="UpdateKenoSetting" xml:space="preserve">
-    <value>Update Keno Setting</value>
+    <value>更新快乐彩设置</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>Username</value>
+    <value>用户名</value>
   </data>
   <data name="Downlines" xml:space="preserve">
-    <value>Downlines</value>
+    <value>下线</value>
   </data>
   <data name="EnableStatus" xml:space="preserve">
-    <value>Enable Status</value>
+    <value>启用/状态</value>
   </data>
   <data name="MaxBet" xml:space="preserve">
-    <value>MaxBet</value>
+    <value>最高投注</value>
   </data>
   <data name="MaxPerMatch" xml:space="preserve">
-    <value>MaxPerMatch</value>
+    <value>单场限额</value>
   </data>
   <data name="MinBet" xml:space="preserve">
-    <value>MinBet</value>
+    <value>最低投注</value>
   </data>
   <data name="CountryMarket" xml:space="preserve">
-    <value>Country/Market</value>
+    <value>国家/ 市场</value>
   </data>
   <data name="PositionTaking" xml:space="preserve">
-    <value>Position Taking</value>
+    <value>占成数</value>
   </data>
   <data name="SuperMinPT" xml:space="preserve">
-    <value>Super Min PT</value>
+    <value>超级总代理最低占成</value>
   </data>
   <data name="IsAuto" xml:space="preserve">
-    <value>Is Auto</value>
+    <value>是自动</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>全部</value>
   </data>
   <data name="EnableDownlines" xml:space="preserve">
     <value>启用下线</value>
+  </data>
+  <data name="lblChangePTTo" xml:space="preserve">
+    <value>您是否要把所有会员的占成数更改为</value>
+  </data>
+  <data name="lblConfirm" xml:space="preserve">
+    <value>确认更新会员的占成数</value>
+  </data>
+  <data name="lblHaveChangeAgentPositionTaking" xml:space="preserve">
+    <value>您已更改于此代理不使用自动占成</value>
+  </data>
+  <data name="lblHaveChangeMasterPositionTaking" xml:space="preserve">
+    <value>您已更改此总代理不再自动占成</value>
+  </data>
+  <data name="lblNo" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="lblYes" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>更改</value>
+  </data>
+  <data name="EditKeno" xml:space="preserve">
+    <value>修改快乐彩</value>
+  </data>
+  <data name="lblMaxBet" xml:space="preserve">
+    <value>最高投注</value>
+  </data>
+  <data name="lblMaxPerMatch" xml:space="preserve">
+    <value>单场限额</value>
+  </data>
+  <data name="lblMinBet" xml:space="preserve">
+    <value>最低投注</value>
+  </data>
+  <data name="EditMultipleKeno" xml:space="preserve">
+    <value>修改多重快乐彩</value>
+  </data>
+  <data name="lblCopyAllBetSetting" xml:space="preserve">
+    <value>从澳洲复制所有投注设定</value>
+  </data>
+  <data name="lblCopyAllPT" xml:space="preserve">
+    <value>从澳洲复制所有占成数</value>
+  </data>
+  <data name="lblCopyAllStatus" xml:space="preserve">
+    <value>从澳洲复制所有狀態</value>
   </data>
 </root>

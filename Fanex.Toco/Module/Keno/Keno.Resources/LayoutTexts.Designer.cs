@@ -142,24 +142,6 @@ namespace Fanex.CustomerSetting.Module.Keno.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have changed this Master position taking..
-        /// </summary>
-        public static string ConfirmIsAutoMaster {
-            get {
-                return ResourceManager.GetString("ConfirmIsAutoMaster", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You have changed this Super position taking..
-        /// </summary>
-        public static string ConfirmIsAutoSuper {
-            get {
-                return ResourceManager.GetString("ConfirmIsAutoSuper", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Country/Market.
         /// </summary>
         public static string CountryMarket {
@@ -201,6 +183,15 @@ namespace Fanex.CustomerSetting.Module.Keno.Resources {
         public static string Downlines {
             get {
                 return ResourceManager.GetString("Downlines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Keno.
+        /// </summary>
+        public static string EditKeno {
+            get {
+                return ResourceManager.GetString("EditKeno", resourceCulture);
             }
         }
         
@@ -291,6 +282,114 @@ namespace Fanex.CustomerSetting.Module.Keno.Resources {
         public static string LastName {
             get {
                 return ResourceManager.GetString("LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to update all member&apos;s position taking to.
+        /// </summary>
+        public static string lblChangePTTo {
+            get {
+                return ResourceManager.GetString("lblChangePTTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm Update Members&apos;s PT.
+        /// </summary>
+        public static string lblConfirm {
+            get {
+                return ResourceManager.GetString("lblConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy All Bet Setting from Australia Acttab.
+        /// </summary>
+        public static string lblCopyAllBetSetting {
+            get {
+                return ResourceManager.GetString("lblCopyAllBetSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy all Position Taking from Australia Acttab.
+        /// </summary>
+        public static string lblCopyAllPT {
+            get {
+                return ResourceManager.GetString("lblCopyAllPT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy all below status from Australia Acttab.
+        /// </summary>
+        public static string lblCopyAllStatus {
+            get {
+                return ResourceManager.GetString("lblCopyAllStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have changed this agent not to take auto position taking..
+        /// </summary>
+        public static string lblHaveChangeAgentPositionTaking {
+            get {
+                return ResourceManager.GetString("lblHaveChangeAgentPositionTaking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have changed this master not to take auto position taking..
+        /// </summary>
+        public static string lblHaveChangeMasterPositionTaking {
+            get {
+                return ResourceManager.GetString("lblHaveChangeMasterPositionTaking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max Bet.
+        /// </summary>
+        public static string lblMaxBet {
+            get {
+                return ResourceManager.GetString("lblMaxBet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max Per Match.
+        /// </summary>
+        public static string lblMaxPerMatch {
+            get {
+                return ResourceManager.GetString("lblMaxPerMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Min Bet.
+        /// </summary>
+        public static string lblMinBet {
+            get {
+                return ResourceManager.GetString("lblMinBet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string lblNo {
+            get {
+                return ResourceManager.GetString("lblNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string lblYes {
+            get {
+                return ResourceManager.GetString("lblYes", resourceCulture);
             }
         }
         
@@ -534,6 +633,15 @@ namespace Fanex.CustomerSetting.Module.Keno.Resources {
         public static string SuperPT {
             get {
                 return ResourceManager.GetString("SuperPT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        public static string Update {
+            get {
+                return ResourceManager.GetString("Update", resourceCulture);
             }
         }
         
