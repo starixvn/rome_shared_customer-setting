@@ -11,6 +11,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
 {
     using System.Collections.Generic;
     using Fanex.CustomerSetting.Module.Core.Models;
+    using Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.ViewModels;
 
     public interface IKenoSettingService
@@ -38,5 +39,9 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
         MasterEditMemberSettingViewModel GetSettingInCaseOfMasterEditMember(CustomerInformationViewModel customerInformationViewModel);
 
         IList<Result> UpdateMemberCustomerSettingInCaseOfMasterEditMember(MasterEditMemberSettingViewModel memberSetting);
+
+        IList<Result> UpdateBetSetting(BetSetting betSetting);
+
+        IList<Result> UpdateBetSettingSuper(BetSetting betSetting, int custId, int userId);
     }
 }

@@ -21,6 +21,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Base
     using Fanex.CustomerSetting.Module.Casino.Services.Impl;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
     using Fanex.LiveCasinoSetting.Business;
+using Fanex.CustomerSetting.Module.Keno.KenoSetting.Services;
 
     /// <summary>
     /// Base class for getting customer info and services.
@@ -61,6 +62,8 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Base
         /// The _log service.
         /// </summary>
         private ILogWriterService _logService = new LogWriterService();
+
+        private IKenoSettingService _kenoService = new KenoSettingService();
 
         /// <summary>
         /// Gets the log service.
@@ -155,6 +158,14 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Base
             get
             {
                 return this._gameSettingService ?? new GameSettingService();
+            }
+        }
+
+        public IKenoSettingService KenoService
+        {
+            get
+            {
+                return this._kenoService ?? new KenoSettingService();
             }
         }
 

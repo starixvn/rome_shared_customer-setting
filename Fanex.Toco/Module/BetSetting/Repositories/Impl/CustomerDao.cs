@@ -76,27 +76,27 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Repositories.Impl
         /// <returns>System.Int32 object.</returns>
         public int UserGroupId(int custId)
         {            
-            var param = new Hashtable();
-            param.Add("custid", custId);
+            //var param = new Hashtable();
+            //param.Add("custid", custId);
 
-            using (var objDb = new ObjectDb("Acc_Con_FileNameSelByCustID"))
-            {
-                using (var reader = objDb.ExecuteReader(param))
-                {
-                    if (reader != null)
-                    {
-                        while (reader.Read())
-                        {
-                            return reader.ToInt("groupid");
-                        }
-                    }
+            //using (var objDb = new ObjectDb("Acc_Con_FileNameSelByCustID"))
+            //{
+            //    using (var reader = objDb.ExecuteReader(param))
+            //    {
+            //        if (reader != null)
+            //        {
+            //            while (reader.Read())
+            //            {
+            //                return reader.ToInt("groupid");
+            //            }
+            //        }
 
-                    return 0;
-                }
-            }
+            //        return 0;
+            //    }
+            //}
 
             // For new external accounting only.
-            // return SessionManager.Get<int>("EASGroupId");
+            return SessionManager.Get<int>("EASGroupId");
         }
     }
 }
