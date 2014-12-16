@@ -339,4 +339,7 @@
   <data name="lbleditcasino" xml:space="preserve">
     <value>카지노 수정</value>
   </data>
+  <data name="submit" xml:space="preserve">
+    <value>확인</value>
+  </data>
 </root>

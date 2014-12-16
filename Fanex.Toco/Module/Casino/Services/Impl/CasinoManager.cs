@@ -22,6 +22,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
     using Fanex.CustomerSetting.Module.Casino.ViewModels;
     using Fanex.CustomerSetting.Module.Core;
     using Fanex.CustomerSetting.Module.Core.Models;
+    using Fanex.CustomerSetting.Module.Core.Web;
 
     /// <summary>
     /// TODO: Update summary.
@@ -435,7 +436,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 {
                     if (row["GameKind"].Equals(dtrow["GameKind"]))
                     {
-                        isAutoOnMember = Utils.ToBoolean(dtrow["MasterIsAutoMPositionTaking"]);
+                        isAutoOnMember = Utils.ToBoolean(dtrow["UplineIsAutoMPositionTaking"]);
                         break;
                     }
                 }
@@ -536,41 +537,46 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
             try
             {
-                settingsInserted = cust.InsertCustSetting(
-                    "01",
-                    custId,
-                    custName,
-                    customerModel.UserName2,
-                    customerModel.FirstName,
-                    customerModel.LastName,
-                    customerModel.UserPwd,
-                    customerModel.Phone,
-                    customerModel.MobilePhone,
-                    customerModel.Currency,
-                    customerModel.Fax,
-                    customerModel.Closed,
-                    customerModel.Suspend,
-                    customerModel.IsEnablePT,
-                    (decimal)customerModel.MaxWin,
-                    (decimal)customerModel.MaxLose,
-                    true,
-                    (decimal)customerModel.MaxTransferCredit,
-                    customerModel.SIBCCustID,
-                    custId,
-                    customerModel.AIBCCustID,
-                    customerModel.PTByGameType,
-                    customerModel.RoleId.ToString(),
-                    DateTime.Now,
-                    ip,
-                    modifiedId,
-                    modifiedBy,
-                    fromSystem,
-                    customerModel.IsAutoReset,
-                    false,
-                    false,
-                    customerModel.IsDisableAutoMPT);
+                var custInfo = this.GetCustInfoIBC(custId, uplineId);
+
+                if (!custInfo.CasinoSync)
+                {
+                    settingsInserted = cust.InsertCustSetting(
+                        "01",
+                        custId,
+                        custName,
+                        customerModel.UserName2,
+                        customerModel.FirstName,
+                        customerModel.LastName,
+                        customerModel.UserPwd,
+                        customerModel.Phone,
+                        customerModel.MobilePhone,
+                        customerModel.Currency,
+                        customerModel.Fax,
+                        customerModel.Closed,
+                        customerModel.Suspend,
+                        customerModel.IsEnablePT,
+                        (decimal)customerModel.MaxWin,
+                        (decimal)customerModel.MaxLose,
+                        true,
+                        (decimal)customerModel.MaxTransferCredit,
+                        customerModel.SIBCCustID,
+                        custId,
+                        customerModel.AIBCCustID,
+                        customerModel.PTByGameType,
+                        customerModel.RoleId.ToString(),
+                        DateTime.Now,
+                        ip,
+                        modifiedId,
+                        modifiedBy,
+                        fromSystem,
+                        customerModel.IsAutoReset,
+                        false,
+                        false,
+                        customerModel.IsDisableAutoMPT);
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 // Bypass this exception because this customer had setting but update status failed, before.
             }
@@ -583,8 +589,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     true,
                     customerModel.UplineDisabledCasino ? true : customerModel.CasinoDisabled,
                     customerModel.EnableDownline,
-                    uplineId,
-                    string.Empty,
+                    AppSession.CurrentSession.UserId,
+                    ip,
                     0,
                     "en",
                     customerModel.UserName,
@@ -1103,7 +1109,16 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
         private static string Lang(string original)
         {
-            return original + "_En";
+            switch (AppSession.Language)
+            {
+                case "en-US": return original +  "_En";
+                case "zh-TW": return original +  "_Ct"; // Traditional
+                case "zh-CN": return original +  "_Cs"; // Simplified
+                case "ja-JP": return original +  "_Jp";
+                case "th-TH": return original +  "_Th"; // Thai
+                case "ko-KR": return original +  "_Ko";
+                default: return original + "_En";
+            }
         }
 
         private bool UpdateCSStatus(int custid, bool syncCS, bool disabledCS, bool isUpdDownline, int userId, string ip, int subAccId, string lang, string username, string subUsername, out string errMsg)
@@ -1142,7 +1157,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 gameGroupID,
                                 null,
                                 !(roleId == Super || roleId == Master) || gameGroup.Is3 == true ? null : (object)gameGroup.S3,
-                                !(roleId == Master || roleId == Agent) ? null : (object)gameGroup.M3,
+                                !(roleId == Master || roleId == Agent) || gameGroup.Im2== true ? null : (object)gameGroup.M3,
                                 !(roleId == Agent || roleId == Member) ? null : (object)gameGroup.N3,
                                 gameGroup.Is3 == true ? 1 : 0,
                                 !gameGroup.Is3 == true ? null : (object)gameGroup.Us3,
@@ -1172,7 +1187,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 gameType.GameTypeID,
                                 null,
                                 !(roleId == Super || roleId == Master) || gameType.Is3 == true ? null : (object)gameType.S3,
-                                !(roleId == Master || roleId == Agent) ? null : (object)gameType.M3,
+                                !(roleId == Master || roleId == Agent)  || gameType.Im2 == true? null : (object)gameType.M3,
                                 !(roleId == Agent || roleId == Member) ? null : (object)gameType.N3,
                                 gameType.Is3 == true ? 1 : 0,
                                 !gameType.Is3 == true ? null : (object)gameType.Us3,
@@ -1267,8 +1282,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 custId,
                                 gameGroupID,
                                 null,
-                                !(roleId == Super || roleId == Master) || gameGroup.Is1 == true ? null : (object)gameGroup.M3,
-                                !(roleId == Master || roleId == Agent) ? null : (object)gameGroup.M2,
+                                !(roleId == Super || roleId == Master) || gameGroup.Is3 == true ? null : (object)gameGroup.M3,
+                                !(roleId == Master || roleId == Agent) || gameGroup.Im2 == true ?  null : (object)gameGroup.M2,
                                 !(roleId == Agent || roleId == Member) ? null : (object)gameGroup.A2,
                                 0,
                                 null,
@@ -1297,8 +1312,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 custId,
                                 gameType.GameTypeID,
                                 null,
-                                !(roleId == Super || roleId == Master) || gameType.Is1 == true ? null : (object)gameType.M3,
-                                !(roleId == Master || roleId == Agent) ? null : (object)gameType.M2,
+                                !(roleId == Super || roleId == Master) || gameType.Is3 == true ? null : (object)gameType.M3,
+                                !(roleId == Master || roleId == Agent) || gameType.Im2 == true ? null : (object)gameType.M2,
                                 !(roleId == Agent || roleId == Member) ? null : (object)gameType.A2,
                                  0,
                                 null,
@@ -1628,7 +1643,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 custId,
                                 gameGroupID,
                                 null,
-                                !(uplineRoleId == Master || uplineRoleId == Agent) ? null : (object)gameGroup.M3,
+                                !(uplineRoleId == Master || uplineRoleId == Agent) || gameGroup.Im1 == true || gameGroup.Im2 == true? null : (object)gameGroup.M3,
                                 0,
                                 null,
                                  gameGroup.Im1 == true ? 1 : 0,
@@ -1650,7 +1665,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 custId,
                                 gameType.GameTypeID,
                                 null,
-                                !(uplineRoleId == Master || uplineRoleId == Agent) ? null : (object)gameType.M3,
+                                !(uplineRoleId == Master || uplineRoleId == Agent) || gameType.Im1 == true || gameType.Im2 == true? null : (object)gameType.M3,
                                 0,
                                 null,
                                  gameType.Im1 == true ? 1 : 0,

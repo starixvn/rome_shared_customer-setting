@@ -339,4 +339,7 @@
   <data name="lbleditcasino" xml:space="preserve">
     <value>Cho phép Casino</value>
   </data>
+  <data name="submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
 </root>

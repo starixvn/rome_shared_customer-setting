@@ -37,7 +37,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
         /// <param name="uplineId">The upline identifier.</param>
         /// <returns>ActionResult object.</returns>
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
-        public ActionResult EditAgent(int id, int uplineId, string groupName = null)
+        public ActionResult EditAgent(int id, int uplineId, string groupName = null, bool isSearchAndCopy = false)
         {
             var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
             if (!obj.IsBelong(id, null, groupName))
@@ -50,6 +50,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             try
             {
                 customerSetting = CasinoManager.Instance.AgentCasinoModel(id, uplineId);
+                customerSetting.IsReadOnly = isSearchAndCopy;
             }
             catch
             {

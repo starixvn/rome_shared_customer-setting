@@ -345,4 +345,7 @@
   <data name="lbleditcasino" xml:space="preserve">
     <value>修改娱乐城</value>
   </data>
+  <data name="submit" xml:space="preserve">
+    <value>提交</value>
+  </data>
 </root>

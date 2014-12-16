@@ -15,7 +15,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
     public class MemberController : BaseController
     {
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
-        public ActionResult EditMember(int id, int uplineId, string groupName = null)
+        public ActionResult EditMember(int id, int uplineId, string groupName = null, bool isSearchAndCopy = false)
         {
             var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
             if (!obj.IsBelong(id, null, groupName))
@@ -28,6 +28,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             try
             {
                 customerSetting = CasinoManager.Instance.MemberCasinoModel(id, uplineId);
+                customerSetting.IsReadOnly = isSearchAndCopy;
             }
             catch
             {
@@ -38,7 +39,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
-        public ActionResult EditMemberByMaster(int id, int uplineId, string groupName = null)
+        public ActionResult EditMemberByMaster(int id, int uplineId, string groupName = null, bool isSearchAndCopy = false)
         {
             var obj = System.Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
             if (!obj.IsBelong(id, null, groupName))
@@ -51,6 +52,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             try
             {
                 customerSetting = CasinoManager.Instance.MemberCasinoModelByMaster(id, uplineId);
+                customerSetting.IsReadOnly = isSearchAndCopy;
             }
             catch
             {
@@ -61,7 +63,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
-        public ActionResult EditMemberBySuper(int id, int uplineId, string groupName = null)
+        public ActionResult EditMemberBySuper(int id, int uplineId, string groupName = null, bool isSearchAndCopy = false)
         {
             var obj = System.Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
             if (!obj.IsBelong(id, null, groupName))
@@ -74,6 +76,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             try
             {
                 customerSetting = CasinoManager.Instance.MemberCasinoModelBySuper(id, uplineId);
+                customerSetting.IsReadOnly = isSearchAndCopy;
             }
             catch
             {

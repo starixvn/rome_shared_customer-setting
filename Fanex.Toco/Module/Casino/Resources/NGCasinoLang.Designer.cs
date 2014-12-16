@@ -718,6 +718,15 @@ namespace Fanex.CustomerSetting.Module.Casino.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Submit.
+        /// </summary>
+        public static string submit {
+            get {
+                return ResourceManager.GetString("submit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Super.
         /// </summary>
         public static string Super {
