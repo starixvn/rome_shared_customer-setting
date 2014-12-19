@@ -25,7 +25,7 @@ namespace Fanex.Module.Statement.AppStart
                 return "Statement";
             }
         }
-        
+
         public static void Register(HttpConfiguration config)
         {
         }
@@ -36,7 +36,7 @@ namespace Fanex.Module.Statement.AppStart
             RouteConfig.RegisterRoutes(AreaName, context);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            Register(System.Web.Http.GlobalConfiguration.Configuration);
+            // Register(System.Web.Http.GlobalConfiguration.Configuration);
         }
     }
 }

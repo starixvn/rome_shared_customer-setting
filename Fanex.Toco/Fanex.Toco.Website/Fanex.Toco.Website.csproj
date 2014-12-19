@@ -679,6 +679,7 @@
     <Content Include="Areas\Statement\Views\Report\Styles\Statement.css" />
     <Content Include="Areas\Statement\Views\StatementDetails\Scripts\StatementDetailsManager.js" />
     <Content Include="Areas\Statement\Views\StatementDetails\Styles\StatementDetails.css" />
+    <Content Include="Scripts\_Libs\jQuery\jquery-1.8.2.min.js" />
     <Content Include="Web.Configuration\Store\RacingSpNames.xml" />
     <Content Include="Web.Configuration\Store\CustomerSpNames.xml">
       <SubType>Designer</SubType>
@@ -1108,6 +1109,7 @@
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Super\SearchForm.cshtml" />
     <Content Include="Areas\Statement\Views\StatementDetails\Index.cshtml" />
     <Content Include="Areas\Statement\Views\Web.config" />
+    <Content Include="Areas\Statement\Views\Report\Index.cshtml" />
     <None Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3-custom.less" />
   </ItemGroup>
   <ItemGroup>
@@ -1118,6 +1120,10 @@
     <ProjectReference Include="..\Module\Casino\Casino.csproj">
       <Project>{5F8F3877-90E3-48A3-BAD7-4207DCBA088D}</Project>
       <Name>Casino</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Module\Fanex.Module.Statement\Fanex.Module.Statement.csproj">
+      <Project>{2B8BF7A6-3C6D-42E9-956E-D4B144EDDAEE}</Project>
+      <Name>Fanex.Module.Statement</Name>
     </ProjectReference>
     <ProjectReference Include="..\Module\Fanex.Toco.Module.Core\_Core.csproj">
       <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>

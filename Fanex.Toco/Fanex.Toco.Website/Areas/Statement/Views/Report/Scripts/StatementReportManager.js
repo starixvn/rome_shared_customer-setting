@@ -14,9 +14,18 @@ var StatementReportManager = function () {
             }
         }
     };
+    self.eventFunction = {
+        unblockUI: null,
+        openPopup: null
+    };
+
     self.cachedData = {
         statementReportCriteria: null,
         statementReport: null
+    };
+    self.initFunction = function (unblockUI, openPopup) {
+        self.eventFunction.unblockUI = unblockUI;
+        self.eventFunction.openPopup = openPopup || OpenPopup;
     };
 
     self.checkCriteria = function (criteria) {
@@ -30,7 +39,6 @@ var StatementReportManager = function () {
 
         return true;
     };
-
     self.callAjax = function (url, criteria, successFunction) {
         jQuery.ajax({
             type: "POST",
@@ -46,7 +54,9 @@ var StatementReportManager = function () {
                     alert(r.Message);
                 }
 
-                EnableButton();
+                if (self.eventFunction.unblockUI) {
+                    self.eventFunction.unblockUI();
+                }
             }
         });
     }
@@ -203,7 +213,9 @@ var StatementReportManager = function () {
         jQuery('#GridContainer').fanexGrid(gridOptions);
         jQuery("#filter").width(jQuery("#GridContainer").width() + 22);
         self.bindGridEvent();
-        EnableButton();
+        if (self.eventFunction.unblockUI) {
+            self.eventFunction.unblockUI();
+        }
     };
     self.getColumnTransferAmount = function (statement, rowIndex) {
         var isNegative = statement.TransferAmount.HasData && parseFloat(statement.TransferAmount.Value) < 0;
@@ -394,7 +406,9 @@ var StatementReportManager = function () {
         jQuery('#GridContainer').fanexGrid(gridOptions);
         jQuery("#filter").width(jQuery("#GridContainer").width() + 22);
         self.bindGridEvent();
-        EnableButton();
+        if (self.eventFunction.unblockUI) {
+            self.eventFunction.unblockUI();
+        }
     };
 
     self.bindGridEvent = function () {
@@ -415,14 +429,14 @@ var StatementReportManager = function () {
             RoleId: self.cachedData.statementReportCriteria.roleId,
             TransferDate: statement.StatementDateString
         };
-
-        parent.ageWnd.open(
-            url + "?" + jQuery.param(criteria),
-            statementResources.Transfer_Details,
-            400,
-            100,
-            800,
-            400);
+        self.eventFunction.openPopup({
+            url: url + "?" + jQuery.param(criteria),
+            title: statementResources.Transfer_Details,
+            left: 400,
+            top: 100,
+            width: 800,
+            height: 400
+        });
     };
     self.viewBetList = function (rowIndex) {
         var statement = self.cachedData.statementReport.StatementList[rowIndex];
@@ -435,13 +449,14 @@ var StatementReportManager = function () {
             username: 'agent01'
         };
 
-        parent.ageWnd.open(
-            url + "?" + jQuery.param(criteria),
-            statementResources.Bet_List,
-            400,
-            100,
-            800,
-            400);
+        self.eventFunction.openPopup({
+            url: url + "?" + jQuery.param(criteria),
+            title: statementResources.Bet_List,
+            left: 400,
+            top: 100,
+            width: 800,
+            height: 400
+        });
     };
 
     self.exportStatementReport = function (criteria) {

@@ -16,19 +16,13 @@ namespace Fanex.Module.Statement.Criteria.StatementReport
     /// <summary>
     /// Member Statement Criteria.
     /// </summary>
-    public class MemberStatementCriteria : CriteriaBase
+    public class MemberStatementCriteria : StatementReportCriteria
     {
         [SpParam(Ignored = true)]
         public int RoleId { get; set; }
 
         [SpParam(Ignored = true)]
         public string Username { get; set; }
-
-        public int CustId { get; set; }
-
-        public string FromDate { get; set; }
-
-        public string ToDate { get; set; }
 
         public string Language
         {
@@ -43,10 +37,6 @@ namespace Fanex.Module.Statement.Criteria.StatementReport
 
         [SpParam(Ignored = true)]
         public int PageIndex { get; set; }
-
-        public DateTime BalanceUpDay { get; set; }
-
-        public DateTime MoveBetDay { get; set; }
 
         public override string GetSettingKey()
         {

@@ -37,6 +37,12 @@ namespace Fanex.Module.Statement.Controllers
             _statementReportService = statementReportService ?? new StatementReportService();
         }
 
+        [HttpGet]
+        public ActionResult Index()
+        {
+            return this.View("~/Areas/Statement/Views/Report/Index.cshtml");
+        }
+        
         [HttpPost]
         public JsonResult SMAStatement(SMAStatementCriteria criteria)
         {

@@ -17,22 +17,14 @@ namespace Fanex.Module.Statement.Criteria.StatementReport
     /// <summary>
     /// SMA Statement Criteria.
     /// </summary>
-    public class SMAStatementCriteria : CriteriaBase
+    public class SMAStatementCriteria : StatementReportCriteria
     {
-        public string FromDate { get; set; }
-
-        public string ToDate { get; set; }
-
-        public int CustId { get; set; }
-
         [SpParam(Ignored = true)]
         public int RoleId { get; set; }
 
         public int PageSize { get; set; }
 
         public int PageIndex { get; set; }
-
-        public DateTime BalanceUpDay { get; set; }
 
         public override string GetSettingKey()
         {

@@ -16,6 +16,7 @@ namespace Fanex.Module.Statement.Services.StatementReport
     using Fanex.Module.Statement.Criteria.StatementReport;
     using Fanex.Module.Statement.Models.StatementReport;
     using Fanex.Module.Statement.Repositories.StatementReport;
+    using System.Linq;
 
     /// <summary>
     /// Statement Report Service.
@@ -48,7 +49,24 @@ namespace Fanex.Module.Statement.Services.StatementReport
 
             try
             {
-                result = _statementReportRepository.SMAStatement(criteria);
+                List<StatementReportCriteria> dateRangeList = GetReportDateRange(criteria);
+                for (var i = 0; i < dateRangeList.Count; i++)
+                {
+                    var dateRange = dateRangeList[i];
+                    var data = _statementReportRepository.SMAStatement(new SMAStatementCriteria
+                    {
+                        FromDate = dateRange.FromDate,
+                        ToDate = dateRange.ToDate,
+                        RoleId = criteria.RoleId,
+                        PageSize = criteria.PageSize,
+                        PageIndex = criteria.PageIndex,
+                        BalanceUpDay = criteria.BalanceUpDay,
+                        MoveBetDay = criteria.MoveBetDay,
+                        CustId = criteria.CustId
+                    });
+
+                    result.StatementList = Enumerable.Concat(result.StatementList, data.StatementList).ToList();
+                }
             }
             catch (Exception ex)
             {
@@ -72,7 +90,24 @@ namespace Fanex.Module.Statement.Services.StatementReport
 
             try
             {
-                result = _statementReportRepository.MemberStatement(criteria);
+                List<StatementReportCriteria> dateRangeList = GetReportDateRange(criteria);
+                for (var i = 0; i < dateRangeList.Count; i++)
+                {
+                    var dateRange = dateRangeList[i];
+                    var data = _statementReportRepository.MemberStatement(new MemberStatementCriteria
+                    {
+                        FromDate = dateRange.FromDate,
+                        ToDate = dateRange.ToDate,
+                        RoleId = criteria.RoleId,
+                        PageSize = criteria.PageSize,
+                        PageIndex = criteria.PageIndex,
+                        BalanceUpDay = criteria.BalanceUpDay,
+                        MoveBetDay = criteria.MoveBetDay,
+                        CustId = criteria.CustId
+                    });
+
+                    result.StatementList = Enumerable.Concat(result.StatementList, data.StatementList).ToList();
+                }
             }
             catch (Exception ex)
             {
@@ -138,6 +173,70 @@ namespace Fanex.Module.Statement.Services.StatementReport
 
             StatementReportExportExcelService _exportExcelService = new StatementReportExportExcelService();
             return _exportExcelService.ExportTransferDetails(criteria, data);
+        }
+
+        /// <summary>
+        /// Gets the report date range.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>The report date range.</returns>
+        private List<StatementReportCriteria> GetReportDateRange(StatementReportCriteria criteria)
+        {
+            List<StatementReportCriteria> dateRange = new List<StatementReportCriteria>();
+            if (criteria.FromDate > criteria.MoveBetDay ||
+                (criteria.BalanceUpDay <= criteria.FromDate && criteria.ToDate <= criteria.MoveBetDay) ||
+                 criteria.ToDate < criteria.BalanceUpDay)
+            {
+                return new List<StatementReportCriteria>() { 
+                    new StatementReportCriteria{
+                        FromDate= criteria.FromDate,
+                        ToDate= criteria.ToDate 
+                    }
+                };
+            }
+
+            if (criteria.FromDate >= criteria.BalanceUpDay && criteria.ToDate > criteria.MoveBetDay)
+            {
+                return new List<StatementReportCriteria>() { 
+                    new StatementReportCriteria{
+                        FromDate= criteria.FromDate,
+                        ToDate= criteria.MoveBetDay
+                    },
+                    new StatementReportCriteria{
+                        FromDate= criteria.MoveBetDay.AddDays(1),
+                        ToDate= criteria.ToDate
+                    }
+                };
+            }
+
+            if (criteria.ToDate > criteria.MoveBetDay)
+            {
+                return new List<StatementReportCriteria>() { 
+                    new StatementReportCriteria{
+                        FromDate= criteria.FromDate,
+                        ToDate= criteria.BalanceUpDay.AddDays(-1)
+                    },
+                    new StatementReportCriteria{
+                        FromDate= criteria.BalanceUpDay,
+                        ToDate= criteria.MoveBetDay
+                    },
+                    new StatementReportCriteria{
+                        FromDate= criteria.MoveBetDay.AddDays(1),
+                        ToDate= criteria.ToDate
+                    }
+                };
+            }
+
+            return new List<StatementReportCriteria>() { 
+                    new StatementReportCriteria{
+                        FromDate= criteria.FromDate,
+                        ToDate= criteria.BalanceUpDay.AddDays(-1)
+                    },
+                    new StatementReportCriteria{
+                        FromDate= criteria.BalanceUpDay,
+                        ToDate= criteria.ToDate
+                    }
+                };
         }
     }
 }
