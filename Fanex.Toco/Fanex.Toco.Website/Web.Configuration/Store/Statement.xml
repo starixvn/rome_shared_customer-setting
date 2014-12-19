@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Functions>
+  <Function Name="Report">
+    <Setting Key="Statement_Report_Member" SpName="Age_Statement_Mem" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="Statement_Report_Agent" SpName="Age_Statement_Rpt_Ag" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="Statement_Report_Master" SpName="Age_Statement_Rpt_MAg" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="Statement_Report_Super" SpName="Age_Statement_Rpt_SAg" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="Statement_Report_TransferDetails" SpName="Age_Statement_Mem" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+  </Function>
+</Functions>

@@ -675,6 +675,10 @@
     <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\sorting_desc.gif" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\RacingSetting.css" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\table.css" />
+    <Content Include="Areas\Statement\Views\Report\Scripts\StatementReportManager.js" />
+    <Content Include="Areas\Statement\Views\Report\Styles\Statement.css" />
+    <Content Include="Areas\Statement\Views\StatementDetails\Scripts\StatementDetailsManager.js" />
+    <Content Include="Areas\Statement\Views\StatementDetails\Styles\StatementDetails.css" />
     <Content Include="Web.Configuration\Store\RacingSpNames.xml" />
     <Content Include="Web.Configuration\Store\CustomerSpNames.xml">
       <SubType>Designer</SubType>
@@ -966,6 +970,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Web.Configuration\Store\Statement.xml" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -981,6 +986,7 @@
     <Content Include="Web.Configuration\CustomerSetting\Racing\PTRacingMappingSection.config" />
     <Content Include="Web.Configuration\CustomerSetting\Racing\RacingBettingCommSettingMappingSection.config" />
     <Content Include="Web.Configuration\CustomerSetting\Racing\RacingSection.config" />
+    <Content Include="Areas\Statement\StatementSection.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1100,6 +1106,8 @@
     <None Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\Buttons\AntiXss.msi" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Super\GeneralInformation.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Super\SearchForm.cshtml" />
+    <Content Include="Areas\Statement\Views\StatementDetails\Index.cshtml" />
+    <Content Include="Areas\Statement\Views\Web.config" />
     <None Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3-custom.less" />
   </ItemGroup>
   <ItemGroup>
