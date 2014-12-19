@@ -9,9 +9,7 @@
 
 namespace Fanex.Module.Statement.Criteria.StatementReport
 {
-    using System;
-    using Fanex.Module.Statement.Constants;
-    using Fanex.Module.Statement.Repositories;
+    using Fanex.Module.Statement.Services;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -28,7 +26,7 @@ namespace Fanex.Module.Statement.Criteria.StatementReport
 
         public override string GetSettingKey()
         {
-            return "Statement_Report_" + RoleIdConstants.RoleName(RoleId);
+            return "Statement_Report_GetList" + ReportService.GetStoreMappingSuffix(this);
         }
 
         public override bool IsValid()

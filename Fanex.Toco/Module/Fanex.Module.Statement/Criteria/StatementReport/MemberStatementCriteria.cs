@@ -9,8 +9,7 @@
 
 namespace Fanex.Module.Statement.Criteria.StatementReport
 {
-    using System;
-    using Fanex.Module.Statement.Repositories;
+    using Fanex.Module.Statement.Services;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -22,8 +21,6 @@ namespace Fanex.Module.Statement.Criteria.StatementReport
         public int RoleId { get; set; }
 
         [SpParam(Ignored = true)]
-        public string Username { get; set; }
-
         public string Language
         {
             get
@@ -40,7 +37,7 @@ namespace Fanex.Module.Statement.Criteria.StatementReport
 
         public override string GetSettingKey()
         {
-            return "Statement_Report_Member";
+            return "Statement_Report_GetList" + ReportService.GetStoreMappingSuffix(this);
         }
 
         public override bool IsValid()

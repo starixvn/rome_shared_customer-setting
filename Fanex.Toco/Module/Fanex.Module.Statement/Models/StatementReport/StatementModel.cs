@@ -37,6 +37,10 @@ namespace Fanex.Module.Statement.Models.StatementReport
 
         public DataColumnModel AccumulatedTotal { get; set; }
 
-        public string Remark { get; set; }
+        public string Description { get; set; }
+
+        public string TransactionType { get; set; }
+
+        public string ExchangeRate { get; set; }
     }
 }

@@ -24,9 +24,14 @@ var StatementDetailsManager = function () {
         if (statementListLength) {
             for (var i = 0; i < statementListLength; i++) {
                 var statement = statementReport.StatementList[i];
+                var remark = statement.TransactionType + "<br>" + statement.Description +
+                    (transferDetailsCriteria.SiteName == "NAP" && statement.ExchangeRate ?
+                        " - " + statementResources.Symbol_ExchangeRate + ":" + statement.ExchangeRate :
+                        '');
+
                 var currentRow = {
                     Columns: [{ Name: "ColDate", Value: statement.StatementDateString },
-                        { Name: "ColRemark", Value: statement.Remark },
+                        { Name: "ColRemark", Value: remark },
                         {
                             Name: "ColAmount",
                             Value: statement.TransferAmount.HasData ?
@@ -88,7 +93,7 @@ var StatementDetailsManager = function () {
             headerColumnHeight: 24,
             bodyRowHeight: 25,
             numberOfFrozenColumn: 0,
-            gridExpandHeight: 200,
+            gridExpandHeight: 50,
             showHighlightRow: false,
             showPager: false,
             showTitle: true,
@@ -96,10 +101,9 @@ var StatementDetailsManager = function () {
                 text: "",
                 showExcelButton: true,
                 exportExcelFunction: function () {
-                    var url = location.protocol + window.rootUrl + 'Statement/StatementReport/ExportTransferDetails?' +
-                jQuery.param(transferDetailsCriteria);
+                    var url = location.protocol + window.rootUrl + 'NapStatement/StatementReport/ExportTransferDetails?' +
+                        jQuery.param(transferDetailsCriteria);
                     jQuery('#frm').attr('src', url);
-
                 }
             },
             showFooter: true

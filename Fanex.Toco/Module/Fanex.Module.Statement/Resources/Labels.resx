@@ -132,11 +132,62 @@
   <data name="Date" xml:space="preserve">
     <value>Date</value>
   </data>
+  <data name="Formular_Accumulated_Total" xml:space="preserve">
+    <value>Accumulated Total = Opening Balance + Win/Loss + Commission + Transfer Amt</value>
+  </data>
+  <data name="Guidelines_1stRow_SMA" xml:space="preserve">
+    <value>The new format of Statement report is only displayed if “From” date starts from {0} onwards.</value>
+  </data>
+  <data name="Guidelines_AccumulatedTotal_Member" xml:space="preserve">
+    <value>member closing balance of each day within selected date range.</value>
+  </data>
+  <data name="Guidelines_AccumulatedTotal_SMA" xml:space="preserve">
+    <value>your closing balance of each day within selected date range.</value>
+  </data>
+  <data name="Guidelines_Commission_Member" xml:space="preserve">
+    <value>total member commission.</value>
+  </data>
+  <data name="Guidelines_Commission_SMA" xml:space="preserve">
+    <value>total net commission based on member tickets.</value>
+  </data>
+  <data name="Guidelines_OpeningBalance_Member" xml:space="preserve">
+    <value>member balance calculated till “From” date. If Opening Balance does not equal to Accumulated Total of previous date, then the Opening Balance will be highlighted in pink.</value>
+  </data>
+  <data name="Guidelines_OpeningBalance_SMA" xml:space="preserve">
+    <value>your balance calculated till “From” date. If Opening Balance does not equal to Accumulated Total of previous date, then the Opening Balance will be highlighted in pink.</value>
+  </data>
+  <data name="Guidelines_Outstanding" xml:space="preserve">
+    <value>total stakes of Running tickets. Click to view Bet List of Running tickets.</value>
+  </data>
+  <data name="Guidelines_Traa" xml:space="preserve">
+    <value>Transfer transactions between Agent and Member.</value>
+  </data>
+  <data name="Guidelines_Trac" xml:space="preserve">
+    <value>Transfer transactions between Agent and Master/Super.</value>
+  </data>
+  <data name="Guidelines_TransferAmt_Member" xml:space="preserve">
+    <value>total transfer amount between Agent and Member. Click to view Transfer Details.</value>
+  </data>
+  <data name="Guidelines_TransferAmt_SMA" xml:space="preserve">
+    <value>total transfer amount. Click to view Transfer Details.</value>
+  </data>
+  <data name="Guidelines_Turnover" xml:space="preserve">
+    <value>total stakes of all tickets (exclude Void/Rejected tickets).</value>
+  </data>
+  <data name="Guidelines_VoidRejected" xml:space="preserve">
+    <value>total stakes of Void/Rejected tickets. Click to view Bet List of Void/Rejected tickets.</value>
+  </data>
+  <data name="Guidelines_WinLoss_Member" xml:space="preserve">
+    <value>Total win loss amount (exclude member commission) of bet tickets (exclude Void/Rejected tickets). Click to view Bet list in details.</value>
+  </data>
+  <data name="Guidelines_WinLoss_SMA" xml:space="preserve">
+    <value>total win loss amount after Position Taking of bet tickets (exclude Void/Rejected tickets).</value>
+  </data>
   <data name="Invalid_Date_Range" xml:space="preserve">
     <value>Invalid Date Range</value>
   </data>
   <data name="Message_NoDataReport" xml:space="preserve">
-    <value>There is no data</value>
+    <value>No information is available</value>
   </data>
   <data name="Opening_Balance" xml:space="preserve">
     <value>Opening Balance</value>
@@ -144,20 +195,38 @@
   <data name="Outstanding" xml:space="preserve">
     <value>Outstanding</value>
   </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
   <data name="Remark" xml:space="preserve">
     <value>Remark</value>
+  </data>
+  <data name="Statement" xml:space="preserve">
+    <value>Statement</value>
   </data>
   <data name="StatementReportName" xml:space="preserve">
     <value>Statement_{0}_To_{1}.xls</value>
   </data>
+  <data name="Statement_Guidelines" xml:space="preserve">
+    <value>Statement Guidelines</value>
+  </data>
   <data name="Statement_Report" xml:space="preserve">
     <value>Statement Report</value>
+  </data>
+  <data name="Symbol_ExchangeRate" xml:space="preserve">
+    <value>Ex.Rate</value>
   </data>
   <data name="Symbol_NoData" xml:space="preserve">
     <value>--</value>
   </data>
   <data name="Total" xml:space="preserve">
     <value>Total</value>
+  </data>
+  <data name="Traa" xml:space="preserve">
+    <value>Traa</value>
+  </data>
+  <data name="Trac" xml:space="preserve">
+    <value>Trac</value>
   </data>
   <data name="TransferDetails_ReportName" xml:space="preserve">
     <value>Statement_Details_on_{0}.xls</value>
@@ -170,6 +239,9 @@
   </data>
   <data name="Turnover" xml:space="preserve">
     <value>Turnover</value>
+  </data>
+  <data name="Void" xml:space="preserve">
+    <value>Void</value>
   </data>
   <data name="Void_Cancelled" xml:space="preserve">
     <value>Void/Cancelled</value>

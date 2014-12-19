@@ -9,8 +9,9 @@
 
 namespace Fanex.Module.Statement.Criteria.StatementReport
 {
-    using System.Collections;
-    using Fanex.Module.Statement.Repositories;
+    using System;
+    using Fanex.Common;
+    using Fanex.Module.Statement.Services;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -18,33 +19,35 @@ namespace Fanex.Module.Statement.Criteria.StatementReport
     /// </summary>
     public class TransferDetailsCriteria : CriteriaBase
     {
+        [SpParam(SqlParamName = "WinLostDate")]
         public string TransferDate { get; set; }
+
+        [SpParam(Ignored = true)]
+        public DateTime BalanceUpDate { get; set; }
 
         public int CustId { get; set; }
 
         [SpParam(Ignored = true)]
+        public string Username { get; set; }
+
+        [SpParam(Ignored = true)]
         public int RoleId { get; set; }
+
+        [SpParam(Ignored = true)]
+        public string SiteName { get; set; }
 
         public override string GetSettingKey()
         {
-            return "Statement_Report_TransferDetails";
+            var storeProcedureSuffix = Converter.ToDateTime(TransferDate) >= BalanceUpDate ?
+                string.Empty :
+                ReportService.WarehouseSPSuffix;
+
+            return "Statement_Report_TransferDetails" + storeProcedureSuffix;
         }
 
         public override bool IsValid()
         {
             return true;
-        }
-
-        public override Hashtable GetSpParams()
-        {
-            Hashtable storeProcedureParams = new Hashtable();
-            storeProcedureParams.Add("custid", CustId);
-            storeProcedureParams.Add("fromdate", TransferDate);
-            storeProcedureParams.Add("todate", TransferDate);
-            storeProcedureParams.Add("language", "EN");
-            storeProcedureParams.Add("balanceupday", DummyDataRepository.BalanceUpDay);
-            storeProcedureParams.Add("movebetday", DummyDataRepository.MoveBetsDay);
-            return storeProcedureParams;
         }
     }
 }

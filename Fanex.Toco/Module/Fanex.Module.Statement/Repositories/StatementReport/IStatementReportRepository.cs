@@ -9,7 +9,9 @@
 
 namespace Fanex.Module.Statement.Repositories.StatementReport
 {
+    using Fanex.Module.Statement.Criteria;
     using Fanex.Module.Statement.Criteria.StatementReport;
+    using Fanex.Module.Statement.Models;
     using Fanex.Module.Statement.Models.StatementReport;
 
     public interface IStatementReportRepository
@@ -19,5 +21,9 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
         StatementReportModel MemberStatement(MemberStatementCriteria criteria);
 
         StatementReportModel TransferDetails(TransferDetailsCriteria criteria);
+
+        CustomerInformationModel GetCustomerInfo(GetCustomerInformationByUsername criteria);
+
+        bool CheckInternalByUsername(CheckInternalByUsernameCriteria criteria);
     }
 }

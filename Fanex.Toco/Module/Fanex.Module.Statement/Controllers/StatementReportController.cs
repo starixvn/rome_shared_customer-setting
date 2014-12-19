@@ -12,6 +12,8 @@ namespace Fanex.Module.Statement.Controllers
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
     using Fanex.CustomerSetting.Security.Authenticate;
+    using Fanex.Module.Statement.Constants;
+    using Fanex.Module.Statement.Criteria;
     using Fanex.Module.Statement.Criteria.StatementReport;
     using Fanex.Module.Statement.Models.StatementReport;
     using Fanex.Module.Statement.Resources;
@@ -43,7 +45,18 @@ namespace Fanex.Module.Statement.Controllers
         {
             return this.View("~/Areas/Statement/Views/Report/Index.cshtml");
         }
-        
+
+        [HttpGet]
+        public ActionResult Guideline(int roleId = RoleIdConstants.Member)
+        {
+            if (roleId == RoleIdConstants.Member)
+            {
+                return View("~/Areas/Statement/Views/Guideline/MemberGuildeline.cshtml");
+            }
+
+            return View("~/Areas/Statement/Views/Guideline/SMAGuildeline.cshtml");
+        }
+
         [HttpPost, AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Statement")]
         public JsonResult SMAStatement(SMAStatementCriteria criteria)
         {
@@ -52,6 +65,7 @@ namespace Fanex.Module.Statement.Controllers
             return Json(statementList);
         }
 
+        [HttpPost, AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Statement")]
         public JsonResult MemberStatement(MemberStatementCriteria criteria)
         {
             var statementList = _statementReportService.MemberStatement(criteria);
@@ -59,7 +73,7 @@ namespace Fanex.Module.Statement.Controllers
             return Json(statementList);
         }
 
-        [HttpGet]
+        [HttpGet, AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Statement")]
         public ActionResult TransferDetails(TransferDetailsCriteria criteria)
         {
             var statementList = _statementReportService.TransferDetails(criteria);
@@ -68,24 +82,27 @@ namespace Fanex.Module.Statement.Controllers
             return View("~/Areas/Statement/Views/StatementDetails/Index.cshtml", statementList);
         }
 
+        [HttpGet, AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Statement")]
         public ActionResult ExportMemberStatement(MemberStatementCriteria criteria)
         {
-            var fileDownloadName = string.Format(Labels.StatementReportName, criteria.FromDate, criteria.ToDate);
+            var fileDownloadName = string.Format(Labels.StatementReportName, criteria.FromDate.ToString("MM_dd_yyyy"), criteria.ToDate.ToString("MM_dd_yyyy"));
             return File(
                 _statementReportService.ExportMemberStatement(criteria, (StatementReportModel)Session[SessionKeyStatement]).ToArray(),
                 "application/vnd.ms-excel",
                 fileDownloadName);
         }
 
+        [HttpGet, AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Statement")]
         public ActionResult ExportSMAStatement(SMAStatementCriteria criteria)
         {
-            var fileDownloadName = string.Format(Labels.StatementReportName, criteria.FromDate, criteria.ToDate);
+            var fileDownloadName = string.Format(Labels.StatementReportName, criteria.FromDate.ToString("MM_dd_yyyy"), criteria.ToDate.ToString("MM_dd_yyyy"));
             return File(
                 _statementReportService.ExportSMAStatement(criteria, (StatementReportModel)Session[SessionKeyStatement]).ToArray(),
                 "application/vnd.ms-excel",
                 fileDownloadName);
         }
 
+        [HttpGet, AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Statement")]
         public ActionResult ExportTransferDetails(TransferDetailsCriteria criteria)
         {
             var fileDownloadName = string.Format(Labels.TransferDetails_ReportName, criteria.TransferDate);
@@ -93,6 +110,16 @@ namespace Fanex.Module.Statement.Controllers
                 _statementReportService.ExportTransferDetails(criteria, (StatementReportModel)Session[SessionKeyTransferDetails]).ToArray(),
                 "application/vnd.ms-excel",
                 fileDownloadName);
+        }
+
+        public JsonResult GetCustomerInfo(GetCustomerInformationByUsername criteria)
+        {
+            return Json(_statementReportService.GetCustomerInfo(criteria));
+        }
+
+        public JsonResult CheckInternalByUsername(CheckInternalByUsernameCriteria criteria)
+        {
+            return Json(_statementReportService.CheckInternalByUsername(criteria));
         }
     }
 }

@@ -10,7 +10,9 @@
 namespace Fanex.Module.Statement.Services.StatementReport
 {
     using System.IO;
+    using Fanex.Module.Statement.Criteria;
     using Fanex.Module.Statement.Criteria.StatementReport;
+    using Fanex.Module.Statement.Models;
     using Fanex.Module.Statement.Models.StatementReport;
 
     public interface IStatementReportService
@@ -26,5 +28,9 @@ namespace Fanex.Module.Statement.Services.StatementReport
         MemoryStream ExportSMAStatement(SMAStatementCriteria criteria, StatementReportModel data);
 
         MemoryStream ExportTransferDetails(TransferDetailsCriteria criteria, StatementReportModel data);
+
+        CustomerInformationModel GetCustomerInfo(GetCustomerInformationByUsername criteria);
+
+        bool CheckInternalByUsername(CheckInternalByUsernameCriteria criteria);
     }
 }

@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="MemberStatementCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="StatementReportCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -15,16 +15,11 @@ namespace Fanex.Module.Statement.Criteria.StatementReport
     /// <summary>
     /// Statement Report Criteria.
     /// </summary>
-    public class StatementReportCriteria : CriteriaBase
+    public class StatementReportCriteria : DateRangeReportCriteria
     {
-        public DateTime FromDate { get; set; }
-
-        public DateTime ToDate { get; set; }
-
         public int CustId { get; set; }
 
-        public DateTime BalanceUpDay { get; set; }
-
-        public DateTime MoveBetDay { get; set; }
+        [SpParam(Ignored = true)]
+        public string Username { get; set; }
     }
 }

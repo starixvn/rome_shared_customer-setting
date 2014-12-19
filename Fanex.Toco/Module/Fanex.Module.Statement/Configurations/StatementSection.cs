@@ -18,6 +18,8 @@ namespace Fanex.Module.Statement.Configurations
     /// </summary>
     public class StatementSection : ConfigurationSection
     {
+        private static StatementSection _instance;
+
         /// <summary>
         /// Gets Progressive Instance.
         /// </summary>
@@ -26,7 +28,8 @@ namespace Fanex.Module.Statement.Configurations
         {
             get
             {
-                return ConfigurationManager.GetSection("StatementSection") as StatementSection;
+                _instance = _instance ?? ConfigurationManager.GetSection("StatementSection") as StatementSection;
+                return _instance;
             }
         }
 

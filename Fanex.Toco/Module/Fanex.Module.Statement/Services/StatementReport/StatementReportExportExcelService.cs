@@ -11,6 +11,7 @@ namespace Fanex.Module.Statement.Services.StatementReport
 {
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+    using Fanex.Module.Statement.Constants;
     using Fanex.Module.Statement.Criteria.StatementReport;
     using Fanex.Module.Statement.Models;
     using Fanex.Module.Statement.Models.StatementReport;
@@ -33,7 +34,7 @@ namespace Fanex.Module.Statement.Services.StatementReport
         public MemoryStream ExportMemberStatement(MemberStatementCriteria criteria, StatementReportModel data)
         {
             var result = new MemoryStream();
-            var sheetName = Labels.Statement_Report;
+            var sheetName = Labels.Statement;
             HSSFWorkbook workbook = new HSSFWorkbook();
             var worksheet = workbook.CreateSheet(sheetName);
 
@@ -53,7 +54,7 @@ namespace Fanex.Module.Statement.Services.StatementReport
         public MemoryStream ExportSMAStatement(SMAStatementCriteria criteria, StatementReportModel data)
         {
             var result = new MemoryStream();
-            var sheetName = Labels.Statement_Report;
+            var sheetName = Labels.Statement;
             HSSFWorkbook workbook = new HSSFWorkbook();
             var worksheet = workbook.CreateSheet(sheetName);
 
@@ -73,7 +74,7 @@ namespace Fanex.Module.Statement.Services.StatementReport
         public MemoryStream ExportTransferDetails(TransferDetailsCriteria criteria, StatementReportModel data)
         {
             var result = new MemoryStream();
-            var sheetName = Labels.Statement_Report;
+            var sheetName = Labels.Statement;
             HSSFWorkbook workbook = new HSSFWorkbook();
             var worksheet = workbook.CreateSheet(sheetName);
 
@@ -182,7 +183,8 @@ namespace Fanex.Module.Statement.Services.StatementReport
             var currentRow = 0;
             var titleRow = worksheet.CreateRow(currentRow);
             var titleCell = titleRow.CreateCell(0);
-            titleCell.SetCellValue(Labels.Statement_Report + " " + criteria.FromDate + "-->" + criteria.ToDate);
+            titleCell.SetCellValue(Labels.Statement + " (" + criteria.Username + "): " + criteria.FromDate.ToString("MM/dd/yyyy") +
+                "-->" + criteria.ToDate.ToString("MM/dd/yyyy"));
             titleCell.CellStyle = TitleStyle(workbook);
             currentRow++;
 
@@ -212,7 +214,7 @@ namespace Fanex.Module.Statement.Services.StatementReport
             currentColumn++;
 
             currentCell = headerRow.CreateCell(currentColumn);
-            currentCell.SetCellValue(Labels.Void_Cancelled);
+            currentCell.SetCellValue(Labels.Void + "/" + Labels.Rejected);
             currentCell.CellStyle = headerStyle;
             currentColumn++;
 
@@ -397,7 +399,8 @@ namespace Fanex.Module.Statement.Services.StatementReport
             var currentRow = 0;
             var titleRow = worksheet.CreateRow(currentRow);
             var titleCell = titleRow.CreateCell(0);
-            titleCell.SetCellValue(Labels.Statement_Report + " " + criteria.FromDate + "-->" + criteria.ToDate);
+            titleCell.SetCellValue(Labels.Statement + " (" + criteria.Username + "): " + criteria.FromDate.ToString("MM/dd/yyyy") +
+                "-->" + criteria.ToDate.ToString("MM/dd/yyyy"));
             titleCell.CellStyle = TitleStyle(workbook);
             currentRow++;
 
@@ -597,7 +600,7 @@ namespace Fanex.Module.Statement.Services.StatementReport
             var currentRow = 0;
             var titleRow = worksheet.CreateRow(currentRow);
             var titleCell = titleRow.CreateCell(0);
-            titleCell.SetCellValue(Labels.Transfer_Details + ": " + criteria.TransferDate);
+            titleCell.SetCellValue(Labels.Transfer_Details + " ( " + criteria.Username + "): " + criteria.TransferDate);
             titleCell.CellStyle = TitleStyle(workbook);
             currentRow++;
 
@@ -703,7 +706,12 @@ namespace Fanex.Module.Statement.Services.StatementReport
                 currentColumn++;
 
                 column = row.CreateCell(currentColumn);
-                column.SetCellValue(statement.Remark);
+                var remark = statement.TransactionType + "\n" + statement.Description +
+                    (criteria.SiteName == SystemNameConstants.Nap &&
+                    !string.IsNullOrEmpty(statement.ExchangeRate) ?
+                        " - " + Labels.Symbol_ExchangeRate + ":" + statement.ExchangeRate :
+                        string.Empty);
+                column.SetCellValue(remark);
                 column.CellStyle = textStyle;
                 currentColumn++;
 
@@ -721,10 +729,32 @@ namespace Fanex.Module.Statement.Services.StatementReport
 
             var grandTotalColorIndex = palette.FindSimilarColor(219, 225, 187).GetIndex();
             var grandTotalTextStyle = workbook.CreateCellStyle();
-            grandTotalTextStyle.CloneStyleFrom(centerTextStyle);
+
+            var boldBlackNormal = workbook.CreateFont();
+            boldBlackNormal.FontName = "Tahoma";
+            boldBlackNormal.FontHeightInPoints = 9;
+            boldBlackNormal.Color = HSSFColor.Black.Index;
+            boldBlackNormal.Boldweight = (short)NPOI.SS.UserModel.FontBoldWeight.Bold;
+
+            var boldRedNormal = workbook.CreateFont();
+            boldRedNormal.FontName = "Tahoma";
+            boldRedNormal.FontHeightInPoints = 9;
+            boldRedNormal.Color = HSSFColor.Red.Index;
+            boldRedNormal.Boldweight = (short)NPOI.SS.UserModel.FontBoldWeight.Bold;
+
+            grandTotalTextStyle.CloneStyleFrom(reportStyle);
+            grandTotalTextStyle.SetFont(boldBlackNormal);
             grandTotalTextStyle.Alignment = NPOI.SS.UserModel.HorizontalAlignment.Right;
             grandTotalTextStyle.FillForegroundColor = grandTotalColorIndex;
             grandTotalTextStyle.FillPattern = FillPattern.SolidForeground;
+
+            var twoDecimalRedNumberStyleGrandTotal = workbook.CreateCellStyle();
+            twoDecimalRedNumberStyleGrandTotal.CloneStyleFrom(twoDecimalRedNumberStyle);
+            twoDecimalRedNumberStyleGrandTotal.SetFont(boldRedNormal);
+
+            var twoDecimalNumberStyleGrandTotal = workbook.CreateCellStyle();
+            twoDecimalNumberStyleGrandTotal.CloneStyleFrom(twoDecimalNumberStyle);
+            twoDecimalNumberStyleGrandTotal.SetFont(boldBlackNormal);
 
             row = worksheet.CreateRow(currentRow);
             column = row.CreateCell(currentColumn);
@@ -740,8 +770,8 @@ namespace Fanex.Module.Statement.Services.StatementReport
             ExportDataColumnModel(column, statement.TransferAmount);
             var cellStyle = workbook.CreateCellStyle();
             cellStyle.CloneStyleFrom(IsNegative(statement.TransferAmount) ?
-                twoDecimalRedNumberStyle :
-                twoDecimalNumberStyle);
+                twoDecimalRedNumberStyleGrandTotal :
+                twoDecimalNumberStyleGrandTotal);
             cellStyle.FillForegroundColor = grandTotalColorIndex;
             cellStyle.FillPattern = FillPattern.SolidForeground;
             column.CellStyle = cellStyle;

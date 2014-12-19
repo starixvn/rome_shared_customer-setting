@@ -50,6 +50,15 @@
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
       <HintPath>..\_Dependencies\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging">
+      <HintPath>..\_Dependencies\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\_Dependencies\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception">
+      <HintPath>..\_Dependencies\Microsoft.Practices.Unity.Interception.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -680,6 +689,23 @@
     <Content Include="Areas\Statement\Views\StatementDetails\Scripts\StatementDetailsManager.js" />
     <Content Include="Areas\Statement\Views\StatementDetails\Styles\StatementDetails.css" />
     <Content Include="Scripts\_Libs\jQuery\jquery-1.8.2.min.js" />
+    <Content Include="Scripts\_Libs\jQuery\Styles\images\ui-bg_flat_60_4264ac_40x100.png" />
+    <Content Include="Scripts\_Libs\jQuery\Styles\images\ui-bg_flat_75_5476bb_40x100.png" />
+    <Content Include="Scripts\_Libs\jQuery\Styles\images\ui-bg_flat_90_466bb9_40x100.png" />
+    <Content Include="Scripts\_Libs\jQuery\Styles\images\ui-bg_flat_90_aaaaaa_40x100.png" />
+    <Content Include="Scripts\_Libs\jQuery\Styles\images\ui-bg_glass_45_f4f3f1_1x400.png" />
+    <Content Include="Scripts\_Libs\jQuery\Styles\images\ui-bg_glass_55_f8da4e_1x400.png" />
+    <Content Include="Scripts\_Libs\jQuery\Styles\images\ui-bg_gloss-wave_45_e14f1c_500x100.png" />
+    <Content Include="Scripts\_Libs\jQuery\Styles\images\ui-bg_highlight-soft_90_999999_1x100.png" />
+    <Content Include="Scripts\_Libs\jQuery\Styles\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="Scripts\_Libs\jQuery\Styles\images\ui-icons_4264ac_256x240.png" />
+    <Content Include="Scripts\_Libs\jQuery\Styles\images\ui-icons_c6cddc_256x240.png" />
+    <Content Include="Scripts\_Libs\jQuery\Styles\images\ui-icons_cbd4e6_256x240.png" />
+    <Content Include="Scripts\_Libs\jQuery\Styles\images\ui-icons_d0d9ec_256x240.png" />
+    <Content Include="Scripts\_Libs\jQuery\Styles\images\ui-icons_f7a50d_256x240.png" />
+    <Content Include="Scripts\_Libs\jQuery\Styles\images\ui-icons_fcd113_256x240.png" />
+    <Content Include="Scripts\_Libs\jQuery\Styles\jquery-ui-1.9.1.custom.css" />
+    <Content Include="Scripts\_Libs\jQuery\Styles\jquery-ui-1.9.1.custom.min.css" />
     <Content Include="Web.Configuration\Store\RacingSpNames.xml" />
     <Content Include="Web.Configuration\Store\CustomerSpNames.xml">
       <SubType>Designer</SubType>
@@ -971,7 +997,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Web.Configuration\Store\Statement.xml" />
+    <Content Include="Web.Configuration\Store\Statement.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -1110,6 +1138,9 @@
     <Content Include="Areas\Statement\Views\StatementDetails\Index.cshtml" />
     <Content Include="Areas\Statement\Views\Web.config" />
     <Content Include="Areas\Statement\Views\Report\Index.cshtml" />
+    <Content Include="Areas\Statement\Views\Guideline\MemberGuildeline.cshtml" />
+    <Content Include="Areas\Statement\Views\Guideline\SMAGuildeline.cshtml" />
+    <Content Include="Areas\Statement\Views\Guideline\Styles\Guideline.less" />
     <None Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3-custom.less" />
   </ItemGroup>
   <ItemGroup>
@@ -1182,7 +1213,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>55134</DevelopmentServerPort>
+          <DevelopmentServerPort>55676</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

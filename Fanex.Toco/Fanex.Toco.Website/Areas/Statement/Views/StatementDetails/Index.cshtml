@@ -1,8 +1,9 @@
 ﻿@using Newtonsoft.Json;
 @using Fanex.Module.Statement.Models.StatementReport;
+@using Fanex.Module.Statement.Resources;
 @model StatementReportModel
 @{
-    ViewBag.Title = "Transfer Details";
+    ViewBag.Title = Labels.Transfer_Details;
     Layout = "";
     var statementReport = JsonConvert.SerializeObject(Model);
     var transferDetailsCriteria = JsonConvert.SerializeObject(ViewBag.TransferDetailsCriteria);
@@ -11,15 +12,13 @@
 <html lang="en" class="linen">
 <head>
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css",
-        "~/Scripts/_Libs/FanexGrid/FanexGridStyles")
+    @Styles.Render("~/Scripts/_Libs/FanexGrid/FanexGridStyles")
     <link href="@Url.Content("~/Areas/Statement/Views/StatementDetails/Styles/StatementDetails.css")" rel="stylesheet" type="text/css" />
 </head>
 <body id="body">
     <div id="transfer-details-container" class="freegrid">
     </div>
     <iframe id="frm" width="0" height="0" frameborder="0" style="display: none"></iframe>
-    @Scripts.Render("~/bundles/jquery")
     <script type="text/javascript" src="@Url.Content("~/Scripts/_Libs/jQuery/jquery-1.8.2.min.js")"></script>
     @Scripts.Render("~/Scripts/_Libs/FanexGrid/FanexGridScripts")
     <script type="text/javascript" src="@Url.Content("~/Scripts/_Libs/FanexGrid/Fanex.Grid.js")"></script>
@@ -32,11 +31,12 @@
         var statementReport= @Html.Raw(statementReport); 
         var transferDetailsCriteria= @Html.Raw(transferDetailsCriteria); 
           var statementResources = {
-              Date: 'Date',
-              Remark: 'Remark',
-              Amount: 'Amount',
-              Symbol_NoData: '--',
-              Total: 'Total'
+              Date: '@Labels.Date',
+              Remark: '@Labels.Remark',
+              Amount: '@Labels.Amount',
+              Symbol_NoData: '@Labels.Symbol_NoData',
+              Total: '@Labels.Total',
+              Symbol_ExchangeRate: '@Labels.Symbol_ExchangeRate'
           };
     </script>
 </body>

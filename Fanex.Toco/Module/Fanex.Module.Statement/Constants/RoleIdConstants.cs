@@ -9,37 +9,29 @@
 
 namespace Fanex.Module.Statement.Constants
 {
-    /// <summary>
-    /// Role Identify Constants.
-    /// </summary>
-    public static class RoleIdConstants
-    {
-        public const int Member = 1;
+    using System.Diagnostics.CodeAnalysis;
 
-        public const int Agent = 2;
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    public class RoleIdConstants
+    {
+        public const int Super = 4;
 
         public const int Master = 3;
 
-        public const int Super = 4;
+        public const int Agent = 2;
 
-        /// <summary>
-        /// Gets the role name.
-        /// </summary>
-        /// <param name="roleId">The role identifier.</param>
-        /// <returns>The role name.</returns>
-        public static string RoleName(int roleId)
-        {
-            switch (roleId)
-            {
-                case Super:
-                    return "Super";
-                case Master:
-                    return "Master";
-                case Agent:
-                    return "Agent";
-                default:
-                    return "Member";
-            }
-        }
+        public const int Member = 1;
+
+        public const int SuperOnMember = -1;
+
+        public const int MasterOnMember = -2;
+
+        public const int SuperMin = -3;
+
+        public const int MasterMinMax = -4;
+
+        public const int AgentMinMax = -5;
     }
 }

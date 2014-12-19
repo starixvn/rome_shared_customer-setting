@@ -9,10 +9,12 @@
 
 namespace Fanex.Module.Statement.Repositories.StatementReport
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using Fanex.Common;
     using Fanex.Data;
+    using Fanex.Module.Statement.Criteria;
     using Fanex.Module.Statement.Criteria.StatementReport;
     using Fanex.Module.Statement.Models;
     using Fanex.Module.Statement.Models.StatementReport;
@@ -46,36 +48,36 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
                 {
                     var statementModel = new StatementModel
                     {
-                        StatementDate = Converter.ToDateTime(reader["matchdate"]),
+                        StatementDate = Converter.ToDateTime(reader["winlostdate"]),
                         OpeningBalance = new DataColumnModel
                         {
-                            HasData = reader["totalamt"] != null,
-                            Value = Converter.To<double>(reader["totalamt"])
+                            HasData = !Convert.IsDBNull(reader["OpeningBalance"]),
+                            Value = Converter.To<double>(reader["OpeningBalance"])
                         },
                         Turnover = new DataColumnModel
                         {
-                            HasData = reader["totalamt"] != null,
-                            Value = Converter.To<double>(reader["totalamt"])
+                            HasData = !Convert.IsDBNull(reader["turnover"]),
+                            Value = Converter.To<double>(reader["turnover"])
                         },
                         WinLoss = new DataColumnModel
                         {
-                            HasData = reader["totalamt"] != null,
-                            Value = Converter.To<double>(reader["totalamt"])
+                            HasData = !Convert.IsDBNull(reader["WinLost"]),
+                            Value = Converter.To<double>(reader["WinLost"])
                         },
                         Commission = new DataColumnModel
                         {
-                            HasData = reader["totalamt"] != null,
-                            Value = Converter.To<double>(reader["totalamt"])
+                            HasData = !Convert.IsDBNull(reader["Comm"]),
+                            Value = Converter.To<double>(reader["Comm"])
                         },
                         TransferAmount = new DataColumnModel
                         {
-                            HasData = reader["totalamt"] != null,
-                            Value = Converter.To<double>(reader["totalamt"])
+                            HasData = !Convert.IsDBNull(reader["TransferAmt"]),
+                            Value = Converter.To<double>(reader["TransferAmt"])
                         },
                         AccumulatedTotal = new DataColumnModel
                         {
-                            HasData = reader["totalamt"] != null,
-                            Value = Converter.To<double>(reader["totalamt"])
+                            HasData = !Convert.IsDBNull(reader["ClosingBalance"]),
+                            Value = Converter.To<double>(reader["ClosingBalance"])
                         }
                     };
 
@@ -114,43 +116,43 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
                         StatementDate = Converter.ToDateTime(reader["winlostdate"]),
                         OpeningBalance = new DataColumnModel
                         {
-                            HasData = reader["totalamt"] != null,
-                            Value = Converter.To<double>(reader["totalamt"])
+                            HasData = !Convert.IsDBNull(reader["OpeningBalance"]),
+                            Value = Converter.To<double>(reader["OpeningBalance"])
                         },
                         Turnover = new DataColumnModel
                         {
-                            HasData = reader["turnover"] != null,
+                            HasData = !Convert.IsDBNull(reader["turnover"]),
                             Value = Converter.To<double>(reader["turnover"])
                         },
                         VoidCancelled = new DataColumnModel
                         {
-                            HasData = reader["totalamt"] != null,
-                            Value = Converter.To<double>(reader["totalamt"])
+                            HasData = !Convert.IsDBNull(reader["VoidAmt"]),
+                            Value = Converter.To<double>(reader["VoidAmt"])
                         },
                         Outstanding = new DataColumnModel
                         {
-                            HasData = reader["totalamt"] != null,
-                            Value = Converter.To<double>(reader["totalamt"])
+                            HasData = !Convert.IsDBNull(reader["Outstanding"]),
+                            Value = Converter.To<double>(reader["Outstanding"])
                         },
                         WinLoss = new DataColumnModel
                         {
-                            HasData = reader["totalamt"] != null,
-                            Value = Converter.To<double>(reader["totalamt"])
+                            HasData = !Convert.IsDBNull(reader["WinLost"]),
+                            Value = Converter.To<double>(reader["WinLost"])
                         },
                         Commission = new DataColumnModel
                         {
-                            HasData = reader["commission"] != null,
-                            Value = Converter.To<double>(reader["commission"])
+                            HasData = !Convert.IsDBNull(reader["Comm"]),
+                            Value = Converter.To<double>(reader["Comm"])
                         },
                         TransferAmount = new DataColumnModel
                         {
-                            HasData = reader["totalamt"] != null,
-                            Value = Converter.To<double>(reader["totalamt"])
+                            HasData = !Convert.IsDBNull(reader["TransferAmt"]),
+                            Value = Converter.To<double>(reader["TransferAmt"])
                         },
                         AccumulatedTotal = new DataColumnModel
                         {
-                            HasData = reader["totalamt"] != null,
-                            Value = Converter.To<double>(reader["totalamt"])
+                            HasData = !Convert.IsDBNull(reader["ClosingBalance"]),
+                            Value = Converter.To<double>(reader["ClosingBalance"])
                         }
                     };
 
@@ -188,17 +190,23 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
                 var reader = objDb.ExecuteReader();
                 while (reader.Read())
                 {
-                    var transferAmount = Converter.To<double>(reader["totalamt"]);
+                    var transferAmount = Converter.To<double>(reader["amount"]);
                     var statementModel = new StatementModel
                     {
-                        StatementDate = Converter.ToDateTime(reader["winlostdate"]),
-                        Remark = Converter.ToString2(reader["transtype"]),
+                        StatementDate = Converter.ToDateTime(reader["transdate"]),
+                        TransactionType = Converter.ToString2(reader["transtype"]),
+                        Description = Converter.ToString2(reader["transdesc"]),
                         TransferAmount = new DataColumnModel
                         {
-                            HasData = reader["totalamt"] != null,
-                            Value = Converter.To<double>(transferAmount)
+                            HasData = true,
+                            Value = transferAmount
                         }
                     };
+
+                    if (criteria.BalanceUpDate <= Converter.ToDateTime(criteria.TransferDate))
+                    {
+                        statementModel.ExchangeRate = Converter.ToString2(reader["ExRate"]);
+                    }
 
                     statementModel.StatementDateString = statementModel.StatementDate.ToString("MM/dd/yyyy <br> HH:MM:ss tt");
                     result.StatementList.Add(statementModel);
@@ -207,6 +215,49 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
             }
 
             result.Total.TransferAmount.Value = Converter.To<double>(totalTransferAmount);
+            return result;
+        }
+
+        /// <summary>
+        /// Gets the customer information.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>The customer information.</returns>
+        public CustomerInformationModel GetCustomerInfo(GetCustomerInformationByUsername criteria)
+        {
+            CustomerInformationModel result = new CustomerInformationModel();
+            using (var objDb = new ObjectDb(criteria.GetSettingKey()))
+            {
+                objDb.AssignParamValues(criteria.GetSpParams());
+                var reader = objDb.ExecuteReader();
+                while (reader.Read())
+                {
+                    result.CustomerId = Converter.ToInt(reader["custid"]);
+                    result.RoleId = Converter.ToInt(reader["roleid"]);
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Checks Internal By Username.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>
+        /// Is Internal or Not.
+        /// </returns>
+        public bool CheckInternalByUsername(CheckInternalByUsernameCriteria criteria)
+        {
+            bool result = false;
+            using (var objDb = new ObjectDb(criteria.GetSettingKey()))
+            {
+                objDb.AssignParamValues(criteria.GetSpParams());
+                var reader = objDb.ExecuteReader();
+                var outputParams = objDb.GetOuputParams();
+                result = Converter.ToBool(outputParams["isinternal"]);
+            }
+
             return result;
         }
     }

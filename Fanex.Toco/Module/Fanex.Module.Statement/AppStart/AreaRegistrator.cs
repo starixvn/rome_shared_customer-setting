@@ -22,7 +22,7 @@ namespace Fanex.Module.Statement.AppStart
         {
             get
             {
-                return "Statement";
+                return "NapStatement";
             }
         }
 

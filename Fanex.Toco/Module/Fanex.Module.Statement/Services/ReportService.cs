@@ -9,10 +9,36 @@
 
 namespace Fanex.Module.Statement.Services
 {
+    using Fanex.Module.Statement.Criteria.StatementReport;
+
     /// <summary>
     /// Report Service.
     /// </summary>
     public class ReportService
     {
+        public const string BetTrans14SPSuffix = "_14";
+        public const string WarehouseSPSuffix = "_WH";
+
+        /// <summary>
+        /// Gets the store mapping suffix.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>
+        /// The store mapping suffix.
+        /// </returns>
+        public static string GetStoreMappingSuffix(DateRangeReportCriteria criteria)
+        {
+            if (criteria.FromDate > criteria.MoveBetDay)
+            {
+                return string.Empty;
+            }
+
+            if (criteria.FromDate >= criteria.BalanceUpDay)
+            {
+                return BetTrans14SPSuffix;
+            }
+
+            return WarehouseSPSuffix;
+        }
     }
 }

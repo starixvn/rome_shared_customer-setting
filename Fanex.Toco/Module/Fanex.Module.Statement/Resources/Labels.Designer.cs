@@ -106,6 +106,159 @@ namespace Fanex.Module.Statement.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accumulated Total = Opening Balance + Win/Loss + Commission + Transfer Amt.
+        /// </summary>
+        public static string Formular_Accumulated_Total {
+            get {
+                return ResourceManager.GetString("Formular_Accumulated_Total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The new format of Statement report is only displayed if “From” date starts from {0} onwards..
+        /// </summary>
+        public static string Guidelines_1stRow_SMA {
+            get {
+                return ResourceManager.GetString("Guidelines_1stRow_SMA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to member closing balance of each day within selected date range..
+        /// </summary>
+        public static string Guidelines_AccumulatedTotal_Member {
+            get {
+                return ResourceManager.GetString("Guidelines_AccumulatedTotal_Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to your closing balance of each day within selected date range..
+        /// </summary>
+        public static string Guidelines_AccumulatedTotal_SMA {
+            get {
+                return ResourceManager.GetString("Guidelines_AccumulatedTotal_SMA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to total member commission..
+        /// </summary>
+        public static string Guidelines_Commission_Member {
+            get {
+                return ResourceManager.GetString("Guidelines_Commission_Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to total net commission based on member tickets..
+        /// </summary>
+        public static string Guidelines_Commission_SMA {
+            get {
+                return ResourceManager.GetString("Guidelines_Commission_SMA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to member balance calculated till “From” date. If Opening Balance does not equal to Accumulated Total of previous date, then the Opening Balance will be highlighted in pink..
+        /// </summary>
+        public static string Guidelines_OpeningBalance_Member {
+            get {
+                return ResourceManager.GetString("Guidelines_OpeningBalance_Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to your balance calculated till “From” date. If Opening Balance does not equal to Accumulated Total of previous date, then the Opening Balance will be highlighted in pink..
+        /// </summary>
+        public static string Guidelines_OpeningBalance_SMA {
+            get {
+                return ResourceManager.GetString("Guidelines_OpeningBalance_SMA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to total stakes of Running tickets. Click to view Bet List of Running tickets..
+        /// </summary>
+        public static string Guidelines_Outstanding {
+            get {
+                return ResourceManager.GetString("Guidelines_Outstanding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transfer transactions between Agent and Member..
+        /// </summary>
+        public static string Guidelines_Traa {
+            get {
+                return ResourceManager.GetString("Guidelines_Traa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transfer transactions between Agent and Master/Super..
+        /// </summary>
+        public static string Guidelines_Trac {
+            get {
+                return ResourceManager.GetString("Guidelines_Trac", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to total transfer amount between Agent and Member. Click to view Transfer Details..
+        /// </summary>
+        public static string Guidelines_TransferAmt_Member {
+            get {
+                return ResourceManager.GetString("Guidelines_TransferAmt_Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to total transfer amount. Click to view Transfer Details..
+        /// </summary>
+        public static string Guidelines_TransferAmt_SMA {
+            get {
+                return ResourceManager.GetString("Guidelines_TransferAmt_SMA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to total stakes of all tickets (exclude Void/Rejected tickets)..
+        /// </summary>
+        public static string Guidelines_Turnover {
+            get {
+                return ResourceManager.GetString("Guidelines_Turnover", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to total stakes of Void/Rejected tickets. Click to view Bet List of Void/Rejected tickets..
+        /// </summary>
+        public static string Guidelines_VoidRejected {
+            get {
+                return ResourceManager.GetString("Guidelines_VoidRejected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total win loss amount (exclude member commission) of bet tickets (exclude Void/Rejected tickets). Click to view Bet list in details..
+        /// </summary>
+        public static string Guidelines_WinLoss_Member {
+            get {
+                return ResourceManager.GetString("Guidelines_WinLoss_Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to total win loss amount after Position Taking of bet tickets (exclude Void/Rejected tickets)..
+        /// </summary>
+        public static string Guidelines_WinLoss_SMA {
+            get {
+                return ResourceManager.GetString("Guidelines_WinLoss_SMA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid Date Range.
         /// </summary>
         public static string Invalid_Date_Range {
@@ -115,7 +268,7 @@ namespace Fanex.Module.Statement.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There is no data.
+        ///   Looks up a localized string similar to No information is available.
         /// </summary>
         public static string Message_NoDataReport {
             get {
@@ -142,11 +295,38 @@ namespace Fanex.Module.Statement.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rejected.
+        /// </summary>
+        public static string Rejected {
+            get {
+                return ResourceManager.GetString("Rejected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remark.
         /// </summary>
         public static string Remark {
             get {
                 return ResourceManager.GetString("Remark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Statement.
+        /// </summary>
+        public static string Statement {
+            get {
+                return ResourceManager.GetString("Statement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Statement Guidelines.
+        /// </summary>
+        public static string Statement_Guidelines {
+            get {
+                return ResourceManager.GetString("Statement_Guidelines", resourceCulture);
             }
         }
         
@@ -169,6 +349,15 @@ namespace Fanex.Module.Statement.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ex.Rate.
+        /// </summary>
+        public static string Symbol_ExchangeRate {
+            get {
+                return ResourceManager.GetString("Symbol_ExchangeRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to --.
         /// </summary>
         public static string Symbol_NoData {
@@ -183,6 +372,24 @@ namespace Fanex.Module.Statement.Resources {
         public static string Total {
             get {
                 return ResourceManager.GetString("Total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Traa.
+        /// </summary>
+        public static string Traa {
+            get {
+                return ResourceManager.GetString("Traa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trac.
+        /// </summary>
+        public static string Trac {
+            get {
+                return ResourceManager.GetString("Trac", resourceCulture);
             }
         }
         
@@ -219,6 +426,15 @@ namespace Fanex.Module.Statement.Resources {
         public static string Turnover {
             get {
                 return ResourceManager.GetString("Turnover", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Void.
+        /// </summary>
+        public static string Void {
+            get {
+                return ResourceManager.GetString("Void", resourceCulture);
             }
         }
         

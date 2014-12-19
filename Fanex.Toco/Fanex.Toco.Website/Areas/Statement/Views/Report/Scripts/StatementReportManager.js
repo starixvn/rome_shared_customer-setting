@@ -1,10 +1,14 @@
 ﻿
-jQuery.noConflict();
 var StatementReportManager = function () {
     var self = this;
     self.Enums = {
         RoleId: {
             Member: 1
+        },
+        TransactionType: {
+            WinLoss: 1,
+            VoidCancelled: 2,
+            Outstanding: 3
         }
     };
     self.Constants = {
@@ -15,24 +19,25 @@ var StatementReportManager = function () {
         }
     };
     self.eventFunction = {
-        unblockUI: null,
+        completeRenderStatementReport: null,
         openPopup: null
     };
 
     self.cachedData = {
         statementReportCriteria: null,
-        statementReport: null
+        statementReport: null,
+        viewBetListFunction: null
     };
-    self.initFunction = function (unblockUI, openPopup) {
-        self.eventFunction.unblockUI = unblockUI;
-        self.eventFunction.openPopup = openPopup || OpenPopup;
+    self.initFunction = function (completeRenderStatementReport, openPopup, viewBetListFunction) {
+        self.eventFunction.completeRenderStatementReport = completeRenderStatementReport;
+        self.eventFunction.openPopup = openPopup;
+        self.eventFunction.viewBetListFunction = viewBetListFunction;
     };
 
     self.checkCriteria = function (criteria) {
         var newLayoutFromDate = new Date(newLayoutDate);
         if (new Date(criteria.fromDate) < newLayoutFromDate &&
-            newLayoutFromDate < new Date(criteria.toDate)) {
-            // jQuery('#GridContainer').addClass("display-none");
+            newLayoutFromDate <= new Date(criteria.toDate)) {
             alert(statementResources.Invalid_Date_Range);
             return false;
         }
@@ -65,15 +70,34 @@ var StatementReportManager = function () {
         return newLayoutFromDate <= new Date(criteria.fromDate);
     };
     self.getStatementReport = function (criteria) {
+        self.cachedData.statementReportCriteria = criteria;
+        var url = domain + 'NapStatement/StatementReport/GetCustomerInfo';
+        if (criteria.custId == 0) {
+            self.callAjax(url, criteria, self.completeLoadCustomerInfo);
+            return;
+        }
+
         if (criteria.roleId === self.Enums.RoleId.Member) {
             self.getMemberStatementReport(criteria);
         } else {
             self.getSMAStatementReport(criteria);
         }
     };
+
+    self.completeLoadCustomerInfo = function (rs) {
+        self.cachedData.statementReportCriteria.custId = rs.CustomerId;
+        self.cachedData.statementReportCriteria.roleId = rs.RoleId;
+
+        var criteria = self.cachedData.statementReportCriteria;
+        if (criteria.roleId === self.Enums.RoleId.Member) {
+            self.getMemberStatementReport(criteria);
+        } else {
+            self.getSMAStatementReport(criteria);
+        }
+    };
+
     self.getSMAStatementReport = function (criteria) {
-        self.cachedData.statementReportCriteria = criteria;
-        var url = domain + 'Statement/StatementReport/SMAStatement';
+        var url = domain + 'NapStatement/StatementReport/SMAStatement';
         self.callAjax(url, criteria, self.renderSMAStatementReport);
     };
     self.renderSMAStatementReport = function (rs) {
@@ -83,6 +107,7 @@ var StatementReportManager = function () {
         if (statementListLength) {
             var previousStatement = null;
             for (var i = 0; i < statementListLength; i++) {
+                var dataRowIndex = ' data-rowindex="' + i + '"';
                 var statement = rs.StatementList[i];
                 var currentRow = {
                     Columns: [{ Name: "ColDate", Value: statement.StatementDateString },
@@ -105,7 +130,9 @@ var StatementReportManager = function () {
                         {
                             Name: "ColWinLoss",
                             Value: statement.WinLoss.HasData ?
-                                statement.WinLoss.Value :
+                               ('<div class="' + (statement.WinLoss.Value < 0 ? 'format-negative' : '') + '"' + dataRowIndex + '>' +
+                                    numeral(statement.WinLoss.Value).format(self.Constants.Format.Number.TwoDecimal) +
+                                '</div>') :
                                 statementResources.Symbol_NoData
                         },
                         {
@@ -206,20 +233,24 @@ var StatementReportManager = function () {
                 itemsPerPageArray: [10, 50, 100, 500],
                 currentPage: 0,
                 startPerPage: 50,
-                pageStep: 50
+                pageStep: 50,
+                afterPagedFunction: function () {
+                    self.bindGridEvent();
+                }
             }
         };
 
-        jQuery('#GridContainer').fanexGrid(gridOptions);
-        jQuery("#filter").width(jQuery("#GridContainer").width() + 22);
+        jQuery('#GridContainer').removeClass("hidden").fanexGrid(gridOptions);
         self.bindGridEvent();
-        if (self.eventFunction.unblockUI) {
-            self.eventFunction.unblockUI();
+        if (self.eventFunction.completeRenderStatementReport) {
+            self.eventFunction.completeRenderStatementReport();
         }
     };
     self.getColumnTransferAmount = function (statement, rowIndex) {
         var isNegative = statement.TransferAmount.HasData && parseFloat(statement.TransferAmount.Value) < 0;
-        return '<div class="column-transfer-amount' + (isNegative ? ' format-negative' : '') + '" ' +
+        return '<div class="' +
+                    (statement.TransferAmount.HasData ? 'column-transfer-amount' : '') +
+                    (isNegative ? ' format-negative' : '') + '" ' +
                     (' data-rowindex="' + rowIndex + '"') + '>' +
                     (statement.TransferAmount.HasData ?
                         numeral(statement.TransferAmount.Value).format(self.Constants.Format.Number.TwoDecimal) :
@@ -229,7 +260,7 @@ var StatementReportManager = function () {
 
     self.getMemberStatementReport = function (criteria) {
         self.cachedData.statementReportCriteria = criteria;
-        var url = domain + 'Statement/StatementReport/MemberStatement';
+        var url = domain + 'NapStatement/StatementReport/MemberStatement';
         self.callAjax(url, criteria, self.renderMemberStatementReport);
     };
     self.renderMemberStatementReport = function (rs) {
@@ -238,16 +269,15 @@ var StatementReportManager = function () {
         var bodyData = [];
         if (statementListLength) {
             var previousStatement = null;
+            var dataRowIndex;
             for (var i = 0; i < statementListLength; i++) {
+                var dataRowIndex = ' data-rowindex="' + i + '"';
                 var statement = rs.StatementList[i];
                 var currentRow = {
                     Columns: [
                         {
                             Name: "ColDate",
-                            Value: '<div class="column-statement-date"' +
-                                    (' data-rowindex="' + i + '"') + '>' +
-                                        statement.StatementDateString +
-                                    '</div>'
+                            Value: statement.StatementDateString
                         },
                         {
                             Name: "ColOpeningBalance",
@@ -268,21 +298,25 @@ var StatementReportManager = function () {
                         {
                             Name: "ColVoid_Cancelled",
                             Value: statement.VoidCancelled.HasData ?
-                                statement.VoidCancelled.Value :
-                                statementResources.Symbol_NoData,
-                            TdClass: "column-void-cancelled"
+                               ('<div class="column-void-cancelled ' + (statement.VoidCancelled.Value < 0 ? 'format-negative' : '') + '"' + dataRowIndex + '>' +
+                                    numeral(statement.VoidCancelled.Value).format(self.Constants.Format.Number.TwoDecimal) +
+                                '</div>') :
+                                statementResources.Symbol_NoData
                         },
                         {
                             Name: "ColOutstanding",
                             Value: statement.Outstanding.HasData ?
-                                statement.Outstanding.Value :
-                                statementResources.Symbol_NoData,
-                            TdClass: "column-outstanding"
+                               ('<div class="column-outstanding ' + (statement.Outstanding.Value < 0 ? 'format-negative' : '') + '"' + dataRowIndex + '>' +
+                                    numeral(statement.Outstanding.Value).format(self.Constants.Format.Number.TwoDecimal) +
+                                '</div>') :
+                                statementResources.Symbol_NoData
                         },
                         {
                             Name: "ColWinLoss",
                             Value: statement.WinLoss.HasData ?
-                                statement.WinLoss.Value :
+                               ('<div class="column-winloss ' + (statement.WinLoss.Value < 0 ? 'format-negative' : '') + '"' + dataRowIndex + '>' +
+                                    numeral(statement.WinLoss.Value).format(self.Constants.Format.Number.TwoDecimal) +
+                                '</div>') :
                                 statementResources.Symbol_NoData
                         },
                         {
@@ -399,72 +433,83 @@ var StatementReportManager = function () {
                 itemsPerPageArray: [10, 50, 100, 500],
                 currentPage: 0,
                 startPerPage: 50,
-                pageStep: 50
+                pageStep: 50,
+                afterPagedFunction: function () {
+                    self.bindGridEvent();
+                }
             }
         };
 
-        jQuery('#GridContainer').fanexGrid(gridOptions);
-        jQuery("#filter").width(jQuery("#GridContainer").width() + 22);
+        jQuery('#GridContainer').removeClass("hidden").fanexGrid(gridOptions);
         self.bindGridEvent();
-        if (self.eventFunction.unblockUI) {
-            self.eventFunction.unblockUI();
+        if (self.eventFunction.completeRenderStatementReport) {
+            self.eventFunction.completeRenderStatementReport();
         }
     };
 
     self.bindGridEvent = function () {
-        jQuery('#GridContainer').find(".column-transfer-amount").click(function () {
+        var reportGrid = jQuery('#GridContainer');
+        reportGrid.find(".column-transfer-amount").click(function () {
             var rowIndex = parseInt(jQuery(this).attr("data-rowindex"));
             self.viewTransferDetails(rowIndex);
         });
-        jQuery('#GridContainer').find(".column-statement-date").click(function () {
+        reportGrid.find(".column-void-cancelled").click(function () {
             var rowIndex = parseInt(jQuery(this).attr("data-rowindex"));
-            self.viewBetList(rowIndex);
+            self.viewBetList(rowIndex, self.Enums.TransactionType.VoidCancelled);
+        });
+        reportGrid.find(".column-outstanding").click(function () {
+            var rowIndex = parseInt(jQuery(this).attr("data-rowindex"));
+            self.viewBetList(rowIndex, self.Enums.TransactionType.Outstanding);
+        });
+        reportGrid.find(".column-winloss").click(function () {
+            var rowIndex = parseInt(jQuery(this).attr("data-rowindex"));
+            self.viewBetList(rowIndex, self.Enums.TransactionType.WinLoss);
         });
     };
     self.viewTransferDetails = function (rowIndex) {
         var statement = self.cachedData.statementReport.StatementList[rowIndex];
-        var url = domain + 'Statement/StatementReport/TransferDetails';
+        var url = domain + 'NapStatement/StatementReport/TransferDetails';
         var criteria = {
             CustId: self.cachedData.statementReportCriteria.custId,
             RoleId: self.cachedData.statementReportCriteria.roleId,
-            TransferDate: statement.StatementDateString
+            TransferDate: statement.StatementDateString,
+            Username: self.cachedData.statementReportCriteria.username,
+            BalanceUpDate: balanceUpDay,
+            SiteName: 'NAP'
         };
-        self.eventFunction.openPopup({
-            url: url + "?" + jQuery.param(criteria),
-            title: statementResources.Transfer_Details,
-            left: 400,
-            top: 100,
-            width: 800,
-            height: 400
-        });
+        if (self.eventFunction.openPopup) {
+            self.eventFunction.openPopup({
+                url: url + "?" + jQuery.param(criteria),
+                title: statementResources.Transfer_Details + " (" + self.cachedData.statementReportCriteria.username + ")",
+                left: 400,
+                top: 100,
+                width: 800,
+                height: 600
+            });
+        }
     };
-    self.viewBetList = function (rowIndex) {
+    self.viewBetList = function (rowIndex, transactionType) {
         var statement = self.cachedData.statementReport.StatementList[rowIndex];
-        var url = '../../_BetList/BetList.aspx';
-        var criteria = {
-            CustId: self.cachedData.statementReportCriteria.custId,
-            fdate: statement.StatementDateString,
-            transtype: 'TRAC',
-            type: 'TRAC',
-            username: 'agent01'
-        };
-
-        self.eventFunction.openPopup({
-            url: url + "?" + jQuery.param(criteria),
-            title: statementResources.Bet_List,
-            left: 400,
-            top: 100,
-            width: 800,
-            height: 400
-        });
+        if (self.eventFunction.viewBetListFunction) {
+            self.eventFunction.viewBetListFunction({
+                title: statementResources.Bet_List,
+                left: 400,
+                top: 100,
+                width: 900,
+                height: 600,
+                custId: self.cachedData.statementReportCriteria.custId,
+                statementDate: statement.StatementDateString,
+                transactionType: transactionType
+            });
+        }
     };
 
     self.exportStatementReport = function (criteria) {
         var url = domain;
         if (criteria.roleId === self.Enums.RoleId.Member) {
-            url += 'Statement/StatementReport/ExportMemberStatement?';
+            url += 'NapStatement/StatementReport/ExportMemberStatement?';
         } else {
-            url += 'Statement/StatementReport/ExportSMAStatement?';
+            url += 'NapStatement/StatementReport/ExportSMAStatement?';
         }
 
         url += jQuery.param(criteria);
