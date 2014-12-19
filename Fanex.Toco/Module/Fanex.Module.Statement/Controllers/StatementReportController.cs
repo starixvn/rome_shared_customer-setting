@@ -11,6 +11,7 @@ namespace Fanex.Module.Statement.Controllers
 {
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
+    using Fanex.CustomerSetting.Security.Authenticate;
     using Fanex.Module.Statement.Criteria.StatementReport;
     using Fanex.Module.Statement.Models.StatementReport;
     using Fanex.Module.Statement.Resources;
@@ -43,7 +44,7 @@ namespace Fanex.Module.Statement.Controllers
             return this.View("~/Areas/Statement/Views/Report/Index.cshtml");
         }
         
-        [HttpPost]
+        [HttpPost, AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Statement")]
         public JsonResult SMAStatement(SMAStatementCriteria criteria)
         {
             var statementList = _statementReportService.SMAStatement(criteria);
