@@ -591,8 +591,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     customerModel.EnableDownline,
                     AppSession.CurrentSession.UserId,
                     ip,
-                    0,
-                    "en",
+                    AppSession.SubAccountId,
+                    AppSession.Language,
                     customerModel.UserName,
                     string.Empty,
                     out errMsg);
