@@ -43,6 +43,26 @@ namespace Fanex.CustomerSetting.Module.Core.Web.Controllers
         }
 
         /// <summary>
+        /// Gets the role name.
+        /// </summary>
+        /// <param name="roleId">The role identifier.</param>
+        /// <returns>The role name.</returns>
+        public static string RoleName(int roleId)
+        {
+            switch (roleId)
+            {
+                case Super:
+                    return "Super";
+                case Master:
+                    return "Master";
+                case Agent:
+                    return "Agent";
+                default:
+                    return "Member";
+            }
+        }
+
+        /// <summary>
         /// Execute before each request, if Downtime then go to Downtime page
         /// Or not Authenticate will go to Login Page
         /// </summary>
