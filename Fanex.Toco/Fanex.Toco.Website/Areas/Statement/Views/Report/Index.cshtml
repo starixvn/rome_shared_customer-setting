@@ -5,8 +5,8 @@
     Layout = "";
     var isInternalCustomer = 0;
     var newLayoutDate = string.Format("{0:MM/dd/yyyy}", StatementSection.Instance.NewLayoutDate);
-    var balanceUpDay = "12/20/2014";
-    var moveBetsDay = "12/22/2014"; 
+    var balanceUpDay = "1/10/2015";
+    var moveBetsDay = "1/11/2015"; 
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -75,13 +75,13 @@
                 OpenPopup(options.url, options.title, options.width, options.height);
             });
             statementReportManager.getStatementReport( {
-                fromDate: "11/01/2014",
-                toDate: "12/25/2014",
+                fromDate: "12/1/2014",
+                toDate: "1/23/2015",
                 custId: 0,
                 roleId: 1,
                 balanceUpDay: balanceUpDay,
                 moveBetDay: moveBetsDay,
-                username: "SUGTransferTB"
+                username: "member01"
             });
         });
     </script>

@@ -172,16 +172,16 @@
     <value>轉賬金額 代理和會員的總轉賬額度。點擊查看轉賬細節。</value>
   </data>
   <data name="Guidelines_Turnover" xml:space="preserve">
-    <value>所有註單總投註額 (不包括作廢/取消的註單)</value>
+    <value>所有註單總投註額 (不包括作廢/取消/未結束投註/退款的註單)</value>
   </data>
   <data name="Guidelines_VoidRejected" xml:space="preserve">
     <value>作廢/取消註單總投註額.。 點擊查看作廢/取消註單明細。</value>
   </data>
   <data name="Guidelines_WinLoss_Member" xml:space="preserve">
-    <value>註單 (不包括作廢/取消的註單) 總輸贏額度 (不包括會員傭金)。 點擊查看註單明細。</value>
+    <value>註單 (不包括作廢/取消/未結束投註的註單) 總輸贏額度 (不包括會員傭金)。 點擊查看註單明細。</value>
   </data>
   <data name="Guidelines_WinLoss_SMA" xml:space="preserve">
-    <value>占成後的總輸贏額度 (不包括作廢/取消的註單)</value>
+    <value>占成後的總輸贏額度 (不包括作廢/取消/未結束投註的註單)</value>
   </data>
   <data name="Invalid_Date_Range" xml:space="preserve">
     <value>Invalid Date Range</value>

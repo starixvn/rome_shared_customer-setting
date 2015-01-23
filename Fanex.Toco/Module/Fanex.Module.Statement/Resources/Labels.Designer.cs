@@ -223,7 +223,7 @@ namespace Fanex.Module.Statement.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to total stakes of all tickets (exclude Void/Rejected tickets)..
+        ///   Looks up a localized string similar to total stakes of all tickets (exclude Void/Rejected/Outstanding/Refund tickets)..
         /// </summary>
         public static string Guidelines_Turnover {
             get {
@@ -241,7 +241,7 @@ namespace Fanex.Module.Statement.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Total win loss amount (exclude member commission) of bet tickets (exclude Void/Rejected tickets). Click to view Bet list in details..
+        ///   Looks up a localized string similar to Total win loss amount (exclude member commission) of bet tickets (exclude Void/Rejected/Outstanding tickets). Click to view Bet list in details..
         /// </summary>
         public static string Guidelines_WinLoss_Member {
             get {
@@ -250,7 +250,7 @@ namespace Fanex.Module.Statement.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to total win loss amount after Position Taking of bet tickets (exclude Void/Rejected tickets)..
+        ///   Looks up a localized string similar to total win loss amount after Position Taking of bet tickets (exclude Void/Rejected/Outstanding tickets)..
         /// </summary>
         public static string Guidelines_WinLoss_SMA {
             get {

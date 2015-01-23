@@ -136,8 +136,8 @@
       <LastGenOutput>Labels.ko-KR.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Labels.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Labels.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Labels.th-TH.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
