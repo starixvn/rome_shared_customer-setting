@@ -12,16 +12,15 @@
 namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
 {
     using System;
-    using System.Collections;
-    using System.Web.Mvc;
-    using Fanex.CustomerSetting.Module.BetSetting.Base;
-    using Fanex.CustomerSetting.Security.Authenticate;
-    using Fanex.CustomerSetting.Security.Configurations;
-    using Fanex.PTEngine.BusinessObjects;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Serialization;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Web.Mvc;
+    using Fanex.CustomerSetting.Module.BetSetting.Base;
+    using Fanex.CustomerSetting.Module.KenoStatus.Configurations;
+    using Fanex.CustomerSetting.Security.Authenticate;
+    using Fanex.CustomerSetting.Security.Configurations;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Serialization;
 
     /// <summary>
     /// TODO: Update summary.
@@ -76,8 +75,8 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
             {
                 CustId = id,
                 SubAccId = 0,
-                UserId = userId                
-            }).BetSettings;
+                UserId = userId
+            }).BetSettings.Where(o => !KenoSection.Instance.ExcludeBetTypeList.Contains(o.BetTypeId));
 
             model.ToList().ForEach(item =>
             {
