@@ -214,7 +214,7 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
                 }
             }
 
-            result.Total.TransferAmount.Value = Converter.To<double>(totalTransferAmount);
+            result.Total.TransferAmount.Value = Math.Round(totalTransferAmount, 2);
             return result;
         }
 
