@@ -16,6 +16,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.Helpers;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.ViewModels;
+    using Fanex.CustomerSetting.Module.KenoStatus.Configurations;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
     using Fanex.NAP.Framework.Exceptions;
@@ -254,7 +255,10 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
                     }
                 };
 
-                betSettings.Add(bettingSetting);
+                if (!KenoSection.Instance.ExcludeBetTypeList.Contains(bettingSetting.BetTypeId))
+                {
+                    betSettings.Add(bettingSetting);
+                }
             }
 
             return betSettings;
@@ -280,7 +284,10 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
                     SCommMax = dataReader.ToDouble("maxsdiscount")
                 };
 
-                positionTakings.Add(bettingSetting);
+                if (!KenoSection.Instance.ExcludeBetTypeList.Contains(bettingSetting.BetTypeId))
+                {
+                    positionTakings.Add(bettingSetting);
+                }
             }
 
             return positionTakings;
@@ -310,7 +317,10 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
                     SComm = dataReader.ToDouble("discount_max")
                 };
 
-                positionTakings.Add(bettingSetting);
+                if (!KenoSection.Instance.ExcludeBetTypeList.Contains(bettingSetting.BetTypeId))
+                {
+                    positionTakings.Add(bettingSetting);
+                }
             }
 
             return positionTakings;
@@ -340,7 +350,10 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
                     MComm = dataReader.ToDouble("discount_max")
                 };
 
-                positionTakings.Add(bettingSetting);
+                if (!KenoSection.Instance.ExcludeBetTypeList.Contains(bettingSetting.BetTypeId))
+                {
+                    positionTakings.Add(bettingSetting);
+                }
             }
 
             return positionTakings;
@@ -366,7 +379,10 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
                     AComm = dataReader.ToDouble("playerdiscount_max")
                 };
 
-                positionTakings.Add(bettingSetting);
+                if (!KenoSection.Instance.ExcludeBetTypeList.Contains(bettingSetting.BetTypeId))
+                {
+                    positionTakings.Add(bettingSetting);
+                }
             }
 
             return positionTakings;
@@ -396,7 +412,10 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
                     S4 = dataReader.ToDouble("us1_max")
                 };
 
-                positionTakings.Add(bettingSetting);
+                if (!KenoSection.Instance.ExcludeBetTypeList.Contains(bettingSetting.BetTypeId))
+                {
+                    positionTakings.Add(bettingSetting);
+                }
             }
 
             return positionTakings;
@@ -425,7 +444,10 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
                     M3 = dataReader.ToDouble("um1_max"),
                 };
 
-                positionTakings.Add(bettingSetting);
+                if (!KenoSection.Instance.ExcludeBetTypeList.Contains(bettingSetting.BetTypeId))
+                {
+                    positionTakings.Add(bettingSetting);
+                }
             }
 
             return positionTakings;

@@ -6,8 +6,10 @@
 
 namespace Fanex.CustomerSetting.Module.KenoStatus.Configurations
 {
-    using System;
+    using System.Collections.Generic;
     using System.Configuration;
+    using System.Linq;
+    using Fanex.CustomerSetting.Module.Core;
 
     /// <summary>
     /// Keno config section.
@@ -51,6 +53,30 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Configurations
             get
             {
                 return (bool)base["showsetting"];
+            }
+        }
+
+        [ConfigurationProperty("exclude", IsRequired = false)]
+        public string ExcludeBetTypes
+        {
+            get
+            {
+                return (string)base["exclude"];
+            }
+        }
+                
+        public IList<int> ExcludeBetTypeList
+        {
+            get
+            {
+                var excludes = this.ExcludeBetTypes.Split(',');
+                var results = new List<int>();
+                excludes.ToList().ForEach(o => 
+                {
+                    results.Add(Utils.ToInt32(o));
+                });
+
+                return results;
             }
         }
     }

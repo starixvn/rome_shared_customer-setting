@@ -10,8 +10,10 @@
 namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.Core.Web;
+    using Fanex.CustomerSetting.Module.KenoStatus.Configurations;
     using Fanex.CustomerSetting.Module.KenoStatus.Criteria;
     using Fanex.CustomerSetting.Module.KenoStatus.Repositories.Impl;
     using Fanex.CustomerSetting.Module.KenoStatus.Repositories.Interface;
@@ -76,6 +78,9 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Controllers
             var selectCriteria = new SelectStatusCriteria();
             selectCriteria.CustID = id;
             var model = _statusRepository.GetStatus(selectCriteria);
+            var bettypes = model.BetTypeStatusList.Where(o => !KenoSection.Instance.ExcludeBetTypeList.Contains(o.BetTypeID));
+            model.BetTypeStatusList = bettypes.ToList();
+
             model.CustID = selectCriteria.CustID;
             model.RoleID = roleId;
             model.UplineID = uplineId;

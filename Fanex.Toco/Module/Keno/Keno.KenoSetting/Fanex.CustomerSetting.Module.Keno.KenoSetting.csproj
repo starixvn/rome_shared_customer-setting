@@ -219,6 +219,10 @@
       <Project>{F317B419-340B-418D-B2AB-8C43F18B85D6}</Project>
       <Name>Keno.Resources</Name>
     </ProjectReference>
+    <ProjectReference Include="..\KenoStatus\KenoStatus.csproj">
+      <Project>{7954F23F-567D-457D-99DC-A92224A50A99}</Project>
+      <Name>KenoStatus</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="web.config" />
