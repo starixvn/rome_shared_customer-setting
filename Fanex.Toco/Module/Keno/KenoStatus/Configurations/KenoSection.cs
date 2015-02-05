@@ -69,7 +69,7 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Configurations
         {
             get
             {
-                var excludes = this.ExcludeBetTypes.Split(',');
+                var excludes = this.ExcludeBetTypes.Split(new string[] { "," }, System.StringSplitOptions.RemoveEmptyEntries);
                 var results = new List<int>();
                 excludes.ToList().ForEach(o => 
                 {
