@@ -63,8 +63,6 @@ namespace Fanex.Module.Statement.Services.StatementReport
                         RoleId = criteria.RoleId,
                         PageSize = criteria.PageSize,
                         PageIndex = criteria.PageIndex,
-                        BalanceUpDay = criteria.BalanceUpDay,
-                        MoveBetDay = criteria.MoveBetDay,
                         CustId = criteria.CustId
                     });
 
@@ -104,8 +102,6 @@ namespace Fanex.Module.Statement.Services.StatementReport
                         RoleId = criteria.RoleId,
                         PageSize = criteria.PageSize,
                         PageIndex = criteria.PageIndex,
-                        BalanceUpDay = criteria.BalanceUpDay,
-                        MoveBetDay = criteria.MoveBetDay,
                         CustId = criteria.CustId
                     });
 

@@ -11,6 +11,7 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
 {
     using System;
     using System.Collections.Generic;
+    using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using Fanex.Common;
     using Fanex.Data;
@@ -259,6 +260,18 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Gets balance up day.
+        /// </summary>
+        /// <returns>DataTable object.</returns>
+        public DataTable GetBalanceUpDay()
+        {
+            using (var db = new ObjectDb("Age_SelBalanceUpDay"))
+            {
+                return db.ExecuteDataSet().Tables[0];
+            }
         }
     }
 }
