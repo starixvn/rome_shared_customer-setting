@@ -79,7 +79,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
 
                 try
                 {
-                   dt = !customerDetail.CasinoSync ? null : customer.GetDefaultMaxTransfer(customerDetail.UpperCustID, customerDetail.Currency, uplineId == 0);
+                   dt = customer.GetDefaultMaxTransfer(customerDetail.UpperCustID, customerDetail.Currency, uplineId == 0);
                 }
                 catch { }
 
@@ -89,7 +89,12 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
                     customerDetail.MinTransferCreditLimit = Utils.ToDouble(dt.Rows[0]["MinLimit"]);
                     customerDetail.DefaultTransferCredit = Utils.ToDouble(dt.Rows[0]["DefMaxTransferCredit"]);
                 }
-
+                else
+                {
+                    customerDetail.MaxTransferCreditLimit = Utils.ToDouble(dt.Rows[0]["MaxTransferCredit"]);
+                    customerDetail.MinTransferCreditLimit = customerDetail.MaxTransferCreditLimit;
+                    customerDetail.DefaultTransferCredit = Utils.ToDouble(dt.Rows[0]["SuperMaxTransfer"]);
+                }
                 customerDetail.NoIBCData = false;
             }
                         
