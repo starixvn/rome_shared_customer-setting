@@ -38,7 +38,7 @@ namespace Fanex.Module.Statement.Criteria.StatementReport
             }
         }
 
-        public DateTime MoveBetDay 
+        public DateTime MoveBetsDay 
         {
             get
             {

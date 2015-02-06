@@ -227,8 +227,8 @@ namespace Fanex.Module.Statement.Services.StatementReport
         private List<StatementReportCriteria> GetReportDateRange(StatementReportCriteria criteria)
         {
             List<StatementReportCriteria> dateRange = new List<StatementReportCriteria>();
-            if (criteria.FromDate > criteria.MoveBetDay ||
-                (criteria.BalanceUpDay <= criteria.FromDate && criteria.ToDate <= criteria.MoveBetDay) ||
+            if (criteria.FromDate > criteria.MoveBetsDay ||
+                (criteria.BalanceUpDay <= criteria.FromDate && criteria.ToDate <= criteria.MoveBetsDay) ||
                  criteria.ToDate < criteria.BalanceUpDay)
             {
                 return new List<StatementReportCriteria>() 
@@ -241,24 +241,24 @@ namespace Fanex.Module.Statement.Services.StatementReport
                 };
             }
 
-            if (criteria.FromDate >= criteria.BalanceUpDay && criteria.ToDate > criteria.MoveBetDay)
+            if (criteria.FromDate >= criteria.BalanceUpDay && criteria.ToDate > criteria.MoveBetsDay)
             {
                 return new List<StatementReportCriteria>() 
                 { 
                     new StatementReportCriteria
                     {
                         FromDate = criteria.FromDate,
-                        ToDate = criteria.MoveBetDay
+                        ToDate = criteria.MoveBetsDay
                     },
                     new StatementReportCriteria
                     {
-                        FromDate = criteria.MoveBetDay.AddDays(1),
+                        FromDate = criteria.MoveBetsDay.AddDays(1),
                         ToDate = criteria.ToDate
                     }
                 };
             }
 
-            if (criteria.ToDate > criteria.MoveBetDay)
+            if (criteria.ToDate > criteria.MoveBetsDay)
             {
                 return new List<StatementReportCriteria>() 
                 { 
@@ -270,11 +270,11 @@ namespace Fanex.Module.Statement.Services.StatementReport
                     new StatementReportCriteria
                     {
                         FromDate = criteria.BalanceUpDay,
-                        ToDate = criteria.MoveBetDay
+                        ToDate = criteria.MoveBetsDay
                     },
                     new StatementReportCriteria
                     {
-                        FromDate = criteria.MoveBetDay.AddDays(1),
+                        FromDate = criteria.MoveBetsDay.AddDays(1),
                         ToDate = criteria.ToDate
                     }
                 };
