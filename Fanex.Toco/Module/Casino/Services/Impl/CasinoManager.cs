@@ -2263,11 +2263,17 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
             foreach (DataRow row in dt.Rows)
             {
+                bool isCheck = true;
+                if(!custId.Equals(0))
+                {
+                    isCheck = dt.Columns.IndexOf("IsChecked") != -1 ? Utils.ToBoolean(row["IsChecked"]) : false;
+                }
+
                 var stake = new StakeLevel
                 {
                     StakeLevelID = Utils.ToInt32(row["StakeLevelID"]),
                     StakeLevelName = Utils.ToString(row["StakeLevelName"]),
-                    IsChecked = dt.Columns.IndexOf("IsChecked") != -1 ? Utils.ToBoolean(row["IsChecked"]) : false,
+                    IsChecked = isCheck
                 };
 
                 if (synced || stake.IsChecked)
