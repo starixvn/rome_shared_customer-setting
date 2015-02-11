@@ -1024,6 +1024,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\CustomerSetting\Views\Bingo\Scripts\Libs\" />
+    <Folder Include="Areas\CustomerSetting\Views\CloneSetting\" />
     <Folder Include="Content\base\img\actions\dd\" />
     <Folder Include="Content\base\img\combo-pickr\" />
     <Folder Include="Content\base\img\textures\" />
