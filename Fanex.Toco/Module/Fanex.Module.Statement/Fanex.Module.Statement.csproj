@@ -100,61 +100,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Labels.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Labels.ja-JP.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Labels.ja-JP.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Labels.ko-KR.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Labels.ko-KR.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Labels.th-TH.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Labels.th-TH.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Labels.vi-VN.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Labels.vi-VN.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Labels.zh-CN.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Labels.zh-CN.resx</DependentUpon>
-    </Compile>
     <Compile Include="Services\ReportService.cs" />
     <Compile Include="Services\StatementReport\IStatementReportService.cs" />
     <Compile Include="Services\StatementReport\StatementReportExportExcelService.cs" />
     <Compile Include="Services\StatementReport\StatementReportService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Labels.ja-JP.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Labels.ja-JP.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Labels.ko-KR.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Labels.ko-KR.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Labels.ja-JP.resx" />
+    <EmbeddedResource Include="Resources\Labels.ko-KR.resx" />
     <EmbeddedResource Include="Resources\Labels.resx">
       <LastGenOutput>Labels.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Labels.th-TH.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Labels.th-TH.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Labels.vi-VN.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Labels.vi-VN.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Labels.zh-CN.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Labels.zh-CN.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Labels.th-TH.resx" />
+    <EmbeddedResource Include="Resources\Labels.vi-VN.resx" />
+    <EmbeddedResource Include="Resources\Labels.zh-CN.resx" />
     <EmbeddedResource Include="Resources\Labels.zh-TW.resx" />
   </ItemGroup>
   <ItemGroup>

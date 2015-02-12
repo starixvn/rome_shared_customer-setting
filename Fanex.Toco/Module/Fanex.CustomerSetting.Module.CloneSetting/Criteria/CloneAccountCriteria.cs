@@ -10,6 +10,8 @@
 
 namespace Fanex.CustomerSetting.Module.CloneSetting.Criteria
 {
+    using Fanex.CustomerSetting.Module.Core;
+    using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -17,16 +19,26 @@ namespace Fanex.CustomerSetting.Module.CloneSetting.Criteria
     /// </summary>
     public class CloneAccountCriteria : CriteriaBase
     {
-        public string TargetUsername
+        [SpParam(SqlParamName = "fromusername")]
+        public string TargetUsername { get; set; }
+
+        [SpParam(SqlParamName = "tousername")]
+        public string DestinationUsername { get; set; }
+
+        public int UserId
         {
-            get;
-            set;
+            get
+            {
+                return AppSession.AccId;
+            }
         }
 
-        public string DestinationUsername
+        public string Ip
         {
-            get;
-            set;
+            get
+            {
+                return Utils.GetClientIP();
+            }
         }
 
         public override string GetSettingKey()

@@ -22,18 +22,17 @@ namespace Fanex.CustomerSetting.Module.CloneSetting.Controllers
     /// </summary>
     public class TargetAccountController : BaseController
     {
-        [HttpGet, AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "CloneSetting")]
+        [HttpGet, AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Index")]
         public ActionResult Index()
         {
             return View("~/Areas/CustomerSetting/Views/CloneSetting/Index.cshtml", new CloneAccount());
         }
 
-        [HttpPost, ActionName("Index"), AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "CloneSetting")]
-        public ActionResult Clone(CloneAccount model)
+        [HttpPost, ActionName("Index"), AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Index")]
+        public JsonResult Clone(CloneAccount model)
         {
             ICloneAccountService service = new CloneAccountService();
             var result = service.Clone(model);
-
             return Json(result);
         }
     }
