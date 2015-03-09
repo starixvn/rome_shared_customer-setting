@@ -10,6 +10,10 @@
 namespace Fanex.Module.Statement.Criteria.StatementReport
 {
     using System;
+    using System.Data;
+    using Fanex.Caching;
+    using Fanex.CustomerSetting.Module.Core;
+    using Fanex.Module.Statement.Repositories.StatementReport;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -17,14 +21,55 @@ namespace Fanex.Module.Statement.Criteria.StatementReport
     /// </summary>
     public class DateRangeReportCriteria : CriteriaBase
     {
+        private const string BalanceUpDayKey = "__balanceUpDayKey";
+        private static ICache _cache;
+        private DataTable _balanceUpDay;
+        private IStatementReportRepository _report;
+        
         public DateTime FromDate { get; set; }
 
         public DateTime ToDate { get; set; }
 
-        [SpParam(Ignored = true)]
-        public DateTime BalanceUpDay { get; set; }
+        public DateTime BalanceUpDay 
+        {
+            get
+            {
+                return Utils.ToDateTime(GetBalanceUpDay().Rows[0]["BalanceUpDay"]);
+            }
+        }
 
-        [SpParam(Ignored = true)]
-        public DateTime MoveBetDay { get; set; }
+        public DateTime MoveBetsDay 
+        {
+            get
+            {
+                return Utils.ToDateTime(GetBalanceUpDay().Rows[0]["MoveBetsDay"]);
+            }
+        }
+
+        /// <summary>
+        /// Gets balance up day.
+        /// </summary>
+        /// <returns>DataTable object.</returns>
+        private DataTable GetBalanceUpDay()
+        {
+            _report = new StatementReportRepository();
+
+            if (_cache == null)
+            {
+                _cache = CacheService.CreateInstance(CacheType.MemoryCache);
+            }
+
+            _balanceUpDay = _cache.Get<DataTable>(BalanceUpDayKey);
+
+            if (_balanceUpDay == null)
+            {
+                _balanceUpDay = _report.GetBalanceUpDay();
+                _cache.Set<DataTable>(BalanceUpDayKey, _balanceUpDay, DateTime.Now.AddMinutes(5));
+
+                return _balanceUpDay;
+            }
+
+            return _balanceUpDay;
+        }
     }
 }

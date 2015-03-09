@@ -28,7 +28,7 @@ namespace Fanex.Module.Statement.Services
         /// </returns>
         public static string GetStoreMappingSuffix(DateRangeReportCriteria criteria)
         {
-            if (criteria.FromDate > criteria.MoveBetDay)
+            if (criteria.FromDate > criteria.MoveBetsDay)
             {
                 return string.Empty;
             }

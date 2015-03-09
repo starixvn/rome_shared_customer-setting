@@ -9,6 +9,7 @@
 
 namespace Fanex.Module.Statement.Repositories.StatementReport
 {
+    using System.Data;
     using Fanex.Module.Statement.Criteria;
     using Fanex.Module.Statement.Criteria.StatementReport;
     using Fanex.Module.Statement.Models;
@@ -25,5 +26,7 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
         CustomerInformationModel GetCustomerInfo(GetCustomerInformationByUsername criteria);
 
         bool CheckInternalByUsername(CheckInternalByUsernameCriteria criteria);
+
+        DataTable GetBalanceUpDay();
     }
 }
