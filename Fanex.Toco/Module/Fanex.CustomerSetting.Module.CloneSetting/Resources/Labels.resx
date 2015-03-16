@@ -123,6 +123,9 @@
   <data name="CloneSetting_Error_EmptyTargetUsername" xml:space="preserve">
     <value>Target Username is empty!</value>
   </data>
+  <data name="CloneSetting_Error_SameTargetDestinationUsername" xml:space="preserve">
+    <value>Destination Username is same as Target Username.</value>
+  </data>
   <data name="CloneSetting_Notes_1" xml:space="preserve">
     <value>All settings will be copied from target username.</value>
   </data>

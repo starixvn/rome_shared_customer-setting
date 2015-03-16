@@ -79,6 +79,15 @@ namespace Fanex.CustomerSetting.Module.CloneSetting.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Destination Username is same as Target Username..
+        /// </summary>
+        public static string CloneSetting_Error_SameTargetDestinationUsername {
+            get {
+                return ResourceManager.GetString("CloneSetting_Error_SameTargetDestinationUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All settings will be copied from target username..
         /// </summary>
         public static string CloneSetting_Notes_1 {
