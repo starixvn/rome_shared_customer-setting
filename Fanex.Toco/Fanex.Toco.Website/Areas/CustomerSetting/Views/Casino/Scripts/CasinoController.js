@@ -105,6 +105,7 @@
             uplineId: CustomerInfo.uplineId,
             userId: CustomerInfo.userId,
             actorName: CustomerInfo.username,
+            fromSystem : 2,
             settingModel: JSON.stringify(SettingModel),
             customerModel: JSON.stringify(CustomerModel),
             groupName: parent.$('#selectedGroupName').html()

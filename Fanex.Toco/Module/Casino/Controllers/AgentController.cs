@@ -24,6 +24,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
     using Fanex.CustomerSetting.Security.Authenticate;
     using Fanex.CustomerSetting.Security.Configurations;
     using Newtonsoft.Json;
+    using Fanex.CustomerSetting.Module.Core.Web;
 
     /// <summary>
     /// Class AgentController.
@@ -109,6 +110,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 return this.ActionDenied(this.Request);
             }
 
+            actorName = AppSession.SubAccountId.Equals(0) ? actorName : AppSession.SubAccountName;
+
             var ret = CasinoManager.Instance.UpdateAgent(
                 id,
                 username,
@@ -116,7 +119,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 Request.UserHostAddress, 
                 userId,
                 actorName, 
-                BaseController.FromSystem, 
+                AppSession.FromSystem, 
                 JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel),
                 JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
 
