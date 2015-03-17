@@ -1165,7 +1165,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                                 null,
                                 !(roleId == Super || roleId == Master || roleId == Agent) ? null : (object)gameGroup.N3,
                                 0,
-                                roleId != Super ? null : (object)gameGroup.Sco,
+                                roleId != Super ? null : (object)gameGroup.Mco, //// Mco instead of Sco coz use in View.
                                 roleId != Master ? null : (object)gameGroup.Mco,
                                 roleId != Agent ? null : (object)gameGroup.Aco,
                                 roleId != Member ? null : (object)gameGroup.co,

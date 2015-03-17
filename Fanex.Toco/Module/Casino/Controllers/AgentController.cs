@@ -101,7 +101,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
         /// <param name="customerModel">The customer model.</param>
         /// <returns>ActionResult object.</returns>
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
-        public ActionResult UpdateAgentPost(int id, string custName, int uplineId, int userId, string username, string settingModel, string customerModel, string groupName = null)
+        public ActionResult UpdateAgentPost(int id, string username, int uplineId, int userId, string actorName, string settingModel, string customerModel, string groupName = null)
         {
             var obj = System.Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
             if (!obj.IsBelong(id, null, groupName))
@@ -110,12 +110,12 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             }
 
             var ret = CasinoManager.Instance.UpdateAgent(
-                id, 
-                custName,
+                id,
+                username,
                 uplineId, 
                 Request.UserHostAddress, 
-                userId, 
-                username, 
+                userId,
+                actorName, 
                 BaseController.FromSystem, 
                 JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel),
                 JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
