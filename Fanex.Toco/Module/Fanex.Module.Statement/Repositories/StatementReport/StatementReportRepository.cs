@@ -209,7 +209,7 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
                         statementModel.ExchangeRate = Converter.ToString2(reader["ExRate"]);
                     }
 
-                    statementModel.StatementDateString = statementModel.StatementDate.ToString("MM/dd/yyyy <br> HH:MM:ss tt");
+                    statementModel.StatementDateString = statementModel.StatementDate.ToString("MM/dd/yyyy <br> HH:mm:ss tt");
                     result.StatementList.Add(statementModel);
                     totalTransferAmount += transferAmount;
                 }
