@@ -270,6 +270,7 @@ namespace Fanex.CustomerSetting.Module.Core.Web
             {
                 return SessionManager.Get<string>(Constants.SUB_ACCOUNT_NAME);
             }
+
             set
             {
                 SessionManager.Set<string>(Constants.SUB_ACCOUNT_NAME, value);

@@ -34,3 +34,7 @@
 .tdWidthMember {
      width: 192px ;
 }
+
+input[type="text"] {
+    height: 15px !important;
+}

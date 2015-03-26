@@ -539,6 +539,25 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             {
                 var custInfo = this.GetCustInfoIBC(custId, uplineId);
 
+                bool isEnableCasino = !customerModel.CasinoDisabled || !customerModel.CasinoSync;
+                if (customerModel.CasinoSync)
+                {
+                    maxTransferUpdated = cust.UpdateMaxTransferMisc(
+                      custId,
+                      isEnableCasino,
+                       !isEnableCasino,
+                       true,
+                       (decimal)customerModel.MaxTransferCredit,
+                        customerModel.IsAutoReset,
+                        settingModel.IsPtByGameType,
+                        ip,
+                        modifiedId,
+                        modifiedBy,
+                        fromSystem
+                    );
+                }
+
+
                 if (!custInfo.CasinoSync)
                 {
                     settingsInserted = cust.InsertCustSetting(
@@ -596,22 +615,12 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     customerModel.UserName,
                     string.Empty,
                     out errMsg);
-            }
 
-            // Enable PT/Update max transfer for direct downline only
-            if (statusUpdated)
-            {
-                enablePTUpdated = cust.UpdateCustEnablePT(custId, true);
-
-                maxTransferUpdated = cust.UpdateMaxTransfer(
-                    custId,
-                    true,
-                    (decimal)customerModel.MaxTransferCredit,
-                    customerModel.IsAutoReset,
-                    ip,
-                    uplineId,
-                    modifiedBy,
-                    fromSystem);
+                // Enable PT/Update max transfer for direct downline only
+                if (statusUpdated)
+                {
+                    enablePTUpdated = cust.UpdateCustEnablePT(custId, true);
+                }
             }
 
             // Update PT/Betting limit settings
@@ -658,6 +667,25 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
             try
             {
+               bool isEnableCasino = !customerModel.CasinoDisabled || !customerModel.CasinoSync;
+
+                if (customerModel.CasinoSync)
+                {
+                    maxTransferUpdated = cust.UpdateMaxTransferMisc(
+                      custId,
+                      isEnableCasino,
+                       !isEnableCasino,
+                       true,
+                       (decimal)customerModel.MaxTransferCredit,
+                        customerModel.IsAutoReset,
+                        settingModel.IsPtByGameType,
+                        ip,
+                        modifiedId,
+                        modifiedBy,
+                        fromSystem
+                    );
+                }
+
                 if (!customerModel.CasinoSync)
                 {
                     settingsInserted = cust.InsertCustSetting(
@@ -698,23 +726,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             catch (Exception)
             {
                 // Bypass this exception because this customer had setting but update status failed, before.
-            }
-
-            if (customerModel.CasinoSync)
-            {
-                maxTransferUpdated = cust.UpdateMaxTransferMisc(
-                  custId,
-                   !customerModel.CasinoDisabled || !customerModel.CasinoSync,
-                   true,
-                   true,
-                   (decimal)customerModel.MaxTransferCredit,
-                    customerModel.IsAutoReset,
-                    settingModel.IsPtByGameType,
-                    ip,
-                    modifiedId,
-                    modifiedBy,
-                    fromSystem
-                );
             }
 
             // Update Status for direct downline only
@@ -785,7 +796,25 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
             try
             {
-                if (!customerModel.CasinoSync)
+                bool isEnableCasino = !customerModel.CasinoDisabled || !customerModel.CasinoSync;
+
+                if (customerModel.CasinoSync)
+                {
+                    maxTransferUpdated = cust.UpdateMaxTransferMisc(
+                      custId,
+                      isEnableCasino,
+                       !isEnableCasino,
+                       true,
+                       (decimal)customerModel.MaxTransferCredit,
+                        customerModel.IsAutoReset,
+                        settingModel.IsPtByGameType,
+                        ip,
+                        modifiedId,
+                        modifiedBy,
+                        fromSystem
+                    );
+                }
+                else
                 {
                     settingsInserted = cust.InsertCustSetting(
                         "01",
@@ -821,27 +850,16 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                         false,
                         customerModel.IsDisableAutoMPT);
                 }
+
+                    // Enable PT/Update max transfer for direct downline only
+                if (statusUpdated)
+                {
+                    enablePTUpdated = cust.UpdateCustEnablePT(custId, true);
+                }
             }
             catch (Exception)
             {
                 // Bypass this exception because this customer had setting but update status failed, before.
-            }
-
-            if (customerModel.CasinoSync)
-            {
-                maxTransferUpdated = cust.UpdateMaxTransferMisc(
-                  custId,
-                   !customerModel.CasinoDisabled || !customerModel.CasinoSync,
-                   true,
-                   true,
-                   (decimal)customerModel.MaxTransferCredit,
-                    customerModel.IsAutoReset,
-                    settingModel.IsPtByGameType,
-                    ip,
-                    modifiedId,
-                    modifiedBy,
-                    fromSystem
-                );
             }
 
             // Update Status for direct downline only
@@ -859,12 +877,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     customerModel.UserName,
                     string.Empty,
                     out errMsg);
-
-                // Enable PT/Update max transfer for direct downline only
-                if (statusUpdated)
-                {
-                    enablePTUpdated = cust.UpdateCustEnablePT(custId, true);
-                }
             }
 
             // Update PT/Betting limit settings
@@ -911,6 +923,25 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
             try
             {
+                bool isEnableCasino = !customerModel.CasinoDisabled || !customerModel.CasinoSync;
+
+                if (customerModel.CasinoSync)
+                {
+                    maxTransferUpdated = cust.UpdateMaxTransferMisc(
+                      custId,
+                      isEnableCasino,
+                      !isEnableCasino,
+                       true,
+                       (decimal)customerModel.MaxTransferCredit,
+                        customerModel.IsAutoReset,
+                        settingModel.IsPtByGameType,
+                        ip,
+                        modifiedId,
+                        modifiedBy,
+                        fromSystem
+                    );
+                }
+
                 if (!customerModel.CasinoSync)
                 {
                     settingsInserted = cust.InsertCustSetting(
@@ -953,23 +984,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 // Bypass this exception because this customer had setting but update status failed, before.
             }
 
-            if (customerModel.CasinoSync)
-            {
-                maxTransferUpdated = cust.UpdateMaxTransferMisc(
-                  custId,
-                   !customerModel.CasinoDisabled || !customerModel.CasinoSync,
-                   true,
-                   true,
-                   (decimal)customerModel.MaxTransferCredit,
-                    customerModel.IsAutoReset,
-                    settingModel.IsPtByGameType,
-                    ip,
-                    modifiedId,
-                    modifiedBy,
-                    fromSystem
-                );
-            }
-
+           
             // Update Status for direct downline only
             if ((settingsInserted && !customerModel.CasinoSync) || customerModel.CasinoSync)
             {
