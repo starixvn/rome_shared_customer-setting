@@ -159,6 +159,9 @@
   <data name="Guidelines_Outstanding" xml:space="preserve">
     <value>ยอดรวมการเดิมพันของตั๋วทุกใบที่ยังอยู่ในการดำเนินการ คลิ๊กเพื่อดุรายการตั๋วที่ยังคงดำเนินการอยู่</value>
   </data>
+  <data name="Guidelines_Outstanding_DisableBetList" xml:space="preserve">
+    <value>ยอดรวมการเดิมพันของตั๋วทุกใบที่ยังอยู่ในการดำเนินการ</value>
+  </data>
   <data name="Guidelines_Traa" xml:space="preserve">
     <value>การทำธุรกรรมระหว่าง เอเจนต์ และ เมมเบอร์</value>
   </data>
@@ -177,8 +180,14 @@
   <data name="Guidelines_VoidRejected" xml:space="preserve">
     <value>ยอดรวมของตั๋วที่เป็นโมฆะ และ ถูกปฎิเสธ คลิ๊กเพื่อดุรายการตั๋วที่เป็นโมฆะ/ถูกปฎิเสธ</value>
   </data>
+  <data name="Guidelines_VoidRejected_DisableBetList" xml:space="preserve">
+    <value>ยอดรวมของตั๋วที่เป็นโมฆะ และ ถูกปฎิเสธ</value>
+  </data>
   <data name="Guidelines_WinLoss_Member" xml:space="preserve">
     <value>ยอดรวมได้เสีย(ไม่รวมคอมมิชชั่นของเมมเบอร์) ของตั๋วต่างๆ ที่ทายผลเข้ามา (ไม่รวมตั๋วที่เป็นโมฆะ/ ตั๋วปฏิเสธ/ ตั๋วตั๋วที่ยังไม่สิ้นสุด) คลิ๊กเพื่อดูรายละเอียดต่างๆ ของแต่ละรายการ</value>
+  </data>
+  <data name="Guidelines_WinLoss_Member_DisableBetList" xml:space="preserve">
+    <value>ยอดรวมได้เสีย(ไม่รวมคอมมิชชั่นของเมมเบอร์) ของตั๋วต่างๆ ที่ทายผลเข้ามา (ไม่รวมตั๋วที่เป็นโมฆะ/ ตั๋วปฏิเสธ/ ตั๋วตั๋วที่ยังไม่สิ้นสุด)</value>
   </data>
   <data name="Guidelines_WinLoss_SMA" xml:space="preserve">
     <value>ยอดรวมได้เสีย(ไม่รวมคอมมิชชั่นของเมมเบอร์) ของตั๋วต่างๆ ที่ทายผลเข้ามา (ไม่รวมตั๋วที่เป็นโมฆะ/ ตั๋วปฏิเสธ/ ตั๋วตั๋วที่ยังไม่สิ้นสุด)</value>

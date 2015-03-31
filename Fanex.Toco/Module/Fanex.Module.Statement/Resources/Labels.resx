@@ -159,6 +159,9 @@
   <data name="Guidelines_Outstanding" xml:space="preserve">
     <value>total stakes of Running tickets. Click to view Bet List of Running tickets.</value>
   </data>
+  <data name="Guidelines_Outstanding_DisableBetList" xml:space="preserve">
+    <value>total stakes of Running tickets.</value>
+  </data>
   <data name="Guidelines_Traa" xml:space="preserve">
     <value>Transfer transactions between Agent and Member.</value>
   </data>
@@ -177,8 +180,14 @@
   <data name="Guidelines_VoidRejected" xml:space="preserve">
     <value>total stakes of Void/Rejected tickets. Click to view Bet List of Void/Rejected tickets.</value>
   </data>
+  <data name="Guidelines_VoidRejected_DisableBetList" xml:space="preserve">
+    <value>total stakes of Void/Rejected tickets.</value>
+  </data>
   <data name="Guidelines_WinLoss_Member" xml:space="preserve">
     <value>Total win loss amount (exclude member commission) of bet tickets (exclude Void/Rejected/Outstanding tickets). Click to view Bet list in details.</value>
+  </data>
+  <data name="Guidelines_WinLoss_Member_DisableBetList" xml:space="preserve">
+    <value>Total win loss amount (exclude member commission) of bet tickets (exclude Void/Rejected/Outstanding tickets).</value>
   </data>
   <data name="Guidelines_WinLoss_SMA" xml:space="preserve">
     <value>total win loss amount after Position Taking of bet tickets (exclude Void/Rejected/Outstanding tickets).</value>

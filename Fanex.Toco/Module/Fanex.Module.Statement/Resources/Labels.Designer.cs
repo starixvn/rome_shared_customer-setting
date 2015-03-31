@@ -187,6 +187,15 @@ namespace Fanex.Module.Statement.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to total stakes of Running tickets..
+        /// </summary>
+        public static string Guidelines_Outstanding_DisableBetList {
+            get {
+                return ResourceManager.GetString("Guidelines_Outstanding_DisableBetList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Transfer transactions between Agent and Member..
         /// </summary>
         public static string Guidelines_Traa {
@@ -241,11 +250,29 @@ namespace Fanex.Module.Statement.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to total stakes of Void/Rejected tickets..
+        /// </summary>
+        public static string Guidelines_VoidRejected_DisableBetList {
+            get {
+                return ResourceManager.GetString("Guidelines_VoidRejected_DisableBetList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total win loss amount (exclude member commission) of bet tickets (exclude Void/Rejected/Outstanding tickets). Click to view Bet list in details..
         /// </summary>
         public static string Guidelines_WinLoss_Member {
             get {
                 return ResourceManager.GetString("Guidelines_WinLoss_Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total win loss amount (exclude member commission) of bet tickets (exclude Void/Rejected/Outstanding tickets)..
+        /// </summary>
+        public static string Guidelines_WinLoss_Member_DisableBetList {
+            get {
+                return ResourceManager.GetString("Guidelines_WinLoss_Member_DisableBetList", resourceCulture);
             }
         }
         

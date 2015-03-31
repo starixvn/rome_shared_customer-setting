@@ -360,7 +360,9 @@ namespace Fanex.Module.Statement.Services.StatementReport
 
                 column = row.CreateCell(currentColumn);
                 ExportDataColumnModel(column, statement.Commission);
-                column.CellStyle = twoDecimalNumberStyle;
+                column.CellStyle = IsNegative(statement.Commission) ?
+                    twoDecimalRedNumberStyle :
+                    twoDecimalNumberStyle;
                 currentColumn++;
 
                 column = row.CreateCell(currentColumn);
@@ -552,7 +554,9 @@ namespace Fanex.Module.Statement.Services.StatementReport
 
                 column = row.CreateCell(currentColumn);
                 ExportDataColumnModel(column, statement.Commission);
-                column.CellStyle = twoDecimalNumberStyle;
+                column.CellStyle = IsNegative(statement.Commission) ?
+                    twoDecimalRedNumberStyle :
+                    twoDecimalNumberStyle;
                 currentColumn++;
 
                 column = row.CreateCell(currentColumn);

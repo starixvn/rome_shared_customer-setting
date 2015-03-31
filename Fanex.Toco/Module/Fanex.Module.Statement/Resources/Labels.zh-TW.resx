@@ -159,6 +159,9 @@
   <data name="Guidelines_Outstanding" xml:space="preserve">
     <value>未結束註單總投註額.。 點擊查看未結束註單明細。</value>
   </data>
+  <data name="Guidelines_Outstanding_DisableBetList" xml:space="preserve">
+    <value>未結束註單總投註額.。</value>
+  </data>
   <data name="Guidelines_Traa" xml:space="preserve">
     <value>代理和會員理之間的轉賬交易。</value>
   </data>
@@ -177,8 +180,14 @@
   <data name="Guidelines_VoidRejected" xml:space="preserve">
     <value>作廢/取消註單總投註額.。 點擊查看作廢/取消註單明細。</value>
   </data>
+  <data name="Guidelines_VoidRejected_DisableBetList" xml:space="preserve">
+    <value>作廢/取消註單總投註額.。</value>
+  </data>
   <data name="Guidelines_WinLoss_Member" xml:space="preserve">
     <value>註單 (不包括作廢/取消/未結束投註的註單) 總輸贏額度 (不包括會員傭金)。 點擊查看註單明細。</value>
+  </data>
+  <data name="Guidelines_WinLoss_Member_DisableBetList" xml:space="preserve">
+    <value>註單 (不包括作廢/取消/未結束投註的註單) 總輸贏額度 (不包括會員傭金)。</value>
   </data>
   <data name="Guidelines_WinLoss_SMA" xml:space="preserve">
     <value>占成後的總輸贏額度 (不包括作廢/取消/未結束投註的註單)</value>

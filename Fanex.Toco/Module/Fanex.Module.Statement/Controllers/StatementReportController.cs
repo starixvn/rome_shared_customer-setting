@@ -47,14 +47,14 @@ namespace Fanex.Module.Statement.Controllers
         }
 
         [HttpGet]
-        public ActionResult Guideline(int roleId = RoleIdConstants.Member)
+        public ActionResult Guideline(int roleId = RoleIdConstants.Member, bool canViewBetListStatement = false)
         {
             if (roleId == RoleIdConstants.Member)
             {
-                return View("~/Areas/Statement/Views/Guideline/MemberGuildeline.cshtml");
+                return View("~/Areas/Statement/Views/Guideline/MemberGuildeline.cshtml", canViewBetListStatement);
             }
 
-            return View("~/Areas/Statement/Views/Guideline/SMAGuildeline.cshtml");
+            return View("~/Areas/Statement/Views/Guideline/SMAGuildeline.cshtml", canViewBetListStatement);
         }
 
         [HttpPost, AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Statement")]
