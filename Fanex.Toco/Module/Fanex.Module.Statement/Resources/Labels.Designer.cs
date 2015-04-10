@@ -304,6 +304,15 @@ namespace Fanex.Module.Statement.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Statement Guidelines.
+        /// </summary>
+        public static string New_Statement_Guidelines {
+            get {
+                return ResourceManager.GetString("New_Statement_Guidelines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Opening Balance.
         /// </summary>
         public static string Opening_Balance {

@@ -198,6 +198,9 @@
   <data name="Message_NoDataReport" xml:space="preserve">
     <value>No information is available</value>
   </data>
+  <data name="New_Statement_Guidelines" xml:space="preserve">
+    <value>New Statement Guidelines</value>
+  </data>
   <data name="Opening_Balance" xml:space="preserve">
     <value>Opening Balance</value>
   </data>
