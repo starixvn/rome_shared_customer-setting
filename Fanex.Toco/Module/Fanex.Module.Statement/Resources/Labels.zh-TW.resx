@@ -136,7 +136,7 @@
     <value>總累計余額 = 期初余額 + 輸贏 + 傭金 + 轉帳金額</value>
   </data>
   <data name="Guidelines_1stRow_SMA" xml:space="preserve">
-    <value>全新的賬目報告只會在選擇“從”2014年1月1日查看起時，才會顯示。</value>
+    <value>全新的賬目報告只會在選擇“從”2012年1月1日查看起時，才會顯示。</value>
   </data>
   <data name="Guidelines_AccumulatedTotal_Member" xml:space="preserve">
     <value>選定日期之間，每一天的期末余額</value>

@@ -136,7 +136,7 @@
     <value>总累计余额 = 期初余额 + 输赢 + 佣金 + 转帐余额</value>
   </data>
   <data name="Guidelines_1stRow_SMA" xml:space="preserve">
-    <value>全新的账目报告只会在选择 “从”2014年1月1日查看起时，才会显示。</value>
+    <value>全新的账目报告只会在选择 “从”2012年1月1日查看起时，才会显示。</value>
   </data>
   <data name="Guidelines_AccumulatedTotal_Member" xml:space="preserve">
     <value>选定日期之间，每一天的期末余额</value>

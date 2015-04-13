@@ -136,7 +136,7 @@
     <value>ยอดสะสมรวม = งบดุลเริ่มต้น + ยอดได้/เสีย + คอมมิชชั่น + ยอดโอนเงิน</value>
   </data>
   <data name="Guidelines_1stRow_SMA" xml:space="preserve">
-    <value>รูปแบบใหม่ของการรายงานงบการเงินจะแสดงเฉพาะ "จาก" วันที่เริ่มต้น 01/01/2014 เป็นต้นไป</value>
+    <value>รูปแบบใหม่ของการรายงานงบการเงินจะแสดงเฉพาะ "จาก" วันที่เริ่มต้น 01/01/2012 เป็นต้นไป</value>
   </data>
   <data name="Guidelines_AccumulatedTotal_Member" xml:space="preserve">
     <value>งบดุลที่ในแต่ละวัน ภายใต้วันที่ทำการเลือก</value>
