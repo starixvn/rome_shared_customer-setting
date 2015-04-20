@@ -281,7 +281,7 @@ namespace Fanex.CustomerSetting.Module.Core.Web
         {
             get
             {
-                return SessionManager.Get<int>(Constants.FROM_SYSTEM);
+                return 2;
             }
             set
             {

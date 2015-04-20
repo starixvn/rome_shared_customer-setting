@@ -72,10 +72,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             {
                 var gameGroup = new GameGroup();
 
-                // Commission
-                gameGroup.Sco = MaxComm;
-                gameGroup.Mco = !synced ? 0 : Utils.ToDecimal(row["SMAgentRollingRate"]).Format(4);
-
                 // Game Group Info
                 gameGroup.GameGroupID = !synced ? Utils.ToInt32(row["CodeID"]) : Utils.ToInt32(row["GameKind"]);
                 gameGroup.GameGroupName = !synced ? Utils.ToString(row[Lang("CodeName")]) : Utils.ToString(row["GameKindName"]);
@@ -87,6 +83,17 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 // Master Min PT
                 gameGroup.N4 = gameGroup.S3;
                 gameGroup.N3 = !synced ? 0 : Utils.ToDecimal(row["MinPositionTaking"]).Format();
+
+                // Commission
+                if(gameGroup.GameGroupID.Equals(136))
+                {
+                    gameGroup.Sco = 0;
+                    gameGroup.Mco = 0;
+                }
+                else{
+                    gameGroup.Sco = MaxComm;
+                    gameGroup.Mco = !synced ? 0 : Utils.ToDecimal(row["SMAgentRollingRate"]).Format(4);
+                }
 
                 // Assign game types
                 var gameTypes = this.GetGameTypeSuper(id, gameGroup.GameGroupID, synced, ref gameGroup, custInfo.Currency, gameModel.IsPtByGameType);
@@ -944,39 +951,46 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
                 if (!customerModel.CasinoSync)
                 {
-                    settingsInserted = cust.InsertCustSetting(
-                        "01",
-                        custId,
-                        custName,
-                        customerModel.UserName2,
-                        customerModel.FirstName,
-                        customerModel.LastName,
-                        customerModel.UserPwd,
-                        customerModel.Phone,
-                        customerModel.MobilePhone,
-                        customerModel.Currency,
-                        customerModel.Fax,
-                        customerModel.Closed,
-                        customerModel.Suspend,
-                        customerModel.IsEnablePT,
-                        (decimal)customerModel.MaxWin,
-                        (decimal)customerModel.MaxLose,
-                        true,
-                        (decimal)customerModel.MaxTransferCredit,
-                        customerModel.SIBCCustID,
-                        customerModel.MIBCCustID,
-                        custId,
-                        customerModel.PTByGameType,
-                        customerModel.RoleId.ToString(),
-                        DateTime.Now,
-                        ip,
-                        modifiedId,
-                        modifiedBy,
-                        fromSystem,
-                        customerModel.IsAutoReset,
-                        false,
-                        false,
-                        customerModel.IsDisableAutoMPT);
+                    try
+                    {
+                        settingsInserted = cust.InsertCustSetting(
+                            "01",
+                            custId,
+                            custName,
+                            customerModel.UserName2,
+                            customerModel.FirstName,
+                            customerModel.LastName,
+                            customerModel.UserPwd,
+                            customerModel.Phone,
+                            customerModel.MobilePhone,
+                            customerModel.Currency,
+                            customerModel.Fax,
+                            customerModel.Closed,
+                            customerModel.Suspend,
+                            customerModel.IsEnablePT,
+                            (decimal)customerModel.MaxWin,
+                            (decimal)customerModel.MaxLose,
+                            true,
+                            (decimal)customerModel.MaxTransferCredit,
+                            customerModel.SIBCCustID,
+                            customerModel.MIBCCustID,
+                            customerModel.AIBCCustID,
+                            customerModel.PTByGameType,
+                            customerModel.RoleId.ToString(),
+                            DateTime.Now,
+                            ip,
+                            modifiedId,
+                            modifiedBy,
+                            fromSystem,
+                            customerModel.IsAutoReset,
+                            false,
+                            false,
+                            customerModel.IsDisableAutoMPT);
+                    }
+                    catch(Exception)
+                    {
+                        settingsInserted = false;
+                    }
                 }
             }
             catch (Exception)
