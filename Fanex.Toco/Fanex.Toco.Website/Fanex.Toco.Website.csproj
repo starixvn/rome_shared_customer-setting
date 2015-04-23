@@ -247,6 +247,29 @@
     <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\Message.css" />
     <Content Include="Areas\CustomerSetting\Views\Bingo\Styles\table.css" />
     <Content Include="Areas\CustomerSetting\Views\Casino\Scripts\EditSuperController.js" />
+    <Content Include="Areas\CustomerSetting\Views\CloneSetting\Scripts\CloneSettingManager.js" />
+    <Content Include="Areas\CustomerSetting\Views\CloneSetting\Scripts\common.js" />
+    <Content Include="Areas\CustomerSetting\Views\CloneSetting\Styles\Images\btnLeft.png" />
+    <Content Include="Areas\CustomerSetting\Views\CloneSetting\Styles\Images\btnRight.png" />
+    <Content Include="Areas\CustomerSetting\Views\CloneSetting\Styles\Images\error.gif" />
+    <Content Include="Areas\CustomerSetting\Views\CloneSetting\Styles\Images\listNotes.gif" />
+    <Content Include="Areas\CustomerSetting\Views\CloneSetting\Styles\Images\success.gif" />
+    <Content Include="Areas\CustomerSetting\Views\CloneSetting\Styles\LeftPanel\Images\L_banner\bg02_box01.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\CloneSetting\Styles\LeftPanel\Images\L_banner\bg02_box01.png" />
+    <Content Include="Areas\CustomerSetting\Views\CloneSetting\Styles\LeftPanel\Images\L_banner\bg_checkbox.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\CloneSetting\Styles\LeftPanel\Images\L_banner\box_02header.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\CloneSetting\Styles\LeftPanel\Images\L_banner\box_bottom.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\CloneSetting\Styles\LeftPanel\Images\L_banner\box_bottom.png" />
+    <Content Include="Areas\CustomerSetting\Views\CloneSetting\Styles\LeftPanel\Images\L_banner\box_rp.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\CloneSetting\Styles\LeftPanel\Images\L_banner\icn_top.png" />
+    <Content Include="Areas\CustomerSetting\Views\CloneSetting\Styles\LeftPanel\Images\L_banner\L_btn_left.png" />
+    <Content Include="Areas\CustomerSetting\Views\CloneSetting\Styles\LeftPanel\Images\L_banner\L_btn_left_hover.png" />
+    <Content Include="Areas\CustomerSetting\Views\CloneSetting\Styles\LeftPanel\Images\L_banner\L_tab_left.png" />
+    <Content Include="Areas\CustomerSetting\Views\CloneSetting\Styles\LeftPanel\Images\L_banner\R_btn_left.png" />
+    <Content Include="Areas\CustomerSetting\Views\CloneSetting\Styles\LeftPanel\Images\L_banner\R_btn_left_hover.png" />
+    <Content Include="Areas\CustomerSetting\Views\CloneSetting\Styles\LeftPanel\Images\L_banner\R_tab_left-1.png" />
+    <Content Include="Areas\CustomerSetting\Views\CloneSetting\Styles\LeftPanel\Images\L_banner\R_tab_left.png" />
+    <Content Include="Areas\CustomerSetting\Views\CloneSetting\Styles\LeftPanel\left_panel.css" />
     <Content Include="Areas\CustomerSetting\Views\Keno\EnableStatus\Scripts\KenoStatusController.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\EnableStatus\Styles\EnableRacing.css" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\controllers\bet-setting.controller.js" />
@@ -1001,6 +1024,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Web.Configuration\Store\CloneSettings.xml" />
     <Content Include="Web.Configuration\Store\Statement.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -1088,6 +1112,8 @@
     <Content Include="Areas\CustomerSetting\Views\Keno\EnableStatus\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Keno\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Keno\Content.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\CloneSetting\Index.cshtml" />
+    <None Include="Areas\CustomerSetting\Views\CloneSetting\Styles\CloneSetting.less" />
     <None Include="Areas\CustomerSetting\Views\Keno\Setting\Document.doc" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Agent\EditAgent.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\MasterOnMember\MasterEditMember.cshtml" />
@@ -1155,6 +1181,10 @@
     <ProjectReference Include="..\Module\Casino\Casino.csproj">
       <Project>{5F8F3877-90E3-48A3-BAD7-4207DCBA088D}</Project>
       <Name>Casino</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Module\Fanex.CustomerSetting.Module.CloneSetting\Fanex.CustomerSetting.Module.CloneSetting.csproj">
+      <Project>{37A65793-85E8-4AC4-9254-F5F35BBC2E35}</Project>
+      <Name>Fanex.CustomerSetting.Module.CloneSetting</Name>
     </ProjectReference>
     <ProjectReference Include="..\Module\Fanex.Module.Statement\Fanex.Module.Statement.csproj">
       <Project>{2B8BF7A6-3C6D-42E9-956E-D4B144EDDAEE}</Project>
