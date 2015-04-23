@@ -24,6 +24,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
     using Fanex.CustomerSetting.Security.Authenticate;
     using Fanex.CustomerSetting.Security.Configurations;
     using Newtonsoft.Json;
+    using Fanex.CustomerSetting.Module.Core.Web;
 
     /// <summary>
     /// Class AgentController.
@@ -37,7 +38,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
         /// <param name="uplineId">The upline identifier.</param>
         /// <returns>ActionResult object.</returns>
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
-        public ActionResult EditAgent(int id, int uplineId, string groupName = null)
+        public ActionResult EditAgent(int id, int uplineId, string groupName = null, bool isSearchAndCopy = false)
         {
             var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
             if (!obj.IsBelong(id, null, groupName))
@@ -50,6 +51,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             try
             {
                 customerSetting = CasinoManager.Instance.AgentCasinoModel(id, uplineId);
+                customerSetting.IsReadOnly = isSearchAndCopy;
             }
             catch
             {
@@ -100,7 +102,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
         /// <param name="customerModel">The customer model.</param>
         /// <returns>ActionResult object.</returns>
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
-        public ActionResult UpdateAgentPost(int id, string custName, int uplineId, int userId, string username, string settingModel, string customerModel, string groupName = null)
+        public ActionResult UpdateAgentPost(int id, string username, int uplineId, int userId, string actorName, string settingModel, string customerModel, string groupName = null)
         {
             var obj = System.Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
             if (!obj.IsBelong(id, null, groupName))
@@ -108,14 +110,16 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 return this.ActionDenied(this.Request);
             }
 
+            actorName = AppSession.SubAccountId.Equals(0) ? actorName : AppSession.SubAccountName;
+
             var ret = CasinoManager.Instance.UpdateAgent(
-                id, 
-                custName,
+                id,
+                username,
                 uplineId, 
                 Request.UserHostAddress, 
-                userId, 
-                username, 
-                BaseController.FromSystem, 
+                userId,
+                actorName, 
+                AppSession.FromSystem, 
                 JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel),
                 JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
 

@@ -13,6 +13,8 @@ namespace Fanex.CustomerSetting.Module.Casino.ViewModels
 
         public bool IsPtByGameType { get; set; }
 
+        public bool IsReadOnly { get; set; }
+
         public List<GameGroup> GameGroups { get; set; }
     }
 
@@ -42,6 +44,8 @@ namespace Fanex.CustomerSetting.Module.Casino.ViewModels
         public decimal? Um2 { get; set; }
         public decimal? Us1 { get; set; }
         public decimal? Us3 { get; set; }
+        public bool? IsUpdateAllMember { get; set; }
+        public decimal? NewMemberPT { get; set; }
     }
 
     public class Commission

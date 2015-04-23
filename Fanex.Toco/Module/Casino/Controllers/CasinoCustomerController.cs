@@ -39,6 +39,9 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             customerInfo.UplineRoleId = uplineId != 0 ? customerUpline.RoleId : 5;
             customerInfo.IsAutoReset = !customerInfo.CasinoSync ? true : customerInfo.IsAutoReset;
 
+            //// For get autoMaster.
+            customerInfo.IsDisableAutoMPT = customerUpline.IsDisableAutoMPT;
+
             if (uplineId != 0 && customerUpline.RoleId == customerInfo.RoleId)
             {
                 customerInfo.RoleId = customerUpline.RoleId - 1;
@@ -67,7 +70,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             }
 
             var customerInfo = new CasinoLibrary.SBAgent.Customer();
-            var success = customerInfo.ResetMaxTransfer(id, Request.UserHostAddress, AppSession.CurrentSession.UserId, AppSession.CurrentSession.UserName, FromSystem);
+            var success = customerInfo.ResetMaxTransfer(id, Request.UserHostAddress, AppSession.CurrentSession.UserId, AppSession.CurrentSession.UserName, AppSession.FromSystem);
 
             return this.JsonBase(new { ErrorCode = success ? 0 : 1, ErrorMessage = success ? string.Empty : "Reset max transfer failed" });
         }

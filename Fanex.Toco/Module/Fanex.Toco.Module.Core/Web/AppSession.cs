@@ -264,6 +264,31 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 			}
 		}
 
+        public static string SubAccountName
+        {
+            get
+            {
+                return SessionManager.Get<string>(Constants.SUB_ACCOUNT_NAME);
+            }
+
+            set
+            {
+                SessionManager.Set<string>(Constants.SUB_ACCOUNT_NAME, value);
+            }
+        }
+
+        public static int FromSystem
+        {
+            get
+            {
+                return 2;
+            }
+            set
+            {
+                SessionManager.Set<int>(Constants.FROM_SYSTEM, value);
+            }
+        }
+
 		public static string Language
 		{
 			get

@@ -323,5 +323,12 @@ namespace Fanex.CustomerSetting.Module.Casino.Entities
             get;
             set;
         }
+
+
+        public bool IsDisableAutoMPT 
+        { 
+            get; 
+            set; 
+        }
     }
 }

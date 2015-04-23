@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Agent" xml:space="preserve">
+    <value>代理</value>
+  </data>
+  <data name="BetSetting" xml:space="preserve">
+    <value>投注設定</value>
+  </data>
+  <data name="casinodownlines" xml:space="preserve">
+    <value>下線前啟用</value>
+  </data>
+  <data name="lblAccumulatedWinLoss" xml:space="preserve">
+    <value>累計轉移金額</value>
+  </data>
+  <data name="lblAgentComm" xml:space="preserve">
+    <value>代理佣金</value>
+  </data>
+  <data name="lblAgentMaxPT" xml:space="preserve">
+    <value>代理最高占成数</value>
+  </data>
+  <data name="lblAgentMinPT" xml:space="preserve">
+    <value>代理最低占成数</value>
+  </data>
+  <data name="lblAgentPresetPT" xml:space="preserve">
+    <value>代理預定佔成</value>
+  </data>
+  <data name="lblAgentPT" xml:space="preserve">
+    <value>代理佔成數</value>
+  </data>
+  <data name="lblBettingLimit" xml:space="preserve">
+    <value>投注限额</value>
+  </data>
+  <data name="lblChangePTTo" xml:space="preserve">
+    <value>您是否要把所有會員佔成數更改為</value>
+  </data>
+  <data name="lblClickToViewCurrentWinLimit" xml:space="preserve">
+    <value>點擊查閱目前的百分比</value>
+  </data>
+  <data name="lblClose" xml:space="preserve">
+    <value>關閉</value>
+  </data>
+  <data name="lblCurrentWinLimit" xml:space="preserve">
+    <value>當前贏額上限</value>
+  </data>
+  <data name="lblCustomerInformation" xml:space="preserve">
+    <value>會員資料</value>
+  </data>
+  <data name="lblDailyAutoResetLimit" xml:space="preserve">
+    <value>每日限額自動重設. (GMT+8中午12時正)</value>
+  </data>
+  <data name="lblEnable" xml:space="preserve">
+    <value>開啟娛樂城</value>
+  </data>
+  <data name="lblFax" xml:space="preserve">
+    <value>傳真</value>
+  </data>
+  <data name="lblFirstName" xml:space="preserve">
+    <value>名</value>
+  </data>
+  <data name="lblGameSetting" xml:space="preserve">
+    <value>游戲設定</value>
+  </data>
+  <data name="lblGameType" xml:space="preserve">
+    <value>遊戲類型</value>
+  </data>
+  <data name="lblGroupSetting" xml:space="preserve">
+    <value>組設定</value>
+  </data>
+  <data name="lblHaveChangeAgentPositionTaking" xml:space="preserve">
+    <value>您已更改於此代理不使用自動佔成.</value>
+  </data>
+  <data name="lblHaveChangeMasterPositionTaking" xml:space="preserve">
+    <value>您已更改此總代理不再自動佔成.</value>
+  </data>
+  <data name="lblLastName" xml:space="preserve">
+    <value>姓</value>
+  </data>
+  <data name="lblMasterAutoPresetPT" xml:space="preserve">
+    <value>總代理自動佔成</value>
+  </data>
+  <data name="lblMasterAutoPT" xml:space="preserve">
+    <value>总代理自动占成</value>
+  </data>
+  <data name="lblMasterComm" xml:space="preserve">
+    <value>總代理佣金</value>
+  </data>
+  <data name="lblMasterMaxPT" xml:space="preserve">
+    <value>总代理最高占成数</value>
+  </data>
+  <data name="lblMasterMinPT" xml:space="preserve">
+    <value>总代理最低占成数</value>
+  </data>
+  <data name="lblMasterPresetPT" xml:space="preserve">
+    <value>總代理預定佔成</value>
+  </data>
+  <data name="lblMasterPT" xml:space="preserve">
+    <value>总代理占成数</value>
+  </data>
+  <data name="lblMaximumWin" xml:space="preserve">
+    <value>最高贏取倍數</value>
+  </data>
+  <data name="lblMaxTransferCredit" xml:space="preserve">
+    <value>最高調動信用額</value>
+  </data>
+  <data name="lblMemberCommission" xml:space="preserve">
+    <value>會員佣金</value>
+  </data>
+  <data name="lblMemberWinLimit" xml:space="preserve">
+    <value>會員的贏額上限</value>
+  </data>
+  <data name="lblMobilePhone" xml:space="preserve">
+    <value>手機</value>
+  </data>
+  <data name="lblNickname" xml:space="preserve">
+    <value>暱稱</value>
+  </data>
+  <data name="lblNo" xml:space="preserve">
+    <value>無</value>
+  </data>
+  <data name="lblOf" xml:space="preserve">
+    <value>之第</value>
+  </data>
+  <data name="lblOnGivenCredit" xml:space="preserve">
+    <value>信用額</value>
+  </data>
+  <data name="lblPhone" xml:space="preserve">
+    <value>電話</value>
+  </data>
+  <data name="lblPositionTakingCommission" xml:space="preserve">
+    <value>佔成/佣金</value>
+  </data>
+  <data name="lblSuperAutoPresetPT" xml:space="preserve">
+    <value>超級總代自動佔成</value>
+  </data>
+  <data name="lblSuperAutoPT" xml:space="preserve">
+    <value>超級總代理自動佔成</value>
+  </data>
+  <data name="lblSuperCommission" xml:space="preserve">
+    <value>超級總代理佣金</value>
+  </data>
+  <data name="lblSuperMaxPosition" xml:space="preserve">
+    <value>超級總代理最高佔成</value>
+  </data>
+  <data name="lblSuperMinPosition" xml:space="preserve">
+    <value>超級總代理最低佔成</value>
+  </data>
+  <data name="lblSuperPresetPT" xml:space="preserve">
+    <value>超級總代理預定佔成</value>
+  </data>
+  <data name="lblSuperPT" xml:space="preserve">
+    <value>超級總代理佔成數</value>
+  </data>
+  <data name="lblUnlimited" xml:space="preserve">
+    <value>無限</value>
+  </data>
+  <data name="lblUpdate" xml:space="preserve">
+    <value>更改</value>
+  </data>
+  <data name="lblUpdateFailed" xml:space="preserve">
+    <value>更新不成功</value>
+  </data>
+  <data name="lblUsername" xml:space="preserve">
+    <value>用戶名</value>
+  </data>
+  <data name="lblYes" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="Master" xml:space="preserve">
+    <value>總代理</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>會員</value>
+  </data>
+  <data name="NoInformation" xml:space="preserve">
+    <value>沒資料顯示</value>
+  </data>
+  <data name="noLimited" xml:space="preserve">
+    <value>没有限制</value>
+  </data>
+  <data name="positiontaking" xml:space="preserve">
+    <value>佔成數</value>
+  </data>
+  <data name="reset" xml:space="preserve">
+    <value>重填</value>
+  </data>
+  <data name="Super" xml:space="preserve">
+    <value>超級</value>
+  </data>
+  <data name="UnauthorizeMsg" xml:space="preserve">
+    <value>您沒有使用此功能的權限</value>
+  </data>
+  <data name="UpdatedUnsuccessfully" xml:space="preserve">
+    <value>更新不成功</value>
+  </data>
+  <data name="UpdatedWinLimitSuccessfully" xml:space="preserve">
+    <value>最高赢取倍数: 修改成功</value>
+  </data>
+  <data name="UpdateLiveCasinoStatusSuccess" xml:space="preserve">
+    <value>狀態: 修改成功</value>
+  </data>
+  <data name="UpdateLiveCasinoStatusUnSuccess" xml:space="preserve">
+    <value>修改失敗，因為上線的娛樂廳狀態以被禁止</value>
+  </data>
+  <data name="UpdateSuccessfully" xml:space="preserve">
+    <value>修改成功</value>
+  </data>
+  <data name="WarningUncheckAllStakeLevelMsg" xml:space="preserve">
+    <value>移除所有投注組合將影響與應用到所有的下線</value>
+  </data>
+  <data name="WarningUplineUncheckAllStakeLevelMsg" xml:space="preserve">
+    <value>沒有任何投註限額，因為上線沒有設置投註限額，所以影響到下線的設置。因此, 投註限額將默認設置為上線的最低投註限額</value>
+  </data>
+  <data name="_101" xml:space="preserve">
+    <value>佣金: 修改成功</value>
+  </data>
+  <data name="_102" xml:space="preserve">
+    <value>最低佔成: 修改成功</value>
+  </data>
+  <data name="_103" xml:space="preserve">
+    <value>佔成數: 修改成功</value>
+  </data>
+  <data name="_104" xml:space="preserve">
+    <value>最高赢取倍数: 修改成功</value>
+  </data>
+  <data name="lbeditmultcasino" xml:space="preserve">
+    <value>修改多重娛樂城</value>
+  </data>
+  <data name="lbleditcasino" xml:space="preserve">
+    <value>修改娛樂城</value>
+  </data>
+  <data name="submit" xml:space="preserve">
+    <value>提交</value>
+  </data>
+</root>

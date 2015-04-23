@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Agent" xml:space="preserve">
+    <value>Agent</value>
+  </data>
+  <data name="BetSetting" xml:space="preserve">
+    <value>Bet Setting</value>
+  </data>
+  <data name="casinodownlines" xml:space="preserve">
+    <value>Previous enabled downlines</value>
+  </data>
+  <data name="lblAccumulatedWinLoss" xml:space="preserve">
+    <value>Accumulated transferable amount</value>
+  </data>
+  <data name="lblAgentComm" xml:space="preserve">
+    <value>Hoa hồng cho Agent</value>
+  </data>
+  <data name="lblAgentMaxPT" xml:space="preserve">
+    <value>PT lớn nhất của Agent</value>
+  </data>
+  <data name="lblAgentMinPT" xml:space="preserve">
+    <value>PT nhỏ nhất của Agent</value>
+  </data>
+  <data name="lblAgentPresetPT" xml:space="preserve">
+    <value>Giá trị PT trước đó của Agent</value>
+  </data>
+  <data name="lblAgentPT" xml:space="preserve">
+    <value>PT của Agent</value>
+  </data>
+  <data name="lblBettingLimit" xml:space="preserve">
+    <value>Giới hạn đặt cược</value>
+  </data>
+  <data name="lblChangePTTo" xml:space="preserve">
+    <value>Bạn có muốn cập nhật giá trị PTcủa tất cả các thành viên</value>
+  </data>
+  <data name="lblClickToViewCurrentWinLimit" xml:space="preserve">
+    <value>Bấm để xem giới hạn thắng cược lớn nhất tại thời điểm hiện tại </value>
+  </data>
+  <data name="lblClose" xml:space="preserve">
+    <value>Khóa</value>
+  </data>
+  <data name="lblCurrentWinLimit" xml:space="preserve">
+    <value>Giới hạn thắng cược lớn nhất tại thời điểm hiện tại </value>
+  </data>
+  <data name="lblCustomerInformation" xml:space="preserve">
+    <value>Thông tin thành viên</value>
+  </data>
+  <data name="lblDailyAutoResetLimit" xml:space="preserve">
+    <value>Tự động reset giới hạn chuyển khoản  mỗi ngày (12 trưa GMT+8)</value>
+  </data>
+  <data name="lblFax" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="lblFirstName" xml:space="preserve">
+    <value>Tên</value>
+  </data>
+  <data name="lblGameSetting" xml:space="preserve">
+    <value>Thiết lập  trò chơi</value>
+  </data>
+  <data name="lblGameType" xml:space="preserve">
+    <value>Thể loại</value>
+  </data>
+  <data name="lblGroupSetting" xml:space="preserve">
+    <value>Group Setting</value>
+  </data>
+  <data name="lblHaveChangeAgentPositionTaking" xml:space="preserve">
+    <value>Bạn vừa mới ngăn Agent này lấy Auto PT</value>
+  </data>
+  <data name="lblHaveChangeMasterPositionTaking" xml:space="preserve">
+    <value>Bạn vừa mới ngăn Master này lấy Auto PT</value>
+  </data>
+  <data name="lblLastName" xml:space="preserve">
+    <value>Họ</value>
+  </data>
+  <data name="lblMasterAutoPresetPT" xml:space="preserve">
+    <value>Auto Master Preset</value>
+  </data>
+  <data name="lblMasterAutoPT" xml:space="preserve">
+    <value>Auto PT của Master</value>
+  </data>
+  <data name="lblMasterComm" xml:space="preserve">
+    <value>Hoa hồng của Master</value>
+  </data>
+  <data name="lblMasterMaxPT" xml:space="preserve">
+    <value>PT lớn nhất của Master</value>
+  </data>
+  <data name="lblMasterMinPT" xml:space="preserve">
+    <value>PT nhỏ nhất của Master</value>
+  </data>
+  <data name="lblMasterPresetPT" xml:space="preserve">
+    <value>Giá trị PT trước đó của Master</value>
+  </data>
+  <data name="lblMasterPT" xml:space="preserve">
+    <value>PT của Master</value>
+  </data>
+  <data name="lblMaximumWin" xml:space="preserve">
+    <value>Tiền thắng cược lớn nhất</value>
+  </data>
+  <data name="lblMaxTransferCredit" xml:space="preserve">
+    <value>Member Max Transfer Credit</value>
+  </data>
+  <data name="lblMemberCommission" xml:space="preserve">
+    <value>Hoa hồng của Member</value>
+  </data>
+  <data name="lblMemberWinLimit" xml:space="preserve">
+    <value>Giới hạn tiền thắng cược của Member</value>
+  </data>
+  <data name="lblMobilePhone" xml:space="preserve">
+    <value>Điện thoại di động</value>
+  </data>
+  <data name="lblNickname" xml:space="preserve">
+    <value>Biệt danh</value>
+  </data>
+  <data name="lblNo" xml:space="preserve">
+    <value>Không</value>
+  </data>
+  <data name="lblOf" xml:space="preserve">
+    <value>of</value>
+  </data>
+  <data name="lblOnGivenCredit" xml:space="preserve">
+    <value>trong hạn mức tín dụng được cấp</value>
+  </data>
+  <data name="lblPhone" xml:space="preserve">
+    <value>Điện thoại</value>
+  </data>
+  <data name="lblPositionTakingCommission" xml:space="preserve">
+    <value>Position Taking/Hoa hồng</value>
+  </data>
+  <data name="lblSuperAutoPresetPT" xml:space="preserve">
+    <value>Auto Super Preset</value>
+  </data>
+  <data name="lblSuperAutoPT" xml:space="preserve">
+    <value>Auto PT của Super</value>
+  </data>
+  <data name="lblSuperCommission" xml:space="preserve">
+    <value>Hoa hồng cho Super</value>
+  </data>
+  <data name="lblSuperMaxPosition" xml:space="preserve">
+    <value>PT lớn nhất của Super</value>
+  </data>
+  <data name="lblSuperMinPosition" xml:space="preserve">
+    <value>PT nhỏ nhất của Super</value>
+  </data>
+  <data name="lblSuperPresetPT" xml:space="preserve">
+    <value>Giá trị PT trước đó của Super</value>
+  </data>
+  <data name="lblSuperPT" xml:space="preserve">
+    <value>PT của Super</value>
+  </data>
+  <data name="lblUnlimited" xml:space="preserve">
+    <value>Không giới hạn</value>
+  </data>
+  <data name="lblUpdate" xml:space="preserve">
+    <value>Cập nhật</value>
+  </data>
+  <data name="lblUpdateFailed" xml:space="preserve">
+    <value>Câp nhật không thành công</value>
+  </data>
+  <data name="lblUsername" xml:space="preserve">
+    <value>Tài khoản</value>
+  </data>
+  <data name="lblYes" xml:space="preserve">
+    <value>Có</value>
+  </data>
+  <data name="Master" xml:space="preserve">
+    <value>Master</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>Member</value>
+  </data>
+  <data name="NoInformation" xml:space="preserve">
+    <value>Thông tin chưa được cập nhật</value>
+  </data>
+  <data name="noLimited" xml:space="preserve">
+    <value>No limited</value>
+  </data>
+  <data name="positiontaking" xml:space="preserve">
+    <value>Position Taking</value>
+  </data>
+  <data name="reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="Super" xml:space="preserve">
+    <value>Super</value>
+  </data>
+  <data name="UnauthorizeMsg" xml:space="preserve">
+    <value>Bạn không được cho phép sử dụng chức năng này</value>
+  </data>
+  <data name="UpdatedUnsuccessfully" xml:space="preserve">
+    <value>Câp nhật không thành công</value>
+  </data>
+  <data name="UpdatedWinLimitSuccessfully" xml:space="preserve">
+    <value>Tiền thắng cược lớn nhất: Câp nhật thành công</value>
+  </data>
+  <data name="UpdateLiveCasinoStatusSuccess" xml:space="preserve">
+    <value>Trạng thái: Câp nhật thành công</value>
+  </data>
+  <data name="UpdateLiveCasinoStatusUnSuccess" xml:space="preserve">
+    <value>Quá trình câp nhật không thành công bởi vì Live Casino đã bị khóa bởi cấp trên</value>
+  </data>
+  <data name="UpdateSuccessfully" xml:space="preserve">
+    <value>Câp nhật thành công</value>
+  </data>
+  <data name="WarningUncheckAllStakeLevelMsg" xml:space="preserve">
+    <value>Không chọn bất kỳ cấp độ đặt cược sẽ ành hưởng đến tất cả những thành viên cấp dưới  </value>
+  </data>
+  <data name="_101" xml:space="preserve">
+    <value>Hoa hồng: Câp nhật thành công</value>
+  </data>
+  <data name="_102" xml:space="preserve">
+    <value>Giá trị PT nhỏ nhất: Câp nhật thành công</value>
+  </data>
+  <data name="_103" xml:space="preserve">
+    <value>Position Taking: Câp nhật thành công</value>
+  </data>
+  <data name="_104" xml:space="preserve">
+    <value>Tiền thắng cược lớn nhất: Câp nhật thành công</value>
+  </data>
+  <data name="lbeditmultcasino" xml:space="preserve">
+    <value>Tùy chỉnh đồng loạt cho  Casino</value>
+  </data>
+  <data name="lbleditcasino" xml:space="preserve">
+    <value>Cho phép Casino</value>
+  </data>
+  <data name="submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+</root>

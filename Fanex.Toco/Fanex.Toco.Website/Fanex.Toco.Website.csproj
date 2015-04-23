@@ -52,6 +52,10 @@
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging">
       <HintPath>..\_Dependencies\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+       </Reference>
+
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\_Dependencies\Web\Newtonsoft.Json.dll-3.5\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\_Dependencies\Microsoft.Practices.ServiceLocation.dll</HintPath>
@@ -1189,6 +1193,7 @@
     <Content Include="App_GlobalResources\Error.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Error.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>

@@ -15,7 +15,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
     public class SuperController : BaseController
     {
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
-        public ActionResult EditSuper(int id, int uplineId, string groupName = null)
+        public ActionResult EditSuper(int id, int uplineId, string groupName = null, bool isSearchAndCopy = false)
         {
             var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
             if (!obj.IsBelong(id, null, groupName))
@@ -28,6 +28,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             try
             {
                 customerSetting = CasinoManager.Instance.SuperCasinoModel(id, uplineId);
+                customerSetting.IsReadOnly = isSearchAndCopy;
             }
             catch
             {
@@ -38,7 +39,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
-        public ActionResult UpdateSuperPost(int id, string custName, int uplineId, int userId, string username, string settingModel, string customerModel, string groupName = null)
+        public ActionResult UpdateSuperPost(int id, string username, int uplineId, int userId, string actorName, string settingModel, string customerModel, string groupName = null)
         {
             var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
             if (!obj.IsBelong(id, null, groupName))
@@ -46,7 +47,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 return this.ActionDenied(this.Request);
             }
 
-            var ret = CasinoManager.Instance.UpdateSuper(id, custName, uplineId, Request.UserHostAddress, userId, username, BaseController.FromSystem, JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
+            var ret = CasinoManager.Instance.UpdateSuper(id, username, uplineId, Request.UserHostAddress, userId, actorName, BaseController.FromSystem, JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
 
             return this.JsonBase(new { ErrorCode = ret.IsSuccess ? 0 : 1, ErrorMessage = ret.ErrorMessage });
         }
