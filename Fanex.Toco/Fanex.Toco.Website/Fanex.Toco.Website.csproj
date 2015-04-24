@@ -52,8 +52,7 @@
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging">
       <HintPath>..\_Dependencies\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
-       </Reference>
-
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\_Dependencies\Web\Newtonsoft.Json.dll-3.5\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -1113,8 +1112,8 @@
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Keno\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Keno\Content.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\CloneSetting\Index.cshtml" />
+    <None Include="Areas\CustomerSetting\Views\LeftPanel\Document.doc" />
     <None Include="Areas\CustomerSetting\Views\CloneSetting\Styles\CloneSetting.less" />
-    <None Include="Areas\CustomerSetting\Views\Keno\Setting\Document.doc" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Agent\EditAgent.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\MasterOnMember\MasterEditMember.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Master\EditMaster.cshtml" />

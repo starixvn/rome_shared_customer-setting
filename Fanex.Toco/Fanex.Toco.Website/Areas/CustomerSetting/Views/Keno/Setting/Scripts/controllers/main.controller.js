@@ -25,6 +25,10 @@ KenoModule.controller('mainController', function ($scope, $timeout, kenoReposito
             }, true);
 
             $scope.updated = function (isUpdatePartial, partialName) {
+                if ($scope.positionTakingCopyAll.isCopiedAll) {
+                    $scope.$broadcast('resetPositionTaking', { "betTypeId": $scope.positionTakingCopyAll.betTypeId });
+                }
+               
                 if (isUpdatePartial) {
                     switch (partialName) {
                         case "PositionTaking":
@@ -91,6 +95,7 @@ KenoModule.controller('mainController', function ($scope, $timeout, kenoReposito
 
             $scope.doUpdated = function (url) {
                 commonService.blockUI();
+
                 kenoRepositories.save(url, $scope.kenoSetting).then(
                     function (results) {
                         $("#divShowInfo").empty().show();
