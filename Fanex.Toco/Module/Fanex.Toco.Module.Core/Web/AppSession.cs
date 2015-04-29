@@ -276,7 +276,6 @@ namespace Fanex.CustomerSetting.Module.Core.Web
             }
         }
 
-                return 2;
 		public static string Language
 		{
 			get
