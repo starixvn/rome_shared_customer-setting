@@ -20,11 +20,11 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
     using Fanex.CustomerSetting.Module.Casino.Entities;
     using Fanex.CustomerSetting.Module.Casino.Services.Impl;
     using Fanex.CustomerSetting.Module.Casino.ViewModels;
+    using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
     using Fanex.CustomerSetting.Security.Authenticate;
     using Fanex.CustomerSetting.Security.Configurations;
     using Newtonsoft.Json;
-    using Fanex.CustomerSetting.Module.Core.Web;
 
     /// <summary>
     /// Class AgentController.
@@ -119,7 +119,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 Request.UserHostAddress, 
                 userId,
                 actorName, 
-                AppSession.FromSystem, 
+                AppSession.CurrentSession.FromSystem, 
                 JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel),
                 JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
 

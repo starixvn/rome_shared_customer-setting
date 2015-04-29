@@ -144,8 +144,8 @@ namespace Fanex.CustomerSetting.Module.Bingo.Controllers
             {
                 result = _bingoService.UpdateCustomerSetting(
                     customer, 
-                    updatedByRoleID.Value, 
-                    FromSystem,
+                    updatedByRoleID.Value,
+                    AppSession.CurrentSession.FromSystem,
                     AppSession.CurrentSession.UserId,
                     AppSession.CurrentSession.UserName);
             }
@@ -168,7 +168,7 @@ namespace Fanex.CustomerSetting.Module.Bingo.Controllers
             {
                 result = _bingoService.ResetMaxTransfer(
                     custId.Value,
-                    FromSystem,
+                    AppSession.CurrentSession.FromSystem,
                     AppSession.CurrentSession.UserId,
                     AppSession.CurrentSession.UserName);
             }

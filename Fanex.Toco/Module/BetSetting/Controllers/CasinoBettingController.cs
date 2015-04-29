@@ -22,6 +22,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
     using Fanex.CustomerSetting.Module.Casino.Entities;
     using Fanex.CustomerSetting.Module.Casino.Services.Impl;
     using Fanex.CustomerSetting.Module.Casino.ViewModels;
+    using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.CustomerSetting.Security.Authenticate;
     using Fanex.CustomerSetting.Security.Configurations;
     using Newtonsoft.Json;
@@ -147,8 +148,8 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
                 4, 
                 Request.UserHostAddress, 
                 userId, 
-                customer.Username, 
-                FromSystem, 
+                customer.Username,
+                AppSession.CurrentSession.FromSystem, 
                 model.SettingModel, 
                 model.CustomerModel);
 

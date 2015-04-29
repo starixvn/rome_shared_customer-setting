@@ -18,6 +18,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
     using System;
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.BetSetting.Base;
+    using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.CustomerSetting.Security.Authenticate;
     using Fanex.CustomerSetting.Security.Configurations;
     using Microsoft.Practices.Unity;
@@ -139,7 +140,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
                 ICustomerService customerService = BingoContainer.Current.Resolve<ICustomerService>();
                 string ip = Request.UserHostAddress;
 
-                result = customerService.UpdateCustomerSetting(model, 5, ip == "::1" ? "127.0.0.1" : ip, userId, customer.Username, FromSystem);                            
+                result = customerService.UpdateCustomerSetting(model, 5, ip == "::1" ? "127.0.0.1" : ip, userId, customer.Username, AppSession.CurrentSession.FromSystem);                            
             }
             catch (Exception ex)
             {

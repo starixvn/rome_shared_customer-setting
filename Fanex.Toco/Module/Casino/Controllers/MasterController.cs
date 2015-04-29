@@ -7,11 +7,11 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
     using Fanex.CustomerSetting.Module.Casino.Entities;
     using Fanex.CustomerSetting.Module.Casino.Services.Impl;
     using Fanex.CustomerSetting.Module.Casino.ViewModels;
+    using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
     using Fanex.CustomerSetting.Security.Authenticate;
     using Fanex.CustomerSetting.Security.Configurations;
     using Newtonsoft.Json;
-    using Fanex.CustomerSetting.Module.Core.Web;
 
     public class MasterController : BaseController
     {
@@ -50,7 +50,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
             actorName = AppSession.SubAccountId.Equals(0) ? actorName : AppSession.SubAccountName;
 
-            var ret = CasinoManager.Instance.UpdateMaster(id, username, uplineId, Request.UserHostAddress, userId, actorName, AppSession.FromSystem, JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
+            var ret = CasinoManager.Instance.UpdateMaster(id, username, uplineId, Request.UserHostAddress, userId, actorName, AppSession.CurrentSession.FromSystem, JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
 
             return this.JsonBase(new { ErrorCode = ret.IsSuccess ? 0 : 1, ErrorMessage = ret.ErrorMessage });
         }

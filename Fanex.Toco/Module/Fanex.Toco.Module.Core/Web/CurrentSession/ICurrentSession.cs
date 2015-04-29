@@ -42,5 +42,7 @@ namespace Fanex.CustomerSetting.Module.Core.Web
         bool IsITAdmin { get; set; }
 
         string Language { get; set; }
+
+        int FromSystem { get; set; }
     }
 }

@@ -14,10 +14,6 @@
 
 namespace Fanex.CustomerSetting.Module.Core.Web
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Web.UI;
 
     /// <summary>
@@ -103,6 +99,12 @@ namespace Fanex.CustomerSetting.Module.Core.Web
             {
                 this.Session[this.Session.SessionID + "_" + _Language] = value;
             }
+        }
+
+        public int FromSystem
+        {
+            get { return 2; }
+            set { SessionManager.Set<int>(Constants.FROM_SYSTEM, value); }
         }
     }
 }

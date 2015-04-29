@@ -15,7 +15,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Web;
 using Fanex.NAP.Core.Model;
-using System.Configuration;
 
 namespace Fanex.CustomerSetting.Module.Core.Web
 {
@@ -277,18 +276,7 @@ namespace Fanex.CustomerSetting.Module.Core.Web
             }
         }
 
-        public static int FromSystem
-        {
-            get
-            {
-                return SessionManager.Get<int>(Constants.FROM_SYSTEM);
-            }
-            set
-            {
-                SessionManager.Set<int>(Constants.FROM_SYSTEM, value);
-            }
-        }
-
+                return 2;
 		public static string Language
 		{
 			get

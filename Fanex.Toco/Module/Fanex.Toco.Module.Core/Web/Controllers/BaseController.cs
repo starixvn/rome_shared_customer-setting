@@ -19,11 +19,11 @@ namespace Fanex.CustomerSetting.Module.Core.Web.Controllers
     using System.Globalization;
     using System.Reflection;
     using System.Threading;
+    using System.Web;
     using System.Web.Mvc;
     using Fanex.ExternalAccount.Controllers.Base;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
-    using System.Web;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class BaseController : Controller
@@ -35,8 +35,6 @@ namespace Fanex.CustomerSetting.Module.Core.Web.Controllers
         public const int Agent = 2;
 
         public const int Member = 1;
-
-        public const int FromSystem = 3;
 
         public BaseController()
         {
