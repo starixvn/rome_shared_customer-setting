@@ -74,7 +74,6 @@
     <Compile Include="AppStart\BundleConfig.cs" />
     <Compile Include="AppStart\FilterConfig.cs" />
     <Compile Include="AppStart\RouteConfig.cs" />
-    <Compile Include="AppStart\WebApiConfig.cs" />
     <Compile Include="Configurations\StatementElement.cs" />
     <Compile Include="Configurations\StatementSection.cs" />
     <Compile Include="Constants\RoleIdConstants.cs" />

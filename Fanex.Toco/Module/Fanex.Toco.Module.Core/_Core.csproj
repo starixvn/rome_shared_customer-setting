@@ -136,7 +136,6 @@
     <Compile Include="Web\App_Start\AppAreaRegistrator.cs" />
     <Compile Include="Web\App_Start\FilterConfig.cs" />
     <Compile Include="Web\App_Start\AppRouteConfig.cs" />
-    <Compile Include="Web\App_Start\WebApiConfig.cs" />
     <Compile Include="Web\CacheManager.cs" />
     <Compile Include="Web\Controllers\BaseController.cs" />
     <Compile Include="Web\CurrentContext\CurrentContext.cs" />

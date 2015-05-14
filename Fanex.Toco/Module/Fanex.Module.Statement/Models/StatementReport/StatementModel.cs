@@ -42,5 +42,7 @@ namespace Fanex.Module.Statement.Models.StatementReport
         public string TransactionType { get; set; }
 
         public string ExchangeRate { get; set; }
+
+        public string Creator { get; set; }
     }
 }

@@ -79,22 +79,23 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
 
                 try
                 {
-                   dt = customer.GetDefaultMaxTransfer(customerDetail.UpperCustID, customerDetail.Currency, uplineId == 0);
+                    dt = customer.GetDefaultMaxTransfer(customerDetail.UpperCustID, customerDetail.Currency, uplineId == 0);
+
+                    if (customerDetail.RoleId != 4 && dt != null && dt.Rows.Count > 0)
+                    {
+                        customerDetail.MaxTransferCreditLimit = Utils.ToDouble(dt.Rows[0]["MaxLimit"]);
+                        customerDetail.MinTransferCreditLimit = Utils.ToDouble(dt.Rows[0]["MinLimit"]);
+                        customerDetail.DefaultTransferCredit = Utils.ToDouble(dt.Rows[0]["DefMaxTransferCredit"]);
+                    }
+                    else
+                    {
+                        customerDetail.MaxTransferCreditLimit = Utils.ToDouble(dt.Rows[0]["MaxTransferCredit"]);
+                        customerDetail.MinTransferCreditLimit = customerDetail.MaxTransferCreditLimit;
+                        customerDetail.DefaultTransferCredit = Utils.ToDouble(dt.Rows[0]["SuperMaxTransfer"]);
+                    }
                 }
                 catch { }
 
-                if (customerDetail.RoleId != 4 && dt != null && dt.Rows.Count > 0)
-                {
-                    customerDetail.MaxTransferCreditLimit = Utils.ToDouble(dt.Rows[0]["MaxLimit"]);
-                    customerDetail.MinTransferCreditLimit = Utils.ToDouble(dt.Rows[0]["MinLimit"]);
-                    customerDetail.DefaultTransferCredit = Utils.ToDouble(dt.Rows[0]["DefMaxTransferCredit"]);
-                }
-                else
-                {
-                    customerDetail.MaxTransferCreditLimit = Utils.ToDouble(dt.Rows[0]["MaxTransferCredit"]);
-                    customerDetail.MinTransferCreditLimit = customerDetail.MaxTransferCreditLimit;
-                    customerDetail.DefaultTransferCredit = Utils.ToDouble(dt.Rows[0]["SuperMaxTransfer"]);
-                }
                 customerDetail.NoIBCData = false;
             }
                         

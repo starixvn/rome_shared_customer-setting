@@ -129,6 +129,9 @@
   <data name="Commission" xml:space="preserve">
     <value>수수료</value>
   </data>
+  <data name="Creator" xml:space="preserve">
+    <value>Creator</value>
+  </data>
   <data name="Date" xml:space="preserve">
     <value>날짜</value>
   </data>

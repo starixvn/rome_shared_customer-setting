@@ -201,7 +201,8 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
                         {
                             HasData = true,
                             Value = transferAmount
-                        }
+                        },
+                        Creator = Converter.ToString2(reader["creator"])
                     };
 
                     if (criteria.BalanceUpDate <= Converter.ToDateTime(criteria.TransferDate))
@@ -209,7 +210,7 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
                         statementModel.ExchangeRate = Converter.ToString2(reader["ExRate"]);
                     }
 
-                    statementModel.StatementDateString = statementModel.StatementDate.ToString("MM/dd/yyyy <br> hh:mm:ss tt");
+                    statementModel.StatementDateString = statementModel.StatementDate.ToString("dddd <br> MM/dd/yyyy <br> hh:mm:ss tt");
                     result.StatementList.Add(statementModel);
                     totalTransferAmount += transferAmount;
                 }
