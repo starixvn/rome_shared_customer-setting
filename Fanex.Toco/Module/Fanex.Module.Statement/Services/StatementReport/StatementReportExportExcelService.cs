@@ -590,6 +590,11 @@ namespace Fanex.Module.Statement.Services.StatementReport
             }
         }
 
+        private void ExportDataColumnText(ICell column, string cellValue)
+        {
+            column.SetCellValue(cellValue);
+        }
+
         /// <summary>
         /// Exports the header member statement.
         /// </summary>
@@ -609,7 +614,7 @@ namespace Fanex.Module.Statement.Services.StatementReport
             currentRow++;
 
             var headerRow = worksheet.CreateRow(currentRow);
-            var columnWidths = new int[] { 13, 50, 20 };
+            var columnWidths = new int[] { 13, 50, 20, 13 };
             var maxColumnIndex = 2;
             for (var i = 0; i <= maxColumnIndex; i++)
             {
@@ -630,6 +635,11 @@ namespace Fanex.Module.Statement.Services.StatementReport
 
             currentCell = headerRow.CreateCell(currentColumn);
             currentCell.SetCellValue(Labels.Amount);
+            currentCell.CellStyle = headerStyle;
+            currentColumn++;
+
+            currentCell = headerRow.CreateCell(currentColumn);
+            currentCell.SetCellValue(Labels.Creator);
             currentCell.CellStyle = headerStyle;
             currentColumn++;
         }
@@ -725,6 +735,12 @@ namespace Fanex.Module.Statement.Services.StatementReport
                     twoDecimalRedNumberStyle :
                     twoDecimalNumberStyle;
                 currentColumn++;
+
+                column = row.CreateCell(currentColumn);
+                ExportDataColumnText(column, statement.Creator);
+                column.CellStyle = textStyle;
+                currentColumn++;
+
                 currentRow++;
             }
 
@@ -780,6 +796,12 @@ namespace Fanex.Module.Statement.Services.StatementReport
             cellStyle.FillPattern = FillPattern.SolidForeground;
             column.CellStyle = cellStyle;
             currentColumn++;
+
+            column = row.CreateCell(currentColumn);
+            column.SetCellValue(string.Empty);
+            column.CellStyle = grandTotalTextStyle;
+            currentColumn++;
+
             currentRow++;
         }
 
