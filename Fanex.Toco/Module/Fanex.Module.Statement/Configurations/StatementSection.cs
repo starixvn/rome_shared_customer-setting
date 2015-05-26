@@ -45,5 +45,31 @@ namespace Fanex.Module.Statement.Configurations
                 return Converter.ToDateTime(this["newlayoutdate"]);
             }
         }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the item is Active.
+        /// </summary>
+        /// <value>The active of the progressive element.</value>
+        [ConfigurationProperty("systemShowCreatorOnDetail", IsRequired = false, DefaultValue = "")]
+        public string SystemShowCreatorOnDetail
+        {
+            get
+            {
+                return Converter.ToString2(this["systemShowCreatorOnDetail"]);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the item is Active.
+        /// </summary>
+        /// <value>The active of the progressive element.</value>
+        [ConfigurationProperty("systemShowExchangeRateOnDetail", IsRequired = false, DefaultValue = "")]
+        public string SystemShowExchangeRateOnDetail
+        {
+            get
+            {
+                return Converter.ToString2(this["systemShowExchangeRateOnDetail"]);
+            }
+        }
     }
 }
