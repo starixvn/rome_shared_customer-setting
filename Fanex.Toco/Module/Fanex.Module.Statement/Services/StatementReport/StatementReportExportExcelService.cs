@@ -608,7 +608,7 @@ namespace Fanex.Module.Statement.Services.StatementReport
             ISheet worksheet,
             TransferDetailsCriteria criteria)
         {
-            var isShowCreator = StatementSection.Instance.SystemShowCreatorOnDetail.Split(new char[] { ',' }).Contains(criteria.SiteName);
+            var isShowCreator = StatementSection.Instance.ShowCreatorOnDetail;
             var currentRow = 0;
             var titleRow = worksheet.CreateRow(currentRow);
             var titleCell = titleRow.CreateCell(0);
@@ -718,8 +718,8 @@ namespace Fanex.Module.Statement.Services.StatementReport
             var currentColumn = 0;
             ICell column;
             IRow row;
-            var isShowExchangeRate = StatementSection.Instance.SystemShowExchangeRateOnDetail.Split(new char[] { ',' }).Contains(criteria.SiteName);
-            var isShowCreator = StatementSection.Instance.SystemShowCreatorOnDetail.Split(new char[] { ',' }).Contains(criteria.SiteName);
+            var isShowExchangeRate = StatementSection.Instance.ShowExchangeRateOnDetail;
+            var isShowCreator = StatementSection.Instance.ShowCreatorOnDetail;
             for (int i = 0; i < statementListLength; i++)
             {
                 row = worksheet.CreateRow(currentRow);

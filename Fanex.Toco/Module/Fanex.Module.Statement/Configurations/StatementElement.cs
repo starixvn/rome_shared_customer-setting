@@ -40,17 +40,17 @@ namespace Fanex.Module.Statement.Configurations
         /// Gets or sets a value indicating whether the item is Active.
         /// </summary>
         /// <value>The active of the progressive element.</value>
-        [ConfigurationProperty("systemShowCreatorOnDetail", IsRequired = false, DefaultValue = "")]
-        public string SystemShowCreatorOnDetail
+        [ConfigurationProperty("showCreatorOnDetail", IsRequired = false, DefaultValue = false)]
+        public bool ShowCreatorOnDetail
         {
             get
             {
-                return Converter.ToString2(this["systemShowCreatorOnDetail"]);
+                return Converter.ToBool(this["showCreatorOnDetail"]);
             }
 
             set
             {
-                this["systemShowCreatorOnDetail"] = value;
+                this["showCreatorOnDetail"] = value;
             }
         }
 
@@ -58,17 +58,17 @@ namespace Fanex.Module.Statement.Configurations
         /// Gets or sets a value indicating whether the item is Active.
         /// </summary>
         /// <value>The active of the progressive element.</value>
-        [ConfigurationProperty("systemShowExchangeRateOnDetail", IsRequired = false, DefaultValue = "")]
-        public string SystemShowExchangeRateOnDetail
+        [ConfigurationProperty("showExchangeRateOnDetail", IsRequired = false, DefaultValue = false)]
+        public bool ShowExchangeRateOnDetail
         {
             get
             {
-                return Converter.ToString2(this["systemShowExchangeRateOnDetail"]);
+                return Converter.ToBool(this["showExchangeRateOnDetail"]);
             }
 
             set
             {
-                this["systemShowExchangeRateOnDetail"] = value;
+                this["showExchangeRateOnDetail"] = value;
             }
         }
     }
