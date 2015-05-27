@@ -269,6 +269,11 @@
     <Content Include="Areas\CustomerSetting\Views\CloneSetting\Styles\LeftPanel\Images\L_banner\R_tab_left-1.png" />
     <Content Include="Areas\CustomerSetting\Views\CloneSetting\Styles\LeftPanel\Images\L_banner\R_tab_left.png" />
     <Content Include="Areas\CustomerSetting\Views\CloneSetting\Styles\LeftPanel\left_panel.css" />
+    <Content Include="Areas\CustomerSetting\Views\EnableStatus\Readme.txt" />
+    <Content Include="Areas\CustomerSetting\Views\EnableStatus\Index.cshtml" />
+    <None Include="Areas\CustomerSetting\Views\EnableStatus\Templates\Products.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Areas\CustomerSetting\Views\Keno\EnableStatus\Scripts\KenoStatusController.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\EnableStatus\Styles\EnableRacing.css" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\controllers\bet-setting.controller.js" />
@@ -1047,6 +1052,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\CustomerSetting\Views\Bingo\Scripts\Libs\" />
+    <Folder Include="Areas\CustomerSetting\Views\EnableStatus\Scripts\" />
+    <Folder Include="Areas\CustomerSetting\Views\EnableStatus\Styles\" />
     <Folder Include="Content\base\img\actions\dd\" />
     <Folder Include="Content\base\img\combo-pickr\" />
     <Folder Include="Content\base\img\textures\" />
@@ -1180,6 +1187,10 @@
     <ProjectReference Include="..\Module\Casino\Casino.csproj">
       <Project>{5F8F3877-90E3-48A3-BAD7-4207DCBA088D}</Project>
       <Name>Casino</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Module\EnableStatus\EnableStatus.csproj">
+      <Project>{22F2A79C-5F7A-4A4B-9F4B-1011228914E3}</Project>
+      <Name>EnableStatus %28Module\EnableStatus\EnableStatus%29</Name>
     </ProjectReference>
     <ProjectReference Include="..\Module\Fanex.CustomerSetting.Module.CloneSetting\Fanex.CustomerSetting.Module.CloneSetting.csproj">
       <Project>{37A65793-85E8-4AC4-9254-F5F35BBC2E35}</Project>
