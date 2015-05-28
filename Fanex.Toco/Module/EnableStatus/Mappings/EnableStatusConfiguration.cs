@@ -22,7 +22,8 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings
         {
             get
             {
-                return _instance ?? ConfigurationManager.GetSection("enablestatus") as EnableStatusConfiguration;
+                _instance = _instance ?? ConfigurationManager.GetSection("enablestatus") as EnableStatusConfiguration;
+                return _instance;
             }
         }
 
