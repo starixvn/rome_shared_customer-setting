@@ -16,7 +16,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Entities
     /// </summary>
     public class RequestContext
     {
-        private string IP
+        public string IP
         {
             get
             {
