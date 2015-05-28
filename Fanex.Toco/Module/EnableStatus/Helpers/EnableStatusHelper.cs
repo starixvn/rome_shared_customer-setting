@@ -9,6 +9,9 @@
 
 namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings;
     using Fanex.CustomerSetting.Module.Core.Extensions;
 
     /// <summary>
@@ -16,6 +19,41 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers
     /// </summary>
     public static class EnableStatusHelper
     {
+        public static ProductCollectionConfiguration Products
+        {
+            get
+            {
+                var products = EnableStatusConfiguration.Instance.ProductCollection;
+
+                return products;
+            }
+        }
+
+        public static IList<string> ProductIds
+        {
+            get
+            {
+                var products = Products;
+                var ids = new List<string>();
+
+                foreach (ProductElementConfiguration product in products)
+                {
+                    ids.Add(product.Id);
+                }
+
+                return ids;
+            }
+        }
+
+        public static SpCollectionConfiguration GetStoredProcedures(string productId)
+        {
+            var products = Products;
+            var product = products.Where(p => p.Id.Equals(productId, System.StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+            var sps = product.SpCollection;
+
+            return sps;
+        }
+
         public static string GetResource(string key)
         {
             return ResourceExtension.GetResource("Fanex.CustomerSetting.EnableStatus.AllInOne.Resources.EnableStatusResources", key);

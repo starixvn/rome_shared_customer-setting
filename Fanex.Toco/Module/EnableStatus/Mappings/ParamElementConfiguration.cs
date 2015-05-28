@@ -10,6 +10,7 @@
 namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings
 {
     using System.Configuration;
+    using Fanex.CustomerSetting.EnableStatus.AllInOne.Entities;
 
     /// <summary>
     /// TODO: Update summary.
@@ -17,11 +18,11 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings
     public class ParamElementConfiguration : ConfigurationElement
     {
         [ConfigurationProperty("type", IsRequired = true)]
-        public string Type
+        public StoredProcedure.ParamType Type
         {
             get
             {
-                return base["type"] as string;
+                return (StoredProcedure.ParamType)base["type"];
             }
 
             set

@@ -10,6 +10,8 @@
 namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings
 {
     using System.Configuration;
+    using Fanex.CustomerSetting.EnableStatus.AllInOne.Entities;
+    using Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers;
 
     /// <summary>
     /// TODO: Update summary.
@@ -40,11 +42,11 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings
         }
 
         [ConfigurationProperty("type", IsRequired = true)]
-        public string Type
+        public StoredProcedure.SpType Type
         {
             get
             {
-                return base["type"] as string;
+                return (StoredProcedure.SpType)base["type"];
             }
 
             set

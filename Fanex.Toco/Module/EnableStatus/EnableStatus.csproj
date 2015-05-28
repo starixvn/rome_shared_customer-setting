@@ -63,6 +63,7 @@
     <Compile Include="Entities\EnableStatusEntity.cs" />
     <Compile Include="Entities\EnableStatusEnum.cs" />
     <Compile Include="Entities\EnableStatusRecord.cs" />
+    <Compile Include="Entities\StoredProcedure.cs" />
     <Compile Include="Helpers\EnableStatusHelper.cs" />
     <Compile Include="Mappings\SpCollectionConfiguration.cs" />
     <Compile Include="Mappings\ParamCollectionConfiguration.cs" />
