@@ -63,8 +63,9 @@
     <Compile Include="Entities\EnableStatusEntity.cs" />
     <Compile Include="Entities\EnableStatusEnum.cs" />
     <Compile Include="Entities\EnableStatusRecord.cs" />
+    <Compile Include="Entities\RequestContext.cs" />
     <Compile Include="Entities\StoredProcedure.cs" />
-    <Compile Include="Helpers\EnableStatusHelper.cs" />
+    <Compile Include="Helpers\Helper.cs" />
     <Compile Include="Mappings\SpCollectionConfiguration.cs" />
     <Compile Include="Mappings\ParamCollectionConfiguration.cs" />
     <Compile Include="Mappings\ParamElementConfiguration.cs" />
@@ -111,7 +112,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EnableStatusResources.zh-TW.resx</DependentUpon>
     </Compile>
-    <Compile Include="Services\EnabaleStatusService.cs" />
+    <Compile Include="Services\EnableStatusService.cs" />
     <Compile Include="Services\IEnableStatusService.cs" />
   </ItemGroup>
   <ItemGroup />
@@ -126,53 +127,53 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\EnableStatusResources.resx">
+    <EmbeddedResource Include="Resources\EnableStatusResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>EnableStatusResources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-    </Content>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\EnableStatusResources.vi-VN.resx">
+    <EmbeddedResource Include="Resources\EnableStatusResources.vi-VN.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>EnableStatusResources.vi-VN.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-    </Content>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\EnableStatusResources.ja-JP.resx">
+    <EmbeddedResource Include="Resources\EnableStatusResources.ja-JP.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>EnableStatusResources.ja-JP.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-    </Content>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\EnableStatusResources.ko-KR.resx">
+    <EmbeddedResource Include="Resources\EnableStatusResources.ko-KR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>EnableStatusResources.ko-KR.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-    </Content>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\EnableStatusResources.zh-CN.resx">
+    <EmbeddedResource Include="Resources\EnableStatusResources.zh-CN.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>EnableStatusResources.zh-CN.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-    </Content>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\EnableStatusResources.zh-TW.resx">
+    <EmbeddedResource Include="Resources\EnableStatusResources.zh-TW.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>EnableStatusResources.zh-TW.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-    </Content>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\EnableStatusResources.th-TH.resx">
+    <EmbeddedResource Include="Resources\EnableStatusResources.th-TH.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>EnableStatusResources.th-TH.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-    </Content>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

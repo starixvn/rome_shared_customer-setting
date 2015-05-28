@@ -9,15 +9,18 @@
 
 namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
+    using Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings;
+    using Fanex.CustomerSetting.EnableStatus.AllInOne.Models;
+    using Fanex.CustomerSetting.Module.Core.Models;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public interface IEnableStatusService
     {
+        EnableStatusModel GetProductStatus(SpElementConfiguration storedProcedure);
+
+        IList<Result> UpdateProductStatus(EnableStatusModel model, SpElementConfiguration storedProcedure);
     }
 }

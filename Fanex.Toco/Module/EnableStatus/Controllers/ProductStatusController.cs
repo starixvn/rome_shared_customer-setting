@@ -9,9 +9,12 @@
 
 namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers
 {
+    using System.Linq;
     using System.Web.Mvc;
-    using Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings;
+    using Fanex.CustomerSetting.EnableStatus.AllInOne.Entities;
+    using Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Models;
+    using Fanex.CustomerSetting.EnableStatus.AllInOne.Services;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
 
     /// <summary>
@@ -19,17 +22,23 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers
     /// </summary>
     public class ProductStatusController : BaseController
     {
-        public ActionResult Index(int id, int uplineid, int userid, string productid, int level)
-        {
-            var model = new EnableStatusModel();
-            var products = EnableStatusConfiguration.Instance.ProductCollection;
+        private IEnableStatusService service = new EnableStatusService();
 
-            return View("~/Areas/CustomerSetting/Views/EnableStatus/Index.cshtml");
+        public ActionResult Index(RequestContext requestContext)
+        {
+            var sp = Helper.GetStoredProcedures(requestContext.ProductId).Where(p => p.Type == StoredProcedure.SpType.SELECT).FirstOrDefault();            
+            var model = service.GetProductStatus(sp);
+            model.RequestContext = requestContext;
+
+            return View("~/Areas/CustomerSetting/Views/EnableStatus/Index.cshtml", model);
         }
 
         public ActionResult Update(EnableStatusModel model)
         {
-            return JsonBase(null);
+            var sp = Helper.GetStoredProcedures(model.RequestContext.ProductId).Where(p => p.Type == StoredProcedure.SpType.UPDATE).FirstOrDefault();
+            var results = service.UpdateProductStatus(model, sp);
+
+            return JsonBase(results);
         }
     }
 }

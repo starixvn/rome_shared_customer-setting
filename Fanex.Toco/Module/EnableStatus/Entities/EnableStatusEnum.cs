@@ -14,7 +14,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Entities
     /// </summary>
     public class EnableStatusEnum
     {
-        public enum Level
+        public enum Level : int
         {
             Admin = 5,
             Super = 4,

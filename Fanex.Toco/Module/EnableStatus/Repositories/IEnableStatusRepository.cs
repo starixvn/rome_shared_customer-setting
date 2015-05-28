@@ -9,15 +9,18 @@
 
 namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
+    using Fanex.CustomerSetting.EnableStatus.AllInOne.Entities;
+    using Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings;
+    using Fanex.CustomerSetting.EnableStatus.AllInOne.Models;
+    using Fanex.CustomerSetting.Module.Core.Models;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public interface IEnableStatusRepository
     {
+        EnableStatusModel GetProductStatus(SpElementConfiguration storedProcedure);
+
+        Result UpdateProductStatus(SpElementConfiguration storedProcedure);
     }
 }

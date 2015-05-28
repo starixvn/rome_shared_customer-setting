@@ -17,13 +17,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Models
     /// </summary>
     public class EnableStatusModel
     {
-        public int CustId { get; set; }
-
-        public int UplineId { get; set; }
-
-        public int UserId { get; set; }
-
-        public EnableStatusEnum.Level Level { get; set; }
+        public RequestContext RequestContext { get; set; }
 
         public IList<EnableStatusEntity> Entities { get; set; }        
     }

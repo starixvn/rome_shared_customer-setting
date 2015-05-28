@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="EnableStatusHelper.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="Helper.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -9,15 +9,15 @@
 
 namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings;
-    using Fanex.CustomerSetting.Module.Core.Extensions;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public static class EnableStatusHelper
+    public static class Helper
     {
         public static ProductCollectionConfiguration Products
         {
@@ -56,7 +56,8 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers
 
         public static string GetResource(string key)
         {
-            return ResourceExtension.GetResource("Fanex.CustomerSetting.EnableStatus.AllInOne.Resources.EnableStatusResources", key);
+            var resource = new System.Resources.ResourceManager(Type.GetType("Fanex.CustomerSetting.EnableStatus.AllInOne.Resources.EnableStatusResources"));
+            return resource.GetObject(key) as string;
         }
     }
 }
