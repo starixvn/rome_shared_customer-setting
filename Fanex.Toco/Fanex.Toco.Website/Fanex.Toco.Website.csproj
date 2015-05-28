@@ -1119,6 +1119,9 @@
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Keno\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Keno\Content.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\CloneSetting\Index.cshtml" />
+    <None Include="Areas\CustomerSetting\Views\EnableStatus\Templates\Template.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Areas\CustomerSetting\Views\LeftPanel\Document.doc" />
     <None Include="Areas\CustomerSetting\Views\CloneSetting\Styles\CloneSetting.less" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Agent\EditAgent.cshtml" />
