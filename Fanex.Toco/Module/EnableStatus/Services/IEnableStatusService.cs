@@ -22,6 +22,6 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
     {
         EnableStatusModel GetProductStatus(SpElementConfiguration storedProcedure, RequestContext context);
 
-        IList<Result> UpdateProductStatus(EnableStatusModel model, SpElementConfiguration storedProcedure, RequestContext context);
+        IList<Result> UpdateProductStatus(EnableStatusModel model, SpElementConfiguration storedProcedure);
     }
 }

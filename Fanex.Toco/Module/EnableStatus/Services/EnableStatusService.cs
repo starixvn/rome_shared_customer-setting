@@ -68,7 +68,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
             }
         }
         
-        public IList<Result> UpdateProductStatus(EnableStatusModel model, SpElementConfiguration storedProcedure, RequestContext context)
+        public IList<Result> UpdateProductStatus(EnableStatusModel model, SpElementConfiguration storedProcedure)
         {
             try
             {
@@ -76,7 +76,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
 
                 foreach (var item in model.Entities)
                 {
-                    var result = data.UpdateProductStatus(storedProcedure, context, item);
+                    var result = data.UpdateProductStatus(storedProcedure, model.RequestContext, item);
                     results.Add(result);
                 }
 

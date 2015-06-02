@@ -35,7 +35,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers
         public ActionResult Update(EnableStatusModel model)
         {
             var sp = Helper.GetStoredProcedures(model.RequestContext.ProductId).Where(p => p.Type == StoredProcedure.SpType.UPDATE).FirstOrDefault();
-            var results = service.UpdateProductStatus(model, sp, model.RequestContext);
+            var results = service.UpdateProductStatus(model, sp);
 
             return JsonBase(results);
         }
