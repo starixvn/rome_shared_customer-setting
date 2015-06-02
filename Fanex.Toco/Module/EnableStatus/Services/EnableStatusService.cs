@@ -43,6 +43,11 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
 
                 foreach (var item in model.Entities)
                 {
+                    if (product.HideBetTypes.Contains(item.BetTypeId.ToString()))
+                    {
+                        item.Hide = true;
+                    }
+
                     if ((int)item.BetTypeId != 0)
                     {
                         item.DisabledText = item.BetTypeName = RefData.GetBetTypeName(item.BetTypeId.ToString(), context.Language, string.Empty);
