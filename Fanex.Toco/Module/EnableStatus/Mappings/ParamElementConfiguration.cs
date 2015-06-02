@@ -16,21 +16,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings
     /// TODO: Update summary.
     /// </summary>
     public class ParamElementConfiguration : ConfigurationElement
-    {
-        [ConfigurationProperty("type", IsRequired = true)]
-        public StoredProcedure.ParamType Type
-        {
-            get
-            {
-                return (StoredProcedure.ParamType)base["type"];
-            }
-
-            set
-            {
-                base["type"] = value;
-            }
-        }
-
+    {        
         [ConfigurationProperty("name", IsRequired = true)]
         public string Name
         {
@@ -38,24 +24,14 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings
             {
                 return base["name"] as string;
             }
-
-            set
-            {
-                base["name"] = value;
-            }
         }
 
-        [ConfigurationProperty("value", IsRequired = true)]
-        public string Value
+        [ConfigurationProperty("mapproperty", IsRequired = true)]
+        public string MapProperty
         {
             get
             {
-                return base["value"] as string;
-            }
-
-            set
-            {
-                base["value"] = value;
+                return base["mapproperty"] as string;
             }
         }
     }

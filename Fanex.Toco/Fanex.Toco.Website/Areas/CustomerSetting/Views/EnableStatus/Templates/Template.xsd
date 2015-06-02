@@ -20,12 +20,23 @@
                                     <xs:sequence>
                                       <xs:element name="param" minOccurs="0" maxOccurs="unbounded">
                                         <xs:complexType>
-                                          <xs:attribute name="type" type="xs:string" use="required" />
                                           <xs:attribute name="name" type="xs:string" use="required" />
-                                          <xs:attribute name="value" type="xs:string" use="required" />                                          
+                                          <xs:attribute name="mapproperty" type="xs:string" use="required" />
                                         </xs:complexType>
                                       </xs:element>
                                     </xs:sequence>                                    
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="results">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="column" minOccurs="0" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                          <xs:attribute name="name" type="xs:string" use="required" />
+                                          <xs:attribute name="mapproperty" type="xs:string" use="required" />
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
                                   </xs:complexType>
                                 </xs:element>
                               </xs:sequence>
@@ -44,6 +55,8 @@
                   <xs:attribute name="width" type="xs:string" use="required" />
                   <xs:attribute name="height" type="xs:string" use="required" />
                   <xs:attribute name="showinframe" type="xs:boolean" use="required" />
+                  <xs:attribute name="hidebettypes" type="xs:string" use="required" />
+                  <xs:attribute name="warning" type="xs:string" use="required" />
                 </xs:complexType>                
               </xs:element>              
             </xs:sequence>
@@ -53,13 +66,4 @@
       </xs:sequence>      
     </xs:complexType>    
   </xs:element>
-  <xs:complexType name="SpTypes" mixed="true">
-    <xs:choice minOccurs="0" maxOccurs="unbounded">
-      <xs:element name="SELECT" type="xs:string" />
-      <xs:element name="UPDATE" type="xs:string" />
-      <xs:element name="INSERT" type="xs:string" />
-      <xs:element name="DELETE" type="xs:string" />
-      <xs:element name="TEXT" type="xs:string" />
-    </xs:choice>
-  </xs:complexType>
 </xs:schema>

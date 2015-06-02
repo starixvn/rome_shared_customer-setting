@@ -33,11 +33,6 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings
             {
                 return base["id"] as string;
             }
-
-            set
-            {
-                base["id"] = value;
-            }
         }
 
         [ConfigurationProperty("title", IsRequired = true)]
@@ -46,25 +41,6 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings
             get
             {
                 return base["title"] as string;
-            }
-
-            set
-            {
-                base["title"] = value;
-            }
-        }
-        
-        [ConfigurationProperty("hasgroup", IsRequired = true)]
-        public bool HasGroup
-        {
-            get
-            {
-                return Utils.ToBoolean(base["hasgroup"]);
-            }
-
-            set
-            {
-                base["hasgroup"] = value;
             }
         }
 
@@ -75,11 +51,6 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings
             {
                 return Utils.ToBoolean(base["hascheckall"]);
             }
-
-            set
-            {
-                base["hascheckall"] = value;
-            }
         }
 
         [ConfigurationProperty("width", IsRequired = true)]
@@ -88,11 +59,6 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings
             get
             {
                 return base["width"] as string;
-            }
-
-            set
-            {
-                base["width"] = value;
             }
         }
 
@@ -103,11 +69,6 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings
             {
                 return base["height"] as string;
             }
-
-            set
-            {
-                base["height"] = value;
-            }
         }
         
         [ConfigurationProperty("showinframe", IsRequired = true)]
@@ -117,10 +78,23 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings
             {
                 return Utils.ToBoolean(base["showinframe"]);
             }
+        }
 
-            set
+        [ConfigurationProperty("hidebettypes", IsRequired = true)]
+        public string HideBetTypes
+        {
+            get
             {
-                base["showinframe"] = value;
+                return base["hidebettypes"] as string;
+            }
+        }
+
+        [ConfigurationProperty("warning", IsRequired = true)]
+        public string Warning
+        {
+            get
+            {
+                return base["warning"] as string;
             }
         }
     }

@@ -10,6 +10,7 @@
 namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
 {
     using System.Collections.Generic;
+    using Fanex.CustomerSetting.EnableStatus.AllInOne.Entities;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Models;
     using Fanex.CustomerSetting.Module.Core.Models;
@@ -19,8 +20,8 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
     /// </summary>
     public interface IEnableStatusService
     {
-        EnableStatusModel GetProductStatus(SpElementConfiguration storedProcedure);
+        EnableStatusModel GetProductStatus(SpElementConfiguration storedProcedure, RequestContext context);
 
-        IList<Result> UpdateProductStatus(EnableStatusModel model, SpElementConfiguration storedProcedure);
+        IList<Result> UpdateProductStatus(EnableStatusModel model, SpElementConfiguration storedProcedure, RequestContext context);
     }
 }

@@ -16,7 +16,10 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Entities
     /// </summary>
     public class RequestContext
     {
-        public string IP
+        private string _language = "en-US";
+        private bool _hasDownline = true;
+
+        public string Ip
         {
             get
             {
@@ -46,6 +49,38 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Entities
         {
             get;
             set;
+        }
+
+        public int SubAccId
+        {
+            get;
+            set;
+        }
+
+        public string Language
+        {
+            get
+            {
+                return _language;
+            }
+
+            set
+            {
+                _language = value;
+            }
+        }
+
+        public bool HasDownline
+        {
+            get
+            {
+                return _hasDownline;
+            }
+
+            set
+            {
+                _hasDownline = value;
+            }
         }
 
         public EnableStatusEnum.Level Level

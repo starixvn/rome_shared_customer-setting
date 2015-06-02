@@ -47,6 +47,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\_Dependencies\Web\Newtonsoft.Json.dll-3.5\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="RemotingRef, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_Dependencies\RemotingRef.dll</HintPath>
+    </Reference>
+    <Reference Include="SPSRemoting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_Dependencies\SPSRemoting.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -62,10 +70,11 @@
     <Compile Include="Controllers\ProductStatusController.cs" />
     <Compile Include="Entities\EnableStatusEntity.cs" />
     <Compile Include="Entities\EnableStatusEnum.cs" />
-    <Compile Include="Entities\EnableStatusRecord.cs" />
     <Compile Include="Entities\RequestContext.cs" />
     <Compile Include="Entities\StoredProcedure.cs" />
     <Compile Include="Helpers\Helper.cs" />
+    <Compile Include="Mappings\ResultCollectionConfiguration.cs" />
+    <Compile Include="Mappings\ResultElementConfiguration.cs" />
     <Compile Include="Mappings\SpCollectionConfiguration.cs" />
     <Compile Include="Mappings\ParamCollectionConfiguration.cs" />
     <Compile Include="Mappings\ParamElementConfiguration.cs" />

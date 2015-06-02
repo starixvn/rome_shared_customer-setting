@@ -27,6 +27,15 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings
             }
         }
 
+        [ConfigurationProperty("results", IsRequired = true)]
+        public ResultCollectionConfiguration ResultCollection
+        {
+            get
+            {
+                return base["results"] as ResultCollectionConfiguration;
+            }
+        }
+
         [ConfigurationProperty("key", IsRequired = true)]
         public string Key
         {

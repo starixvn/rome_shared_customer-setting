@@ -113,5 +113,14 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Resources {
                 return ResourceManager.GetString("super", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Australia setting is being used for Beijing as well.
+        /// </summary>
+        public static string warningKenoBeijing {
+            get {
+                return ResourceManager.GetString("warningKenoBeijing", resourceCulture);
+            }
+        }
     }
 }

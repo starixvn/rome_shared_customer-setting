@@ -27,7 +27,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers
         public ActionResult Index(RequestContext requestContext)
         {
             var sp = Helper.GetStoredProcedures(requestContext.ProductId).Where(p => p.Type == StoredProcedure.SpType.SELECT).FirstOrDefault();            
-            var model = service.GetProductStatus(sp);
+            var model = service.GetProductStatus(sp, requestContext);            
             model.RequestContext = requestContext;
 
             return View("~/Areas/CustomerSetting/Views/EnableStatus/Index.cshtml", model);
@@ -36,7 +36,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers
         public ActionResult Update(EnableStatusModel model)
         {
             var sp = Helper.GetStoredProcedures(model.RequestContext.ProductId).Where(p => p.Type == StoredProcedure.SpType.UPDATE).FirstOrDefault();
-            var results = service.UpdateProductStatus(model, sp);
+            var results = service.UpdateProductStatus(model, sp, model.RequestContext);
 
             return JsonBase(results);
         }

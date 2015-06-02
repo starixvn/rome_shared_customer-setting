@@ -11,7 +11,9 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
+    using System.Resources;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings;
 
     /// <summary>
@@ -19,12 +21,15 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers
     /// </summary>
     public static class Helper
     {
+        private static string resourceType = "Fanex.CustomerSetting.EnableStatus.AllInOne.Resources.EnableStatusResources";
+        private static ResourceManager resourceManager;
+
         public static ProductCollectionConfiguration Products
         {
             get
             {
                 var products = EnableStatusConfiguration.Instance.ProductCollection;
-
+                
                 return products;
             }
         }
@@ -56,8 +61,36 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers
 
         public static string GetResource(string key)
         {
-            var resource = new System.Resources.ResourceManager(Type.GetType("Fanex.CustomerSetting.EnableStatus.AllInOne.Resources.EnableStatusResources"));
-            return resource.GetObject(key) as string;
+            resourceManager = resourceManager ?? new ResourceManager(Type.GetType(resourceType));
+            return resourceManager.GetObject(key, CultureInfo.CurrentCulture) as string;
+        }
+
+        public static object GetParamValue<T>(string mapProperty, T entity)
+        {
+            var props = typeof(T).GetProperties();
+            foreach (var property in props)
+            {
+                if (property.Name.Equals(mapProperty, StringComparison.OrdinalIgnoreCase))
+                {
+                    return property.GetValue(entity, null);
+                }
+            }
+
+            return default(object);
+        }
+
+        public static T MapResultValue<T>(string mapProperty, object mapValue, T entity)
+        {
+            var props = typeof(T).GetProperties();
+            foreach (var property in props)
+            {                
+                if (property.Name.Equals(mapProperty, StringComparison.OrdinalIgnoreCase))
+                {
+                    property.SetValue(entity, mapValue, null);
+                }
+            }
+
+            return entity;
         }
     }
 }

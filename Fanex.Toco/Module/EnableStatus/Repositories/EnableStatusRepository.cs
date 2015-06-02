@@ -25,7 +25,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
     /// </summary>
     public class EnableStatusRepository : IEnableStatusRepository
     {
-        public EnableStatusModel GetProductStatus(SpElementConfiguration storedProcedure)
+        public EnableStatusModel GetProductStatus(SpElementConfiguration storedProcedure, RequestContext context)
         {
             var model = new EnableStatusModel();
             model.Entities = new List<EnableStatusEntity>();
@@ -34,14 +34,8 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
             {
                 model.Entities.Add(new EnableStatusEntity
                 {
-                    Upline = new EnableStatusRecord
-                    {
-                        Text = Helper.GetResource("enable")
-                    },
-                    Downline = new EnableStatusRecord
-                    {
-                        Text = Helper.GetResource("enableDownline")
-                    }
+                   DisabledText = Helper.GetResource("enable"),
+                   DisabledDownlinesText = Helper.GetResource("enableDownline")
                 });
 
                 return model;
@@ -53,7 +47,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
 
                 foreach (ParamElementConfiguration item in storedProcedure.ParamCollection)
                 {
-                    param.Add(item.Name.ToLower(), item.Value);
+                    param.Add(item.Name.ToLower(), Helper.GetParamValue(item.MapProperty, context));
                 }
 
                 try
@@ -61,18 +55,24 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                     objectDb.AssignParamValues(param);
 
                     using (var reader = objectDb.ExecuteReader())
-                    {
+                    {                        
                         while (reader != null && reader.Read())
                         {
-                            model.Entities.Add(new EnableStatusEntity
+                            var entity = new EnableStatusEntity();
+
+                            for (int i = 0; i < reader.FieldCount; i++)
                             {
-                                Upline = new EnableStatusRecord
-                                {                                    
-                                },
-                                Downline = new EnableStatusRecord
+                                foreach (ResultElementConfiguration paramResult in storedProcedure.ResultCollection)
                                 {
-                                }
-                            });
+                                    if (reader.GetName(i).Equals(paramResult.Name, StringComparison.OrdinalIgnoreCase))
+                                    {
+                                        entity = Helper.MapResultValue(paramResult.MapProperty, reader[i], entity);
+                                        break;
+                                    }
+                                }                                
+                            }
+
+                            model.Entities.Add(entity);
                         }
                     }                    
 
@@ -87,40 +87,13 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
             }
         }
 
-        public Result UpdateProductStatus(SpElementConfiguration storedProcedure)
+        public Result UpdateProductStatus(SpElementConfiguration storedProcedure, RequestContext context, EnableStatusEntity entity)
         {
             var result = new Result();
 
             using (var objectDb = new ObjectDb(storedProcedure.Key))
             {
-                var param = new Hashtable();
-
-                foreach (ParamElementConfiguration item in storedProcedure.ParamCollection)
-                {
-                    param.Add(item.Name.ToLower(), item.Value);
-                }
-
-                try
-                {
-                    objectDb.AssignParamValues(param);
-
-                    using (var reader = objectDb.ExecuteReader())
-                    {
-                        while (reader != null && reader.Read())
-                        {
-                            result.ErrorCode = (int)reader["errcode"];
-                            result.ErrorMessage = (string)reader["errmsg"];
-                        }
-                    }
-
-                    return result;
-                }
-                catch (Exception ex)
-                {
-                    Logger.Log.Error(ex.Message, ex);
-
-                    throw ex;
-                }                
+                return null;            
             }
         }
     }

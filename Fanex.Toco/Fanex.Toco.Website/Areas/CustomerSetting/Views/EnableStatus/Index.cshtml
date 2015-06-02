@@ -1,5 +1,11 @@
 ﻿@{
     Layout = null;
+    var model = Newtonsoft.Json.JsonConvert.SerializeObject(Model, Newtonsoft.Json.Formatting.None,
+        new Newtonsoft.Json.JsonSerializerSettings
+        {
+            ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver(),
+            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore
+        });
 }
 
 <!DOCTYPE html>
@@ -13,5 +19,8 @@
     <div>
         
     </div>
+    <script type="text/javascript">
+        var model = @Html.Raw(model);
+    </script>
 </body>
 </html>

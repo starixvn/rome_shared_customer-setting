@@ -19,8 +19,8 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
     /// </summary>
     public interface IEnableStatusRepository
     {
-        EnableStatusModel GetProductStatus(SpElementConfiguration storedProcedure);
+        EnableStatusModel GetProductStatus(SpElementConfiguration storedProcedure, RequestContext context);
 
-        Result UpdateProductStatus(SpElementConfiguration storedProcedure);
+        Result UpdateProductStatus(SpElementConfiguration storedProcedure, RequestContext context, EnableStatusEntity entity);
     }
 }

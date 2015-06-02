@@ -22,12 +22,5 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Entities
             DELETE = 3,
             TEXT = 4
         }
-
-        public enum ParamType
-        {
-            IN = 0,
-            OUT = 1,
-            RETURN = 2
-        }
     }
 }

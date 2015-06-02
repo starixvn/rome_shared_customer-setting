@@ -135,4 +135,7 @@
   <data name="super" xml:space="preserve">
     <value>Super</value>
   </data>
+  <data name="warningKenoBeijing" xml:space="preserve">
+    <value>Australia setting is being used for Beijing as well</value>
+  </data>
 </root>

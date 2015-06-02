@@ -19,8 +19,20 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Entities
     /// </summary>
     public class EnableStatusEntity
     {
-        public EnableStatusRecord Upline { get; set; }
+        public bool Hide { get; set; }
 
-        public EnableStatusRecord Downline { get; set; }
+        public object BetTypeId { get; set; }
+
+        public object BetTypeName { get; set; }
+
+        public object Disabled { get; set; }
+
+        public object DisabledUplines { get; set; }
+
+        public object DisabledDownlines { get; set; }
+
+        public object DisabledText { get; set; }
+
+        public object DisabledDownlinesText { get; set; }
     }
 }
