@@ -28,6 +28,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
         public EnableStatusModel GetProductStatus(SpElementConfiguration storedProcedure, RequestContext context)
         {
             var model = new EnableStatusModel();
+            model.RequestContext = context;
             model.Entities = new List<EnableStatusEntity>();
             
             if (storedProcedure.Key == string.Empty)

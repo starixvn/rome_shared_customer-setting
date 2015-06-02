@@ -28,7 +28,6 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers
         {
             var sp = Helper.GetStoredProcedures(requestContext.ProductId).Where(p => p.Type == StoredProcedure.SpType.SELECT).FirstOrDefault();            
             var model = service.GetProductStatus(sp, requestContext);            
-            model.RequestContext = requestContext;
 
             return View("~/Areas/CustomerSetting/Views/EnableStatus/Index.cshtml", model);
         }
