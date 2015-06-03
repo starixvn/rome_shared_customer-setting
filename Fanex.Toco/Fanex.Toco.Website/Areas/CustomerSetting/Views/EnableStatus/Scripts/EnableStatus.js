@@ -10,20 +10,12 @@ function EnableStatusController($scope) {
     $scope.entities = model.entities;
     $scope.isDisabledAll = true;
 
-    var length = $scope.entities.length;
-    for (var i = 0; i < length; i++) {
-        if (!$scope.entities[i].disabledUplines) {
-            $scope.isDisabledAll = false;
-            break;
-        }
-    }
-
     $scope.Init = function () {
         var allChecked = true;
         for (var i = 0; i < $scope.entities.length; i++) {
             if ($scope.entities[i].disabled && !$scope.entities[i].disabledUplines && !$scope.entities[i].hide) {
                 allChecked = false;
-                $scope.IsDisabledAll = false;
+                $scope.isDisabledAll = false;
                 break;
             }
         }
@@ -104,7 +96,8 @@ function EnableStatusController($scope) {
 
     $scope.Update = function () {
         //parent.Fanex.ExtAcc.BlockUI();
-        var length = model.entities.length;        
+
+        var length = model.entities.length;
 
         $.ajax({
             dataType: 'json',
@@ -158,7 +151,7 @@ function EnableStatusController($scope) {
 
         if (checkbox.checked) {
             for (var i = 0; i < betTypeChexkboxes.length; i++) {
-                if (betTypeChexkboxes[i].disabled) continue;
+                if (betTypeChexkboxes[i].disabled || betTypeChexkboxes[i].id.indexOf('true') != -1) continue;
 
                 betTypeChexkboxes[i].checked = true;
 
@@ -177,7 +170,7 @@ function EnableStatusController($scope) {
         }
         else {
             for (var i = 0; i < betTypeChexkboxes.length; i++) {
-                if (betTypeChexkboxes[i].disabled) continue;
+                if (betTypeChexkboxes[i].disabled || betTypeChexkboxes[i].id.indexOf('true') != -1) continue;
 
                 betTypeChexkboxes[i].checked = false;
                 betTypeChexkboxesDownlines[i].checked = false;
