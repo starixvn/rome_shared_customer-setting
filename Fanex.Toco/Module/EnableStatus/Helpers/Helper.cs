@@ -65,7 +65,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers
             return resourceManager.GetObject(key, CultureInfo.CurrentCulture) as string;
         }
 
-        public static object GetParamValue<T, Z>(string mapProperty, T entity, Z context)
+        public static object GetParamValue<T, Z>(string mapProperty, T entity, Z context, bool reverse)
         {
             var props = typeof(T).GetProperties();
             var zprops = typeof(Z).GetProperties();
@@ -73,7 +73,10 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers
             {
                 if (property.Name.Equals(mapProperty, StringComparison.OrdinalIgnoreCase))
                 {
-                    return property.GetValue(entity, null);
+                    var result = false;
+                    var value = property.GetValue(entity, null);
+                    bool.TryParse(value.ToString(), out result);
+                    return reverse ? !result : value;
                 }
             }
 
@@ -81,7 +84,10 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers
             {
                 if (property.Name.Equals(mapProperty, StringComparison.OrdinalIgnoreCase))
                 {
-                    return property.GetValue(context, null);
+                    var result = false;
+                    var value = property.GetValue(context, null);
+                    bool.TryParse(value.ToString(), out result);
+                    return reverse ? !result : value;
                 }
             }
 

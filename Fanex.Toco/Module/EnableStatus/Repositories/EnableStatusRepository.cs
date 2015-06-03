@@ -35,8 +35,12 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
             {
                 model.Entities.Add(new EnableStatusEntity
                 {
-                   DisabledText = Helper.GetResource("enable"),
-                   DisabledDownlinesText = Helper.GetResource("enableDownline")
+                    BetTypeId = 0,
+                    Disabled = false,
+                    DisabledDownlines = false,
+                    DisabledUplines = false,
+                    DisabledText = Helper.GetResource("enable"),
+                    DisabledDownlinesText = Helper.GetResource("enableDownline")
                 });
 
                 return model;
@@ -48,7 +52,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
 
                 foreach (ParamElementConfiguration item in storedProcedure.ParamCollection)
                 {
-                    param.Add(item.Name.ToLower(), Helper.GetParamValue(item.MapProperty, context, model));
+                    param.Add(item.Name.ToLower(), Helper.GetParamValue(item.MapProperty, context, model, item.Reverse));
                 }
 
                 try
@@ -98,7 +102,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
 
                 foreach (ParamElementConfiguration item in storedProcedure.ParamCollection)
                 {
-                    param.Add(item.Name.ToLower(), Helper.GetParamValue(item.MapProperty, entity, context));
+                    param.Add(item.Name.ToLower(), Helper.GetParamValue(item.MapProperty, entity, context, item.Reverse));
                 }
 
                 try
