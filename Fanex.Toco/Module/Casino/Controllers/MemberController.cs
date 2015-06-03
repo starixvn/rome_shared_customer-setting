@@ -3,10 +3,12 @@
 namespace Fanex.CustomerSetting.Module.Casino.Controllers
 {
     using System;
+    using System.Configuration;
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.Casino.Entities;
     using Fanex.CustomerSetting.Module.Casino.Services.Impl;
     using Fanex.CustomerSetting.Module.Casino.ViewModels;
+    using Fanex.CustomerSetting.Module.Core;
     using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
     using Fanex.CustomerSetting.Security.Authenticate;
@@ -97,7 +99,16 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             }
 
             actorName = AppSession.SubAccountId.Equals(0) ? actorName : AppSession.SubAccountName;
-            var ret = CasinoManager.Instance.UpdateMember(id, username, uplineId, Request.UserHostAddress, userId, actorName, AppSession.CurrentSession.FromSystem, JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
+            var ret = CasinoManager.Instance.UpdateMember(
+                id, 
+                username, 
+                uplineId, 
+                Request.UserHostAddress, 
+                userId, 
+                actorName, 
+                Utils.ToInt32(ConfigurationManager.AppSettings["SystemId"]) , 
+                JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), 
+                JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
 
             return this.JsonBase(new { ErrorCode = ret.IsSuccess ? 0 : 1, ErrorMessage = ret.ErrorMessage });
         }
@@ -112,7 +123,15 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             }
 
             actorName = AppSession.SubAccountId.Equals(0) ? actorName : AppSession.SubAccountName;
-            var ret = CasinoManager.Instance.UpdateMemberBySuper(id, uplineId, Request.UserHostAddress, userId, actorName, AppSession.CurrentSession.FromSystem, JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
+            var ret = CasinoManager.Instance.UpdateMemberBySuper(
+                id, 
+                uplineId, 
+                Request.UserHostAddress, 
+                userId, 
+                actorName, 
+                Utils.ToInt32(ConfigurationManager.AppSettings["SystemId"]), 
+                JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), 
+                JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
 
             return this.JsonBase(new { ErrorCode = ret.IsSuccess ? 0 : 1, ErrorMessage = ret.ErrorMessage });
         }
@@ -127,7 +146,15 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             }
 
             actorName = AppSession.SubAccountId.Equals(0) ? actorName : AppSession.SubAccountName;
-            var ret = CasinoManager.Instance.UpdateMemberByMaster(id, uplineId, Request.UserHostAddress, userId, actorName, AppSession.CurrentSession.FromSystem, JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
+            var ret = CasinoManager.Instance.UpdateMemberByMaster(
+                id, 
+                uplineId, 
+                Request.UserHostAddress, 
+                userId, 
+                actorName, 
+                Utils.ToInt32(ConfigurationManager.AppSettings["SystemId"]), 
+                JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), 
+                JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
 
             return this.JsonBase(new { ErrorCode = ret.IsSuccess ? 0 : 1, ErrorMessage = ret.ErrorMessage });
         }

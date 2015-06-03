@@ -18,10 +18,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Entities
     {
         public string CasinoNo
         {
-            get
-            {
-                return "01";
-            }
+            get;
+            set; 
         }
 
         public bool EnableDownline
@@ -324,11 +322,16 @@ namespace Fanex.CustomerSetting.Module.Casino.Entities
             set;
         }
 
-
         public bool IsDisableAutoMPT 
         { 
             get; 
             set; 
+        }
+
+        public bool IsDeposit
+        {
+            get;
+            set;
         }
     }
 }
