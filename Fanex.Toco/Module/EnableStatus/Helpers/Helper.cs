@@ -65,14 +65,23 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers
             return resourceManager.GetObject(key, CultureInfo.CurrentCulture) as string;
         }
 
-        public static object GetParamValue<T>(string mapProperty, T entity)
+        public static object GetParamValue<T, Z>(string mapProperty, T entity, Z context)
         {
             var props = typeof(T).GetProperties();
+            var zprops = typeof(Z).GetProperties();
             foreach (var property in props)
             {
                 if (property.Name.Equals(mapProperty, StringComparison.OrdinalIgnoreCase))
                 {
                     return property.GetValue(entity, null);
+                }
+            }
+
+            foreach (var property in zprops)
+            {
+                if (property.Name.Equals(mapProperty, StringComparison.OrdinalIgnoreCase))
+                {
+                    return property.GetValue(context, null);
                 }
             }
 

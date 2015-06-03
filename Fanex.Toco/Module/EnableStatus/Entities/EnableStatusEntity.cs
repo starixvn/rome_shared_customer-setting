@@ -21,6 +21,8 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Entities
     {
         public bool Hide { get; set; }
 
+        public object Username { get; set; }
+
         public object BetTypeId { get; set; }
 
         public object BetTypeName { get; set; }

@@ -61,11 +61,29 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account was disabled.
+        /// </summary>
+        public static string accountDisabled {
+            get {
+                return ResourceManager.GetString("accountDisabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agent.
         /// </summary>
         public static string agent {
             get {
                 return ResourceManager.GetString("agent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string all {
+            get {
+                return ResourceManager.GetString("all", resourceCulture);
             }
         }
         
@@ -102,6 +120,24 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Resources {
         public static string member {
             get {
                 return ResourceManager.GetString("member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Submit.
+        /// </summary>
+        public static string submit {
+            get {
+                return ResourceManager.GetString("submit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status updated successfully.
+        /// </summary>
+        public static string successMsg {
+            get {
+                return ResourceManager.GetString("successMsg", resourceCulture);
             }
         }
         

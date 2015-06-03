@@ -16,6 +16,8 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Models;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Services;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
+    using Fanex.CustomerSetting.Security.Authenticate;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// TODO: Update summary.
@@ -24,6 +26,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers
     {
         private IEnableStatusService service = new EnableStatusService();
 
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Keno")]
         public ActionResult Index(RequestContext requestContext)
         {
             var sp = Helper.GetStoredProcedures(requestContext.ProductId).Where(p => p.Type == StoredProcedure.SpType.SELECT).FirstOrDefault();            
@@ -32,10 +35,12 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers
             return View("~/Areas/CustomerSetting/Views/EnableStatus/Index.cshtml", model);
         }
 
-        public ActionResult Update(EnableStatusModel model)
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Keno")]
+        public ActionResult Update(string model)
         {
-            var sp = Helper.GetStoredProcedures(model.RequestContext.ProductId).Where(p => p.Type == StoredProcedure.SpType.UPDATE).FirstOrDefault();
-            var results = service.UpdateProductStatus(model, sp);
+            var enableStatusModel = JsonConvert.DeserializeObject<EnableStatusModel>(model);
+            var sp = Helper.GetStoredProcedures(enableStatusModel.RequestContext.ProductId).Where(p => p.Type == StoredProcedure.SpType.UPDATE).FirstOrDefault();
+            var results = service.UpdateProductStatus(enableStatusModel, sp);
 
             return JsonBase(results);
         }

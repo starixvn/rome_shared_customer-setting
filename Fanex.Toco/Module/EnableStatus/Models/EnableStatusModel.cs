@@ -17,6 +17,8 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Models
     /// </summary>
     public class EnableStatusModel
     {
+        public string Username { get; set; }
+
         public string Title { get; set; }
 
         public bool HasCheckAll { get; set; }

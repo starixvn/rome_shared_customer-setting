@@ -48,7 +48,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
 
                 foreach (ParamElementConfiguration item in storedProcedure.ParamCollection)
                 {
-                    param.Add(item.Name.ToLower(), Helper.GetParamValue(item.MapProperty, context));
+                    param.Add(item.Name.ToLower(), Helper.GetParamValue(item.MapProperty, context, model));
                 }
 
                 try
@@ -94,7 +94,32 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
 
             using (var objectDb = new ObjectDb(storedProcedure.Key))
             {
-                return null;            
+                var param = new Hashtable();
+
+                foreach (ParamElementConfiguration item in storedProcedure.ParamCollection)
+                {
+                    param.Add(item.Name.ToLower(), Helper.GetParamValue(item.MapProperty, entity, context));
+                }
+
+                try
+                {
+                    objectDb.AssignParamValues(param);
+                    objectDb.ExecuteNonQuery();                    
+
+                    var outputParams = objectDb.GetOuputParams();
+                    foreach (var outputParam in outputParams.Keys)
+                    {
+                        result = Helper.MapResultValue(outputParam.ToString(), outputParams[outputParam], result);
+                    }
+
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    Logger.Log.Error(ex.Message, ex);
+
+                    throw ex;
+                }
             }
         }
     }

@@ -217,6 +217,6 @@
   </Function>
   <Function Name="KenoStatus">
     <Setting Key="Acc_CustomerSelKenoStatus" SpName="Acc_CustomerSelKenoStatus" DbName="DBAGE.bodb02.bodbAdminNet"  />
-    <Setting Key="Acc_CustomerUpdDisableKeno" SpName="Acc_CustomerUpdDisableKeno" DbName="DBAGE.bodb02.bodbAdminNet" Plain="0" />
+    <Setting Key="Acc_CustomerUpdDisableKeno" SpName="Acc_CustomerUpdDisableKeno" DbName="DBTXN.CustDB.bodbAdminNet" Plain="0" />    
   </Function>
 </Functions>
