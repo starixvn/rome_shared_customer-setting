@@ -65,7 +65,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var synced = custInfo.CasinoSync;
             var id = synced ? custId : 0;
             var cust = new Customer();
-            var dt = synced ? cust.GetCustGameKind(custId) : new BasicInfo().GetGameKind("01");
+            var dt = synced ? cust.GetCustGameKind(custId) : new BasicInfo().GetGameKind(custInfo.CasinoNo);
            
             if (custInfo.RoleId != Super)
             {
