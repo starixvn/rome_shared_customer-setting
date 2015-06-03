@@ -10,12 +10,19 @@ function EnableStatusController($scope) {
     $scope.entities = model.entities;
     $scope.isDisabledAll = true;
 
+    var length = $scope.entities.length;
+    for (var i = 0; i < length; i++) {
+        if (!$scope.entities[i].disabledUplines && !$scope.entities[i].hide) {
+            $scope.isDisabledAll = false;
+            break;
+        }
+    }
+
     $scope.Init = function () {
         var allChecked = true;
         for (var i = 0; i < $scope.entities.length; i++) {
-            if ($scope.entities[i].disabled && !$scope.entities[i].disabledUplines && !$scope.entities[i].hide) {
-                allChecked = false;
-                $scope.isDisabledAll = false;
+            if (!$scope.entities[i].hide && (($scope.entities[i].disabled && !$scope.entities[i].disabledUplines) || $scope.isDisabledAll)) {
+                allChecked = false;                
                 break;
             }
         }
@@ -95,7 +102,7 @@ function EnableStatusController($scope) {
     };
 
     $scope.Update = function () {
-        //parent.Fanex.ExtAcc.BlockUI();
+        Fanex.CustomerSetting.Core.BlockUI();
 
         var length = model.entities.length;
 
@@ -126,7 +133,7 @@ function EnableStatusController($scope) {
                 var timeout = setTimeout(function () {
                     clearTimeout(timeout);
 
-                    // document.location.reload(true);
+                    document.location.reload(true);
                 }, 3000);
             }
             else {
@@ -135,12 +142,12 @@ function EnableStatusController($scope) {
                 $('#errMsg').show();
             }
 
-            //parent.Fanex.ExtAcc.UnBlockUI();
+            Fanex.CustomerSetting.Core.UnBlockUI();
         }).error(function (data) {
             if (typeof console != 'undefined')
                 console.log(data);
 
-            //parent.Fanex.ExtAcc.UnBlockUI();
+            Fanex.CustomerSetting.Core.BlockUI();
         });
     };
 
