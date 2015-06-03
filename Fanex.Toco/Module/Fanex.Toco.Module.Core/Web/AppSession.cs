@@ -299,5 +299,17 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 				SessionManager.Set<object>(Constants.PROGRESSIVE_BONUS_OLD_VALUE, value);
 			}
 		}
+
+        public static int FromSystem
+        {
+            get
+            {
+                return SessionManager.Get<int>(Constants.FROM_SYSTEM);
+            }
+            set
+            {
+                SessionManager.Set<int>(Constants.FROM_SYSTEM, value);
+            }
+        }
 	}
 }
