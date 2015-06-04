@@ -88,6 +88,42 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bingo.
+        /// </summary>
+        public static string bingo {
+            get {
+                return ResourceManager.GetString("bingo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bonus.
+        /// </summary>
+        public static string bonus {
+            get {
+                return ResourceManager.GetString("bonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Casino.
+        /// </summary>
+        public static string casino {
+            get {
+                return ResourceManager.GetString("casino", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disable.
+        /// </summary>
+        public static string disable {
+            get {
+                return ResourceManager.GetString("disable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable.
         /// </summary>
         public static string enable {
@@ -106,6 +142,24 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to HR Fixed Odds.
+        /// </summary>
+        public static string hrfixedodds {
+            get {
+                return ResourceManager.GetString("hrfixedodds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Live Casino.
+        /// </summary>
+        public static string livecasino {
+            get {
+                return ResourceManager.GetString("livecasino", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Master.
         /// </summary>
         public static string master {
@@ -120,6 +174,24 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Resources {
         public static string member {
             get {
                 return ResourceManager.GetString("member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Poker.
+        /// </summary>
+        public static string poker {
+            get {
+                return ResourceManager.GetString("poker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Racing.
+        /// </summary>
+        public static string racing {
+            get {
+                return ResourceManager.GetString("racing", resourceCulture);
             }
         }
         

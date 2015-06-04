@@ -126,17 +126,41 @@
   <data name="all" xml:space="preserve">
     <value>All</value>
   </data>
+  <data name="bingo" xml:space="preserve">
+    <value>Bingo</value>
+  </data>
+  <data name="bonus" xml:space="preserve">
+    <value>Bonus</value>
+  </data>
+  <data name="casino" xml:space="preserve">
+    <value>Casino</value>
+  </data>
+  <data name="disable" xml:space="preserve">
+    <value>Disable</value>
+  </data>
   <data name="enable" xml:space="preserve">
     <value>Enable</value>
   </data>
   <data name="enableDownline" xml:space="preserve">
     <value>Enable Downlines</value>
   </data>
+  <data name="hrfixedodds" xml:space="preserve">
+    <value>HR Fixed Odds</value>
+  </data>
+  <data name="livecasino" xml:space="preserve">
+    <value>Live Casino</value>
+  </data>
   <data name="master" xml:space="preserve">
     <value>Master</value>
   </data>
   <data name="member" xml:space="preserve">
     <value>Member</value>
+  </data>
+  <data name="poker" xml:space="preserve">
+    <value>Poker</value>
+  </data>
+  <data name="racing" xml:space="preserve">
+    <value>Racing</value>
   </data>
   <data name="submit" xml:space="preserve">
     <value>Submit</value>

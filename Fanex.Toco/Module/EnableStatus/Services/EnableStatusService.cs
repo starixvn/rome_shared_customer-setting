@@ -40,7 +40,8 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                 model.Title = Helper.GetResource(product.Title);
                 model.Warning = Helper.GetResource(product.Warning);
                 model.Width = product.Width;
-                model.Username = model.Entities.FirstOrDefault().Username == null ? string.Empty : model.Entities.FirstOrDefault().Username.ToString();
+                model.Username = model.Entities.FirstOrDefault().Username == null ? context.Username == null ? string.Empty : context.Username : 
+                    model.Entities.FirstOrDefault().Username.ToString();
 
                 foreach (var item in model.Entities)
                 {

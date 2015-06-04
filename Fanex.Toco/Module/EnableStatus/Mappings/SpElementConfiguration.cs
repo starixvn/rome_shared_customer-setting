@@ -18,7 +18,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings
     /// </summary>
     public class SpElementConfiguration : ConfigurationElement
     {
-        [ConfigurationProperty("params", IsRequired = true)]
+        [ConfigurationProperty("params", IsRequired = false)]
         public ParamCollectionConfiguration ParamCollection
         {
             get
@@ -27,7 +27,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings
             }
         }
 
-        [ConfigurationProperty("results", IsRequired = true)]
+        [ConfigurationProperty("results", IsRequired = false)]
         public ResultCollectionConfiguration ResultCollection
         {
             get

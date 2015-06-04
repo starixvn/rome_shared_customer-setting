@@ -19,6 +19,30 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Entities
         private string _language = "en-US";
         private bool _hasDownline = true;
 
+        public string Username
+        {
+            get;
+            set;
+        }
+
+        public bool Enable
+        {
+            get;
+            set;
+        }
+
+        public bool EnableUplines
+        {
+            get;
+            set;
+        }
+
+        public bool EnableDownlines
+        {
+            get;
+            set;
+        }
+
         public string Ip
         {
             get

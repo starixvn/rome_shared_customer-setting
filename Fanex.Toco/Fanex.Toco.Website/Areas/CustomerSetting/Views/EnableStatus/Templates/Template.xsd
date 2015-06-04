@@ -15,7 +15,7 @@
                           <xs:element name="sp" minOccurs="0" maxOccurs="unbounded">
                             <xs:complexType>
                               <xs:sequence>
-                                <xs:element name="params">
+                                <xs:element name="params" nillable="true">
                                   <xs:complexType>
                                     <xs:sequence>
                                       <xs:element name="param" minOccurs="0" maxOccurs="unbounded">
@@ -28,7 +28,7 @@
                                     </xs:sequence>                                    
                                   </xs:complexType>
                                 </xs:element>
-                                <xs:element name="results">
+                                <xs:element name="results" nillable="true">
                                   <xs:complexType>
                                     <xs:sequence>
                                       <xs:element name="column" minOccurs="0" maxOccurs="unbounded">
@@ -52,7 +52,6 @@
                   </xs:sequence>
                   <xs:attribute name="id" type="xs:string" use="required" />
                   <xs:attribute name="title" type="xs:string" use="required" />
-                  <xs:attribute name="hasgroup" type="xs:boolean" use="required" />
                   <xs:attribute name="hascheckall" type="xs:boolean" use="required" />
                   <xs:attribute name="width" type="xs:string" use="required" />
                   <xs:attribute name="height" type="xs:string" use="required" />

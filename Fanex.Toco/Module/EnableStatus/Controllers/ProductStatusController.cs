@@ -27,10 +27,10 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers
         private IEnableStatusService service = new EnableStatusService();
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Keno")]
-        public ActionResult Index(RequestContext requestContext)
+        public ActionResult Index(RequestContext context)
         {
-            var sp = Helper.GetStoredProcedures(requestContext.ProductId).Where(p => p.Type == StoredProcedure.SpType.SELECT).FirstOrDefault();            
-            var model = service.GetProductStatus(sp, requestContext);            
+            var sp = Helper.GetStoredProcedures(context.ProductId).Where(p => p.Type == StoredProcedure.SpType.SELECT).FirstOrDefault();            
+            var model = service.GetProductStatus(sp, context);            
 
             return View("~/Areas/CustomerSetting/Views/EnableStatus/Index.cshtml", model);
         }

@@ -36,9 +36,9 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                 model.Entities.Add(new EnableStatusEntity
                 {
                     BetTypeId = 0,
-                    Disabled = false,
-                    DisabledDownlines = false,
-                    DisabledUplines = false,
+                    Disabled = !context.Enable,
+                    DisabledDownlines = !context.EnableDownlines,
+                    DisabledUplines = !context.EnableUplines,
                     DisabledText = Helper.GetResource("enable"),
                     DisabledDownlinesText = Helper.GetResource("enableDownline")
                 });
