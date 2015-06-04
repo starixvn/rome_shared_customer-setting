@@ -108,7 +108,7 @@
             fromSystem : 2,
             settingModel: JSON.stringify(SettingModel),
             customerModel: JSON.stringify(CustomerModel),
-            groupName: parent.$('#selectedGroupName').html()
+            groupName: 'ACCUUS'//parent.$('#selectedGroupName').html()
         };
 
         data.id = custIdIndex == null ? CustomerInfo.id : CustIds[custIdIndex];
