@@ -57,6 +57,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
         /// <param name="userId">The user identifier.</param>
         /// <param name="siteName">Name of the site.</param>
         /// <returns>ActionResult object.</returns>
+         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "GoldDeluxeBetting")]
         public ActionResult Index(int id, int uplineId, int userId, string siteName)
         {
             var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
@@ -68,7 +69,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
             return this.View("~/Areas/CustomerSetting/Views/BetSetting/GoldDeluxe/Index.cshtml");
         }
 
-        [HttpPost, GoldDeluxeAuthorization(IsHost = true)]
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "GoldDeluxeBetting")]
         public ActionResult UpdateGameSetting(EditSettingViewModel model)
         {
             var param = Mapper.Map<EditSettingViewModel, UpdateGameSettingParameters>(model);
@@ -83,7 +84,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
             return Json(updateResult);
         }
 
-        [HttpGet, GoldDeluxeAuthorization]
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "GoldDeluxeBetting")]
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Reviewed.")]
         public ActionResult Content(int custId,
             int upLineId,
