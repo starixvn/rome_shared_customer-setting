@@ -1,13 +1,15 @@
-﻿@using Fanex.CustomerSetting.EnableStatus.AllInOne.Resources;
+﻿@using Fanex.CustomerSetting.EnableStatus.AllInOne.Models;
+@using Fanex.CustomerSetting.EnableStatus.AllInOne.Resources;
 @using Newtonsoft.Json;
 @using Newtonsoft.Json.Serialization;
+@model EnableStatusModel
 @{
     Layout = null;
     var model = JsonConvert.SerializeObject(Model, Formatting.None,
         new JsonSerializerSettings
         {
-            ContractResolver = new CamelCasePropertyNamesContractResolver()
-            //NullValueHandling = NullValueHandling.Ignore
+            ContractResolver = new CamelCasePropertyNamesContractResolver(),
+            NullValueHandling = NullValueHandling.Ignore
         });
 }
 

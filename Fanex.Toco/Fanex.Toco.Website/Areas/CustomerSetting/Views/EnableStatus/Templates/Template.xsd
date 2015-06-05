@@ -23,6 +23,7 @@
                                           <xs:attribute name="name" type="xs:string" use="required" />
                                           <xs:attribute name="mapproperty" type="xs:string" use="required" />
                                           <xs:attribute name="reverse" type="xs:boolean" use="optional" />
+                                          <xs:attribute name="mapresource" type="xs:string" use="optional" />
                                         </xs:complexType>
                                       </xs:element>
                                     </xs:sequence>                                    
@@ -36,6 +37,7 @@
                                           <xs:attribute name="name" type="xs:string" use="required" />
                                           <xs:attribute name="mapproperty" type="xs:string" use="required" />
                                           <xs:attribute name="reverse" type="xs:boolean" use="optional" />
+                                          <xs:attribute name="mapresource" type="xs:string" use="optional" />
                                         </xs:complexType>
                                       </xs:element>
                                     </xs:sequence>
@@ -51,14 +53,11 @@
                     </xs:element>                    
                   </xs:sequence>
                   <xs:attribute name="id" type="xs:string" use="required" />
-                  <xs:attribute name="title" type="xs:string" use="required" />
                   <xs:attribute name="hascheckall" type="xs:boolean" use="required" />
-                  <xs:attribute name="width" type="xs:string" use="required" />
-                  <xs:attribute name="height" type="xs:string" use="required" />
-                  <xs:attribute name="showinframe" type="xs:boolean" use="required" />
+                  <xs:attribute name="reloadafterupdate" type="xs:boolean" use="required" />
                   <xs:attribute name="hidebettypes" type="xs:string" use="required" />
                   <xs:attribute name="warning" type="xs:string" use="required" />
-                </xs:complexType>                
+                </xs:complexType>
               </xs:element>              
             </xs:sequence>
             <xs:attribute name="iframeid" type="xs:string" use="required" />

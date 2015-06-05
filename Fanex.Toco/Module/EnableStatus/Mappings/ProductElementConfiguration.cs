@@ -35,15 +35,6 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings
             }
         }
 
-        [ConfigurationProperty("title", IsRequired = true)]
-        public string Title
-        {
-            get
-            {
-                return base["title"] as string;
-            }
-        }
-
         [ConfigurationProperty("hascheckall", IsRequired = true)]
         public bool HasCheckAll
         {
@@ -53,30 +44,12 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings
             }
         }
 
-        [ConfigurationProperty("width", IsRequired = true)]
-        public string Width
+        [ConfigurationProperty("reloadafterupdate", IsRequired = true)]
+        public bool ReloadAfterUpdate
         {
             get
             {
-                return base["width"] as string;
-            }
-        }
-
-        [ConfigurationProperty("height", IsRequired = true)]
-        public string Height
-        {
-            get
-            {
-                return base["height"] as string;
-            }
-        }
-        
-        [ConfigurationProperty("showinframe", IsRequired = true)]
-        public bool ShowInFrame
-        {
-            get
-            {
-                return Utils.ToBoolean(base["showinframe"]);
+                return Utils.ToBoolean(base["reloadafterupdate"]);
             }
         }
 

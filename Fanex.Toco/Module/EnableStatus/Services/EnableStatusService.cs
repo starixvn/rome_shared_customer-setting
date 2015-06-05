@@ -34,14 +34,12 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                 var model = data.GetProductStatus(storedProcedure, context);
                 var product = Helper.Products.Where(p => p.Id.Equals(context.ProductId, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
 
+                model.IframeId = Helper.Products.IframeId;
                 model.HasCheckAll = product.HasCheckAll;
-                model.Height = product.Height;
-                model.ShowInFrame = product.ShowInFrame;
-                model.Title = Helper.GetResource(product.Title);
+                model.ReloadAfterUpdate = product.ReloadAfterUpdate;
                 model.Warning = Helper.GetResource(product.Warning);
-                model.Width = product.Width;
-                model.Username = model.Entities.FirstOrDefault().Username == null ? context.Username == null ? string.Empty : context.Username : 
-                    model.Entities.FirstOrDefault().Username.ToString();
+                model.Username = model.Entities.FirstOrDefault().Username == null ?
+                    (context.Username == null ? string.Empty : context.Username) : model.Entities.FirstOrDefault().Username.ToString();
 
                 foreach (var item in model.Entities)
                 {

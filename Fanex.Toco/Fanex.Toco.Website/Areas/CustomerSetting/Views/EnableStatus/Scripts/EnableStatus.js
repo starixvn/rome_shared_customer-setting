@@ -133,7 +133,12 @@ function EnableStatusController($scope) {
                 var timeout = setTimeout(function () {
                     clearTimeout(timeout);
 
-                    document.location.reload(true);
+                    if (model.reloadAfterUpdate) {
+                        if (parent.document.getElementById(model.iframeId))
+                            parent.document.getElementById(model.iframeId).reload(true);
+
+                        document.location.reload(true);
+                    }
                 }, 3000);
             }
             else {

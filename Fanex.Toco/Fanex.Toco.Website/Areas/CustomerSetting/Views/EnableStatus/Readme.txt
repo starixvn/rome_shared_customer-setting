@@ -1,4 +1,10 @@
-﻿URL to call get and update:
+﻿Config:
+<configSections>
+	<section name="enablestatus" type="Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings.EnableStatusConfiguration, Fanex.CustomerSetting.EnableStatus.AllInOne, Version=1.0.0.0, Culture=neutral" />
+</configSections>
+<enablestatus configSource="Areas\CustomerSetting\Views\EnableStatus\Templates\Products.config" />
+
+URL to call get and update:
 1. Get: customersetting/enablestatus/productstatus/index?context={0}
 	{0}: 
 	context = {

@@ -17,17 +17,13 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Models
     /// </summary>
     public class EnableStatusModel
     {
-        public string Username { get; set; }
+        public string IframeId { get; set; }
 
-        public string Title { get; set; }
+        public string Username { get; set; }
 
         public bool HasCheckAll { get; set; }
 
-        public string Width { get; set; }
-
-        public string Height { get; set; }
-
-        public bool ShowInFrame { get; set; }
+        public bool ReloadAfterUpdate { get; set; }
 
         public string Warning { get; set; }
 
