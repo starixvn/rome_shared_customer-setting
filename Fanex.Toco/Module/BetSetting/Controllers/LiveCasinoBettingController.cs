@@ -77,7 +77,8 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
             ViewBag.SyncCasino = customer.SyncCasino;
             ViewBag.SyncBingo = customer.SyncBingo;
             ViewBag.SyncLiveCasino = customer.SyncLiveCasino;
-
+            ViewBag.HideGoldDeluxe = customer.HideGoldDeluxe;
+            
             IMemberWinLimit winLimit = this.MemberWinLimitService.GetMemberWinLimit(id);
             List<GameType> bettingLimit = this.GameSettingService.GetByCustomerId(id);
             CustomerInfo customerInfo = this.SettingService.GetCustomerInfo(id);

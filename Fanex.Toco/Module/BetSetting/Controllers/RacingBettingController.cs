@@ -70,6 +70,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
             ViewBag.SyncCasino = customer.SyncCasino;
             ViewBag.SyncBingo = customer.SyncBingo;
             ViewBag.SyncLiveCasino = customer.SyncLiveCasino;
+            ViewBag.HideGoldDeluxe = customer.HideGoldDeluxe;
 
             var bettingLimitService = this.RacingService;
             var model = bettingLimitService.GetCustomer(new RequestContext
