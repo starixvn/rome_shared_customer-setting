@@ -17,7 +17,6 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Entities
     public class RequestContext
     {
         private string _language = "en-US";
-        private bool _hasDownline = true;
 
         public string Username
         {
@@ -96,15 +95,8 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Entities
 
         public bool HasDownline
         {
-            get
-            {
-                return _hasDownline;
-            }
-
-            set
-            {
-                _hasDownline = value;
-            }
+            get;
+            set;
         }
 
         public EnableStatusEnum.Level Level

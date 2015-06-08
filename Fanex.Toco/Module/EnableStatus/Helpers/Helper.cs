@@ -23,14 +23,15 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers
     {
         private static string resourceType = "Fanex.CustomerSetting.EnableStatus.AllInOne.Resources.EnableStatusResources";
         private static ResourceManager resourceManager;
+        private static ProductCollectionConfiguration productCollection;
 
         public static ProductCollectionConfiguration Products
         {
             get
             {
-                var products = EnableStatusConfiguration.Instance.ProductCollection;
-                
-                return products;
+                productCollection = productCollection ?? EnableStatusConfiguration.Instance.ProductCollection;
+
+                return productCollection;
             }
         }
 

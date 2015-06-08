@@ -29,6 +29,6 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Models
 
         public RequestContext RequestContext { get; set; }
 
-        public IList<EnableStatusEntity> Entities { get; set; }        
+        public IList<EnableStatusEntity> Entities { get; set; }
     }
 }

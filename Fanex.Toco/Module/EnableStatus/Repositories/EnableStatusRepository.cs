@@ -12,10 +12,12 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Linq;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Entities;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Models;
+    using Fanex.CustomerSetting.Module.Core;
     using Fanex.CustomerSetting.Module.Core.Models;
     using Fanex.Data;
     using Fanex.Logging;
@@ -58,13 +60,12 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                 try
                 {
                     objectDb.AssignParamValues(param);
-
                     using (var reader = objectDb.ExecuteReader())
-                    {                        
+                    {
                         while (reader != null && reader.Read())
                         {
                             var entity = new EnableStatusEntity();
-
+                            
                             for (int i = 0; i < reader.FieldCount; i++)
                             {
                                 foreach (ResultElementConfiguration paramResult in storedProcedure.ResultCollection)
@@ -79,7 +80,12 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
 
                             model.Entities.Add(entity);
                         }
-                    }                    
+
+                        reader.Close();
+
+                        var outputValues = objectDb.GetOuputParams();
+                        model.RequestContext = Helper.MapResultValue("HasDownline", outputValues["hasdownline"] == null ? true : outputValues["hasdownline"], model.RequestContext);
+                    }                                        
 
                     return model;
                 }
