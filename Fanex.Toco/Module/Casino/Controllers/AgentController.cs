@@ -16,12 +16,10 @@
 namespace Fanex.CustomerSetting.Module.Casino.Controllers
 {
     using System;
-    using System.Configuration;
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.Casino.Entities;
     using Fanex.CustomerSetting.Module.Casino.Services.Impl;
     using Fanex.CustomerSetting.Module.Casino.ViewModels;
-    using Fanex.CustomerSetting.Module.Core;
     using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
     using Fanex.CustomerSetting.Security.Authenticate;
@@ -120,7 +118,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 uplineId,
                 Request.UserHostAddress,
                 userId,
-                actorName,
+                actorName, 
                 AppSession.CurrentSession.FromSystem,
                 JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel),
                 JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
