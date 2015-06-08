@@ -49,8 +49,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             }
 
             var result = JsonConvert.SerializeObject(
-                customerInfo, 
-                Formatting.None, 
+                customerInfo,
+                Formatting.None,
                 new JsonSerializerSettings
                 {
                     ContractResolver = new CamelCasePropertyNamesContractResolver(),
@@ -70,7 +70,12 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             }
 
             var customerInfo = new CasinoLibrary.SBAgent.Customer();
-            var success = customerInfo.ResetMaxTransfer(id, Request.UserHostAddress, AppSession.CurrentSession.UserId, AppSession.CurrentSession.UserName, AppSession.CurrentSession.FromSystem);
+           var success = customerInfo.ResetMaxTransfer(
+                id, 
+                Request.UserHostAddress, 
+                AppSession.CurrentSession.UserId, 
+                AppSession.CurrentSession.UserName,
+                AppSession.CurrentSession.FromSystem);
 
             return this.JsonBase(new { ErrorCode = success ? 0 : 1, ErrorMessage = success ? string.Empty : "Reset max transfer failed" });
         }

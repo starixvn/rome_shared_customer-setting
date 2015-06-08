@@ -50,7 +50,15 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
             actorName = AppSession.SubAccountId.Equals(0) ? actorName : AppSession.SubAccountName;
 
-            var ret = CasinoManager.Instance.UpdateMaster(id, username, uplineId, Request.UserHostAddress, userId, actorName, AppSession.CurrentSession.FromSystem, JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
+           var ret = CasinoManager.Instance.UpdateMaster(id,
+                username,
+                uplineId,
+                Request.UserHostAddress,
+                userId,
+                actorName,
+                AppSession.CurrentSession.FromSystem,
+                JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel),
+                JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
 
             return this.JsonBase(new { ErrorCode = ret.IsSuccess ? 0 : 1, ErrorMessage = ret.ErrorMessage });
         }

@@ -175,7 +175,7 @@
     <Setting Key="Acc_CustomerUpdMaxPerMatchVS180_1201" SpName="Acc_CustomerUpdMaxPerMatchVS180_1201" DbName="main" Plain="0" />
     <Setting Key="Acc_CustomerUpdDisableVS" SpName="Acc_CustomerUpdDisableVS" DbName="main" Plain="0" />
   </Function>
-  
+
   <Function Name="PTRacing - Setting">
     <Setting Key="Acc_CustomerSelHRSuper_All" SpName="Acc_CustomerSelHRSuper_All" DbName="archive" Plain="0" />
     <Setting Key="Acc_CustomerUpdSuperHR_All" SpName="Acc_CustomerUpdSuperHR_All" DbName="main"  />
@@ -216,6 +216,6 @@
   </Function>
   <Function Name="KenoStatus">
     <Setting Key="Acc_CustomerSelKenoStatus" SpName="Acc_CustomerSelKenoStatus" DbName="DBAGE.bodb02.bodbAdminNet"  />
-    <Setting Key="Acc_CustomerUpdDisableKeno" SpName="Acc_CustomerUpdDisableKeno" DbName="DBAGE.bodb02.bodbAdminNet" Plain="0" />    
+    <Setting Key="Acc_CustomerUpdDisableKeno" SpName="Acc_CustomerUpdDisableKeno" DbName="DBAGE.bodb02.bodbAdminNet" Plain="0" />
   </Function>
 </Functions>

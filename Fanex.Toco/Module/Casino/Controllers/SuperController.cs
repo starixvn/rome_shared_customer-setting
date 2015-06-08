@@ -48,7 +48,16 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 return this.ActionDenied(this.Request);
             }
 
-            var ret = CasinoManager.Instance.UpdateSuper(id, username, uplineId, Request.UserHostAddress, userId, actorName, AppSession.CurrentSession.FromSystem, JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
+            var ret = CasinoManager.Instance.UpdateSuper(
+                id, 
+                username, 
+                uplineId, 
+                Request.UserHostAddress, 
+                userId, 
+                actorName,
+                AppSession.CurrentSession.FromSystem, 
+                JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), 
+                JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
 
             return this.JsonBase(new { ErrorCode = ret.IsSuccess ? 0 : 1, ErrorMessage = ret.ErrorMessage });
         }

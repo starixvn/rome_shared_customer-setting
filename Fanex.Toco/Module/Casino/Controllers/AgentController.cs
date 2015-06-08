@@ -115,11 +115,11 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             var ret = CasinoManager.Instance.UpdateAgent(
                 id,
                 username,
-                uplineId, 
-                Request.UserHostAddress, 
+                uplineId,
+                Request.UserHostAddress,
                 userId,
                 actorName, 
-                AppSession.CurrentSession.FromSystem, 
+                AppSession.CurrentSession.FromSystem,
                 JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel),
                 JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
 
