@@ -23,7 +23,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
     using Fanex.CustomerSetting.Module.Core;
     using Fanex.CustomerSetting.Module.Core.Models;
     using Fanex.CustomerSetting.Module.Core.Web;
-    using System.Collections;
 
     /// <summary>
     /// TODO: Update summary.
@@ -35,7 +34,10 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
         private const int Agent = 2;
         private const int Member = 1;
         private const int Admin = 5;
+        private decimal MaxPT = Utils.ToDecimal(ConfigurationManager.AppSettings["MaxPT"]).Format();
         private decimal MinPT = Utils.ToDecimal(ConfigurationManager.AppSettings["MinPT"]).Format();
+        private decimal MaxComm = Utils.ToDecimal(ConfigurationManager.AppSettings["MaxComm"]).Format(4);
+        private const string CasinoNo = "01";
 
         private static CasinoManager instance = new CasinoManager();
         private readonly CasinoDao _casino = new CasinoDao();
@@ -53,19 +55,10 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var gameModel = new CasinoSettingModel();
             var gameGroups = new List<GameGroup>();
             var custInfo = this.GetCustInfoIBC(custId, uplineId);
-            decimal maxPT = Utils.ToDecimal(ConfigurationManager.AppSettings["MaxPT"]).Format();
-            decimal maxComm = Utils.ToDecimal(ConfigurationManager.AppSettings["MaxComm"]).Format(4);
-            if (custInfo.IsDeposit)
-            {
-                ArrayList depositSetting = new BasicInfo().GetCasinoSetting(custInfo.CasinoNo);
-                maxPT = Utils.ToDecimal(depositSetting[3]).Format(2);
-                maxComm = Utils.ToDecimal(depositSetting[4]).Format(2);
-            }
-
             var synced = custInfo.CasinoSync;
             var id = synced ? custId : 0;
             var cust = new Customer();
-            var dt = synced ? cust.GetCustGameKind(custId) : new BasicInfo().GetGameKind(custInfo.CasinoNo);
+            var dt = synced ? cust.GetCustGameKind(custId) : new BasicInfo().GetGameKind(CasinoNo);
            
             if (custInfo.RoleId != Super)
             {
@@ -74,8 +67,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                         
             this.GetCustSettingCS(ref custInfo);
             gameModel.IsPtByGameType = custInfo.PTByGameType;
-
-          
 
             foreach (DataRow row in dt.Rows)
             {
@@ -86,7 +77,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 gameGroup.GameGroupName = !synced ? Utils.ToString(row[Lang("CodeName")]) : Utils.ToString(row["GameKindName"]);
 
                 // Super preset PT
-                gameGroup.S4 = maxPT;
+                gameGroup.S4 = MaxPT;
                 gameGroup.S3 = !synced ? 0 : Utils.ToDecimal(row["MaxPositionTaking"]).Format();
 
                 // Master Min PT
@@ -100,12 +91,12 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     gameGroup.Mco = 0;
                 }
                 else{
-                    gameGroup.Sco = maxComm;
+                    gameGroup.Sco = MaxComm;
                     gameGroup.Mco = !synced ? 0 : Utils.ToDecimal(row["SMAgentRollingRate"]).Format(4);
                 }
 
                 // Assign game types
-                var gameTypes = this.GetGameTypeSuper(id, maxPT, maxComm, gameGroup.GameGroupID, synced, ref gameGroup, custInfo.Currency, gameModel.IsPtByGameType);
+                var gameTypes = this.GetGameTypeSuper(id, gameGroup.GameGroupID, synced, ref gameGroup, custInfo.Currency, gameModel.IsPtByGameType);
                 gameGroup.GameTypes = gameTypes;
 
                 gameGroups.Add(gameGroup);
@@ -624,7 +615,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     true,
                     customerModel.UplineDisabledCasino ? true : customerModel.CasinoDisabled,
                     customerModel.EnableDownline,
-                    modifiedId,
+                    AppSession.CurrentSession.UserId,
                     ip,
                     AppSession.SubAccountId,
                     AppSession.Language,
@@ -1945,7 +1936,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             return dt;
         }
 
-        private List<GameType> GetGameTypeSuper(int custId, decimal maxPT, decimal comm, int gameKindID, bool synced, ref GameGroup gameGroup, int exchangeId = 0, bool isPTByGameType = false)
+        private List<GameType> GetGameTypeSuper(int custId, int gameKindID, bool synced, ref GameGroup gameGroup, int exchangeId = 0, bool isPTByGameType = false)
         {
             var cust = new Customer();
             var gameTypes = new List<GameType>();
@@ -1956,7 +1947,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             {
                 var gameType = new GameType();
 
-                gameType.Sco = comm;
+                gameType.Sco = MaxComm;
                 gameType.Mco = !synced ? 0 : Utils.ToDecimal(row["SMAgentRollingRate"]).Format(4);
 
                 // Game type Info
@@ -1964,7 +1955,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 gameType.GameTypeName = Utils.ToString(row[Lang("GameTypeName")]);
 
                 // Super preset PT
-                gameType.S4 = maxPT;
+                gameType.S4 = MaxPT;
                 gameType.S3 = !synced ? 0 : Utils.ToDecimal(row["MaxPositionTaking"]).Format();
 
                 // Master Min PT

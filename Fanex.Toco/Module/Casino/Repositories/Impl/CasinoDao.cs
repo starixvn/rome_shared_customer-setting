@@ -39,7 +39,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
             CasinoCustomer customerDetail = new CasinoCustomer();
             customerDetail.UplineDisabledCasino = uplineId != 0 ? (bool)upline.ResultSet.Tables[0].Rows[0]["disablecasino"] : false;
 
-            
             if (dr.ResultSet.Tables[0].Rows.Count > 0)
             {
                 row = dr.ResultSet.Tables[0].Rows[0];
@@ -77,15 +76,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
                 // Get max transfer information
                 CasinoLibrary.SBAgent.Customer customer = new CasinoLibrary.SBAgent.Customer();
                 DataTable dt = null;
-
-                if (uplineId == 0)
-                {
-                    var allCustomerInfoParam = new Hashtable();
-                    allCustomerInfoParam.Add("username", customerDetail.UserName);
-                    DbResult allCustomerInfoDr = DbHelper.ExecuteDbResult("SelAllInfo", allCustomerInfoParam, 300);
-                    customerDetail.IsDeposit = Utils.ToBoolean(allCustomerInfoDr.ResultSet.Tables[0].Rows[0]["isdeposit"]);
-                    customerDetail.CasinoNo = customerDetail.IsDeposit ? "02" : "01";
-                }
 
                 try
                 {
