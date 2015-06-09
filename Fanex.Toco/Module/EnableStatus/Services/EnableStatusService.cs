@@ -48,12 +48,14 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                         item.Hide = true;
                     }
 
-                    if (item.BetTypeId != null && item.SportTypeId != null && (int)item.BetTypeId != 0 && (int)item.SportTypeId == 0)
+                    if (item.BetTypeId != null && (int)item.BetTypeId != 0 && (item.SportTypeId == null || (int)item.SportTypeId == 0))
                     {
                         item.DisabledText = item.BetTypeName = RefData.GetBetTypeName(item.BetTypeId.ToString(), context.Language, string.Empty);
                     }
                     else if (item.BetTypeId != null && item.SportTypeId != null && (int)item.BetTypeId != 0 && (int)item.SportTypeId != 0)
                     {
+                        item.DisabledText = item.BetTypeName = Helper.GetResource("b" + item.BetTypeId.ToString());
+                        item.SportTypeName = Helper.GetResource("s" + item.SportTypeId.ToString());
                     }
                     else
                     {

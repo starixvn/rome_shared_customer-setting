@@ -126,6 +126,24 @@
   <data name="all" xml:space="preserve">
     <value>All</value>
   </data>
+  <data name="b15131" xml:space="preserve">
+    <value>UK/Irish Tote</value>
+  </data>
+  <data name="b15141" xml:space="preserve">
+    <value>SA Tote</value>
+  </data>
+  <data name="b15151" xml:space="preserve">
+    <value>Aust Tote</value>
+  </data>
+  <data name="b15241" xml:space="preserve">
+    <value>UK/Irish Tote</value>
+  </data>
+  <data name="b15251" xml:space="preserve">
+    <value>Aust Tote</value>
+  </data>
+  <data name="b15351" xml:space="preserve">
+    <value>Aust Tote</value>
+  </data>
   <data name="bingo" xml:space="preserve">
     <value>Bingo</value>
   </data>
@@ -161,6 +179,15 @@
   </data>
   <data name="racing" xml:space="preserve">
     <value>Racing</value>
+  </data>
+  <data name="s151" xml:space="preserve">
+    <value>Horse Racing</value>
+  </data>
+  <data name="s152" xml:space="preserve">
+    <value>Greyhound</value>
+  </data>
+  <data name="s153" xml:space="preserve">
+    <value>Harness</value>
   </data>
   <data name="submit" xml:space="preserve">
     <value>Submit</value>

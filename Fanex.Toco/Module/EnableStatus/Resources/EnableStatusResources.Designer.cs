@@ -88,6 +88,60 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to UK/Irish Tote.
+        /// </summary>
+        public static string b15131 {
+            get {
+                return ResourceManager.GetString("b15131", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SA Tote.
+        /// </summary>
+        public static string b15141 {
+            get {
+                return ResourceManager.GetString("b15141", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aust Tote.
+        /// </summary>
+        public static string b15151 {
+            get {
+                return ResourceManager.GetString("b15151", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UK/Irish Tote.
+        /// </summary>
+        public static string b15241 {
+            get {
+                return ResourceManager.GetString("b15241", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aust Tote.
+        /// </summary>
+        public static string b15251 {
+            get {
+                return ResourceManager.GetString("b15251", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aust Tote.
+        /// </summary>
+        public static string b15351 {
+            get {
+                return ResourceManager.GetString("b15351", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bingo.
         /// </summary>
         public static string bingo {
@@ -192,6 +246,33 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Resources {
         public static string racing {
             get {
                 return ResourceManager.GetString("racing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Horse Racing.
+        /// </summary>
+        public static string s151 {
+            get {
+                return ResourceManager.GetString("s151", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Greyhound.
+        /// </summary>
+        public static string s152 {
+            get {
+                return ResourceManager.GetString("s152", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Harness.
+        /// </summary>
+        public static string s153 {
+            get {
+                return ResourceManager.GetString("s153", resourceCulture);
             }
         }
         

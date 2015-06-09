@@ -27,6 +27,8 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Entities
 
         public object BetTypeId { get; set; }
 
+        public object SportTypeName { get; set; }
+
         public object BetTypeName { get; set; }
 
         public object Disabled { get; set; }

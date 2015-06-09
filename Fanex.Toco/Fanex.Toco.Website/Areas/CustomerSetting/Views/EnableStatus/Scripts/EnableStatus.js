@@ -1,7 +1,7 @@
 ﻿angular.module('enableStatusApp', []);
 
-angular.element($('#data-ng-app')).ready(function () {
-    $('#data-ng-app').show();
+angular.element($('#ng-app')).ready(function () {
+    $('#ng-app').show();
 });
 
 function EnableStatusController($scope) {
@@ -19,10 +19,14 @@ function EnableStatusController($scope) {
     }
 
     $scope.Init = function () {
+        $scope.sortedModel = groupBy($scope.entities, function (item) {
+            return [item.sportTypeName];
+        });
+        
         var allChecked = true;
         for (var i = 0; i < $scope.entities.length; i++) {
             if (!$scope.entities[i].hide && (($scope.entities[i].disabled && !$scope.entities[i].disabledUplines) || $scope.isDisabledAll)) {
-                allChecked = false;                
+                allChecked = false;
                 break;
             }
         }
@@ -204,4 +208,17 @@ function EnableStatusController($scope) {
         var checkboxDownlines = document.getElementById(id);
         scope.item.disabledDownlines = !checkboxDownlines.checked;
     };
+}
+
+function groupBy(array, f) {
+    var groups = {};
+    array.forEach(function (o) {
+        var group = JSON.stringify(f(o));
+        groups[group] = groups[group] || [];
+        groups[group].sportTypeName = o.sportTypeName;
+        groups[group].push(o);
+    });
+    return Object.keys(groups).map(function (group) {
+        return groups[group];
+    })
 }

@@ -35,15 +35,6 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings
             }
         }
 
-        [ConfigurationProperty("mapresource", IsRequired = false)]
-        public string MapResource
-        {
-            get
-            {
-                return base["mapresource"] as string;
-            }
-        }
-
         [ConfigurationProperty("reverse", IsRequired = false)]
         public bool Reverse
         {
