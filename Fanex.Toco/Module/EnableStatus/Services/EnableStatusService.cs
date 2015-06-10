@@ -43,7 +43,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
 
                 foreach (var item in model.Entities)
                 {
-                    if (product.HideBetTypes.Contains(item.BetTypeId.ToString()))
+                    if (item.BetTypeId != null && product.HideBetTypes.Contains(item.BetTypeId.ToString()))
                     {
                         item.Hide = true;
                     }
