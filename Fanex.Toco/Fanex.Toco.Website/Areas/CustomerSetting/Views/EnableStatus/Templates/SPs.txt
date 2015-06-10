@@ -177,8 +177,192 @@ BEGIN
 		isnull(@DisableDownlines153_51,0)	AS DisableDownlines
 		
 	SELECT * FROM @tmpTable
-	GRANT EXECUTE ON [dbo].[Acc_CustomerSelHRStatus_andy] TO bodbAdminNet;
-	GRANT EXECUTE ON [dbo].[Acc_CustomerSelHRStatus_andy] TO bodbExtAccNet;
-	GRANT EXECUTE ON [dbo].[Acc_CustomerSelHRStatus_andy] TO bodbDownlineNet;
-	GRANT SELECT ON [dbo].[Acc_CustomerSelHRStatus_andy] TO bodbDownlineNetView;
+	--GRANT EXECUTE ON [dbo].[Acc_CustomerSelHRStatus_andy] TO bodbAdminNet;
+	--GRANT EXECUTE ON [dbo].[Acc_CustomerSelHRStatus_andy] TO bodbExtAccNet;
+	--GRANT EXECUTE ON [dbo].[Acc_CustomerSelHRStatus_andy] TO bodbDownlineNet;
+END
+
+GO
+
+ALTER PROCEDURE [dbo].[Acc_CustomerUpdHRStatus_andy]
+	@custid int,
+	@bettype int,
+	@disable bit,
+	@disableDownlines bit,
+	
+	@subaccid int = 0,
+	@userid int = 0,
+	@language varchar(5) = 'en-US',	
+	@ip varchar(50) = '',
+	@errcode int = 0 output,
+	@errmsg nvarchar(4000)= output
+AS
+/*
+Created: 20150610@Andy.Nguyen
+Task : #36563 Standardize all enable status products.
+DB: DBTXN.CustDB
+
+Revisions:
+    
+Param's Explanation:
+
+*/
+BEGIN
+	DECLARE @ErrCode_Cur int = 0
+	DECLARE @ErrMsg_Cur nvarchar(4000) = ''
+	
+	IF @bettype = 15131
+	BEGIN
+		Select @ErrCode_Cur = 0, @ErrMsg_Cur = ''        
+                EXEC dbo.Acc_CustomerUpdDisable151_31    
+        @custid						= @custid, 
+        @Disable151_31				= @disable, 
+        @DisableDownlines151_31		= @disableDownlines,
+        @UserID						= @userid,             
+        @Language					= @language, 
+        @ErrCode					= @ErrCode_Cur output, 
+        @ErrMsg						= @ErrMsg_Cur output, 
+        @IP							= @ip
+        
+		IF @ErrCode_Cur > 0
+		BEGIN
+			select @ErrCode = @ErrCode_cur, 
+					@ErrMsg = @ErrMsg_Cur
+			--return
+		END
+		ELSE
+		BEGIN
+			Select @ErrCode = @ErrCode, 
+					@ErrMsg = @ErrMsg
+		END	
+	END
+	ELSE IF @bettype = 15141
+	BEGIN
+		Select @ErrCode_Cur = 0, @ErrMsg_Cur = ''        
+                EXEC dbo.Acc_CustomerUpdDisable151_41    
+        @custid						= @custid, 
+        @Disable151_41				= @disable, 
+        @DisableDownlines151_41		= @disableDownlines,
+        @UserID						= @userid,             
+        @Language					= @language, 
+        @ErrCode					= @ErrCode_Cur output, 
+        @ErrMsg						= @ErrMsg_Cur output, 
+        @IP							= @ip
+        
+		IF @ErrCode_Cur > 0
+		BEGIN
+			select @ErrCode = @ErrCode_cur, 
+					@ErrMsg = @ErrMsg_Cur
+			--return
+		END
+		ELSE
+		BEGIN
+			Select @ErrCode = @ErrCode, 
+					@ErrMsg = @ErrMsg
+		END	
+	END
+	ELSE IF @bettype = 15151
+	BEGIN
+		Select @ErrCode_Cur = 0, @ErrMsg_Cur = ''        
+                EXEC dbo.Acc_CustomerUpdDisable151_51    
+        @custid						= @custid, 
+        @Disable151_51				= @disable, 
+        @DisableDownlines151_51		= @disableDownlines,
+        @UserID						= @userid,             
+        @Language					= @language, 
+        @ErrCode					= @ErrCode_Cur output, 
+        @ErrMsg						= @ErrMsg_Cur output, 
+        @IP							= @ip
+        
+		IF @ErrCode_Cur > 0
+		BEGIN
+			select @ErrCode = @ErrCode_cur, 
+					@ErrMsg = @ErrMsg_Cur
+			--return
+		END
+		ELSE
+		BEGIN
+			Select @ErrCode = @ErrCode, 
+					@ErrMsg = @ErrMsg
+		END	
+	END
+	ELSE IF @bettype = 15241
+	BEGIN
+		Select @ErrCode_Cur = 0, @ErrMsg_Cur = ''        
+                EXEC dbo.Acc_CustomerUpdDisable152_41    
+        @custid						= @custid, 
+        @Disable152_41				= @disable, 
+        @DisableDownlines152_41		= @disableDownlines,
+        @UserID						= @userid,             
+        @Language					= @language, 
+        @ErrCode					= @ErrCode_Cur output, 
+        @ErrMsg						= @ErrMsg_Cur output, 
+        @IP							= @ip
+        
+		IF @ErrCode_Cur > 0
+		BEGIN
+			select @ErrCode = @ErrCode_cur, 
+					@ErrMsg = @ErrMsg_Cur
+			--return
+		END
+		ELSE
+		BEGIN
+			Select @ErrCode = @ErrCode, 
+					@ErrMsg = @ErrMsg
+		END	
+	END
+	ELSE IF @bettype = 15251
+	BEGIN
+		Select @ErrCode_Cur = 0, @ErrMsg_Cur = ''        
+                EXEC dbo.Acc_CustomerUpdDisable152_51    
+        @custid						= @custid, 
+        @Disable152_51				= @disable, 
+        @DisableDownlines152_51		= @disableDownlines,
+        @UserID						= @userid,             
+        @Language					= @language, 
+        @ErrCode					= @ErrCode_Cur output, 
+        @ErrMsg						= @ErrMsg_Cur output, 
+        @IP							= @ip
+        
+		IF @ErrCode_Cur > 0
+		BEGIN
+			select @ErrCode = @ErrCode_cur, 
+					@ErrMsg = @ErrMsg_Cur
+			--return
+		END
+		ELSE
+		BEGIN
+			Select @ErrCode = @ErrCode, 
+					@ErrMsg = @ErrMsg
+		END	
+	END
+	ELSE IF @bettype = 15351
+	BEGIN
+		Select @ErrCode_Cur = 0, @ErrMsg_Cur = ''        
+                EXEC dbo.Acc_CustomerUpdDisable153_51    
+        @custid						= @custid, 
+        @Disable153_51				= @disable, 
+        @DisableDownlines153_51		= @disableDownlines,
+        @UserID						= @userid,             
+        @Language					= @language, 
+        @ErrCode					= @ErrCode_Cur output, 
+        @ErrMsg						= @ErrMsg_Cur output, 
+        @IP							= @ip
+        
+		IF @ErrCode_Cur > 0
+		BEGIN
+			select @ErrCode = @ErrCode_cur, 
+					@ErrMsg = @ErrMsg_Cur
+			--return
+		END
+		ELSE
+		BEGIN
+			Select @ErrCode = @ErrCode, 
+					@ErrMsg = @ErrMsg
+		END	
+	END
+	
+	--GRANT EXECUTE ON [dbo].[Acc_CustomerUpdHRStatus_andy] TO bodbAdminNet;
+	--GRANT EXECUTE ON [dbo].[Acc_CustomerUpdHRStatus_andy] TO bodbExtAccNet;
+	--GRANT EXECUTE ON [dbo].[Acc_CustomerUpdHRStatus_andy] TO bodbDownlineNet;
 END
