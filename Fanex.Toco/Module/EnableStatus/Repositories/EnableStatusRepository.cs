@@ -62,23 +62,26 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                     objectDb.AssignParamValues(param);
                     using (var reader = objectDb.ExecuteReader())
                     {
-                        while (reader != null && reader.Read())
+                        if (reader != null)
                         {
-                            var entity = new EnableStatusEntity();
-                            
-                            for (int i = 0; i < reader.FieldCount; i++)
+                            while (reader.Read())
                             {
-                                foreach (ResultElementConfiguration paramResult in storedProcedure.ResultCollection)
-                                {
-                                    if (reader.GetName(i).Equals(paramResult.Name, StringComparison.OrdinalIgnoreCase))
-                                    {
-                                        entity = Helper.MapResultValue(paramResult.MapProperty, reader[i], entity);
-                                        break;
-                                    }
-                                }                                
-                            }
+                                var entity = new EnableStatusEntity();
 
-                            model.Entities.Add(entity);
+                                for (int i = 0; i < reader.FieldCount; i++)
+                                {
+                                    foreach (ResultElementConfiguration paramResult in storedProcedure.ResultCollection)
+                                    {
+                                        if (reader.GetName(i).Equals(paramResult.Name, StringComparison.OrdinalIgnoreCase))
+                                        {
+                                            entity = Helper.MapResultValue(paramResult.MapProperty, reader[i], entity);
+                                            break;
+                                        }
+                                    }
+                                }
+
+                                model.Entities.Add(entity);
+                            }
                         }
 
                         reader.Close();
