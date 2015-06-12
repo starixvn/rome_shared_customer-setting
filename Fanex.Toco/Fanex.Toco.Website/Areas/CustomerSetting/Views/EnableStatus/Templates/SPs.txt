@@ -1,6 +1,6 @@
 ﻿USE [bodb02]
 GO
-/****** Object:  StoredProcedure [dbo].[Acc_CustomerSelHRStatus_andy]    Script Date: 06/12/2015 09:33:47 ******/
+/****** Object:  StoredProcedure [dbo].[Acc_CustomerSelHRStatus_andy]    Script Date: 06/12/2015 13:06:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -24,7 +24,7 @@ Param's Explanation:
 . @roleid: Customer role ID
 . @hasdownline: Identify CustID has downline or not
 Example: 
-	exec [dbo].[Acc_CustomerSelHRStatus_andy] @custid=1176086, @uplineid=1176083, @roleid=2
+	exec [dbo].[Acc_CustomerSelHRStatus_andy] @custid=1176092, @uplineid=1176086, @roleid=2
 */
 
 BEGIN
@@ -251,22 +251,22 @@ BEGIN
 	ELSE
 	BEGIN
 		SELECT @DisableUplines151_31 = isnull(DisableHorseRacing,0)
-		FROM custinfo with (NOLOCK) WHERE recommend = @custid and DisableHorseRacing = 1
+		FROM custinfo with (NOLOCK) WHERE custid = @custid and DisableHorseRacing = 1
 			
 		SELECT @DisableUplines151_41 = isnull(DisableOpenTote,0)
-		FROM custinfo with (NOLOCK) WHERE recommend = @custid and DisableOpenTote = 1
+		FROM custinfo with (NOLOCK) WHERE custid = @custid and DisableOpenTote = 1
 		
 		SELECT @DisableUplines151_51 = isnull(Disable151_AU,0)
-		FROM custinfo with (NOLOCK) WHERE recommend = @custid AND Disable151_AU = 1
+		FROM custinfo with (NOLOCK) WHERE custid = @custid AND Disable151_AU = 1
 		
 		SELECT @DisableUplines152_41 = isnull(Disable152_UK,0)
-		FROM custinfo with (NOLOCK) WHERE recommend = @custid AND Disable152_UK = 1
+		FROM custinfo with (NOLOCK) WHERE custid = @custid AND Disable152_UK = 1
 		
 		SELECT @DisableUplines152_51 = isnull(Disable152_AU,0)
-		FROM custinfo with (NOLOCK) WHERE recommend = @custid AND Disable152_AU = 1
+		FROM custinfo with (NOLOCK) WHERE custid = @custid AND Disable152_AU = 1
 		
 		SELECT @DisableUplines153_51 = isnull(Disable153_AU,0)
-		FROM custinfo with (NOLOCK) WHERE recommend = @custid AND Disable153_AU = 1	
+		FROM custinfo with (NOLOCK) WHERE custid = @custid AND Disable153_AU = 1	
 	END
 			
 	DECLARE @tmpTable as TABLE
