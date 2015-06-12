@@ -7,7 +7,6 @@ SET QUOTED_IDENTIFIER ON
 GO
 ALTER PROCEDURE [dbo].[Acc_CustomerSelHRStatus_andy]
 	@custid int,
-	@uplineid int = 0,
 	@roleid int,
 	@hasdownline bit = 0 output
 AS
@@ -24,7 +23,9 @@ Param's Explanation:
 . @roleid: Customer role ID
 . @hasdownline: Identify CustID has downline or not
 Example: 
-	exec [dbo].[Acc_CustomerSelHRStatus_andy] @custid=1176092, @uplineid=1176086, @roleid=2
+	declare @out bit
+	exec [dbo].[Acc_CustomerSelHRStatus_andy] @custid=1176086, @roleid=2, @hasdownline = @out output
+	select @out
 */
 
 BEGIN
@@ -32,7 +33,6 @@ BEGIN
 		@srecommend int,
 		@mrecommend int,
 		@recommend int,
-		@downlineid int,
 		
 		@DisableUplines151_31 BIT,	
 		@DisableUplines151_41 BIT,		
@@ -62,25 +62,8 @@ BEGIN
 		@mrecommend = mrecommend, 
 		@srecommend = srecommend,
 		@Username = username
-	FROM custinfo WITH (NOLOCK) WHERE custid = @custid
-	
-	SELECT @uplineid = 
-		(CASE WHEN @roleid = 3 THEN @srecommend
-			WHEN @roleid = 2 THEN @mrecommend 
-			WHEN @roleid = 1 THEN @recommend
-			ELSE @custid END)
-			
-	SELECT @hasdownline = isnull((CASE 
-		WHEN @roleid = 4 THEN
-			(SELECT top 1 1 FROM custinfo WITH(NOLOCK) WHERE custid = @mrecommend)
-		WHEN @roleid = 3 THEN
-			(SELECT top 1 1 FROM custinfo WITH(NOLOCK) WHERE custid = @recommend)
-		WHEN @roleid = 2 THEN
-			(SELECT top 1 1 FROM custinfo WITH(NOLOCK) WHERE custid = @custid)
-		ELSE
-			0
-		END), 0)			
-	
+	FROM custinfo WITH (NOLOCK) WHERE custid = @custid	
+				
 	SELECT @Disable151_31 = isnull(DisableHorseRacing,0),
 		   @Disable151_41 = isnull(DisableOpenTote,0),
 		   @Disable151_51 = isnull(Disable151_AU,0),
@@ -91,6 +74,8 @@ BEGIN
 			
 	IF @roleid = 4
 	BEGIN		
+		SELECT @hasdownline = (SELECT top 1 1 FROM custinfo WITH(NOLOCK) WHERE srecommend = @custid and roleid = 3)
+		
 		--v151
 		SELECT top 1 @DisableDownlines151_31 = isnull(DisableHorseRacing,0)
 		FROM custinfo with (NOLOCK) 
@@ -132,23 +117,25 @@ BEGIN
 	END
 	ELSE IF @roleid = 3
 	BEGIN
-		SELECT @DisableUplines151_31 = isnull(DisableHorseRacing,0)
-		FROM custinfo with (NOLOCK) WHERE srecommend = @custid and DisableHorseRacing = 1
+		SELECT @hasdownline = (SELECT top 1 1 FROM custinfo WITH(NOLOCK) WHERE mrecommend = @custid and roleid = 2)
+		
+		SELECT top 1 @DisableUplines151_31 = isnull(DisableHorseRacing,0)
+		FROM custinfo with (NOLOCK) WHERE srecommend = @srecommend and DisableHorseRacing = 1 and roleid = 4
 			
-		SELECT @DisableUplines151_41 = isnull(DisableOpenTote,0)
-		FROM custinfo with (NOLOCK) WHERE srecommend = @custid and DisableOpenTote = 1
+		SELECT top 1  @DisableUplines151_41 = isnull(DisableOpenTote,0)
+		FROM custinfo with (NOLOCK) WHERE srecommend = @srecommend and DisableOpenTote = 1 and roleid = 4
 		
-		SELECT @DisableUplines151_51 = isnull(Disable151_AU,0)
-		FROM custinfo with (NOLOCK) WHERE srecommend = @custid AND Disable151_AU = 1
+		SELECT top 1  @DisableUplines151_51 = isnull(Disable151_AU,0)
+		FROM custinfo with (NOLOCK) WHERE srecommend = @srecommend AND Disable151_AU = 1 and roleid = 4
 		
-		SELECT @DisableUplines152_41 = isnull(Disable152_UK,0)
-		FROM custinfo with (NOLOCK) WHERE srecommend = @custid AND Disable152_UK = 1
+		SELECT top 1  @DisableUplines152_41 = isnull(Disable152_UK,0)
+		FROM custinfo with (NOLOCK) WHERE srecommend = @srecommend AND Disable152_UK = 1 and roleid = 4
 		
-		SELECT @DisableUplines152_51 = isnull(Disable152_AU,0)
-		FROM custinfo with (NOLOCK) WHERE srecommend = @custid AND Disable152_AU = 1
+		SELECT top 1  @DisableUplines152_51 = isnull(Disable152_AU,0)
+		FROM custinfo with (NOLOCK) WHERE srecommend = @srecommend AND Disable152_AU = 1 and roleid = 4
 		
-		SELECT @DisableUplines153_51 = isnull(Disable153_AU,0)
-		FROM custinfo with (NOLOCK) WHERE srecommend = @custid AND Disable153_AU = 1		
+		SELECT top 1  @DisableUplines153_51 = isnull(Disable153_AU,0)
+		FROM custinfo with (NOLOCK) WHERE srecommend = @srecommend AND Disable153_AU = 1 and roleid = 4		
 		
 		--v151
 		SELECT top 1 @DisableDownlines151_31 = isnull(DisableHorseRacing,0)
@@ -191,23 +178,25 @@ BEGIN
 	END
 	ELSE IF @roleid = 2
 	BEGIN
-		SELECT @DisableUplines151_31 = isnull(DisableHorseRacing,0)
-		FROM custinfo with (NOLOCK) WHERE mrecommend = @custid and DisableHorseRacing = 1
+		SELECT @hasdownline = (SELECT top 1 1 FROM custinfo WITH(NOLOCK) WHERE recommend = @custid and roleid = 1)
+		
+		SELECT top 1  @DisableUplines151_31 = isnull(DisableHorseRacing,0)
+		FROM custinfo with (NOLOCK) WHERE mrecommend = @mrecommend and DisableHorseRacing = 1 and roleid = 3
 			
-		SELECT @DisableUplines151_41 = isnull(DisableOpenTote,0)
-		FROM custinfo with (NOLOCK) WHERE mrecommend = @custid and DisableOpenTote = 1
+		SELECT top 1  @DisableUplines151_41 = isnull(DisableOpenTote,0)
+		FROM custinfo with (NOLOCK) WHERE mrecommend = @mrecommend and DisableOpenTote = 1 and roleid = 3
 		
-		SELECT @DisableUplines151_51 = isnull(Disable151_AU,0)
-		FROM custinfo with (NOLOCK) WHERE mrecommend = @custid AND Disable151_AU = 1
+		SELECT top 1  @DisableUplines151_51 = isnull(Disable151_AU,0)
+		FROM custinfo with (NOLOCK) WHERE mrecommend = @mrecommend AND Disable151_AU = 1 and roleid = 3
 		
-		SELECT @DisableUplines152_41 = isnull(Disable152_UK,0)
-		FROM custinfo with (NOLOCK) WHERE mrecommend = @custid AND Disable152_UK = 1
+		SELECT top 1  @DisableUplines152_41 = isnull(Disable152_UK,0)
+		FROM custinfo with (NOLOCK) WHERE mrecommend = @mrecommend AND Disable152_UK = 1 and roleid = 3
 		
-		SELECT @DisableUplines152_51 = isnull(Disable152_AU,0)
-		FROM custinfo with (NOLOCK) WHERE mrecommend = @custid AND Disable152_AU = 1
+		SELECT top 1  @DisableUplines152_51 = isnull(Disable152_AU,0)
+		FROM custinfo with (NOLOCK) WHERE mrecommend = @mrecommend AND Disable152_AU = 1 and roleid = 3
 		
-		SELECT @DisableUplines153_51 = isnull(Disable153_AU,0)
-		FROM custinfo with (NOLOCK) WHERE mrecommend = @custid AND Disable153_AU = 1	
+		SELECT top 1  @DisableUplines153_51 = isnull(Disable153_AU,0)
+		FROM custinfo with (NOLOCK) WHERE mrecommend = @mrecommend AND Disable153_AU = 1 and roleid = 3	
 		
 		--v151
 		SELECT top 1 @DisableDownlines151_31 = isnull(DisableHorseRacing,0)
@@ -251,23 +240,25 @@ BEGIN
 	ELSE
 	BEGIN
 		SELECT @DisableUplines151_31 = isnull(DisableHorseRacing,0)
-		FROM custinfo with (NOLOCK) WHERE custid = @custid and DisableHorseRacing = 1
+		FROM custinfo with (NOLOCK) WHERE recommend = @recommend and DisableHorseRacing = 1 and roleid = 2
 			
 		SELECT @DisableUplines151_41 = isnull(DisableOpenTote,0)
-		FROM custinfo with (NOLOCK) WHERE custid = @custid and DisableOpenTote = 1
+		FROM custinfo with (NOLOCK) WHERE recommend = @recommend and DisableOpenTote = 1 and roleid = 2
 		
 		SELECT @DisableUplines151_51 = isnull(Disable151_AU,0)
-		FROM custinfo with (NOLOCK) WHERE custid = @custid AND Disable151_AU = 1
+		FROM custinfo with (NOLOCK) WHERE recommend = @recommend AND Disable151_AU = 1 and roleid = 2
 		
 		SELECT @DisableUplines152_41 = isnull(Disable152_UK,0)
-		FROM custinfo with (NOLOCK) WHERE custid = @custid AND Disable152_UK = 1
+		FROM custinfo with (NOLOCK) WHERE recommend = @recommend AND Disable152_UK = 1 and roleid = 2
 		
 		SELECT @DisableUplines152_51 = isnull(Disable152_AU,0)
-		FROM custinfo with (NOLOCK) WHERE custid = @custid AND Disable152_AU = 1
+		FROM custinfo with (NOLOCK) WHERE recommend = @recommend AND Disable152_AU = 1 and roleid = 2
 		
 		SELECT @DisableUplines153_51 = isnull(Disable153_AU,0)
-		FROM custinfo with (NOLOCK) WHERE custid = @custid AND Disable153_AU = 1	
+		FROM custinfo with (NOLOCK) WHERE recommend = @recommend AND Disable153_AU = 1 and roleid = 2	
 	END
+	
+	SELECT @hasdownline = isnull(@hasdownline, 0)
 			
 	DECLARE @tmpTable as TABLE
 	(
