@@ -55,6 +55,7 @@
                   <xs:attribute name="reloadafterupdate" type="xs:boolean" use="required" />
                   <xs:attribute name="hidebettypes" type="xs:string" use="required" />
                   <xs:attribute name="warning" type="xs:string" use="required" />
+                  <xs:attribute name="function" type="xs:string" use="required" />
                 </xs:complexType>
               </xs:element>              
             </xs:sequence>

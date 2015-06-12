@@ -9,6 +9,7 @@
 
 namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers
 {
+    using System;
     using System.Linq;
     using System.Web.Mvc;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Entities;
@@ -26,19 +27,39 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers
     {
         private IEnableStatusService service = new EnableStatusService();
 
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Keno")]
         public ActionResult Index(RequestContext context)
         {
+            var controlName = typeof(ProductStatusController).Name;
+            var _mainAction = Helper.Products.Where(p => p.Id.Equals(context.ProductId, StringComparison.OrdinalIgnoreCase)).FirstOrDefault().Function;
+            var actionPath = controlName + "/" + _mainAction;
+            var _authenticationType = AuthenticateAction.AuthenticationType.Read;
+            var authenticateFactory = AuthenticateFactory.Create(_authenticationType, _mainAction);
+            
+            if (!authenticateFactory.AllowRead(actionPath))
+            {
+                return ActionDenied(Request);
+            }
+
             var sp = Helper.GetStoredProcedures(context.ProductId).Where(p => p.Type == StoredProcedure.SpType.SELECT).FirstOrDefault();            
             var model = service.GetProductStatus(sp, context);            
 
             return View("~/Areas/CustomerSetting/Views/EnableStatus/Index.cshtml", model);
         }
 
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Keno")]
         public ActionResult Update(string model)
         {
             var enableStatusModel = JsonConvert.DeserializeObject<EnableStatusModel>(model);
+            var controlName = typeof(ProductStatusController).Name;
+            var _mainAction = Helper.Products.Where(p => p.Id.Equals(enableStatusModel.RequestContext.ProductId, StringComparison.OrdinalIgnoreCase)).FirstOrDefault().Function;
+            var actionPath = controlName + "/" + _mainAction;
+            var _authenticationType = AuthenticateAction.AuthenticationType.Host;
+            var authenticateFactory = AuthenticateFactory.Create(_authenticationType, _mainAction);
+
+            if (!authenticateFactory.AllowUpdate(actionPath))
+            {
+                return ActionDenied(Request);
+            }
+                        
             var sp = Helper.GetStoredProcedures(enableStatusModel.RequestContext.ProductId).Where(p => p.Type == StoredProcedure.SpType.UPDATE).FirstOrDefault();
             var results = service.UpdateProductStatus(enableStatusModel, sp);
 

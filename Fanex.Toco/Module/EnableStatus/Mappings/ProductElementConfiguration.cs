@@ -70,5 +70,14 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings
                 return base["warning"] as string;
             }
         }
+
+        [ConfigurationProperty("function", IsRequired = true)]
+        public string Function
+        {
+            get
+            {
+                return base["function"] as string;
+            }
+        }
     }
 }
