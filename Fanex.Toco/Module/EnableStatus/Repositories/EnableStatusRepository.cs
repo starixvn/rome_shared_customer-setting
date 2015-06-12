@@ -33,16 +33,14 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
             model.RequestContext = context;
             model.Entities = new List<EnableStatusEntity>();
             
-            if (storedProcedure.Key == string.Empty)
+            if (string.IsNullOrWhiteSpace(storedProcedure.Key))
             {
                 model.Entities.Add(new EnableStatusEntity
                 {
                     BetTypeId = 0,
                     Disabled = !context.Enable,
                     DisabledDownlines = !context.EnableDownlines,
-                    DisabledUplines = !context.EnableUplines,
-                    DisabledText = Helper.GetResource("enable"),
-                    DisabledDownlinesText = Helper.GetResource("enableDownline")
+                    DisabledUplines = !context.EnableUplines
                 });
 
                 return model;

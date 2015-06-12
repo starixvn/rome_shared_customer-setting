@@ -24,4 +24,4 @@ URL to call get and update:
 2. Update: customersetting/enablestatus/productstatus/update?model={0}
 	{0}: model that is generated into client
 3. Example:
-	customersetting/enablestatus/productstatus?custid=1176086&uplineid=1176083&userid=8&productid=keno&level=2
+	customersetting/enablestatus/productstatus?custid=1176086&uplineid=1176083&userid=8&productid=keno&level=2&enable=true&enabledownlines=true&hasdownline=true&username=agent01&enableuplines=true
