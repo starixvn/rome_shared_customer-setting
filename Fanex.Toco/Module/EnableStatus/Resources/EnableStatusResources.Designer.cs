@@ -88,7 +88,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UK/Irish Tote.
+        ///   Looks up a localized string similar to SA Tote.
         /// </summary>
         public static string b15131 {
             get {
@@ -97,7 +97,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SA Tote.
+        ///   Looks up a localized string similar to UK/Irish Tote.
         /// </summary>
         public static string b15141 {
             get {

@@ -5,7 +5,7 @@
 @model EnableStatusModel
 @{
     Layout = null;
-    var model = JsonConvert.SerializeObject(Model, Formatting.None,
+    var model = JsonConvert.SerializeObject(Model, Formatting.Indented,
         new JsonSerializerSettings
         {
             ContractResolver = new CamelCasePropertyNamesContractResolver(),
