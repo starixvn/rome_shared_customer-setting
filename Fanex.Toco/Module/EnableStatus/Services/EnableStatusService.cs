@@ -50,19 +50,19 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
 
                     if (item.BetTypeId != null && (int)item.BetTypeId != 0 && (item.SportTypeId == null || (int)item.SportTypeId == 0))
                     {
-                        item.DisabledText = item.BetTypeName = RefData.GetBetTypeName(item.BetTypeId.ToString(), context.Language, string.Empty);
+                        item.EnableText = item.BetTypeName = RefData.GetBetTypeName(item.BetTypeId.ToString(), context.Language, string.Empty);
                     }
                     else if (item.BetTypeId != null && item.SportTypeId != null && (int)item.BetTypeId != 0 && (int)item.SportTypeId != 0)
                     {
-                        item.DisabledText = item.BetTypeName = Helper.GetResource("b" + item.BetTypeId.ToString());
+                        item.EnableText = item.BetTypeName = Helper.GetResource("b" + item.BetTypeId.ToString());
                         item.SportTypeName = Helper.GetResource("s" + item.SportTypeId.ToString());
                     }
                     else
                     {
-                        item.DisabledText = Helper.GetResource("enable");
+                        item.EnableText = Helper.GetResource("enable");
                     }
 
-                    item.DisabledDownlinesText = Helper.GetResource("enableDownline");
+                    item.EnableDownlinesText = Helper.GetResource("enableDownline");
                 }
 
                 return model;

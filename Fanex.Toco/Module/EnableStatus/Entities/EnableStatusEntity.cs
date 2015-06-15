@@ -37,8 +37,8 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Entities
 
         public object DisabledDownlines { get; set; }
 
-        public object DisabledText { get; set; }
+        public object EnableText { get; set; }
 
-        public object DisabledDownlinesText { get; set; }
+        public object EnableDownlinesText { get; set; }
     }
 }
