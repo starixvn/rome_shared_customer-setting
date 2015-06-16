@@ -105,7 +105,7 @@ function EnableStatusController($scope) {
         document.getElementById(scope.item.betTypeId).checked = scope.item.enableDownline;
     };
 
-    $scope.Update = function () {
+    $scope.Update = function (onCompleted) {
         Fanex.CustomerSetting.Core.BlockUI();
 
         var length = model.entities.length;
@@ -152,11 +152,19 @@ function EnableStatusController($scope) {
             }
 
             Fanex.CustomerSetting.Core.UnBlockUI();
+
+            if (typeof onCompleted == 'function') {
+                onCompleted(data);
+            }
         }).error(function (data) {
             if (typeof console != 'undefined')
                 console.log(data);
 
             Fanex.CustomerSetting.Core.BlockUI();
+
+            if (typeof onCompleted == 'function') {
+                onCompleted(data);
+            }
         });
     };
 
