@@ -139,7 +139,7 @@ function EnableStatusController($scope) {
 
                     if (model.reloadAfterUpdate) {
                         if (parent.document.getElementById(model.iframeId))
-                            parent.document.getElementById(model.iframeId).reload(true);
+                            parent.document.getElementById(model.iframeId).src = parent.document.getElementById(model.iframeId).src;
 
                         document.location.reload(true);
                     }
