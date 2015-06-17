@@ -51,12 +51,12 @@
                     </xs:element>                    
                   </xs:sequence>
                   <xs:attribute name="id" type="xs:string" use="required" />
-                  <xs:attribute name="hascheckall" type="xs:boolean" use="required" />
-                  <xs:attribute name="reloadafterupdate" type="xs:boolean" use="required" />
-                  <xs:attribute name="hidebettypes" type="xs:string" use="required" />
-                  <xs:attribute name="warning" type="xs:string" use="required" />
+                  <xs:attribute name="hascheckall" type="xs:boolean" use="optional" />
+                  <xs:attribute name="reloadafterupdate" type="xs:boolean" use="optional" />
+                  <xs:attribute name="hidebettypes" type="xs:string" use="optional" />
+                  <xs:attribute name="warning" type="xs:string" use="optional" />
                   <xs:attribute name="function" type="xs:string" use="required" />
-                  <xs:attribute name="closepopupjs" type="xs:string" use="required" />
+                  <xs:attribute name="closepopupjs" type="xs:string" use="optional" />
                 </xs:complexType>
               </xs:element>              
             </xs:sequence>

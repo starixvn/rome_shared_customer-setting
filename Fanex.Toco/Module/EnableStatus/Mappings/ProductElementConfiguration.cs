@@ -35,7 +35,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings
             }
         }
 
-        [ConfigurationProperty("hascheckall", IsRequired = true)]
+        [ConfigurationProperty("hascheckall", IsRequired = false)]
         public bool HasCheckAll
         {
             get
@@ -44,7 +44,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings
             }
         }
 
-        [ConfigurationProperty("reloadafterupdate", IsRequired = true)]
+        [ConfigurationProperty("reloadafterupdate", IsRequired = false)]
         public bool ReloadAfterUpdate
         {
             get
@@ -53,7 +53,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings
             }
         }
 
-        [ConfigurationProperty("hidebettypes", IsRequired = true)]
+        [ConfigurationProperty("hidebettypes", IsRequired = false)]
         public string HideBetTypes
         {
             get
@@ -62,7 +62,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings
             }
         }
 
-        [ConfigurationProperty("warning", IsRequired = true)]
+        [ConfigurationProperty("warning", IsRequired = false)]
         public string Warning
         {
             get
@@ -80,7 +80,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings
             }
         }
 
-        [ConfigurationProperty("closepopupjs", IsRequired = true)]
+        [ConfigurationProperty("closepopupjs", IsRequired = false)]
         public string ClosePopupFunction
         {
             get
