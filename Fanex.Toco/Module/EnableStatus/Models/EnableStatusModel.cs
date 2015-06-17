@@ -27,6 +27,8 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Models
 
         public string Warning { get; set; }
 
+        public string ClosePopupFunction { get; set; }
+
         public RequestContext RequestContext { get; set; }
 
         public IList<EnableStatusEntity> Entities { get; set; }

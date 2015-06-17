@@ -79,5 +79,14 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings
                 return base["function"] as string;
             }
         }
+
+        [ConfigurationProperty("closepopupjs", IsRequired = true)]
+        public string ClosePopupFunction
+        {
+            get
+            {
+                return base["closepopupjs"] as string;
+            }
+        }        
     }
 }

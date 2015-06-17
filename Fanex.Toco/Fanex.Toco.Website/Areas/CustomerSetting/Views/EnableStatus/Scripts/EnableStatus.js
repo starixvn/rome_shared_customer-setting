@@ -140,9 +140,15 @@ function EnableStatusController($scope) {
                     if (model.reloadAfterUpdate) {
                         if (parent.document.getElementById(model.iframeId))
                             parent.document.getElementById(model.iframeId).src = parent.document.getElementById(model.iframeId).src;
+                    }
 
+                    if (model.closePopupFunction != '') {
+                        document.write('<script type="text/javascript">' + model.closePopupFunction + '</script>');
+                    }
+                    else if (model.reloadAfterUpdate) {
                         document.location.reload(true);
                     }
+
                 }, 3000);
             }
             else {

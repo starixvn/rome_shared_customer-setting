@@ -38,6 +38,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                 model.HasCheckAll = product.HasCheckAll;
                 model.ReloadAfterUpdate = product.ReloadAfterUpdate;
                 model.Warning = Helper.GetResource(product.Warning);
+                model.ClosePopupFunction = product.ClosePopupFunction;
                 model.Username = model.Entities.FirstOrDefault().Username == null ?
                     (context.Username == null ? string.Empty : context.Username) : model.Entities.FirstOrDefault().Username.ToString();
 
