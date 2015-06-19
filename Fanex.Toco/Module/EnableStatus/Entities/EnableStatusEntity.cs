@@ -33,6 +33,8 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Entities
 
         public object Disabled { get; set; }
 
+        public object Synced { get; set; }
+
         public object DisabledUplines { get; set; }
 
         public object DisabledDownlines { get; set; }
