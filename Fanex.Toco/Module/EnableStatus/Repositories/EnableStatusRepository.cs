@@ -129,7 +129,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                         var customer = new Customer();
                         try
                         {
-                            customer.UpdateCustEnableCasino(context.CustId, !(bool)entity.Disabled, !(bool)entity.DisabledDownlines, context.Ip, context.UserId, context.Username, AppSession.CurrentSession.FromSystem);
+                            customer.UpdateCustEnableCasino(context.CustId, !(bool)entity.Disabled, !(bool)entity.DisabledDownlines, context.Ip, context.UserId, AppSession.CurrentSession.UserName, AppSession.CurrentSession.FromSystem);
                         }
                         catch
                         {                            
