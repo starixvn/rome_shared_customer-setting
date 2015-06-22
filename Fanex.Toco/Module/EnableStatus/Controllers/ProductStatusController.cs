@@ -16,6 +16,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Models;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Services;
+    using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
     using Fanex.CustomerSetting.Security.Authenticate;
     using Newtonsoft.Json;
@@ -35,7 +36,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers
             var _authenticationType = AuthenticateAction.AuthenticationType.Read;
             var authenticateFactory = AuthenticateFactory.Create(_authenticationType, _mainAction);
             
-            if (!authenticateFactory.AllowRead(actionPath))
+            if (!authenticateFactory.AllowRead(actionPath) || !authenticateFactory.IsBelong(context.CustId, context.Username, AppSession.CurrentSession.CurrencyGroup))
             {
                 return ActionDenied(Request);
             }
@@ -55,7 +56,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers
             var _authenticationType = AuthenticateAction.AuthenticationType.Host;
             var authenticateFactory = AuthenticateFactory.Create(_authenticationType, _mainAction);
 
-            if (!authenticateFactory.AllowUpdate(actionPath))
+            if (!authenticateFactory.AllowUpdate(actionPath) || !authenticateFactory.IsBelong(enableStatusModel.RequestContext.CustId, enableStatusModel.RequestContext.Username, AppSession.CurrentSession.CurrencyGroup))
             {
                 return ActionDenied(Request);
             }
