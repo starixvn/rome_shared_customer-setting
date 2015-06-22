@@ -12,13 +12,13 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
+    using CasinoLibrary.SBAgent;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Entities;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Models;
-    using Fanex.CustomerSetting.Module.Core;
     using Fanex.CustomerSetting.Module.Core.Models;
+    using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.Data;
     using Fanex.Logging;
 
@@ -40,7 +40,8 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                     BetTypeId = 0,
                     Disabled = !context.Enable,
                     DisabledDownlines = !context.EnableDownlines,
-                    DisabledUplines = !context.EnableUplines
+                    DisabledUplines = !context.EnableUplines,
+                    Synced = context.Synced
                 });
 
                 return model;
@@ -102,7 +103,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
         public Result UpdateProductStatus(SpElementConfiguration storedProcedure, RequestContext context, EnableStatusEntity entity)
         {
             var result = new Result();
-
+            
             using (var objectDb = new ObjectDb(storedProcedure.Key))
             {
                 var param = new Hashtable();
@@ -115,12 +116,24 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                 try
                 {
                     objectDb.AssignParamValues(param);
-                    objectDb.ExecuteNonQuery();                    
+                    objectDb.ExecuteNonQuery();
 
                     var outputParams = objectDb.GetOuputParams();
                     foreach (var outputParam in outputParams.Keys)
                     {
                         result = Helper.MapResultValue(outputParam.ToString(), outputParams[outputParam], result);
+                    }
+
+                    if (result.IsSuccess && context.IsCasino)
+                    {
+                        var customer = new Customer();
+                        try
+                        {
+                            customer.UpdateCustEnableCasino(context.CustId, !(bool)entity.Disabled, !(bool)entity.DisabledDownlines, context.Ip, context.UserId, context.Username, AppSession.CurrentSession.FromSystem);
+                        }
+                        catch
+                        {                            
+                        }                        
                     }
 
                     return result;

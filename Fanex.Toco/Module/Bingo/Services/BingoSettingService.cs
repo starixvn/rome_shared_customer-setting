@@ -94,53 +94,29 @@ namespace Fanex.CustomerSetting.Module.Bingo.Services
 
                 ICustomerService customerService = BingoContainer.Current.Resolve<ICustomerService>();
                 string fromIP = AppSession.CurrentContext.Ip4Address;
-                CasinoCustomer custInfo = null, uplineInfo = null;
-                try
+
+                IResult getSettingResult = null;
+                var cust = customerService.GetCustomerSetting(customer.ID, updatedByRoleID, ref getSettingResult);
+                
+                ICustomer custUpline = null;
+                var disableBingo = false;
+                var enableDownline = true;
+
+                if (customer.RoleId != 4)
                 {
-                    custInfo = CasinoManager.Instance.GetCustInfoIBC(customer.ID, customer.UplineID);
-                }
-                catch 
-                {
-                    // Bypass error in case of not's casino customer.
+                    custUpline = customerService.GetCustomerSetting(customer.UplineID, updatedByRoleID + 1, ref getSettingResult);
+                    disableBingo = !custUpline.IsEnabledBingo;
+                    enableDownline = custUpline.IsEnabledBingo;
                 }
 
-                customer.SyncBingo = custInfo.BingoSync;
-                if (!custInfo.BingoSync)
-                {
-                    IResult getSettingResult = null;
-                    customerService.GetCustomerSetting(customer.ID, updatedByRoleID, ref getSettingResult);
-                }
-
-                IResult result = customerService.UpdateCustomerSetting(customer, updatedByRoleID, fromIP, modifiedUserId, modifiedUsername, fromSystem);
+                IResult result = customerService.UpdateCustomerSetting(customer, updatedByRoleID, fromIP, modifiedUserId, modifiedUsername, AppSession.CurrentSession.FromSystem);
 
                 if (result == null || !result.IsSuccessful || customer.SyncBingo)
                 {
                     return result;
                 }
 
-                try
-                {
-                    switch ((Enumerators.Role)customer.RoleId)
-                    {
-                        case Enumerators.Role.Member:
-                            uplineInfo = CasinoManager.Instance.GetCustInfoIBC(custInfo.AIBCCustID, custInfo.UpperCustID);
-                            break;
-                        case Enumerators.Role.Agent:
-                            uplineInfo = CasinoManager.Instance.GetCustInfoIBC(custInfo.MIBCCustID, custInfo.UpperCustID);
-                            break;
-                        case Enumerators.Role.Master:
-                            uplineInfo = CasinoManager.Instance.GetCustInfoIBC(custInfo.SIBCCustID, custInfo.UpperCustID);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                catch
-                {
-                    // Bypass error in case of not's casino customer.
-                }
-
-                return this._bingoDAO.UpdateBingoStatus(modifiedUserId, customer.ID, uplineInfo.BingoDisabled, fromIP, uplineInfo.EnableDownline, true);
+                return this._bingoDAO.UpdateBingoStatus(modifiedUserId, customer.ID, disableBingo, fromIP, enableDownline, true);
             }
             catch (Exception ex)
             {

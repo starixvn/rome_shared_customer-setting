@@ -24,6 +24,12 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Entities
             set;
         }
 
+        public bool Synced
+        {
+            get;
+            set;
+        }
+
         public bool Enable
         {
             get;
@@ -104,5 +110,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Entities
             get;
             set;
         }
+
+        public bool IsCasino { get; set; }
     }
 }
