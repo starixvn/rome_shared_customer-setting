@@ -9,6 +9,9 @@ URL to call get and update:
 	{0}: 
 	context = {
 		"username": customer name need to edit (in case of enable/disable status without bet type id),
+		"synced": for bingo, casino only,
+		"isCasino": true if enable casino is used,
+		"hideDownline": true if you wanna update status without downline is mentioned,
 		"enable": true/false (in case of enable/disable status without bet type id),
 		"enableUplines": true/false (in case of enable/disable status without bet type id),
 		"enableDownlines": true/false (in case of enable/disable status without bet type id),

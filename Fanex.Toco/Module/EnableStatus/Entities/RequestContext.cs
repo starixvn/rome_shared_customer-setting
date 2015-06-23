@@ -30,6 +30,12 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Entities
             set;
         }
 
+        public bool HideDownline
+        {
+            get;
+            set;
+        }
+
         public bool Enable
         {
             get;
