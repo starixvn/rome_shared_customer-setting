@@ -82,8 +82,11 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
 
                 foreach (var item in model.Entities)
                 {
-                    var result = data.UpdateProductStatus(storedProcedure, model.RequestContext, item);
-                    results.Add(result);
+                    if (!item.Hide)
+                    {
+                        var result = data.UpdateProductStatus(storedProcedure, model.RequestContext, item);
+                        results.Add(result);
+                    }
                 }
 
                 return results;
