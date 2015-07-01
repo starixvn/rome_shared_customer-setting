@@ -103,6 +103,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers
                 if (property.Name.Equals(mapProperty, StringComparison.OrdinalIgnoreCase))
                 {
                     property.SetValue(entity, mapValue, null);
+                    break;
                 }
             }
 
