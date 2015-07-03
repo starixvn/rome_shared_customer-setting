@@ -40,8 +40,7 @@ function EnableStatusController($scope) {
         var allChecked = true;
 
         if (preVal) {
-            if (scope.item.enable) {
-                scope.item.enableDownline = true;
+            if (scope.item.enable) {                
                 scope.item.enableDownline = scope.item.preValDownline;
                 scope.item.disableDownline = true;
 
@@ -107,8 +106,6 @@ function EnableStatusController($scope) {
 
     $scope.Update = function (onCompleted) {
         Fanex.CustomerSetting.Core.BlockUI();
-
-        var length = model.entities.length;
 
         $.ajax({
             dataType: 'json',
