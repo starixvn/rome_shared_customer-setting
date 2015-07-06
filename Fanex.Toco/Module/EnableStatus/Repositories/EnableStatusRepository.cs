@@ -59,13 +59,17 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                 try
                 {
                     objectDb.AssignParamValues(param);
+                    var entity = new EnableStatusEntity();
                     using (var reader = objectDb.ExecuteReader())
                     {
+                        var hasRecord = false;
+                            
                         if (reader != null)
                         {
                             while (reader.Read())
                             {
-                                var entity = new EnableStatusEntity();
+                                hasRecord = true;
+                                entity = new EnableStatusEntity();
 
                                 for (int i = 0; i < reader.FieldCount; i++)
                                 {
@@ -80,12 +84,28 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                                 }
 
                                 model.Entities.Add(entity);
-                            }
+                            }                            
                         }
 
                         reader.Close();
 
                         var outputValues = objectDb.GetOuputParams();
+
+                        if (!hasRecord)
+                        {
+                            foreach (string outputValue in outputValues)
+                            {
+                                foreach (ResultElementConfiguration paramResult in storedProcedure.ResultCollection)
+                                {
+                                    if (outputValue.Equals(paramResult.Name, StringComparison.OrdinalIgnoreCase))
+                                    {
+                                        entity = Helper.MapResultValue(paramResult.MapProperty, outputValues[outputValue], entity);
+                                        break;
+                                    }
+                                }   
+                            }                            
+                        }
+                                                
                         model.RequestContext = Helper.MapResultValue("HasDownline", outputValues["hasdownline"] == null ? true : outputValues["hasdownline"], model.RequestContext);
                     }                                        
 
