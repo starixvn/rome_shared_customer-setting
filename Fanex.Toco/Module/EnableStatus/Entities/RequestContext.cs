@@ -18,6 +18,12 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Entities
     {
         private string _language = "en-US";
 
+        public int Product
+        {
+            get;
+            set;
+        }
+
         public string Username
         {
             get;
