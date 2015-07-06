@@ -19,10 +19,11 @@ function EnableStatusController($scope) {
     }
 
     $scope.Init = function () {
+        $('#title').html('Enable ' + model.requestContext.productId);
         $scope.sortedModel = groupBy($scope.entities, function (item) {
             return [item.sportTypeName];
         });
-        
+
         var allChecked = true;
         for (var i = 0; i < $scope.entities.length; i++) {
             if (!$scope.entities[i].hide && (($scope.entities[i].disabled && !$scope.entities[i].disabledUplines) || $scope.isDisabledAll)) {
