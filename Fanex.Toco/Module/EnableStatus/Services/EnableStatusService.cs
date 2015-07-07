@@ -41,6 +41,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                 model.ClosePopupFunction = product.ClosePopupFunction;
                 model.Username = model.Entities.FirstOrDefault().Username == null ?
                     (context.Username == null ? string.Empty : context.Username) : model.Entities.FirstOrDefault().Username.ToString();
+                model.RequestContext.Username = model.Username;
 
                 foreach (var item in model.Entities)
                 {
@@ -49,11 +50,11 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                         item.Hide = true;
                     }
 
-                    if (item.BetTypeId != null && (int)item.BetTypeId != 0 && (item.SportTypeId == null || (int)item.SportTypeId == 0))
+                    if (item.BetTypeId != null && (int)item.BetTypeId > 0 && (item.SportTypeId == null || (int)item.SportTypeId == 0))
                     {
                         item.EnableText = item.BetTypeName = RefData.GetBetTypeName(item.BetTypeId.ToString(), context.Language, string.Empty);
                     }
-                    else if (item.BetTypeId != null && item.SportTypeId != null && (int)item.BetTypeId != 0 && (int)item.SportTypeId != 0)
+                    else if (item.BetTypeId != null && item.SportTypeId != null && (int)item.BetTypeId > 0 && (int)item.SportTypeId > 0)
                     {
                         item.EnableText = item.BetTypeName = Helper.GetResource("b" + item.BetTypeId.ToString());
                         item.SportTypeName = Helper.GetResource("s" + item.SportTypeId.ToString());

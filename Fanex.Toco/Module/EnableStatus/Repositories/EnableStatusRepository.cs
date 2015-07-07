@@ -105,7 +105,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                                 }                                
                             }
 
-                            entity.BetTypeId = 1;
+                            entity.BetTypeId = -1;
                             model.Entities.Add(entity);
                         }
                                                 

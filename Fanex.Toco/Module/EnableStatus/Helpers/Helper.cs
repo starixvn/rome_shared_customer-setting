@@ -76,6 +76,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers
                 {
                     var result = false;
                     var value = property.GetValue(entity, null);
+                    value = value == null ? string.Empty : value;
                     bool.TryParse(value.ToString(), out result);
                     return reverse ? !result : value;
                 }
@@ -87,6 +88,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers
                 {
                     var result = false;
                     var value = property.GetValue(context, null);
+                    value = value == null ? string.Empty : value;
                     bool.TryParse(value.ToString(), out result);
                     return reverse ? !result : value;
                 }
