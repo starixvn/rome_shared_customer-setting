@@ -95,14 +95,14 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers
             return default(object);
         }
 
-        public static T MapResultValue<T>(string mapProperty, object mapValue, T entity)
+        public static T MapResultValue<T>(string mapProperty, object mapValue, T entity, bool reverse = false)
         {
             var props = typeof(T).GetProperties();
             foreach (var property in props)
             {                
                 if (property.Name.Equals(mapProperty, StringComparison.OrdinalIgnoreCase))
                 {
-                    property.SetValue(entity, mapValue, null);
+                    property.SetValue(entity, reverse ? !(bool)mapValue : mapValue, null);
                     break;
                 }
             }

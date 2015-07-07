@@ -77,7 +77,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                                     {
                                         if (reader.GetName(i).Equals(paramResult.Name, StringComparison.OrdinalIgnoreCase))
                                         {
-                                            entity = Helper.MapResultValue(paramResult.MapProperty, reader[i], entity);
+                                            entity = Helper.MapResultValue(paramResult.MapProperty, reader[i], entity, paramResult.Reverse);
                                             break;
                                         }
                                     }
@@ -93,17 +93,20 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
 
                         if (!hasRecord)
                         {
-                            foreach (string outputValue in outputValues)
+                            foreach (DictionaryEntry outputValue in outputValues)
                             {
                                 foreach (ResultElementConfiguration paramResult in storedProcedure.ResultCollection)
                                 {
-                                    if (outputValue.Equals(paramResult.Name, StringComparison.OrdinalIgnoreCase))
+                                    if (outputValue.Key.ToString().Equals(paramResult.Name, StringComparison.OrdinalIgnoreCase))
                                     {
-                                        entity = Helper.MapResultValue(paramResult.MapProperty, outputValues[outputValue], entity);
+                                        entity = Helper.MapResultValue(paramResult.MapProperty, outputValues[outputValue.Key], entity, paramResult.Reverse);
                                         break;
                                     }
-                                }   
-                            }                            
+                                }                                
+                            }
+
+                            entity.BetTypeId = 1;
+                            model.Entities.Add(entity);
                         }
                                                 
                         model.RequestContext = Helper.MapResultValue("HasDownline", outputValues["hasdownline"] == null ? true : outputValues["hasdownline"], model.RequestContext);
