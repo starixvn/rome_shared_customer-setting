@@ -9,9 +9,11 @@
 
 namespace Fanex.Module.Statement.Services.StatementReport
 {
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
-    using Fanex.Module.Statement.Constants;
+    using System.Linq;
+    using Fanex.Module.Statement.Configurations;
     using Fanex.Module.Statement.Criteria.StatementReport;
     using Fanex.Module.Statement.Models;
     using Fanex.Module.Statement.Models.StatementReport;
@@ -606,6 +608,7 @@ namespace Fanex.Module.Statement.Services.StatementReport
             ISheet worksheet,
             TransferDetailsCriteria criteria)
         {
+            var isShowCreator = StatementSection.Instance.ShowCreatorOnDetail;
             var currentRow = 0;
             var titleRow = worksheet.CreateRow(currentRow);
             var titleCell = titleRow.CreateCell(0);
@@ -614,7 +617,12 @@ namespace Fanex.Module.Statement.Services.StatementReport
             currentRow++;
 
             var headerRow = worksheet.CreateRow(currentRow);
-            var columnWidths = new int[] { 13, 50, 20, 13 };
+            var columnWidths = new List<int> { 13, 50, 20 };
+            if (isShowCreator)
+            {
+                columnWidths.Add(13);
+            }
+
             var maxColumnIndex = 2;
             for (var i = 0; i <= maxColumnIndex; i++)
             {
@@ -638,10 +646,13 @@ namespace Fanex.Module.Statement.Services.StatementReport
             currentCell.CellStyle = headerStyle;
             currentColumn++;
 
-            currentCell = headerRow.CreateCell(currentColumn);
-            currentCell.SetCellValue(Labels.Creator);
-            currentCell.CellStyle = headerStyle;
-            currentColumn++;
+            if (isShowCreator)
+            {
+                currentCell = headerRow.CreateCell(currentColumn);
+                currentCell.SetCellValue(Labels.Creator);
+                currentCell.CellStyle = headerStyle;
+                currentColumn++;
+            }
         }
 
         /// <summary>
@@ -707,6 +718,8 @@ namespace Fanex.Module.Statement.Services.StatementReport
             var currentColumn = 0;
             ICell column;
             IRow row;
+            var isShowExchangeRate = StatementSection.Instance.ShowExchangeRateOnDetail;
+            var isShowCreator = StatementSection.Instance.ShowCreatorOnDetail;
             for (int i = 0; i < statementListLength; i++)
             {
                 row = worksheet.CreateRow(currentRow);
@@ -720,11 +733,11 @@ namespace Fanex.Module.Statement.Services.StatementReport
                 currentColumn++;
 
                 column = row.CreateCell(currentColumn);
+
                 var remark = statement.TransactionType + "\n" + statement.Description +
-                    (criteria.SiteName == SystemNameConstants.Nap &&
-                    !string.IsNullOrEmpty(statement.ExchangeRate) ?
-                        " - " + Labels.Symbol_ExchangeRate + ":" + statement.ExchangeRate :
-                        string.Empty);
+                   (isShowExchangeRate && !string.IsNullOrEmpty(statement.ExchangeRate) ?
+                       " - " + Labels.Symbol_ExchangeRate + ":" + statement.ExchangeRate :
+                       string.Empty);
                 column.SetCellValue(remark);
                 column.CellStyle = textStyle;
                 currentColumn++;
@@ -736,10 +749,13 @@ namespace Fanex.Module.Statement.Services.StatementReport
                     twoDecimalNumberStyle;
                 currentColumn++;
 
-                column = row.CreateCell(currentColumn);
-                ExportDataColumnText(column, statement.Creator);
-                column.CellStyle = textStyle;
-                currentColumn++;
+                if (isShowCreator)
+                {
+                    column = row.CreateCell(currentColumn);
+                    ExportDataColumnText(column, statement.Creator);
+                    column.CellStyle = textStyle;
+                    currentColumn++;
+                }
 
                 currentRow++;
             }
@@ -797,10 +813,13 @@ namespace Fanex.Module.Statement.Services.StatementReport
             column.CellStyle = cellStyle;
             currentColumn++;
 
-            column = row.CreateCell(currentColumn);
-            column.SetCellValue(string.Empty);
-            column.CellStyle = grandTotalTextStyle;
-            currentColumn++;
+            if (isShowCreator)
+            {
+                column = row.CreateCell(currentColumn);
+                column.SetCellValue(string.Empty);
+                column.CellStyle = grandTotalTextStyle;
+                currentColumn++;
+            }
 
             currentRow++;
         }
