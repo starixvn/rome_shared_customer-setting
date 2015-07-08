@@ -215,11 +215,13 @@
     <Setting Key="CustomerSelStatus" SpName="Acc_CustomerSelStatus" DbName="db053"  />
     <Setting Key="CustomerSetting_SiteSel" SpName="Acc_SiteSel" DbName="db053" Plain="0" />
   </Function>
-  <Function Name="KenoStatus">
+  <Function Name="Enable Status">
     <Setting Key="Acc_CustomerSelKenoStatus" SpName="Acc_CustomerSelKenoStatus" DbName="DBAGE.bodb02.bodbAdminNet"  />
-    <Setting Key="Acc_CustomerUpdDisableKeno" SpName="Acc_CustomerUpdDisableKeno" DbName="DBTXN.CustDB.bodbAdminNet" Plain="0" />    
+    <Setting Key="Acc_CustomerUpdDisableKeno" SpName="Acc_CustomerUpdDisableKeno" DbName="DBTXN.CustDB.bodbAdminNet" Plain="0" />
+    <Setting Key="Acc_CustomerUpdDisableESports" SpName="Acc_CustomerUpdDisableESports" DbName="DBTXN.CustDB.bodbAdminNet" Plain="0" />
+    <Setting Key="Acc_CustomerUpdDisableNumber" SpName="Acc_CustomerUpdDisableNumber" DbName="DBTXN.CustDB.bodbAdminNet" Plain="0" />
+    <Setting Key="Acc_CustomerUpdDisableHRFixedOdds" SpName="Acc_CustomerUpdDisableHRFixedOdds" DbName="DBTXN.CustDB.bodbAdminNet" Plain="0" />   
+    <Setting Key="Acc_CustomerUpdDisableGoldDeluxe" SpName="Acc_CustomerUpdDisableGoldDeluxe" DbName="DBTXN.CustDB.bodbAdminNet"/>
   </Function>
-  <Function Name="GoldDeluxe">
-    <Setting Key="Acc_CustomerUpdDisableGoldDeluxe" SpName="Acc_CustomerUpdDisableGoldDeluxe_xtest" DbName="DBTXN.CustDB.bodbAdminNet"/>
-  </Function>
+  
 </Functions>
