@@ -96,6 +96,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
             ViewBag.SyncCasino = customer.SyncCasino;
             ViewBag.SyncBingo = customer.SyncBingo;
             ViewBag.SyncLiveCasino = customer.SyncLiveCasino;
+            ViewBag.HideGoldDeluxe = customer.HideGoldDeluxe;
 
             return this.View("~/Areas/CustomerSetting/Views/BetSetting/Bingo/Content.cshtml", customerInfo);
         }

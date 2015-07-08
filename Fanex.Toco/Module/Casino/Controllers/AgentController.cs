@@ -118,7 +118,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 uplineId,
                 Request.UserHostAddress,
                 userId,
-                actorName, 
+                actorName,
                 AppSession.CurrentSession.FromSystem,
                 JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel),
                 JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));

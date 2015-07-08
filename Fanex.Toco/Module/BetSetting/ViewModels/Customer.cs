@@ -99,6 +99,12 @@ namespace Fanex.CustomerSetting.Module.BetSetting.ViewModels
             set;
         }
 
+        public bool HideGoldDeluxe
+        {
+            get;
+            set;
+        }
+
         public string CurrencyName
         {
             get;

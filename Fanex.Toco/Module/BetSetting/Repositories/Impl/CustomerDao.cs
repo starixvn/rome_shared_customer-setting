@@ -16,6 +16,7 @@
 namespace Fanex.CustomerSetting.Module.BetSetting.Repositories.Impl
 {
     using System.Collections;
+    using System.Configuration;
     using Fanex.Common.Extensions;
     using Fanex.CustomerSetting.Module.BetSetting.Repositories.Interface;
     using Fanex.CustomerSetting.Module.BetSetting.ViewModels;
@@ -59,6 +60,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Repositories.Impl
                                 SyncBingo = reader.ToBool("syncBingo"),
                                 SyncCasino = reader.ToBool("syncCasino"),
                                 SyncLiveCasino = reader.ToBool("syncLiveCasino"),
+                                HideGoldDeluxe = reader.ToBool("HideGoldDeluxe") || ConfigurationManager.AppSettings["IsShowGoldDeluxeSettingForCredit"] == "0",
                                 CurrencyName = reader.ToString("currencyName")
                             };
                         }
