@@ -131,7 +131,6 @@
     <Compile Include="Services\EnableStatusService.cs" />
     <Compile Include="Services\IEnableStatusService.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Fanex.Toco.Module.Core\_Core.csproj">
       <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
