@@ -13,6 +13,7 @@ namespace Fanex.CustomerSetting.Module.Core.Models
         {
             ErrorCode = 0;
             ErrorMessage = string.Empty;
+            IsSuccess = ErrorCode == 0 || ErrorMessage == string.Empty;
         }
 
         public Result(int errorCode, string errorMessage)

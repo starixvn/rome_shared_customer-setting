@@ -4,8 +4,8 @@ namespace Fanex.CustomerSetting.Module.Core
 {
     using System;
     using System.Data;
+    using System.Net;
     using System.Web;
-    using Fanex.CustomerSetting.Module.Core.Services.Impl;
 
     public static class Utils
     {
@@ -415,18 +415,31 @@ namespace Fanex.CustomerSetting.Module.Core
         public static string GetClientIP()
         {
             string ip = string.Empty;
-            try
+
+            foreach (IPAddress ipa in Dns.GetHostAddresses(HttpContext.Current.Request.UserHostAddress))
             {
-                if (HttpContext.Current.Request.IsLocal)
-                    ip = "127.0.0.1";
-                else
-                    ip = Convert.ToString(HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"]);
+                if (ipa.AddressFamily.ToString().Equals("InterNetwork"))
+                {
+                    ip = ipa.ToString();
+                    break;
+                }
             }
-            catch (Exception ex)
+
+            if (!ip.Equals(string.Empty))
             {
-                LoggingHandler.Log(ex);
+                return ip;
             }
-            return ip;
+
+            foreach (IPAddress ipa in Dns.GetHostAddresses(Dns.GetHostName()))
+            {
+                if (ipa.AddressFamily.ToString().Equals("InterNetwork"))
+                {
+                    ip = ipa.ToString();
+                    break;
+                }
+            }
+
+            return ip.Trim();
         }
     }
 }

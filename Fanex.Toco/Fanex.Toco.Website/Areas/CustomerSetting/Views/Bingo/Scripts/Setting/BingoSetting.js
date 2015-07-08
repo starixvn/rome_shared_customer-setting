@@ -9,7 +9,8 @@
         if (validCustID && validRoleID) {
             var param = {
                 custId: window.custId,
-                targetRoleId: window.targetRoleId
+                targetRoleId: window.targetRoleId,
+                updatedByRoleID: window.pageRole
             };
             $.ajax({
                 type: 'POST',

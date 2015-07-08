@@ -157,7 +157,7 @@
     </Compile>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\HomePageController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -192,6 +192,45 @@
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Sportsbook\Styles\Sportsbook.css" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\VirtualSports\Scripts\VirtualSportsController.js" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\VirtualSports\Styles\VirtualSports.css" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\back.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\Banner\bg_head_tb.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\btUpdateL.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\btUpdateR.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\Buttons\bgred1_btn.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\Buttons\bgred_btn.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\Buttons\bg_btn.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\calendar1.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\close.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\C_content_tab.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\dec1.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\dec1_disable.jpg" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\dec2.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\dec2_disable.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\dec3.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\dec3_disable.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\dec4.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\dec4_disable.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\email.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\excel.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\folder.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\help.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\icn_add.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\icn_del.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\icn_edit.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\icn_view.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\loading51.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\L_content_tab.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\opened_folder.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\ptL.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\ptR.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\ptRp.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\ptR_down.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\refresh_icon.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\R_content_tab.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\Save.png" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\sorting_asc.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\sorting_desc.gif" />
+    <Content Include="Areas\CustomerSetting\Views\Bingo\Images\undo.png" />
     <Content Include="Areas\CustomerSetting\Views\Bingo\Scripts\Common.js" />
     <Content Include="Areas\CustomerSetting\Views\Bingo\Scripts\CommonPT.js" />
     <Content Include="Areas\CustomerSetting\Views\Bingo\Scripts\Setting\AgentBingoSetting.js" />
@@ -269,6 +308,15 @@
     <Content Include="Areas\CustomerSetting\Views\CloneSetting\Styles\LeftPanel\Images\L_banner\R_tab_left-1.png" />
     <Content Include="Areas\CustomerSetting\Views\CloneSetting\Styles\LeftPanel\Images\L_banner\R_tab_left.png" />
     <Content Include="Areas\CustomerSetting\Views\CloneSetting\Styles\LeftPanel\left_panel.css" />
+    <Content Include="Areas\CustomerSetting\Views\EnableStatus\Readme.txt" />
+    <Content Include="Areas\CustomerSetting\Views\EnableStatus\Index.cshtml" />
+    <None Include="Areas\CustomerSetting\Views\EnableStatus\Styles\EnableStatus.less" />
+    <None Include="Areas\CustomerSetting\Views\EnableStatus\Styles\variables.less" />
+    <None Include="Areas\CustomerSetting\Views\EnableStatus\Templates\Products.config">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Areas\CustomerSetting\Views\EnableStatus\Scripts\EnableStatus.js" />
+    <Content Include="Areas\CustomerSetting\Views\EnableStatus\Templates\SPs.txt" />
     <Content Include="Areas\CustomerSetting\Views\Keno\EnableStatus\Scripts\KenoStatusController.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\EnableStatus\Styles\EnableRacing.css" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\controllers\bet-setting.controller.js" />
@@ -714,6 +762,7 @@
     <Content Include="Areas\Statement\Views\Report\Styles\Statement.css" />
     <Content Include="Areas\Statement\Views\StatementDetails\Scripts\StatementDetailsManager.js" />
     <Content Include="Areas\Statement\Views\StatementDetails\Styles\StatementDetails.css" />
+    <Content Include="Scripts\Index.js" />
     <Content Include="Scripts\_Libs\jQuery\jquery-1.8.2.min.js" />
     <Content Include="Scripts\_Libs\jQuery\Styles\images\ui-bg_flat_60_4264ac_40x100.png" />
     <Content Include="Scripts\_Libs\jQuery\Styles\images\ui-bg_flat_75_5476bb_40x100.png" />
@@ -1112,6 +1161,9 @@
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Keno\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Keno\Content.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\CloneSetting\Index.cshtml" />
+    <None Include="Areas\CustomerSetting\Views\EnableStatus\Templates\Template.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Areas\CustomerSetting\Views\LeftPanel\Document.doc" />
     <None Include="Areas\CustomerSetting\Views\CloneSetting\Styles\CloneSetting.less" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Agent\EditAgent.cshtml" />
@@ -1177,9 +1229,17 @@
       <Project>{F9261CF3-913A-436F-AD9D-6607C190367E}</Project>
       <Name>BetSetting</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Module\Bingo\Bingo.csproj">
+      <Project>{8B0CB9F3-0D8F-4B0B-8F66-931BFE44B40A}</Project>
+      <Name>Bingo %28Module\Bingo\Bingo%29</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Module\Casino\Casino.csproj">
       <Project>{5F8F3877-90E3-48A3-BAD7-4207DCBA088D}</Project>
       <Name>Casino</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Module\EnableStatus\EnableStatus.csproj">
+      <Project>{22F2A79C-5F7A-4A4B-9F4B-1011228914E3}</Project>
+      <Name>EnableStatus %28Module\EnableStatus\EnableStatus%29</Name>
     </ProjectReference>
     <ProjectReference Include="..\Module\Fanex.CustomerSetting.Module.CloneSetting\Fanex.CustomerSetting.Module.CloneSetting.csproj">
       <Project>{37A65793-85E8-4AC4-9254-F5F35BBC2E35}</Project>
@@ -1246,7 +1306,7 @@
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
+          <AutoAssignPort>False</AutoAssignPort>
           <DevelopmentServerPort>55676</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>

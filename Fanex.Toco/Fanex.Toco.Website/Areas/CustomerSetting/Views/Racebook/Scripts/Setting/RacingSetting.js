@@ -39,7 +39,7 @@
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             data: '{"requestContext":' + JSON.stringify(customerPTRacingSetting.context) + '}',
-            beforeSend: function (jqXHR, settings) { parent.Fanex.ExtAcc.BlockUI(); },
+            beforeSend: function (jqXHR, settings) { /*parent.Fanex.ExtAcc.BlockUI(); */},
             success: function (stringCustomer) {
                 customerPTRacingSetting.currentSetting = JSON.parse(stringCustomer);
                 customerPTRacingSetting.oldSetting = JSON.parse(stringCustomer);
@@ -47,7 +47,7 @@
             }
             , error: function (e) {
                 showAlertMessage("err", "Init Customer Error", 1);
-            }, complete: function (jqXHR, textStatus) { parent.Fanex.ExtAcc.UnBlockUI(); }
+            }, complete: function (jqXHR, textStatus) { /*parent.Fanex.ExtAcc.UnBlockUI(); */}
         });
     },
     initHtml: function () {
@@ -110,7 +110,7 @@
                 ', "currentContext":' + JSON.stringify(customerPTRacingSetting.context) +
                 ', "otherSettings":' + JSON.stringify(customerPTRacingSetting.otherSettings) +
                 '}',
-            beforeSend: function (jqXHR, settings) { parent.Fanex.ExtAcc.BlockUI(); },
+            beforeSend: function (jqXHR, settings) { /*parent.Fanex.ExtAcc.BlockUI(); */},
             success: function (result) {
                 $('#divShowInfo').show();
 
@@ -120,7 +120,7 @@
                 else {
                     ptRacingCommon.renderErrorMessage('err', result);
                 }
-                parent.Fanex.ExtAcc.UnBlockUI();
+                //parent.Fanex.ExtAcc.UnBlockUI();
             }
             , error: function (response) {
                 var ErrorMessage = '';
@@ -134,7 +134,7 @@
 
                 $('#divShowInfo').show();
                 showAlertMessage("err", ErrorMessage, 1);
-                parent.Fanex.ExtAcc.UnBlockUI();
+                //parent.Fanex.ExtAcc.UnBlockUI();
             }
         });
     },

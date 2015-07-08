@@ -4,7 +4,7 @@ using System.Web.Mvc;
 
 namespace Fanex.CustomerSetting.Website.Controllers
 {
-    public class HomePageController : Controller
+    public class HomeController : Controller
     {
         //
         // GET: /Home/
