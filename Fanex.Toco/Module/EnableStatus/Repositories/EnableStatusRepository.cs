@@ -84,10 +84,10 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                                 }
 
                                 model.Entities.Add(entity);
-                            }                            
-                        }
+                            }
 
-                        reader.Close();
+                            reader.Close();
+                        }
 
                         var outputValues = objectDb.GetOuputParams();
 
