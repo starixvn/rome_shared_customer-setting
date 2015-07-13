@@ -66,7 +66,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers
             return resourceManager.GetObject(key, CultureInfo.CurrentCulture) as string;
         }
 
-        public static object GetParamValue<T, Z>(string mapProperty, T entity, Z context, bool reverse)
+        public static object GetParamValue<T, Z>(string mapProperty, T entity, Z context, bool reverse = false)
         {
             var props = typeof(T).GetProperties();
             var zprops = typeof(Z).GetProperties();
@@ -97,12 +97,12 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers
             return default(object);
         }
 
-        public static T MapResultValue<T>(string mapProperty, object mapValue, T entity, bool reverse = false)
+        public static T MapResultValue<T>(string mapProperty, object mapValue, T entity, bool reverse = false, string defaultValue = null)
         {
             var props = typeof(T).GetProperties();
             foreach (var property in props)
             {                
-                if (property.Name.Equals(mapProperty, StringComparison.OrdinalIgnoreCase))
+                if (property.Name.Equals(mapProperty, StringComparison.OrdinalIgnoreCase) && string.IsNullOrWhiteSpace(defaultValue))
                 {
                     property.SetValue(entity, reverse ? !(bool)mapValue : mapValue, null);
                     break;

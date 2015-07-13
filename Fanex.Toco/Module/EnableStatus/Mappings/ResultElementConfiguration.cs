@@ -43,5 +43,14 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings
                 return (bool)base["reverse"];
             }
         }
+
+        [ConfigurationProperty("default", IsRequired = false)]
+        public string Default
+        {
+            get
+            {
+                return base["default"] as string;
+            }
+        }
     }
 }
