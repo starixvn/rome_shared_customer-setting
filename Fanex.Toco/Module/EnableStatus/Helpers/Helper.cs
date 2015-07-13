@@ -102,11 +102,19 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers
             var props = typeof(T).GetProperties();
             foreach (var property in props)
             {                
-                if (property.Name.Equals(mapProperty, StringComparison.OrdinalIgnoreCase) && string.IsNullOrWhiteSpace(defaultValue))
+                if (property.Name.Equals(mapProperty, StringComparison.OrdinalIgnoreCase))
                 {
-                    property.SetValue(entity, reverse ? !(bool)mapValue : mapValue, null);
+                    if (!string.IsNullOrWhiteSpace(defaultValue))
+                    {
+                        property.SetValue(entity, defaultValue, null);
+                    }
+                    else
+                    {
+                        property.SetValue(entity, reverse ? !(bool)mapValue : mapValue, null);
+                    }
+
                     break;
-                }
+               }
             }
 
             return entity;
