@@ -77,7 +77,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                                     {
                                         if (reader.GetName(i).Equals(paramResult.Name, StringComparison.OrdinalIgnoreCase))
                                         {
-                                            entity = Helper.MapResultValue(paramResult.MapProperty, reader[i], entity, paramResult.Reverse);
+                                            entity = Helper.MapResultValue(paramResult.MapProperty, reader[i], entity, paramResult.Reverse, paramResult.Default);
                                             break;
                                         }
                                     }
