@@ -318,4 +318,7 @@
   <data name="lblCopyAllStatus" xml:space="preserve">
     <value>从澳洲复制所有狀態</value>
   </data>
+  <data name="WarningPowerKeno" xml:space="preserve">
+    <value>Australia PT setting is being used for Power Keno as well</value>
+  </data>
 </root>

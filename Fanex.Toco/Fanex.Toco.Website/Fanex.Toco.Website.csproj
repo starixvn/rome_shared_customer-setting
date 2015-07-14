@@ -450,6 +450,7 @@
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Images\sucess.gif" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Images\undo.png" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Images\Update.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Images\warning-icn.png" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Partial\BetSetting\BetSettingDemo.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Partial\BetSetting\BetSetting.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Partial\PositionTaking\AgentPositionTaking.htm" />
