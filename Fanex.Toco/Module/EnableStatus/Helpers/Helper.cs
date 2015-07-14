@@ -68,17 +68,17 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers
 
         public static object GetParamValue<T, Z>(string mapProperty, T entity, Z context, bool reverse = false, string defaultValue = null)
         {
+            if (!string.IsNullOrWhiteSpace(defaultValue))
+            {
+                return defaultValue;
+            }
+
             var props = typeof(T).GetProperties();
             var zprops = typeof(Z).GetProperties();
             foreach (var property in props)
             {
                 if (property.Name.Equals(mapProperty, StringComparison.OrdinalIgnoreCase))
                 {
-                    if (!string.IsNullOrWhiteSpace(defaultValue))
-                    {
-                        return defaultValue;
-                    }
-
                     var result = false;
                     var value = property.GetValue(entity, null);
                     value = value == null ? string.Empty : value;
@@ -91,11 +91,6 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers
             {
                 if (property.Name.Equals(mapProperty, StringComparison.OrdinalIgnoreCase))
                 {
-                    if (!string.IsNullOrWhiteSpace(defaultValue))
-                    {
-                        return defaultValue;
-                    }
-
                     var result = false;
                     var value = property.GetValue(context, null);
                     value = value == null ? string.Empty : value;
