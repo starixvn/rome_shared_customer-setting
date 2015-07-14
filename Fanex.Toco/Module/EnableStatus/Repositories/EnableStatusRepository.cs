@@ -53,7 +53,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
 
                 foreach (ParamElementConfiguration item in storedProcedure.ParamCollection)
                 {
-                    param.Add(item.Name.ToLower(), Helper.GetParamValue(item.MapProperty, context, model, item.Reverse));
+                    param.Add(item.Name.ToLower(), Helper.GetParamValue(item.MapProperty, context, model, item.Reverse, item.Default));
                 }
 
                 try
@@ -93,13 +93,13 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
 
                         if (!hasRecord)
                         {
-                            foreach (DictionaryEntry outputValue in outputValues)
+                            foreach (var key in outputValues.Keys)
                             {
                                 foreach (ResultElementConfiguration paramResult in storedProcedure.ResultCollection)
                                 {
-                                    if (outputValue.Key.ToString().Equals(paramResult.Name, StringComparison.OrdinalIgnoreCase))
+                                    if (key.ToString().Equals(paramResult.Name, StringComparison.OrdinalIgnoreCase))
                                     {
-                                        entity = Helper.MapResultValue(paramResult.MapProperty, outputValues[outputValue.Key], entity, paramResult.Reverse, paramResult.Default);
+                                        entity = Helper.MapResultValue(paramResult.MapProperty, outputValues[key], entity, paramResult.Reverse, paramResult.Default);
                                         break;
                                     }
                                 }                                
@@ -133,7 +133,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
 
                 foreach (ParamElementConfiguration item in storedProcedure.ParamCollection)
                 {
-                    param.Add(item.Name.ToLower(), Helper.GetParamValue(item.MapProperty, entity, context, item.Reverse));
+                    param.Add(item.Name.ToLower(), Helper.GetParamValue(item.MapProperty, entity, context, item.Reverse, item.Default));
                 }
 
                 try
