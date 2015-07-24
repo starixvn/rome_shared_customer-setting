@@ -63,11 +63,9 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "BingoBetting")]
         public ActionResult Content(int id, int uplineId, int userId, string siteName)
         {
-            var groups = GroupConfigurations.AllowBettingGroups;
-
             var customer = this.CustomerInfo(id, userId);
 
-            if (customer.RoleId != 4 || groups == null || !customer.SyncBingo)
+            if (customer.RoleId != 4 || !customer.SyncBingo)
             {
                 return this.PartialView("~/Areas/CustomerSetting/Views/Security/AccessDenied.cshtml");
             }
@@ -120,15 +118,13 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
                 return this.ActionDenied(this.Request);
             }
 
-            var groups = GroupConfigurations.AllowBettingGroups;
-
             var customer = this.CustomerInfo(id, userId);
 
             var settings = new JsonSerializerSettings();
             settings.NullValueHandling = NullValueHandling.Ignore;
             settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
-            if (customer.RoleId != 4 || groups == null ||  !customer.SyncBingo)
+            if (customer.RoleId != 4 ||  !customer.SyncBingo)
             {
                 return this.JsonBase(new { ErrorCode = 1, ErrorMessage = "You're not authorized on this function" }, settings);
             }
