@@ -68,7 +68,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
             IList<int> groups = GroupConfigurations.AllowBettingGroups;
             Customer customer = this.CustomerInfo(id, userId);
 
-            if (customer.RoleId != 4 || groups == null || !groups.Contains(customer.GroupId) || !customer.SyncLiveCasino)
+            if (customer.RoleId != 4 || groups == null ||  !customer.SyncLiveCasino)
             {
                 return this.PartialView("~/Areas/CustomerSetting/Views/Security/AccessDenied.cshtml");
             }
@@ -125,7 +125,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
             settings.NullValueHandling = NullValueHandling.Ignore;
             settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
-            if (customer.RoleId != 4 || groups == null || !groups.Contains(customer.GroupId) || !customer.SyncLiveCasino)
+            if (customer.RoleId != 4 || groups == null ||  !customer.SyncLiveCasino)
             {
                 return this.JsonBase(new { ErrorCode = 1, ErrorMessage = "You're not authorized on this function" }, settings);
             }

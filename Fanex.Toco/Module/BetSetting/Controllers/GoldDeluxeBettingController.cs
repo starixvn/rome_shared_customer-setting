@@ -97,7 +97,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
             IList<int> groups = GroupConfigurations.AllowBettingGroups;
             Customer customer = this.CustomerInfo(custId, actorId);
 
-            if (customer.RoleId != 4 || groups == null || !groups.Contains(customer.GroupId) || customer.HideGoldDeluxe)
+            if (customer.RoleId != 4 || groups == null ||  customer.HideGoldDeluxe)
             {
                 return this.PartialView("~/Areas/CustomerSetting/Views/Security/AccessDenied.cshtml");
             }
