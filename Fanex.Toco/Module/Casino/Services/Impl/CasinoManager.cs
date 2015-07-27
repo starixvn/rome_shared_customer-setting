@@ -66,16 +66,16 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var id = synced ? custId : 0;
             var cust = new Customer();
             var dt = synced ? cust.GetCustGameKind(custId) : new BasicInfo().GetGameKind(custInfo.CasinoNo);
-           
+
             if (custInfo.RoleId != Super)
             {
                 throw new Exception("Invalid custId");
             }
-                        
+
             this.GetCustSettingCS(ref custInfo);
             gameModel.IsPtByGameType = custInfo.PTByGameType;
 
-          
+
 
             foreach (DataRow row in dt.Rows)
             {
@@ -94,12 +94,13 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 gameGroup.N3 = !synced ? 0 : Utils.ToDecimal(row["MinPositionTaking"]).Format();
 
                 // Commission
-                if(gameGroup.GameGroupID.Equals(136))
+                if (gameGroup.GameGroupID.Equals(136))
                 {
                     gameGroup.Sco = 0;
                     gameGroup.Mco = 0;
                 }
-                else{
+                else
+                {
                     gameGroup.Sco = maxComm;
                     gameGroup.Mco = !synced ? 0 : Utils.ToDecimal(row["SMAgentRollingRate"]).Format(4);
                 }
@@ -683,7 +684,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
             try
             {
-               bool isEnableCasino = !customerModel.CasinoDisabled || !customerModel.CasinoSync;
+                bool isEnableCasino = !customerModel.CasinoDisabled || !customerModel.CasinoSync;
 
                 if (customerModel.CasinoSync)
                 {
@@ -867,7 +868,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                         customerModel.IsDisableAutoMPT);
                 }
 
-                    // Enable PT/Update max transfer for direct downline only
+                // Enable PT/Update max transfer for direct downline only
                 if (statusUpdated)
                 {
                     enablePTUpdated = cust.UpdateCustEnablePT(custId, true);
@@ -996,7 +997,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                             false,
                             customerModel.IsDisableAutoMPT);
                     }
-                    catch(Exception)
+                    catch (Exception)
                     {
                         settingsInserted = false;
                     }
@@ -1007,7 +1008,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 // Bypass this exception because this customer had setting but update status failed, before.
             }
 
-           
+
             // Update Status for direct downline only
             if ((settingsInserted && !customerModel.CasinoSync) || customerModel.CasinoSync)
             {
@@ -1181,12 +1182,12 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
         {
             switch (AppSession.Language)
             {
-                case "en-US": return original +  "_En";
-                case "zh-TW": return original +  "_Ct"; // Traditional
-                case "zh-CN": return original +  "_Cs"; // Simplified
-                case "ja-JP": return original +  "_Jp";
-                case "th-TH": return original +  "_Th"; // Thai
-                case "ko-KR": return original +  "_Ko";
+                case "en-US": return original + "_En";
+                case "zh-TW": return original + "_Ct"; // Traditional
+                case "zh-CN": return original + "_Cs"; // Simplified
+                case "ja-JP": return original + "_Jp";
+                case "th-TH": return original + "_Th"; // Thai
+                case "ko-KR": return original + "_Ko";
                 default: return original + "_En";
             }
         }
@@ -1972,7 +1973,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 gameType.N3 = !synced ? 0 : Utils.ToDecimal(row["MinPositionTaking"]).Format();
 
                 // Betting limits
-                var stakes = this.GetStakeLevels(custId, gameType.GameTypeID, exchangeId);
+                var stakes = this.GetStakeLevels(custId, gameType.GameTypeID, exchangeId, synced, true);
                 gameType.BettingLimits = stakes;
 
                 s4s.Add(gameType.S4);
@@ -2324,7 +2325,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             return gameTypes;
         }
 
-        private List<StakeLevel> GetStakeLevels(int custId, int gameTypeID, int exchangeId = 0, bool synced = true)
+        private List<StakeLevel> GetStakeLevels(int custId, int gameTypeID, int exchangeId = 0, bool synced = true, bool isSuper = false)
         {
             var cust = new Customer();
             var stakeLevels = new List<StakeLevel>();
@@ -2334,9 +2335,10 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             foreach (DataRow row in dt.Rows)
             {
                 bool isCheck = true;
-                if(!custId.Equals(0))
+                if (!custId.Equals(0))
                 {
-                    isCheck = dt.Columns.IndexOf("IsChecked") != -1 ? Utils.ToBoolean(row["IsChecked"]) : false;
+                    isCheck = (isSuper && !synced) ? true :
+                        dt.Columns.IndexOf("IsChecked") != -1 ? Utils.ToBoolean(row["IsChecked"]) : false;
                 }
 
                 var stake = new StakeLevel
