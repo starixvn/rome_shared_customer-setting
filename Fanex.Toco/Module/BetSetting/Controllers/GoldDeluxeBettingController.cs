@@ -57,7 +57,6 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
         /// <param name="userId">The user identifier.</param>
         /// <param name="siteName">Name of the site.</param>
         /// <returns>ActionResult object.</returns>
-         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "GoldDeluxeBetting")]
         public ActionResult Index(int id, int uplineId, int userId, string siteName)
         {
             var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
