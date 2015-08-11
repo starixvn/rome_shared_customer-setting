@@ -1,11 +1,11 @@
 ﻿USE [bodb02]
 GO
-/****** Object:  StoredProcedure [dbo].[Acc_CustomerSelHRStatus_andy]    Script Date: 06/12/2015 13:06:00 ******/
+/****** Object:  StoredProcedure [dbo].[Acc_CustomerHRStatusSel]    Script Date: 06/12/2015 13:06:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-ALTER PROCEDURE [dbo].[Acc_CustomerSelHRStatus_andy]
+CREATE PROCEDURE [dbo].[Acc_CustomerHRStatusSel]
 	@custid int,
 	@roleid int,
 	@hasdownline bit = 0 output
@@ -24,7 +24,7 @@ Param's Explanation:
 . @hasdownline: Identify CustID has downline or not
 Example: 
 	declare @out bit
-	exec [dbo].[Acc_CustomerSelHRStatus_andy] @custid=1176086, @roleid=2, @hasdownline = @out output
+	exec [dbo].[Acc_CustomerHRStatusSel] @custid=1176086, @roleid=2, @hasdownline = @out output
 	select @out
 */
 
@@ -325,14 +325,11 @@ BEGIN
 		isnull(@DisableDownlines153_51,0)	AS DisableDownlines
 		
 	SELECT * FROM @tmpTable
-	--GRANT EXECUTE ON [dbo].[Acc_CustomerSelHRStatus_andy] TO bodbAdminNet;
-	--GRANT EXECUTE ON [dbo].[Acc_CustomerSelHRStatus_andy] TO bodbExtAccNet;
-	--GRANT EXECUTE ON [dbo].[Acc_CustomerSelHRStatus_andy] TO bodbDownlineNet;
 END
 
 GO
 
-ALTER PROCEDURE [dbo].[Acc_CustomerUpdHRStatus_andy]
+CREATE PROCEDURE [dbo].[Acc_CustomerHRStatusUpd]
 	@custid int,
 	@bettype int,
 	@disable bit,
@@ -342,8 +339,8 @@ ALTER PROCEDURE [dbo].[Acc_CustomerUpdHRStatus_andy]
 	@userid int = 0,
 	@language varchar(5) = 'en-US',	
 	@ip varchar(50) = '',
-	@errcode int = 0 output,
-	@errmsg nvarchar(4000)= output
+	@ErrCode int = 0 output,
+	@ErrMsg nvarchar(4000)= output
 AS
 /*
 Created: 20150610@Andy.Nguyen
@@ -376,7 +373,6 @@ BEGIN
 		BEGIN
 			select @ErrCode = @ErrCode_cur, 
 					@ErrMsg = @ErrMsg_Cur
-			--return
 		END
 		ELSE
 		BEGIN
@@ -401,7 +397,6 @@ BEGIN
 		BEGIN
 			select @ErrCode = @ErrCode_cur, 
 					@ErrMsg = @ErrMsg_Cur
-			--return
 		END
 		ELSE
 		BEGIN
@@ -426,7 +421,6 @@ BEGIN
 		BEGIN
 			select @ErrCode = @ErrCode_cur, 
 					@ErrMsg = @ErrMsg_Cur
-			--return
 		END
 		ELSE
 		BEGIN
@@ -451,7 +445,6 @@ BEGIN
 		BEGIN
 			select @ErrCode = @ErrCode_cur, 
 					@ErrMsg = @ErrMsg_Cur
-			--return
 		END
 		ELSE
 		BEGIN
@@ -476,7 +469,6 @@ BEGIN
 		BEGIN
 			select @ErrCode = @ErrCode_cur, 
 					@ErrMsg = @ErrMsg_Cur
-			--return
 		END
 		ELSE
 		BEGIN
@@ -501,16 +493,11 @@ BEGIN
 		BEGIN
 			select @ErrCode = @ErrCode_cur, 
 					@ErrMsg = @ErrMsg_Cur
-			--return
 		END
 		ELSE
 		BEGIN
 			Select @ErrCode = @ErrCode, 
 					@ErrMsg = @ErrMsg
 		END	
-	END
-	
-	--GRANT EXECUTE ON [dbo].[Acc_CustomerUpdHRStatus_andy] TO bodbAdminNet;
-	--GRANT EXECUTE ON [dbo].[Acc_CustomerUpdHRStatus_andy] TO bodbExtAccNet;
-	--GRANT EXECUTE ON [dbo].[Acc_CustomerUpdHRStatus_andy] TO bodbDownlineNet;
+	END	
 END
