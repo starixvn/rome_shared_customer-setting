@@ -71,6 +71,13 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "GoldDeluxeBetting")]
         public ActionResult UpdateGameSetting(EditSettingViewModel model)
         {
+            Customer customer = this.CustomerInfo(model.CustId, model.ActorId);
+
+            if (model.Level != CustomerLevel.Super || customer.HideGoldDeluxe)
+            {
+                return this.JsonBase(new { ErrorCode = 1, ErrorMessage = "You're not authorized on this function" });
+            }
+
             var param = Mapper.Map<EditSettingViewModel, UpdateGameSettingParameters>(model);
             var updateResult = new MultipleCommandResults
             {
@@ -94,10 +101,9 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
             string language = "E",
             FormType formType = FormType.ReadOnly)
         {
-            IList<int> groups = GroupConfigurations.AllowBettingGroups;
             Customer customer = this.CustomerInfo(custId, actorId);
 
-            if (customer.RoleId != 4 || groups == null || !groups.Contains(customer.GroupId) || customer.HideGoldDeluxe)
+            if (customer.RoleId != 4 ||  customer.HideGoldDeluxe)
             {
                 return this.PartialView("~/Areas/CustomerSetting/Views/Security/AccessDenied.cshtml");
             }
