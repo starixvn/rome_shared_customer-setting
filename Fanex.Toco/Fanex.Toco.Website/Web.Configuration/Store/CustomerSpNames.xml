@@ -78,7 +78,7 @@
     <Setting Key="EAS_CustomerSelBySAg" SpName="EAS_CustomerSelBySAg" DbName="checkin" Plain="0" />
     <Setting Key="EAS_CustomerSelByMAg" SpName="EAS_CustomerSelByMAg" DbName="checkin" Plain="0" />
     <Setting Key="EAS_CustomerSelByAg" SpName="EAS_CustomerSelByAg" DbName="checkin" Plain="0" />
-    <Setting Key="Age_CustomerSelUserInfo" SpName="Age_CustomerSelUserInfo" DbName="archive" Plain="0" />
+    <Setting Key="Age_CustomerSelUserInfo" SpName="Age_CustomerSelUserInfo" DbName="main" Plain="0" />
     <Setting Key="Acc_CustomerSelTransferOption" SpName="Acc_CustomerSelTransferOption" DbName="archive" Plain="0" />
     <Setting Key="Age_CustomerUpdPwd" SpName="Age_CustomerUpdPwd" DbName="main" Plain="0" />
     <Setting Key="Age_CustomerUpdUserInfo" SpName="Age_CustomerUpdUserInfo" DbName="main" Plain="0" />
@@ -178,16 +178,16 @@
   </Function>
 
   <Function Name="PTRacing - Setting">
-    <Setting Key="Acc_CustomerSelHRSuper_All" SpName="Acc_CustomerSelHRSuper_All" DbName="archive" Plain="0" />
+    <Setting Key="Acc_CustomerSelHRSuper_All" SpName="Acc_CustomerSelHRSuper_All" DbName="main" Plain="0" />
     <Setting Key="Acc_CustomerUpdSuperHR_All" SpName="Acc_CustomerUpdSuperHR_All" DbName="main"  />
   </Function>
 
   <Function Name="Racing Setting">
-    <Setting Key="GetRacingStatus" SpName="Acc_CustomerSelRBStatus" DbName="db053" Plain="0"/>
-    <Setting Key="GetSuperSetting" SpName="Acc_CustomerSelHRSuper_All" DbName="db053" Plain="0"/>
-    <Setting Key="GetMasterSetting" SpName="Acc_CustomerSelHRMaster_All" DbName="db053" Plain="0"/>
-    <Setting Key="GetAgentSetting" SpName="Acc_CustomerSelHRAgent_All" DbName="db053" Plain="0"/>
-    <Setting Key="GetMemberSetting" SpName="Acc_CustomerSelHRMember_All" DbName="db053" Plain="0"/>
+    <Setting Key="GetRacingStatus" SpName="Acc_CustomerSelRBStatus" DbName="main" Plain="0"/>
+    <Setting Key="GetSuperSetting" SpName="Acc_CustomerSelHRSuper_All" DbName="main" Plain="0"/>
+    <Setting Key="GetMasterSetting" SpName="Acc_CustomerSelHRMaster_All" DbName="main" Plain="0"/>
+    <Setting Key="GetAgentSetting" SpName="Acc_CustomerSelHRAgent_All" DbName="main" Plain="0"/>
+    <Setting Key="GetMemberSetting" SpName="Acc_CustomerSelHRMember_All" DbName="main" Plain="0"/>
 
     <Setting Key="UpdateStatus" SpName="Acc_CustomerUpdRBStatus" DbName="main" Plain="0"/>
     <Setting Key="UpdateSuperSetting" SpName="Acc_CustomerUpdSuperHR_All" DbName="main" Plain="0"/>
@@ -216,12 +216,14 @@
     <Setting Key="CustomerSetting_SiteSel" SpName="Acc_SiteSel" DbName="db053" Plain="0" />
   </Function>
   <Function Name="Enable Status">
-    <Setting Key="Acc_CustomerSelKenoStatus" SpName="Acc_CustomerSelKenoStatus" DbName="DBAGE.bodb02.bodbAdminNet"  />
+    <Setting Key="Acc_CustomerSelKenoStatus" SpName="Acc_CustomerSelKenoStatus" DbName="DBTXN.CustDB.bodbAdminNet"  />
     <Setting Key="Acc_CustomerUpdDisableKeno" SpName="Acc_CustomerUpdDisableKeno" DbName="DBTXN.CustDB.bodbAdminNet" Plain="0" />
     <Setting Key="Acc_CustomerUpdDisableESports" SpName="Acc_CustomerUpdDisableESports" DbName="DBTXN.CustDB.bodbAdminNet" Plain="0" />
     <Setting Key="Acc_CustomerUpdDisableNumber" SpName="Acc_CustomerUpdDisableNumber" DbName="DBTXN.CustDB.bodbAdminNet" Plain="0" />
     <Setting Key="Acc_CustomerUpdDisableHRFixedOdds" SpName="Acc_CustomerUpdDisableHRFixedOdds" DbName="DBTXN.CustDB.bodbAdminNet" Plain="0" />   
     <Setting Key="Acc_CustomerUpdDisableGoldDeluxe" SpName="Acc_CustomerUpdDisableGoldDeluxe" DbName="DBTXN.CustDB.bodbAdminNet"/>
   </Function>
-  
+  <Function Name="Bingo">
+    <Setting Key="BG_UP_Admin_Site_BySiteNo" SpName="BG_UP_Admin_Site_BySiteNo" DbName="BG_BackupDB" Plain="1"/>    
+  </Function>
 </Functions>
