@@ -57,7 +57,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             decimal maxComm = Utils.ToDecimal(ConfigurationManager.AppSettings["MaxComm"]).Format(4);
             if (custInfo.IsDeposit)
             {
-                ArrayList depositSetting = new BasicInfo().GetCasinoSetting(custInfo.CasinoNo);
+                ArrayList depositSetting = new BasicInfo().GetCasinoSetting("02");
                 maxPT = Utils.ToDecimal(depositSetting[3]).Format(2);
                 maxComm = Utils.ToDecimal(depositSetting[4]).Format(2);
             }
