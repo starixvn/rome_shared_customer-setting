@@ -84,7 +84,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
                     var allCustomerInfoParam = new Hashtable();
                     allCustomerInfoParam.Add("username", customerDetail.UserName);
                     DbResult allCustomerInfoDr = DbHelper.ExecuteDbResult("SelAllInfo", allCustomerInfoParam, 300);
-                    customerDetail.IsDeposit = Utils.ToBoolean(allCustomerInfoDr.ResultSet.Tables[0].Rows[0]["isdeposit"]);                    
+                    customerDetail.IsDeposit = Utils.ToBoolean(allCustomerInfoDr.ResultSet.Tables[0].Rows[0]["isdeposit"]);
+                    customerDetail.SiteName = Utils.ToString(allCustomerInfoDr.ResultSet.Tables[0].Rows[0]["site"]);
                 }
 
                 try

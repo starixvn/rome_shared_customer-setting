@@ -106,7 +106,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 }
 
                 // Assign game types
-                var gameTypes = this.GetGameTypeSuper(id, maxPT, maxComm, gameGroup.GameGroupID, synced, ref gameGroup, custInfo.Currency, gameModel.IsPtByGameType);
+                var gameTypes = this.GetGameTypeSuper(id, maxPT, maxComm, gameGroup.GameGroupID, synced, ref gameGroup, custInfo.Currency, gameModel.IsPtByGameType, custInfo.SiteName);
                 gameGroup.GameTypes = gameTypes;
 
                 gameGroups.Add(gameGroup);
@@ -1946,7 +1946,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             return dt;
         }
 
-        private List<GameType> GetGameTypeSuper(int custId, decimal maxPT, decimal comm, int gameKindID, bool synced, ref GameGroup gameGroup, int exchangeId = 0, bool isPTByGameType = false)
+        private List<GameType> GetGameTypeSuper(int custId, decimal maxPT, decimal comm, int gameKindID, bool synced, ref GameGroup gameGroup, int exchangeId = 0, bool isPTByGameType = false, string site = null)
         {
             var cust = new Customer();
             var gameTypes = new List<GameType>();
@@ -1973,7 +1973,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 gameType.N3 = !synced ? 0 : Utils.ToDecimal(row["MinPositionTaking"]).Format();
 
                 // Betting limits
-                var stakes = this.GetStakeLevels(custId, gameType.GameTypeID, exchangeId, synced, true);
+                var stakes = this.GetStakeLevels(custId, gameType.GameTypeID, exchangeId, synced, true, site);
                 gameType.BettingLimits = stakes;
 
                 s4s.Add(gameType.S4);
@@ -2325,12 +2325,12 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             return gameTypes;
         }
 
-        private List<StakeLevel> GetStakeLevels(int custId, int gameTypeID, int exchangeId = 0, bool synced = true, bool isSuper = false)
+        private List<StakeLevel> GetStakeLevels(int custId, int gameTypeID, int exchangeId = 0, bool synced = true, bool isSuper = false, string site = null)
         {
             var cust = new Customer();
             var stakeLevels = new List<StakeLevel>();
-            var dt = custId != 0 ? cust.GetCustStakeLevel(custId, gameTypeID) : new BasicInfo().GetGameTypeStakeLevel(gameTypeID, exchangeId);
-            dt = dt == null ? new BasicInfo().GetGameTypeStakeLevel(gameTypeID, exchangeId) : dt;
+            var dt = custId != 0 ? cust.GetCustStakeLevel(custId, gameTypeID) : new BasicInfo() { SiteName = site }.GetGameTypeStakeLevel(gameTypeID, exchangeId);
+            dt = dt == null ? new BasicInfo() { SiteName = site }.GetGameTypeStakeLevel(gameTypeID, exchangeId) : dt;
 
             foreach (DataRow row in dt.Rows)
             {
