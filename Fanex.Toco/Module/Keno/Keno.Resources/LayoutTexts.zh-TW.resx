@@ -318,4 +318,7 @@
   <data name="lblCopyAllStatus" xml:space="preserve">
     <value>從澳洲複製所有狀態</value>
   </data>
+  <data name="WarningPowerKeno" xml:space="preserve">
+    <value>澳大利亞占成設定也同時使用於Max Keno</value>
+  </data>
 </root>

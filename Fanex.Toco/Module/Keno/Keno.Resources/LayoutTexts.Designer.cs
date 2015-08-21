@@ -662,5 +662,14 @@ namespace Fanex.CustomerSetting.Module.Keno.Resources {
                 return ResourceManager.GetString("Username", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Australia PT setting is being used for Max Keno as well.
+        /// </summary>
+        public static string WarningPowerKeno {
+            get {
+                return ResourceManager.GetString("WarningPowerKeno", resourceCulture);
+            }
+        }
     }
 }

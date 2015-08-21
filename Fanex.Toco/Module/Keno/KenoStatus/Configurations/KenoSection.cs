@@ -64,6 +64,15 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Configurations
                 return (string)base["exclude"];
             }
         }
+
+        [ConfigurationProperty("excludesetting", IsRequired = false)]
+        public string ExcludeSettingBetTypes
+        {
+            get
+            {
+                return (string)base["excludesetting"];
+            }
+        }
                 
         public IList<int> ExcludeBetTypeList
         {
@@ -72,6 +81,21 @@ namespace Fanex.CustomerSetting.Module.KenoStatus.Configurations
                 var excludes = this.ExcludeBetTypes.Split(new string[] { "," }, System.StringSplitOptions.RemoveEmptyEntries);
                 var results = new List<int>();
                 excludes.ToList().ForEach(o => 
+                {
+                    results.Add(Utils.ToInt32(o));
+                });
+
+                return results;
+            }
+        }
+
+        public IList<int> ExcludeSettingBetTypeList
+        {
+            get
+            {
+                var excludes = this.ExcludeSettingBetTypes.Split(new string[] { "," }, System.StringSplitOptions.RemoveEmptyEntries);
+                var results = new List<int>();
+                excludes.ToList().ForEach(o =>
                 {
                     results.Add(Utils.ToInt32(o));
                 });

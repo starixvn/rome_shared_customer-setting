@@ -318,8 +318,6 @@
     </None>
     <Content Include="Areas\CustomerSetting\Views\EnableStatus\Scripts\EnableStatus.js" />
     <Content Include="Areas\CustomerSetting\Views\EnableStatus\Templates\SPs.txt" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\EnableStatus\Scripts\KenoStatusController.js" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\EnableStatus\Styles\EnableRacing.css" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\controllers\bet-setting.controller.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\controllers\main.controller.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\controllers\position-taking.controller.js" />
@@ -450,6 +448,7 @@
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Images\sucess.gif" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Images\undo.png" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Images\Update.png" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Images\warning-icn.png" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Partial\BetSetting\BetSettingDemo.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Partial\BetSetting\BetSetting.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Partial\PositionTaking\AgentPositionTaking.htm" />
@@ -1158,7 +1157,6 @@
     <Content Include="Areas\CustomerSetting\Views\Racebook\Config\RacingSection.config" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\AgentMinMaxPT.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Config\SearchCopySetting.config" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\EnableStatus\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Keno\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Keno\Content.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\CloneSetting\Index.cshtml" />
@@ -1182,7 +1180,6 @@
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Partial\PositionTaking\_SuperPositionTaking.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\SuperOnMember\SuperEditMember.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Super\EditSuper.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\EnableStatus\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Shared\_Layout.cshtml" />
     <None Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Accounting\theme-color.less" />
     <None Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Agent\theme-color.less" />
