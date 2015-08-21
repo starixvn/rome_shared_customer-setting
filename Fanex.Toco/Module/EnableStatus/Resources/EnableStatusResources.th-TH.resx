@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="accountDisabled" xml:space="preserve">
-    <value>Account was disabled</value>
+    <value>บัญชีถูกปิดการใช้งาน</value>
   </data>
   <data name="agent" xml:space="preserve">
-    <value>Agent</value>
+    <value>ตัวแทน</value>
   </data>
   <data name="all" xml:space="preserve">
-    <value>All</value>
+    <value>ทั้งหมด</value>
   </data>
   <data name="b15131" xml:space="preserve">
     <value>SA Tote</value>
@@ -169,10 +169,10 @@
     <value>Live Casino</value>
   </data>
   <data name="master" xml:space="preserve">
-    <value>Master</value>
+    <value>ตัวแทนหลัก</value>
   </data>
   <data name="member" xml:space="preserve">
-    <value>Member</value>
+    <value>สมาชิก</value>
   </data>
   <data name="poker" xml:space="preserve">
     <value>Poker</value>
@@ -190,13 +190,13 @@
     <value>Harness</value>
   </data>
   <data name="submit" xml:space="preserve">
-    <value>Submit</value>
+    <value>ล่าสุด</value>
   </data>
   <data name="successMsg" xml:space="preserve">
-    <value>Status updated successfully</value>
+    <value>สถานะการปรับปรุงเรียบร้อยแล้ว</value>
   </data>
   <data name="super" xml:space="preserve">
-    <value>Super</value>
+    <value>สูงสุด</value>
   </data>
   <data name="warningKenoBeijing" xml:space="preserve">
     <value>Australia setting is being used for Beijing as well</value>

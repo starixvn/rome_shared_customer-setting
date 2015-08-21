@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="accountDisabled" xml:space="preserve">
-    <value>Account was disabled</value>
+    <value>계정이 비활성화되었습니다.</value>
   </data>
   <data name="agent" xml:space="preserve">
-    <value>Agent</value>
+    <value>에이전트</value>
   </data>
   <data name="all" xml:space="preserve">
-    <value>All</value>
+    <value>모든</value>
   </data>
   <data name="b15131" xml:space="preserve">
     <value>SA Tote</value>
@@ -169,10 +169,10 @@
     <value>Live Casino</value>
   </data>
   <data name="master" xml:space="preserve">
-    <value>Master</value>
+    <value>마스터</value>
   </data>
   <data name="member" xml:space="preserve">
-    <value>Member</value>
+    <value>회원</value>
   </data>
   <data name="poker" xml:space="preserve">
     <value>Poker</value>
@@ -190,13 +190,13 @@
     <value>Harness</value>
   </data>
   <data name="submit" xml:space="preserve">
-    <value>Submit</value>
+    <value>업데이트</value>
   </data>
   <data name="successMsg" xml:space="preserve">
-    <value>Status updated successfully</value>
+    <value>상태가 성공적으로 업데이트되었습니다.</value>
   </data>
   <data name="super" xml:space="preserve">
-    <value>Super</value>
+    <value>슈퍼</value>
   </data>
   <data name="warningKenoBeijing" xml:space="preserve">
     <value>Australia setting is being used for Beijing as well</value>
