@@ -117,14 +117,56 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="accountDisabled" xml:space="preserve">
+    <value>Account was disabled</value>
+  </data>
   <data name="agent" xml:space="preserve">
     <value>Agent</value>
+  </data>
+  <data name="all" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="b15131" xml:space="preserve">
+    <value>SA Tote</value>
+  </data>
+  <data name="b15141" xml:space="preserve">
+    <value>UK/Irish Tote</value>
+  </data>
+  <data name="b15151" xml:space="preserve">
+    <value>Aust Tote</value>
+  </data>
+  <data name="b15241" xml:space="preserve">
+    <value>UK/Irish Tote</value>
+  </data>
+  <data name="b15251" xml:space="preserve">
+    <value>Aust Tote</value>
+  </data>
+  <data name="b15351" xml:space="preserve">
+    <value>Aust Tote</value>
+  </data>
+  <data name="bingo" xml:space="preserve">
+    <value>Bingo</value>
+  </data>
+  <data name="bonus" xml:space="preserve">
+    <value>Bonus</value>
+  </data>
+  <data name="casino" xml:space="preserve">
+    <value>Casino</value>
+  </data>
+  <data name="disable" xml:space="preserve">
+    <value>Disable</value>
   </data>
   <data name="enable" xml:space="preserve">
     <value>Enable</value>
   </data>
   <data name="enableDownline" xml:space="preserve">
-    <value>Enable Downlines</value>
+    <value>다운라인 활성화하기</value>
+  </data>
+  <data name="hrfixedodds" xml:space="preserve">
+    <value>HR Fixed Odds</value>
+  </data>
+  <data name="livecasino" xml:space="preserve">
+    <value>Live Casino</value>
   </data>
   <data name="master" xml:space="preserve">
     <value>Master</value>
@@ -132,7 +174,31 @@
   <data name="member" xml:space="preserve">
     <value>Member</value>
   </data>
+  <data name="poker" xml:space="preserve">
+    <value>Poker</value>
+  </data>
+  <data name="racing" xml:space="preserve">
+    <value>Racing</value>
+  </data>
+  <data name="s151" xml:space="preserve">
+    <value>Horse Racing</value>
+  </data>
+  <data name="s152" xml:space="preserve">
+    <value>Greyhound</value>
+  </data>
+  <data name="s153" xml:space="preserve">
+    <value>Harness</value>
+  </data>
+  <data name="submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="successMsg" xml:space="preserve">
+    <value>Status updated successfully</value>
+  </data>
   <data name="super" xml:space="preserve">
     <value>Super</value>
+  </data>
+  <data name="warningKenoBeijing" xml:space="preserve">
+    <value>Australia setting is being used for Beijing as well</value>
   </data>
 </root>
