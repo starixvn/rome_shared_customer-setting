@@ -88,7 +88,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
                     customerDetail.SiteName =
                         customerDetail.IsDeposit ?
                         Utils.ToString(allCustomerInfoDr.ResultSet.Tables[0].Rows[0]["site"]) :
-                        null;
+                        "ibcbet";
                 }
 
                 try
