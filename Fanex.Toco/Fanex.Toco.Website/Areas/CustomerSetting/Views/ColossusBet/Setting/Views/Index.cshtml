@@ -1,0 +1,195 @@
+﻿@using Newtonsoft.Json
+@using Newtonsoft.Json.Serialization
+@using Fanex.CustomerSetting.Module.Keno.Resources;
+<!DOCTYPE html>
+<html ng-app='colossusBetSettingModule' id="ng-app" >
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Areas/CustomerSetting/Views/Keno/Setting/Styles/keno-setting.less"
+        rel="stylesheet" type="text/css" />
+    <link href="~/Areas/CustomerSetting/Views/Keno/Setting/Styles/Accounting/theme-color.less"
+        rel="stylesheet" type="text/css" />
+    <link href="~/Areas/CustomerSetting/Views/Keno/Setting/Scripts/Tipsy/tipsy.css" rel="stylesheet"
+        type="text/css" />
+    @{
+        string positionTakingJsName = string.Empty;
+        var colossusBetSetting = JsonConvert.SerializeObject(Model, Formatting.None, new JsonSerializerSettings
+        {
+            ContractResolver = new CamelCasePropertyNamesContractResolver(),
+            NullValueHandling = NullValueHandling.Ignore
+        }); 
+    }
+</head>
+<body>
+    <div ng-controller="mainController" class="content">
+        <table cellspacing="0px" cellpadding="0px" border="0" class="maincontent_header">
+            <tbody>
+                <tr>
+                    <td class="maincontent_headerL">
+                    </td>
+                    <td class="maincontent_headerC fixfont">
+                        Update ColossusBet
+                    </td>
+                    <td class="maincontent_headerR">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="divShowInfo" class="maincontent_box tableWidth">
+        </div>
+        <div id="customerInfo">
+            <table class="tableColor tableWidth">
+                <tr>
+                    <td colspan="4" class=" header c b ">
+                        General Information
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col15percent formatCol r b betSetting">
+                        Username
+                    </td>
+                    <td class="col35percent formatCol l betSetting">
+                        <span ng-bind="customerInformation.firstName"></span>
+                    </td>
+                    <td class="col15percent formatCol r b betSetting">
+                        Nickname
+                    </td>
+                    <td class="col35percent formatCol l betSetting">
+                        <span ng-bind="customerInformation.lastName"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col15percent formatCol r b betSetting">
+                        @LayoutTexts.FirstName
+                    </td>
+                    <td class="col35percent formatCol l betSetting">
+                        <span ng-bind="customerInformation.firstName"></span>
+                    </td>
+                    <td class="formatCol r b betSetting">
+                        @LayoutTexts.Phone
+                    </td>
+                    <td class="formatCol l betSetting">
+                        <span ng-bind="customerInformation.phone"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col15percent formatCol r b betSetting">
+                        @LayoutTexts.LastName
+                    </td>
+                    <td class="col35percent formatCol l betSetting">
+                        <span ng-bind="customerInformation.lastName"></span>
+                    </td>
+                    <td class="formatCol r b betSetting">
+                        @LayoutTexts.MobilePhone
+                    </td>
+                    <td class="formatCol l betSetting">
+                        <span ng-bind="customerInformation.mobilePhone"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="formatCol r b betSetting">
+                        @LayoutTexts.Fax
+                    </td>
+                    <td class="formatCol l betSetting">
+                        <span ng-bind="customerInformation.fax"></span>
+                    </td>
+                    <td class="formatCol r b betSetting">
+                    </td>
+                    <td class="formatCol l betSetting">
+                    </td>
+                </tr>
+            </table>
+            <table class="tableColor tableWidth" ng-controller="statusController">
+                <tr>
+                    <td colspan="4" class="header c b">
+                        <span>Status</span>
+                        <input ng-class-name="btnSave" check-disable-element ng-model="$parent.isStatusPartial"
+                            ng-click="updated(true, 'StatusPartial')" type="button" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="formatCol l betSetting" style="height: 34px;">
+                        <span class="b" style="padding-left: 30px;">Colossus Bet </span>
+                        <div style="display: inline-block; padding-left: 30px;">
+                            <input type="checkbox" />
+                            Enable
+                            <input type="checkbox" />
+                            Enable Downline</div>
+                    </td>
+                </tr>
+            </table>
+            <table class="tableColor tableWidth" ng-controller="commissionController">
+                <tr>
+                    <td colspan="4" class="header c b">
+                        <span>Commission</span>
+                        <input ng-class-name="btnSave" check-disable-element ng-model="$parent.isComissionPartial"
+                            ng-click="updated(true, 'ComissionPartial')" type="button" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="formatCol l betSetting" style="height: 34px;">
+                        <div class="b" style="padding-left: 30px; width: 150px; display: inline-block;">
+                            Super Commision %
+                        </div>
+                        <div style="display: inline-block; padding-left: 30px; padding-left: 30px;">
+                         <input input-format  pattern="[0-9]+([\.,][0-9]+)*"  id="commissionInputId" ng-model="comissionPartial.commisionValue" class="r col50percent"
+                             type="text" title=""  style="text-align: right; padding-right: 5px;" />
+                            <= <span ng-bind="comissionPartial.maxCommisionValue"></span></div>
+                    </td>
+                </tr>
+            </table>
+            <table class="tableColor tableWidth" ng-controller="cashInShareController">
+                <tr>
+                    <td colspan="4" class="header c b">
+                        <span>Cash-In Share </span>
+                        <input ng-class-name="btnSave" check-disable-element ng-model="$parent.isCashInSharePartial"
+                            ng-click="updated(true, 'CashInSharePartial')" type="button" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="formatCol l betSetting" style="height: 34px;">
+                        <div class="b" style="padding-left: 30px; width: 150px; display: inline-block;">
+                            Super Cash-In Share %
+                        </div>
+                        <div style="display: inline-block; padding-left: 30px;">
+                             <input input-format  pattern="[0-9]+([\.,][0-9]+)*" id="cashInShareInputId" ng-model="cashInSharePartial.cashInShareValue" class="r col50percent"
+                             type="text" title=""  style="text-align: right; padding-right: 5px;" />
+                            <= <span ng-bind="cashInSharePartial.maxCashInShareValue"></span></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="btnLeft">
+            <input ng-class-name="btnUpdate" check-disable-element ng-model="isUpdatedAll" ng-click="updated(false)"
+                value="Update" type="button" class="btnUpdate b" />
+        </div>
+    </div>
+</body>
+<script src="@Url.Content("~/Areas/CustomerSetting/Scripts/jquery.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Areas/CustomerSetting/Scripts/jquery.blockUI.1.33.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Areas/CustomerSetting/Scripts/jquery-ui-1.9.1.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Areas/CustomerSetting/Scripts/angular.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Areas/CustomerSetting/Scripts/Validators.js")" type="text/javascript"></script>
+
+<script src="@Url.Content("~/Areas/CustomerSetting/Scripts/Fanex.CustomerSetting.Core.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Areas/CustomerSetting/Views/ColossusBet/Setting/Scripts/controllers/main.controller.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Areas/CustomerSetting/Views/ColossusBet/Setting/Scripts/controllers/status.controller.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Areas/CustomerSetting/Views/ColossusBet/Setting/Scripts/controllers/cashInShare.controller.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Areas/CustomerSetting/Views/ColossusBet/Setting/Scripts/controllers/commission.controller.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Areas/CustomerSetting/Views/ColossusBet/Setting/Scripts/repositories/repositories.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Areas/CustomerSetting/Views/ColossusBet/Setting/Scripts/directives/commonDirective.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Areas/CustomerSetting/Views/ColossusBet/Setting/Scripts/services/commonService.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Areas/CustomerSetting/Views/ColossusBet/Setting/Scripts/Tipsy/jquery.tipsy.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    var model = JSON.parse(Fanex.CustomerSetting.Core.DecodeHtml('@colossusBetSetting'));
+    var domain = '@Url.Content("~")';
+    var resources = {
+        successful: "@Messages.Msg_0",
+        failed: "@Messages.UpdatedFail",
+        more_than: "@Messages.MoreThan",
+        less_than: "@Messages.LessThan"
+    };
+</script>
+@*@RenderSection("scripts", required: false)*@
+</html>
