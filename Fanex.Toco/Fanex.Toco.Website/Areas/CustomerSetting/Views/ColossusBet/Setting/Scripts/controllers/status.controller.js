@@ -2,6 +2,7 @@
 
 ColossusBetModule.controller('statusController', function ($scope, colossusBetRepositories) {
     colossusBetRepositories.getData().then(function () {
+        $scope.originalstatusPartial = angular.copy($scope.statusPartial);
         $scope.$watch('statusPartial.isEnabled', function (newValue, oldValue) {
             if (newValue !== oldValue) {
                 if ($scope.originalstatusPartial.isEnabled) {

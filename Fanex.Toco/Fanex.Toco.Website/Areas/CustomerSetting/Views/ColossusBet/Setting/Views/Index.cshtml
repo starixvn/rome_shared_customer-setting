@@ -112,9 +112,9 @@
                     <td colspan="4" class="formatCol l betSetting" style="height: 34px;">
                         <span class="b" style="padding-left: 30px;">Colossus Bet </span>
                         <div style="display: inline-block; padding-left: 30px;">
-                            <input type="checkbox" />
+                             <input ng-disabled="!statusPartial.upline.isEnabled " type="checkbox" ng-model="statusPartial.isEnabled" />
                             Enable
-                            <input type="checkbox" />
+                            <input ng-disabled="isDownlinechkDisabled"  type="checkbox" ng-model="statusPartial.isDownlinesEnabled" />
                             Enable Downline</div>
                     </td>
                 </tr>

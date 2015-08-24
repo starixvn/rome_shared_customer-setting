@@ -25,7 +25,12 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
             {
                 IsEnabled = true,
                 IsDownlinesEnabled = true,
-                IsStatusUpdated = false
+                IsStatusUpdated = false,
+                Upline = new Status
+                {
+                    IsEnabled = true,
+                    IsDownlinesEnabled = true
+                }
             },
             ComissionPartial = new Comission()
            {
