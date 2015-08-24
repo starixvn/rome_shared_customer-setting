@@ -9,12 +9,12 @@ ColossusBetModule.controller('commissionController', function ($scope, colossusB
                     if ($scope.comissionPartial.commisionValue > $scope.comissionPartial.maxCommisionValue) {
                         commonService.createTooltip(element, "Input must be less than " + $scope.comissionPartial.maxCommisionValue);
                         element.addClass('invalidValue');
-                        $scope.$parent.isComissionPartial = false;
+                        $scope.comissionPartial.isCommisionUpdated = false;
                         return;
                     }
 
                     element.removeClass('invalidValue');
-                    $scope.$parent.isComissionPartial = true;
+                    $scope.comissionPartial.isCommisionUpdated = true;
                 }
             }, true);
 

@@ -9,12 +9,12 @@ ColossusBetModule.controller('cashInShareController', function ($scope, colossus
                     if ($scope.cashInSharePartial.cashInShareValue > $scope.cashInSharePartial.maxCashInShareValue) {
                         commonService.createTooltip(element, "Input must be less than " + $scope.cashInSharePartial.maxCashInShareValue);
                         element.addClass('invalidValue');
-                        $scope.$parent.isCashInSharePartial = false;
+                        $scope.cashInSharePartial.isCashInShareUpdated = false;
                         return;
                     }
 
                     element.removeClass('invalidValue');
-                    $scope.$parent.isCashInSharePartial = true;
+                    $scope.cashInSharePartial.isCashInShareUpdated = true;
                 }
             }, true);
 

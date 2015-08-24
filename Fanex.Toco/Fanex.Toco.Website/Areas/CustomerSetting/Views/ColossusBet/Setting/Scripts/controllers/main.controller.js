@@ -11,15 +11,11 @@ ColossusBetModule.controller('mainController', function ($scope, $timeout, colos
             $scope.cashInSharePartial = $scope.colossusBetSetting.cashInSharePartial;
 
             $scope.isUpdatedAll = false;
-            $scope.isStatusPartial = false;
-            $scope.isComissionPartial = false;
-            $scope.isCashInSharePartial = false;
-
             $scope.errors = {};
 
-            $scope.$watch('[isStatusPartial, isComissionPartial, isCashInSharePartial]', function (newValue, oldValue) {
+            $scope.$watch('[statusPartial.isStatusUpdated, comissionPartial.isCommisionUpdated, cashInSharePartial.isCashInShareUpdated]', function (newValue, oldValue) {
                 if (newValue !== oldValue) {
-                    $scope.isUpdatedAll = $scope.isStatusPartial || $scope.isComissionPartial || $scope.isCashInSharePartial;
+                    $scope.isUpdatedAll = $scope.statusPartial.isStatusUpdated || $scope.comissionPartial.isCommisionUpdated || $scope.cashInSharePartial.isCashInShareUpdated;
                 }
             }, true);
 
