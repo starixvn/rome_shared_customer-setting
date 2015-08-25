@@ -50,7 +50,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
         ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "ColossusBetSetting")]
         public ActionResult EditSuper()
         {
-            return View(Constants.EditSuperCshtml, modelFake);
+            return View(Constants.EditColossusBetCshtml, modelFake);
         }
 
         [HttpPost]
@@ -63,7 +63,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "ColossusBetSetting")]
         public ActionResult EditMaster()
         {
-            return View(Constants.EditMasterCshtml, modelFake);
+            return View(Constants.EditColossusBetCshtml, modelFake);
         }
 
         [HttpPost]
@@ -76,7 +76,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "ColossusBetSetting")]
         public ActionResult EditAgent()
         {
-            return View(Constants.EditAgentCshtml, modelFake);
+            return View(Constants.EditColossusBetCshtml, modelFake);
         }
 
         [HttpPost]

@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="DataRecordExtensions.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Paul.Nguyen" date="2014/02/20">Created.</change>
-// </history>
-
-namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Helpers
+﻿namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Helpers
 {
     using System;
     using System.Data;

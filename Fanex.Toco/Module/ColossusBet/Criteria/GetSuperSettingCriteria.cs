@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="AgentGetMemberSettingCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="GetSuperSettingCriteria.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -7,21 +7,21 @@
 //   <change who="Paul.Nguyen" date="2014/02/20">Created.</change>
 // </history>
 
-namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Criteria
+namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Criteria
 {
-    using Fanex.CustomerSetting.Module.ColossusBetSetting.Entities;
+    using Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
-    /// AgentGetMemberSettingCriteria class.
+    /// GetSuperSettingCriteria class.
     /// </summary>
-    public class AgentGetMemberSettingCriteria : CriteriaBase
+    public class GetSuperSettingCriteria : CriteriaBase
     {
         public int CustId { get; set; }
 
         public override string GetSettingKey()
         {
-            return Constants.AgentGetMemberSettingCriteriaKeyName;
+            return Constants.GetSuperSettingCriteriaKeyName;
         }
 
         public override bool IsValid()

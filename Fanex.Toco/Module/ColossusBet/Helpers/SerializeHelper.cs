@@ -1,13 +1,3 @@
-// ************************************************************************************
-// <copyright file="SerializeHelper.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// ************************************************************************************
-// <history>
-//     <change who="steven.nguyen">Create/Run StyleCop.</change>
-// </history>
-// ************************************************************************************
-
 namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Helpers
 {
     using Newtonsoft.Json;

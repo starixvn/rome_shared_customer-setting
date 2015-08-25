@@ -140,22 +140,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="Controllers\ColossusBetSettingBaseController.cs" />
     <Compile Include="Controllers\ColossusBetSettingController.cs" />
-    <Compile Include="Criteria\Agent\GetAgentSettingCriteria.cs" />
-    <Compile Include="Criteria\Agent\UpdateAgentBetSettingCriteria.cs" />
-    <Compile Include="Criteria\Agent\UpdateAgentPositionTakingCriteria.cs" />
-    <Compile Include="Criteria\Master\GetMasterSettingCriteria.cs" />
-    <Compile Include="Criteria\Master\UpdateMasterBetSettingCriteria.cs" />
-    <Compile Include="Criteria\Master\UpdateMasterPositionTakingCriteria.cs" />
-    <Compile Include="Criteria\Member\SuperGetMemberSettingCriteria.cs" />
-    <Compile Include="Criteria\Member\MasterGetMemberSettingCriteria.cs" />
-    <Compile Include="Criteria\Member\SuperUpdateMemberPositionTakingCriteria.cs" />
-    <Compile Include="Criteria\Member\MasterUpdateMemberPositionTakingCriteria.cs" />
-    <Compile Include="Criteria\Member\AgentGetMemberSettingCriteria.cs" />
-    <Compile Include="Criteria\Member\AgentUpdateMemberBetSettingCriteria.cs" />
-    <Compile Include="Criteria\Member\AgentUpdateMemberPositionTakingCriteria.cs" />
-    <Compile Include="Criteria\Super\GetSuperSettingCriteria.cs" />
-    <Compile Include="Criteria\Super\UpdateSuperPositionTakingCriteria.cs" />
-    <Compile Include="Criteria\Super\UpdateSuperBetSettingCriteria.cs" />
+    <Compile Include="Criteria\UpdatedSettingCriteria.cs" />
+    <Compile Include="Criteria\GetMemberSettingCriteria.cs" />
+    <Compile Include="Criteria\GetAgentSettingCriteria.cs" />
+    <Compile Include="Criteria\GetMasterSettingCriteria.cs" />
+    <Compile Include="Criteria\GetSuperSettingCriteria.cs" />
     <Compile Include="Entities\ActionType.cs" />
     <Compile Include="Entities\ColossusBetModel.cs" />
     <Compile Include="Entities\Constants.cs" />
@@ -169,6 +158,8 @@
     <Compile Include="Helpers\SerializeHelper.cs" />
     <Compile Include="Entities\Status.cs" />
     <Compile Include="Entities\CustomerInformation.cs" />
+    <Compile Include="Repositories\IColossusBetSettingRepository.cs" />
+    <Compile Include="Repositories\ColossusBetSettingRepository.cs" />
     <Compile Include="Resources\LayoutTexts.Designer.cs">
       <DependentUpon>LayoutTexts.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -179,11 +170,15 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Services\CriteriaGeneratorServiceBase.cs" />
+    <Compile Include="Services\ICriteriaGeneratorService.cs" />
+    <Compile Include="Services\IColossusBetSession.cs" />
+    <Compile Include="Services\IColossusBetService.cs" />
+    <Compile Include="Services\ColossusBetSession.cs" />
+    <Compile Include="Services\ColossusBetService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Repositories\" />
-    <Folder Include="Services\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
