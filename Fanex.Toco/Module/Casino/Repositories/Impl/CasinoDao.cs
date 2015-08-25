@@ -40,7 +40,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
             customerDetail.CasinoNo = "01";
             customerDetail.UplineDisabledCasino = uplineId != 0 ? (bool)upline.ResultSet.Tables[0].Rows[0]["disablecasino"] : false;
 
-            
+
             if (dr.ResultSet.Tables[0].Rows.Count > 0)
             {
                 row = dr.ResultSet.Tables[0].Rows[0];
@@ -73,7 +73,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
                 customerDetail.UserPwd = Utils.ToString(row["userpwd"]);
                 customerDetail.UpperCustID = uplineId;
                 customerDetail.NoCSData = true;
-                customerDetail.IsEnablePT = true;                
+                customerDetail.IsEnablePT = true;
 
                 // Get max transfer information
                 CasinoLibrary.SBAgent.Customer customer = new CasinoLibrary.SBAgent.Customer();
@@ -84,7 +84,11 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
                     var allCustomerInfoParam = new Hashtable();
                     allCustomerInfoParam.Add("username", customerDetail.UserName);
                     DbResult allCustomerInfoDr = DbHelper.ExecuteDbResult("SelAllInfo", allCustomerInfoParam, 300);
-                    customerDetail.IsDeposit = Utils.ToBoolean(allCustomerInfoDr.ResultSet.Tables[0].Rows[0]["isdeposit"]);                    
+                    customerDetail.IsDeposit = Utils.ToBoolean(allCustomerInfoDr.ResultSet.Tables[0].Rows[0]["isdeposit"]);
+                    customerDetail.SiteName =
+                        customerDetail.IsDeposit ?
+                        Utils.ToString(allCustomerInfoDr.ResultSet.Tables[0].Rows[0]["site"]) :
+                        "ibcbet";
                 }
 
                 try
@@ -108,7 +112,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
 
                 customerDetail.NoIBCData = false;
             }
-                        
+
             return customerDetail;
         }
 
