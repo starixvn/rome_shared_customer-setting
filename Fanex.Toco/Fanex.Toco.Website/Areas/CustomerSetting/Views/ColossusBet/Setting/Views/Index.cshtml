@@ -1,8 +1,8 @@
 ﻿@using Newtonsoft.Json
 @using Newtonsoft.Json.Serialization
-@using Fanex.CustomerSetting.Module.Keno.Resources;
+@using Fanex.CustomerSetting.Module.ColossusBetSetting.Resources;
 <!DOCTYPE html>
-<html ng-app='colossusBetSettingModule' id="ng-app" >
+<html ng-app='colossusBetSettingModule' id="ng-app">
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
@@ -10,8 +10,8 @@
         rel="stylesheet" type="text/css" />
     <link href="~/Areas/CustomerSetting/Views/Keno/Setting/Styles/Accounting/theme-color.less"
         rel="stylesheet" type="text/css" />
-    <link href="~/Areas/CustomerSetting/Views/Keno/Setting/Scripts/Tipsy/tipsy.css" rel="stylesheet"
-        type="text/css" />
+    <link href="~/Areas/CustomerSetting/Views/ColossusBet/Setting/Scripts/Tipsy/tipsy.css"
+        rel="stylesheet" type="text/css" />
     @{
         string positionTakingJsName = string.Empty;
         var colossusBetSetting = JsonConvert.SerializeObject(Model, Formatting.None, new JsonSerializerSettings
@@ -29,7 +29,12 @@
                     <td class="maincontent_headerL">
                     </td>
                     <td class="maincontent_headerC fixfont">
-                        Update ColossusBet
+                        <div class=" divInline" ng-switch="customerInformationPartial.roleId">
+                            <span ng-switch-when="4">@Messages.UpdateSuper </span>
+                            <span ng-switch-when="3">@Messages.UpdateMaster</span>
+                            <span ng-switch-when="2">@Messages.UpdateAgent</span>
+                            <span ng-switch-default>@Messages.UpdateMember</span>
+                        </div>
                     </td>
                     <td class="maincontent_headerR">
                     </td>
@@ -42,57 +47,57 @@
             <table class="tableColor tableWidth">
                 <tr>
                     <td colspan="4" class=" header c b ">
-                        General Information
+                        @Messages.GeneralInformation
                     </td>
                 </tr>
                 <tr>
                     <td class="col15percent formatCol r b betSetting">
-                        Username
+                        @Messages.Username
                     </td>
                     <td class="col35percent formatCol l betSetting">
-                        <span ng-bind="customerInformation.firstName"></span>
+                        <span ng-bind="customerInformationPartial.firstName"></span>
                     </td>
                     <td class="col15percent formatCol r b betSetting">
-                        Nickname
+                        @Messages.Nickname
                     </td>
                     <td class="col35percent formatCol l betSetting">
-                        <span ng-bind="customerInformation.lastName"></span>
+                        <span ng-bind="customerInformationPartial.lastName"></span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col15percent formatCol r b betSetting">
-                        @LayoutTexts.FirstName
+                        @Messages.FirstName
                     </td>
                     <td class="col35percent formatCol l betSetting">
-                        <span ng-bind="customerInformation.firstName"></span>
+                        <span ng-bind="customerInformationPartial.firstName"></span>
                     </td>
                     <td class="formatCol r b betSetting">
-                        @LayoutTexts.Phone
+                        @Messages.Phone
                     </td>
                     <td class="formatCol l betSetting">
-                        <span ng-bind="customerInformation.phone"></span>
+                        <span ng-bind="customerInformationPartial.phone"></span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col15percent formatCol r b betSetting">
-                        @LayoutTexts.LastName
+                        @Messages.LastName
                     </td>
                     <td class="col35percent formatCol l betSetting">
-                        <span ng-bind="customerInformation.lastName"></span>
+                        <span ng-bind="customerInformationPartial.lastName"></span>
                     </td>
                     <td class="formatCol r b betSetting">
-                        @LayoutTexts.MobilePhone
+                        @Messages.MobilePhone
                     </td>
                     <td class="formatCol l betSetting">
-                        <span ng-bind="customerInformation.mobilePhone"></span>
+                        <span ng-bind="customerInformationPartial.mobilePhone"></span>
                     </td>
                 </tr>
                 <tr>
                     <td class="formatCol r b betSetting">
-                        @LayoutTexts.Fax
+                        @Messages.Fax
                     </td>
                     <td class="formatCol l betSetting">
-                        <span ng-bind="customerInformation.fax"></span>
+                        <span ng-bind="customerInformationPartial.fax"></span>
                     </td>
                     <td class="formatCol r b betSetting">
                     </td>
@@ -103,7 +108,7 @@
             <table class="tableColor tableWidth" ng-controller="statusController">
                 <tr>
                     <td colspan="4" class="header c b">
-                        <span>Status</span>
+                        <span>@Messages.Status</span>
                         <input ng-class-name="btnSave" check-disable-element ng-model="statusPartial.isStatusUpdated"
                             ng-click="updated(true, 'StatusPartial')" type="button" />
                     </td>
@@ -112,50 +117,58 @@
                     <td colspan="4" class="formatCol l betSetting" style="height: 34px;">
                         <span class="b" style="padding-left: 30px;">Colossus Bet </span>
                         <div style="display: inline-block; padding-left: 30px;">
-                             <input ng-disabled="!statusPartial.upline.isEnabled " type="checkbox" ng-model="statusPartial.isEnabled" />
-                            Enable
-                            <input ng-disabled="isDownlinechkDisabled"  type="checkbox" ng-model="statusPartial.isDownlinesEnabled" />
-                            Enable Downline</div>
+                            <input ng-disabled="!statusPartial.upline.isEnabled" type="checkbox" ng-model="statusPartial.isEnabled" />
+                            @Messages.Enable
+                            <input ng-disabled="isDownlinechkDisabled" type="checkbox" ng-model="statusPartial.isDownlinesEnabled" />
+                            @Messages.EnableDownlines</div>
                     </td>
                 </tr>
             </table>
             <table class="tableColor tableWidth" ng-controller="commissionController">
                 <tr>
                     <td colspan="4" class="header c b">
-                        <span>Commission</span>
+                        <span>@Messages.Commission</span>
                         <input ng-class-name="btnSave" check-disable-element ng-model="comissionPartial.isCommisionUpdated"
                             ng-click="updated(true, 'ComissionPartial')" type="button" />
                     </td>
                 </tr>
                 <tr>
                     <td colspan="4" class="formatCol l betSetting" style="height: 34px;">
-                        <div class="b" style="padding-left: 30px; width: 150px; display: inline-block;">
-                            Super Commision %
+                        <div class="b" style="padding-left: 30px; width: 150px; display: inline-block;" ng-switch="customerInformationPartial.roleId">
+                            <span ng-switch-when="4">@Messages.SuperCommision </span>
+                            <span ng-switch-when="3">@Messages.MasterCommision</span>
+                            <span ng-switch-when="2">@Messages.AgentCommision</span>
+                             <span ng-switch-default> @Messages.MemberCommision</span>
                         </div>
                         <div style="display: inline-block; padding-left: 30px; padding-left: 30px;">
-                         <input input-format  pattern="[0-9]+([\.,][0-9]+)*"  id="commissionInputId" ng-model="comissionPartial.commisionValue" class="r col50percent"
-                             type="text" title=""  style="text-align: right; padding-right: 5px;" />
-                            <= <span ng-bind="comissionPartial.maxCommisionValue"></span></div>
+                            <input input-format pattern="[0-9]+([\.,][0-9]+)*" id="commissionInputId" ng-model="comissionPartial.commisionValue"
+                                class="r col50percent" type="text" title="" style="text-align: right; padding-right: 5px;" />
+                            <= <span ng-bind="comissionPartial.maxCommisionValue"></span>
+                        </div>
                     </td>
                 </tr>
             </table>
             <table class="tableColor tableWidth" ng-controller="cashInShareController">
                 <tr>
                     <td colspan="4" class="header c b">
-                        <span>Cash-In Share </span>
+                        <span>@Messages.CashInShare</span>
                         <input ng-class-name="btnSave" check-disable-element ng-model="cashInSharePartial.isCashInShareUpdated"
                             ng-click="updated(true, 'CashInSharePartial')" type="button" />
                     </td>
                 </tr>
                 <tr>
                     <td colspan="4" class="formatCol l betSetting" style="height: 34px;">
-                        <div class="b" style="padding-left: 30px; width: 150px; display: inline-block;">
-                            Super Cash-In Share %
+                        <div class="b" style="padding-left: 30px; width: 150px; display: inline-block;" ng-switch="customerInformationPartial.roleId">
+                                <span ng-switch-when="4">@Messages.SuperCashInShare </span>
+                                <span ng-switch-when="3"> @Messages.MasterCashInShare </span>
+                                <span ng-switch-when="2">@Messages.AgentCashInShare</span>
+                                <span ng-switch-default>@Messages.MemberCashInShare</span>
                         </div>
                         <div style="display: inline-block; padding-left: 30px;">
-                             <input input-format  pattern="[0-9]+([\.,][0-9]+)*" id="cashInShareInputId" ng-model="cashInSharePartial.cashInShareValue" class="r col50percent"
-                             type="text" title=""  style="text-align: right; padding-right: 5px;" />
-                            <= <span ng-bind="cashInSharePartial.maxCashInShareValue"></span></div>
+                            <input input-format pattern="[0-9]+([\.,][0-9]+)*" id="cashInShareInputId" ng-model="cashInSharePartial.cashInShareValue"
+                                class="r col50percent" type="text" title="" style="text-align: right; padding-right: 5px;" />
+                            <= <span ng-bind="cashInSharePartial.maxCashInShareValue"></span>
+                        </div>
                     </td>
                 </tr>
             </table>

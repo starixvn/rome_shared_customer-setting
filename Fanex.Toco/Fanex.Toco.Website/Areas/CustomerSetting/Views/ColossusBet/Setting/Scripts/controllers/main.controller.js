@@ -5,7 +5,7 @@ ColossusBetModule.controller('mainController', function ($scope, $timeout, colos
         function (colossusBetSetting) {
             $scope.colossusBetSetting = colossusBetSetting;
 
-            $scope.customerInformation = $scope.colossusBetSetting.customerInformation;
+            $scope.customerInformationPartial = $scope.colossusBetSetting.customerInformationPartial;
             $scope.statusPartial = $scope.colossusBetSetting.statusPartial;
             $scope.comissionPartial = $scope.colossusBetSetting.comissionPartial;
             $scope.cashInSharePartial = $scope.colossusBetSetting.cashInSharePartial;
@@ -46,7 +46,7 @@ ColossusBetModule.controller('mainController', function ($scope, $timeout, colos
 
             $scope.getUrlUpdated = function () {
                 var url = "";
-                switch ($scope.colossusBetSetting.customerInformation.actionType) {
+                switch ($scope.colossusBetSetting.customerInformationPartial.actionType) {
                     case 4:
                         url = 'customersetting/colossusBetSetting/colossusBetSetting/UpdateSuper';
                         break;

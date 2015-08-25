@@ -120,11 +120,65 @@
   <data name="AccountDisabled" xml:space="preserve">
     <value>บัญชีถูกปิดการใช้งาน</value>
   </data>
+  <data name="Agent" xml:space="preserve">
+    <value>ตัวแทน</value>
+  </data>
+  <data name="AgentCashInShare" xml:space="preserve">
+    <value>Agent Cash-In Share %</value>
+  </data>
+  <data name="AgentCommision" xml:space="preserve">
+    <value>Agent Commision %</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>ทั้งหมด</value>
+  </data>
   <data name="BetSetting" xml:space="preserve">
     <value>การกำหนดการวางเดิมพัน</value>
   </data>
+  <data name="Commission" xml:space="preserve">
+    <value>Commission</value>
+  </data>
+  <data name="Enable" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="EnableDownlines" xml:space="preserve">
+    <value>เปิดใช้งาน ดาวไลน์</value>
+  </data>
+  <data name="Fax" xml:space="preserve">
+    <value>แฟกซ์</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>ชื่อ</value>
+  </data>
+  <data name="GeneralInformation" xml:space="preserve">
+    <value>General Information</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>นามสกุล</value>
+  </data>
   <data name="LessThan" xml:space="preserve">
     <value>ควรน้อยกว่า หรือ เท่ากับ</value>
+  </data>
+  <data name="Master" xml:space="preserve">
+    <value>ตัวแทนหลัก</value>
+  </data>
+  <data name="MasterCashInShare" xml:space="preserve">
+    <value>Master Cash-In Share %</value>
+  </data>
+  <data name="MasterCommision" xml:space="preserve">
+    <value>Master Commision %</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>สมาชิก</value>
+  </data>
+  <data name="MemberCashInShare" xml:space="preserve">
+    <value>Member Cash-In Share %</value>
+  </data>
+  <data name="MemberCommision" xml:space="preserve">
+    <value>Member Commision %</value>
+  </data>
+  <data name="MobilePhone" xml:space="preserve">
+    <value>โทรศัพท์มือถือ</value>
   </data>
   <data name="MoreThan" xml:space="preserve">
     <value>ควรมากกว่า หรือ เท่ากับ</value>
@@ -135,13 +189,52 @@
   <data name="Msg_1001" xml:space="preserve">
     <value>การตอบสนองต่อฐานข้อมูลไม่ถูกต้อง</value>
   </data>
+  <data name="Nickname" xml:space="preserve">
+    <value>Nickname</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>โทรศัพท์</value>
+  </data>
   <data name="PositionTaking" xml:space="preserve">
     <value>ค่าความเสี่ยง</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>ตกลง</value>
+  </data>
+  <data name="Super" xml:space="preserve">
+    <value>สูงสุด</value>
+  </data>
+  <data name="SuperCashInShare" xml:space="preserve">
+    <value>Super Cash-In Share %</value>
+  </data>
+  <data name="SuperCommision" xml:space="preserve">
+    <value>Super Commision %</value>
+  </data>
+  <data name="UpdateAgent" xml:space="preserve">
+    <value>Update Agent</value>
+  </data>
+  <data name="UpdateColossusBet" xml:space="preserve">
+    <value>Update ColossusBet</value>
   </data>
   <data name="UpdatedFail" xml:space="preserve">
     <value>อัพเดทการตั้งค่าของลูกค้าล้มเหลว</value>
   </data>
   <data name="UpdatedSuccess" xml:space="preserve">
     <value>สถานะการปรับปรุงเรียบร้อยแล้ว</value>
+  </data>
+  <data name="UpdateMaster" xml:space="preserve">
+    <value>Update Master</value>
+  </data>
+  <data name="UpdateMember" xml:space="preserve">
+    <value>Update Member</value>
+  </data>
+  <data name="UpdateSuper" xml:space="preserve">
+    <value>Update Super</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Username</value>
   </data>
 </root>

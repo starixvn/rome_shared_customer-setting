@@ -20,3 +20,4 @@ ColossusBetModule.controller('commissionController', function ($scope, colossusB
 
         }, function (reason) { }, function (update) { });
 });
+

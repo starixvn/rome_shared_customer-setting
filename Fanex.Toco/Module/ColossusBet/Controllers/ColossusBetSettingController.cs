@@ -19,7 +19,8 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
                 LastName = "Vu",
                 Phone = "096414444",
                 MobilePhone = "1234543463",
-                Fax = "45645646512"
+                Fax = "45645646512",
+                RoleId = 4
             },
             StatusPartial = new Status()
             {

@@ -179,11 +179,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\ViewLang.Designer.cs">
-      <DependentUpon>ViewLang.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -235,16 +230,6 @@
     <EmbeddedResource Include="Resources\Messages.vi-VN.resx" />
     <EmbeddedResource Include="Resources\Messages.zh-CN.resx" />
     <EmbeddedResource Include="Resources\Messages.zh-TW.resx" />
-    <EmbeddedResource Include="Resources\ViewLang.js-JP.resx" />
-    <EmbeddedResource Include="Resources\ViewLang.ko-KR.resx" />
-    <EmbeddedResource Include="Resources\ViewLang.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ViewLang.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ViewLang.th-TH.resx" />
-    <EmbeddedResource Include="Resources\ViewLang.vi-VN.resx" />
-    <EmbeddedResource Include="Resources\ViewLang.zh-CN.resx" />
-    <EmbeddedResource Include="Resources\ViewLang.zh-TW.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
