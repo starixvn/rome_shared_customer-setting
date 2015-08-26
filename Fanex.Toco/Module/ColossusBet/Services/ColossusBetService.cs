@@ -26,30 +26,46 @@
             _criteriaGeneratorService = criteriaGeneratorService ?? null;
         }
 
-        public ColossusBetModel GetSuperSetting(GetSuperSettingCriteria criteria)
+        public ColossusBetModel GetSuperSetting(int custId)
         {
-            return _colossusBetSettingRepository.GetSuperSetting(criteria);
+            return _colossusBetSettingRepository.GetSuperSetting(new GetSuperSettingCriteria()
+            {
+                CustId = custId
+            });
         }
 
-        public ColossusBetModel GetMasterSetting(GetMasterSettingCriteria criteria)
+        public ColossusBetModel GetMasterSetting(int custId, int srecommend)
         {
-            return _colossusBetSettingRepository.GetMasterSetting(criteria);
+            return _colossusBetSettingRepository.GetMasterSetting(new GetMasterSettingCriteria()
+                {
+                    CustId = custId,
+                    Srecommend = srecommend
+                });
         }
 
-        public ColossusBetModel GetAgentSetting(GetAgentSettingCriteria criteria)
+        public ColossusBetModel GetAgentSetting(int custId, int mrecommend)
         {
-            return _colossusBetSettingRepository.GetAgentSetting(criteria);
+            return _colossusBetSettingRepository.GetAgentSetting(new GetAgentSettingCriteria()
+                {
+                    CustId = custId,
+                    Mrecommend = mrecommend
+                });
         }
 
-        public ColossusBetModel GetMemberSetting(GetMemberSettingCriteria criteria)
+        public ColossusBetModel GetMemberSetting(int custId, int recommend)
         {
-            return _colossusBetSettingRepository.GetMemberSetting(criteria);
+            return _colossusBetSettingRepository.GetMemberSetting(new GetMemberSettingCriteria()
+                {
+                    CustId = custId,
+                    Recommend = recommend
+                });
         }
 
         public IList<Result> UpdateSetting(UpdatedSettingCriteria criteria)
         {
-            return new List<Result>();
+            return _colossusBetSettingRepository.UpdateSetting(criteria);
         }
+
         internal static string ReformatErrorMessageForBetSetting(int betTypeId, string inputMessage)
         {
             string betTypeName = CacheRef.GetBettype(betTypeId);

@@ -3,88 +3,61 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.ColossusBetSetting.Entities;
     using Fanex.CustomerSetting.Security.Authenticate;
+    using Fanex.CustomerSetting.Module.ColossusBetSetting.Criteria;
+using Fanex.CustomerSetting.Module.ColossusBetSetting.Services;
 
     /// <summary>
     /// Keno controller.
     /// </summary>
     public class ColossusBetSettingController : ColossusBetSettingBaseController
     {
-        private ColossusBetModel modelFake = new ColossusBetModel()
+        private static IColossusBetService _colossusBetService;
+
+        public ColossusBetSettingController()
+            : this(null)
         {
-            CustomerInformationPartial = new CustomerInformation()
-            {
-                Username = "master1",
-                NickName = "bear",
-                FirstName = "Tran",
-                LastName = "Vu",
-                Phone = "096414444",
-                MobilePhone = "1234543463",
-                Fax = "45645646512",
-                RoleId = 4
-            },
-            StatusPartial = new Status()
-            {
-                IsEnabled = true,
-                IsHasDownlines= true,
-                IsDownlinesEnabled = false,
-                IsStatusUpdated = false,
-                Upline = new Status
-                {
-                    IsEnabled = true,
-                    IsDownlinesEnabled = true
-                }
-            },
-            ComissionPartial = new Comission()
-           {
-               CommisionValue = 6.75,
-               MaxCommisionValue = 6.75,
-               IsCommisionUpdated = false
-           },
-            CashInSharePartial = new CashInShare()
-            {
-                CashInShareValue = 14.5,
-                MaxCashInShareValue = 22.5,
-                IsCashInShareUpdated = false
-            }
-        };
+        }
+
+        public ColossusBetSettingController(IColossusBetService colossusBetService)
+        {
+            _colossusBetService = colossusBetService ?? new ColossusBetService();
+        }
+
 
         ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "ColossusBetSetting")]
-        public ActionResult EditSuper()
+        public ActionResult EditSuper(int custId)
         {
-            return View(Constants.EditColossusBetCshtml, modelFake);
+            var setting = _colossusBetService.GetSuperSetting(custId);
+            return View(Constants.EditColossusBetCshtml, setting);
+        }
+
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "ColossusBetSetting")]
+        public ActionResult EditMaster(int custId, int srecommend)
+        {
+            var setting = _colossusBetService.GetMasterSetting(custId, srecommend);
+            return View(Constants.EditColossusBetCshtml, setting);
+        }
+
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "ColossusBetSetting")]
+        public ActionResult EditAgent(int custId, int mrecommend)
+        {
+            var setting = _colossusBetService.GetAgentSetting(custId, mrecommend);
+            return View(Constants.EditColossusBetCshtml, setting);
+        }
+
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "ColossusBetSetting")]
+        public ActionResult EditMember(int custId, int recommend)
+        {
+            var setting = _colossusBetService.GetMemberSetting(custId, recommend);
+            return View(Constants.EditColossusBetCshtml, setting);
         }
 
         [HttpPost]
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "ColossusBetSetting")]
-        public JsonResult UpdateSuper()
-        {      
-            return Json(string.Empty);
-        }
-
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "ColossusBetSetting")]
-        public ActionResult EditMaster()
+        public JsonResult UpdateSetting(UpdatedSettingCriteria criteria)
         {
-            return View(Constants.EditColossusBetCshtml, modelFake);
-        }
-
-        [HttpPost]
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "ColossusBetSetting")]
-        public JsonResult UpdateMaster()
-        {
-            return Json(string.Empty);
-        }
-
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "ColossusBetSetting")]
-        public ActionResult EditAgent()
-        {
-            return View(Constants.EditColossusBetCshtml, modelFake);
-        }
-
-        [HttpPost]
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "ColossusBetSetting")]
-        public JsonResult UpdateAgent()
-        {
-            return Json(string.Empty);
+            var result = _colossusBetService.UpdateSetting(criteria);
+            return Json(result);
         }
 
         private void SetTitleForMultipleEdit(ColossusBetModel customerInformationViewModel)

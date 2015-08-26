@@ -1,5 +1,6 @@
 namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Repositories
 {
+    using System;
     using System.Collections.Generic;
     using System.Data;
     using Fanex.Common.Extensions;
@@ -9,10 +10,48 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Repositories
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
     using Fanex.NAP.Framework.Exceptions;
-    using System;
 
     public class ColossusBetSettingRepository : IColossusBetSettingRepository
     {
+        private ColossusBetModel modelFake = new ColossusBetModel()
+        {
+            CustomerInformationPartial = new CustomerInformation()
+            {
+                Username = "master1",
+                NickName = "bear",
+                FirstName = "Tran",
+                LastName = "Vu",
+                Phone = "096414444",
+                MobilePhone = "1234543463",
+                Fax = "45645646512",
+                RoleId = 4
+            },
+            StatusPartial = new Status()
+            {
+                IsEnabled = false,
+                IsHasDownlines = true,
+                IsDownlinesEnabled = false,
+                IsStatusUpdated = false,
+                Upline = new Status
+                {
+                    IsEnabled = true,
+                    IsDownlinesEnabled = true
+                }
+            },
+            ComissionPartial = new Comission()
+            {
+                CommisionValue = 6.75,
+                MaxCommisionValue = 6.75,
+                IsCommisionUpdated = false
+            },
+            CashInSharePartial = new CashInShare()
+            {
+                CashInShareValue = 14.5,
+                MaxCashInShareValue = 22.5,
+                IsCashInShareUpdated = false
+            }
+        };
+
 
         private readonly IMessageHelper _messageHelper;
 
@@ -27,43 +66,14 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Repositories
         }
 
         /// <summary>
-        /// Updates the setting.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>The Result object.</returns>
-        public IList<Result> UpdateSetting(ICriteria criteria)
-        {
-            if (criteria == null || !criteria.IsValid())
-            {
-                throw new NapDataAccessException();
-            }
-
-            return ExecuteUpdateSetting(criteria);
-        }
-
-        /// <summary>
-        /// Executes the update setting.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>The Result object.</returns>
-        internal virtual IList<Result> ExecuteUpdateSetting(ICriteria criteria)
-        {
-            using (var objDb = new ObjectDb(criteria.GetSettingKey()))
-            {
-                objDb.ExecuteNonQuery(criteria.GetSpParams());
-                var outputParams = objDb.GetOuputParams();
-                _messageHelper.SetErrorCodeAndErrorMessage(Convert.ToString(outputParams["errcode"]), Convert.ToString(outputParams["errmsg"]));
-                return _messageHelper.GetErrors();
-            }
-        }
-
-        /// <summary>
         /// Gets the super setting.
         /// </summary>
         /// <param name="criteria">The criteria.</param>
         /// <returns>The SuperSetting object.</returns>
         public ColossusBetModel GetSuperSetting(ICriteria criteria)
         {
+            return modelFake;
+
             if (!criteria.IsValid())
             {
                 throw new NapDataAccessException();
@@ -169,15 +179,22 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Repositories
             return settingModel;
         }
 
-        public IList<Result> UpdateBetSetting(ICriteria criteria)
+        /// <summary>
+        /// Updates the setting.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>The Result object.</returns>
+        public IList<Result> UpdateSetting(ICriteria criteria)
         {
-            return this.UpdateSetting(criteria);
+            using (var objDb = new ObjectDb(criteria.GetSettingKey()))
+            {
+                objDb.ExecuteNonQuery(criteria.GetSpParams());
+                var outputParams = objDb.GetOuputParams();
+                _messageHelper.SetErrorCodeAndErrorMessage(Convert.ToString(outputParams["errcode"]), Convert.ToString(outputParams["errmsg"]));
+                return _messageHelper.GetErrors();
+            }
         }
 
-        public IList<Result> UpdatePositionTaking(ICriteria criteria)
-        {
-            return this.UpdateSetting(criteria);
-        }
 
         /// <summary>
         /// Reads the agent information data.

@@ -160,11 +160,6 @@
     <Compile Include="Entities\CustomerInformation.cs" />
     <Compile Include="Repositories\IColossusBetSettingRepository.cs" />
     <Compile Include="Repositories\ColossusBetSettingRepository.cs" />
-    <Compile Include="Resources\LayoutTexts.Designer.cs">
-      <DependentUpon>LayoutTexts.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Resources\Messages.Designer.cs">
       <DependentUpon>Messages.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -205,16 +200,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\LayoutTexts.ja-JP.resx" />
-    <EmbeddedResource Include="Resources\LayoutTexts.ko-KR.resx" />
-    <EmbeddedResource Include="Resources\LayoutTexts.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>LayoutTexts.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\LayoutTexts.th-TH.resx" />
-    <EmbeddedResource Include="Resources\LayoutTexts.vi-VN.resx" />
-    <EmbeddedResource Include="Resources\LayoutTexts.zh-CN.resx" />
-    <EmbeddedResource Include="Resources\LayoutTexts.zh-TW.resx" />
     <EmbeddedResource Include="Resources\Messages.ja-JP.resx" />
     <EmbeddedResource Include="Resources\Messages.ko-KR.resx" />
     <EmbeddedResource Include="Resources\Messages.resx">

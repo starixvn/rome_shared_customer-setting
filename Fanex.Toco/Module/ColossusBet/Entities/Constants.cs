@@ -1,12 +1,3 @@
-// --------------------------------------------------------------------------
-// <copyright file="Constants.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Paul.Nguyen" date="2014/02/20">Created.</change>
-// </history>
-
 namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Entities
 {
     /// <summary>
@@ -20,5 +11,6 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Entities
         public const string GetMasterSettingCriteriaKeyName = "Acc_CustomerSelEditMasterColossusBet";
         public const string GetAgentSettingCriteriaKeyName = "Acc_CustomerSelEditAgentColossusBet";
         public const string GetMemberSettingCriteriaKeyName = "Acc_CustomerSelEditMemberColossusBet";
+        public const string GetUpdatedColossusBetCriteriaKeyName = "Acc_CustomerUpdColossusBet";
     }
 }

@@ -6,20 +6,12 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    <link href="~/Areas/CustomerSetting/Views/Keno/Setting/Styles/keno-setting.less"
+    <link href="~/Areas/CustomerSetting/Views/ColossusBet/Setting/Styles/ColossusBet-setting.less"
         rel="stylesheet" type="text/css" />
-    <link href="~/Areas/CustomerSetting/Views/Keno/Setting/Styles/Accounting/theme-color.less"
+    <link href="~/Areas/CustomerSetting/Views/ColossusBet/Setting/Styles/Accounting/theme-color.less"
         rel="stylesheet" type="text/css" />
     <link href="~/Areas/CustomerSetting/Views/ColossusBet/Setting/Scripts/Tipsy/tipsy.css"
         rel="stylesheet" type="text/css" />
-    @{
-        string positionTakingJsName = string.Empty;
-        var colossusBetSetting = JsonConvert.SerializeObject(Model, Formatting.None, new JsonSerializerSettings
-        {
-            ContractResolver = new CamelCasePropertyNamesContractResolver(),
-            NullValueHandling = NullValueHandling.Ignore
-        }); 
-    }
 </head>
 <body>
     <div ng-controller="mainController" class="content">
@@ -29,7 +21,7 @@
                     <td class="maincontent_headerL">
                     </td>
                     <td class="maincontent_headerC fixfont">
-                        <div class=" divInline" ng-switch="customerInformationPartial.roleId">
+                        <div class=" divInline" ng-switch="customerInformationPartial.RoleId">
                             <span ng-switch-when="4">@Messages.UpdateSuper </span>
                             <span ng-switch-when="3">@Messages.UpdateMaster</span>
                             <span ng-switch-when="2">@Messages.UpdateAgent</span>
@@ -109,7 +101,7 @@
                 <tr>
                     <td colspan="4" class="header c b">
                         <span>@Messages.Status</span>
-                        <input ng-class-name="btnSave" check-disable-element ng-model="statusPartial.isStatusUpdated"
+                        <input ng-class-name="btnSave" check-disable-element ng-model="statusPartial.IsStatusUpdated"
                             ng-click="updated(true, 'StatusPartial')" type="button" />
                     </td>
                 </tr>
@@ -117,11 +109,11 @@
                     <td colspan="4" class="formatCol l betSetting" style="height: 34px;">
                         <span class="b" style="padding-left: 30px;">Colossus Bet </span>
                         <div style="display: inline-block; padding-left: 30px;">
-                            <input ng-disabled="!statusPartial.upline.isEnabled" type="checkbox" ng-model="statusPartial.isEnabled" />
+                            <input ng-disabled="!statusPartial.Upline.IsEnabled" type="checkbox" ng-model="statusPartial.IsEnabled" />
                             @Messages.Enable
                              @if (Model.CustomerInformationPartial.RoleId != 1 && Model.StatusPartial.IsHasDownlines)
                              {
-                                <input ng-disabled="isDownlinechkDisabled" type="checkbox" ng-model="statusPartial.isDownlinesEnabled" />
+                                <input ng-disabled="IsDownlinechkDisabled" type="checkbox" ng-model="statusPartial.IsDownlinesEnabled" />
                                 @Messages.EnableDownlines
                              }
                              </div>
@@ -132,22 +124,22 @@
                 <tr>
                     <td colspan="4" class="header c b">
                         <span>@Messages.Commission</span>
-                        <input ng-class-name="btnSave" check-disable-element ng-model="comissionPartial.isCommisionUpdated"
+                        <input ng-class-name="btnSave" check-disable-element ng-model="comissionPartial.IsCommisionUpdated"
                             ng-click="updated(true, 'ComissionPartial')" type="button" />
                     </td>
                 </tr>
                 <tr>
                     <td colspan="4" class="formatCol l betSetting" style="height: 34px;">
-                        <div class="b" style="padding-left: 30px; width: 150px; display: inline-block;" ng-switch="customerInformationPartial.roleId">
+                        <div class="b" style="padding-left: 30px; width: 150px; display: inline-block;" ng-switch="customerInformationPartial.RoleId">
                             <span ng-switch-when="4">@Messages.SuperCommision </span>
                             <span ng-switch-when="3">@Messages.MasterCommision</span>
                             <span ng-switch-when="2">@Messages.AgentCommision</span>
                              <span ng-switch-default> @Messages.MemberCommision</span>
                         </div>
                         <div style="display: inline-block; padding-left: 30px; padding-left: 30px;">
-                            <input input-format pattern="[0-9]+([\.,][0-9]+)*" id="commissionInputId" ng-model="comissionPartial.commisionValue"
+                            <input input-format pattern="[0-9]+([\.,][0-9]+)*" id="commissionInputId" ng-model="comissionPartial.CommisionValue"
                                 class="r col50percent" type="text" title="" style="text-align: right; padding-right: 5px;" />
-                            <= <span ng-bind="comissionPartial.maxCommisionValue"></span>
+                            <= <span ng-bind="comissionPartial.MaxCommisionValue"></span>
                         </div>
                     </td>
                 </tr>
@@ -156,22 +148,22 @@
                 <tr>
                     <td colspan="4" class="header c b">
                         <span>@Messages.CashInShare</span>
-                        <input ng-class-name="btnSave" check-disable-element ng-model="cashInSharePartial.isCashInShareUpdated"
+                        <input ng-class-name="btnSave" check-disable-element ng-model="cashInSharePartial.IsCashInShareUpdated"
                             ng-click="updated(true, 'CashInSharePartial')" type="button" />
                     </td>
                 </tr>
                 <tr>
                     <td colspan="4" class="formatCol l betSetting" style="height: 34px;">
-                        <div class="b" style="padding-left: 30px; width: 150px; display: inline-block;" ng-switch="customerInformationPartial.roleId">
+                        <div class="b" style="padding-left: 30px; width: 150px; display: inline-block;" ng-switch="customerInformationPartial.RoleId">
                                 <span ng-switch-when="4">@Messages.SuperCashInShare </span>
                                 <span ng-switch-when="3"> @Messages.MasterCashInShare </span>
                                 <span ng-switch-when="2">@Messages.AgentCashInShare</span>
                                 <span ng-switch-default>@Messages.MemberCashInShare</span>
                         </div>
                         <div style="display: inline-block; padding-left: 30px;">
-                            <input input-format pattern="[0-9]+([\.,][0-9]+)*" id="cashInShareInputId" ng-model="cashInSharePartial.cashInShareValue"
+                            <input input-format pattern="[0-9]+([\.,][0-9]+)*" id="cashInShareInputId" ng-model="cashInSharePartial.CashInShareValue"
                                 class="r col50percent" type="text" title="" style="text-align: right; padding-right: 5px;" />
-                            <= <span ng-bind="cashInSharePartial.maxCashInShareValue"></span>
+                            <= <span ng-bind="cashInSharePartial.MaxCashInShareValue"></span>
                         </div>
                     </td>
                 </tr>
@@ -187,9 +179,7 @@
 <script src="@Url.Content("~/Areas/CustomerSetting/Scripts/jquery.blockUI.1.33.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Areas/CustomerSetting/Scripts/jquery-ui-1.9.1.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Areas/CustomerSetting/Scripts/angular.min.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Areas/CustomerSetting/Scripts/Validators.js")" type="text/javascript"></script>
 
-<script src="@Url.Content("~/Areas/CustomerSetting/Scripts/Fanex.CustomerSetting.Core.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Areas/CustomerSetting/Views/ColossusBet/Setting/Scripts/controllers/main.controller.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Areas/CustomerSetting/Views/ColossusBet/Setting/Scripts/controllers/status.controller.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Areas/CustomerSetting/Views/ColossusBet/Setting/Scripts/controllers/cashInShare.controller.js")" type="text/javascript"></script>
@@ -199,7 +189,7 @@
 <script src="@Url.Content("~/Areas/CustomerSetting/Views/ColossusBet/Setting/Scripts/services/commonService.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Areas/CustomerSetting/Views/ColossusBet/Setting/Scripts/Tipsy/jquery.tipsy.js")" type="text/javascript"></script>
 <script type="text/javascript">
-    var model = JSON.parse(Fanex.CustomerSetting.Core.DecodeHtml('@colossusBetSetting'));
+    var colossusBetSetting = @Html.Raw(Json.Encode(Model));
     var domain = '@Url.Content("~")';
     var resources = {
         successful: "@Messages.Msg_0",

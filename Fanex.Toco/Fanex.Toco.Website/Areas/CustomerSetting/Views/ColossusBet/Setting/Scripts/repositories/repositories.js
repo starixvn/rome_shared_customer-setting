@@ -4,7 +4,7 @@ ColossusBetModule.factory('colossusBetRepositories', function ($http, $q) {
     return {
         getData: function () {
             var deferred = $q.defer();
-             deferred.resolve(model);
+            deferred.resolve(colossusBetSetting);
 //            deferred.resolve(dataService.getKenoSetting(3));
             return deferred.promise;
         },

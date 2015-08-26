@@ -5,17 +5,17 @@ ColossusBetModule.controller('mainController', function ($scope, $timeout, colos
         function (colossusBetSetting) {
             $scope.colossusBetSetting = colossusBetSetting;
 
-            $scope.customerInformationPartial = $scope.colossusBetSetting.customerInformationPartial;
-            $scope.statusPartial = $scope.colossusBetSetting.statusPartial;
-            $scope.comissionPartial = $scope.colossusBetSetting.comissionPartial;
-            $scope.cashInSharePartial = $scope.colossusBetSetting.cashInSharePartial;
+            $scope.customerInformationPartial = $scope.colossusBetSetting.CustomerInformationPartial;
+            $scope.statusPartial = $scope.colossusBetSetting.StatusPartial;
+            $scope.comissionPartial = $scope.colossusBetSetting.ComissionPartial;
+            $scope.cashInSharePartial = $scope.colossusBetSetting.CashInSharePartial;
             
             $scope.isUpdatedAll = false;
             $scope.errors = {};
 
-            $scope.$watch('[statusPartial.isStatusUpdated, comissionPartial.isCommisionUpdated, cashInSharePartial.isCashInShareUpdated]', function (newValue, oldValue) {
+            $scope.$watch('[statusPartial.IsStatusUpdated, comissionPartial.IsCommisionUpdated, cashInSharePartial.IsCashInShareUpdated]', function (newValue, oldValue) {
                 if (newValue !== oldValue) {
-                    $scope.isUpdatedAll = $scope.statusPartial.isStatusUpdated || $scope.comissionPartial.isCommisionUpdated || $scope.cashInSharePartial.isCashInShareUpdated;
+                    $scope.isUpdatedAll = $scope.statusPartial.IsStatusUpdated || $scope.comissionPartial.IsCommisionUpdated || $scope.cashInSharePartial.IsCashInShareUpdated;
                 }
             }, true);
 
@@ -46,7 +46,7 @@ ColossusBetModule.controller('mainController', function ($scope, $timeout, colos
 
             $scope.getUrlUpdated = function () {
                 var url = "";
-                switch ($scope.colossusBetSetting.customerInformationPartial.actionType) {
+                switch ($scope.colossusBetSetting.CustomerInformationPartial.ActionType) {
                     case 4:
                         url = 'customersetting/colossusBetSetting/colossusBetSetting/UpdateSuper';
                         break;

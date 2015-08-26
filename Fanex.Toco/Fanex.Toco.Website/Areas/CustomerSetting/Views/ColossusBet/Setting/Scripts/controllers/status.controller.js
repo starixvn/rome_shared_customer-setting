@@ -3,30 +3,30 @@
 ColossusBetModule.controller('statusController', function ($scope, colossusBetRepositories) {
     colossusBetRepositories.getData().then(function () {
         $scope.originalstatusPartial = angular.copy($scope.statusPartial);
-        $scope.$watch('statusPartial.isEnabled', function (newValue, oldValue) {
+        $scope.$watch('statusPartial.IsEnabled', function (newValue, oldValue) {
             if (newValue !== oldValue) {
-                if ($scope.originalstatusPartial.isEnabled) {
-                    $scope.isDownlinechkDisabled = true;
-                    if ($scope.statusPartial.isEnabled != $scope.originalstatusPartial.isEnabled) {
-                        if ($scope.originalstatusPartial.isDownlinesEnabled) {
-                            $scope.statusPartial.isDownlinesEnabled = !$scope.originalstatusPartial.isDownlinesEnabled;
+                if ($scope.originalstatusPartial.IsEnabled) {
+                    $scope.IsDownlinechkDisabled = true;
+                    if ($scope.statusPartial.IsEnabled != $scope.originalstatusPartial.IsEnabled) {
+                        if ($scope.originalstatusPartial.IsDownlinesEnabled) {
+                            $scope.statusPartial.IsDownlinesEnabled = !$scope.originalstatusPartial.IsDownlinesEnabled;
                         }
-                        $scope.statusPartial.isStatusUpdated = true;
+                        $scope.statusPartial.IsStatusUpdated = true;
                     } else {
-                        $scope.statusPartial.isDownlinesEnabled = $scope.originalstatusPartial.isDownlinesEnabled;
-                        $scope.statusPartial.isStatusUpdated = false;
+                        $scope.statusPartial.IsDownlinesEnabled = $scope.originalstatusPartial.IsDownlinesEnabled;
+                        $scope.statusPartial.IsStatusUpdated = false;
                     }
                 } else {
-                    $scope.statusPartial.isStatusUpdated = $scope.statusPartial.isEnabled != $scope.originalstatusPartial.isEnabled;
-                    $scope.isDownlinechkDisabled = !$scope.statusPartial.isEnabled;
+                    $scope.statusPartial.IsStatusUpdated = $scope.statusPartial.IsEnabled != $scope.originalstatusPartial.IsEnabled;
+                    $scope.IsDownlinechkDisabled = !$scope.statusPartial.IsEnabled;
                 }
             }
         }, true);
 
         $scope.$watch('isDownlinechkDisabled', function (newValue, oldValue) {
             if (newValue !== oldValue) {
-                if ($scope.isDownlinechkDisabled) {
-                    $scope.statusPartial.isDownlinesEnabled = false;
+                if ($scope.IsDownlinechkDisabled) {
+                    $scope.statusPartial.IsDownlinesEnabled = false;
                 }
             }
         }, true);
