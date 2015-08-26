@@ -124,6 +124,15 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ColossusBet.
+        /// </summary>
+        public static string ColossusBet {
+            get {
+                return ResourceManager.GetString("ColossusBet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Commission.
         /// </summary>
         public static string Commission {

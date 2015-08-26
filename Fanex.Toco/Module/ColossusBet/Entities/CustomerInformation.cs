@@ -31,10 +31,6 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Entities
 
         public string Ip { get; set; }
 
-        public bool IsDisable { get; set; }
-
-        public bool HideKeno { get; set; }
-
         public int UserId { get; set; }
 
         public int SubAccId { get; set; }

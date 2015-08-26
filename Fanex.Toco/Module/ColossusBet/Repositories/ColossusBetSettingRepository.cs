@@ -195,12 +195,13 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Repositories
             {
                 customerInformation = new CustomerInformation();
                 customerInformation.CustId = dataReader.HasColumn("custid") ? dataReader.ToInt("custid") : 0;
-                customerInformation.Username = dataReader.HasColumn("username") ? dataReader.ToString("username") : string.Empty;
-                customerInformation.FirstName = dataReader.HasColumn("firstname") ? dataReader.ToString("firstname") : string.Empty;
-                customerInformation.LastName = dataReader.HasColumn("lastname") ? dataReader.ToString("lastname") : string.Empty;
-                customerInformation.Phone = dataReader.HasColumn("phone") ? dataReader.ToString("phone") : string.Empty;
-                customerInformation.MobilePhone = dataReader.HasColumn("mobilephone") ? dataReader.ToString("mobilephone") : string.Empty;
-                customerInformation.Fax = dataReader.HasColumn("fax") ? dataReader.ToString("fax") : string.Empty;
+                customerInformation.Username = dataReader.ToString("username");
+                customerInformation.FirstName = dataReader.ToString("firstname");
+                customerInformation.LastName = dataReader.ToString("lastname");
+                customerInformation.LastName = dataReader.ToString("nickname");
+                customerInformation.Phone = dataReader.ToString("phone");
+                customerInformation.MobilePhone = dataReader.ToString("mobilephone");
+                customerInformation.Fax = dataReader.ToString("fax");
                 customerInformation.RoleId = (int)role;
                 customerInformation.ActionType = (int)actionType;
             }
@@ -213,12 +214,12 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Repositories
             var status = new Status();
             while (reader.Read())
             {
-                status.IsEnabled = reader.ToBool("MaxWinLimit");
-                status.IsDownlinesEnabled = reader.ToBool("MaxWinLimit");
+                status.IsEnabled = !reader.ToBool("DisableColossusBet");
+                status.IsDownlinesEnabled =!reader.ToBool("DisableDownlines");
+                status.IsHasDownlines = reader.ToBool("Downlines");
                 status.Upline = new Status()
                 {
-                    IsEnabled = reader.ToBool("MaxWinLimit"),
-                    IsDownlinesEnabled = reader.ToBool("MaxWinLimit")
+                    IsEnabled = !reader.ToBool("DisableUpline"),
                 };
             }
 
@@ -230,8 +231,8 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Repositories
             var cashInSharePartial = new CashInShare();
             while (reader.Read())
             {
-                cashInSharePartial.CashInShareValue = reader.ToDouble("MaxWinLimit");
-                cashInSharePartial.MaxCashInShareValue = reader.ToDouble("IsAutoReset");
+                cashInSharePartial.CashInShareValue = reader.ToDouble("v204sdiscount_18001");
+                cashInSharePartial.MaxCashInShareValue = reader.ToDouble("v204sdicount_18001_max");
             }
 
             return cashInSharePartial;
@@ -242,8 +243,8 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Repositories
             var commisionPartial = new Comission();
             while (reader.Read())
             {
-                commisionPartial.CommisionValue = reader.ToDouble("MaxWinLimit");
-                commisionPartial.MaxCommisionValue = reader.ToDouble("IsAutoReset");
+                commisionPartial.CommisionValue = reader.ToDouble("v204sdiscount_18002");
+                commisionPartial.MaxCommisionValue = reader.ToDouble("v204sdicount_18002_max");
             }
 
             return commisionPartial;
