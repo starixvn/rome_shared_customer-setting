@@ -432,6 +432,10 @@
     <None Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Styles\keno-setting.less" />
     <None Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Styles\Variables.less" />
     <Content Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Views\Index.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Views\_CustomerInfor.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Views\_CashInShare.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Views\_Status.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Views\_Commission.cshtml" />
     <None Include="Areas\CustomerSetting\Views\EnableStatus\Styles\EnableStatus.less" />
     <None Include="Areas\CustomerSetting\Views\EnableStatus\Styles\variables.less" />
     <None Include="Areas\CustomerSetting\Views\EnableStatus\Templates\Products.config">

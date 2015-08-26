@@ -1,6 +1,4 @@
-﻿@using Newtonsoft.Json
-@using Newtonsoft.Json.Serialization
-@using Fanex.CustomerSetting.Module.ColossusBetSetting.Resources;
+﻿@using Fanex.CustomerSetting.Module.ColossusBetSetting.Resources;
 <!DOCTYPE html>
 <html ng-app='colossusBetSettingModule' id="ng-app">
 <head>
@@ -36,138 +34,10 @@
         <div id="divShowInfo" class="maincontent_box tableWidth">
         </div>
         <div id="customerInfo">
-            <table class="tableColor tableWidth">
-                <tr>
-                    <td colspan="4" class=" header c b ">
-                        @Messages.GeneralInformation
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col15percent formatCol r b betSetting">
-                        @Messages.Username
-                    </td>
-                    <td class="col35percent formatCol l betSetting">
-                        <span ng-bind="customerInformationPartial.firstName"></span>
-                    </td>
-                    <td class="col15percent formatCol r b betSetting">
-                        @Messages.Nickname
-                    </td>
-                    <td class="col35percent formatCol l betSetting">
-                        <span ng-bind="customerInformationPartial.lastName"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col15percent formatCol r b betSetting">
-                        @Messages.FirstName
-                    </td>
-                    <td class="col35percent formatCol l betSetting">
-                        <span ng-bind="customerInformationPartial.firstName"></span>
-                    </td>
-                    <td class="formatCol r b betSetting">
-                        @Messages.Phone
-                    </td>
-                    <td class="formatCol l betSetting">
-                        <span ng-bind="customerInformationPartial.phone"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col15percent formatCol r b betSetting">
-                        @Messages.LastName
-                    </td>
-                    <td class="col35percent formatCol l betSetting">
-                        <span ng-bind="customerInformationPartial.lastName"></span>
-                    </td>
-                    <td class="formatCol r b betSetting">
-                        @Messages.MobilePhone
-                    </td>
-                    <td class="formatCol l betSetting">
-                        <span ng-bind="customerInformationPartial.mobilePhone"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="formatCol r b betSetting">
-                        @Messages.Fax
-                    </td>
-                    <td class="formatCol l betSetting">
-                        <span ng-bind="customerInformationPartial.fax"></span>
-                    </td>
-                    <td class="formatCol r b betSetting">
-                    </td>
-                    <td class="formatCol l betSetting">
-                    </td>
-                </tr>
-            </table>
-            <table class="tableColor tableWidth" ng-controller="statusController">
-                <tr>
-                    <td colspan="4" class="header c b">
-                        <span>@Messages.Status</span>
-                        <input ng-class-name="btnSave" check-disable-element ng-model="statusPartial.IsStatusUpdated"
-                            ng-click="updated(true, 'StatusPartial')" type="button" />
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="4" class="formatCol l betSetting" style="height: 34px;">
-                        <span class="b" style="padding-left: 30px;">Colossus Bet </span>
-                        <div style="display: inline-block; padding-left: 30px;">
-                            <input ng-disabled="!statusPartial.Upline.IsEnabled" type="checkbox" ng-model="statusPartial.IsEnabled" />
-                            @Messages.Enable
-                             @if (Model.CustomerInformationPartial.RoleId != 1 && Model.StatusPartial.IsHasDownlines)
-                             {
-                                <input ng-disabled="IsDownlinechkDisabled" type="checkbox" ng-model="statusPartial.IsDownlinesEnabled" />
-                                @Messages.EnableDownlines
-                             }
-                             </div>
-                    </td>
-                </tr>
-            </table>
-            <table class="tableColor tableWidth" ng-controller="commissionController">
-                <tr>
-                    <td colspan="4" class="header c b">
-                        <span>@Messages.Commission</span>
-                        <input ng-class-name="btnSave" check-disable-element ng-model="comissionPartial.IsCommisionUpdated"
-                            ng-click="updated(true, 'ComissionPartial')" type="button" />
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="4" class="formatCol l betSetting" style="height: 34px;">
-                        <div class="b" style="padding-left: 30px; width: 150px; display: inline-block;" ng-switch="customerInformationPartial.RoleId">
-                            <span ng-switch-when="4">@Messages.SuperCommision </span>
-                            <span ng-switch-when="3">@Messages.MasterCommision</span>
-                            <span ng-switch-when="2">@Messages.AgentCommision</span>
-                             <span ng-switch-default> @Messages.MemberCommision</span>
-                        </div>
-                        <div style="display: inline-block; padding-left: 30px; padding-left: 30px;">
-                            <input input-format pattern="[0-9]+([\.,][0-9]+)*" id="commissionInputId" ng-model="comissionPartial.CommisionValue"
-                                class="r col50percent" type="text" title="" style="text-align: right; padding-right: 5px;" />
-                            <= <span ng-bind="comissionPartial.MaxCommisionValue"></span>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            <table class="tableColor tableWidth" ng-controller="cashInShareController">
-                <tr>
-                    <td colspan="4" class="header c b">
-                        <span>@Messages.CashInShare</span>
-                        <input ng-class-name="btnSave" check-disable-element ng-model="cashInSharePartial.IsCashInShareUpdated"
-                            ng-click="updated(true, 'CashInSharePartial')" type="button" />
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="4" class="formatCol l betSetting" style="height: 34px;">
-                        <div class="b" style="padding-left: 30px; width: 150px; display: inline-block;" ng-switch="customerInformationPartial.RoleId">
-                                <span ng-switch-when="4">@Messages.SuperCashInShare </span>
-                                <span ng-switch-when="3"> @Messages.MasterCashInShare </span>
-                                <span ng-switch-when="2">@Messages.AgentCashInShare</span>
-                                <span ng-switch-default>@Messages.MemberCashInShare</span>
-                        </div>
-                        <div style="display: inline-block; padding-left: 30px;">
-                            <input input-format pattern="[0-9]+([\.,][0-9]+)*" id="cashInShareInputId" ng-model="cashInSharePartial.CashInShareValue"
-                                class="r col50percent" type="text" title="" style="text-align: right; padding-right: 5px;" />
-                            <= <span ng-bind="cashInSharePartial.MaxCashInShareValue"></span>
-                        </div>
-                    </td>
-                </tr>
-            </table>
+            @Html.Partial("~/Areas/CustomerSetting/Views/ColossusBet/Setting/Views/_CustomerInfor.cshtml")
+            @Html.Partial("~/Areas/CustomerSetting/Views/ColossusBet/Setting/Views/_Status.cshtml")
+            @Html.Partial("~/Areas/CustomerSetting/Views/ColossusBet/Setting/Views/_Commission.cshtml")
+            @Html.Partial("~/Areas/CustomerSetting/Views/ColossusBet/Setting/Views/_CashInShare.cshtml")
         </div>
         <div class="btnLeft">
             <input ng-class-name="btnUpdate" check-disable-element ng-model="isUpdatedAll" ng-click="updated(false)"
@@ -198,5 +68,4 @@
         less_than: "@Messages.LessThan"
     };
 </script>
-@*@RenderSection("scripts", required: false)*@
 </html>

@@ -1,0 +1,25 @@
+﻿@using Fanex.CustomerSetting.Module.ColossusBetSetting.Resources;
+<table class="tableColor tableWidth" ng-controller="cashInShareController">
+    <tr>
+        <td colspan="4" class="header c b">
+            <span>@Messages.CashInShare</span>
+            <input ng-class-name="btnSave" check-disable-element ng-model="cashInSharePartial.IsCashInShareUpdated"
+                ng-click="updated(true, 'CashInSharePartial')" type="button" />
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4" class="formatCol l betSetting" style="height: 34px;">
+            <div class="b" style="padding-left: 30px; width: 150px; display: inline-block;" ng-switch="customerInformationPartial.RoleId">
+                <span ng-switch-when="4">@Messages.SuperCashInShare </span>
+                <span ng-switch-when="3">@Messages.MasterCashInShare </span>
+                <span ng-switch-when="2">@Messages.AgentCashInShare</span>
+                <span ng-switch-default>@Messages.MemberCashInShare</span>
+            </div>
+            <div style="display: inline-block; padding-left: 30px;">
+                <input input-format pattern="[0-9]+([\.,][0-9]+)*" id="cashInShareInputId" ng-model="cashInSharePartial.CashInShareValue"
+                    class="r col50percent" type="text" title="" style="text-align: right; padding-right: 5px;" />
+                <= <span ng-bind="cashInSharePartial.MaxCashInShareValue"></span>
+            </div>
+        </td>
+    </tr>
+</table>
