@@ -11,8 +11,6 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Entities
 
         public int RoleId { get; set; }
 
-        public int ActionType { get; set; }
-
         public string Username { get; set; }
 
         public string NickName { get; set; }

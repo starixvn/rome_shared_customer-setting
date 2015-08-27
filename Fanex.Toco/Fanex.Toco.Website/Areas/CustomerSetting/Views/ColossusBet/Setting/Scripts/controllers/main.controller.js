@@ -20,10 +20,6 @@ ColossusBetModule.controller('mainController', function ($scope, $timeout, colos
             }, true);
 
             $scope.updated = function (isUpdatePartial, partialName) {
-//                if ($scope.positionTakingCopyAll.isCopiedAll) {
-//                    $scope.$broadcast('resetPositionTaking', { "betTypeId": $scope.positionTakingCopyAll.betTypeId });
-//                }
-               
                 if (isUpdatePartial) {
                     switch (partialName) {
                         case "StatusPartial":
@@ -42,26 +38,11 @@ ColossusBetModule.controller('mainController', function ($scope, $timeout, colos
                             break;
                     }
                 }
+
+
+                $scope.doUpdated($("#UpdateSettingtUrl").val());
+
             };
-
-            $scope.getUrlUpdated = function () {
-                var url = "";
-                switch ($scope.colossusBetSetting.CustomerInformationPartial.ActionType) {
-                    case 4:
-                        url = 'customersetting/colossusBetSetting/colossusBetSetting/UpdateSuper';
-                        break;
-                    case 3:
-                        url = 'customersetting/colossusBetSetting/colossusBetSetting/UpdateMaster';
-                        break;
-                    case 2:
-                        url = 'customersetting/colossusBetSetting/colossusBetSetting/UpdateAgent';
-                        break;
-                    default:
-                        break;
-                }
-
-                return domain + url;
-            }
 
             $scope.showMesseges = function (html, isSuccess) {
                 if (isSuccess) {

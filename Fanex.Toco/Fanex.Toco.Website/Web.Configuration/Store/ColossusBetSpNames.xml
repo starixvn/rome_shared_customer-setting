@@ -8,6 +8,7 @@
       <Setting Key="Acc_CustomerSelEditMemberColossusBet" SpName="Acc_CustomerSelEditMemberColossusBet" DbName="DBCUST.CustDB.BODBDownlineNet"/>
     </Function>
     <Function Name="Update Setting">
+      <Setting Key="Acc_CustomerUpdColossusBet" SpName="Acc_CustomerUpdColossusBet" DbName="DBCUST.CustDB.BODBDownlineNet"/>     
     </Function>
   </Function>
 </Functions>

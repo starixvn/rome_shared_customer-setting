@@ -13,46 +13,6 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Repositories
 
     public class ColossusBetSettingRepository : IColossusBetSettingRepository
     {
-        private ColossusBetModel modelFake = new ColossusBetModel()
-        {
-            CustomerInformationPartial = new CustomerInformation()
-            {
-                Username = "master1",
-                NickName = "bear",
-                FirstName = "Tran",
-                LastName = "Vu",
-                Phone = "096414444",
-                MobilePhone = "1234543463",
-                Fax = "45645646512",
-                RoleId = 4
-            },
-            StatusPartial = new Status()
-            {
-                IsEnabled = false,
-                IsHasDownlines = true,
-                IsDownlinesEnabled = false,
-                IsStatusUpdated = false,
-                Upline = new Status
-                {
-                    IsEnabled = true,
-                    IsDownlinesEnabled = true
-                }
-            },
-            ComissionPartial = new Comission()
-            {
-                CommisionValue = 6.75,
-                MaxCommisionValue = 6.75,
-                IsCommisionUpdated = false
-            },
-            CashInSharePartial = new CashInShare()
-            {
-                CashInShareValue = 14.5,
-                MaxCashInShareValue = 22.5,
-                IsCashInShareUpdated = false
-            }
-        };
-
-
         private readonly IMessageHelper _messageHelper;
 
         public ColossusBetSettingRepository()
@@ -70,37 +30,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Repositories
         /// </summary>
         /// <param name="criteria">The criteria.</param>
         /// <returns>The SuperSetting object.</returns>
-        public ColossusBetModel GetSuperSetting(ICriteria criteria)
-        {
-            return modelFake;
-
-            if (!criteria.IsValid())
-            {
-                throw new NapDataAccessException();
-            }
-
-            var settingModel = new ColossusBetModel();
-
-            using (var objDb = new ObjectDb(criteria.GetSettingKey()))
-            {
-                using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
-                {
-                    settingModel.CustomerInformationPartial = ReadCustomerInformationData(reader, Roles.Super, ActionType.EditSuper);
-                    settingModel.StatusPartial = reader.NextResult() ? ReadStatusPartial(reader) : null;
-                    settingModel.ComissionPartial = reader.NextResult() ? ReadCommisionPartial(reader) : null;
-                    settingModel.CashInSharePartial = reader.NextResult() ? ReadCashInSharePartial(reader) : null;
-                }
-            }
-
-            return settingModel;
-        }
-
-        /// <summary>
-        /// Gets the master setting.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>The MasterSetting object.</returns>
-        public ColossusBetModel GetMasterSetting(ICriteria criteria)
+        public ColossusBetModel GetSetting(ICriteria criteria, int custId, int roleId)
         {
             if (!criteria.IsValid())
             {
@@ -113,64 +43,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Repositories
             {
                 using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
                 {
-                    settingModel.CustomerInformationPartial = ReadCustomerInformationData(reader, Roles.Super, ActionType.EditSuper);
-                    settingModel.StatusPartial = reader.NextResult() ? ReadStatusPartial(reader) : null;
-                    settingModel.ComissionPartial = reader.NextResult() ? ReadCommisionPartial(reader) : null;
-                    settingModel.CashInSharePartial = reader.NextResult() ? ReadCashInSharePartial(reader) : null;
-                }
-            }
-
-            return settingModel;
-        }
-
-        /// <summary>
-        /// Gets the agent setting.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>The AgentSetting object.</returns>
-        public ColossusBetModel GetAgentSetting(ICriteria criteria)
-        {
-            if (!criteria.IsValid())
-            {
-                throw new NapDataAccessException();
-            }
-
-            var settingModel = new ColossusBetModel();
-
-            using (var objDb = new ObjectDb(criteria.GetSettingKey()))
-            {
-                using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
-                {
-                    settingModel.CustomerInformationPartial = ReadCustomerInformationData(reader, Roles.Super, ActionType.EditSuper);
-                    settingModel.StatusPartial = reader.NextResult() ? ReadStatusPartial(reader) : null;
-                    settingModel.ComissionPartial = reader.NextResult() ? ReadCommisionPartial(reader) : null;
-                    settingModel.CashInSharePartial = reader.NextResult() ? ReadCashInSharePartial(reader) : null;
-                }
-            }
-
-            return settingModel;
-        }
-
-        /// <summary>
-        /// Gets the member setting.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>The MemberSetting object.</returns>
-        public ColossusBetModel GetMemberSetting(ICriteria criteria)
-        {
-            if (!criteria.IsValid())
-            {
-                throw new NapDataAccessException();
-            }
-
-            var settingModel = new ColossusBetModel();
-
-            using (var objDb = new ObjectDb(criteria.GetSettingKey()))
-            {
-                using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
-                {
-                    settingModel.CustomerInformationPartial = ReadCustomerInformationData(reader, Roles.Super, ActionType.EditSuper);
-                    settingModel.StatusPartial = reader.NextResult() ? ReadStatusPartial(reader) : null;
+                    settingModel = ReadCustomerInformationData(reader, custId, roleId);
                     settingModel.ComissionPartial = reader.NextResult() ? ReadCommisionPartial(reader) : null;
                     settingModel.CashInSharePartial = reader.NextResult() ? ReadCashInSharePartial(reader) : null;
                 }
@@ -205,66 +78,65 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Repositories
         /// <returns>
         /// The CustomerInformation object.
         /// </returns>
-        internal static CustomerInformation ReadCustomerInformationData(IDataReader dataReader, Roles role, ActionType actionType)
+        internal static ColossusBetModel ReadCustomerInformationData(IDataReader dataReader, int custId, int roleId)
         {
-            CustomerInformation customerInformation = null;
+            ColossusBetModel model = new ColossusBetModel();
             while (dataReader.Read())
             {
-                customerInformation = new CustomerInformation();
-                customerInformation.CustId = dataReader.HasColumn("custid") ? dataReader.ToInt("custid") : 0;
-                customerInformation.Username = dataReader.ToString("username");
-                customerInformation.FirstName = dataReader.ToString("firstname");
-                customerInformation.LastName = dataReader.ToString("lastname");
-                customerInformation.LastName = dataReader.ToString("nickname");
-                customerInformation.Phone = dataReader.ToString("phone");
-                customerInformation.MobilePhone = dataReader.ToString("mobilephone");
-                customerInformation.Fax = dataReader.ToString("fax");
-                customerInformation.RoleId = (int)role;
-                customerInformation.ActionType = (int)actionType;
-            }
-
-            return customerInformation;
-        }
-
-        internal static Status ReadStatusPartial(IDataReader reader)
-        {
-            var status = new Status();
-            while (reader.Read())
-            {
-                status.IsEnabled = !reader.ToBool("DisableColossusBet");
-                status.IsDownlinesEnabled =!reader.ToBool("DisableDownlines");
-                status.IsHasDownlines = reader.ToBool("Downlines");
-                status.Upline = new Status()
+                model.CustomerInformationPartial = new CustomerInformation()
                 {
-                    IsEnabled = !reader.ToBool("DisableUpline"),
+                    CustId = custId,
+                    Username = dataReader.To<string>("username"),
+                    FirstName = dataReader.To<string>("firstname"),
+                    LastName = dataReader.To<string>("lastname"),
+                    NickName = dataReader.To<string>("nickname"),
+                    Phone = dataReader.To<string>("phone"),
+                    MobilePhone = dataReader.To<string>("mobilephone"),
+                    Fax = dataReader.To<string>("fax"),
+                    RoleId = roleId
+                };
+
+                model.StatusPartial = new Status()
+                {
+                    IsEnabled = !dataReader.To<bool>("DisableColossusBet"),
+                    IsDownlinesEnabled = !dataReader.To<bool>("DisableDownlines"),
+                    IsHasDownlines = dataReader.To<bool>("Downlines"),
+                    Upline = new Status()
+                    {
+                        IsEnabled = !dataReader.To<bool>("DisableUpline"),
+                    }
                 };
             }
 
-            return status;
+            return model;
         }
 
         internal static CashInShare ReadCashInSharePartial(IDataReader reader)
         {
-            var cashInSharePartial = new CashInShare();
             while (reader.Read())
             {
-                cashInSharePartial.CashInShareValue = reader.ToDouble("v204sdiscount_18001");
-                cashInSharePartial.MaxCashInShareValue = reader.ToDouble("v204sdicount_18001_max");
+                return new CashInShare()
+                {
+                    CashInShareValue = reader.To<double>("v204discount_18002"),
+                    MaxCashInShareValue = reader.To<double>("v204discount_18002_max")
+                };
             }
 
-            return cashInSharePartial;
+            return new CashInShare();
         }
 
         internal static Comission ReadCommisionPartial(IDataReader reader)
         {
-            var commisionPartial = new Comission();
             while (reader.Read())
             {
-                commisionPartial.CommisionValue = reader.ToDouble("v204sdiscount_18002");
-                commisionPartial.MaxCommisionValue = reader.ToDouble("v204sdicount_18002_max");
+                return new Comission()
+                {
+                    CommisionValue = reader.To<double>("v204discount_18001"),
+                    MaxCommisionValue = reader.To<double>("v204discount_18001_max")
+                };           
             }
 
-            return commisionPartial;
+            return new Comission();
         }
     }
 }

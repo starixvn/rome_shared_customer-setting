@@ -4,18 +4,12 @@
     using Fanex.CustomerSetting.Module.ColossusBetSetting.Criteria;
     using Fanex.CustomerSetting.Module.ColossusBetSetting.Entities;
     using Fanex.CustomerSetting.Module.Core.Models;
+    using Fanex.NAP.Framework.Data;
 
     public interface IColossusBetService
     {
-        ColossusBetModel GetSuperSetting(int custId);
-
-        ColossusBetModel GetMasterSetting(int custId, int srecommend);
-
-        ColossusBetModel GetAgentSetting(int custId, int mrecommend);
-
-        ColossusBetModel GetMemberSetting(int custId, int recommend);
+        ColossusBetModel GetSetting(ICriteria criteria, int custId, int roleId);
 
         IList<Result> UpdateSetting(UpdatedSettingCriteria criteria);
-
     }
 }

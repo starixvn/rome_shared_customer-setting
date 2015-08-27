@@ -9,11 +9,8 @@
     </tr>
     <tr>
         <td colspan="4" class="formatCol l betSetting" style="height: 34px;">
-            <div class="b" style="padding-left: 30px; width: 150px; display: inline-block;" ng-switch="customerInformationPartial.RoleId">
-                <span ng-switch-when="4">@Messages.SuperCommision </span>
-                <span ng-switch-when="3">@Messages.MasterCommision</span>
-                <span ng-switch-when="2">@Messages.AgentCommision</span> 
-                <span ng-switch-default>@Messages.MemberCommision</span>
+            <div class="b" style="padding-left: 30px; width: 150px; display: inline-block;">
+                    <span>@ViewData["commissionLabel"]</span>
             </div>
             <div style="display: inline-block; padding-left: 30px; padding-left: 30px;">
                 <input input-format pattern="[0-9]+([\.,][0-9]+)*" id="commissionInputId" ng-model="comissionPartial.CommisionValue"

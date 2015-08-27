@@ -1,4 +1,5 @@
 ﻿@using Fanex.CustomerSetting.Module.ColossusBetSetting.Resources;
+
 <!DOCTYPE html>
 <html ng-app='colossusBetSettingModule' id="ng-app">
 <head>
@@ -19,11 +20,36 @@
                     <td class="maincontent_headerL">
                     </td>
                     <td class="maincontent_headerC fixfont">
-                        <div class=" divInline" ng-switch="customerInformationPartial.RoleId">
-                            <span ng-switch-when="4">@Messages.UpdateSuper </span>
-                            <span ng-switch-when="3">@Messages.UpdateMaster</span>
-                            <span ng-switch-when="2">@Messages.UpdateAgent</span>
-                            <span ng-switch-default>@Messages.UpdateMember</span>
+                        <div class=" divInline">
+                        @{
+                            var levelName = string.Empty;
+                            var commissionLabel = string.Empty;
+                            var cashInShareLabel = string.Empty;
+                            switch((int)Model.CustomerInformationPartial.RoleId)
+                            {
+                                case 4: 
+                                    levelName = Messages.UpdateSuper;
+                                    commissionLabel = Messages.SuperCommision;
+                                    cashInShareLabel = Messages.SuperCashInShare;
+                                    break;
+                                case 3: 
+                                    levelName = Messages.UpdateMaster;
+                                    commissionLabel = Messages.MasterCommision;
+                                    cashInShareLabel = Messages.MasterCashInShare;
+                                    break;
+                                case 2: 
+                                    levelName = Messages.UpdateAgent;
+                                    commissionLabel = Messages.AgentCommision;
+                                    cashInShareLabel = Messages.AgentCashInShare;
+                                    break;
+                                default: 
+                                    levelName = Messages.UpdateMember;
+                                    commissionLabel = Messages.MemberCommision;
+                                    cashInShareLabel = Messages.MemberCashInShare;
+                                    break;
+                            }
+                        }
+                        <span>@levelName</span>
                         </div>
                     </td>
                     <td class="maincontent_headerR">
@@ -36,8 +62,9 @@
         <div id="customerInfo">
             @Html.Partial("~/Areas/CustomerSetting/Views/ColossusBet/Setting/Views/_CustomerInfor.cshtml")
             @Html.Partial("~/Areas/CustomerSetting/Views/ColossusBet/Setting/Views/_Status.cshtml")
-            @Html.Partial("~/Areas/CustomerSetting/Views/ColossusBet/Setting/Views/_Commission.cshtml")
-            @Html.Partial("~/Areas/CustomerSetting/Views/ColossusBet/Setting/Views/_CashInShare.cshtml")
+            @Html.Partial("~/Areas/CustomerSetting/Views/ColossusBet/Setting/Views/_Commission.cshtml", ViewData["commissionLabel"] = commissionLabel)
+            @Html.Partial("~/Areas/CustomerSetting/Views/ColossusBet/Setting/Views/_CashInShare.cshtml", ViewData["cashInShareLabel"] = cashInShareLabel)
+            @Html.Hidden("UpdateSettingtUrl", Url.Content("~/customersetting/colossusBetSetting/colossusBetSetting/UpdateSetting"))
         </div>
         <div class="btnLeft">
             <input ng-class-name="btnUpdate" check-disable-element ng-model="isUpdatedAll" ng-click="updated(false)"

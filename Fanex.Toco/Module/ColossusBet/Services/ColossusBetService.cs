@@ -6,6 +6,7 @@
     using Fanex.CustomerSetting.Module.ColossusBetSetting.Repositories;
     using Fanex.CustomerSetting.Module.Core.Models;
     using Fanex.CustomerSetting.Module.Core.Services.Impl;
+    using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// Customer Service.
@@ -26,64 +27,14 @@
             _criteriaGeneratorService = criteriaGeneratorService ?? null;
         }
 
-        public ColossusBetModel GetSuperSetting(int custId)
+        public ColossusBetModel GetSetting(ICriteria criteria, int custId, int roleId)
         {
-            return _colossusBetSettingRepository.GetSuperSetting(new GetSuperSettingCriteria()
-            {
-                CustId = custId
-            });
-        }
-
-        public ColossusBetModel GetMasterSetting(int custId, int srecommend)
-        {
-            return _colossusBetSettingRepository.GetMasterSetting(new GetMasterSettingCriteria()
-                {
-                    CustId = custId,
-                    Srecommend = srecommend
-                });
-        }
-
-        public ColossusBetModel GetAgentSetting(int custId, int mrecommend)
-        {
-            return _colossusBetSettingRepository.GetAgentSetting(new GetAgentSettingCriteria()
-                {
-                    CustId = custId,
-                    Mrecommend = mrecommend
-                });
-        }
-
-        public ColossusBetModel GetMemberSetting(int custId, int recommend)
-        {
-            return _colossusBetSettingRepository.GetMemberSetting(new GetMemberSettingCriteria()
-                {
-                    CustId = custId,
-                    Recommend = recommend
-                });
+            return _colossusBetSettingRepository.GetSetting(criteria, custId, roleId);
         }
 
         public IList<Result> UpdateSetting(UpdatedSettingCriteria criteria)
         {
             return _colossusBetSettingRepository.UpdateSetting(criteria);
-        }
-
-        internal static string ReformatErrorMessageForBetSetting(int betTypeId, string inputMessage)
-        {
-            string betTypeName = CacheRef.GetBettype(betTypeId);
-            return string.Format(
-                "{0} - {1} - {2}",
-                Resources.Messages.BetSetting,
-                !string.IsNullOrEmpty(betTypeName) ? betTypeName : betTypeId.ToString(),
-                inputMessage);
-        }
-
-        internal static string ReformatErrorMessageForPositionTaking(int betTypeId, string inputMessage)
-        {
-            string betTypeName = CacheRef.GetBettype(betTypeId);
-            return string.Format(
-                "{0} - {1} - {2}",
-                Resources.Messages.PositionTaking,
-                !string.IsNullOrEmpty(betTypeName) ? betTypeName : betTypeId.ToString(),
-                inputMessage);
         }
     }
 }

@@ -4,7 +4,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.App_Start
     using Fanex.CustomerSetting.Module.Core.Web.App_Start;
 
     /// <summary>
-    /// Register racing module.
+    /// Register module.
     /// </summary>
     public class ModuleRegistrator : AppAreaRegistrator
     {

@@ -9,11 +9,8 @@
     </tr>
     <tr>
         <td colspan="4" class="formatCol l betSetting" style="height: 34px;">
-            <div class="b" style="padding-left: 30px; width: 150px; display: inline-block;" ng-switch="customerInformationPartial.RoleId">
-                <span ng-switch-when="4">@Messages.SuperCashInShare </span>
-                <span ng-switch-when="3">@Messages.MasterCashInShare </span>
-                <span ng-switch-when="2">@Messages.AgentCashInShare</span>
-                <span ng-switch-default>@Messages.MemberCashInShare</span>
+            <div class="b" style="padding-left: 30px; width: 150px; display: inline-block;">
+              <span>@ViewData["cashInShareLabel"]</span>
             </div>
             <div style="display: inline-block; padding-left: 30px;">
                 <input input-format pattern="[0-9]+([\.,][0-9]+)*" id="cashInShareInputId" ng-model="cashInSharePartial.CashInShareValue"
