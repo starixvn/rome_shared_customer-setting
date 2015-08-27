@@ -131,11 +131,12 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
             // Gets upline settings
             casinoSettingUpline.IBCCustID = uplineId;
+            casinoSettingUpline.UplineRoleId = custInfo.RoleId + 1;
             this.GetCustSettingCS(ref casinoSettingUpline);
 
-            if (casinoSettingUpline.RoleId - custInfo.RoleId != 1 || casinoSettingUpline.RoleId != Super || custInfo.RoleId != Master)
+            if (custInfo.RoleId != Master)
             {
-                throw new Exception("Invalid custId and uplineId");
+                throw new Exception("Invalid custId");
             }
 
             gameModel.IsPtByGameType = casinoSettingUpline.PTByGameType;
@@ -197,9 +198,10 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
             // Gets upline settings
             casinoSettingUpline.IBCCustID = uplineId;
+            casinoSettingUpline.UplineRoleId = custInfo.RoleId + 1;
             this.GetCustSettingCS(ref casinoSettingUpline);
 
-            if (casinoSettingUpline.RoleId - custInfo.RoleId != 1 || casinoSettingUpline.RoleId != Master || custInfo.RoleId != Agent)
+            if (custInfo.RoleId != Agent)
             {
                 throw new Exception("Invalid custId and uplineId");
             }
@@ -263,9 +265,10 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
             // Gets upline settings
             casinoSettingUpline.IBCCustID = uplineId;
+            casinoSettingUpline.UplineRoleId = custInfo.RoleId + 2;
             this.GetCustSettingCS(ref casinoSettingUpline);
 
-            if (casinoSettingUpline.RoleId - custInfo.RoleId != 2 || casinoSettingUpline.RoleId != Super || custInfo.RoleId != Agent)
+            if (custInfo.RoleId != Agent)
             {
                 throw new Exception("Invalid custId and uplineId");
             }
@@ -310,9 +313,10 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
             // Gets upline settings
             casinoSettingUpline.IBCCustID = uplineId;
+            casinoSettingUpline.UplineRoleId = custInfo.RoleId + 1;
             this.GetCustSettingCS(ref casinoSettingUpline);
 
-            if (casinoSettingUpline.RoleId - custInfo.RoleId != 1 || casinoSettingUpline.RoleId != 2 || custInfo.RoleId != 1)
+            if (custInfo.RoleId != 1)
             {
                 throw new Exception("Invalid custId and uplineId");
             }
@@ -366,9 +370,10 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
             // Gets upline settings
             casinoSettingUpline.IBCCustID = uplineId;
+            casinoSettingUpline.UplineRoleId = custInfo.RoleId + 3;
             this.GetCustSettingCS(ref casinoSettingUpline);
 
-            if (casinoSettingUpline.RoleId - custInfo.RoleId != 3 || casinoSettingUpline.RoleId != Super || custInfo.RoleId != Member)
+            if (custInfo.RoleId != Member)
             {
                 throw new Exception("Invalid custId and uplineId");
             }
@@ -435,9 +440,10 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
             // Gets upline settings
             casinoSettingUpline.IBCCustID = uplineId;
+            casinoSettingUpline.UplineRoleId = custInfo.RoleId + 2;
             this.GetCustSettingCS(ref casinoSettingUpline);
 
-            if (casinoSettingUpline.RoleId - custInfo.RoleId != 2 || casinoSettingUpline.RoleId != Master || custInfo.RoleId != Member)
+            if (custInfo.RoleId != Member)
             {
                 throw new Exception("Invalid custId and uplineId");
             }

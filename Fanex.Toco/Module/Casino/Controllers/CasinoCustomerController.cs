@@ -26,7 +26,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             var customerUpline = new CasinoCustomer();
 
             customerUpline.IBCCustID = uplineId;
-
+            
             if (uplineId != 0)
             {
                 CasinoManager.Instance.GetCustSettingCS(ref customerUpline);
@@ -40,6 +40,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
             //// For get autoMaster.
             customerInfo.IsDisableAutoMPT = customerUpline.IsDisableAutoMPT;
+            customerInfo.UplineRoleId = customerInfo.RoleId + 1;
 
             if (uplineId != 0 && customerUpline.RoleId == customerInfo.RoleId)
             {
