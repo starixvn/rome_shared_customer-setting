@@ -8,7 +8,7 @@
 
     public interface IColossusBetService
     {
-        ColossusBetModel GetSetting(ICriteria criteria, int custId, int roleId);
+        ColossusBetModel EditSetting(SettingContext settingContext);
 
         IList<Result> UpdateSetting(UpdatedSettingCriteria criteria);
     }

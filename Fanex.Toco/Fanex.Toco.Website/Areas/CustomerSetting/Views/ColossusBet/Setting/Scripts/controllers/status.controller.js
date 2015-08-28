@@ -3,7 +3,7 @@
 ColossusBetModule.controller('statusController', function ($scope, colossusBetRepositories) {
     colossusBetRepositories.getData().then(function () {
         $scope.originalstatusPartial = angular.copy($scope.statusPartial);
-        $scope.$watch('statusPartial.IsEnabled', function (newValue, oldValue) {
+        $scope.$watch('[statusPartial.IsEnabled, statusPartial.IsDownlinesEnabled]', function (newValue, oldValue) {
             if (newValue !== oldValue) {
                 if ($scope.originalstatusPartial.IsEnabled) {
                     $scope.IsDownlinechkDisabled = true;

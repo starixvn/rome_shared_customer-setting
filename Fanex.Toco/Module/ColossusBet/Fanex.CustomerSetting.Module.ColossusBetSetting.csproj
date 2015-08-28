@@ -149,6 +149,7 @@
     <Compile Include="Entities\Constants.cs" />
     <Compile Include="Entities\Comission.cs" />
     <Compile Include="Entities\CashInShare.cs" />
+    <Compile Include="Entities\SettingContext.cs" />
     <Compile Include="Helpers\DataRecordExtensions.cs" />
     <Compile Include="Helpers\IMessageHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

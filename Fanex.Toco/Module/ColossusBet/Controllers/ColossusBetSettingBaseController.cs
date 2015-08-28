@@ -3,6 +3,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
     using System.Globalization;
     using System.Threading;
     using Fanex.CustomerSetting.Module.ColossusBetSetting.App_Start;
+    using Fanex.CustomerSetting.Module.ColossusBetSetting.Services;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
 
     /// <summary>
@@ -28,7 +29,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
         /// </summary>
         private static void SetCurrentCulture()
         {
-            string cultureName = string.Empty; ////new KenoSession().Language;
+            string cultureName = new ColossusBetSession().Language;
 
             if (string.IsNullOrEmpty(cultureName))
             {

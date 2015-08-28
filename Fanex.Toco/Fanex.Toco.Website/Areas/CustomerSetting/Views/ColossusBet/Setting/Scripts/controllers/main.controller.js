@@ -9,7 +9,7 @@ ColossusBetModule.controller('mainController', function ($scope, $timeout, colos
             $scope.statusPartial = $scope.colossusBetSetting.StatusPartial;
             $scope.comissionPartial = $scope.colossusBetSetting.ComissionPartial;
             $scope.cashInSharePartial = $scope.colossusBetSetting.CashInSharePartial;
-            
+
             $scope.isUpdatedAll = false;
             $scope.errors = {};
 

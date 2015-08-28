@@ -19,22 +19,34 @@ ColossusBetModule.directive('inputFormat', ['$filter',
     function($filter) {
         return {
             require: '?ngModel',
-            link: function($scope, element, attrs, ctrl) {
-                if (!ctrl) {
+            link: function ($scope, element, attrs, ngModelCtrl) {
+                if (!ngModelCtrl) {
                     return;
                 }
 
-                ctrl.$formatters.unshift(function() {
-                    return $filter('number')(ctrl.$modelValue);
+                ngModelCtrl.$parsers.push(function (val) {
+                    if (angular.isUndefined(val)) {
+                        var val = '';
+                    }
+                    var clean = val.replace(/[^0-9\.]/g, '');
+                    var decimalCheck = clean.split('.');
+
+                    if (!angular.isUndefined(decimalCheck[1])) {
+                        decimalCheck[1] = decimalCheck[1].slice(0, 5);
+                        clean = decimalCheck[0] + '.' + decimalCheck[1];
+                    }
+
+                    if (val !== clean) {
+                        ngModelCtrl.$setViewValue(clean);
+                        ngModelCtrl.$render();
+                    }
+                    return clean;
                 });
 
-                ctrl.$parsers.unshift(function(viewValue) {
-                    var plainNumber = viewValue.replace(/[\,]/g, ''),
-                        b = $filter('number')(plainNumber);
-
-                    element.val(b);
-
-                    return plainNumber;
+                element.bind('keypress', function (event) {
+                    if (event.keyCode === 32) {
+                        event.preventDefault();
+                    }
                 });
             }
         };

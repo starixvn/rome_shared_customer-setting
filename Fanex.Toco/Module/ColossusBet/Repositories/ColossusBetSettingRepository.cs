@@ -30,7 +30,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Repositories
         /// </summary>
         /// <param name="criteria">The criteria.</param>
         /// <returns>The SuperSetting object.</returns>
-        public ColossusBetModel GetSetting(ICriteria criteria, int custId, int roleId)
+        public ColossusBetModel GetSetting(ICriteria criteria, SettingContext settingContext)
         {
             if (!criteria.IsValid())
             {
@@ -43,9 +43,9 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Repositories
             {
                 using (var reader = objDb.ExecuteReader(criteria.GetSpParams()))
                 {
-                    settingModel = ReadCustomerInformationData(reader, custId, roleId);
-                    settingModel.ComissionPartial = reader.NextResult() ? ReadCommisionPartial(reader) : null;
-                    settingModel.CashInSharePartial = reader.NextResult() ? ReadCashInSharePartial(reader) : null;
+                    settingModel = ReadCustomerInformationData(reader, settingContext);
+                    settingModel.ComissionPartial = reader.NextResult() ? ReadCommisionPartial(reader, settingContext) : null;
+                    settingModel.CashInSharePartial = reader.NextResult() ? ReadCashInSharePartial(reader, settingContext) : null;
                 }
             }
 
@@ -68,7 +68,6 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Repositories
             }
         }
 
-
         /// <summary>
         /// Reads the agent information data.
         /// </summary>
@@ -78,14 +77,14 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Repositories
         /// <returns>
         /// The CustomerInformation object.
         /// </returns>
-        internal static ColossusBetModel ReadCustomerInformationData(IDataReader dataReader, int custId, int roleId)
+        internal static ColossusBetModel ReadCustomerInformationData(IDataReader dataReader, SettingContext settingContext)
         {
             ColossusBetModel model = new ColossusBetModel();
             while (dataReader.Read())
             {
                 model.CustomerInformationPartial = new CustomerInformation()
                 {
-                    CustId = custId,
+                    CustId = settingContext.CustId,
                     Username = dataReader.To<string>("username"),
                     FirstName = dataReader.To<string>("firstname"),
                     LastName = dataReader.To<string>("lastname"),
@@ -93,7 +92,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Repositories
                     Phone = dataReader.To<string>("phone"),
                     MobilePhone = dataReader.To<string>("mobilephone"),
                     Fax = dataReader.To<string>("fax"),
-                    RoleId = roleId
+                    RoleId = settingContext.RoleId
                 };
 
                 model.StatusPartial = new Status()
@@ -111,28 +110,28 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Repositories
             return model;
         }
 
-        internal static CashInShare ReadCashInSharePartial(IDataReader reader)
+        internal static CashInShare ReadCashInSharePartial(IDataReader reader, SettingContext settingContext)
         {
             while (reader.Read())
             {
                 return new CashInShare()
                 {
                     CashInShareValue = reader.To<double>("v204discount_18002"),
-                    MaxCashInShareValue = reader.To<double>("v204discount_18002_max")
+                    MaxCashInShareValue = settingContext.RoleId.Equals(1) ? 0 : reader.To<double>("v204discount_18002_max")
                 };
             }
 
             return new CashInShare();
         }
 
-        internal static Comission ReadCommisionPartial(IDataReader reader)
+        internal static Comission ReadCommisionPartial(IDataReader reader, SettingContext settingContext)
         {
             while (reader.Read())
             {
                 return new Comission()
                 {
                     CommisionValue = reader.To<double>("v204discount_18001"),
-                    MaxCommisionValue = reader.To<double>("v204discount_18001_max")
+                    MaxCommisionValue = settingContext.RoleId.Equals(1) ? 0 : reader.To<double>("v204discount_18001_max")
                 };           
             }
 

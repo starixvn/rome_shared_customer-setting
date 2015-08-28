@@ -1,5 +1,5 @@
 ﻿@using Fanex.CustomerSetting.Module.ColossusBetSetting.Resources;
-
+@model Fanex.CustomerSetting.Module.ColossusBetSetting.Entities.ColossusBetModel
 <!DOCTYPE html>
 <html ng-app='colossusBetSettingModule' id="ng-app">
 <head>
@@ -23,31 +23,21 @@
                         <div class=" divInline">
                         @{
                             var levelName = string.Empty;
-                            var commissionLabel = string.Empty;
-                            var cashInShareLabel = string.Empty;
                             switch((int)Model.CustomerInformationPartial.RoleId)
                             {
                                 case 4: 
                                     levelName = Messages.UpdateSuper;
-                                    commissionLabel = Messages.SuperCommision;
-                                    cashInShareLabel = Messages.SuperCashInShare;
                                     break;
                                 case 3: 
                                     levelName = Messages.UpdateMaster;
-                                    commissionLabel = Messages.MasterCommision;
-                                    cashInShareLabel = Messages.MasterCashInShare;
                                     break;
                                 case 2: 
                                     levelName = Messages.UpdateAgent;
-                                    commissionLabel = Messages.AgentCommision;
-                                    cashInShareLabel = Messages.AgentCashInShare;
                                     break;
                                 default: 
                                     levelName = Messages.UpdateMember;
-                                    commissionLabel = Messages.MemberCommision;
-                                    cashInShareLabel = Messages.MemberCashInShare;
                                     break;
-                            }
+                            }                            
                         }
                         <span>@levelName</span>
                         </div>
@@ -62,11 +52,11 @@
         <div id="customerInfo">
             @Html.Partial("~/Areas/CustomerSetting/Views/ColossusBet/Setting/Views/_CustomerInfor.cshtml")
             @Html.Partial("~/Areas/CustomerSetting/Views/ColossusBet/Setting/Views/_Status.cshtml")
-            @Html.Partial("~/Areas/CustomerSetting/Views/ColossusBet/Setting/Views/_Commission.cshtml", ViewData["commissionLabel"] = commissionLabel)
-            @Html.Partial("~/Areas/CustomerSetting/Views/ColossusBet/Setting/Views/_CashInShare.cshtml", ViewData["cashInShareLabel"] = cashInShareLabel)
+            @Html.Partial("~/Areas/CustomerSetting/Views/ColossusBet/Setting/Views/_Commission.cshtml", Model)
+            @Html.Partial("~/Areas/CustomerSetting/Views/ColossusBet/Setting/Views/_CashInShare.cshtml", Model)
             @Html.Hidden("UpdateSettingtUrl", Url.Content("~/customersetting/colossusBetSetting/colossusBetSetting/UpdateSetting"))
         </div>
-        <div class="btnLeft">
+        <div ng-if="customerInformationPartial.RoleId >1" class="btnLeft">
             <input ng-class-name="btnUpdate" check-disable-element ng-model="isUpdatedAll" ng-click="updated(false)"
                 value="Update" type="button" class="btnUpdate b" />
         </div>

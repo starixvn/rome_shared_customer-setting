@@ -7,7 +7,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Repositories
 
     public interface IColossusBetSettingRepository
     {
-        ColossusBetModel GetSetting(ICriteria criteria, int custId, int roleId);
+        ColossusBetModel GetSetting(ICriteria criteria, SettingContext settingContext);
 
         IList<Result> UpdateSetting(ICriteria criteria);
     }

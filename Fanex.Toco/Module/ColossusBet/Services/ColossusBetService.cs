@@ -27,9 +27,43 @@
             _criteriaGeneratorService = criteriaGeneratorService ?? null;
         }
 
-        public ColossusBetModel GetSetting(ICriteria criteria, int custId, int roleId)
+        public ColossusBetModel EditSetting(SettingContext settingContext)
         {
-            return _colossusBetSettingRepository.GetSetting(criteria, custId, roleId);
+            switch (settingContext.RoleId)
+            {
+                case 4:
+                    return _colossusBetSettingRepository.GetSetting(
+                         new GetSuperSettingCriteria()
+                                {
+                                    CustId = settingContext.CustId
+                                },
+                                settingContext);
+                case 3:
+                    return _colossusBetSettingRepository.GetSetting(
+                      new GetMasterSettingCriteria()
+             {
+                 CustId = settingContext.CustId,
+                 Srecommend = settingContext.Srecommend
+             },
+             settingContext);
+
+                case 2:
+                    return _colossusBetSettingRepository.GetSetting(
+                    new GetAgentSettingCriteria()
+           {
+               CustId = settingContext.CustId,
+               Mrecommend = settingContext.Mrecommend
+           },
+           settingContext);
+                default:
+                    return _colossusBetSettingRepository.GetSetting(
+                   new GetMemberSettingCriteria()
+                   {
+                       CustId = settingContext.CustId,
+                       Recommend = settingContext.Recommend
+                   },
+                   settingContext);
+            }
         }
 
         public IList<Result> UpdateSetting(UpdatedSettingCriteria criteria)
