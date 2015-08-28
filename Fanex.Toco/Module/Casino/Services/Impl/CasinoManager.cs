@@ -203,7 +203,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
             if (custInfo.RoleId != Agent)
             {
-                throw new Exception("Invalid custId and uplineId");
+                throw new Exception("Invalid custId");
             }
 
             gameModel.IsPtByGameType = casinoSettingUpline.PTByGameType;
@@ -270,7 +270,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
             if (custInfo.RoleId != Agent)
             {
-                throw new Exception("Invalid custId and uplineId");
+                throw new Exception("Invalid custId");
             }
 
             gameModel.IsPtByGameType = casinoSettingUpline.PTByGameType;
@@ -318,7 +318,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
             if (custInfo.RoleId != 1)
             {
-                throw new Exception("Invalid custId and uplineId");
+                throw new Exception("Invalid custId");
             }
 
             gameModel.IsPtByGameType = casinoSettingUpline.PTByGameType;
@@ -375,7 +375,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
             if (custInfo.RoleId != Member)
             {
-                throw new Exception("Invalid custId and uplineId");
+                throw new Exception("Invalid custId");
             }
 
             gameModel.IsPtByGameType = casinoSettingUpline.PTByGameType;
@@ -445,7 +445,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
             if (custInfo.RoleId != Member)
             {
-                throw new Exception("Invalid custId and uplineId");
+                throw new Exception("Invalid custId");
             }
 
             gameModel.IsPtByGameType = casinoSettingUpline.PTByGameType;
@@ -552,11 +552,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var casinoPTResult = new Result();
             var enablePTUpdated = false;
             var cust = new Customer();
-
-            if (customerModel.UplineRoleId != 5 || customerModel.RoleId != 4)
-            {
-                return new Result(1, "Invalid custId and uplineId");
-            }
 
             try
             {
@@ -683,11 +678,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var enablePTUpdated = false;
             var cust = new Customer();
 
-            if (customerModel.UplineRoleId != 4 || customerModel.RoleId != 3)
-            {
-                return new Result(1, "Invalid custId and uplineId");
-            }
-
             try
             {
                 bool isEnableCasino = !customerModel.CasinoDisabled || !customerModel.CasinoSync;
@@ -812,11 +802,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var enablePTUpdated = false;
             var cust = new Customer();
 
-            if (customerModel.UplineRoleId != 3 || customerModel.RoleId != 2)
-            {
-                return new Result(1, "Invalid custId and uplineId");
-            }
-
             try
             {
                 bool isEnableCasino = !customerModel.CasinoDisabled || !customerModel.CasinoSync;
@@ -938,12 +923,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var casinoPTResult = new Result();
             var enablePTUpdated = false;
             var cust = new Customer();
-
-            if (customerModel.UplineRoleId != 2 || customerModel.RoleId != 1)
-            {
-                return new Result(1, "Invalid custId and uplineId");
-            }
-
+            
             try
             {
                 bool isEnableCasino = !customerModel.CasinoDisabled || !customerModel.CasinoSync;
@@ -1071,12 +1051,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var messages = string.Empty;
             var casinoPTResult = new Result();
             var cust = new Customer();
-
-            if (customerModel.UplineRoleId != Super || customerModel.RoleId != Member)
-            {
-                return new Result(1, "Invalid custId and uplineId");
-            }
-
+            
             // Update PT/Betting limit settings
             casinoPTResult = this.UpdateMemberSettingsBySuper(
                 custId,
@@ -1109,12 +1084,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var messages = string.Empty;
             var casinoPTResult = new Result();
             var cust = new Customer();
-
-            if (customerModel.UplineRoleId != Master || customerModel.RoleId != Member)
-            {
-                return new Result(1, "Invalid custId and uplineId");
-            }
-
+            
             // Update PT/Betting limit settings
             casinoPTResult = this.UpdateMemberSettingsByMaster(
                 custId,
