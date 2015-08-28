@@ -45,6 +45,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             if (uplineId != 0 && customerUpline.RoleId == customerInfo.RoleId)
             {
                 customerInfo.RoleId = customerUpline.RoleId - 1;
+                customerInfo.UplineRoleId = customerInfo.RoleId + 1;
                 customerInfo.IBCCustID = id;
             }
 
