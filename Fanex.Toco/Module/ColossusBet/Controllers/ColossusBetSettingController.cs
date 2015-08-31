@@ -20,7 +20,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
             _colossusBetService = colossusBetService ?? new ColossusBetService();
         }
 
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "ColossusBetSetting")]
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditSetting")]
         public ActionResult EditSetting(SettingContext settingContext)
         {
             var setting = _colossusBetService.EditSetting(settingContext);
@@ -28,7 +28,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
         }
 
         [HttpPost]
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "ColossusBetSetting")]
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "UpdateSetting")]
         public JsonResult UpdateSetting(ColossusBetModel model)
         {
             var colossusBetSession = new ColossusBetSession();
@@ -44,7 +44,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
                         EnableDownlines = model.StatusPartial.IsDownlinesEnabled,
                         Disable = !model.StatusPartial.IsEnabled,
                         IP = colossusBetSession.Ip,
-                        UserID = colossusBetSession.UserId,
+                        UserID = model.CustomerInformationPartial.UserId,
                         Language = colossusBetSession.Language
                     });
 

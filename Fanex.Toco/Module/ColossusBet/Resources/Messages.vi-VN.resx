@@ -240,4 +240,10 @@
   <data name="ColossusBet" xml:space="preserve">
     <value>ColossusBet</value>
   </data>
+  <data name="EditColossusBets" xml:space="preserve">
+    <value>Edit Colossus Bets</value>
+  </data>
+  <data name="EditMultiColossusBets" xml:space="preserve">
+    <value>Edit Multiple Colossus Bets</value>
+  </data>
 </root>

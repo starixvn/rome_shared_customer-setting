@@ -15,7 +15,9 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Entities
 
         public int Recommend { get; set; }
 
-        public int ActorId { get; set; }
+        public int IsMultipleEdit { get; set; }
+
+        public int UserId { get; set; }
 
         public int SubAccId { get; set; }
 

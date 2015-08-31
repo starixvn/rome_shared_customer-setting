@@ -142,6 +142,24 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Colossus Bets.
+        /// </summary>
+        public static string EditColossusBets {
+            get {
+                return ResourceManager.GetString("EditColossusBets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Multiple Colossus Bets.
+        /// </summary>
+        public static string EditMultiColossusBets {
+            get {
+                return ResourceManager.GetString("EditMultiColossusBets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable.
         /// </summary>
         public static string Enable {

@@ -92,7 +92,8 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Repositories
                     Phone = dataReader.To<string>("phone"),
                     MobilePhone = dataReader.To<string>("mobilephone"),
                     Fax = dataReader.To<string>("fax"),
-                    RoleId = settingContext.RoleId
+                    RoleId = settingContext.RoleId,
+                    UserId = settingContext.UserId
                 };
 
                 model.StatusPartial = new Status()
