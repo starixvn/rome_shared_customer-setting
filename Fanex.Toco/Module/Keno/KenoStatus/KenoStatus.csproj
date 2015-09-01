@@ -79,15 +79,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\ModuleRegistrator.cs" />
     <Compile Include="Configurations\KenoSection.cs" />
-    <Compile Include="Controllers\EnableStatusController.cs" />
-    <Compile Include="Controllers\KenoBaseController.cs" />
-    <Compile Include="Criteria\UpdateStatusCriteria.cs" />
-    <Compile Include="Criteria\SelectStatusCriteria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\Impl\StatusRepository.cs" />
-    <Compile Include="Repositories\Interface\IStatusRepository.cs" />
-    <Compile Include="ViewModels\BetTypeStatus.cs" />
-    <Compile Include="ViewModels\KenoEnableStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Fanex.Toco.Module.Core\_Core.csproj">
@@ -103,12 +95,7 @@
       <Name>Keno.Resources</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entities\" />
-    <Folder Include="Helper\" />
-    <Folder Include="Resources\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
