@@ -157,7 +157,7 @@
     <value>Disable</value>
   </data>
   <data name="enable" xml:space="preserve">
-    <value>Enable</value>
+    <value>เปิดใช้งาน</value>
   </data>
   <data name="enableDownline" xml:space="preserve">
     <value>เปิดใช้งาน ดาวไลน์</value>

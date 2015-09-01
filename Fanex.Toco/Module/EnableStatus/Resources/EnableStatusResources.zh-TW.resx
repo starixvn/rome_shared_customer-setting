@@ -157,7 +157,7 @@
     <value>Disable</value>
   </data>
   <data name="enable" xml:space="preserve">
-    <value>Enable</value>
+    <value>啟用</value>
   </data>
   <data name="enableDownline" xml:space="preserve">
     <value>啟用下線</value>
