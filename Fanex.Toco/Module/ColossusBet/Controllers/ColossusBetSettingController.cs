@@ -3,6 +3,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.ColossusBetSetting.Criteria;
     using Fanex.CustomerSetting.Module.ColossusBetSetting.Entities;
+    using Fanex.CustomerSetting.Module.ColossusBetSetting.Resources;
     using Fanex.CustomerSetting.Module.ColossusBetSetting.Services;
     using Fanex.CustomerSetting.Security.Authenticate;
 
@@ -24,6 +25,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
         public ActionResult EditSetting(SettingContext settingContext)
         {
             var setting = _colossusBetService.EditSetting(settingContext);
+            ViewBag.Title = settingContext.IsMultipleEdit == 1 ? Messages.EditMultiColossusBets : Messages.EditColossusBets;
             return View(Constants.EditColossusBetCshtml, setting);
         }
 

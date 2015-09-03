@@ -124,7 +124,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ColossusBet.
+        ///   Looks up a localized string similar to Colossus Bets.
         /// </summary>
         public static string ColossusBet {
             get {
