@@ -30,7 +30,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
         }
 
         [HttpPost]
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "UpdateSetting")]
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateSetting")]
         public JsonResult UpdateSetting(ColossusBetModel model)
         {
             var colossusBetSession = new ColossusBetSession();
