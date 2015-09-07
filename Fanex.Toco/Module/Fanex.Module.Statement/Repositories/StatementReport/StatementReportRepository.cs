@@ -148,7 +148,7 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
                         GrandPrize = new DataColumnModel
                         {
                             HasData = !Convert.IsDBNull(reader["GrandPrize"]),
-                            Value = Converter.To<double>("GrandPrize")
+                            Value = Converter.To<double>(reader["GrandPrize"])
                         },
                         TransferAmount = new DataColumnModel
                         {
