@@ -40,8 +40,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
             //// For get autoMaster.
             customerInfo.IsDisableAutoMPT = customerUpline.IsDisableAutoMPT;
-            customerInfo.UplineRoleId = customerInfo.RoleId + 1;
-
+            
+            // Not synced case
             if (uplineId != 0 && customerUpline.RoleId == customerInfo.RoleId)
             {
                 customerInfo.RoleId = customerUpline.RoleId - 1;
