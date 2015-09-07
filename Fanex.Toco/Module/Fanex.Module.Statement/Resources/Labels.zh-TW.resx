@@ -138,6 +138,12 @@
   <data name="Formular_Accumulated_Total" xml:space="preserve">
     <value>總累計余額 = 期初余額 + 輸贏 + 傭金 + 轉帳金額</value>
   </data>
+  <data name="GrandPrize" xml:space="preserve">
+    <value>Grand Prize</value>
+  </data>
+  <data name="GrandPrize_Guidelines" xml:space="preserve">
+    <value>the grand winning amount of an event which is executed from member balance.</value>
+  </data>
   <data name="Guidelines_1stRow_SMA" xml:space="preserve">
     <value>全新的賬目報告只會在選擇“從”2012年1月1日查看起時，才會顯示。</value>
   </data>

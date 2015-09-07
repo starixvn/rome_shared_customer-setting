@@ -135,6 +135,12 @@
   <data name="Date" xml:space="preserve">
     <value>日付</value>
   </data>
+  <data name="GrandPrize" xml:space="preserve">
+    <value>Grand Prize</value>
+  </data>
+  <data name="GrandPrize_Guidelines" xml:space="preserve">
+    <value>the grand winning amount of an event which is executed from member balance.</value>
+  </data>
   <data name="Invalid_Date_Range" xml:space="preserve">
     <value>Invalid Date Range</value>
   </data>

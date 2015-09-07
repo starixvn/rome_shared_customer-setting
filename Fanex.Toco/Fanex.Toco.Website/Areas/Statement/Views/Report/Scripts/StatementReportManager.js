@@ -326,6 +326,12 @@ var StatementReportManager = function () {
                                 statementResources.Symbol_NoData
                         },
                         {
+                            Name: "ColGrandPrize",
+                            Value: statement.GrandPrize.HasData ?
+                                statement.GrandPrize.Value :
+                                statementResources.Symbol_NoData
+                        },
+                        {
                             Name: "ColTransferAmount",
                             Value: self.getColumnTransferAmount(statement, i)
                         },
@@ -396,6 +402,14 @@ var StatementReportManager = function () {
                 HeaderText: statementResources.Commission,
                 Width: 120,
                 Name: "ColCommission",
+                HeaderAlign: "center",
+                CellAlign: "right",
+                FormatNumber: self.Constants.Format.Number.TwoDecimal
+            },
+            {
+                HeaderText: statementResources.GrandPrize,
+                Width: 120,
+                Name: "ColGrandPrize",
                 HeaderAlign: "center",
                 CellAlign: "right",
                 FormatNumber: self.Constants.Format.Number.TwoDecimal
