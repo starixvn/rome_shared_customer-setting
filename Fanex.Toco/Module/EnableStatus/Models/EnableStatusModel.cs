@@ -17,6 +17,8 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Models
     /// </summary>
     public class EnableStatusModel
     {
+        public bool ReadOnly { get; set; }
+
         public string IframeId { get; set; }
 
         public string Username { get; set; }
