@@ -17,9 +17,11 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Models;
+    using Fanex.CustomerSetting.Module.Core;
     using Fanex.CustomerSetting.Module.Core.Models;
     using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.Data;
+    using Fanex.Data.DNAide;
     using Fanex.Logging;
 
     /// <summary>
@@ -30,7 +32,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
         public EnableStatusModel GetProductStatus(SpElementConfiguration storedProcedure, RequestContext context)
         {
             var model = new EnableStatusModel();
-            model.ReadOnly = context.ReadOnly;
+            model.ReadOnly = this.IsCrossingLevel(context);
             model.RequestContext = context;
             model.Entities = new List<EnableStatusEntity>();
             
@@ -126,6 +128,11 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
 
         public Result UpdateProductStatus(SpElementConfiguration storedProcedure, RequestContext context, EnableStatusEntity entity)
         {
+            if (this.IsCrossingLevel(context))
+            {
+                return new Result(1, "You are not authorized on this function");
+            }
+
             var result = new Result();
             
             using (var objectDb = new ObjectDb(storedProcedure.Key))
@@ -169,6 +176,37 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                     throw ex;
                 }
             }
+        }
+
+        private bool IsCrossingLevel(RequestContext context)
+        {
+            if (context.UplineId == 0)
+            {
+                return false;
+            }
+
+            var param = new Hashtable();
+            param.Add("custid", context.CustId);
+
+            var parentParam = new Hashtable();
+            parentParam.Add("custid", context.UplineId);
+
+            DbResult currentCustomer = DbHelper.ExecuteDbResult("Age_CustomerSelUserInfo", param);
+            DbResult parentCustomer = DbHelper.ExecuteDbResult("Age_CustomerSelUserInfo", parentParam);
+
+            if (currentCustomer == null || parentCustomer == null ||
+                currentCustomer.ResultSet == null ||
+                parentCustomer.ResultSet == null ||
+                currentCustomer.ResultSet.Tables.Count == 0 ||
+                parentCustomer.ResultSet.Tables.Count == 0)
+            {
+                return true;
+            }
+
+            var roleId = Utils.ToInt32(currentCustomer.ResultSet.Tables[0].Rows[0]["roleid"]);
+            var parentRoleId = Utils.ToInt32(parentCustomer.ResultSet.Tables[0].Rows[0]["roleid"]);
+
+            return parentRoleId - roleId != 1;
         }
     }
 }

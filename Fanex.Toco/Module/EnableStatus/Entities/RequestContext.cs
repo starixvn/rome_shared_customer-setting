@@ -17,14 +17,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Entities
     public class RequestContext
     {
         private string _language = "en-US";
-        private bool _readOnly = false;
-
-        public bool ReadOnly
-        {
-            get { return _readOnly; }
-            set { _readOnly = value; }
-        }
-
+        
         public int Product
         {
             get;
