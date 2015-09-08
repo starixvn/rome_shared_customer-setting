@@ -230,7 +230,7 @@ namespace Fanex.Module.Statement.Services.StatementReport
             criteria.FromDate = criteria.FromDate.Year <= 1753 ||
                 criteria.FromDate.Year >= 9999 
                 ? DateTime.Now : criteria.FromDate;
-            criteria.FromDate = criteria.ToDate.Year <= 1753 ||
+            criteria.ToDate = criteria.ToDate.Year <= 1753 ||
                 criteria.ToDate.Year >= 9999
                 ? DateTime.Now : criteria.ToDate;
 
