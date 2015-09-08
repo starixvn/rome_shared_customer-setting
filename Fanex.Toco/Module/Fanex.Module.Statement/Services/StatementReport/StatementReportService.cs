@@ -226,6 +226,9 @@ namespace Fanex.Module.Statement.Services.StatementReport
             Justification = "Reviewed. Suppression is OK here.")]
         private List<StatementReportCriteria> GetReportDateRange(StatementReportCriteria criteria)
         {
+            criteria.FromDate = criteria.FromDate.Equals(DateTime.MinValue) ? DateTime.Now : criteria.FromDate;
+            criteria.FromDate = criteria.ToDate.Equals(DateTime.MinValue) ? DateTime.Now : criteria.ToDate;
+
             List<StatementReportCriteria> dateRange = new List<StatementReportCriteria>();
             if (criteria.FromDate > criteria.MoveBetsDay ||
                 (criteria.BalanceUpDay <= criteria.FromDate && criteria.ToDate <= criteria.MoveBetsDay) ||
