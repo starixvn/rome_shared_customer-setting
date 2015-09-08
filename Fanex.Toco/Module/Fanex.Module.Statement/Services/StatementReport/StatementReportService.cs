@@ -20,6 +20,7 @@ namespace Fanex.Module.Statement.Services.StatementReport
     using Fanex.Module.Statement.Models;
     using Fanex.Module.Statement.Models.StatementReport;
     using Fanex.Module.Statement.Repositories.StatementReport;
+    using System.Data;
 
     /// <summary>
     /// Statement Report Service.
@@ -226,8 +227,12 @@ namespace Fanex.Module.Statement.Services.StatementReport
             Justification = "Reviewed. Suppression is OK here.")]
         private List<StatementReportCriteria> GetReportDateRange(StatementReportCriteria criteria)
         {
-            criteria.FromDate = criteria.FromDate.Equals(DateTime.MinValue) ? DateTime.Now : criteria.FromDate;
-            criteria.FromDate = criteria.ToDate.Equals(DateTime.MinValue) ? DateTime.Now : criteria.ToDate;
+            criteria.FromDate = criteria.FromDate.Year <= 1753 ||
+                criteria.FromDate.Year >= 9999 
+                ? DateTime.Now : criteria.FromDate;
+            criteria.FromDate = criteria.ToDate.Year <= 1753 ||
+                criteria.ToDate.Year >= 9999
+                ? DateTime.Now : criteria.ToDate;
 
             List<StatementReportCriteria> dateRange = new List<StatementReportCriteria>();
             if (criteria.FromDate > criteria.MoveBetsDay ||
