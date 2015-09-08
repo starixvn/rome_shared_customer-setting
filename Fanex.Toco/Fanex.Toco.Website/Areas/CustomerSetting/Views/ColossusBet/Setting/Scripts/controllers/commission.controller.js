@@ -8,7 +8,7 @@ ColossusBetModule.controller('commissionController', function ($scope, colossusB
                 var element = $("#commissionInputId");
                 if (newValue !== oldValue) {
                     if ($scope.comissionPartial.CommisionValue > $scope.comissionPartial.MaxCommisionValue) {
-                        commonService.createTooltip(element, "Input must be less than " + $scope.comissionPartial.MaxCommisionValue);
+                        commonService.createTooltip(element, resources.less_than + $scope.comissionPartial.MaxCommisionValue);
                         element.addClass('invalidValue');
                     }
                     else{

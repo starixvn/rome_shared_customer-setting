@@ -8,7 +8,7 @@ ColossusBetModule.controller('cashInShareController', function ($scope, colossus
                 var element = $("#cashInShareInputId");
                 if (newValue !== oldValue) {
                     if ($scope.cashInSharePartial.CashInShareValue > $scope.cashInSharePartial.MaxCashInShareValue) {
-                        commonService.createTooltip(element, "Input must be less than " + $scope.cashInSharePartial.MaxCashInShareValue);
+                        commonService.createTooltip(element, resources.less_than + $scope.cashInSharePartial.MaxCashInShareValue);
                         element.addClass('invalidValue');
                         $scope.cashInSharePartial.IsCashInShareUpdated = false;
                         return;

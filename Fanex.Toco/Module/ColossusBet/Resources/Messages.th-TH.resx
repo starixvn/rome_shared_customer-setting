@@ -246,4 +246,7 @@
   <data name="EditMultiColossusBets" xml:space="preserve">
     <value>Edit Multiple Colossus Bets</value>
   </data>
+  <data name="Update" xml:space="preserve">
+    <value>ล่าสุด</value>
+  </data>
 </root>
