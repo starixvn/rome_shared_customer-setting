@@ -236,6 +236,11 @@ namespace Fanex.Module.Statement.Services.StatementReport
             currentColumn++;
 
             currentCell = headerRow.CreateCell(currentColumn);
+            currentCell.SetCellValue(Labels.GrandPrize);
+            currentCell.CellStyle = headerStyle;
+            currentColumn++;
+
+            currentCell = headerRow.CreateCell(currentColumn);
             currentCell.SetCellValue(Labels.Transfer_Amt);
             currentCell.CellStyle = headerStyle;
             currentColumn++;
@@ -363,6 +368,13 @@ namespace Fanex.Module.Statement.Services.StatementReport
                 column = row.CreateCell(currentColumn);
                 ExportDataColumnModel(column, statement.Commission);
                 column.CellStyle = IsNegative(statement.Commission) ?
+                    twoDecimalRedNumberStyle :
+                    twoDecimalNumberStyle;
+                currentColumn++;
+
+                column = row.CreateCell(currentColumn);
+                ExportDataColumnModel(column, statement.GrandPrize);
+                column.CellStyle = IsNegative(statement.GrandPrize) ?
                     twoDecimalRedNumberStyle :
                     twoDecimalNumberStyle;
                 currentColumn++;
