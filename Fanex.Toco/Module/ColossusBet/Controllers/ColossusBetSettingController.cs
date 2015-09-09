@@ -21,7 +21,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
             _colossusBetService = colossusBetService ?? new ColossusBetService();
         }
 
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EnableColossusBets")]
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "ColossusBetSetting")]
         public ActionResult EditSetting(SettingContext settingContext)
         {
             var setting = _colossusBetService.EditSetting(settingContext);
@@ -30,7 +30,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
         }
 
         [HttpPost]
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "EnableColossusBets")]
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "ColossusBetSetting")]
         public JsonResult UpdateSetting(ColossusBetModel model)
         {
             var colossusBetSession = new ColossusBetSession();
