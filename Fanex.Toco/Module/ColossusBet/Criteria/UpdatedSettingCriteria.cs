@@ -13,9 +13,9 @@
 
         public bool IsUpdateDisable { get; set; }
 
-        public double V204Commission_18001 { get; set; }
+        public decimal V204Commission_18001 { get; set; }
 
-        public double V204CashInShare_18002 { get; set; }
+        public decimal V204CashInShare_18002 { get; set; }
 
         public bool EnableDownlines { get; set; }
 
@@ -26,7 +26,7 @@
         public int UserID { get; set; }
 
         public string Language { get; set; }
-        
+
         public override string GetSettingKey()
         {
             return Constants.GetUpdatedColossusBetCriteriaKeyName;

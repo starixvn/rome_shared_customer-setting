@@ -5,9 +5,9 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Entities
     /// </summary>
     public class Comission
     {
-        public double CommisionValue { get; set; }
+        public decimal CommisionValue { get; set; }
 
-        public double MaxCommisionValue { get; set; }
+        public decimal MaxCommisionValue { get; set; }
 
         public bool IsCommisionUpdated { get; set; }
     }
