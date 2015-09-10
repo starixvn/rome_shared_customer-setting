@@ -1,6 +1,5 @@
 namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
 {
-    using System;
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.ColossusBetSetting.Criteria;
     using Fanex.CustomerSetting.Module.ColossusBetSetting.Entities;
@@ -33,10 +32,8 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
         [HttpPost]
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "ColossusBetSetting")]
         public JsonResult UpdateSetting(ColossusBetModel model)
-        { 
+        {
             var colossusBetSession = new ColossusBetSession();
-            model.CashInSharePartial.CashInShareValue = model.CashInSharePartial.CashInShareValue / 100;
-            model.ComissionPartial.CommisionValue = model.ComissionPartial.CommisionValue / 100;
             var result = _colossusBetService.UpdateSetting(
                     new UpdatedSettingCriteria()
                     {

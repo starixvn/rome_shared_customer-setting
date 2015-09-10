@@ -117,8 +117,8 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Repositories
             {
                 return new CashInShare()
                 {
-                    CashInShareValue = reader.To<decimal>("v204discount_18002") * 100,
-                    MaxCashInShareValue = settingContext.RoleId.Equals(1) ? 0 : reader.To<decimal>("v204discount_18002_max") * 100
+                    CashInShareValue = reader.To<double>("v204discount_18002"),
+                    MaxCashInShareValue = settingContext.RoleId.Equals(1) ? 0 : reader.To<double>("v204discount_18002_max")
                 };
             }
 
@@ -131,8 +131,8 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Repositories
             {
                 return new Comission()
                 {
-                    CommisionValue = reader.To<decimal>("v204discount_18001") * 100,
-                    MaxCommisionValue = settingContext.RoleId.Equals(1) ? 0 : reader.To<decimal>("v204discount_18001_max") * 100
+                    CommisionValue = reader.To<double>("v204discount_18001"),
+                    MaxCommisionValue = settingContext.RoleId.Equals(1) ? 0 : reader.To<double>("v204discount_18001_max")
                 };           
             }
 
