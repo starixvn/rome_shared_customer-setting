@@ -24,5 +24,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Entities
         public string Language { get; set; }
 
         public string IP { get; set; }
+
+        public bool ReadOnly { get; set; }
     }
 }

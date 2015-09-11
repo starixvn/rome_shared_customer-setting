@@ -26,6 +26,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
         public ActionResult EditSetting(SettingContext settingContext)
         {
             var setting = _colossusBetService.EditSetting(settingContext);
+            setting.CustomerInformationPartial.ReadOnly = settingContext.ReadOnly;
             ViewBag.Title = settingContext.IsMultipleEdit == 1 ? Messages.EditMultiColossusBets : Messages.EditColossusBets;
             return View(Constants.EditColossusBetCshtml, setting);
         }

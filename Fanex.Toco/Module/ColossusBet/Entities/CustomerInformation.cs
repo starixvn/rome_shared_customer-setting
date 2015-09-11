@@ -34,5 +34,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Entities
         public int SubAccId { get; set; }
 
         public bool IsMultiple { get; set; }
+
+        public bool ReadOnly { get; set; }
     }
 }

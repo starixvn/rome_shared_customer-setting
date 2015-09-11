@@ -19,7 +19,7 @@
     <tr>
         <td colspan="4" class="header c b">
             <span>@Messages.Commission</span>
-            @if (Model.CustomerInformationPartial.RoleId > 1)
+            @if ((Model.CustomerInformationPartial.RoleId > 1) && !Model.CustomerInformationPartial.ReadOnly)
             {
             <input ng-class-name="btnSave" check-disable-element ng-model="comissionPartial.IsCommisionUpdated"
                 ng-click="updated(true, 'ComissionPartial')" type="button" />
