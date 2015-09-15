@@ -194,6 +194,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                 currentCustomer.ResultSet == null ||
                 currentCustomer.ResultSet.Tables == null ||
                 currentCustomer.ResultSet.Tables.Count == 0 ||
+                currentCustomer.ResultSet.Tables[0].Rows == null ||
                 currentCustomer.ResultSet.Tables[0].Rows.Count == 0)
             {
                 return true;
