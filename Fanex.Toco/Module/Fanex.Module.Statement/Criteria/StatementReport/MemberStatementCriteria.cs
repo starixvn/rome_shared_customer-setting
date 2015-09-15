@@ -39,10 +39,5 @@ namespace Fanex.Module.Statement.Criteria.StatementReport
         {
             return "Statement_Report_GetList" + ReportService.GetStoreMappingSuffix(this);
         }
-
-        public override bool IsValid()
-        {
-            return true;
-        }
     }
 }
