@@ -133,7 +133,7 @@ namespace Fanex.Module.Statement.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to the grand winning amount of an event which is executed from member balance..
+        ///   Looks up a localized string similar to the grand winning amount of an event which is excluded from member balance..
         /// </summary>
         public static string GrandPrize_Guidelines {
             get {
