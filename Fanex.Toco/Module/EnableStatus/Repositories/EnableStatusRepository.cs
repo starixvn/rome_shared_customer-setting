@@ -191,17 +191,20 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
             DbResult currentCustomer = DbHelper.ExecuteDbResult("Age_CustomerSelUserInfo", param);
 
             if (currentCustomer == null ||
-                currentCustomer.ResultSet == null ||                
-                currentCustomer.ResultSet.Tables.Count == 0)
+                currentCustomer.ResultSet == null ||
+                currentCustomer.ResultSet.Tables == null ||
+                currentCustomer.ResultSet.Tables.Count == 0 ||
+                currentCustomer.ResultSet.Tables[0].Rows.Count == 0)
             {
                 return true;
             }
 
-            var roleId = Utils.ToInt32(currentCustomer.ResultSet.Tables[0].Rows[0]["roleid"]);
-            var parentRoleId = 
-                context.UplineId == Utils.ToInt32(currentCustomer.ResultSet.Tables[0].Rows[0]["superid"]) ? 4 : 
-                context.UplineId == Utils.ToInt32(currentCustomer.ResultSet.Tables[0].Rows[0]["masterid"]) ? 3 : 
-                context.UplineId == Utils.ToInt32(currentCustomer.ResultSet.Tables[0].Rows[0]["agentid"]) ? 2 : 5;
+            var row = currentCustomer.ResultSet.Tables[0].Rows[0];
+            var roleId = Utils.ToInt32(row["roleid"]);
+            var parentRoleId =
+                context.UplineId == Utils.ToInt32(row["superid"]) ? 4 : 
+                context.UplineId == Utils.ToInt32(row["masterid"]) ? 3 : 
+                context.UplineId == Utils.ToInt32(row["agentid"]) ? 2 : 5;
 
             return parentRoleId - roleId != 1;
         }
