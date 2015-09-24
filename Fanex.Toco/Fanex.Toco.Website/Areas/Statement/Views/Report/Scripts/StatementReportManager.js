@@ -8,7 +8,8 @@ var StatementReportManager = function () {
         TransactionType: {
             WinLoss: 1,
             VoidCancelled: 2,
-            Outstanding: 3
+            Outstanding: 3,
+            GrandPrize: 4
         }
     };
     self.Constants = {
@@ -326,6 +327,14 @@ var StatementReportManager = function () {
                                 statementResources.Symbol_NoData
                         },
                         {
+                            Name: "ColGrandPrize",
+                            Value: statement.GrandPrize.HasData ?
+                                 ('<div class="column-grandprize ' + (statement.GrandPrize.Value < 0 ? 'format-negative' : '') + '"' + dataRowIndex + '>' +
+                                 numeral(statement.GrandPrize.Value).format(self.Constants.Format.Number.TwoDecimal) +
+                                '</div>') :
+                                statementResources.Symbol_NoData
+                        },
+                        {
                             Name: "ColTransferAmount",
                             Value: self.getColumnTransferAmount(statement, i)
                         },
@@ -401,6 +410,14 @@ var StatementReportManager = function () {
                 FormatNumber: self.Constants.Format.Number.TwoDecimal
             },
             {
+                HeaderText: statementResources.GrandPrize,
+                Width: 120,
+                Name: "ColGrandPrize",
+                HeaderAlign: "center",
+                CellAlign: "right",
+                FormatNumber: self.Constants.Format.Number.TwoDecimal
+            },
+            {
                 HeaderText: statementResources.Transfer_Amt,
                 Width: 120,
                 Name: "ColTransferAmount",
@@ -464,6 +481,10 @@ var StatementReportManager = function () {
         reportGrid.find(".column-winloss").click(function () {
             var rowIndex = parseInt(jQuery(this).attr("data-rowindex"));
             self.viewBetList(rowIndex, self.Enums.TransactionType.WinLoss);
+        });
+        reportGrid.find(".column-grandprize").click(function () {
+            var rowIndex = parseInt(jQuery(this).attr("data-rowindex"));
+            self.viewBetList(rowIndex, self.Enums.TransactionType.GrandPrize);
         });
     };
     self.viewTransferDetails = function (rowIndex) {

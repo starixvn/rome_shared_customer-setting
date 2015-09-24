@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Functions>
+  <Function Name="Colossus Bet Setting">
+    <Function Name="Get Setting">
+      <Setting Key="Acc_CustomerSelEditSuperColossusBet" SpName="Acc_CustomerSelEditSuperColossusBet_xtest" DbName="DBCust.CustDB.bodbAdminNet"/>
+      <Setting Key="Acc_CustomerSelEditMasterColossusBet" SpName="Acc_CustomerSelEditMasterColossusBet_xtest" DbName="DBCust.CustDB.bodbAdminNet"/>
+      <Setting Key="Acc_CustomerSelEditAgentColossusBet" SpName="Acc_CustomerSelEditAgentColossusBet_xtest" DbName="DBCust.CustDB.bodbAdminNet"/>
+      <Setting Key="Acc_CustomerSelEditMemberColossusBet" SpName="Acc_CustomerSelEditMemberColossusBet_xtest" DbName="DBCust.CustDB.bodbAdminNet"/>
+    </Function>
+    <Function Name="Update Setting">
+      <Setting Key="Acc_CustomerUpdColossusBet" SpName="Acc_CustomerUpdColossusBet_xtest" DbName="DBCust.CustDB.bodbAdminNet"/>
+      <Setting Key="Acc_CustomerUpdDisableColossusBet" SpName="Acc_CustomerUpdDisableColossusBet_xtest" DbName="DBCust.CustDB.bodbAdminNet"/>
+    </Function>
+  </Function>
+</Functions>

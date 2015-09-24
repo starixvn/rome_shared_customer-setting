@@ -33,6 +33,8 @@ namespace Fanex.Module.Statement.Models.StatementReport
 
         public DataColumnModel Commission { get; set; }
 
+        public DataColumnModel GrandPrize { get; set; }
+
         public DataColumnModel TransferAmount { get; set; }
 
         public DataColumnModel AccumulatedTotal { get; set; }
