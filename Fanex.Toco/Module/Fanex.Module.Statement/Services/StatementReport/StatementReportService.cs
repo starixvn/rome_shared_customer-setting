@@ -20,7 +20,6 @@ namespace Fanex.Module.Statement.Services.StatementReport
     using Fanex.Module.Statement.Models;
     using Fanex.Module.Statement.Models.StatementReport;
     using Fanex.Module.Statement.Repositories.StatementReport;
-    using System.Data;
 
     /// <summary>
     /// Statement Report Service.
