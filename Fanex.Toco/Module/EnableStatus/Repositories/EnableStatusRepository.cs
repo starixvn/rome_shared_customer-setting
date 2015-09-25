@@ -32,7 +32,6 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
         public EnableStatusModel GetProductStatus(SpElementConfiguration storedProcedure, RequestContext context)
         {
             var model = new EnableStatusModel();
-            model.ReadOnly = this.IsCrossingLevel(context);
             model.RequestContext = context;
             model.Entities = new List<EnableStatusEntity>();
             
@@ -49,6 +48,8 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
 
                 return model;
             }
+
+            model.ReadOnly = this.IsCrossingLevel(context);
 
             using (var objectDb = new ObjectDb(storedProcedure.Key))
             {
