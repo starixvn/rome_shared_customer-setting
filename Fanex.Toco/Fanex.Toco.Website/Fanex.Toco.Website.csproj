@@ -443,12 +443,14 @@
     <Content Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Views\_CashInShare.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Views\_Status.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Views\_Commission.cshtml" />
+    <None Include="Areas\CustomerSetting\Views\EnableStatus\Styles\Alpha\variables.less" />
     <None Include="Areas\CustomerSetting\Views\EnableStatus\Styles\EnableStatus.less" />
-    <None Include="Areas\CustomerSetting\Views\EnableStatus\Styles\variables.less" />
+    <None Include="Areas\CustomerSetting\Views\EnableStatus\Styles\NAP\variables.less" />
     <None Include="Areas\CustomerSetting\Views\EnableStatus\Templates\Products.config">
       <SubType>Designer</SubType>
     </None>
     <Content Include="Areas\CustomerSetting\Views\EnableStatus\Scripts\EnableStatus.js" />
+    <Content Include="Areas\CustomerSetting\Views\EnableStatus\Styles\Alpha\images\bg_boxTop.jpg" />
     <Content Include="Areas\CustomerSetting\Views\EnableStatus\Templates\SPs.txt" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\controllers\bet-setting.controller.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\controllers\main.controller.js" />
