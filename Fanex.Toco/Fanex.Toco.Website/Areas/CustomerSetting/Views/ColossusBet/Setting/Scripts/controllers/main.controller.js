@@ -13,6 +13,21 @@ ColossusBetModule.controller('mainController', function ($scope, $timeout, colos
             $scope.isUpdatedAll = false;
             $scope.errors = {};
 
+            $scope.multipleEdit = {
+                isMultipleEdit: isMultipleEdit,
+                custids: isMultipleEdit ? custids : [],
+                usernameArray: usernames,
+                usernames: isMultipleEdit ? usernames.join(", ") : [],
+                updatedCount: 0
+            };
+
+            if ($scope.multipleEdit.isMultipleEdit) {
+                $scope.statusPartial.IsStatusUpdated = true;
+                $scope.comissionPartial.IsCommisionUpdated = true;
+                $scope.cashInSharePartial.IsCashInShareUpdated = true;
+                $scope.isUpdatedAll = true;
+            }
+
             $scope.$watch('[statusPartial.IsStatusUpdated, comissionPartial.IsCommisionUpdated, cashInSharePartial.IsCashInShareUpdated]', function (newValue, oldValue) {
                 if (newValue !== oldValue) {
                     $scope.isUpdatedAll = $scope.statusPartial.IsStatusUpdated || $scope.comissionPartial.IsCommisionUpdated || $scope.cashInSharePartial.IsCashInShareUpdated;

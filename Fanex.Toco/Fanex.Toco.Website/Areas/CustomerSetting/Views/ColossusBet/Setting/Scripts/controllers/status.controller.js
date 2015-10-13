@@ -23,6 +23,9 @@ ColossusBetModule.controller('statusController', function ($scope, colossusBetRe
                     $scope.IsDownlinechkDisabled = !$scope.statusPartial.IsEnabled;
                 }
             }
+            if ($scope.multipleEdit.isMultipleEdit) {
+                $scope.statusPartial.IsStatusUpdated = true;
+            }
         }, true);
 
         $scope.$watch('isDownlinechkDisabled', function (newValue, oldValue) {
@@ -32,8 +35,6 @@ ColossusBetModule.controller('statusController', function ($scope, colossusBetRe
                 }
             }
         }, true);
-
-
 
     }, function (reason) { }, function (update) { });
 });
