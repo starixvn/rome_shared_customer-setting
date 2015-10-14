@@ -47,21 +47,20 @@
       <HintPath>..\_Dependencies\Fanex\Fanex.Data.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
+      <HintPath>..\_Dependencies\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging">
       <HintPath>..\_Dependencies\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\_Dependencies\Web\Newtonsoft.Json.dll-3.5\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\_Dependencies\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\_Dependencies\Microsoft.Practices.Unity.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.Unity.Interception">
       <HintPath>..\_Dependencies\Microsoft.Practices.Unity.Interception.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\_Dependencies\Web\Newtonsoft.Json.dll-3.5\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -312,10 +311,10 @@
     <Content Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Scripts\controllers\cashInShare.controller.js" />
     <Content Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Scripts\controllers\commission.controller.js" />
     <Content Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Scripts\controllers\External\main.controller.js" />
-    <Content Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Scripts\controllers\status.controller.js" />
-    <Content Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Scripts\repositories\repositories.js" />
     <Content Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Scripts\controllers\main.controller.js" />
-    <Content Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Scripts\directives\CommonDirective.js" />
+    <Content Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Scripts\controllers\status.controller.js" />
+    <Content Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Scripts\directives\commonDirective.js" />
+    <Content Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Scripts\repositories\repositories.js" />
     <Content Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Scripts\services\commonService.js" />
     <Content Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Scripts\Tipsy\Images\pointer.png" />
     <Content Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Scripts\Tipsy\jquery.tipsy.js" />
@@ -435,14 +434,15 @@
     <None Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Styles\Accounting\theme-color.less" />
     <None Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Styles\Agent\theme-color.less" />
     <None Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Styles\Common.less" />
-    <None Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Styles\ColossusBet-setting.less" />
     <None Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Styles\External\theme-color.less" />
+    <None Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Styles\keno-setting.less" />
     <None Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Styles\Variables.less" />
     <Content Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Views\Index.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Views\_CustomerInfor.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Views\_CashInShare.cshtml" />
-    <Content Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Views\_Status.cshtml" />
+    <None Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Views\_CashInShare.cshtml.orig" />
     <Content Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Views\_Commission.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Views\_CustomerInfor.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Views\_Status.cshtml" />
     <None Include="Areas\CustomerSetting\Views\EnableStatus\Styles\Alpha\variables.less" />
     <None Include="Areas\CustomerSetting\Views\EnableStatus\Styles\EnableStatus.less" />
     <None Include="Areas\CustomerSetting\Views\EnableStatus\Styles\NAP\variables.less" />
@@ -452,6 +452,8 @@
     <Content Include="Areas\CustomerSetting\Views\EnableStatus\Scripts\EnableStatus.js" />
     <Content Include="Areas\CustomerSetting\Views\EnableStatus\Styles\Alpha\images\bg_boxTop.jpg" />
     <Content Include="Areas\CustomerSetting\Views\EnableStatus\Templates\SPs.txt" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\EnableStatus\Scripts\KenoStatusController.js" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\EnableStatus\Styles\EnableRacing.css" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\controllers\bet-setting.controller.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\controllers\main.controller.js" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Scripts\controllers\position-taking.controller.js" />
@@ -582,7 +584,6 @@
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Images\sucess.gif" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Images\undo.png" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Images\Update.png" />
-    <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Images\warning-icn.png" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Partial\BetSetting\BetSettingDemo.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Partial\BetSetting\BetSetting.htm" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Partial\PositionTaking\AgentPositionTaking.htm" />
@@ -915,10 +916,6 @@
     <Content Include="Scripts\_Libs\jQuery\Styles\images\ui-icons_fcd113_256x240.png" />
     <Content Include="Scripts\_Libs\jQuery\Styles\jquery-ui-1.9.1.custom.css" />
     <Content Include="Scripts\_Libs\jQuery\Styles\jquery-ui-1.9.1.custom.min.css" />
-    <Content Include="Web.Configuration\Store\ColossusBetSpNames.xml">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Web.Configuration\Store\RacingSpNames.xml" />
     <Content Include="Web.Configuration\Store\CustomerSpNames.xml">
       <SubType>Designer</SubType>
@@ -1297,6 +1294,7 @@
     <Content Include="Areas\CustomerSetting\Views\Racebook\Config\RacingSection.config" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Setting\AgentMinMaxPT.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\SearchCopy\Config\SearchCopySetting.config" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\EnableStatus\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Keno\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\BetSetting\Keno\Content.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\CloneSetting\Index.cshtml" />
@@ -1320,6 +1318,7 @@
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Partial\PositionTaking\_SuperPositionTaking.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\SuperOnMember\SuperEditMember.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Views\Super\EditSuper.cshtml" />
+    <Content Include="Areas\CustomerSetting\Views\Keno\EnableStatus\Index.cshtml" />
     <Content Include="Areas\CustomerSetting\Views\Keno\Setting\Shared\_Layout.cshtml" />
     <None Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Accounting\theme-color.less" />
     <None Include="Areas\CustomerSetting\Views\Keno\Setting\Styles\Agent\theme-color.less" />
@@ -1375,10 +1374,6 @@
     <ProjectReference Include="..\Module\Casino\Casino.csproj">
       <Project>{5F8F3877-90E3-48A3-BAD7-4207DCBA088D}</Project>
       <Name>Casino</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Module\ColossusBet\Fanex.CustomerSetting.Module.ColossusBetSetting.csproj">
-      <Project>{2955165B-6354-42BF-86CC-A2E959FD448E}</Project>
-      <Name>Fanex.CustomerSetting.Module.ColossusBetSetting</Name>
     </ProjectReference>
     <ProjectReference Include="..\Module\EnableStatus\EnableStatus.csproj">
       <Project>{22F2A79C-5F7A-4A4B-9F4B-1011228914E3}</Project>

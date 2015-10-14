@@ -142,7 +142,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sportsbook2.
+        ///   Looks up a localized string similar to Muay Thai.
         /// </summary>
         public static string b3 {
             get {
