@@ -112,8 +112,11 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                             entity.BetTypeId = -1;
                             model.Entities.Add(entity);
                         }
-                                                
-                        model.RequestContext = Helper.MapResultValue("HasDownline", outputValues["hasdownline"] == null ? true : outputValues["hasdownline"], model.RequestContext);
+
+                        if (outputValues != null)
+                        {
+                            model.RequestContext = Helper.MapResultValue("HasDownline", outputValues["hasdownline"] == null ? true : outputValues["hasdownline"], model.RequestContext);
+                        }
                     }                                        
 
                     return model;
@@ -166,6 +169,68 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                         catch
                         {                            
                         }                        
+                    }
+
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    Logger.Log.Error(ex.Message, ex);
+
+                    throw ex;
+                }
+            }
+        }
+
+        public Result UpdateProductStatus(SpElementConfiguration storedProcedure, RequestContext context, IList<EnableStatusEntity> entities)
+        {
+            if (this.IsCrossingLevel(context))
+            {
+                return new Result(1, "You are not authorized on this function");
+            }
+
+            var result = new Result();
+
+            using (var objectDb = new ObjectDb(storedProcedure.Key))
+            {
+                var param = new Hashtable();
+
+                foreach (ParamElementConfiguration item in storedProcedure.ParamCollection)
+                {
+                    if (item.Name.Equals("IsDisabled", StringComparison.OrdinalIgnoreCase))
+                    {
+                        var xmlFormat = string.Empty;
+                        var products = string.Empty;
+                        var root = "<ROOT>{0}</ROOT>";
+                        var product = "<ProductStatus " +
+                                        "SportType=\"{0}\" " +
+                                        "BetType=\"{1}\" " +
+                                        "IsDisabled=\"{2}\" " +
+                                        "IsDisabledDownline=\"{3}\" />";
+
+                        foreach (var entity in entities)
+                        {
+                            products += string.Format(product, entity.SportTypeId, entity.BetTypeId, (bool)entity.Disabled ? 1 : 0, (bool)entity.DisabledDownlines ? 1 : 0);
+                        }
+
+                        xmlFormat = string.Format(root, products);
+                        param.Add(item.Name.ToLower(), xmlFormat);
+                    }
+                    else
+                    {
+                        param.Add(item.Name.ToLower(), Helper.GetParamValue(item.MapProperty, entities[0], context, item.Reverse, item.Default));
+                    }                    
+                }
+
+                try
+                {
+                    objectDb.AssignParamValues(param);
+                    objectDb.ExecuteNonQuery();
+
+                    var outputParams = objectDb.GetOuputParams();
+                    foreach (var outputParam in outputParams.Keys)
+                    {
+                        result = Helper.MapResultValue(outputParam.ToString(), outputParams[outputParam], result);
                     }
 
                     return result;

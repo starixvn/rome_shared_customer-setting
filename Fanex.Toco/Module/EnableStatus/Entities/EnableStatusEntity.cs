@@ -19,7 +19,13 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Entities
     /// </summary>
     public class EnableStatusEntity
     {
+        public bool IsDirty { get; set; }
+
         public bool Hide { get; set; }
+
+        public object SettingType { get; set; }
+
+        public int MessageType { get; set; }
 
         public object Username { get; set; }
 
@@ -32,6 +38,8 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Entities
         public object BetTypeName { get; set; }
 
         public object Disabled { get; set; }
+
+        public object DisabledXML { get; set; }
 
         public object Synced { get; set; }
 

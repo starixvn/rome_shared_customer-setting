@@ -144,6 +144,9 @@
   <data name="b15351" xml:space="preserve">
     <value>Aust Tote</value>
   </data>
+  <data name="b3" xml:space="preserve">
+    <value>Sportsbook2</value>
+  </data>
   <data name="bingo" xml:space="preserve">
     <value>Bingo</value>
   </data>
@@ -188,6 +191,9 @@
   </data>
   <data name="s153" xml:space="preserve">
     <value>Harness</value>
+  </data>
+  <data name="s44" xml:space="preserve">
+    <value>Sportsbook2</value>
   </data>
   <data name="submit" xml:space="preserve">
     <value>ล่าสุด</value>

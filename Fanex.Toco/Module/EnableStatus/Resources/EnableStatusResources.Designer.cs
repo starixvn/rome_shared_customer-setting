@@ -142,6 +142,15 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sportsbook2.
+        /// </summary>
+        public static string b3 {
+            get {
+                return ResourceManager.GetString("b3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bingo.
         /// </summary>
         public static string bingo {
@@ -273,6 +282,15 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Resources {
         public static string s153 {
             get {
                 return ResourceManager.GetString("s153", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sportsbook2.
+        /// </summary>
+        public static string s44 {
+            get {
+                return ResourceManager.GetString("s44", resourceCulture);
             }
         }
         

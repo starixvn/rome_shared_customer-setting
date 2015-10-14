@@ -9,6 +9,7 @@
 
 namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
 {
+    using System.Collections.Generic;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Entities;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Models;
@@ -22,5 +23,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
         EnableStatusModel GetProductStatus(SpElementConfiguration storedProcedure, RequestContext context);
 
         Result UpdateProductStatus(SpElementConfiguration storedProcedure, RequestContext context, EnableStatusEntity entity);
+
+        Result UpdateProductStatus(SpElementConfiguration storedProcedure, RequestContext context, IList<EnableStatusEntity> entities);
     }
 }
