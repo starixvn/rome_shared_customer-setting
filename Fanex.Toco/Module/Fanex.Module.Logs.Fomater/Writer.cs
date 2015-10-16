@@ -8,8 +8,6 @@ namespace Fanex.Module.Logs
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
     /// <summary>
     /// TODO: Update summary.
@@ -23,7 +21,6 @@ namespace Fanex.Module.Logs
 
         public static void Write(this Exception ex, int custId = 0)
         {
-
         }  
     }
 }

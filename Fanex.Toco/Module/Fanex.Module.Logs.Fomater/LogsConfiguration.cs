@@ -6,10 +6,6 @@
 
 namespace Fanex.Module.Logs
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Configuration;
 
     /// <summary>
@@ -23,7 +19,7 @@ namespace Fanex.Module.Logs
         {
             get 
             {
-                _instance = _instance ?? ConfigurationManager.GetSection("Logs") as LogsConfiguration;
+                _instance = _instance ?? ConfigurationManager.GetSection("LogsConfiguration") as LogsConfiguration;
 
                 return _instance;
             }
