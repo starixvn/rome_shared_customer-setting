@@ -1360,6 +1360,7 @@
     <Content Include="Areas\Statement\Views\Guideline\MemberGuildeline.cshtml" />
     <Content Include="Areas\Statement\Views\Guideline\SMAGuildeline.cshtml" />
     <Content Include="Areas\Statement\Views\Guideline\Styles\Guideline.less" />
+    <Content Include="Areas\Logs\Logs.config" />
     <None Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3-custom.less" />
   </ItemGroup>
   <ItemGroup>
