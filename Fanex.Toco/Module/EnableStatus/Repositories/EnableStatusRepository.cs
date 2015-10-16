@@ -236,6 +236,18 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                         result = Helper.MapResultValue(outputParam.ToString(), outputParams[outputParam], result);
                     }
 
+                    if (result.IsSuccess && context.IsCasino)
+                    {
+                        var customer = new Customer();
+                        try
+                        {
+                            customer.UpdateCustEnableCasino(context.CustId, !(bool)entities[0].Disabled, !(bool)entities[0].DisabledDownlines, context.Ip, context.UserId, AppSession.CurrentSession.UserName, AppSession.CurrentSession.FromSystem);
+                        }
+                        catch
+                        {
+                        }
+                    }
+
                     return result;
                 }
                 catch (Exception ex)
