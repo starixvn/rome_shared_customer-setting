@@ -210,7 +210,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
 
                         foreach (var entity in entities)
                         {
-                            if (entity.IsDirty)
+                            if (!entity.Hide && entity.IsDirty)
                             {
                                 products += string.Format(product, entity.SportTypeId, entity.BetTypeId, (bool)entity.Disabled ? 1 : 0, (bool)entity.DisabledDownlines ? 1 : 0);
                             }

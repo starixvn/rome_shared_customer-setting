@@ -17,9 +17,9 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Models;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories;
+    using Fanex.CustomerSetting.Module.Core;
     using Fanex.CustomerSetting.Module.Core.Models;
     using RemotingRef;
-    using Fanex.CustomerSetting.Module.Core;
 
     /// <summary>
     /// TODO: Update summary.
