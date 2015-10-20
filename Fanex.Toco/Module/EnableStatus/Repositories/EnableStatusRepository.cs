@@ -95,7 +95,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
 
                         var outputValues = objectDb.GetOuputParams();
 
-                        if (!hasRecord)
+                        if (!hasRecord && outputValues != null)
                         {
                             foreach (var key in outputValues.Keys)
                             {
