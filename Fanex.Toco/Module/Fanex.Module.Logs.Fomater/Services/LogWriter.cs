@@ -10,10 +10,14 @@
 namespace Fanex.Module.Logs.Services
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
+    using System.Collections;
+    using System.Data.SqlClient;
+    using System.Globalization;
+    using System.Web;
+    using Fanex.CustomerSetting.Module.Core;
     using Fanex.Logging;
     using Fanex.Module.Logs.Mappings;
+    using Sunplus.UMControllerLibrary;
 
     /// <summary>
     /// TODO: Update summary.
@@ -43,8 +47,32 @@ namespace Fanex.Module.Logs.Services
             }
         }
 
-        public static void Write(this Exception ex, int custId = 0)
+        private static string UmURL
         {
+            get
+            {
+                return _configuration.Logs.UmURL;
+            }
+        }
+
+        private static Sites Site
+        {
+            get
+            {
+                return _configuration.Logs.Site;
+            }
+        }
+
+        public static void Write(this Exception ex)
+        {
+            var um = new UMBusiness();
+            var isUM = um.isUnderMaintainence(Site, UmURL);
+
+            if (isUM)
+            {
+                return;
+            }
+
             var log = GetLogs(ex.Message);
 
             if (log != null)
@@ -52,32 +80,25 @@ namespace Fanex.Module.Logs.Services
                 switch (log.Type)
                 {
                     case Formater.LogType.Info:
-                        LogService.Info(FormatLog(ex, custId));
+                        LogService.Info(ex.FormatLog());
                         break;
                     case Formater.LogType.Warning:
-                        LogService.Warn(FormatLog(ex, custId));
+                        LogService.Warn(ex.FormatLog());
                         break;
                     case Formater.LogType.Critical:
-                        LogService.Critical(FormatLog(ex, custId));
+                        LogService.Critical(ex.FormatLog());
                         break;
                     default:
-                        LogService.Error(FormatLog(ex, custId));
+                        LogService.Error(ex.FormatLog());
                         break;
                 }
             }
             else
             {
-                LogService.Error(FormatLog(ex, custId));
+                LogService.Error(ex.FormatLog());
             }
         }
-
-        private static IEnumerable<LogElement> GetLogs(Formater.LogType type = Formater.LogType.Info)
-        {
-            var logs = _configuration.Logs;
-
-            return logs.Where(log => log.Type == type);
-        }
-
+        
         private static LogElement GetLogs(string message)
         {
             var logs = _configuration.Logs;
@@ -86,7 +107,7 @@ namespace Fanex.Module.Logs.Services
             {
                 foreach (MessageElement msg in log.Messages)
                 {
-                    if (message.Contains(msg.Text))
+                    if (!string.IsNullOrWhiteSpace(msg.Text) && message.Contains(msg.Text))
                     {
                         return log;
                     }                        
@@ -96,10 +117,138 @@ namespace Fanex.Module.Logs.Services
             return default(LogElement);
         }
 
-        private static string FormatLog(Exception ex, int custId = 0)
+        private static string ExceptionDataToString(IDictionary dictionary)
         {
-            // TODO: Will implement later
+            var message = string.Empty;
+
+            foreach (var key in dictionary.Keys)
+            {
+                message += string.Format("\r\n{0}: {1}", key, dictionary[key]);
+            }
+
+            return message;
+        }
+
+        private static string FormatLog(this Exception ex)
+        {
+            var format = string.Join(
+                "\r\n", 
+                "{0}",
+                "URL: {1}",
+                "SOURCE: {2}",
+                "DOMAIN: {3}",
+                "REFERRER: {4}",
+                "FORM: {5}",
+                "QUERYSTRING: {6}",
+                "TARGETSITE: {7}",
+                "DETAIL: {8}",
+                "STACKTRACE: {9}",
+                "CULTURE: {10}",
+                "DATA: {11}",
+                "SQL: {12}",
+                "BROWSER: {13}");
+                        
+            return string.Format(
+                format, 
+                ex.FormatSensitiveInfo(ex.Message),
+                ex.FormatSensitiveInfo(HttpContext.Current.Request.Url.OriginalString),
+                ex.Source,
+                HttpContext.Current.Request.Headers["Host"],
+                ex.FormatSensitiveInfo(Utils.ToString(HttpContext.Current.Request.UrlReferrer)),
+                ex.FormatSensitiveInfo(HttpContext.Current.Request.Form.ToString()),
+                ex.FormatSensitiveInfo(HttpContext.Current.Request.QueryString.ToString()),
+                ex.TargetSite,
+                ex,
+                ex.StackTrace,
+                CultureInfo.CurrentCulture.Name,
+                ExceptionDataToString(ex.Data),
+                ex.FormatSqlException(),
+                ClientInformation(HttpContext.Current.Request));
+        }
+
+        private static string FormatSqlException(this Exception ex)
+        {
+            var sqlEx = ex as SqlException;
+            if (sqlEx != null)
+            {
+                var message = string.Join(
+                    "\r\n",
+                    "PROCEDURE: {0}",
+                    "LINENUMBER: {1}",
+                    "SERVER: {2}",
+                    "ERRORCODE: {3}");
+
+                return string.Format(message, sqlEx.Procedure, sqlEx.LineNumber, sqlEx.Server, sqlEx.ErrorCode);
+            }
+
             return string.Empty;
+        }
+
+        private static string FormatSensitiveInfo(this Exception ex, string parameterString)
+        {
+            var sensitiveStrings = SensitiveParams.Split(',');
+
+            if (string.IsNullOrEmpty(parameterString) || sensitiveStrings.Length == 0)
+            {
+                return parameterString;
+            }
+
+            var splitChar = "&";
+            var paramsArray = parameterString.Split(new[] { splitChar }, StringSplitOptions.RemoveEmptyEntries);
+
+            int length;
+            if ((length = paramsArray.Length) == 0)
+            {
+                return parameterString;
+            }
+
+            for (int i = 0; i < length; i++)
+            {
+                var parameter = paramsArray[i].ToLower();
+                foreach (string sensitive in sensitiveStrings)
+                {
+                    if (parameter.Contains(sensitive))
+                    {
+                        var indexOf = parameter.IndexOf('=');
+                        if (indexOf >= 0)
+                        {
+                            paramsArray[i] = paramsArray[i].Substring(0, indexOf + 1) + SensitiveReplacement;
+                        }
+
+                        break;
+                    }
+                }
+            }
+
+            return string.Join(splitChar, paramsArray);
+        }
+
+        private static string ClientInformation(HttpRequest request)
+        {
+            if (request.Browser == null)
+            {
+                return string.Empty;
+            }
+
+            var browser = request.Browser;
+            var browserInformation = string.Join(
+                "\r\n",
+                "Type: " + browser.Type,
+                "Name: " + browser.Browser,
+                "Version: " + browser.Version,
+                "Major Version: " + browser.MajorVersion,
+                "Minor Version: " + browser.MinorVersion,
+                "Platform: " + browser.Platform,
+                "Is Beta: " + browser.Beta,
+                "Is Crawler: " + browser.Crawler,
+                "Is AOL: " + browser.AOL,
+                "Is Win16: " + browser.Win16,
+                "Is Win32: " + browser.Win32,
+                "Supports Frames: " + browser.Frames,
+                "Supports Tables: " + browser.Tables,
+                "Supports Cookies: " + browser.Cookies);
+
+            return browserInformation;
         }
     }
 }

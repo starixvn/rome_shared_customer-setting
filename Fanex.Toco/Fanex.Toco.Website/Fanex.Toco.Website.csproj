@@ -1388,6 +1388,10 @@
       <Project>{37A65793-85E8-4AC4-9254-F5F35BBC2E35}</Project>
       <Name>Fanex.CustomerSetting.Module.CloneSetting</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Module\Fanex.Module.Logs.Fomater\Fanex.Module.Logs.csproj">
+      <Project>{4B4A0C26-C71F-41DE-B558-06B58AFE714F}</Project>
+      <Name>Fanex.Module.Logs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Module\Fanex.Module.Statement\Fanex.Module.Statement.csproj">
       <Project>{2B8BF7A6-3C6D-42E9-956E-D4B144EDDAEE}</Project>
       <Name>Fanex.Module.Statement</Name>
