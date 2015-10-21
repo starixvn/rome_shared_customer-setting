@@ -1,16 +1,14 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="Formater.cs" company="Microsoft">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="Formater.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Andy.Nguyen" date="2015.10.21">Created</change>
+// </history>
 
 namespace Fanex.Module.Logs
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
@@ -21,12 +19,6 @@ namespace Fanex.Module.Logs
             Info = 0,
             Warning = 1,
             Critical = 2
-        }
-
-        public enum SensitiveParams
-        {
-            Password = 0,
-            SecurityCode = 1
         }
     }
 }
