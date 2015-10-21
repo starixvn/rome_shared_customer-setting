@@ -47,21 +47,28 @@ namespace Fanex.Module.Logs.Services
         {
             var log = GetLogs(ex.Message);
 
-            switch (log.Type)
+            if (log != null)
             {
-                case Formater.LogType.Info:
-                    LogService.Info(FormatLog(ex.Message, custId), ex);
-                    break;
-                case Formater.LogType.Warning:
-                    LogService.Warn(FormatLog(ex.Message, custId), ex);
-                    break;
-                case Formater.LogType.Critical:
-                    LogService.Critical(FormatLog(ex.Message, custId), ex);
-                    break;
-                default:
-                    LogService.Error(FormatLog(ex.Message, custId), ex);
-                    break;
-            }            
+                switch (log.Type)
+                {
+                    case Formater.LogType.Info:
+                        LogService.Info(FormatLog(ex.Message, custId), ex);
+                        break;
+                    case Formater.LogType.Warning:
+                        LogService.Warn(FormatLog(ex.Message, custId), ex);
+                        break;
+                    case Formater.LogType.Critical:
+                        LogService.Critical(FormatLog(ex.Message, custId), ex);
+                        break;
+                    default:
+                        LogService.Error(FormatLog(ex.Message, custId), ex);
+                        break;
+                }
+            }
+            else
+            {
+                LogService.Error(FormatLog(ex.Message, custId), ex);
+            }
         }
 
         private static IEnumerable<LogElement> GetLogs(Formater.LogType type = Formater.LogType.Info)
