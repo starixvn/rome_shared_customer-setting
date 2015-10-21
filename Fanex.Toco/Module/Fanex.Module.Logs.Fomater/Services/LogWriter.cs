@@ -52,22 +52,22 @@ namespace Fanex.Module.Logs.Services
                 switch (log.Type)
                 {
                     case Formater.LogType.Info:
-                        LogService.Info(FormatLog(ex.Message, custId), ex);
+                        LogService.Info(FormatLog(ex, custId));
                         break;
                     case Formater.LogType.Warning:
-                        LogService.Warn(FormatLog(ex.Message, custId), ex);
+                        LogService.Warn(FormatLog(ex, custId));
                         break;
                     case Formater.LogType.Critical:
-                        LogService.Critical(FormatLog(ex.Message, custId), ex);
+                        LogService.Critical(FormatLog(ex, custId));
                         break;
                     default:
-                        LogService.Error(FormatLog(ex.Message, custId), ex);
+                        LogService.Error(FormatLog(ex, custId));
                         break;
                 }
             }
             else
             {
-                LogService.Error(FormatLog(ex.Message, custId), ex);
+                LogService.Error(FormatLog(ex, custId));
             }
         }
 
@@ -96,7 +96,7 @@ namespace Fanex.Module.Logs.Services
             return default(LogElement);
         }
 
-        private static string FormatLog(string log, int custId = 0)
+        private static string FormatLog(Exception ex, int custId = 0)
         {
             // TODO: Will implement later
             return string.Empty;
