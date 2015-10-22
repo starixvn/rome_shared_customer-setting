@@ -14,7 +14,6 @@ namespace Fanex.Module.Logs.Services
     using System.Data.SqlClient;
     using System.Globalization;
     using System.Web;
-    using Fanex.CustomerSetting.Module.Core;
     using Fanex.Logging;
     using Fanex.Module.Logs.Mappings;
     using Sunplus.UMControllerLibrary;
@@ -73,7 +72,7 @@ namespace Fanex.Module.Logs.Services
                 return;
             }
 
-            var log = GetLogs(ex.Message);
+            var log = GetLog(ex.Message);
 
             if (log != null)
             {
@@ -99,7 +98,7 @@ namespace Fanex.Module.Logs.Services
             }
         }
         
-        private static LogElement GetLogs(string message)
+        private static LogElement GetLog(string message)
         {
             var logs = _configuration.Logs;
 
@@ -150,11 +149,11 @@ namespace Fanex.Module.Logs.Services
                         
             return string.Format(
                 format, 
-                ex.FormatSensitiveInfo(ex.Message),
+                ex.Message,
                 ex.FormatSensitiveInfo(HttpContext.Current.Request.Url.OriginalString),
                 ex.Source,
                 HttpContext.Current.Request.Headers["Host"],
-                ex.FormatSensitiveInfo(Utils.ToString(HttpContext.Current.Request.UrlReferrer)),
+                HttpContext.Current.Request.UrlReferrer,
                 ex.FormatSensitiveInfo(HttpContext.Current.Request.Form.ToString()),
                 ex.FormatSensitiveInfo(HttpContext.Current.Request.QueryString.ToString()),
                 ex.TargetSite,
