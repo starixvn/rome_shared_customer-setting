@@ -16,16 +16,7 @@ namespace Fanex.Module.Logs.Mappings
     /// </summary>
     public class MessageElement : ConfigurationElement 
     {
-        [ConfigurationProperty("key", IsRequired = true)]
-        public string Key
-        {
-            get
-            {
-                return base["key"] as string;
-            }
-        }
-
-        [ConfigurationProperty("text", IsRequired = false)]
+        [ConfigurationProperty("text", IsRequired = true)]
         public string Text
         {
             get

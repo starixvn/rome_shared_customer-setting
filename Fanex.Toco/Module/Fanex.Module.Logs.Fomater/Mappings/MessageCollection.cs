@@ -34,7 +34,7 @@ namespace Fanex.Module.Logs.Mappings
 
         protected override object GetElementKey(ConfigurationElement element)
         {
-            return ((MessageElement)element).Key;
+            return ((MessageElement)element).Text;
         }
 
         IEnumerator<MessageElement> IEnumerable<MessageElement>.GetEnumerator()
