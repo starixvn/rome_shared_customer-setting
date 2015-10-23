@@ -17,6 +17,14 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Entities
     public class RequestContext
     {
         private string _language = "en-US";
+        private bool _newMode = false;
+
+        public bool NewMode
+        {
+            get { return _newMode; }
+
+            set { _newMode = value; }
+        }
         
         public int Product
         {
@@ -124,5 +132,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Entities
         }
 
         public bool IsCasino { get; set; }
+
+        public int SettingType { get; set; }
     }
 }

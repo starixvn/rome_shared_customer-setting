@@ -222,6 +222,8 @@
     <Setting Key="Acc_CustomerUpdDisableNumber" SpName="Acc_CustomerUpdDisableNumber" DbName="DBCust.CustDB.bodbAdminNet" Plain="0" />
     <Setting Key="Acc_CustomerUpdDisableHRFixedOdds" SpName="Acc_CustomerUpdDisableHRFixedOdds" DbName="DBCust.CustDB.bodbAdminNet" Plain="0" />   
     <Setting Key="Acc_CustomerUpdDisableGoldDeluxe" SpName="Acc_CustomerUpdDisableGoldDeluxe" DbName="DBCust.CustDB.bodbAdminNet"/>
+    <Setting Key="Acc_CustSetting_StatusSettingSelect" SpName="Acc_CustSetting_StatusSettingSelect" DbName="DBCust.CustDB.bodbAdminNet"/>
+    <Setting Key="Acc_CustSetting_DisableStatUpd" SpName="Acc_CustSetting_DisableStatUpd" DbName="DBCust.CustDB.bodbAdminNet"/>
   </Function>
   <Function Name="Bingo">
     <Setting Key="BG_UP_Admin_Site_BySiteNo" SpName="BG_UP_Admin_Site_BySiteNo" DbName="BG_BackupDB" Plain="1"/>    

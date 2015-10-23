@@ -53,6 +53,15 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings
             }
         }
 
+        [ConfigurationProperty("newmode", IsRequired = false)]
+        public bool NewMode
+        {
+            get
+            {
+                return Utils.ToBoolean(base["newmode"]);
+            }
+        }
+
         [ConfigurationProperty("hidebettypes", IsRequired = false)]
         public string HideBetTypes
         {

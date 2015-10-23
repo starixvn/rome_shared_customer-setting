@@ -17,6 +17,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Models;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories;
+    using Fanex.CustomerSetting.Module.Core;
     using Fanex.CustomerSetting.Module.Core.Models;
     using RemotingRef;
 
@@ -34,6 +35,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                 var model = data.GetProductStatus(storedProcedure, context);
                 var product = Helper.Products.Where(p => p.Id.Equals(context.ProductId, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
 
+                context.NewMode = product.NewMode;
                 model.IframeId = Helper.Products.IframeId;
                 model.HasCheckAll = product.HasCheckAll;
                 model.ReloadAfterUpdate = product.ReloadAfterUpdate;
@@ -50,11 +52,15 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                         item.Hide = true;
                     }
 
-                    if (item.BetTypeId != null && (int)item.BetTypeId > 0 && (item.SportTypeId == null || (int)item.SportTypeId == 0))
+                    if (context.NewMode)
+                    {
+                        item.EnableText = item.SportTypeName = RefData.GetSportName(item.SportTypeId.ToString(), context.Language, string.Empty);
+                    }
+                    else if (item.BetTypeId != null && Utils.ToInt32(item.BetTypeId) > 0 && (item.SportTypeId == null || Utils.ToInt32(item.SportTypeId) == 0))
                     {
                         item.EnableText = item.BetTypeName = RefData.GetBetTypeName(item.BetTypeId.ToString(), context.Language, string.Empty);
                     }
-                    else if (item.BetTypeId != null && item.SportTypeId != null && (int)item.BetTypeId > 0 && (int)item.SportTypeId > 0)
+                    else if (item.BetTypeId != null && item.SportTypeId != null && Utils.ToInt32(item.BetTypeId) > 0 && Utils.ToInt32(item.SportTypeId) > 0)
                     {
                         item.EnableText = item.BetTypeName = Helper.GetResource("b" + item.BetTypeId.ToString());
                         item.SportTypeName = Helper.GetResource("s" + item.SportTypeId.ToString());
@@ -80,15 +86,23 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
             try
             {
                 var results = new List<Result>();
-
-                foreach (var item in model.Entities)
+                var result = new Result();
+                if (model.RequestContext.NewMode)
                 {
-                    if (!item.Hide)
+                    result = data.UpdateProductStatus(storedProcedure, model.RequestContext, model.Entities);
+                }
+                else
+                {
+                    foreach (var item in model.Entities)
                     {
-                        var result = data.UpdateProductStatus(storedProcedure, model.RequestContext, item);
-                        results.Add(result);
+                        if (!item.Hide)
+                        {
+                            result = data.UpdateProductStatus(storedProcedure, model.RequestContext, item);
+                        }
                     }
                 }
+
+                results.Add(result);
 
                 return results;
             }
