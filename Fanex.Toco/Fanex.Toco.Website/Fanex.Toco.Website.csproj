@@ -1360,6 +1360,7 @@
     <Content Include="Areas\Statement\Views\Guideline\MemberGuildeline.cshtml" />
     <Content Include="Areas\Statement\Views\Guideline\SMAGuildeline.cshtml" />
     <Content Include="Areas\Statement\Views\Guideline\Styles\Guideline.less" />
+    <Content Include="Areas\Logs\LogsConfiguration.config" />
     <None Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3-custom.less" />
   </ItemGroup>
   <ItemGroup>
@@ -1386,6 +1387,10 @@
     <ProjectReference Include="..\Module\Fanex.CustomerSetting.Module.CloneSetting\Fanex.CustomerSetting.Module.CloneSetting.csproj">
       <Project>{37A65793-85E8-4AC4-9254-F5F35BBC2E35}</Project>
       <Name>Fanex.CustomerSetting.Module.CloneSetting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Module\Fanex.Module.Logs.Fomater\Fanex.Module.Logs.csproj">
+      <Project>{4B4A0C26-C71F-41DE-B558-06B58AFE714F}</Project>
+      <Name>Fanex.Module.Logs</Name>
     </ProjectReference>
     <ProjectReference Include="..\Module\Fanex.Module.Statement\Fanex.Module.Statement.csproj">
       <Project>{2B8BF7A6-3C6D-42E9-956E-D4B144EDDAEE}</Project>
