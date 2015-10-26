@@ -146,23 +146,25 @@ namespace Fanex.Module.Logs.Services
                 "DATA: {11}",
                 "SQL: {12}",
                 "BROWSER: {13}");
-                        
+
+            var request = HttpContext.Current.Request;
+
             return string.Format(
                 format, 
                 ex.Message,
-                ex.FormatSensitiveInfo(HttpContext.Current.Request.Url.OriginalString),
+                ex.FormatSensitiveInfo(request.Url.OriginalString),
                 ex.Source,
-                HttpContext.Current.Request.Headers["Host"],
-                HttpContext.Current.Request.UrlReferrer,
-                ex.FormatSensitiveInfo(HttpContext.Current.Request.Form.ToString()),
-                ex.FormatSensitiveInfo(HttpContext.Current.Request.QueryString.ToString()),
+                request.Headers["Host"],
+                request.UrlReferrer,
+                ex.FormatSensitiveInfo(request.Form.ToString()),
+                ex.FormatSensitiveInfo(request.QueryString.ToString()),
                 ex.TargetSite,
                 ex,
                 ex.StackTrace,
                 CultureInfo.CurrentCulture.Name,
                 ExceptionDataToString(ex.Data),
                 ex.FormatSqlException(),
-                ClientInformation(HttpContext.Current.Request));
+                ClientInformation(request));
         }
 
         private static string FormatSqlException(this Exception ex)
