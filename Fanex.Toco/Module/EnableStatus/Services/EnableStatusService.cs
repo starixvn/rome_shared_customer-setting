@@ -52,6 +52,12 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                         item.Hide = true;
                     }
 
+                    if (item.BetTypeId != null && !product.HideBetTypes.Contains(item.BetTypeId.ToString()) 
+                        && context.Level == EnableStatusEnum.Level.Super)
+                    {
+                        item.Hide = false;
+                    }
+
                     if (context.NewMode)
                     {
                         item.EnableText = item.SportTypeName = RefData.GetSportName(item.SportTypeId.ToString(), context.Language, string.Empty);
