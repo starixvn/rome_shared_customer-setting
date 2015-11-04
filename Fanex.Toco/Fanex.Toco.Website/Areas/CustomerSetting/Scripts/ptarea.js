@@ -91,7 +91,7 @@ module.directive("ptarea", function ($compile, $timeout, $rootScope) {
             function render() {
                 var obj = scope[attrs.ngModel][source];
 
-                if (obj.pts.length > 1) return;
+                //if (obj.pts.length > 1) return;// Resolve issue #46896
 
                 var min = getValue(attrs.min).ptRound();
                 var max = 0;
