@@ -212,7 +212,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                         {
                             if (!entity.Hide && entity.IsDirty)
                             {
-                                products += string.Format(product, entity.SportTypeId, entity.BetTypeId, (bool)entity.Disabled ? 1 : 0, (bool)entity.DisabledDownlines ? 1 : 0);
+                                products += string.Format(product, entity.SportTypeId, entity.BetTypeId, (bool)entity.Disabled ? 1 : 0, (bool)entity.DisabledDownlines && context.Level != EnableStatusEnum.Level.Member ? 1 : 0);
                             }
                         }
 
