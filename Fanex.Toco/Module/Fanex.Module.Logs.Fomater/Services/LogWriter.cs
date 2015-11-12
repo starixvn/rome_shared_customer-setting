@@ -139,13 +139,12 @@ namespace Fanex.Module.Logs.Services
                 "REFERRER: {4}",
                 "FORM: {5}",
                 "QUERYSTRING: {6}",
-                "TARGETSITE: {7}",
-                "DETAIL: {8}",
-                "STACKTRACE: {9}",
-                "CULTURE: {10}",
-                "DATA: {11}",
-                "SQL: {12}",
-                "BROWSER: {13}");
+                "TARGETSITE: {7}",                
+                "STACKTRACE: {8}",
+                "CULTURE: {9}",
+                "DATA: {10}",
+                "SQL: {11}",
+                "BROWSER: {12}");
 
             var request = HttpContext.Current.Request;
 
@@ -159,7 +158,6 @@ namespace Fanex.Module.Logs.Services
                 ex.FormatSensitiveInfo(request.Form.ToString()),
                 ex.FormatSensitiveInfo(request.QueryString.ToString()),
                 ex.TargetSite,
-                ex,
                 ex.StackTrace,
                 CultureInfo.CurrentCulture.Name,
                 ExceptionDataToString(ex.Data),
@@ -176,10 +174,9 @@ namespace Fanex.Module.Logs.Services
                     "\r\n",
                     "PROCEDURE: {0}",
                     "LINENUMBER: {1}",
-                    "SERVER: {2}",
-                    "ERRORCODE: {3}");
+                    "SERVER: {2}");
 
-                return string.Format(message, sqlEx.Procedure, sqlEx.LineNumber, sqlEx.Server, sqlEx.ErrorCode);
+                return string.Format(message, sqlEx.Procedure, sqlEx.LineNumber, sqlEx.Server);
             }
 
             return string.Empty;
