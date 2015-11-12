@@ -71,7 +71,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                         item.EnableText = item.BetTypeName = Helper.GetResource("b" + item.BetTypeId.ToString());
                         item.SportTypeName = Helper.GetResource("s" + item.SportTypeId.ToString());
                     }
-                    if (item.ProductId != 0)
+                    else if (item.ProductId != 0)
                     {
                         item.BetTypeId = item.ProductId;
                         item.EnableText = item.BetTypeName = Helper.GetResource("p" + item.ProductId.ToString());
