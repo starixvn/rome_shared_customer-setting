@@ -241,6 +241,24 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Microgaming - Live Casino.
+        /// </summary>
+        public static string p14 {
+            get {
+                return ResourceManager.GetString("p14", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Microgaming - RnG Casino.
+        /// </summary>
+        public static string p17 {
+            get {
+                return ResourceManager.GetString("p17", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Poker.
         /// </summary>
         public static string poker {

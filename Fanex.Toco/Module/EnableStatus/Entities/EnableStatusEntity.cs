@@ -25,6 +25,8 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Entities
 
         public object SettingType { get; set; }
 
+        public int ProductId { get; set; }
+
         public int MessageType { get; set; }
 
         public object Username { get; set; }

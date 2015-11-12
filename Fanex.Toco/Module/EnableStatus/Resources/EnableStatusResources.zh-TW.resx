@@ -207,4 +207,10 @@
   <data name="warningKenoBeijing" xml:space="preserve">
     <value>Australia setting is being used for Beijing as well</value>
   </data>
+  <data name="p14" xml:space="preserve">
+    <value>Microgaming - Live Casino</value>
+  </data>
+  <data name="p17" xml:space="preserve">
+    <value>Microgaming - RnG Casino</value>
+  </data>
 </root>
