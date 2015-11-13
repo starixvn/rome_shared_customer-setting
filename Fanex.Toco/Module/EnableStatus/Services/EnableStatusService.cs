@@ -12,6 +12,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Xml.Linq;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Entities;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings;
@@ -78,6 +79,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                     }
                     else
                     {
+                        item.BetTypeId = -1;
                         item.EnableText = Helper.GetResource("enable");
                     }
 
@@ -101,12 +103,26 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                 if (model.RequestContext.NewMode)
                 {
                     result = data.UpdateProductStatus(storedProcedure, model.RequestContext, model.Entities);
+                    if (result.ErrorCode != 0)
+                    {
+                        var xmlMessage = XElement.Parse(result.ErrorMessage);
+                        var message = string.Empty;
+                        foreach (var attr in xmlMessage.Attributes())
+                        {                            
+                            if (attr.Name.ToString().Equals("Msg", StringComparison.OrdinalIgnoreCase))
+                            {
+                                message += string.Join("\r\n", attr.Value);
+                            }
+                        }
+
+                        result = new Result(result.ErrorCode, message);
+                    }
                 }
                 else
                 {
                     foreach (var item in model.Entities)
                     {
-                        if (!item.Hide)
+                        if (!item.Hide && item.IsDirty)
                         {
                             result = data.UpdateProductStatus(storedProcedure, model.RequestContext, item);
                         }

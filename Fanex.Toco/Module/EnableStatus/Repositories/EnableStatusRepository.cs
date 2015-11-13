@@ -154,10 +154,16 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                     objectDb.ExecuteNonQuery();
 
                     var outputParams = objectDb.GetOuputParams();
-                    foreach (var outputParam in outputParams.Keys)
+                    foreach (ResultElementConfiguration resultElement in storedProcedure.ResultCollection)
                     {
-                        result = Helper.MapResultValue(outputParam.ToString(), outputParams[outputParam], result);
-                    }
+                        foreach (var outputParam in outputParams.Keys)
+                        {
+                            if (outputParam.ToString().Equals(resultElement.Name, StringComparison.OrdinalIgnoreCase))
+                            {
+                                result = Helper.MapResultValue(resultElement.MapProperty, outputParams[outputParam], result);
+                            }
+                        }   
+                    }                    
 
                     if (result.IsSuccess && context.IsCasino)
                     {
@@ -231,10 +237,16 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                     objectDb.ExecuteNonQuery();
 
                     var outputParams = objectDb.GetOuputParams();
-                    foreach (var outputParam in outputParams.Keys)
+                    foreach (ResultElementConfiguration resultElement in storedProcedure.ResultCollection)
                     {
-                        result = Helper.MapResultValue(outputParam.ToString(), outputParams[outputParam], result);
-                    }
+                        foreach (var outputParam in outputParams.Keys)
+                        {
+                            if (outputParam.ToString().Equals(resultElement.Name, StringComparison.OrdinalIgnoreCase))
+                            {
+                                result = Helper.MapResultValue(resultElement.MapProperty, outputParams[outputParam], result);
+                            }
+                        }
+                    }    
 
                     if (result.IsSuccess && context.IsCasino)
                     {
