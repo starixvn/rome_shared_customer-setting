@@ -22,7 +22,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
     using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.Data;
     using Fanex.Data.DNAide;
-    using Fanex.Logging;
+    using Fanex.Module.Logs.Services;
 
     /// <summary>
     /// TODO: Update summary.
@@ -123,7 +123,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                 }
                 catch (Exception ex)
                 {
-                    Logger.Log.Error(ex.Message, ex);
+                    ex.Write();
 
                     throw ex;
                 }                
@@ -181,7 +181,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                 }
                 catch (Exception ex)
                 {
-                    Logger.Log.Error(ex.Message, ex);
+                    ex.Write();
 
                     throw ex;
                 }
@@ -264,7 +264,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                 }
                 catch (Exception ex)
                 {
-                    Logger.Log.Error(ex.Message, ex);
+                    ex.Write();
 
                     throw ex;
                 }
