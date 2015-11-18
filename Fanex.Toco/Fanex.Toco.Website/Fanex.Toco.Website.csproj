@@ -164,6 +164,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\ColossusBets\Views\BetDetails\Scripts\BetDetails.js" />
+    <Content Include="Areas\ColossusBets\Views\BetDetails\Styles\ColossusBets.css" />
+    <Content Include="Areas\ColossusBets\Views\BetDetails\Styles\Images\error.gif" />
     <Content Include="Areas\CustomerSetting\Images\glyphicons-halflings-white.png" />
     <Content Include="Areas\CustomerSetting\Images\glyphicons-halflings.png" />
     <Content Include="Areas\CustomerSetting\Images\Success.gif" />
@@ -430,6 +433,12 @@
     <Content Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Styles\Images\Update.png" />
     <Content Include="Areas\CustomerSetting\Views\EnableStatus\Readme.txt" />
     <Content Include="Areas\CustomerSetting\Views\EnableStatus\Index.cshtml" />
+    <Content Include="Areas\ColossusBets\ColossusBetsSection.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\ColossusBets\Views\Web.config" />
+    <Content Include="Areas\ColossusBets\Views\BetDetails\Index.cshtml" />
+    <None Include="Areas\ColossusBets\Views\BetDetails\Styles\BetDetails.less" />
     <None Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Document.doc" />
     <None Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Styles\Accounting\theme-color.less" />
     <None Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Styles\Agent\theme-color.less" />
@@ -916,6 +925,7 @@
     <Content Include="Scripts\_Libs\jQuery\Styles\images\ui-icons_fcd113_256x240.png" />
     <Content Include="Scripts\_Libs\jQuery\Styles\jquery-ui-1.9.1.custom.css" />
     <Content Include="Scripts\_Libs\jQuery\Styles\jquery-ui-1.9.1.custom.min.css" />
+    <Content Include="Web.Configuration\Store\ColossusBetSpNames.xml" />
     <Content Include="Web.Configuration\Store\RacingSpNames.xml" />
     <Content Include="Web.Configuration\Store\CustomerSpNames.xml">
       <SubType>Designer</SubType>
@@ -1382,6 +1392,10 @@
     <ProjectReference Include="..\Module\Fanex.CustomerSetting.Module.CloneSetting\Fanex.CustomerSetting.Module.CloneSetting.csproj">
       <Project>{37A65793-85E8-4AC4-9254-F5F35BBC2E35}</Project>
       <Name>Fanex.CustomerSetting.Module.CloneSetting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Module\Fanex.CustomerSetting.Module.ColossusBets\Fanex.CustomerSetting.Module.ColossusBets.csproj">
+      <Project>{4DC252E8-DF63-49B0-8BAA-717E10B30932}</Project>
+      <Name>Fanex.CustomerSetting.Module.ColossusBets</Name>
     </ProjectReference>
     <ProjectReference Include="..\Module\Fanex.Module.Logs.Fomater\Fanex.Module.Logs.csproj">
       <Project>{4B4A0C26-C71F-41DE-B558-06B58AFE714F}</Project>
