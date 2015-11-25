@@ -103,7 +103,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                 if (model.RequestContext.NewMode)
                 {
                     result = data.UpdateProductStatus(storedProcedure, model.RequestContext, model.Entities);
-                    if (result.ErrorCode != 0)
+                    if (result.ErrorCode != 0 || !string.IsNullOrWhiteSpace(result.ErrorMessage))
                     {
                         var xmlMessage = XElement.Parse(result.ErrorMessage);
                         var message = string.Empty;
@@ -115,7 +115,8 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                             }
                         }
 
-                        result = new Result(result.ErrorCode, message);
+                        result = new Result(999, message);
+                        results.Add(result);
                     }
                 }
                 else
@@ -125,11 +126,14 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                         if (!item.Hide && item.IsDirty)
                         {
                             result = data.UpdateProductStatus(storedProcedure, model.RequestContext, item);
+                            if (result.ErrorCode != 0 || !string.IsNullOrWhiteSpace(result.ErrorMessage))
+                            {
+                                result = new Result(999, result.ErrorMessage);
+                                results.Add(result);
+                            }
                         }
                     }
-                }
-
-                results.Add(result);
+                }                
 
                 return results;
             }
