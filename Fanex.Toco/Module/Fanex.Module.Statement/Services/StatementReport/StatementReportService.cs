@@ -89,28 +89,31 @@ namespace Fanex.Module.Statement.Services.StatementReport
                 StatementList = new List<StatementModel>()
             };
 
-            try
+            if (criteria.IsValid())
             {
-                List<StatementReportCriteria> dateRangeList = GetReportDateRange(criteria);
-                for (var i = 0; i < dateRangeList.Count; i++)
+                try
                 {
-                    var dateRange = dateRangeList[i];
-                    var data = _statementReportRepository.MemberStatement(new MemberStatementCriteria
+                    List<StatementReportCriteria> dateRangeList = GetReportDateRange(criteria);
+                    for (var i = 0; i < dateRangeList.Count; i++)
                     {
-                        FromDate = dateRange.FromDate,
-                        ToDate = dateRange.ToDate,
-                        RoleId = criteria.RoleId,
-                        PageSize = criteria.PageSize,
-                        PageIndex = criteria.PageIndex,
-                        CustId = criteria.CustId
-                    });
+                        var dateRange = dateRangeList[i];
+                        var data = _statementReportRepository.MemberStatement(new MemberStatementCriteria
+                        {
+                            FromDate = dateRange.FromDate,
+                            ToDate = dateRange.ToDate,
+                            RoleId = criteria.RoleId,
+                            PageSize = criteria.PageSize,
+                            PageIndex = criteria.PageIndex,
+                            CustId = criteria.CustId
+                        });
 
-                    result.StatementList = Enumerable.Concat(result.StatementList, data.StatementList).ToList();
+                        result.StatementList = Enumerable.Concat(result.StatementList, data.StatementList).ToList();
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                LoggingHandler.Log(ex);
+                catch (Exception ex)
+                {
+                    LoggingHandler.Log(ex);
+                }
             }
 
             return result;

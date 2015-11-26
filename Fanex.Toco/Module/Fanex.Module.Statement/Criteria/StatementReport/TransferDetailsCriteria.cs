@@ -13,6 +13,7 @@ namespace Fanex.Module.Statement.Criteria.StatementReport
     using Fanex.Common;
     using Fanex.Module.Statement.Services;
     using Fanex.NAP.Framework.Data;
+    using Fanex.CustomerSetting.Module.Core.Extensions;
 
     /// <summary>
     /// Transfer Details Criteria.
@@ -47,6 +48,16 @@ namespace Fanex.Module.Statement.Criteria.StatementReport
 
         public override bool IsValid()
         {
+            try
+            {
+                Converter.ToDateTime(this.TransferDate);
+            }
+            catch (Exception ex)
+            { 
+                LogExtension.LogInfo(ex);
+                return false;
+            }
+
             return true;
         }
     }

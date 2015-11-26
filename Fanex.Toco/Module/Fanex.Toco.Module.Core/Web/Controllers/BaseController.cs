@@ -78,6 +78,10 @@ namespace Fanex.CustomerSetting.Module.Core.Web.Controllers
             Thread.CurrentThread.CurrentCulture = new CultureInfo(cultureName);
             Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
 
+            System.Globalization.CultureInfo def = System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
+            System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat = def.DateTimeFormat;
+            System.Threading.Thread.CurrentThread.CurrentCulture.NumberFormat = def.NumberFormat;
+
             AppSession.CurrentActionName = filterContext.ActionDescriptor.ActionName;
             base.OnActionExecuting(filterContext);
         }

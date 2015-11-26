@@ -18,7 +18,17 @@ namespace Fanex.CustomerSetting.Module.Core.Extensions
     {
         public static void Log(Exception ex)
         {
-            string message = ex.Message +
+            Fanex.Logging.Logger.Log.Error(GenerateLogMessage(ex));
+        }
+
+        public static void LogInfo(Exception ex)
+        {
+            Fanex.Logging.Logger.Log.Info(GenerateLogMessage(ex));
+        }
+
+        private static string GenerateLogMessage(Exception ex)
+        {
+            return ex.Message +
                        "\r\nSOURCE: " + ex.Source +
                        "\r\nDOMAIN: " + HttpContext.Current.Request.Headers["Host"] +
                         "\r\nREFERRER: " + HttpContext.Current.Request.UrlReferrer +
@@ -26,8 +36,6 @@ namespace Fanex.CustomerSetting.Module.Core.Extensions
                        "\r\nQUERYSTRING: " + HttpContext.Current.Request.QueryString.ToString() +
                        "\r\nTARGETSITE: " + ex.TargetSite +
                        "\r\nSTACKTRACE: " + ex.StackTrace;
-
-            Fanex.Logging.Logger.Log.Error(message);
         }
     }
 }
