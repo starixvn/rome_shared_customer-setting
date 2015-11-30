@@ -79,7 +79,11 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                     }
                     else
                     {
-                        item.BetTypeId = -1;
+                        if(object.ReferenceEquals(null, item.BetTypeId))
+                        {
+                            item.BetTypeId = -1;
+                        }
+
                         item.EnableText = Helper.GetResource("enable");
                     }
 
