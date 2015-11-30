@@ -11,9 +11,9 @@ namespace Fanex.Module.Statement.Criteria.StatementReport
 {
     using System;
     using Fanex.Common;
+    using Fanex.CustomerSetting.Module.Core.Extensions;
     using Fanex.Module.Statement.Services;
     using Fanex.NAP.Framework.Data;
-    using Fanex.CustomerSetting.Module.Core.Extensions;
 
     /// <summary>
     /// Transfer Details Criteria.

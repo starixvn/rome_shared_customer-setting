@@ -79,7 +79,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                     }
                     else
                     {
-                        if(object.ReferenceEquals(null, item.BetTypeId))
+                        if (object.ReferenceEquals(null, item.BetTypeId))
                         {
                             item.BetTypeId = -1;
                         }

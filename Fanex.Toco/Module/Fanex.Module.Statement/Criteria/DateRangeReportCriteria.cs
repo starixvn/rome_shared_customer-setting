@@ -46,11 +46,13 @@ namespace Fanex.Module.Statement.Criteria.StatementReport
             }
         }
 
-        public override bool  IsValid()
+        public override bool IsValid()
         {
-            return this.FromDate.Year >= 1753 && this.FromDate.Year <= 9999
-                && this.ToDate.Year >= 1753 && this.ToDate.Year <= 9999
-                && this.ToDate >= this.FromDate;
+            return this.FromDate.Year >= 1753 &&
+                this.FromDate.Year <= 9999 &&
+                this.ToDate.Year >= 1753 &&
+                this.ToDate.Year <= 9999 &&
+                this.ToDate >= this.FromDate;
         }
 
         /// <summary>
