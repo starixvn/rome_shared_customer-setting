@@ -53,7 +53,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                         item.Hide = true;
                     }
 
-                    if (item.BetTypeId != null && !product.HideBetTypes.Contains(item.BetTypeId.ToString()) 
+                    if (item.BetTypeId != null && !product.HideBetTypes.Contains(item.BetTypeId.ToString())
                         && context.Level == EnableStatusEnum.Level.Super)
                     {
                         item.Hide = false;
@@ -93,11 +93,11 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                 return model;
             }
             catch (Exception ex)
-            {                
+            {
                 throw ex;
             }
         }
-        
+
         public IList<Result> UpdateProductStatus(EnableStatusModel model, SpElementConfiguration storedProcedure)
         {
             try
@@ -112,7 +112,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                         var xmlMessage = XElement.Parse(result.ErrorMessage);
                         var message = string.Empty;
                         foreach (var attr in xmlMessage.Attributes())
-                        {                            
+                        {
                             if (attr.Name.ToString().Equals("Msg", StringComparison.OrdinalIgnoreCase))
                             {
                                 message += string.Join("\r\n", attr.Value);
@@ -137,12 +137,12 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                             }
                         }
                     }
-                }                
+                }
 
                 return results;
             }
             catch (Exception ex)
-            {                
+            {
                 throw ex;
             }
         }

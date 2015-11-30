@@ -25,12 +25,12 @@ namespace Fanex.Module.Statement.Criteria.StatementReport
         private static ICache _cache;
         private DataTable _balanceUpDay;
         private IStatementReportRepository _report;
-        
+
         public DateTime FromDate { get; set; }
 
         public DateTime ToDate { get; set; }
 
-        public DateTime BalanceUpDay 
+        public DateTime BalanceUpDay
         {
             get
             {
@@ -38,7 +38,7 @@ namespace Fanex.Module.Statement.Criteria.StatementReport
             }
         }
 
-        public DateTime MoveBetsDay 
+        public DateTime MoveBetsDay
         {
             get
             {
