@@ -61,8 +61,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
 
                     if (context.NewMode)
                     {
-                        item.EnableText = RefData.GetBetTypeName(item.BetTypeId.ToString(), context.Language, string.Empty);
-                        item.SportTypeName = RefData.GetSportName(item.SportTypeId.ToString(), context.Language, string.Empty);
+                        item.EnableText = item.SportTypeName = item.BetTypeName = RefData.GetSportName(item.SportTypeId.ToString(), context.Language, string.Empty);
                     }
                     else if (item.BetTypeId != null && Utils.ToInt32(item.BetTypeId) > 0 && (item.SportTypeId == null || Utils.ToInt32(item.SportTypeId) == 0))
                     {
