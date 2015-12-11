@@ -42,7 +42,7 @@ namespace Fanex.CustomerSetting.IP.Utils
                     if (pwds[i].Contains("password"))
                     {
                         pwdPhrase = pwds[i];
-                        pwd = pwds[i].Split('=').ElementAt(1);
+                        pwd = pwds[i].Replace("password=", string.Empty);
                         break;
                     }
                 }
