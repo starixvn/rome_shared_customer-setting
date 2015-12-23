@@ -46,8 +46,16 @@ namespace Fanex.CustomerSetting.IP.Utils
                         break;
                     }
                 }
-                
-                cnn = cnn.Replace(pwdPhrase, "password=" + Cryptography.CfsDeCrypt(pwd));
+
+                try
+                {
+                    cnn = cnn.Replace(pwdPhrase, "password=" + Cryptography.CfsDeCrypt(pwd));
+                }
+                catch
+                {
+                    cnn = cnn.Replace(pwdPhrase, "password=" + Cryptography.CfsDeCrypt(pwd.Replace("=", string.Empty)));
+                }
+
                 str = new EntityConnectionStringBuilder(cnn).ToString();
                 cache.Set<string>("IPEntities_ConnectionString", str, TimeSpan.FromHours(1.0));
             }

@@ -62,7 +62,7 @@ namespace Fanex.Module.Logs.Services
             }
         }
 
-        public static void Write(this Exception ex)
+        public static void Write(this Exception ex, Formater.LogType logType = Formater.LogType.Auto)
         {
             var um = new UMBusiness();
             var isUM = um.isUnderMaintainence(Site, UmURL);
@@ -74,27 +74,36 @@ namespace Fanex.Module.Logs.Services
 
             var log = GetLog(ex.Message);
 
-            if (log != null)
+            if (logType == Formater.LogType.Auto || object.ReferenceEquals(null, logType))
             {
-                switch (log.Type)
-                {
-                    case Formater.LogType.Info:
-                        LogService.Info(ex.FormatLog());
-                        break;
-                    case Formater.LogType.Warning:
-                        LogService.Warn(ex.FormatLog());
-                        break;
-                    case Formater.LogType.Critical:
-                        LogService.Critical(ex.FormatLog());
-                        break;
-                    default:
-                        LogService.Error(ex.FormatLog());
-                        break;
-                }
+                ex.WriteLog(logType);
+            }
+            else if (log != null)
+            {
+                ex.WriteLog(log.Type);
             }
             else
             {
                 LogService.Error(ex.FormatLog());
+            }
+        }
+
+        private static void WriteLog(this Exception ex, Formater.LogType logType)
+        {
+            switch (logType)
+            {
+                case Formater.LogType.Info:
+                    LogService.Info(ex.FormatLog());
+                    break;
+                case Formater.LogType.Warning:
+                    LogService.Warn(ex.FormatLog());
+                    break;
+                case Formater.LogType.Critical:
+                    LogService.Critical(ex.FormatLog());
+                    break;
+                default:
+                    LogService.Error(ex.FormatLog());
+                    break;
             }
         }
         
@@ -144,7 +153,8 @@ namespace Fanex.Module.Logs.Services
                 "CULTURE: {9}",
                 "DATA: {10}",
                 "SQL: {11}",
-                "BROWSER: {12}");
+                "BROWSER: {12}",
+                "CLIENT IP: {13}");
 
             var request = HttpContext.Current.Request;
 
@@ -162,7 +172,14 @@ namespace Fanex.Module.Logs.Services
                 CultureInfo.CurrentCulture.Name,
                 ExceptionDataToString(ex.Data),
                 ex.FormatSqlException(),
-                ClientInformation(request));
+                ClientInformation(request),
+                GetIPInfo(request));
+        }
+
+        private static string GetIPInfo(HttpRequest request)
+        {
+            var ip = request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? request.ServerVariables["REMOTE_ADDR"];
+            return ip.Equals("::1") ? "127.0.0.1" : (string.IsNullOrEmpty(ip) ? "127.0.0.1" : ip.Split(',')[0]);
         }
 
         private static string FormatSqlException(this Exception ex)

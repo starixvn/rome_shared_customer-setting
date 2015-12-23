@@ -18,7 +18,8 @@ namespace Fanex.Module.Logs
         {            
             Info = 0,
             Warning = 1,
-            Critical = 2
+            Critical = 2,
+            Auto = 3
         }
     }
 }
