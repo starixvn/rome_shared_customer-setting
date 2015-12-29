@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------
-// <copyright file="Constants.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="CommonConstants.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -10,7 +10,7 @@
 namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
 {
     /// <summary>
-    /// The Constants class.
+    /// The CommonConstants class.
     /// </summary>
     public static class Constants
     {

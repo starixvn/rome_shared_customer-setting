@@ -10,7 +10,7 @@
 namespace Fanex.Module.Statement.Constants
 {
     /// <summary>
-    /// System Name Constants.
+    /// System Name CommonConstants.
     /// </summary>
     public class SystemNameConstants
     {

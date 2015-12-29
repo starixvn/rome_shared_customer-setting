@@ -60,7 +60,7 @@ namespace Fanex.CustomerSetting.Module.Core.Extensions
         /// <returns></returns>
         public static string ToShortFormatedDate(this DateTime date)
         {
-            return date.ToString(Constants.SHORT_DATE_FORMAT);
+            return date.ToString(CommonConstants.SHORT_DATE_FORMAT);
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace Fanex.CustomerSetting.Module.Core.Extensions
         /// <returns></returns>
         public static string ToLongFormatedDate(this DateTime date)
         {
-            return date.ToString(Constants.LONG_DATE_FORMAT);
+            return date.ToString(CommonConstants.LONG_DATE_FORMAT);
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace Fanex.CustomerSetting.Module.Core.Extensions
         /// <returns>string with format (MMM yyyy)</returns>
         public static string ToMonthYear(this DateTime date)
         {
-            return date.ToString(Constants.MONTH_YEAR_DATE_FORMAT);
+            return date.ToString(CommonConstants.MONTH_YEAR_DATE_FORMAT);
         }
 
         /// <summary>
@@ -160,7 +160,7 @@ namespace Fanex.CustomerSetting.Module.Core.Extensions
         /// <returns></returns>
         public static string ToLongFormatedDateWithSlash(this DateTime date)
         {
-            return date.ToString(Constants.LONG_DATE_FORMAT_WITH_SLASH);
+            return date.ToString(CommonConstants.LONG_DATE_FORMAT_WITH_SLASH);
         }
 
         /// <summary>
@@ -170,7 +170,7 @@ namespace Fanex.CustomerSetting.Module.Core.Extensions
         /// <returns></returns>
         public static string ToShortFormatedDateWithSlash(this DateTime date)
         {
-            return date.ToString(Constants.SHORT_DATE_FORMAT_WITH_SLASH);
+            return date.ToString(CommonConstants.SHORT_DATE_FORMAT_WITH_SLASH);
         }
 
         /// <summary>
@@ -195,11 +195,7 @@ namespace Fanex.CustomerSetting.Module.Core.Extensions
         /// <returns>string with format (MM/yyyy)</returns>
         public static string ToMonthYearWithSlash(this DateTime date)
         {
-            return date.ToString(Constants.MONTH_YEAR_DATE_FORMAT_WITH_SLASH);
+            return date.ToString(CommonConstants.MONTH_YEAR_DATE_FORMAT_WITH_SLASH);
         }
-
-        
-
-        
     }
 }

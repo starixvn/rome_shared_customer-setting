@@ -92,6 +92,8 @@
   <ItemGroup>
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Constants\BetTypeContants.cs" />
+    <Compile Include="Constants\SportContants.cs" />
     <Compile Include="Controllers\Base\ControllerExtentions.cs" />
     <Compile Include="Controllers\Base\JsonBase.cs" />
     <Compile Include="Criteria\GetBettypeCriteria.cs">
@@ -160,7 +162,6 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

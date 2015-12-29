@@ -94,12 +94,12 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 		{
 			get
 			{
-				return SessionManager.Get<User>(Constants.CURRENT_LOG_IN_USER);
+				return SessionManager.Get<User>(CommonConstants.CURRENT_LOG_IN_USER);
 			}
 
 			set
 			{
-				SessionManager.Set<User>(Constants.CURRENT_LOG_IN_USER, value);
+				SessionManager.Set<User>(CommonConstants.CURRENT_LOG_IN_USER, value);
 			}
 		}
 
@@ -110,12 +110,12 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 		{
 			get
 			{
-				return SessionManager.Get<IList<MenuItem>>(Constants.CURRENT_USER_MENU);
+				return SessionManager.Get<IList<MenuItem>>(CommonConstants.CURRENT_USER_MENU);
 			}
 
 			set
 			{
-				SessionManager.Set<IList<MenuItem>>(Constants.CURRENT_USER_MENU, value);
+				SessionManager.Set<IList<MenuItem>>(CommonConstants.CURRENT_USER_MENU, value);
 			}
 		}
 
@@ -125,7 +125,7 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 			{
 				try
 				{
-					return SessionManager.Get<Dictionary<string, int>>(Constants.CURRENT_USER_ROLE_ACCESS);
+					return SessionManager.Get<Dictionary<string, int>>(CommonConstants.CURRENT_USER_ROLE_ACCESS);
 				}
 				catch (Exception)
 				{
@@ -135,7 +135,7 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 
 			set
 			{
-				SessionManager.Set<Dictionary<string, int>>(Constants.CURRENT_USER_ROLE_ACCESS, value);
+				SessionManager.Set<Dictionary<string, int>>(CommonConstants.CURRENT_USER_ROLE_ACCESS, value);
 			}
 		}
 
@@ -146,12 +146,12 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 		{
 			get
 			{
-				return SessionManager.Get<MenuItem>(Constants.CURRENT_WORKING_ON_MENU);
+				return SessionManager.Get<MenuItem>(CommonConstants.CURRENT_WORKING_ON_MENU);
 			}
 
 			set
 			{
-				SessionManager.Set<MenuItem>(Constants.CURRENT_WORKING_ON_MENU, value);
+				SessionManager.Set<MenuItem>(CommonConstants.CURRENT_WORKING_ON_MENU, value);
 			}
 		}
 
@@ -163,12 +163,12 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 		{
 			get
 			{
-				return SessionManager.Get<string>(Constants.CURRENT_ACTION_NAME);
+				return SessionManager.Get<string>(CommonConstants.CURRENT_ACTION_NAME);
 			}
 
 			set
 			{
-				SessionManager.Set<string>(Constants.CURRENT_ACTION_NAME, value);
+				SessionManager.Set<string>(CommonConstants.CURRENT_ACTION_NAME, value);
 			}
 		}
 
@@ -176,11 +176,11 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 		{
 			get
 			{
-				return SessionManager.Get<bool>(Constants.VIEW_IP_VN);
+				return SessionManager.Get<bool>(CommonConstants.VIEW_IP_VN);
 			}
 			set
 			{
-				SessionManager.Set<bool>(Constants.VIEW_IP_VN, value);
+				SessionManager.Set<bool>(CommonConstants.VIEW_IP_VN, value);
 			}
 		}
 
@@ -189,11 +189,11 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 		{
 			get
 			{
-				return SessionManager.Get<int>(Constants.ADMIN_ID);
+				return SessionManager.Get<int>(CommonConstants.ADMIN_ID);
 			}
 			set
 			{
-				SessionManager.Set<int>(Constants.ADMIN_ID, value);
+				SessionManager.Set<int>(CommonConstants.ADMIN_ID, value);
 			}
 		}
 
@@ -201,11 +201,11 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 		{
 			get
 			{
-				return SessionManager.Get<string>(Constants.ADMIN_USERNAME);
+				return SessionManager.Get<string>(CommonConstants.ADMIN_USERNAME);
 			}
 			set
 			{
-				SessionManager.Set<string>(Constants.ADMIN_USERNAME, value);
+				SessionManager.Set<string>(CommonConstants.ADMIN_USERNAME, value);
 			}
 		}
 
@@ -213,11 +213,11 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 		{
 			get
 			{
-				return SessionManager.Get<int>(Constants.ADMIN_ROLEID);
+				return SessionManager.Get<int>(CommonConstants.ADMIN_ROLEID);
 			}
 			set
 			{
-				SessionManager.Set<int>(Constants.ADMIN_ROLEID, value);
+				SessionManager.Set<int>(CommonConstants.ADMIN_ROLEID, value);
 			}
 		}
 
@@ -225,11 +225,11 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 		{
 			get
 			{
-				return SessionManager.Get<int>(Constants.USER_ROLEID);
+				return SessionManager.Get<int>(CommonConstants.USER_ROLEID);
 			}
 			set
 			{
-				SessionManager.Set<int>(Constants.USER_ROLEID, value);
+				SessionManager.Set<int>(CommonConstants.USER_ROLEID, value);
 			}
 		}
 
@@ -237,7 +237,7 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 		{
 			get
 			{
-				object value = SessionManager.Get(Constants.IS_ALLOW_PROGRESSIVE_BONUS);
+				object value = SessionManager.Get(CommonConstants.IS_ALLOW_PROGRESSIVE_BONUS);
 				if (value != null)
 				{
 					return Convert.ToBoolean(value);
@@ -247,7 +247,7 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 			}
 			set
 			{
-				SessionManager.Set<bool?>(Constants.IS_ALLOW_PROGRESSIVE_BONUS, value);
+				SessionManager.Set<bool?>(CommonConstants.IS_ALLOW_PROGRESSIVE_BONUS, value);
 			}
 		}
 
@@ -255,11 +255,11 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 		{
 			get
 			{
-				return SessionManager.Get<int>(Constants.SUB_ACCOUNT_ID);
+				return SessionManager.Get<int>(CommonConstants.SUB_ACCOUNT_ID);
 			}
 			set
 			{
-				SessionManager.Set<int>(Constants.SUB_ACCOUNT_ID, value);
+				SessionManager.Set<int>(CommonConstants.SUB_ACCOUNT_ID, value);
 			}
 		}
 
@@ -267,12 +267,12 @@ namespace Fanex.CustomerSetting.Module.Core.Web
         {
             get
             {
-                return SessionManager.Get<string>(Constants.SUB_ACCOUNT_NAME);
+                return SessionManager.Get<string>(CommonConstants.SUB_ACCOUNT_NAME);
             }
 
             set
             {
-                SessionManager.Set<string>(Constants.SUB_ACCOUNT_NAME, value);
+                SessionManager.Set<string>(CommonConstants.SUB_ACCOUNT_NAME, value);
             }
         }
 
@@ -280,11 +280,11 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 		{
 			get
 			{
-				return SessionManager.Get<string>(Constants.LANGUAGE);
+				return SessionManager.Get<string>(CommonConstants.LANGUAGE);
 			}
 			set
 			{
-				SessionManager.Set<string>(Constants.LANGUAGE, value);
+				SessionManager.Set<string>(CommonConstants.LANGUAGE, value);
 			}
 		}
 
@@ -292,11 +292,11 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 		{
 			get
 			{
-				return SessionManager.Get<object>(Constants.PROGRESSIVE_BONUS_OLD_VALUE);
+				return SessionManager.Get<object>(CommonConstants.PROGRESSIVE_BONUS_OLD_VALUE);
 			}
 			set
 			{
-				SessionManager.Set<object>(Constants.PROGRESSIVE_BONUS_OLD_VALUE, value);
+				SessionManager.Set<object>(CommonConstants.PROGRESSIVE_BONUS_OLD_VALUE, value);
 			}
 		}
 	}

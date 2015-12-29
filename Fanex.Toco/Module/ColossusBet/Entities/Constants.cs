@@ -1,7 +1,7 @@
 namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Entities
 {
     /// <summary>
-    /// The Constants class.
+    /// The CommonConstants class.
     /// </summary>
     public static class Constants
     {

@@ -49,7 +49,7 @@ namespace Fanex.CustomerSetting.Module.Core.Extensions
             DateTime? date,
             DateTime? minDate = null,
             DateTime? maxDate = null,
-            string formatDate = Constants.SHORT_DATE_FORMAT,
+            string formatDate = CommonConstants.SHORT_DATE_FORMAT,
             IEnumerable<DateTime> unavailDates = null)
         {
             if (string.IsNullOrWhiteSpace(formatDate))
@@ -58,7 +58,7 @@ namespace Fanex.CustomerSetting.Module.Core.Extensions
             }
 
             string disabledDate = (unavailDates != null && unavailDates.Count() > 0)
-                ? string.Join(",", unavailDates.Select(d => d.ToString(Constants.SHORT_DATE_FORMAT)))
+                ? string.Join(",", unavailDates.Select((Func<DateTime, string>)(d => d.ToString(CommonConstants.SHORT_DATE_FORMAT))))
                 : string.Empty;
 
             var textbox = htmlHelper.TextBox(name,
@@ -89,7 +89,7 @@ namespace Fanex.CustomerSetting.Module.Core.Extensions
             Expression<Func<TModel, TValue>> expression,
             DateTime? minDate = null,
             DateTime? maxDate = null,
-            string formatDate = Constants.SHORT_DATE_FORMAT,
+            string formatDate = CommonConstants.SHORT_DATE_FORMAT,
              IEnumerable<DateTime> unavailDates = null)
         {
             var metaData = ModelMetadata.FromLambdaExpression(expression, html.ViewData);
