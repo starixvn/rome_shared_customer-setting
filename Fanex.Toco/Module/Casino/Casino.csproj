@@ -177,23 +177,32 @@
     <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\CasinoCustomerController.cs" />
     <Compile Include="Entities\CasinoCustomer.cs" />
+    <Compile Include="Entities\CurrentMemberWinLimit.cs" />
+    <Compile Include="Entities\JsonConverterExt.cs" />
+    <Compile Include="Entities\MemberWinLimit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Impl\CasinoDao.cs" />
+    <Compile Include="Repositories\Impl\MemberWinLimitRepository.cs" />
+    <Compile Include="Repositories\Interface\IMemberWinLimitRepository.cs" />
     <Compile Include="Resources\NGCasinoLang.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NGCasinoLang.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\Impl\CasinoManager.cs" />
+    <Compile Include="Services\Impl\CasinoMemberWinLimitService.cs" />
+    <Compile Include="Services\Interface\ICasinoMemberWinLimitService.cs" />
     <Compile Include="ViewModels\GameSettingModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Criteria\" />
-    <Folder Include="Repositories\Interface\" />
-    <Folder Include="Services\Interface\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Fanex.Module.Logs.Fomater\Fanex.Module.Logs.csproj">
+      <Project>{4B4A0C26-C71F-41DE-B558-06B58AFE714F}</Project>
+      <Name>Fanex.Module.Logs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fanex.Toco.Module.Core\_Core.csproj">
       <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
       <Name>_Core</Name>

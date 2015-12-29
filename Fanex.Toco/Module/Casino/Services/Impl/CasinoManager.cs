@@ -24,6 +24,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
     using Fanex.CustomerSetting.Module.Core.Models;
     using Fanex.CustomerSetting.Module.Core.Web;
     using System.Collections;
+    using Fanex.CustomerSetting.Module.Casino.Services.Interface;
 
     /// <summary>
     /// TODO: Update summary.
@@ -664,7 +665,15 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 retMsg += string.Format("{0}{1}", item, ", ");
             }
 
-            return new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
+            var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
+
+            if (result.IsSuccess)
+            {
+                ICasinoMemberWinLimitService service = new CasinoMemberWinLimitService();
+                service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.MemberWinLimit);
+            }
+
+            return result;
         }
 
         public Result UpdateMaster(int custId, string custName, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel settingModel, CasinoCustomer customerModel)
@@ -788,7 +797,15 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 retMsg += string.Format("{0}{1}", item, ", ");
             }
 
-            return new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
+            var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
+
+            if (result.IsSuccess)
+            {
+                ICasinoMemberWinLimitService service = new CasinoMemberWinLimitService();
+                service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.MemberWinLimit);
+            }
+
+            return result;
         }
 
         public Result UpdateAgent(int custId, string custName, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel settingModel, CasinoCustomer customerModel)
@@ -910,7 +927,15 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 retMsg += string.Format("{0}{1}", item, ", ");
             }
 
-            return new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
+            var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
+
+            if (result.IsSuccess)
+            {
+                ICasinoMemberWinLimitService service = new CasinoMemberWinLimitService();
+                service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.MemberWinLimit);
+            }
+
+            return result;
         }
 
         public Result UpdateMember(int custId, string custName, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel settingModel, CasinoCustomer customerModel)
@@ -1042,7 +1067,15 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 retMsg += string.Format("{0}{1}", item, ", ");
             }
 
-            return new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
+            var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
+
+            if (result.IsSuccess)
+            {
+                ICasinoMemberWinLimitService service = new CasinoMemberWinLimitService();
+                service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.MemberWinLimit);
+            }
+
+            return result;
         }
 
         public Result UpdateMemberBySuper(int custId, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel settingModel, CasinoCustomer customerModel)
@@ -1075,7 +1108,15 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 retMsg += string.Format("{0}{1}", item, ", ");
             }
 
-            return new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
+            var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
+
+            if (result.IsSuccess)
+            {
+                ICasinoMemberWinLimitService service = new CasinoMemberWinLimitService();
+                service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.MemberWinLimit);
+            }
+
+            return result;
         }
 
         public Result UpdateMemberByMaster(int custId, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel settingModel, CasinoCustomer customerModel)
@@ -1108,7 +1149,15 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 retMsg += string.Format("{0}{1}", item, ", ");
             }
 
-            return new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
+            var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
+
+            if (result.IsSuccess)
+            {
+                ICasinoMemberWinLimitService service = new CasinoMemberWinLimitService();
+                service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.MemberWinLimit);
+            }
+
+            return result;
         }
 
         public Result UpdateSuperBettingLimit(int custId, int roleId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel model, CasinoCustomer customer)

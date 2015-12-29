@@ -348,4 +348,7 @@
   <data name="submit" xml:space="preserve">
     <value>提交</value>
   </data>
+  <data name="lblMaxLoss" xml:space="preserve">
+    <value>Maximum Loss</value>
+  </data>
 </root>
