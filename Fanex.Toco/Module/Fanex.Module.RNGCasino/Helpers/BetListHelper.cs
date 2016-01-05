@@ -83,11 +83,11 @@
                     string.Empty :
                     "ViewRNGCasinoResult(" +
                         ticketDetail.Ticket.MatchId + "," +
-                        ticketDetail.Ticket.Race + "," +
+                        "'" + ticketDetail.Ticket.Race + "'," +
                         ticketDetail.Ticket.BetTypeId + "," +
                         ticketDetail.Ticket.SportTypeId + "," +
-                        ticketDetail.Ticket.RefNo + "," +
-                        "\"" + ticketDetail.Ticket.WinlostDate.ToShortFormatedDate() + "\")";
+                        ticketDetail.Ticket.TransId + "," +
+                        "\'" + ticketDetail.Ticket.WinlostDate.ToShortFormatedDate() + "\')";
             }
 
             var resultLink1 = string.IsNullOrEmpty(resultLink) ?

@@ -6,16 +6,14 @@
     {
         public int CustId { get; set; }
 
+        public int TransType { get; set; }
+
+        [SpParam(SqlParamName = "RefNo")]
         public long TransId { get; set; }
-
-        public int StatusId { get; set; }
-
-        [SpParam(Ignored = true)]
-        public long TransID { get; set; }
 
         public override string GetSettingKey()
         {
-            return "BetList_RNGCasino_BetDetails";
+            return "BetList_MicroGaming_BetDetails";
         }
 
         public override bool IsValid()

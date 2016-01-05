@@ -42,6 +42,10 @@
       <HintPath>..\..\packages\Fanex.BetList.Core.2.8.0.2\lib\net40\Fanex.BetList.GoldDeluxe.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.Common, Version=1.0.404.97, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_Dependencies\Fanex\Fanex.Common.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.Data">
       <HintPath>..\..\_Dependencies\Fanex\Fanex.Data.dll</HintPath>
     </Reference>
@@ -74,6 +78,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -86,11 +91,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\RNGCasinoBetListController.cs" />
     <Compile Include="Criteria\GetRNGCasinoBetDetailsCriteria.cs" />
     <Compile Include="Extensions\BetListExtension.cs" />
     <Compile Include="Helpers\BetListHelper.cs" />
     <Compile Include="Models\TicketDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IRNGCasinoRepository.cs" />
+    <Compile Include="Repositories\RNGCasinoRepository.cs" />
     <Compile Include="Resources\BetListResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -99,9 +107,7 @@
     <Compile Include="Services\IRNGCasinoService.cs" />
     <Compile Include="Services\RNGCasinoService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
