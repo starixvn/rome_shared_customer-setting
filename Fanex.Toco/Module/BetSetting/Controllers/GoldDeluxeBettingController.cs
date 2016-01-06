@@ -129,7 +129,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
             var param = Mapper.Map<EditSettingViewModel, GetSettingParameters>(model);
             model.Setting = _settingService.GetSetting(param);
 
-            return this.View("~/Areas/CustomerSetting/Views/BetSetting/GoldDeluxe/Content.cshtml", model);
+            return this.PartialView("~/Areas/CustomerSetting/Views/BetSetting/GoldDeluxe/Content.cshtml", model);
         }
     }
 }
