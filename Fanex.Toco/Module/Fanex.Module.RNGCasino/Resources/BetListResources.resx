@@ -120,17 +120,11 @@
   <data name="Agent" xml:space="preserve">
     <value>Agent</value>
   </data>
-  <data name="Bought" xml:space="preserve">
-    <value>Bought</value>
-  </data>
   <data name="Choice" xml:space="preserve">
     <value>Choice</value>
   </data>
   <data name="Comm" xml:space="preserve">
     <value>Comm</value>
-  </data>
-  <data name="Ex_Rate_2" xml:space="preserve">
-    <value>Ex.Rate 2</value>
   </data>
   <data name="Master" xml:space="preserve">
     <value>Master</value>
@@ -146,12 +140,6 @@
   </data>
   <data name="PT" xml:space="preserve">
     <value>PT</value>
-  </data>
-  <data name="Result" xml:space="preserve">
-    <value>Result</value>
-  </data>
-  <data name="Sold" xml:space="preserve">
-    <value>Sold</value>
   </data>
   <data name="Stake" xml:space="preserve">
     <value>Stake</value>
@@ -173,5 +161,8 @@
   </data>
   <data name="Win_Loss" xml:space="preserve">
     <value>Win Loss</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>Result</value>
   </data>
 </root>

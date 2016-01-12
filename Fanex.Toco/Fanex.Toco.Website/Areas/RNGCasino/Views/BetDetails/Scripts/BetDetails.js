@@ -14,31 +14,6 @@
     detailPopUp.remove();
 }
 
-function ViewRNGCasinoResult(matchId, race, betType, sportType, refNo, winlostDate) {
-    var width = 750;
-    var params = $.param({
-        MatchId: matchId,
-        Race: race,
-        BetType: betType,
-        SportType: sportType,
-        Refno: refNo,
-        WinLostDate: winlostDate
-    });
-
-    parent.OpenNextPopup(
-        "RNGCasinoResult",
-        'Report/ViewRNGCasinoResult.aspx?' + params,
-        "RNG Casino Result",
-        width,
-        500,
-        true,
-        false,
-        window,
-        0,
-        null,
-        null);
-}
-
 var BetDetailsManager = function () {
     var self = this;
     self.initPage = function () {

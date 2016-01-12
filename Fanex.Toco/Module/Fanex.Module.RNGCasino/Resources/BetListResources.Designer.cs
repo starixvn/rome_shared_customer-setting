@@ -70,15 +70,6 @@ namespace Fanex.Module.RNGCasino.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bought.
-        /// </summary>
-        public static string Bought {
-            get {
-                return ResourceManager.GetString("Bought", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Choice.
         /// </summary>
         public static string Choice {
@@ -93,15 +84,6 @@ namespace Fanex.Module.RNGCasino.Resources {
         public static string Comm {
             get {
                 return ResourceManager.GetString("Comm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ex.Rate 2.
-        /// </summary>
-        public static string Ex_Rate_2 {
-            get {
-                return ResourceManager.GetString("Ex_Rate_2", resourceCulture);
             }
         }
         
@@ -156,15 +138,6 @@ namespace Fanex.Module.RNGCasino.Resources {
         public static string Result {
             get {
                 return ResourceManager.GetString("Result", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sold.
-        /// </summary>
-        public static string Sold {
-            get {
-                return ResourceManager.GetString("Sold", resourceCulture);
             }
         }
         

@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Fanex.Module.RNGCasino</RootNamespace>
     <AssemblyName>Fanex.Module.RNGCasino</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -123,6 +124,12 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BetListResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BetListResources.ja-JP.resx" />
+    <EmbeddedResource Include="Resources\BetListResources.ko-KR.resx" />
+    <EmbeddedResource Include="Resources\BetListResources.th-TH.resx" />
+    <EmbeddedResource Include="Resources\BetListResources.vi-VN.resx" />
+    <EmbeddedResource Include="Resources\BetListResources.zh-CN.resx" />
+    <EmbeddedResource Include="Resources\BetListResources.zh-TW.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

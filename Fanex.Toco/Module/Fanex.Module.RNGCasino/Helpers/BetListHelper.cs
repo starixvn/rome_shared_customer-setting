@@ -93,7 +93,7 @@
             var resultLink1 = string.IsNullOrEmpty(resultLink) ?
                 string.Empty :
                 "<br />" +
-                "<a id=\"result_" + ticketDetail.Ticket.TransId + "\" onclick=\"" + resultLink + "\">" + BetListResources.Result + "</a>" +
+                "<a id=\"result_" + ticketDetail.Ticket.TransId + "\" onclick=\"" + resultLink + "\" class=\"betlist-result\">" + BetListResources.Result + "</a>" +
                 "<br />";
             return statusLabel + resultLink1;
         }
