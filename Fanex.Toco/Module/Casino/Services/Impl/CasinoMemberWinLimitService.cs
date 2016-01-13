@@ -4,6 +4,7 @@
     using Fanex.CustomerSetting.Module.Casino.Repositories.Impl;
     using Fanex.CustomerSetting.Module.Casino.Repositories.Interface;
     using Fanex.CustomerSetting.Module.Casino.Services.Interface;
+    using Fanex.CustomerSetting.Module.Core.Models;
 
     public class CasinoMemberWinLimitService : ICasinoMemberWinLimitService
     {
@@ -19,7 +20,7 @@
             return data.GetCurrentWinLimit(custId);
         }
 
-        public bool UpdateMemberWinLimit(int custId, int userId, int subAccId, MemberWinLimit memberWinLimit)
+        public Result UpdateMemberWinLimit(int custId, int userId, int subAccId, MemberWinLimit memberWinLimit)
         {
             return data.UpdateMemberWinLimit(custId, userId, subAccId, memberWinLimit);
         }

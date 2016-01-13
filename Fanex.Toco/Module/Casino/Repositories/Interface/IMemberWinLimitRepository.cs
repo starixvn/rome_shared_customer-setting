@@ -1,6 +1,7 @@
 ﻿namespace Fanex.CustomerSetting.Module.Casino.Repositories.Interface
 {
     using Fanex.CustomerSetting.Module.Casino.Entities;
+    using Fanex.CustomerSetting.Module.Core.Models;
 
     /// <summary>
     /// TODO: Update summary.
@@ -11,6 +12,6 @@
 
         CurrentMemberWinLimit GetCurrentWinLimit(int custId);
 
-        bool UpdateMemberWinLimit(int custId, int userId, int subAccId, MemberWinLimit memberWinLimit);
+        Result UpdateMemberWinLimit(int custId, int userId, int subAccId, MemberWinLimit memberWinLimit);
     }
 }

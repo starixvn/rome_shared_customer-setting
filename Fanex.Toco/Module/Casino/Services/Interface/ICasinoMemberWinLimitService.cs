@@ -1,6 +1,7 @@
 ﻿namespace Fanex.CustomerSetting.Module.Casino.Services.Interface
 {
     using Fanex.CustomerSetting.Module.Casino.Entities;
+    using Fanex.CustomerSetting.Module.Core.Models;
 
     public interface ICasinoMemberWinLimitService
     {
@@ -8,6 +9,6 @@
 
         CurrentMemberWinLimit GetCurrentWinLimit(int custId);
 
-        bool UpdateMemberWinLimit(int custId, int userId, int subAccId, MemberWinLimit memberWinLimit);
+        Result UpdateMemberWinLimit(int custId, int userId, int subAccId, MemberWinLimit memberWinLimit);
     }
 }

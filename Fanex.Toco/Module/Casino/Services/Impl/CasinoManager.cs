@@ -670,7 +670,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             if (result.IsSuccess)
             {
                 ICasinoMemberWinLimitService service = new CasinoMemberWinLimitService();
-                service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.MemberWinLimit);
+                result = service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.MemberWinLimit);
             }
 
             return result;
@@ -802,7 +802,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             if (result.IsSuccess)
             {
                 ICasinoMemberWinLimitService service = new CasinoMemberWinLimitService();
-                service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.MemberWinLimit);
+                result = service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.MemberWinLimit);
             }
 
             return result;
@@ -932,7 +932,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             if (result.IsSuccess)
             {
                 ICasinoMemberWinLimitService service = new CasinoMemberWinLimitService();
-                service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.MemberWinLimit);
+                result = service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.MemberWinLimit);
             }
 
             return result;
@@ -1072,7 +1072,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             if (result.IsSuccess)
             {
                 ICasinoMemberWinLimitService service = new CasinoMemberWinLimitService();
-                service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.MemberWinLimit);
+                result = service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.MemberWinLimit);
             }
 
             return result;
@@ -1113,7 +1113,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             if (result.IsSuccess)
             {
                 ICasinoMemberWinLimitService service = new CasinoMemberWinLimitService();
-                service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.MemberWinLimit);
+                result = service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.MemberWinLimit);
             }
 
             return result;
@@ -1154,7 +1154,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             if (result.IsSuccess)
             {
                 ICasinoMemberWinLimitService service = new CasinoMemberWinLimitService();
-                service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.MemberWinLimit);
+                result = service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.MemberWinLimit);
             }
 
             return result;

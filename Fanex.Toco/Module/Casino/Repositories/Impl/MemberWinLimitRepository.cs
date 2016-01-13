@@ -11,6 +11,7 @@
     using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.Data;
     using Fanex.Module.Logs.Services;
+    using Fanex.CustomerSetting.Module.Core.Models;
 
     public class MemberWinLimitRepository : IMemberWinLimitRepository
     {
@@ -106,7 +107,7 @@
             return winLimit;
         }
 
-        public bool UpdateMemberWinLimit(int custId, int userId, int subAccId, MemberWinLimit memberWinLimit)
+        public Result UpdateMemberWinLimit(int custId, int userId, int subAccId, MemberWinLimit memberWinLimit)
         {
             using (var db = new ObjectDb("Acc_CustomerWinlimitUpd"))
             {
@@ -130,7 +131,7 @@
                 {
                     db.ExecuteNonQuery();
 
-                    return true;
+                    return new Result(Utils.ToInt32(db.GetParameterValue("errcode")), Utils.ToString(db.GetParameterValue("errmsg")));
                 }
                 catch (Exception ex)
                 {
