@@ -11,6 +11,7 @@
     using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.Data;
     using Fanex.Module.Logs.Services;
+    using Fanex.CustomerSetting.Module.Core.Models;
 
     public class MemberWinLimitRepository : IMemberWinLimitRepository
     {
