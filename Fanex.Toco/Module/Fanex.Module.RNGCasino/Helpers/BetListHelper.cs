@@ -73,8 +73,23 @@
             bool isWonStatus = string.Equals(status, "won", StringComparison.OrdinalIgnoreCase);
             bool isLoseStatus = string.Equals(status, "lose", StringComparison.OrdinalIgnoreCase);
             bool isDrawStatus = string.Equals(status, "draw", StringComparison.OrdinalIgnoreCase);
+            var isRunningStatus = string.Equals(status, "running", StringComparison.OrdinalIgnoreCase);
 
-            statusLabel = "<div class=\"bl_status c\">" + status.ToUpper() + "</div>";
+            if (isRunningStatus && !string.IsNullOrEmpty(ticketDetail.Ticket.BetCheck))
+            {
+                var viewBrokenGame = "ViewRNGCasinoBrokenGame(" +
+                    ticketDetail.Ticket.MatchId + "," +
+                    "'" + ticketDetail.Ticket.Race + "'," +
+                    ticketDetail.Ticket.BetTypeId + "," +
+                    ticketDetail.Ticket.SportTypeId + "," +
+                    ticketDetail.Ticket.TransId + "," +
+                    "'" + ticketDetail.Ticket.WinlostDate.ToShortFormatedDate() + "')";
+                statusLabel = "<div id=\"rngcasino_brokengame_" + ticketDetail.Ticket.TransId + "\" onclick=\"" + viewBrokenGame + "\" class=\"viewbrokengame-link\">" + status.ToUpper() + "</div>";
+            }
+            else
+            {
+                statusLabel = "<div class=\"bl_status c\">" + status.ToUpper() + "</div>";
+            }
 
             string resultLink = string.Empty;
             if (isWonStatus || isLoseStatus || isDrawStatus)

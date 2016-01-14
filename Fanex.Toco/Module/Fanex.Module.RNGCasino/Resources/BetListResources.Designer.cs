@@ -142,6 +142,15 @@ namespace Fanex.Module.RNGCasino.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot connect to RNGCasino API! Please contact Administrator..
+        /// </summary>
+        public static string RNGCasinoAPI_FailedToConnect {
+            get {
+                return ResourceManager.GetString("RNGCasinoAPI_FailedToConnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stake.
         /// </summary>
         public static string Stake {

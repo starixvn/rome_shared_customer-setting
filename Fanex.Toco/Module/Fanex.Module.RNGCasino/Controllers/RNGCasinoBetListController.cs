@@ -20,5 +20,12 @@
             var result = _rngCasinoService.BetDetails(criteria);
             return View("~/Areas/RNGCasino/Views/BetDetails/Index.cshtml", result);
         }
+
+        [HttpGet]
+        public ActionResult GetHandHistory(GetRNGCasinoResultCriteria criteria)
+        {
+            var result = _rngCasinoService.GetHandHistory(criteria);
+            return View("~/Areas/RNGCasino/Views/HandHistory/Index.cshtml", result);
+        }
     }
 }

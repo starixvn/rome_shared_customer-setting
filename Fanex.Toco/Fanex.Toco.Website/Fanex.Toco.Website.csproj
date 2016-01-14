@@ -910,6 +910,8 @@
     <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\RacingSetting.css" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\table.css" />
     <Content Include="Areas\RNGCasino\Views\BetDetails\Scripts\BetDetails.js" />
+    <Content Include="Areas\RNGCasino\Views\HandHistory\Scripts\HandHistory.js" />
+    <Content Include="Areas\RNGCasino\Views\HandHistory\Styles\Images\error.gif" />
     <Content Include="Areas\Statement\Views\Report\Scripts\StatementReportManager.js" />
     <Content Include="Areas\Statement\Views\Report\Styles\Statement.css" />
     <Content Include="Areas\Statement\Views\StatementDetails\Scripts\StatementDetailsManager.js" />
@@ -1382,6 +1384,11 @@
     <Content Include="Areas\RNGCasino\Views\BetDetails\Index.cshtml" />
     <Content Include="Areas\RNGCasino\Views\BetDetails\Styles\BetDetails.less" />
     <Content Include="Areas\RNGCasino\Views\Web.config" />
+    <Content Include="Areas\RNGCasino\RNGCasinoSection.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\RNGCasino\Views\HandHistory\Index.cshtml" />
+    <Content Include="Areas\RNGCasino\Views\HandHistory\Styles\HandHistory.less" />
     <None Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3-custom.less" />
   </ItemGroup>
   <ItemGroup>

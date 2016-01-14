@@ -165,4 +165,7 @@
   <data name="Result" xml:space="preserve">
     <value>Result</value>
   </data>
+  <data name="RNGCasinoAPI_FailedToConnect" xml:space="preserve">
+    <value>Cannot connect to RNGCasino API! Please contact Administrator.</value>
+  </data>
 </root>
