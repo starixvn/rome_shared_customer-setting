@@ -25,7 +25,7 @@
         public ActionResult GetHandHistory(GetRNGCasinoResultCriteria criteria)
         {
             var result = _rngCasinoService.GetHandHistory(criteria);
-            return View("~/Areas/RNGCasino/Views/HandHistory/Index.cshtml", result);
+            return View("~/Areas/RNGCasino/Views/HandHistory_API/Index.cshtml", result);
         }
     }
 }

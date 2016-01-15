@@ -54,10 +54,6 @@
       <HintPath>..\..\packages\Fanex.Logging.1.0.0.0\lib\net40\Fanex.Logging.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.Module.Logs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Module.Logs.1.0.2\lib\net40\Fanex.Module.Logs.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Fanex.NAP.Framework">
       <HintPath>..\..\_Dependencies\Fanex\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
@@ -168,6 +164,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Fanex.Module.Logs.Fomater\Fanex.Module.Logs.csproj">
+      <Project>{4b4a0c26-c71f-41de-b558-06b58afe714f}</Project>
+      <Name>Fanex.Module.Logs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fanex.Toco.Module.Core\_Core.csproj">
       <Project>{af2e11aa-2a92-47ac-86fa-4d48b0aeb5d7}</Project>
       <Name>_Core</Name>
