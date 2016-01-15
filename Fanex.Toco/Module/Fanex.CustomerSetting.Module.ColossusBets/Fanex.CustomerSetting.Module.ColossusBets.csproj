@@ -55,9 +55,6 @@
     <Reference Include="Fanex.Logging">
       <HintPath>..\..\packages\Fanex.Logging.1.0.0.0\lib\net40\Fanex.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.Module.Logs">
-      <HintPath>..\..\packages\Fanex.Module.Logs.1.0.0\lib\net40\Fanex.Module.Logs.dll</HintPath>
-    </Reference>
     <Reference Include="Fanex.NAP.Framework">
       <HintPath>..\..\_Dependencies\Fanex\Fanex.NAP.Framework.dll</HintPath>
     </Reference>
@@ -155,6 +152,10 @@
     <EmbeddedResource Include="Resources\Labels.zh-TW.resx" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Fanex.Module.Logs.Fomater\Fanex.Module.Logs.csproj">
+      <Project>{4B4A0C26-C71F-41DE-B558-06B58AFE714F}</Project>
+      <Name>Fanex.Module.Logs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fanex.Toco.Module.Core\_Core.csproj">
       <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
       <Name>_Core</Name>
