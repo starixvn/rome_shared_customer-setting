@@ -130,9 +130,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configurations\RNGCasinoCollection.cs" />
-    <Compile Include="Configurations\RNGCasinoElement.cs" />
-    <Compile Include="Configurations\RNGCasinoSection.cs" />
+    <Compile Include="Configurations\OWRNGCasinoCollection.cs" />
+    <Compile Include="Configurations\OWRNGCasinoElement.cs" />
+    <Compile Include="Configurations\OWRNGCasinoSection.cs" />
     <Compile Include="Constants\RoleIdConstants.cs" />
     <Compile Include="Controllers\RNGCasinoBetListController.cs" />
     <Compile Include="Criteria\GetRNGCasinoBetDetailsCriteria.cs" />

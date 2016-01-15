@@ -84,7 +84,7 @@
             {
                 result.ActionInfo = new ResultDetail();
                 var parameters = GetHandHistoryParameters(criteria, token.Result.Token);
-                result.Iframe = string.Format(RNGCasinoSection.Instance.Configurations["HandHistoryAPI"].Value, parameters);
+                result.Iframe = string.Format(OWRNGCasinoSection.Instance.Configurations["HandHistoryAPI"].Value, parameters);
             }
             else
             {
@@ -102,7 +102,7 @@
         {
             try
             {
-                var rngCasinoSection = RNGCasinoSection.Instance;
+                var rngCasinoSection = OWRNGCasinoSection.Instance;
                 var siteId = GetSiteId(criteria);
                 var getTokenAPI = string.Format(rngCasinoSection.Configurations["GetToken"].Value);
                 var requestInfo = new RequestInfo
@@ -147,9 +147,9 @@
 
         private string GetHandHistoryParameters(GetRNGCasinoResultCriteria criteria, string token)
         {
-            var encryptedKey = RNGCasinoSection.Instance.Configurations["EncryptedKey"].Value;
+            var encryptedKey = OWRNGCasinoSection.Instance.Configurations["EncryptedKey"].Value;
             var param = string.Format(
-                RNGCasinoSection.Instance.Configurations["ParameterList"].Value,
+                OWRNGCasinoSection.Instance.Configurations["ParameterList"].Value,
                 token,
                 criteria.Refno,
                 GetLanguage());
@@ -185,7 +185,7 @@
 
         private int GetSiteId(GetRNGCasinoResultCriteria criteria)
         {
-            var siteIds = RNGCasinoSection.Instance.Configurations["SiteId"].Value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+            var siteIds = OWRNGCasinoSection.Instance.Configurations["SiteId"].Value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
             switch (criteria.RoleId)
             {
                 case RoleIdConstants.Super:

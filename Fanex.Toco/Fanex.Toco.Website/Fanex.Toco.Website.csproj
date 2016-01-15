@@ -1384,7 +1384,7 @@
     <Content Include="Areas\RNGCasino\Views\BetDetails\Index.cshtml" />
     <Content Include="Areas\RNGCasino\Views\BetDetails\Styles\BetDetails.less" />
     <Content Include="Areas\RNGCasino\Views\Web.config" />
-    <Content Include="Areas\RNGCasino\RNGCasinoSection.config">
+    <Content Include="Areas\RNGCasino\OWRNGCasinoSection.config">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Areas\RNGCasino\Views\HandHistory_API\Index.cshtml" />

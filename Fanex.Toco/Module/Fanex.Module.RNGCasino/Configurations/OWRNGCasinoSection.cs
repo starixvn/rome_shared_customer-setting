@@ -2,27 +2,27 @@
 {
     using System.Configuration;
 
-    public class RNGCasinoSection : ConfigurationSection
+    public class OWRNGCasinoSection : ConfigurationSection
     {
-        public static RNGCasinoSection Instance
+        public static OWRNGCasinoSection Instance
         {
             get
             {
-                var section = ConfigurationManager.GetSection("RNGCasinoSection") as RNGCasinoSection;
+                var section = ConfigurationManager.GetSection("RNGCasinoSection") as OWRNGCasinoSection;
                 return section;
             }
         }
 
         [ConfigurationProperty("Configurations", IsDefaultCollection = false)]
-        [ConfigurationCollection(typeof(RNGCasinoCollection),
+        [ConfigurationCollection(typeof(OWRNGCasinoCollection),
             AddItemName = "add",
             ClearItemsName = "clear",
             RemoveItemName = "remove")]
-        public RNGCasinoCollection Configurations
+        public OWRNGCasinoCollection Configurations
         {
             get
             {
-                return (RNGCasinoCollection)base["Configurations"];
+                return (OWRNGCasinoCollection)base["Configurations"];
             }
         }
     }

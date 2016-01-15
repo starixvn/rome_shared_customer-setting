@@ -3,7 +3,7 @@
     using System.Configuration;
     using Fanex.Common;
 
-    public class RNGCasinoElement : ConfigurationElement
+    public class OWRNGCasinoElement : ConfigurationElement
     {
         [ConfigurationProperty("key", IsKey = true, IsRequired = true, DefaultValue = "")]
         public string Key

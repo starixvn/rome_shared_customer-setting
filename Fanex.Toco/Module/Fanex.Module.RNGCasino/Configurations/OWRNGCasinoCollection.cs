@@ -2,7 +2,7 @@
 {
     using System.Configuration;
 
-    public class RNGCasinoCollection : ConfigurationElementCollection
+    public class OWRNGCasinoCollection : ConfigurationElementCollection
     {
         public override ConfigurationElementCollectionType CollectionType
         {
@@ -12,11 +12,11 @@
             }
         }
 
-        public RNGCasinoElement this[int index]
+        public OWRNGCasinoElement this[int index]
         {
             get
             {
-                return (RNGCasinoElement)BaseGet(index);
+                return (OWRNGCasinoElement)BaseGet(index);
             }
 
             set
@@ -30,20 +30,20 @@
             }
         }
 
-        public new RNGCasinoElement this[string elementKey]
+        public new OWRNGCasinoElement this[string elementKey]
         {
             get
             {
-                return (RNGCasinoElement)BaseGet(elementKey);
+                return (OWRNGCasinoElement)BaseGet(elementKey);
             }
         }
 
-        public void Add(RNGCasinoElement element)
+        public void Add(OWRNGCasinoElement element)
         {
             BaseAdd(element);
         }
 
-        public void Remove(RNGCasinoElement element)
+        public void Remove(OWRNGCasinoElement element)
         {
             if (BaseIndexOf(element) >= 0)
             {
@@ -66,7 +66,7 @@
             BaseClear();
         }
 
-        public int IndexOf(RNGCasinoElement element)
+        public int IndexOf(OWRNGCasinoElement element)
         {
             return BaseIndexOf(element);
         }
@@ -78,12 +78,12 @@
 
         protected override sealed ConfigurationElement CreateNewElement()
         {
-            return new RNGCasinoElement();
+            return new OWRNGCasinoElement();
         }
 
         protected override object GetElementKey(ConfigurationElement element)
         {
-            return ((RNGCasinoElement)element).Key;
+            return ((OWRNGCasinoElement)element).Key;
         }
     }
 }
