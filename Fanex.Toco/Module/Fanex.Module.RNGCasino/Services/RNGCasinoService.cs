@@ -78,7 +78,7 @@
                     ResultMessage = BetListResources.RNGCasinoAPI_FailedToConnect
                 };
             }
-            else if (string.IsNullOrEmpty(token.Result.ErrorCode))
+            else if (string.Equals(token.Result.ErrorCode, "0"))
             {
                 result.ActionInfo = new ResultDetail();
                 var parameters = GetHandHistoryParameters(criteria, token.Result.Token);
@@ -151,7 +151,8 @@
                 token,
                 criteria.Refno,
                 GetLanguage());
-            return HttpUtility.UrlEncode(IBCCrypt.IBCCrypt.Encrypt(param, encryptedKey));
+            var result = HttpUtility.UrlEncode(IBCCrypt.IBCCrypt.Encrypt(param, encryptedKey));
+            return result;
         }
 
         private string GetLanguage()

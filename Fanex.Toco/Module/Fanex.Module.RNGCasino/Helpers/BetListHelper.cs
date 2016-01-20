@@ -79,10 +79,10 @@
             {
                 var viewBrokenGame = "ViewRNGCasinoBrokenGame(" +
                     ticketDetail.Ticket.MatchId + "," +
-                    "'" + ticketDetail.Ticket.Race + "'," +
+                    (string.IsNullOrEmpty(ticketDetail.Ticket.Race) ? "0" : ticketDetail.Ticket.Race) + "," +
                     ticketDetail.Ticket.BetTypeId + "," +
                     ticketDetail.Ticket.SportTypeId + "," +
-                    ticketDetail.Ticket.TransId + "," +
+                    "'" + (ticketDetail.Ticket.BetCheck ?? string.Empty) + "'," +
                     "'" + ticketDetail.Ticket.WinlostDate.ToShortFormatedDate() + "')";
                 statusLabel = "<div id=\"rngcasino_brokengame_" + ticketDetail.Ticket.TransId + "\" onclick=\"" + viewBrokenGame + "\" class=\"viewbrokengame-link\">" + status.ToUpper() + "</div>";
             }
@@ -98,10 +98,10 @@
                     string.Empty :
                     "ViewRNGCasinoResult(" +
                         ticketDetail.Ticket.MatchId + "," +
-                        "'" + ticketDetail.Ticket.Race + "'," +
+                        (string.IsNullOrEmpty(ticketDetail.Ticket.Race) ? "0" : ticketDetail.Ticket.Race) + "," +
                         ticketDetail.Ticket.BetTypeId + "," +
                         ticketDetail.Ticket.SportTypeId + "," +
-                        ticketDetail.Ticket.TransId + "," +
+                        "'" + (ticketDetail.Ticket.BetCheck ?? string.Empty) + "'," +
                         "\'" + ticketDetail.Ticket.WinlostDate.ToShortFormatedDate() + "\')";
             }
 
