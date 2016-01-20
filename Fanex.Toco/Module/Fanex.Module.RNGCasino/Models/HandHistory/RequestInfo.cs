@@ -1,11 +1,11 @@
 ﻿namespace Fanex.Module.RNGCasino.Models.HandHistory
 {
-    public class RequestInfo
+    public class Request
     {
         public string Timestamp { get; set; }
 
-        public AuthInfo AuthInfo { get; set; }
+        public Auth Auth { get; set; }
 
-        public CallInfo CallInfo { get; set; }
+        public Call Call { get; set; }
     }
 }

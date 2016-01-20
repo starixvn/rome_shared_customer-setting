@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Module.RNGCasino.Models.HandHistory
 {
-    public class AuthInfo
+    public class Auth
     {
         public string Login { get; set; }
 

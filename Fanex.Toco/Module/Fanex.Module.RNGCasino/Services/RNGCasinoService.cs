@@ -3,9 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-    using System.IO;
     using System.Net;
-    using System.Text;
     using System.Web;
     using Common;
     using Configurations;
@@ -105,16 +103,16 @@
                 var rngCasinoSection = OWRNGCasinoSection.Instance;
                 var siteId = GetSiteId(criteria);
                 var getTokenAPI = string.Format(rngCasinoSection.Configurations["GetToken"].Value);
-                var requestInfo = new RequestInfo
+                var requestInfo = new Request
                 {
                     Timestamp = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff"),
-                    AuthInfo = new AuthInfo
+                    Auth = new Auth
                     {
                         Login = "Login",
                         Password = rngCasinoSection.Configurations["PassToGetToken"].Value,
                         SiteId = siteId
                     },
-                    CallInfo = new CallInfo
+                    Call = new Call
                     {
                         Seq = rngCasinoSection.Configurations["Seq"].Value,
                         VendorId = Converter.ToInt(rngCasinoSection.Configurations["VendorId"].Value)
