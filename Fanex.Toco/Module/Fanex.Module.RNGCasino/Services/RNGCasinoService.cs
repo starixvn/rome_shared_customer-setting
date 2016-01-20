@@ -111,9 +111,14 @@
                     AuthInfo = new AuthInfo
                     {
                         Login = "Login",
-                        Password = rngCasinoSection.Configurations["PassToGetToken"].Value
+                        Password = rngCasinoSection.Configurations["PassToGetToken"].Value,
+                        SiteId = siteId
                     },
-                    CallInfo = new CallInfo()
+                    CallInfo = new CallInfo
+                    {
+                        Seq = rngCasinoSection.Configurations["Seq"].Value,
+                        VendorId = Converter.ToInt(rngCasinoSection.Configurations["VendorId"].Value)
+                    }
                 };
 
                 var responseString = CallHttpPost(JsonConvert.SerializeObject(requestInfo), getTokenAPI);
@@ -130,18 +135,13 @@
 
         private string CallHttpPost(string parameters, string url)
         {
-            var data = Encoding.ASCII.GetBytes(parameters);
-            var request = (HttpWebRequest)WebRequest.Create(url);
-            request.Method = "POST";
-            request.ContentType = "application/x-www-form-urlencoded";
-            request.ContentLength = data.Length;
-            using (var stream = request.GetRequestStream())
+            var responseString = string.Empty;
+            using (WebClient webClient = new WebClient())
             {
-                stream.Write(data, 0, data.Length);
+                webClient.Headers[HttpRequestHeader.ContentType] = "application/json";
+                responseString = webClient.UploadString(url, parameters);
             }
 
-            var response = (HttpWebResponse)request.GetResponse();
-            var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
             return responseString;
         }
 

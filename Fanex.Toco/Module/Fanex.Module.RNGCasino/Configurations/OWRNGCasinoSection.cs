@@ -8,7 +8,7 @@
         {
             get
             {
-                var section = ConfigurationManager.GetSection("RNGCasinoSection") as OWRNGCasinoSection;
+                var section = ConfigurationManager.GetSection("OWRNGCasinoSection") as OWRNGCasinoSection;
                 return section;
             }
         }

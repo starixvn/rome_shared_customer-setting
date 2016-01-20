@@ -6,6 +6,6 @@
 
         public string Password { get; set; }
 
-        public string SiteId { get; set; }
+        public int SiteId { get; set; }
     }
 }

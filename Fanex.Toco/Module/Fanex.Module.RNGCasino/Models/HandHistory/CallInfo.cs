@@ -3,5 +3,7 @@
     public class CallInfo
     {
         public string Seq { get; set; }
+
+        public int VendorId { get; set; }
     }
 }
