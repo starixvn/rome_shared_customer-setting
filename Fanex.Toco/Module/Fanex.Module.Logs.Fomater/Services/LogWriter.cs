@@ -74,18 +74,21 @@ namespace Fanex.Module.Logs.Services
 
             var log = GetLog(ex.Message);
 
-            if (logType == Formater.LogType.Auto || object.ReferenceEquals(null, logType))
+            if (logType != Formater.LogType.Auto)
             {
                 ex.WriteLog(logType);
             }
-            else if (log != null)
-            {
-                ex.WriteLog(log.Type);
-            }
             else
             {
-                LogService.Error(ex.FormatLog());
-            }
+                if (log != null)
+                {
+                    ex.WriteLog(log.Type);
+                }
+                else
+                {
+                    LogService.Error(ex.FormatLog());
+                }
+            }            
         }
 
         private static void WriteLog(this Exception ex, Formater.LogType logType)
