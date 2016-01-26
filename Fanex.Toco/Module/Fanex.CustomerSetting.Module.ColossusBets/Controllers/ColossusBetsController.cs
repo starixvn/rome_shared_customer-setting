@@ -1,10 +1,13 @@
 ﻿namespace Fanex.CustomerSetting.Module.ColossusBets.Controllers
 {
+    using System;
     using System.Web.Mvc;
+    using Fanex.CustomerSetting.Module.ColossusBets.Configurations;
     using Fanex.CustomerSetting.Module.ColossusBets.Criteria;
     using Fanex.CustomerSetting.Module.ColossusBets.Models;
     using Fanex.CustomerSetting.Module.ColossusBets.Services;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
+    using Fanex.Common;
 
     public class ColossusBetsController : BaseController
     {
@@ -18,6 +21,11 @@
         [HttpGet]
         public ActionResult BetDetails(GetColossusBetsBetDetailsCriteria criteria)
         {
+            if (ColossusBetsSection.Instance.Configurations["IsViewBetlistDetail"] != null && !Converter.ToBool(ColossusBetsSection.Instance.Configurations["IsViewBetlistDetail"].Value))
+            {
+                return new EmptyResult();
+            }
+
             var result = new ColossusBetsDetailModel
             {
                 MemberChoice = _colossusBetsService.MemberChoice(criteria),
