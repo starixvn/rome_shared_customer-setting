@@ -1,13 +1,12 @@
 ﻿namespace Fanex.CustomerSetting.Module.ColossusBets.Controllers
 {
-    using System;
     using System.Web.Mvc;
+    using Fanex.Common;
     using Fanex.CustomerSetting.Module.ColossusBets.Configurations;
     using Fanex.CustomerSetting.Module.ColossusBets.Criteria;
     using Fanex.CustomerSetting.Module.ColossusBets.Models;
     using Fanex.CustomerSetting.Module.ColossusBets.Services;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
-    using Fanex.Common;
 
     public class ColossusBetsController : BaseController
     {

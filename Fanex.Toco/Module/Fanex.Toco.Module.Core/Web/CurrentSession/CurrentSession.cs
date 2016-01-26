@@ -104,7 +104,7 @@ namespace Fanex.CustomerSetting.Module.Core.Web
         public int FromSystem
         {
             get { return 2; }
-            set { SessionManager.Set<int>(Constants.FROM_SYSTEM, value); }
+            set { SessionManager.Set<int>(CommonConstants.FROM_SYSTEM, value); }
         }
     }
 }

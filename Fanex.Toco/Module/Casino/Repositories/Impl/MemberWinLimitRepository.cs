@@ -8,10 +8,10 @@
     using Fanex.CustomerSetting.Module.Casino.Repositories.Interface;
     using Fanex.CustomerSetting.Module.Casino.Resources;
     using Fanex.CustomerSetting.Module.Core;
+    using Fanex.CustomerSetting.Module.Core.Models;
     using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.Data;
     using Fanex.Module.Logs.Services;
-    using Fanex.CustomerSetting.Module.Core.Models;
 
     public class MemberWinLimitRepository : IMemberWinLimitRepository
     {
