@@ -12,11 +12,43 @@ namespace Fanex.CustomerSetting.Security.App_Start
 {
     using System.Reflection;
     using System.Web.Mvc;
-    using Fanex.CustomerSetting.Module.Core.Web.App_Start;
+    using System.Collections.Generic;
 
-    public class ModuleRegistrator : AppAreaRegistrator 
+    public class ModuleRegistrator : AreaRegistration
     {
-        protected override string ModuleName
+        private List<string> _controllers = new List<string>();
+
+        public override string AreaName
+        {
+            get
+            {
+                return "CustomerSetting";
+            }
+        }
+
+        protected void RegisterController(string controllerName)
+        {
+            if(string.IsNullOrEmpty(controllerName))
+                return;
+            _controllers.Add(controllerName);
+        }                
+
+        public override void RegisterArea(AreaRegistrationContext context)
+        {
+            if (!string.IsNullOrWhiteSpace(this.ModuleName) && !string.IsNullOrWhiteSpace(this.ModuleNameSpace))
+            {
+                var areaName = AreaName + "_" + ModuleName;
+                if(context.Routes[areaName] != null)
+                    return;
+                context.MapRoute(
+                    areaName,
+                    AreaName + "/" + ModuleName + "/{controller}/{action}/{id}/{uplineId}/{groupName}",
+                    new { action = "Index", id = UrlParameter.Optional, uplineId = UrlParameter.Optional, groupName = UrlParameter.Optional },
+                    new[] { ModuleNameSpace });
+            }
+        }
+
+        protected string ModuleName
         {
             get
             {
@@ -24,7 +56,7 @@ namespace Fanex.CustomerSetting.Security.App_Start
             }
         }
 
-        protected override string ModuleNameSpace
+        protected string ModuleNameSpace
         {
             get
             {
@@ -32,10 +64,5 @@ namespace Fanex.CustomerSetting.Security.App_Start
                 return controllerNameSpace;
             }
         }
-
-        public override void RegisterArea(AreaRegistrationContext context)
-        {
-            base.RegisterArea(context);
-        }       
     }
 }
