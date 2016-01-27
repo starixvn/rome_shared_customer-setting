@@ -57,11 +57,12 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers
             return this.View("~/Areas/CustomerSetting/Views/EnableStatus/Index.cshtml", model);
         }
 
-        /// <summary>
+        /// <summary>        
         /// Updates enable status.
         /// </summary>
         /// <param name="model">Product status model.</param>
         /// <returns>ActionResult object.</returns>
+        [AntiXSRFFilter]
         [HttpPost]
         public ActionResult Update(string model)
         {
