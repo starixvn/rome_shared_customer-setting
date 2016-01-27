@@ -214,7 +214,7 @@
     <value>Super Commision %</value>
   </data>
   <data name="UpdateAgent" xml:space="preserve">
-    <value>Update Agent</value>
+    <value>Edit Agent</value>
   </data>
   <data name="UpdateColossusBet" xml:space="preserve">
     <value>Update ColossusBet</value>
@@ -226,19 +226,19 @@
     <value>สถานะการปรับปรุงเรียบร้อยแล้ว</value>
   </data>
   <data name="UpdateMaster" xml:space="preserve">
-    <value>Update Master</value>
+    <value>Edit Master</value>
   </data>
   <data name="UpdateMember" xml:space="preserve">
-    <value>Update Member</value>
+    <value>Edit Member</value>
   </data>
   <data name="UpdateSuper" xml:space="preserve">
-    <value>Update Super</value>
+    <value>Edit Super</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>
   </data>
   <data name="ColossusBet" xml:space="preserve">
-    <value>ColossusBet</value>
+    <value>Colossus Bets</value>
   </data>
   <data name="EditColossusBets" xml:space="preserve">
     <value>Edit Colossus Bets</value>
@@ -248,5 +248,8 @@
   </data>
   <data name="Update" xml:space="preserve">
     <value>ล่าสุด</value>
+  </data>
+  <data name="CashInShare" xml:space="preserve">
+    <value>Cash-In Share</value>
   </data>
 </root>

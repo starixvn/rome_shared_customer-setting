@@ -13,3 +13,13 @@ KenoModule.run(function ($templateCache) {
     $templateCache.put('confirmUpdateAllMember', domain + 'Areas/CustomerSetting/Views/Keno/Setting/Views/Partial/PositionTaking/ConfirmUpdateAllMembers.htm');
 });
 
+
+KenoModule.config(['$httpProvider', function ($httpProvider) {
+    'use strict';
+    
+    var antiXSRFToken = document.getElementsByName("__RequestVerificationToken");
+    if (antiXSRFToken.length > 0) {
+        $httpProvider.defaults.headers.post.__RequestVerificationToken = antiXSRFToken[0].value
+    }
+
+} ]);

@@ -217,7 +217,7 @@
     <value>Super Commision %</value>
   </data>
   <data name="UpdateAgent" xml:space="preserve">
-    <value>Update Agent</value>
+    <value>Edit Agent</value>
   </data>
   <data name="UpdateColossusBet" xml:space="preserve">
     <value>Update ColossusBet</value>
@@ -229,13 +229,13 @@
     <value>Status updated successfully</value>
   </data>
   <data name="UpdateMaster" xml:space="preserve">
-    <value>Update Master</value>
+    <value>Edit Master</value>
   </data>
   <data name="UpdateMember" xml:space="preserve">
-    <value>Update Member</value>
+    <value>Edit Member</value>
   </data>
   <data name="UpdateSuper" xml:space="preserve">
-    <value>Update Super</value>
+    <value>Edit Super</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>

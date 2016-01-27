@@ -124,10 +124,10 @@
     <value>代理</value>
   </data>
   <data name="AgentCashInShare" xml:space="preserve">
-    <value>Agent Cash-In Share %</value>
+    <value>代理現金股份 %</value>
   </data>
   <data name="AgentCommision" xml:space="preserve">
-    <value>Agent Commision %</value>
+    <value>代理傭金 %</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>全部</value>
@@ -136,10 +136,10 @@
     <value>投注設定</value>
   </data>
   <data name="Commission" xml:space="preserve">
-    <value>Commission</value>
+    <value>佣金</value>
   </data>
   <data name="Enable" xml:space="preserve">
-    <value>Enable</value>
+    <value>啟用</value>
   </data>
   <data name="EnableDownlines" xml:space="preserve">
     <value>啟用下線</value>
@@ -151,7 +151,7 @@
     <value>名</value>
   </data>
   <data name="GeneralInformation" xml:space="preserve">
-    <value>General Information</value>
+    <value>基本信息</value>
   </data>
   <data name="LastName" xml:space="preserve">
     <value>姓</value>
@@ -163,19 +163,19 @@
     <value>總代理</value>
   </data>
   <data name="MasterCashInShare" xml:space="preserve">
-    <value>Master Cash-In Share %</value>
+    <value>總代理現金股份 %</value>
   </data>
   <data name="MasterCommision" xml:space="preserve">
-    <value>Master Commision %</value>
+    <value>總代理傭金 %</value>
   </data>
   <data name="Member" xml:space="preserve">
     <value>會員</value>
   </data>
   <data name="MemberCashInShare" xml:space="preserve">
-    <value>Member Cash-In Share %</value>
+    <value>會員現金股份 %</value>
   </data>
   <data name="MemberCommision" xml:space="preserve">
-    <value>Member Commision %</value>
+    <value>會員傭金 %</value>
   </data>
   <data name="MobilePhone" xml:space="preserve">
     <value>手機</value>
@@ -190,7 +190,7 @@
     <value>數據庫反應無效</value>
   </data>
   <data name="Nickname" xml:space="preserve">
-    <value>Nickname</value>
+    <value>暱稱</value>
   </data>
   <data name="Phone" xml:space="preserve">
     <value>電話</value>
@@ -199,7 +199,7 @@
     <value>佔成數</value>
   </data>
   <data name="Status" xml:space="preserve">
-    <value>Status</value>
+    <value>狀態</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>提交</value>
@@ -214,7 +214,7 @@
     <value>Super Commision %</value>
   </data>
   <data name="UpdateAgent" xml:space="preserve">
-    <value>Update Agent</value>
+    <value>修改代理</value>
   </data>
   <data name="UpdateColossusBet" xml:space="preserve">
     <value>Update ColossusBet</value>
@@ -226,27 +226,30 @@
     <value>狀態已成功更新</value>
   </data>
   <data name="UpdateMaster" xml:space="preserve">
-    <value>Update Master</value>
+    <value>修改總代理</value>
   </data>
   <data name="UpdateMember" xml:space="preserve">
-    <value>Update Member</value>
+    <value>修改會員</value>
   </data>
   <data name="UpdateSuper" xml:space="preserve">
-    <value>Update Super</value>
+    <value>修改超級總代理</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>Username</value>
+    <value>用戶名</value>
   </data>
   <data name="ColossusBet" xml:space="preserve">
-    <value>ColossusBet</value>
+    <value>Colossus Bets</value>
   </data>
   <data name="EditColossusBets" xml:space="preserve">
-    <value>Edit Colossus Bets</value>
+    <value>修改 Colossus Bets</value>
   </data>
   <data name="EditMultiColossusBets" xml:space="preserve">
-    <value>Edit Multiple Colossus Bets</value>
+    <value>修改多重 Colossus Bets</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>更改</value>
+  </data>
+  <data name="CashInShare" xml:space="preserve">
+    <value>現金股份</value>
   </data>
 </root>

@@ -1,5 +1,15 @@
 ﻿"use strict";
 var ColossusBetModule = angular.module('colossusBetSettingModule', []);
+ColossusBetModule.config(['$httpProvider', function ($httpProvider) {
+    'use strict';
+
+    var antiXSRFToken = document.getElementsByName("__RequestVerificationToken");
+    if (antiXSRFToken.length > 0) {
+        $httpProvider.defaults.headers.post.__RequestVerificationToken = antiXSRFToken[0].value
+    }
+
+} ]);
+
 ColossusBetModule.controller('mainController', function ($scope, $timeout, colossusBetRepositories, commonService) {
     colossusBetRepositories.getData().then(
         function (colossusBetSetting) {
