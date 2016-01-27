@@ -2,7 +2,7 @@
 {
     public class GetRNGCasinoResultCriteria
     {
-        public long Refno { get; set; }
+        public string Refno { get; set; }
 
         public int RoleId { get; set; }
     }
