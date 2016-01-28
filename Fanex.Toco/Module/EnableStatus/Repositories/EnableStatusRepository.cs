@@ -22,6 +22,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
     using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.Data;
     using Fanex.Data.DNAide;
+    using Fanex.Module.Logs;
     using Fanex.Module.Logs.Services;
 
     /// <summary>
@@ -172,9 +173,10 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                         {
                             customer.UpdateCustEnableCasino(context.CustId, !(bool)entity.Disabled, !(bool)entity.DisabledDownlines, context.Ip, context.UserId, AppSession.CurrentSession.UserName, AppSession.CurrentSession.FromSystem);
                         }
-                        catch
-                        {                            
-                        }                        
+                        catch (Exception casinoEx)
+                        {
+                            casinoEx.Write(Formater.LogType.Warning);
+                        }         
                     }
 
                     return result;
@@ -255,8 +257,9 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                         {
                             customer.UpdateCustEnableCasino(context.CustId, !(bool)entities[0].Disabled, !(bool)entities[0].DisabledDownlines, context.Ip, context.UserId, AppSession.CurrentSession.UserName, AppSession.CurrentSession.FromSystem);
                         }
-                        catch
+                        catch (Exception casinoEx)
                         {
+                            casinoEx.Write(Formater.LogType.Warning);
                         }
                     }
 
