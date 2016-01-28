@@ -276,35 +276,44 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
 
         private bool IsCrossingLevel(RequestContext context)
         {
-            if (context.UplineId == 0)
+            try
             {
-                return false;
+                if (context.UplineId == 0)
+                {
+                    return false;
+                }
+
+                var param = new Hashtable();
+                param.Add("custid", context.CustId);
+
+                DbResult currentCustomer = DbHelper.ExecuteDbResult("Age_CustomerSelUserInfo", param);
+
+                if (currentCustomer == null ||
+                    currentCustomer.ResultSet == null ||
+                    currentCustomer.ResultSet.Tables == null ||
+                    currentCustomer.ResultSet.Tables.Count == 0 ||
+                    currentCustomer.ResultSet.Tables[0] == null ||
+                    currentCustomer.ResultSet.Tables[0].Rows == null ||
+                    currentCustomer.ResultSet.Tables[0].Rows.Count == 0)
+                {
+                    return true;
+                }
+
+                var row = currentCustomer.ResultSet.Tables[0].Rows[0];
+                var roleId = Utils.ToInt32(row["roleid"]);
+                var parentRoleId =
+                    context.UplineId == Utils.ToInt32(row["superid"]) ? 4 :
+                    context.UplineId == Utils.ToInt32(row["masterid"]) ? 3 :
+                    context.UplineId == Utils.ToInt32(row["agentid"]) ? 2 : 5;
+
+                return parentRoleId - roleId != 1;
             }
-
-            var param = new Hashtable();
-            param.Add("custid", context.CustId);
-
-            DbResult currentCustomer = DbHelper.ExecuteDbResult("Age_CustomerSelUserInfo", param);
-
-            if (currentCustomer == null ||
-                currentCustomer.ResultSet == null ||
-                currentCustomer.ResultSet.Tables == null ||
-                currentCustomer.ResultSet.Tables.Count == 0 ||
-                currentCustomer.ResultSet.Tables[0] == null ||
-                currentCustomer.ResultSet.Tables[0].Rows == null ||
-                currentCustomer.ResultSet.Tables[0].Rows.Count == 0)
+            catch (Exception ex)
             {
+                ex.Write();
+
                 return true;
             }
-
-            var row = currentCustomer.ResultSet.Tables[0].Rows[0];
-            var roleId = Utils.ToInt32(row["roleid"]);
-            var parentRoleId =
-                context.UplineId == Utils.ToInt32(row["superid"]) ? 4 : 
-                context.UplineId == Utils.ToInt32(row["masterid"]) ? 3 : 
-                context.UplineId == Utils.ToInt32(row["agentid"]) ? 2 : 5;
-
-            return parentRoleId - roleId != 1;
         }
     }
 }
