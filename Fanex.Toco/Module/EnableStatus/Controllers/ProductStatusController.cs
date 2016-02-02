@@ -4,7 +4,8 @@
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Andy.Nguyen" date="2015.5.27">Created</change>
+//   <change who="Andy.Nguyen" date="2015.5.27">Created.</change>
+//   <change who="Andy.Nguyen" date="2016.2.2">Documented.</change>
 // </history>
 
 namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers
@@ -22,49 +23,64 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers
     using Newtonsoft.Json;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Product status controller to use for NAP, ALPHA, EXTNAP.
     /// </summary>
     public class ProductStatusController : BaseController
     {
-        private IEnableStatusService service = new EnableStatusService();
+        /// <summary>
+        /// Enable status service.
+        /// </summary>
+        private IEnableStatusService _service = new EnableStatusService();
 
+        /// <summary>
+        /// Gets index page of enable status form.
+        /// </summary>
+        /// <param name="context">Request context to get enable product status form.</param>
+        /// <returns>ActionResult object.</returns>
+        [HttpGet]
         public ActionResult Index(RequestContext context)
         {
             var controlName = typeof(ProductStatusController).Name;
-            var _mainAction = Helper.Products.Where(p => p.Id.Equals(context.ProductId, StringComparison.OrdinalIgnoreCase)).FirstOrDefault().Function;
-            var actionPath = controlName + "/" + _mainAction;
-            var _authenticationType = AuthenticateAction.AuthenticationType.Read;
-            var authenticateFactory = AuthenticateFactory.Create(_authenticationType, _mainAction);
+            var mainAction = Helper.Products.Where(p => p.Id.Equals(context.ProductId, StringComparison.OrdinalIgnoreCase)).FirstOrDefault().Function;
+            var actionPath = controlName + "/" + mainAction;
+            var authenticationType = AuthenticateAction.AuthenticationType.Read;
+            var authenticateFactory = AuthenticateFactory.Create(authenticationType, mainAction);
             
             if (!authenticateFactory.AllowRead(actionPath) || !authenticateFactory.IsBelong(context.CustId, context.Username, AppSession.CurrentSession.CurrencyGroup))
             {
-                return ActionDenied(Request);
+                return this.ActionDenied(this.Request);
             }
 
             var sp = Helper.GetStoredProcedures(context.ProductId).Where(p => p.Type == StoredProcedure.SpType.SELECT).FirstOrDefault();            
-            var model = service.GetProductStatus(sp, context);            
+            var model = this._service.GetProductStatus(sp, context);            
 
-            return View("~/Areas/CustomerSetting/Views/EnableStatus/Index.cshtml", model);
+            return this.View("~/Areas/CustomerSetting/Views/EnableStatus/Index.cshtml", model);
         }
 
+        /// <summary>
+        /// Updates enable status.
+        /// </summary>
+        /// <param name="model">Product status model.</param>
+        /// <returns>ActionResult object.</returns>
+        [HttpPost]
         public ActionResult Update(string model)
         {
-            var enableStatusModel = JsonConvert.DeserializeObject<EnableStatusModel>(model);
+            var modelObj = JsonConvert.DeserializeObject<EnableStatusModel>(model);
             var controlName = typeof(ProductStatusController).Name;
-            var _mainAction = Helper.Products.Where(p => p.Id.Equals(enableStatusModel.RequestContext.ProductId, StringComparison.OrdinalIgnoreCase)).FirstOrDefault().Function;
-            var actionPath = controlName + "/" + _mainAction;
-            var _authenticationType = AuthenticateAction.AuthenticationType.Host;
-            var authenticateFactory = AuthenticateFactory.Create(_authenticationType, _mainAction);
+            var mainAction = Helper.Products.Where(p => p.Id.Equals(modelObj.RequestContext.ProductId, StringComparison.OrdinalIgnoreCase)).FirstOrDefault().Function;
+            var actionPath = controlName + "/" + mainAction;
+            var authenticationType = AuthenticateAction.AuthenticationType.Host;
+            var auth = AuthenticateFactory.Create(authenticationType, mainAction);
 
-            if (!authenticateFactory.AllowUpdate(actionPath) || !authenticateFactory.IsBelong(enableStatusModel.RequestContext.CustId, enableStatusModel.RequestContext.Username, AppSession.CurrentSession.CurrencyGroup))
+            if (!auth.AllowUpdate(actionPath) || !auth.IsBelong(modelObj.RequestContext.CustId, modelObj.RequestContext.Username, AppSession.CurrentSession.CurrencyGroup))
             {
-                return ActionDenied(Request);
+                return this.ActionDenied(this.Request);
             }
                         
-            var sp = Helper.GetStoredProcedures(enableStatusModel.RequestContext.ProductId).Where(p => p.Type == StoredProcedure.SpType.UPDATE).FirstOrDefault();
-            var results = service.UpdateProductStatus(enableStatusModel, sp);
+            var sp = Helper.GetStoredProcedures(modelObj.RequestContext.ProductId).Where(p => p.Type == StoredProcedure.SpType.UPDATE).FirstOrDefault();
+            var results = this._service.UpdateProductStatus(modelObj, sp);
 
-            return JsonBase(results);
+            return this.JsonBase(results);
         }
     }
 }

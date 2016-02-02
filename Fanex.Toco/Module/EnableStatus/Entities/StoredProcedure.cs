@@ -17,10 +17,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Entities
         public enum SpType
         {
             SELECT = 0,
-            UPDATE = 1,
-            INSERT = 2,
-            DELETE = 3,
-            TEXT = 4
+            UPDATE = 1
         }
     }
 }

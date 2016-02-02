@@ -12,6 +12,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using CasinoLibrary.SBAgent;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Entities;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers;
@@ -26,10 +27,11 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
     using Fanex.Module.Logs.Services;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Enable status repository.
     /// </summary>
     public class EnableStatusRepository : IEnableStatusRepository
     {
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         public EnableStatusModel GetProductStatus(SpElementConfiguration storedProcedure, RequestContext context)
         {
             var model = new EnableStatusModel();
@@ -131,6 +133,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
             }
         }
 
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         public Result UpdateProductStatus(SpElementConfiguration storedProcedure, RequestContext context, EnableStatusEntity entity)
         {
             if (this.IsCrossingLevel(context))
@@ -171,7 +174,14 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                         var customer = new Customer();
                         try
                         {
-                            customer.UpdateCustEnableCasino(context.CustId, !(bool)entity.Disabled, !(bool)entity.DisabledDownlines, context.Ip, context.UserId, AppSession.CurrentSession.UserName, AppSession.CurrentSession.FromSystem);
+                            customer.UpdateCustEnableCasino(
+                                context.CustId, 
+                                !(bool)entity.Disabled, 
+                                !(bool)entity.DisabledDownlines, 
+                                context.Ip, 
+                                context.UserId, 
+                                AppSession.CurrentSession.UserName, 
+                                AppSession.CurrentSession.FromSystem);
                         }
                         catch (Exception casinoEx)
                         {
@@ -190,6 +200,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
             }
         }
 
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         public Result UpdateProductStatus(SpElementConfiguration storedProcedure, RequestContext context, IList<EnableStatusEntity> entities)
         {
             if (this.IsCrossingLevel(context))
@@ -220,7 +231,12 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                         {
                             if (!entity.Hide && entity.IsDirty)
                             {
-                                products += string.Format(product, entity.SportTypeId, entity.BetTypeId, (bool)entity.Disabled ? 1 : 0, (bool)entity.DisabledDownlines && context.Level != EnableStatusEnum.Level.Member ? 1 : 0);
+                                products += string.Format(
+                                    product, 
+                                    entity.SportTypeId, 
+                                    entity.BetTypeId, 
+                                    (bool)entity.Disabled ? 1 : 0, 
+                                    (bool)entity.DisabledDownlines && context.Level != EnableStatusEnum.Level.Member ? 1 : 0);
                             }
                         }
 
@@ -255,7 +271,14 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                         var customer = new Customer();
                         try
                         {
-                            customer.UpdateCustEnableCasino(context.CustId, !(bool)entities[0].Disabled, !(bool)entities[0].DisabledDownlines, context.Ip, context.UserId, AppSession.CurrentSession.UserName, AppSession.CurrentSession.FromSystem);
+                            customer.UpdateCustEnableCasino(
+                                context.CustId, 
+                                !(bool)entities[0].Disabled, 
+                                !(bool)entities[0].DisabledDownlines, 
+                                context.Ip, 
+                                context.UserId, 
+                                AppSession.CurrentSession.UserName, 
+                                AppSession.CurrentSession.FromSystem);
                         }
                         catch (Exception casinoEx)
                         {
