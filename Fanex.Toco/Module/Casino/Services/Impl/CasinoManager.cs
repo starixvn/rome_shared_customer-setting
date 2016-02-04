@@ -25,7 +25,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
     using Fanex.CustomerSetting.Module.Core.Web;
     using System.Collections;
     using Fanex.CustomerSetting.Module.Casino.Services.Interface;
-
+    using Fanex.Module.Logs.Services;
+    using Fanex.Module.Logs;
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
@@ -616,6 +617,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             }
             catch (Exception ex)
             {
+                ex.Write(Formater.LogType.Warning);
                 // Bypass this exception because this customer had setting but update status failed, before.
             }
 
@@ -745,8 +747,9 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                         customerModel.IsDisableAutoMPT);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                ex.Write(Formater.LogType.Warning);
                 // Bypass this exception because this customer had setting but update status failed, before.
             }
 
@@ -882,8 +885,9 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     enablePTUpdated = cust.UpdateCustEnablePT(custId, true);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                ex.Write(Formater.LogType.Warning);
                 // Bypass this exception because this customer had setting but update status failed, before.
             }
 
@@ -1008,8 +1012,9 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                             false,
                             customerModel.IsDisableAutoMPT);
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
+                        ex.Write(Formater.LogType.Warning);
                         settingsInserted = false;
                     }
                 }

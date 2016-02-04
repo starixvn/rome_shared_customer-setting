@@ -11,6 +11,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
     using Fanex.CustomerSetting.Security.Authenticate;
     using Fanex.CustomerSetting.Security.Configurations;
+    using Fanex.Module.Logs;
+    using Fanex.Module.Logs.Services;
     using Newtonsoft.Json;
 
     public class SuperController : BaseController
@@ -31,8 +33,9 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 customerSetting = CasinoManager.Instance.SuperCasinoModel(id, uplineId);
                 customerSetting.IsReadOnly = isSearchAndCopy;
             }
-            catch
+            catch (Exception ex)
             {
+                ex.Write(Formater.LogType.Warning);
                 return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml");
             }
 

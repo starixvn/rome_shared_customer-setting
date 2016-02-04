@@ -8,21 +8,21 @@
 
     public class CasinoMemberWinLimitService : ICasinoMemberWinLimitService
     {
-        private IMemberWinLimitRepository data = new MemberWinLimitRepository();
+        private IMemberWinLimitRepository _data = new MemberWinLimitRepository();
 
         public MemberWinLimit GetMemberWinLimit(int custId)
         {
-            return data.GetMemberWinLimit(custId);
+            return _data.GetMemberWinLimit(custId);
         }
 
         public CurrentMemberWinLimit GetCurrentWinLimit(int custId)
         {
-            return data.GetCurrentWinLimit(custId);
+            return _data.GetCurrentWinLimit(custId);
         }
 
         public Result UpdateMemberWinLimit(int custId, int userId, int subAccId, MemberWinLimit memberWinLimit)
         {
-            return data.UpdateMemberWinLimit(custId, userId, subAccId, memberWinLimit);
+            return _data.UpdateMemberWinLimit(custId, userId, subAccId, memberWinLimit);
         }
     }
 }
