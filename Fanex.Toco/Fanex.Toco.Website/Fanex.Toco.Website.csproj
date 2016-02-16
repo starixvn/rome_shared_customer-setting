@@ -1436,10 +1436,6 @@
       <Project>{F317B419-340B-418D-B2AB-8C43F18B85D6}</Project>
       <Name>Keno.Resources</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Module\Keno\KenoStatus\KenoStatus.csproj">
-      <Project>{7954F23F-567D-457D-99DC-A92224A50A99}</Project>
-      <Name>KenoStatus</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Module\Keno\Keno.KenoSetting\Fanex.CustomerSetting.Module.Keno.KenoSetting.csproj">
       <Project>{4204CDC3-7A3E-46C6-A97F-4CB07D2DF45E}</Project>
       <Name>Fanex.CustomerSetting.Module.Keno.KenoSetting</Name>
