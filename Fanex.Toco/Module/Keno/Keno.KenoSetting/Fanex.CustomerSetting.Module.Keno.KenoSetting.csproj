@@ -16,6 +16,11 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -138,6 +143,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\ModuleRegistrator.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="Configurations\KenoSection.cs" />
     <Compile Include="Controllers\KenoSettingBaseController.cs" />
     <Compile Include="Controllers\KenoSettingController.cs" />
     <Compile Include="Criteria\Agent\GetAgentSettingCriteria.cs" />
@@ -215,23 +221,15 @@
       <Project>{F317B419-340B-418D-B2AB-8C43F18B85D6}</Project>
       <Name>Keno.Resources</Name>
     </ProjectReference>
-    <ProjectReference Include="..\KenoStatus\KenoStatus.csproj">
-      <Project>{7954F23F-567D-457D-99DC-A92224A50A99}</Project>
-      <Name>KenoStatus</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="web.Debug.config">
+    <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="web.Release.config">
+    </None>
+    <None Include="web.Release.config">
       <DependentUpon>web.config</DependentUpon>
-    </Content>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

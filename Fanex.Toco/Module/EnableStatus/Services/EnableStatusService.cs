@@ -11,6 +11,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Xml.Linq;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Entities;
@@ -27,13 +28,14 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
     /// </summary>
     public class EnableStatusService : IEnableStatusService
     {
-        private IEnableStatusRepository data = new EnableStatusRepository();
+        private IEnableStatusRepository _data = new EnableStatusRepository();
 
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         public EnableStatusModel GetProductStatus(SpElementConfiguration storedProcedure, RequestContext context)
         {
             try
             {
-                var model = data.GetProductStatus(storedProcedure, context);
+                var model = _data.GetProductStatus(storedProcedure, context);
                 var product = Helper.Products.Where(p => p.Id.Equals(context.ProductId, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
 
                 context.NewMode = product.NewMode;
@@ -106,7 +108,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                 var result = new Result();
                 if (model.RequestContext.NewMode)
                 {
-                    result = data.UpdateProductStatus(storedProcedure, model.RequestContext, model.Entities);
+                    result = _data.UpdateProductStatus(storedProcedure, model.RequestContext, model.Entities);
                     if (result.ErrorCode != 0 || !string.IsNullOrWhiteSpace(result.ErrorMessage))
                     {
                         var xmlMessage = XElement.Parse(result.ErrorMessage);
@@ -129,7 +131,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                     {
                         if (!item.Hide && item.IsDirty)
                         {
-                            result = data.UpdateProductStatus(storedProcedure, model.RequestContext, item);
+                            result = _data.UpdateProductStatus(storedProcedure, model.RequestContext, item);
                             if (result.ErrorCode != 0 || !string.IsNullOrWhiteSpace(result.ErrorMessage))
                             {
                                 result = new Result(999, result.ErrorMessage);

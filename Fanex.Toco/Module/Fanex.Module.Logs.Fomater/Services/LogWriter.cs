@@ -72,14 +72,13 @@ namespace Fanex.Module.Logs.Services
                 return;
             }
 
-            var log = GetLog(ex.Message);
-
             if (logType != Formater.LogType.Auto)
             {
                 ex.WriteLog(logType);
             }
             else
             {
+                var log = GetLog(ex.Message);
                 if (log != null)
                 {
                     ex.WriteLog(log.Type);

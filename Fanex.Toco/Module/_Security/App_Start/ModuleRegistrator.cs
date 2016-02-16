@@ -16,35 +16,29 @@ namespace Fanex.CustomerSetting.Security.App_Start
 
     public class ModuleRegistrator : AreaRegistration
     {
-        private List<string> _controllers = new List<string>();
+        public override void RegisterArea(AreaRegistrationContext context)
+        {
+            if (!string.IsNullOrWhiteSpace(this.ModuleName) && !string.IsNullOrWhiteSpace(this.ModuleNameSpace))
+            {
+                var areaName = AreaName + "_" + ModuleName;
+                if (context.Routes[areaName] != null)
+                {
+                    return;
+                }
+
+                context.MapRoute(
+                    areaName,
+                    AreaName + "/" + ModuleName + "/{controller}/{action}/{id}/{uplineId}/{groupName}",
+                    new { action = "Index", id = UrlParameter.Optional, uplineId = UrlParameter.Optional, groupName = UrlParameter.Optional },
+                    new[] { ModuleNameSpace });
+            }
+        }
 
         public override string AreaName
         {
             get
             {
                 return "CustomerSetting";
-            }
-        }
-
-        protected void RegisterController(string controllerName)
-        {
-            if(string.IsNullOrEmpty(controllerName))
-                return;
-            _controllers.Add(controllerName);
-        }                
-
-        public override void RegisterArea(AreaRegistrationContext context)
-        {
-            if (!string.IsNullOrWhiteSpace(this.ModuleName) && !string.IsNullOrWhiteSpace(this.ModuleNameSpace))
-            {
-                var areaName = AreaName + "_" + ModuleName;
-                if(context.Routes[areaName] != null)
-                    return;
-                context.MapRoute(
-                    areaName,
-                    AreaName + "/" + ModuleName + "/{controller}/{action}/{id}/{uplineId}/{groupName}",
-                    new { action = "Index", id = UrlParameter.Optional, uplineId = UrlParameter.Optional, groupName = UrlParameter.Optional },
-                    new[] { ModuleNameSpace });
             }
         }
 

@@ -4,7 +4,8 @@
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
-//   <change who="Andy.Nguyen" date="2015.5.27">Created</change>
+//   <change who="Andy.Nguyen" date="2015.5.27">Created.</change>
+//   <change who="Andy.Nguyen" date="2016.2.2">Document class.</change>
 // </history>
 
 namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers.App_Start
@@ -13,8 +14,14 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers.App_Start
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.Core.Web.App_Start;
 
+    /// <summary>
+    /// Registers module Enable Status.
+    /// </summary>
     public class ModuleRegistrator : AppAreaRegistrator 
     {
+        /// <summary>
+        /// Gets module name.
+        /// </summary>
         protected override string ModuleName
         {
             get
@@ -23,6 +30,9 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers.App_Start
             }
         }
 
+        /// <summary>
+        /// Gets module name space.
+        /// </summary>
         protected override string ModuleNameSpace
         {
             get
@@ -32,6 +42,10 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers.App_Start
             }
         }
 
+        /// <summary>
+        /// Registers enable status areas.
+        /// </summary>
+        /// <param name="context">Area registration context.</param>
         public override void RegisterArea(AreaRegistrationContext context)
         {
             base.RegisterArea(context);
