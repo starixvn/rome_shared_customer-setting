@@ -118,28 +118,28 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccountDisabled" xml:space="preserve">
-    <value>Account was disabled.</value>
+    <value>Tài khoản bị vô hiệu hóa</value>
   </data>
   <data name="Agent" xml:space="preserve">
     <value>Agent</value>
   </data>
   <data name="AgentCashInShare" xml:space="preserve">
-    <value>Agent Cash-In Share</value>
+    <value>Phần chia Đổi lấy Tiền mặt của Đại lý %</value>
   </data>
   <data name="AgentCommision" xml:space="preserve">
-    <value>Agent Commision %</value>
+    <value>Hoa hồng Đại lý %</value>
   </data>
   <data name="All" xml:space="preserve">
-    <value>All</value>
+    <value>Tất cả</value>
   </data>
   <data name="BetSetting" xml:space="preserve">
-    <value>Bet Setting</value>
+    <value>Tiền Cược</value>
   </data>
   <data name="Commission" xml:space="preserve">
-    <value>Commission</value>
+    <value>Tiền hoa hồng</value>
   </data>
   <data name="Enable" xml:space="preserve">
-    <value>Enable</value>
+    <value>Cho phép</value>
   </data>
   <data name="EnableDownlines" xml:space="preserve">
     <value>Enable Downlines</value>
@@ -148,61 +148,61 @@
     <value>Fax</value>
   </data>
   <data name="FirstName" xml:space="preserve">
-    <value>First Name</value>
+    <value>Tên</value>
   </data>
   <data name="GeneralInformation" xml:space="preserve">
-    <value>General Information</value>
+    <value>Thông tin Chung</value>
   </data>
   <data name="LastName" xml:space="preserve">
-    <value>Last Name</value>
+    <value>Họ</value>
   </data>
   <data name="LessThan" xml:space="preserve">
-    <value>should be less than or equal to</value>
+    <value>phải nhỏ hơn hoặc bằng</value>
   </data>
   <data name="Master" xml:space="preserve">
     <value>Master</value>
   </data>
   <data name="MasterCashInShare" xml:space="preserve">
-    <value>Master Cash-In Share</value>
+    <value>Phần chia Đổi lấy Tiền mặt cấp Master %</value>
   </data>
   <data name="MasterCommision" xml:space="preserve">
-    <value>Master Commision %</value>
+    <value>Hoa hồng cấp Master %</value>
   </data>
   <data name="Member" xml:space="preserve">
     <value>Member</value>
   </data>
   <data name="MemberCashInShare" xml:space="preserve">
-    <value>Member Cash-In Share</value>
+    <value>Phần chia Đổi lấy Tiền mặt của Hội viên %</value>
   </data>
   <data name="MemberCommision" xml:space="preserve">
-    <value>Member Commision %</value>
+    <value>Hoa hồng Hội viên %</value>
   </data>
   <data name="MobilePhone" xml:space="preserve">
-    <value>Mobile Phone</value>
+    <value>Điện thoại di động</value>
   </data>
   <data name="MoreThan" xml:space="preserve">
-    <value>should be more than or equal to</value>
+    <value> phải lớn hơn hoặc bằng</value>
   </data>
   <data name="Msg_0" xml:space="preserve">
-    <value>Updated successfully.</value>
+    <value>Câp nhật thành công.</value>
   </data>
   <data name="Msg_1001" xml:space="preserve">
     <value>Database response isn't valid.</value>
   </data>
   <data name="Nickname" xml:space="preserve">
-    <value>Nickname</value>
+    <value>Biệt danh</value>
   </data>
   <data name="Phone" xml:space="preserve">
-    <value>Phone</value>
+    <value>Điện thoại</value>
   </data>
   <data name="PositionTaking" xml:space="preserve">
     <value>Position Taking</value>
   </data>
   <data name="Status" xml:space="preserve">
-    <value>Status</value>
+    <value>Trạng thái</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>Submit</value>
+    <value>Xác nhận</value>
   </data>
   <data name="Super" xml:space="preserve">
     <value>Super</value>
@@ -214,42 +214,42 @@
     <value>Super Commision %</value>
   </data>
   <data name="UpdateAgent" xml:space="preserve">
-    <value>Edit Agent</value>
+    <value>Tùy chỉnh cho Agent</value>
   </data>
   <data name="UpdateColossusBet" xml:space="preserve">
-    <value>Update ColossusBet</value>
+    <value>Sửa Colossus Bets</value>
   </data>
   <data name="UpdatedFail" xml:space="preserve">
-    <value>Update customer setting failed!</value>
+    <value>Cập nhật  thiết lập về thành viên thất bại.</value>
   </data>
   <data name="UpdatedSuccess" xml:space="preserve">
     <value>Status updated successfully.</value>
   </data>
   <data name="UpdateMaster" xml:space="preserve">
-    <value>Edit Master</value>
+    <value>Tùy chỉnh cho Master</value>
   </data>
   <data name="UpdateMember" xml:space="preserve">
-    <value>Edit Member</value>
+    <value>Tùy chỉnh cho Member</value>
   </data>
   <data name="UpdateSuper" xml:space="preserve">
-    <value>Edit Super</value>
+    <value>Tùy chỉnh cho Super</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>Username</value>
+    <value>Tài khoản</value>
   </data>
   <data name="ColossusBet" xml:space="preserve">
     <value>Colossus Bets</value>
   </data>
   <data name="EditColossusBets" xml:space="preserve">
-    <value>Edit Colossus Bets</value>
+    <value>Sửa Colossus Bets</value>
   </data>
   <data name="EditMultiColossusBets" xml:space="preserve">
-    <value>Edit Multiple Colossus Bets</value>
+    <value>Sửa nhiều Colossus Bets</value>
   </data>
   <data name="Update" xml:space="preserve">
-    <value>Update</value>
+    <value>Cập nhật</value>
   </data>
   <data name="CashInShare" xml:space="preserve">
-    <value>Cash-In Share</value>
+    <value>Phần chia Đổi lấy Tiền mặt</value>
   </data>
 </root>
