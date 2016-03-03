@@ -124,10 +124,10 @@
     <value>ตัวแทน</value>
   </data>
   <data name="AgentCashInShare" xml:space="preserve">
-    <value>Agent Cash-In Share %</value>
+    <value>% ส่วนแบ่งการแลกเงินสดของตัวแทน</value>
   </data>
   <data name="AgentCommision" xml:space="preserve">
-    <value>Agent Commision %</value>
+    <value>% ค่านายหน้าของตัวแทน</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>ทั้งหมด</value>
@@ -136,10 +136,10 @@
     <value>การกำหนดการวางเดิมพัน</value>
   </data>
   <data name="Commission" xml:space="preserve">
-    <value>Commission</value>
+    <value>คอมมิชชั่น</value>
   </data>
   <data name="Enable" xml:space="preserve">
-    <value>Enable</value>
+    <value>เปิดใช้งาน</value>
   </data>
   <data name="EnableDownlines" xml:space="preserve">
     <value>เปิดใช้งาน ดาวไลน์</value>
@@ -151,7 +151,7 @@
     <value>ชื่อ</value>
   </data>
   <data name="GeneralInformation" xml:space="preserve">
-    <value>General Information</value>
+    <value>ข้อมูลทั่วไป</value>
   </data>
   <data name="LastName" xml:space="preserve">
     <value>นามสกุล</value>
@@ -163,19 +163,19 @@
     <value>ตัวแทนหลัก</value>
   </data>
   <data name="MasterCashInShare" xml:space="preserve">
-    <value>Master Cash-In Share %</value>
+    <value>% ส่วนแบ่งการแลกเงินสดหลัก</value>
   </data>
   <data name="MasterCommision" xml:space="preserve">
-    <value>Master Commision %</value>
+    <value>% ค่านายหน้าหลัก</value>
   </data>
   <data name="Member" xml:space="preserve">
     <value>สมาชิก</value>
   </data>
   <data name="MemberCashInShare" xml:space="preserve">
-    <value>Member Cash-In Share %</value>
+    <value>% ส่วนแบ่งการแลกเงินสดของสมาชิก</value>
   </data>
   <data name="MemberCommision" xml:space="preserve">
-    <value>Member Commision %</value>
+    <value>% ค่านายหน้าของสมาชิก</value>
   </data>
   <data name="MobilePhone" xml:space="preserve">
     <value>โทรศัพท์มือถือ</value>
@@ -190,7 +190,7 @@
     <value>การตอบสนองต่อฐานข้อมูลไม่ถูกต้อง</value>
   </data>
   <data name="Nickname" xml:space="preserve">
-    <value>Nickname</value>
+    <value>ชื่อเล่น</value>
   </data>
   <data name="Phone" xml:space="preserve">
     <value>โทรศัพท์</value>
@@ -199,7 +199,7 @@
     <value>ค่าความเสี่ยง</value>
   </data>
   <data name="Status" xml:space="preserve">
-    <value>Status</value>
+    <value>สถานะ</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>ตกลง</value>
@@ -214,10 +214,10 @@
     <value>Super Commision %</value>
   </data>
   <data name="UpdateAgent" xml:space="preserve">
-    <value>Edit Agent</value>
+    <value>แก้ไข Agent</value>
   </data>
   <data name="UpdateColossusBet" xml:space="preserve">
-    <value>Update ColossusBet</value>
+    <value>ปรับข้อมูลล่าสุด Colossus Bets</value>
   </data>
   <data name="UpdatedFail" xml:space="preserve">
     <value>อัพเดทการตั้งค่าของลูกค้าล้มเหลว</value>
@@ -226,30 +226,30 @@
     <value>สถานะการปรับปรุงเรียบร้อยแล้ว</value>
   </data>
   <data name="UpdateMaster" xml:space="preserve">
-    <value>Edit Master</value>
+    <value>แก้ไขมาสเตอร์</value>
   </data>
   <data name="UpdateMember" xml:space="preserve">
-    <value>Edit Member</value>
+    <value>แก้ไขแมมเบอร์</value>
   </data>
   <data name="UpdateSuper" xml:space="preserve">
     <value>Edit Super</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>Username</value>
+    <value>ชื่อผู้ใช้ระบบ</value>
   </data>
   <data name="ColossusBet" xml:space="preserve">
     <value>Colossus Bets</value>
   </data>
   <data name="EditColossusBets" xml:space="preserve">
-    <value>Edit Colossus Bets</value>
+    <value>แก้ไข Colossus Bets</value>
   </data>
   <data name="EditMultiColossusBets" xml:space="preserve">
-    <value>Edit Multiple Colossus Bets</value>
+    <value>แก้ไข Colossus Bets หลายอย่าง</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>ล่าสุด</value>
   </data>
   <data name="CashInShare" xml:space="preserve">
-    <value>Cash-In Share</value>
+    <value>ส่วนแบ่งการแลกเงินสด</value>
   </data>
 </root>
