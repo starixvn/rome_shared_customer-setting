@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="accountDisabled" xml:space="preserve">
-    <value>Account was disabled</value>
+    <value>Tài khoản bị vô hiệu hóa</value>
   </data>
   <data name="agent" xml:space="preserve">
     <value>Agent</value>
   </data>
   <data name="all" xml:space="preserve">
-    <value>All</value>
+    <value>Tất cả</value>
   </data>
   <data name="b15131" xml:space="preserve">
     <value>SA Tote</value>
@@ -160,10 +160,10 @@
     <value>Disable</value>
   </data>
   <data name="enable" xml:space="preserve">
-    <value>Enable</value>
+    <value>Cho phép</value>
   </data>
   <data name="enableDownline" xml:space="preserve">
-    <value>Enable Downlines</value>
+    <value>Cho phép thành viên cấp dưới</value>
   </data>
   <data name="hrfixedodds" xml:space="preserve">
     <value>HR Fixed Odds</value>
@@ -196,10 +196,10 @@
     <value>Sportsbook2</value>
   </data>
   <data name="submit" xml:space="preserve">
-    <value>Submit</value>
+    <value>Xác nhận</value>
   </data>
   <data name="successMsg" xml:space="preserve">
-    <value>Status updated successfully</value>
+    <value>Cập nhật trạng thái thành công.</value>
   </data>
   <data name="super" xml:space="preserve">
     <value>Super</value>
