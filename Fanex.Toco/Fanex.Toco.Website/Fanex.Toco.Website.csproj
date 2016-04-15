@@ -171,6 +171,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Alpha\Voidbridge\Views\HandHistory_API\Scripts\handhistory.js" />
+    <Content Include="Areas\Alpha\RnGCasino\Views\HandHistory_API\Scripts\handhistory.js" />
     <Content Include="Areas\ColossusBets\Views\BetDetails\Scripts\BetDetails.js" />
     <Content Include="Areas\ColossusBets\Views\BetDetails\Styles\ColossusBets.css" />
     <Content Include="Areas\ColossusBets\Views\BetDetails\Styles\Images\error.gif" />
@@ -445,6 +447,14 @@
     </Content>
     <Content Include="Areas\ColossusBets\Views\Web.config" />
     <Content Include="Areas\ColossusBets\Views\BetDetails\Index.cshtml" />
+    <Content Include="Areas\Alpha\RnGCasino\Views\BetDetails\Index.cshtml" />
+    <Content Include="Areas\Alpha\RnGCasino\Views\HandHistory_API\Index.cshtml" />
+    <Content Include="Areas\Alpha\RnGCasino\Views\Web.config" />
+    <Content Include="Areas\Alpha\RnGCasino\OWRNGCasinoSection.config" />
+    <Content Include="Areas\Alpha\Voidbridge\OWVoidbridgeSection.config" />
+    <Content Include="Areas\Alpha\Voidbridge\Views\BetDetails\Index.cshtml" />
+    <Content Include="Areas\Alpha\Voidbridge\Views\HandHistory_API\Index.cshtml" />
+    <Content Include="Areas\Alpha\Voidbridge\Views\Web.config" />
     <None Include="Areas\ColossusBets\Views\BetDetails\Styles\BetDetails.less" />
     <None Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Document.doc" />
     <None Include="Areas\CustomerSetting\Views\ColossusBet\Setting\Styles\Accounting\theme-color.less" />
