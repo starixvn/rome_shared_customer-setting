@@ -909,6 +909,9 @@
     <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\Images\sorting_desc.gif" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\RacingSetting.css" />
     <Content Include="Areas\CustomerSetting\Views\Racebook\Styles\table.css" />
+    <Content Include="Areas\Voidbridge\Views\BetDetails\Scripts\BetDetails.js" />
+    <Content Include="Areas\Voidbridge\Views\HandHistory_API\Scripts\HandHistory.js" />
+    <Content Include="Areas\Voidbridge\Views\HandHistory_API\Styles\Images\error.gif" />
     <Content Include="Areas\RNGCasino\Views\BetDetails\Scripts\BetDetails.js" />
     <Content Include="Areas\RNGCasino\Views\HandHistory_API\Scripts\HandHistory.js" />
     <Content Include="Areas\RNGCasino\Views\HandHistory_API\Styles\Images\error.gif" />
@@ -1389,6 +1392,14 @@
     </Content>
     <Content Include="Areas\RNGCasino\Views\HandHistory_API\Index.cshtml" />
     <Content Include="Areas\RNGCasino\Views\HandHistory_API\Styles\HandHistory.less" />
+    <Content Include="Areas\Voidbridge\OWVoidbridgeSection.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\Voidbridge\Views\BetDetails\Index.cshtml" />
+    <Content Include="Areas\Voidbridge\Views\BetDetails\Styles\BetDetails.less" />
+    <Content Include="Areas\Voidbridge\Views\HandHistory_API\Index.cshtml" />
+    <Content Include="Areas\Voidbridge\Views\HandHistory_API\Styles\HandHistory.less" />
+    <Content Include="Areas\Voidbridge\Views\Web.config" />
     <None Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3-custom.less" />
   </ItemGroup>
   <ItemGroup>
@@ -1398,7 +1409,7 @@
     </ProjectReference>
     <ProjectReference Include="..\Module\Bingo\Bingo.csproj">
       <Project>{8B0CB9F3-0D8F-4B0B-8F66-931BFE44B40A}</Project>
-      <Name>Bingo %28Module\Bingo\Bingo%29</Name>
+      <Name>Bingo</Name>
     </ProjectReference>
     <ProjectReference Include="..\Module\Casino\Casino.csproj">
       <Project>{5F8F3877-90E3-48A3-BAD7-4207DCBA088D}</Project>
@@ -1406,7 +1417,11 @@
     </ProjectReference>
     <ProjectReference Include="..\Module\EnableStatus\EnableStatus.csproj">
       <Project>{22F2A79C-5F7A-4A4B-9F4B-1011228914E3}</Project>
-      <Name>EnableStatus %28Module\EnableStatus\EnableStatus%29</Name>
+      <Name>EnableStatus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Module\Fanex.BetDetail.Voidbridge\Fanex.Voidbridge.BetDetail.csproj">
+      <Project>{daa5a14e-2db9-42d0-8115-d6c84e323e6c}</Project>
+      <Name>Fanex.Voidbridge.BetDetail</Name>
     </ProjectReference>
     <ProjectReference Include="..\Module\Fanex.CustomerSetting.Module.CloneSetting\Fanex.CustomerSetting.Module.CloneSetting.csproj">
       <Project>{37A65793-85E8-4AC4-9254-F5F35BBC2E35}</Project>

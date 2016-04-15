@@ -7,14 +7,11 @@
 namespace Fanex.CustomerSetting.Security.Authenticate
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Web.Mvc;
     using System.Web;
     using System.Web.Helpers;
-    using Fanex.Module.Logs.Services;
+    using System.Web.Mvc;
     using Fanex.Module.Logs;
+    using Fanex.Module.Logs.Services;
 
     /// <summary>
     /// TODO: Update summary.
