@@ -4,9 +4,6 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Text;
     using System.Text.RegularExpressions;
-    using CustomerSetting.Module.Core.Constants;
-    using Fanex.BetList.Core.Entities;
-    using Fanex.CustomerSetting.Module.Core.Extensions;
     using Models;
     using Resources;
 
@@ -23,14 +20,7 @@
         {
             return IsNumericRegex.IsMatch(value);
         }
-
-        public static bool IsUseRefNoInsteadOfTransId(ITicket ticket)
-        {
-            return ticket.SportTypeId == SportContants.RNG_RNGGame ||
-                ticket.SportTypeId == SportContants.RNG_MiniGame ||
-                ticket.SportTypeId == SportContants.RNG_Mobile;
-        }
-
+        
         public static string GetCommonHeaderRows(int siteId)
         {
             var result = new StringBuilder();
@@ -80,13 +70,7 @@
 
             if (isRunningStatus && !string.IsNullOrEmpty(ticketDetail.Ticket.BetCheck))
             {
-                var viewBrokenGame = "ViewVoidbridgeBrokenGame(" +
-                    ticketDetail.Ticket.MatchId + "," +
-                    (string.IsNullOrEmpty(ticketDetail.Ticket.Race) ? "0" : ticketDetail.Ticket.Race) + "," +
-                    ticketDetail.Ticket.BetTypeId + "," +
-                    ticketDetail.Ticket.SportTypeId + "," +
-                    "'" + (ticketDetail.Ticket.BetCheck ?? string.Empty) + "'," +
-                    "'" + ticketDetail.Ticket.WinlostDate.ToShortFormatedDate() + "')";
+                var viewBrokenGame = "ViewVoidbridgeBrokenGame(" + ticketDetail.Ticket.CustId + ", '" + ticketDetail.Ticket.BetCheck + "')";
                 statusLabel = 
                     "<div id=\"rngcasino_brokengame_" + 
                     ticketDetail.Ticket.TransId + "\" onclick=\"" + viewBrokenGame + "\" class=\"viewbrokengame-link\">" + status.ToUpper() + "</div>";
@@ -101,13 +85,7 @@
             {
                 resultLink = string.IsNullOrEmpty(ticketDetail.Ticket.BetCheck) ?
                     string.Empty :
-                    "ViewVoidbridgeResult(" +
-                        ticketDetail.Ticket.MatchId + "," +
-                        (string.IsNullOrEmpty(ticketDetail.Ticket.Race) ? "0" : ticketDetail.Ticket.Race) + "," +
-                        ticketDetail.Ticket.BetTypeId + "," +
-                        ticketDetail.Ticket.SportTypeId + "," +
-                        "'" + (ticketDetail.Ticket.BetCheck ?? string.Empty) + "'," +
-                        "\'" + ticketDetail.Ticket.WinlostDate.ToShortFormatedDate() + "\')";
+                    "ViewVoidbridgeResult(" + ticketDetail.Ticket.CustId + ", '" + ticketDetail.Ticket.BetCheck + "')";
             }
 
             var resultLink1 = string.IsNullOrEmpty(resultLink) ?
@@ -120,7 +98,7 @@
 
         public bool IsShowOddsWithChoice(int betTypeId)
         {
-            return betTypeId == BetTypeContants.MixParlay || betTypeId == BetTypeContants.SystemParlay;
+            return betTypeId == 9 || betTypeId == 29;
         }
     }
 }

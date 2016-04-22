@@ -52,6 +52,7 @@
                 foreach (var ticket in rawData)
                 {
                     var ticketDetail = new TicketDetail();
+                    ticket.CustId = criteria.CustId;
                     ticketDetail.Ticket = ticket;
                     ticketHelper.IsShowOddsWithChoice = betListHelper.IsShowOddsWithChoice(ticketDetail.Ticket.BetTypeId);
                     ticketDetail.TransDateHtml = builder.BuildTrans(ticketDetail.Ticket);
