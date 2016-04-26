@@ -7,24 +7,24 @@
 
     public class VoidbridgeBetListController : BaseController
     {
-        private readonly IVoidbridgeService _rngCasinoService;
+        private readonly IVoidbridgeService _voidbridgeCasinoService;
 
         public VoidbridgeBetListController()
         {
-            _rngCasinoService = new VoidbridgeService();
+            _voidbridgeCasinoService = new VoidbridgeService();
         }
 
         [HttpGet]
         public ActionResult BetDetails(GetVoidbridgeBetDetailsCriteria criteria)
         {
-            var result = _rngCasinoService.BetDetails(criteria);
+            var result = _voidbridgeCasinoService.BetDetails(criteria);
             return View("~/Areas/Voidbridge/Views/BetDetails/Index.cshtml", result);
         }
 
         [HttpGet]
         public ActionResult GetHandHistory(GetVoidbridgeResultCriteria criteria)
         {
-            var result = _rngCasinoService.GetHandHistory(criteria);
+            var result = _voidbridgeCasinoService.GetHandHistory(criteria);
             return View("~/Areas/Voidbridge/Views/HandHistory_API/Index.cshtml", result);
         }
     }

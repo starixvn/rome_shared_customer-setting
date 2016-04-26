@@ -2,8 +2,8 @@
 {
     public class GetVoidbridgeResultCriteria
     {
-        public string Refno { get; set; }
+        public int CustId { get; set; }
 
-        public int RoleId { get; set; }
+        public string BetCheck { get; set; }
     }
 }
