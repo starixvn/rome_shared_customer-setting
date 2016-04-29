@@ -205,6 +205,15 @@ namespace Fanex.Module.RNGCasino.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Voidbridge.
+        /// </summary>
+        public static string Voidbridge {
+            get {
+                return ResourceManager.GetString("Voidbridge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Win Loss.
         /// </summary>
         public static string Win_Loss {

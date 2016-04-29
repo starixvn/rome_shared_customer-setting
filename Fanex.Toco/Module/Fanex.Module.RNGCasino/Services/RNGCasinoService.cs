@@ -21,7 +21,8 @@
     using Newtonsoft.Json;
     using Repositories;
     using Resources;
-
+    using Result.Core.Voidbridge;
+    using CustomerSetting.Module.Core.Web;
     public class RNGCasinoService : IRNGCasinoService
     {
         private readonly IRNGCasinoRepository _rngCasinoRepository;
@@ -36,6 +37,7 @@
             _rngCasinoRepository = rngCasinoRepository ?? new RNGCasinoRepository();
         }
 
+        [Obsolete]
         public IEnumerable<TicketDetail> BetDetails(GetRNGCasinoBetDetailsCriteria criteria)
         {
             var rawData = _rngCasinoRepository.BetDetails(criteria);
@@ -90,6 +92,40 @@
                 {
                     ResultCode = 1,
                     ResultMessage = token.Result.ErrorDescription
+                };
+            }
+
+            return result;
+        }
+
+        public HandHistoryModel GetVoidbridgeResult(GetVoidbridgeResultCriteria criteria, string language)
+        {
+            var result = new HandHistoryModel();
+            result.ActionInfo = new ResultDetail();
+            try
+            {
+                var voidbridgeApi = new VoidbridgeApiImp();
+                int siteId = 3200;
+                switch (criteria.RoleId)
+                {
+                    case 3:
+                        siteId = 3100;
+                        break;
+                    case 2:
+                        siteId = 3000;
+                        break;
+                    default:
+                        break;
+                }
+
+                result.Iframe = voidbridgeApi.GetBetHistoryUrl(criteria.CustId.ToString(), criteria.GameplayId, language, siteId.ToString());
+            }
+            catch (Exception ex)
+            {
+                result.ActionInfo = new ResultDetail()
+                {
+                    ResultCode = 1,
+                    ResultMessage = ex.Message
                 };
             }
 

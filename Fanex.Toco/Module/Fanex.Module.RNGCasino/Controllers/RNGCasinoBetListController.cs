@@ -4,7 +4,8 @@
     using Criteria;
     using CustomerSetting.Module.Core.Web.Controllers;
     using Services;
-
+    using System;
+    using Resources;
     public class RNGCasinoBetListController : BaseController
     {
         private readonly IRNGCasinoService _rngCasinoService;
@@ -15,6 +16,7 @@
         }
 
         [HttpGet]
+        [Obsolete]
         public ActionResult BetDetails(GetRNGCasinoBetDetailsCriteria criteria)
         {
             var result = _rngCasinoService.BetDetails(criteria);
@@ -24,7 +26,16 @@
         [HttpGet]
         public ActionResult GetHandHistory(GetRNGCasinoResultCriteria criteria)
         {
+            ViewBag.ProductName = BetListResources.Product_6;
             var result = _rngCasinoService.GetHandHistory(criteria);
+            return View("~/Areas/RNGCasino/Views/HandHistory_API/Index.cshtml", result);
+        }
+
+        [HttpGet]
+        public ActionResult GetVoidbridgeResult(GetVoidbridgeResultCriteria criteria)
+        {
+            ViewBag.ProductName = BetListResources.Voidbridge;
+            var result = _rngCasinoService.GetVoidbridgeResult(criteria, Request.UserLanguages[0]);
             return View("~/Areas/RNGCasino/Views/HandHistory_API/Index.cshtml", result);
         }
     }

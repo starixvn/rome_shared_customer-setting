@@ -1,7 +1,9 @@
 ﻿namespace Fanex.Module.RNGCasino.Criteria
 {
     using Fanex.NAP.Framework.Data;
+    using System;
 
+    [Obsolete]
     public class GetRNGCasinoBetDetailsCriteria : CriteriaBase
     {
         public int CustId { get; set; }

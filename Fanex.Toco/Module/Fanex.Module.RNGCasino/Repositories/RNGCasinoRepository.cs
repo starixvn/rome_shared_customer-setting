@@ -1,11 +1,13 @@
 ﻿namespace Fanex.Module.RNGCasino.Repositories
 {
-    using System.Collections.Generic;
     using BetList.Core.Entities;
     using Common;
     using Criteria;
     using Data;
+    using System;
+    using System.Collections.Generic;
 
+    [Obsolete]
     public class RNGCasinoRepository : IRNGCasinoRepository
     {
         public IEnumerable<Ticket> BetDetails(GetRNGCasinoBetDetailsCriteria criteria)

@@ -168,4 +168,7 @@
   <data name="RNGCasinoAPI_FailedToConnect" xml:space="preserve">
     <value>Cannot connect to RNGCasino API! Please contact Administrator.</value>
   </data>
+  <data name="Voidbridge" xml:space="preserve">
+    <value>Voidbridge</value>
+  </data>
 </root>
