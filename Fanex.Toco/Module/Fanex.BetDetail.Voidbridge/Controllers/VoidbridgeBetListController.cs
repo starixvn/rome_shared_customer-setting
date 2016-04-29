@@ -3,8 +3,9 @@
     using System.Web.Mvc;
     using Criteria;
     using CustomerSetting.Module.Core.Web.Controllers;
+    using Models;
     using Services;
-
+    using System.Linq;
     public class VoidbridgeBetListController : BaseController
     {
         private readonly IVoidbridgeService _voidbridgeCasinoService;
@@ -19,6 +20,13 @@
         {
             var result = _voidbridgeCasinoService.BetDetails(criteria);
             return View("~/Areas/Voidbridge/Views/BetDetails/Index.cshtml", result);
+        }
+
+        [HttpGet]
+        public ActionResult BetDetailsPaging(GetVoidbridgeBetDetailsCriteria criteria)
+        {
+            var details = _voidbridgeCasinoService.BetDetails(criteria);
+            return PartialView("~/Areas/Voidbridge/Views/BetDetails/_Tickets.cshtml", details);
         }
 
         [HttpGet]

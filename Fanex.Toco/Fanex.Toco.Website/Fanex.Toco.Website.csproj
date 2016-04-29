@@ -1410,6 +1410,7 @@
     <Content Include="Areas\Voidbridge\Views\HandHistory_API\Index.cshtml" />
     <Content Include="Areas\Voidbridge\Views\HandHistory_API\Styles\HandHistory.less" />
     <Content Include="Areas\Voidbridge\Views\Web.config" />
+    <Content Include="Areas\Voidbridge\Views\BetDetails\_Tickets.cshtml" />
     <None Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3-custom.less" />
   </ItemGroup>
   <ItemGroup>
