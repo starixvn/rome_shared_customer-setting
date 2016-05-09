@@ -24,6 +24,13 @@
         }
 
         [HttpGet]
+        public ActionResult BetDetailsPaging(GetRNGCasinoBetDetailsCriteria criteria)
+        {
+            var details = _rngCasinoService.BetDetails(criteria);
+            return PartialView("~/Areas/RNGCasino/Views/BetDetails/_Tickets.cshtml", details);
+        }
+
+        [HttpGet]
         public ActionResult GetHandHistory(GetRNGCasinoResultCriteria criteria)
         {
             ViewBag.ProductName = BetListResources.Product_6;
