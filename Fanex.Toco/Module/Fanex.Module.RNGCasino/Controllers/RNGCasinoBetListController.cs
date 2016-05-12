@@ -42,7 +42,7 @@
         public ActionResult GetVoidbridgeResult(GetVoidbridgeResultCriteria criteria)
         {
             ViewBag.ProductName = BetListResources.Voidbridge;
-            var result = _rngCasinoService.GetVoidbridgeResult(criteria, Request.UserLanguages[0]);
+            var result = _rngCasinoService.GetVoidbridgeResult(criteria, Session[Session.SessionID + "_LANGUAGE"].ToString());
             return View("~/Areas/RNGCasino/Views/HandHistory_API/Index.cshtml", result);
         }
     }

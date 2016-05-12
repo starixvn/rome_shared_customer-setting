@@ -205,7 +205,7 @@ namespace Fanex.Module.RNGCasino.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Voidbridge.
+        ///   Looks up a localized string similar to Macau Games.
         /// </summary>
         public static string Voidbridge {
             get {
