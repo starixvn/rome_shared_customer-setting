@@ -12,7 +12,6 @@ namespace Fanex.Module.Logs.Mappings
     using System.Collections.Generic;
     using System.Configuration;
     using System.Linq;
-    using Sunplus.UMControllerLibrary;
 
     /// <summary>
     /// TODO: Update summary.
@@ -35,24 +34,6 @@ namespace Fanex.Module.Logs.Mappings
             get
             {
                 return base["SensitiveReplacement"] as string;
-            }
-        }
-
-        [ConfigurationProperty("UmURL", IsRequired = true)]
-        public string UmURL
-        {
-            get
-            {
-                return base["UmURL"] as string;
-            }
-        }
-
-        [ConfigurationProperty("Site", IsRequired = true)]
-        public Sites Site
-        {
-            get
-            {
-                return (Sites)base["Site"];
             }
         }
 

@@ -16,11 +16,7 @@ namespace Fanex.Module.Logs.Services
     using System.Web;
     using Fanex.Logging;
     using Fanex.Module.Logs.Mappings;
-    using Sunplus.UMControllerLibrary;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public static class LogWriter
     {
         private static LogsConfiguration _configuration;
@@ -46,32 +42,8 @@ namespace Fanex.Module.Logs.Services
             }
         }
 
-        private static string UmURL
-        {
-            get
-            {
-                return _configuration.Logs.UmURL;
-            }
-        }
-
-        private static Sites Site
-        {
-            get
-            {
-                return _configuration.Logs.Site;
-            }
-        }
-
         public static void Write(this Exception ex, Formater.LogType logType = Formater.LogType.Auto)
         {
-            var um = new UMBusiness();
-            var isUM = um.isUnderMaintainence(Site, UmURL);
-
-            if (isUM)
-            {
-                return;
-            }
-
             if (logType != Formater.LogType.Auto)
             {
                 ex.WriteLog(logType);
