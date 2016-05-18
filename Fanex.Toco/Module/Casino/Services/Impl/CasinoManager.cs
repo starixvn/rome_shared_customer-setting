@@ -27,6 +27,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
     using Fanex.CustomerSetting.Module.Casino.Services.Interface;
     using Fanex.Module.Logs.Services;
     using Fanex.Module.Logs;
+    using CasinoTempLibrary.SBAgent;
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
@@ -67,7 +68,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var synced = custInfo.CasinoSync;
             var id = synced ? custId : 0;
             var cust = new Customer();
-            var dt = synced ? cust.GetCustGameKind(custId) : new BasicInfo().GetGameKind(custInfo.CasinoNo);
+            var dt = synced ? cust.GetCustGameKind(custId) : new TempBasicInfo().GetGameKindByCustID(custInfo.CasinoNo, custId);
 
             if (custInfo.RoleId != Super)
             {
