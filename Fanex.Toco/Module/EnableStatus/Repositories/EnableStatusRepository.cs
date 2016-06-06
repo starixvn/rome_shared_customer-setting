@@ -25,7 +25,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
     using Fanex.Data.DNAide;
     using Fanex.Module.Logs;
     using Fanex.Module.Logs.Services;
-
+    using System.Linq;
     /// <summary>
     /// Enable status repository.
     /// </summary>
@@ -52,7 +52,16 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                 return model;
             }
 
-            model.ReadOnly = this.IsCrossingLevel(context);
+            var currentCustInfo = this.GetCurrentCustomerInfo(context.CustId);
+            var isCrossLevel = this.IsCrossingLevel(context, currentCustInfo);
+            var isSyncedAllDownlineVoidbridge = this.IsSyncedAllDownlineVoidbridge(currentCustInfo);
+            var product = Helper.Products.Where(p => p.Id.Equals(context.ProductId, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+            model.ReadOnly = isCrossLevel || !isSyncedAllDownlineVoidbridge;
+            model.Warning = Helper.GetResource(product.Warning);
+            if (isSyncedAllDownlineVoidbridge)
+            {
+                model.Warning = null;
+            }
 
             using (var objectDb = new ObjectDb(storedProcedure.Key))
             {
@@ -136,7 +145,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         public Result UpdateProductStatus(SpElementConfiguration storedProcedure, RequestContext context, EnableStatusEntity entity)
         {
-            if (this.IsCrossingLevel(context))
+            if (this.IsCrossingLevel(context, this.GetCurrentCustomerInfo(context.CustId)))
             {
                 return new Result(1, "You are not authorized on this function");
             }
@@ -203,7 +212,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         public Result UpdateProductStatus(SpElementConfiguration storedProcedure, RequestContext context, IList<EnableStatusEntity> entities)
         {
-            if (this.IsCrossingLevel(context))
+            if (this.IsCrossingLevel(context, this.GetCurrentCustomerInfo(context.CustId)))
             {
                 return new Result(1, "You are not authorized on this function");
             }
@@ -297,7 +306,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
             }
         }
 
-        private bool IsCrossingLevel(RequestContext context)
+        private bool IsCrossingLevel(RequestContext context, DbResult currentCustomer)
         {
             try
             {
@@ -305,11 +314,6 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                 {
                     return false;
                 }
-
-                var param = new Hashtable();
-                param.Add("custid", context.CustId);
-
-                DbResult currentCustomer = DbHelper.ExecuteDbResult("Age_CustomerSelUserInfo", param);
 
                 if (currentCustomer == null ||
                     currentCustomer.ResultSet == null ||
@@ -337,6 +341,32 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
 
                 return true;
             }
+        }
+
+        private DbResult GetCurrentCustomerInfo(int custId)
+        {
+            var param = new Hashtable();
+            param.Add("custid", custId);
+
+            return DbHelper.ExecuteDbResult("Age_CustomerSelUserInfo", param);
+        }
+
+        private bool IsSyncedAllDownlineVoidbridge(DbResult currentCustomer)
+        {
+            if (currentCustomer == null ||
+                   currentCustomer.ResultSet == null ||
+                   currentCustomer.ResultSet.Tables == null ||
+                   currentCustomer.ResultSet.Tables.Count == 0 ||
+                   currentCustomer.ResultSet.Tables[0] == null ||
+                   currentCustomer.ResultSet.Tables[0].Rows == null ||
+                   currentCustomer.ResultSet.Tables[0].Rows.Count == 0)
+            {
+                return true;
+            }
+
+            var row = currentCustomer.ResultSet.Tables[0].Rows[0];
+
+            return Utils.ToBoolean(row["SyncedVoidBridgeDownline"]);
         }
     }
 }

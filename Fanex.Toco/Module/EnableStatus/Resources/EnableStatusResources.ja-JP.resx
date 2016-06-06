@@ -213,4 +213,7 @@
   <data name="p17" xml:space="preserve">
     <value>Microgaming - RnG Casino</value>
   </data>
+  <data name="warningVoidBridgeUnsyncedAllDownline" xml:space="preserve">
+    <value>The Mauca Games Setting is not fully available for this line. Please go to Edit Macau Games page to adjust.</value>
+  </data>
 </root>
