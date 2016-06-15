@@ -11,6 +11,7 @@
 namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
 {
     using System;
+    using System.Collections;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -54,6 +55,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
         public bool IsSyncLiveCasino { get; set; }
 
         public int Creator { get; set; }
+
+        public string CreatorName { get; set; }
 
         public string Language { get; set; }
 

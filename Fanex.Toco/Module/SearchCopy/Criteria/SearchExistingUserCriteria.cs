@@ -19,6 +19,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
     [Serializable]
     public class SearchExistingUserCriteria : CriteriaBase
     {
+        public bool IsMember { get; set; }
+
         public int Uplineid { get; set; }
 
         public string Username { get; set; }
@@ -29,7 +31,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
          
         public override string GetSettingKey()
         {
-            return "Age_CustomerSelCheckBelonging_ByUsername";
+            return "Acc_CustomerCopyMemberSelUsername";
         }
 
         public override bool IsValid()

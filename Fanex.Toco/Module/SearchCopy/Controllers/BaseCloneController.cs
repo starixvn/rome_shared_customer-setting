@@ -78,7 +78,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             return currentURL.StartsWith("http") ? currentURL : "http://" + currentURL;
         }
 
-        public int SearchExistingUser(SearchExistingUserCriteria criteria)
+        public SearchResult SearchExistingUser(SearchExistingUserCriteria criteria)
         {
             return _searchCopyService.SearchExistingUser(criteria);
         }
@@ -88,9 +88,9 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             return _searchCopyService.GetSportsStatusByUserName(username);
         }
 
-        public ActionResult GetCustomerInfoByUserId(int custid)
+        public ActionResult GetCustomerInfoByUserId(int custid, string level = "member")
         {
-            var custInfo = _searchCopyService.GetCustomerInfoByUserId(new GetCustomerInfoByUserIdCriteria { Custid = custid });
+            var custInfo = _searchCopyService.GetCustomerInfoByUserId(new GetCustomerInfoByUserIdCriteria { Custid = custid, IsMember = level.Equals("member", StringComparison.OrdinalIgnoreCase) });
             return base.Json(custInfo, JsonRequestBehavior.AllowGet);
             ////return JsonBase(custInfo);
         }

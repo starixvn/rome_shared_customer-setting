@@ -15,9 +15,13 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Entities
     /// </summary>
     public class CustomerInfo
     {        
+        public int RoleId { get; set; }
+
         public string Site { get; set; }
         
         public string Credit { get; set; }
+
+        public string CreditMax { get; set; }
 
         public int CurrencyId { get; set; }
 

@@ -10,11 +10,26 @@
 
 namespace Fanex.CustomerSetting.Module.SearchCopy.Services
 {
-    using System.Collections.Generic;    
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Globalization;
+    using System.Threading.Tasks;
+    using Core.Web;
     using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
     using Fanex.CustomerSetting.Module.SearchCopy.Entities;
     using Fanex.CustomerSetting.Module.SearchCopy.Repositories;
+    using Fanex.Module.Logs.Services;
     using Fanex.NAP.Framework.Data;
+    using GoldDeluxe.CoreSetting.CommandResult;
+    using GoldDeluxe.CoreSetting.ParameterObjects;
+    using GoldDeluxe.CoreSetting.Services;
+    using Keno.KenoSetting.Services;
+    using Keno.KenoSetting.ViewModels;
+    using PTEngine.BusinessObjects;
+    using PTVirtualSports.BusinessObjects;
+    using PTVirtualSports.Services;
 
     /// <summary>
     /// Class SearchCopyService.
@@ -32,13 +47,13 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
             _searchCopyRepository = searchCopyRepository ?? new SearchCopyRepository();
         }        
 
-        public int SearchExistingUser(SearchExistingUserCriteria criteria)
+        public SearchResult SearchExistingUser(SearchExistingUserCriteria criteria)
         {
-            var errorcode = _searchCopyRepository.SearchExistingUser(criteria);
-
-            if (errorcode.Equals(-1))
+            var searchResult = _searchCopyRepository.SearchExistingUser(criteria);
+            
+            if (searchResult.CustId.Equals(-1))
             {
-                return -1;
+                return searchResult;
             }
 
             var result = _searchCopyRepository.CheckEnableCustomer(new CheckCustomerEnabledCriteria
@@ -51,7 +66,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
                 return result.Code;
             }
 
-            return errorcode;
+            return searchResult;
         }
 
         public HideSports GetSportsStatusByUserName(string username)
@@ -69,19 +84,311 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
             return _searchCopyRepository.GetCustomerInfoByUserId(criteria);
         }
 
-        public CommandResult CopyExistingUser(ref CustomerInsMemberCriteria criteria)
+        public NAP.Framework.Data.CommandResult CopyExistingUser(ref CustomerInsMemberCriteria criteria)
         {
             return _searchCopyRepository.CopyExistingUser(ref criteria);
         }
 
-        public CommandResult CheckEnableCustomer(CheckCustomerEnabledCriteria criteria)
+        public NAP.Framework.Data.CommandResult CheckEnableCustomer(CheckCustomerEnabledCriteria criteria)
         {
             return _searchCopyRepository.CheckEnableCustomer(criteria);
         } 
 
-        public CommandResult UpdateSync(ICriteria criteria)
+        public NAP.Framework.Data.CommandResult UpdateSync(ICriteria criteria)
         {
             return _searchCopyRepository.UpdateSync(criteria);
+        }
+
+        public NAP.Framework.Data.CommandResult InsertMember(Hashtable criteria, int existingCustId)
+        {
+            var result = _searchCopyRepository.InsertMember(criteria);
+            var ipAddress = CurrentContext.Instance.Ip4Address;
+
+            if (result.IsSuccessful)
+            {
+                // copy keno
+                CopyKeno(criteria, existingCustId);
+
+                // copy gold deluxe
+                CopyGoldDeluxe(criteria, existingCustId, ipAddress);
+
+                // copy virtual sports
+                CopyVirtualSports(criteria, existingCustId, ipAddress);
+
+                // copy dcs
+                CopyDCS(criteria, existingCustId, ipAddress);
+
+                // copy horse racing
+                CopyRacing(criteria, existingCustId, ipAddress);
+            }
+
+            return result;
+        }
+
+        public DataTable GetSportBookSettingMember(int custId)
+        {
+            return _searchCopyRepository.GetSportBookSettingMember(custId);
+        }
+
+        private void CheckConstraintData(ref ICustomer oldCustomerSettings)
+        {
+            //check status
+            oldCustomerSettings.StatusSetting.DisableVirtualSports = oldCustomerSettings.StatusSetting.DisableUplineVirtualSports;
+
+            //check betting limit
+            var index = 0;
+            if (oldCustomerSettings.BettingLimit != null)
+            {
+                foreach (BettingLimitItem bettingLimitItem in oldCustomerSettings.BettingLimit.BettingLimitItems)
+                {
+                    oldCustomerSettings.BettingLimit.BettingLimitItems[index].MinBet = bettingLimitItem.MinBet > bettingLimitItem.MinBetMax ?
+                                                                                        bettingLimitItem.MinBet : bettingLimitItem.MinBetMax;
+                    oldCustomerSettings.BettingLimit.BettingLimitItems[index].MaxBet = bettingLimitItem.MaxBet < bettingLimitItem.MaxBetMin ?
+                                                                                        bettingLimitItem.MaxBet : bettingLimitItem.MaxBetMin;
+                    oldCustomerSettings.BettingLimit.BettingLimitItems[index].MaxPerMatch = bettingLimitItem.MaxPerMatch < bettingLimitItem.MaxPerMatchMax ?
+                                                                                            bettingLimitItem.MaxPerMatch : bettingLimitItem.MaxPerMatchMax;
+                    index++;
+                }
+            }
+
+            //check PT
+            var sportTypeIndex = 0;
+            foreach (SportType sport in oldCustomerSettings.PtSetting.SportTypes)
+            {
+                var bettypeGroupSetIndex = 0;
+                foreach (BetTypeGroupSet bettypeGroupSet in sport.BetTypeGroupSets)
+                {
+                    var bettypeGroupIndex = 0;
+                    foreach (BetTypeGroup bettypeGroup in bettypeGroupSet.BetTypeGroups)
+                    {
+                        var bettypeIndex = 0;
+                        foreach (BetType bettype in bettypeGroup.BetTypes)
+                        {
+                            oldCustomerSettings.PtSetting.SportTypes[sportTypeIndex].BetTypeGroupSets[bettypeGroupSetIndex].BetTypeGroups[bettypeGroupIndex].BetTypes[bettypeIndex].Pt.A1 =
+                                                                                                                        bettype.Pt.A1 < bettype.Pt.A2 ? bettype.Pt.A1 : bettype.Pt.A2;
+                            bettypeIndex++;
+                        }
+
+                        bettypeGroupIndex++;
+                    }
+
+                    bettypeGroupSetIndex++;
+                }
+
+                sportTypeIndex++;
+            }
+        }
+
+        private IList<Core.Models.Result> CopyKeno(Hashtable criteria, int existingCustId)
+        {
+
+            IList<Core.Models.Result> result = null;
+            var task = Task.Factory.StartNew(() =>
+            {
+                var kenoService = new KenoSettingService();
+                var childSetting = kenoService.GetSettingInCaseOfAgentEditMember(new CustomerInformationViewModel { CustId = existingCustId, UserId = (int)criteria["userid"] });
+                childSetting.CustomerInformation.CustId = (int)criteria["custid"];
+
+                foreach (var betSetting in childSetting.BetSettings)
+                {
+                    betSetting.IsStatusUpdated = true;
+                    betSetting.IsBetSettingUpdated = true;
+                }
+
+                foreach (var positionTaking in childSetting.PositionTakings)
+                {
+                    positionTaking.A1 = positionTaking.A1 < positionTaking.A2 ? positionTaking.A1 : positionTaking.A2;
+                    positionTaking.IsUpdateA1 = true;
+                }
+
+                result = kenoService.UpdateMemberCustomerSettingInCaseOfAgentEditMember(childSetting);
+            });
+
+            try
+            {
+                task.Wait();
+            }
+            catch (AggregateException ae)
+            {
+                foreach (var ex in ae.InnerExceptions)
+                {
+                    ex.Write();
+                }  
+            }
+
+            return result;
+        }
+
+        private IMultipleCommandResults CopyGoldDeluxe(Hashtable criteria, int existingCustId, string ipAddress)
+        {
+            IMultipleCommandResults result = null;
+            var task = Task.Factory.StartNew(() =>
+            {
+                var goldDeluxeService = new SettingService();
+                result = goldDeluxeService.UpdateSettingFromExistingMember(new UpdateSettingFromExistingMemberParameters
+                {
+                    CustId = (int)criteria["custid"],
+                    FromCustId = existingCustId,
+                    UpLineId = (int)criteria["userid"],
+                    ActorId = (int)criteria["userid"],
+                    SubAccId = 0,
+                    Ip = ipAddress,
+                    Language = CultureInfo.CurrentCulture.Name
+                });
+            });
+
+            try
+            {
+                task.Wait();
+            }
+            catch (AggregateException ae)
+            {
+                foreach (var ex in ae.InnerExceptions)
+                {
+                    ex.Write();
+                }
+            }
+
+            return result;
+        }
+
+        private VSResult CopyVirtualSports(Hashtable criteria, int existingCustId, string ipAddress)
+        {
+            VSResult result = null;
+            var task = Task.Factory.StartNew(() =>
+            {
+
+                var oldCustomerContext = new RequestContext
+                {
+                    CustId = (int)criteria["userid"],
+                    TargetCustId = existingCustId,
+                    TargetRoleId = 1,
+                    FormId = FormType.EditPT,
+                    SubAccId = 0,
+                    AdminId = (int)criteria["userid"],
+                    Language = CultureInfo.CurrentCulture.Name,
+                    LangKey = CultureInfo.CurrentCulture.Name,
+                    IP = ipAddress,
+                    RoleId = 2
+                };
+
+                var currentContext = new RequestContext
+                {
+                    CustId = (int)criteria["userid"],
+                    TargetCustId = (int)criteria["custid"],
+                    TargetRoleId = 1,
+                    FormId = FormType.EditPT,
+                    SubAccId = 0,
+                    AdminId = (int)criteria["userid"],
+                    Language = CultureInfo.CurrentCulture.Name,
+                    LangKey = CultureInfo.CurrentCulture.Name,
+                    IP = ipAddress,
+                    RoleId = 2
+                };
+
+                var customerService = new CustomerService();
+                var oldCustomer = customerService.GetCustomer(oldCustomerContext);
+                CheckConstraintData(ref oldCustomer);
+
+                result = customerService.SaveCustomer(null, oldCustomer, currentContext, null);
+            });
+
+            try
+            {
+                task.Wait();
+            }
+            catch (AggregateException ae)
+            {
+                foreach (var ex in ae.InnerExceptions)
+                {
+                    ex.Write();
+                }
+            }
+
+            return result;
+        }
+
+        private PTRacing.BusinessObjects.Result CopyRacing(Hashtable criteria, int existingCustId, string ipAddress)
+        {
+            PTRacing.BusinessObjects.Result result = null;
+            var task = Task.Factory.StartNew(() =>
+            {
+                PTRacing.Services.ICustomerService racingService = new PTRacing.Services.CustomerService();
+
+                var oldSetting = racingService.GetCustomer(new PTRacing.BusinessObjects.RequestContext
+                {
+                    CustId = (int)criteria["userid"],
+                    UserName = string.Empty,
+                    TargetCustId = existingCustId,
+                    AdminId = (int)criteria["userid"],
+                    RoleId = 2,
+                    TargetRoleId = 1,
+                    FormId = PTRacing.BusinessObjects.FormType.EditPT,
+                    IP = ipAddress
+                });
+
+                var newContext = new PTRacing.BusinessObjects.RequestContext
+                {
+                    CustId = (int)criteria["userid"],
+                    UserName = string.Empty,
+                    TargetCustId = (int)criteria["custid"],
+                    AdminId = (int)criteria["userid"],
+                    RoleId = 2,
+                    TargetRoleId = 1,
+                    FormId = PTRacing.BusinessObjects.FormType.EditPT,
+                    IP = ipAddress
+                };
+
+                PTRacing.BusinessObjects.ICustomer newSetting = new PTRacing.BusinessObjects.Customer();
+                newSetting = oldSetting;
+                newSetting.CustId = (int)criteria["custid"];
+
+                result = racingService.SaveCustomer(oldSetting, newSetting, newContext, null);
+            });
+                       
+            try
+            {
+                task.Wait();
+            }
+            catch (AggregateException ae)
+            {
+                foreach (var ex in ae.InnerExceptions)
+                {
+                    ex.Write();
+                }
+            }
+
+            return result;
+        }
+
+        private Core.Models.Result CopyDCS(Hashtable criteria, int existingCustId, string ipAddress)
+        {
+            Core.Models.Result result = null;
+            var task = Task.Factory.StartNew(() =>
+            {
+                IDCSSettingCopyInsertMemberService _dcsSettingService = new DCSSettingCopyInsertMemberService();
+                result = _dcsSettingService.CorrectMemberPositionTaking(new DCSSettingCopyInsertMemberCriteria
+                {
+                    CustID = (int)criteria["custid"],
+                    ExistingCustID = existingCustId,
+                    UserID = (int)criteria["userid"],
+                    IpAddress = ipAddress
+                });
+            });
+
+            try
+            {
+                task.Wait();
+            }
+            catch (AggregateException ae)
+            {
+                foreach (var ex in ae.InnerExceptions)
+                {
+                    ex.Write();
+                }
+            }
+
+            return result;
         }
     }
 }

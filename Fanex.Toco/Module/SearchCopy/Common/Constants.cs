@@ -26,6 +26,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Common
         {
             public const string Success = "Created Super Successfully !";
             public const string Failed = "Unable to copy the Super, please try again !";
+            public const string SuccessMember = "Created Member Successfully !";
+            public const string FailedMember = "Unable to copy the Member, please try again !";
         }
 
         /// <summary>
