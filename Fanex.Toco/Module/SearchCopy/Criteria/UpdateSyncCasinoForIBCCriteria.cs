@@ -26,6 +26,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
 
         public bool SyncCS { get; set; }
 
+        public bool DisabledCS { get; set; }
+
         public override string GetSettingKey()
         {
             return "Acc_UpdCSStatus";

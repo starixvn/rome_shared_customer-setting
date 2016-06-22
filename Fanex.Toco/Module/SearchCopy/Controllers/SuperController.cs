@@ -186,11 +186,11 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                 resultMessage = string.Join(null, new string[] { "<div>", resultSyncData.Message, "</div>" });
             }
 
-            resultSyncData = UpdateSyncBingoAfterCopy(criteria);
-            if (resultSyncData.IsSuccessful == false)
-            {
-                resultMessage = string.Join(null, new string[] { resultMessage, "<div>", resultSyncData.Message, "</div>" });
-            }
+            //resultSyncData = UpdateSyncBingoAfterCopy(criteria);
+            //if (resultSyncData.IsSuccessful == false)
+            //{
+            //    resultMessage = string.Join(null, new string[] { resultMessage, "<div>", resultSyncData.Message, "</div>" });
+            //}
 
             resultSyncData = UpdateSyncLiveCasinoAfterCopy(criteria);
 
@@ -221,7 +221,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                 return result;
             }
 
-            var task = Task.Factory.StartNew(() =>
+            try
             {
                 bool success = SyncCasino(customer);
                 if (success == false)
@@ -231,26 +231,18 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                 }
 
                 ////Sync data to IBC 
-                result = UpdateSyncDataToIBC(customer.CustId, new UpdateSyncCasinoForIBCCriteria() { CustId = customer.CustId, LoginIP = customer.IP, UserId = customer.Creator });
+                result = UpdateSyncDataToIBC(customer.CustId, new UpdateSyncCasinoForIBCCriteria() { CustId = customer.CustId, LoginIP = customer.IP, UserId = customer.Creator, DisabledCS = customer.DisableCasino });
                 if (result.IsSuccessful == false)
                 {
                     result.Code = -1;
                     result.Message = Constants.FailedSyncMessage.Casino;
-                }
-            });
-
-            try
-            {
-                task.Wait();
+                }                
             }
-            catch (AggregateException ae)
+            catch (Exception ex)
             {
-                foreach (var ex in ae.InnerExceptions)
-                {
-                    result.Code = -1;
-                    result.Message = Constants.FailedSyncMessage.Casino;
-                    ex.Write();
-                }
+                result.Code = -1;
+                result.Message = Constants.FailedSyncMessage.Casino;
+                ex.Write();
             }
             
             return result;
@@ -265,7 +257,25 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
         {
             ////Sync data to Casino 
             var casinoCustomer = new CasinoLibrary.SBAgent.Customer();
-            bool success = casinoCustomer.AutoInsertSuperFromExisting(
+            bool success = customer.CustLevel == 1 ? casinoCustomer.AutoInsertAccountFromExisting(
+                    "01",
+                    customer.CustId,
+                    customer.ExistingCustId,
+                    customer.UserName,
+                    string.Empty,
+                    customer.FirstName,
+                    customer.LastName,
+                    customer.Userpwd,
+                    customer.Phone,
+                    customer.MobilePhone,
+                    customer.Fax,
+                    DateTime.Now,
+                    customer.IP,
+                    customer.Creator,
+                    customer.CreatorName,
+                    3
+                ) :
+                casinoCustomer.AutoInsertSuperFromExisting(
                     "01",
                     customer.CustId,
                     customer.ExistingCustId,
@@ -299,8 +309,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                 return result;
             }
 
-            var task = Task.Factory.StartNew(() =>
-            {
+            try
+            { 
                 bool success = SyncBingo(customer);
                 if (success == false)
                 {
@@ -315,20 +325,12 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                     result.Code = -1;
                     result.Message = Constants.FailedSyncMessage.Bingo;
                 }
-            });
-
-            try
-            {
-                task.Wait();
             }
-            catch (AggregateException ae)
+            catch (Exception ex)
             {
-                foreach (var ex in ae.InnerExceptions)
-                {
                     result.Code = -1;
                     result.Message = Constants.FailedSyncMessage.Bingo;
                     ex.Write();
-                }
             }
 
             return result;
@@ -371,7 +373,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                 return result;
             }
 
-            var task = Task.Factory.StartNew(() =>
+            try
             {
                 var commandResults = SyncLiveCasino(customer);
 
@@ -383,20 +385,12 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                         result.Message = Constants.FailedSyncMessage.LiveCasino;
                     }
                 }
-            });
-
-            try
-            {
-                task.Wait();
             }
-            catch (AggregateException ae)
+            catch (Exception ex)
             {
-                foreach (var ex in ae.InnerExceptions)
-                {
-                    result.Code = -1;
-                    result.Message = Constants.FailedSyncMessage.LiveCasino;
-                    ex.Write();
-                }
+                result.Code = -1;
+                result.Message = Constants.FailedSyncMessage.LiveCasino;
+                ex.Write();
             }
 
             return result;

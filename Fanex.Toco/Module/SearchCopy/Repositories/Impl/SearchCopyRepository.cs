@@ -62,6 +62,9 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
                     custInfo.IsSyncBingo = Converter.To<byte>(dataReader["syncbingo"]);
                     custInfo.IsSyncLiveCasino = criteria.IsMember ? (byte)1 : Converter.To<byte>(dataReader["synclivecasino"]);
                     custInfo.RoleId = Converter.ToInt(dataReader["roleid"]);
+                    custInfo.DisableBingo = Converter.ToBool(dataReader["disableBingo"]);
+                    custInfo.DisableCasino = Converter.ToBool(dataReader["disableCasino"]);
+                    custInfo.DisableLiveCasino = Converter.ToBool(dataReader["disableLiveCasino"]);
                 }                
             }
 
