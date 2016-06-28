@@ -116,7 +116,7 @@ namespace Fanex.CustomerSetting.Module.Racebook.Services
         /// <param name="targetRoleId">The target role id.</param>
         /// <param name="updatedUserId">The updated user id.</param>
         /// <returns>The result object.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules",
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules",
             "SP2101:MethodMustNotContainMoreLinesThan",
             Justification = "Reviewed. Suppression is OK here.")]
         public Entities.Result SaveCustomerSettings(Setting setting, int targetRoleId, int updatedUserId)
@@ -206,7 +206,7 @@ namespace Fanex.CustomerSetting.Module.Racebook.Services
         /// <param name="row">The data row.</param>
         /// <param name="targetRole">The target role.</param>
         /// <returns>The Min/Max racing setting object.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules",
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules",
             "SP2101:MethodMustNotContainMoreLinesThan",
             Justification = "Reviewed. Suppression is OK here.")]
         private Setting GetMinMaxPositionTakingSetting(DataRow row, CustInfo.Roles targetRole)

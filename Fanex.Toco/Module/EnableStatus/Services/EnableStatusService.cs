@@ -30,7 +30,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
     {
         private IEnableStatusRepository _data = new EnableStatusRepository();
 
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         public EnableStatusModel GetProductStatus(SpElementConfiguration storedProcedure, RequestContext context)
         {
             try

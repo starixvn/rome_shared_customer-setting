@@ -30,7 +30,7 @@ namespace Fanex.CustomerSetting.Module.Racebook.Helper
         /// <param name="errorCode">The error code.</param>
         /// <param name="errorMsg">The error MSG.</param>
         /// <returns>The list of result object.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules",
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules",
             "SP2101:MethodMustNotContainMoreLinesThan",
             Justification = "Reviewed. Suppression is OK here.")]
         public static IList<Result> ParseError(string errorCode, string errorMsg)

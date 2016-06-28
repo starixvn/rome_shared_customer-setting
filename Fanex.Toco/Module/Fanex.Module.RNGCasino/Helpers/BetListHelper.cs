@@ -62,7 +62,7 @@
                 Math.Round(input * 100, 2).ToString() + BetListResources.Symbol_Percent;
         }
 
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules",
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules",
             "SP2101:MethodMustNotContainMoreLinesThan",
             Justification = "Reviewed. Suppression is OK here.")]
         public string StatusRefNo(TicketDetail ticketDetail)

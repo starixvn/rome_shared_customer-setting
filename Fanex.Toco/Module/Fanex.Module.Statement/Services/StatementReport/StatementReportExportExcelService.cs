@@ -174,7 +174,7 @@ namespace Fanex.Module.Statement.Services.StatementReport
         /// <param name="workbook">The work book.</param>
         /// <param name="worksheet">The work sheet.</param>
         /// <param name="criteria">The criteria.</param>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules",
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules",
             "SP2101:MethodMustNotContainMoreLinesThan",
             Justification = "Reviewed. Suppression is OK here.")]
         private void ExportHeaderMemberStatement(
@@ -258,7 +258,7 @@ namespace Fanex.Module.Statement.Services.StatementReport
         /// <param name="worksheet">The work sheet.</param>
         /// <param name="criteria">The criteria.</param>
         /// <param name="data">The statement report.</param>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules",
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules",
             "SP2101:MethodMustNotContainMoreLinesThan",
             Justification = "Reviewed. Suppression is OK here.")]
         private void ExportBodyMemberStatement(
@@ -404,7 +404,7 @@ namespace Fanex.Module.Statement.Services.StatementReport
         /// <param name="workbook">The work book.</param>
         /// <param name="worksheet">The work sheet.</param>
         /// <param name="criteria">The criteria.</param>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules",
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules",
             "SP2101:MethodMustNotContainMoreLinesThan",
             Justification = "Reviewed. Suppression is OK here.")]
         private void ExportHeaderSMAStatement(
@@ -473,7 +473,7 @@ namespace Fanex.Module.Statement.Services.StatementReport
         /// <param name="worksheet">The work sheet.</param>
         /// <param name="criteria">The criteria.</param>
         /// <param name="data">The statement report.</param>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules",
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules",
             "SP2101:MethodMustNotContainMoreLinesThan",
             Justification = "Reviewed. Suppression is OK here.")]
         private void ExportBodySMAStatement(
@@ -674,7 +674,7 @@ namespace Fanex.Module.Statement.Services.StatementReport
         /// <param name="worksheet">The work sheet.</param>
         /// <param name="criteria">The criteria.</param>
         /// <param name="data">The statement report.</param>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules",
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules",
             "SP2101:MethodMustNotContainMoreLinesThan",
             Justification = "Reviewed. Suppression is OK here.")]
         private void ExportBodyTransferDetails(

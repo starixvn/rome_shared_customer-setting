@@ -224,7 +224,7 @@ namespace Fanex.Module.Statement.Services.StatementReport
         /// </summary>
         /// <param name="criteria">The criteria.</param>
         /// <returns>The report date range.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules",
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules",
             "SP2101:MethodMustNotContainMoreLinesThan",
             Justification = "Reviewed. Suppression is OK here.")]
         private List<StatementReportCriteria> GetReportDateRange(StatementReportCriteria criteria)

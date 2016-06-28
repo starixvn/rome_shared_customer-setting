@@ -31,7 +31,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
     /// </summary>
     public class EnableStatusRepository : IEnableStatusRepository
     {
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         public EnableStatusModel GetProductStatus(SpElementConfiguration storedProcedure, RequestContext context)
         {
             var model = new EnableStatusModel();
@@ -142,7 +142,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
             }
         }
 
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         public Result UpdateProductStatus(SpElementConfiguration storedProcedure, RequestContext context, EnableStatusEntity entity)
         {
             if (this.IsCrossingLevel(context, this.GetCurrentCustomerInfo(context.CustId)))
@@ -209,7 +209,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
             }
         }
 
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         public Result UpdateProductStatus(SpElementConfiguration storedProcedure, RequestContext context, IList<EnableStatusEntity> entities)
         {
             if (this.IsCrossingLevel(context, this.GetCurrentCustomerInfo(context.CustId)))

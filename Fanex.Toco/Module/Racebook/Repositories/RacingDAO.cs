@@ -52,7 +52,7 @@ namespace Fanex.CustomerSetting.Module.Racebook.Repositories
         /// <param name="custId">The customer id.</param>
         /// <param name="roleId">The role id.</param>
         /// <returns>Data table.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules",
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules",
             "SP2101:MethodMustNotContainMoreLinesThan",
             Justification = "Reviewed. Suppression is OK here.")]
         public DataTable GetRacingSetting(int custId, int roleId)
@@ -144,7 +144,7 @@ namespace Fanex.CustomerSetting.Module.Racebook.Repositories
         /// <param name="settingParams">The setting parameters.</param>
         /// <param name="roleId">The role id.</param>
         /// <returns>The result object.</returns>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules",
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules",
             "SP2101:MethodMustNotContainMoreLinesThan",
             Justification = "Reviewed. Suppression is OK here.")]
         public Result UpdateRacingSetting(Hashtable settingParams, int roleId)
