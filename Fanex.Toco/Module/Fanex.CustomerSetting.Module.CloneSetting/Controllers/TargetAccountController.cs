@@ -1,5 +1,5 @@
 ﻿// ************************************************************************************
-// <copyright file="TargetAccountController.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="TargetAccountController.cs" company="">
 //     Copyright (c) TargetAccountController.cs. All rights reserved.
 // </copyright>
 // ************************************************************************************

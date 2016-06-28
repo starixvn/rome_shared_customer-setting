@@ -1,5 +1,5 @@
 ﻿// ************************************************************************************
-// <copyright file="CloneAccountCriteria.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="CloneAccountCriteria.cs" company="">
 //     Copyright (c) CloneAccountCriteria.cs. All rights reserved.
 // </copyright>
 // ************************************************************************************

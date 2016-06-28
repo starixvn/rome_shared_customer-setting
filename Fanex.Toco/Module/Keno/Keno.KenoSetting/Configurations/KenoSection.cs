@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="KenoSection.cs" company="Nexcel">
+// <copyright file="KenoSection.cs" company="">
 // Steven.Nguyen
 // </copyright>
 // -----------------------------------------------------------------------

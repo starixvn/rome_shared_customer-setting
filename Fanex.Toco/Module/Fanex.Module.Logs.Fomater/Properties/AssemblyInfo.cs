@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Fanex.Module.Logs")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Nexcel Solution Co.LTD")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Fanex.Module.Logs")]
-[assembly: AssemblyCopyright("Copyright © Nexcel Solution Co.LTD")]
+[assembly: AssemblyCopyright("Copyright ©")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

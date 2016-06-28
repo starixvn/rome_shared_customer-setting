@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Fanex.Voidbridge.BetDetail")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Nexcel")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Fanex.Voidbridge.BetDetail")]
-[assembly: AssemblyCopyright("Copyright © Nexcel 2016")]
+[assembly: AssemblyCopyright("Copyright © 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="ICloneAccountDAO.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="ICloneAccountDAO.cs" company="">
 // TODO: Update copyright text.
 // </copyright>
 // -----------------------------------------------------------------------

@@ -1,5 +1,5 @@
 // ************************************************************************************
-// <copyright file="ModuleRegistrator.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="ModuleRegistrator.cs" company="">
 //     Copyright (c) ModuleRegistrator.cs. All rights reserved.
 // </copyright>
 // ************************************************************************************

@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("EnableStatus")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Nexcel Solution Co.LTD")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("EnableStatus")]
-[assembly: AssemblyCopyright("Copyright © Nexcel Solution Co.LTD 2015")]
+[assembly: AssemblyCopyright("Copyright © 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
