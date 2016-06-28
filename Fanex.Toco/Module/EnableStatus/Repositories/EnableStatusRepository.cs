@@ -54,13 +54,26 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
 
             var currentCustInfo = this.GetCurrentCustomerInfo(context.CustId);
             var isCrossLevel = this.IsCrossingLevel(context, currentCustInfo);
-            var isSyncedAllDownlineVoidbridge = this.IsSyncedAllDownlineVoidbridge(currentCustInfo);
             var product = Helper.Products.Where(p => p.Id.Equals(context.ProductId, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
-            model.ReadOnly = isCrossLevel || !isSyncedAllDownlineVoidbridge;
+            model.ReadOnly = isCrossLevel;
             model.Warning = Helper.GetResource(product.Warning);
-            if (isSyncedAllDownlineVoidbridge)
+            if (product.Id.Equals("voidbridge", StringComparison.CurrentCultureIgnoreCase))
             {
-                model.Warning = null;
+                var isSyncedAllDownlineVoidbridge = this.IsSyncedAllDownlineVoidbridge(currentCustInfo);
+                model.ReadOnly = model.ReadOnly || !isSyncedAllDownlineVoidbridge;
+                if (isSyncedAllDownlineVoidbridge)
+                {
+                    model.Warning = null;
+                }
+            }
+            else if (product.Id.Equals("allbet", StringComparison.CurrentCultureIgnoreCase))
+            {
+                var isSyncedAllDownlineAllbet = this.IsSyncedAllDownlineAllbet(currentCustInfo);
+                model.ReadOnly = model.ReadOnly || !isSyncedAllDownlineAllbet;
+                if (isSyncedAllDownlineAllbet)
+                {
+                    model.Warning = null;
+                }
             }
 
             using (var objectDb = new ObjectDb(storedProcedure.Key))
@@ -366,7 +379,25 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
 
             var row = currentCustomer.ResultSet.Tables[0].Rows[0];
 
-            return Utils.ToBoolean(row["SyncedVoidBridgeDownline"]);
+            return Utils.ToBoolean(row["SyncedVoidBridge"]) && Utils.ToBoolean(row["SyncedVoidBridgeDownline"]);
+        }
+
+        private bool IsSyncedAllDownlineAllbet(DbResult currentCustomer)
+        {
+            if (currentCustomer == null ||
+                   currentCustomer.ResultSet == null ||
+                   currentCustomer.ResultSet.Tables == null ||
+                   currentCustomer.ResultSet.Tables.Count == 0 ||
+                   currentCustomer.ResultSet.Tables[0] == null ||
+                   currentCustomer.ResultSet.Tables[0].Rows == null ||
+                   currentCustomer.ResultSet.Tables[0].Rows.Count == 0)
+            {
+                return true;
+            }
+
+            var row = currentCustomer.ResultSet.Tables[0].Rows[0];
+
+            return Utils.ToBoolean(row["SyncedAllbet"]) && Utils.ToBoolean(row["SyncedAllbetDownline"]);
         }
     }
 }
