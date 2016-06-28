@@ -19,10 +19,12 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
     using Fanex.CustomerSetting.Module.SearchCopy.Entities;
     using Fanex.CustomerSetting.Module.SearchCopy.Services;
     using Fanex.LiveCasino.CoreSetting.Services;
+    using Attributes;
 
     /// <summary>
     /// Class BaseCloneController.
     /// </summary>
+    [SpecialSiteFilter]
     public class BaseCloneController : BaseController
     {
         private static ISearchCopyService _searchCopyService;

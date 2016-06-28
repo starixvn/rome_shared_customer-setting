@@ -223,11 +223,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\ModuleRegistrator.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="Attributes\SpecialSiteFilterAttribute.cs" />
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Controllers\BaseCloneController.cs" />
     <Compile Include="Controllers\SuperController.cs" />
     <Compile Include="Criteria\CheckCustomerEnabledCriteria.cs" />
     <Compile Include="Criteria\DCSSettingCopyInsertMemberCriteria.cs" />
+    <Compile Include="Criteria\CheckSpecialSitePermissionCriteria.cs" />
     <Compile Include="Repositories\Interface\IDCSSettingCopyInsertMemberRepository.cs" />
     <Compile Include="Criteria\UpdateSyncBaseForIBCCriteria.cs" />
     <Compile Include="Criteria\UpdateSyncLiveCasinoForIBCCriteria.cs" />
@@ -253,6 +255,7 @@
     <Compile Include="Services\DCSSettingCopyInsertMemberService.cs" />
     <Compile Include="Services\IDCSSettingCopyInsertMemberService.cs" />
     <Compile Include="Services\ISearchCopyService.cs" />
+    <Compile Include="Services\PermissionService.cs" />
     <Compile Include="Services\SearchCopyService.cs" />
     <Compile Include="ViewModels\CustomerSettingView.cs" />
   </ItemGroup>

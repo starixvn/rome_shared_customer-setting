@@ -26,12 +26,16 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
     using Services;
     using ICommandResults = Fanex.LiveCasino.CoreSetting.DTO.CommandResult.ICommandResults;
     using Fanex.Module.Logs.Services;
+    using Attributes;
     using Casino.Services.Impl;
     using Casino.Repositories.Impl;
     using Casino.Services.Interface;
-    using CasinoLibrary.SBAgent;/// <summary>
-                                /// Base racing controller.
-                                /// </summary>
+    using CasinoLibrary.SBAgent;
+    
+    /// <summary>
+    /// Base racing controller.
+    /// </summary>
+    [SpecialSiteFilter]
     public class SuperController : BaseCloneController
     {
         /// <summary>
