@@ -20,6 +20,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
     [Serializable]
     public class CustomerInsMemberCriteria : CriteriaBase
     {
+        public int UplineId { get; set; }
+
         public int CustId { get; set; }
 
         public int CustLevel { get; set; }

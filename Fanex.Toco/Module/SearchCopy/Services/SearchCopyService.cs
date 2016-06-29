@@ -16,6 +16,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
     using System.Data;
     using System.Globalization;
     using System.Threading.Tasks;
+    using AutoMapper;
     using Core.Web;
     using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
     using Fanex.CustomerSetting.Module.SearchCopy.Entities;
@@ -25,6 +26,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
     using GoldDeluxe.CoreSetting.CommandResult;
     using GoldDeluxe.CoreSetting.ParameterObjects;
     using GoldDeluxe.CoreSetting.Services;
+    using GoldDeluxe.CoreSetting.ViewModels;
     using Keno.KenoSetting.Services;
     using Keno.KenoSetting.ViewModels;
     using PTEngine.BusinessObjects;
@@ -45,12 +47,12 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
         public SearchCopyService(ISearchCopyRepository searchCopyRepository)
         {
             _searchCopyRepository = searchCopyRepository ?? new SearchCopyRepository();
-        }        
+        }
 
         public SearchResult SearchExistingUser(SearchExistingUserCriteria criteria)
         {
             var searchResult = _searchCopyRepository.SearchExistingUser(criteria);
-            
+
             if (searchResult.CustId.Equals(-1))
             {
                 return searchResult;
@@ -92,7 +94,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
         public NAP.Framework.Data.CommandResult CheckEnableCustomer(CheckCustomerEnabledCriteria criteria)
         {
             return _searchCopyRepository.CheckEnableCustomer(criteria);
-        } 
+        }
 
         public NAP.Framework.Data.CommandResult UpdateSync(ICriteria criteria)
         {
@@ -181,9 +183,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
 
         private IList<Core.Models.Result> CopyKeno(Hashtable criteria, int existingCustId)
         {
-
             IList<Core.Models.Result> result = null;
-            var task = Task.Factory.StartNew(() =>
+            try
             {
                 var kenoService = new KenoSettingService();
                 var childSetting = kenoService.GetSettingInCaseOfAgentEditMember(new CustomerInformationViewModel { CustId = existingCustId, UserId = (int)criteria["userid"] });
@@ -202,18 +203,10 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
                 }
 
                 result = kenoService.UpdateMemberCustomerSettingInCaseOfAgentEditMember(childSetting);
-            });
-
-            try
-            {
-                task.Wait();
             }
-            catch (AggregateException ae)
+            catch (Exception ex)
             {
-                foreach (var ex in ae.InnerExceptions)
-                {
-                    ex.Write();
-                }  
+                ex.Write();
             }
 
             return result;
@@ -225,6 +218,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
             var task = Task.Factory.StartNew(() =>
             {
                 var goldDeluxeService = new SettingService();
+
                 result = goldDeluxeService.UpdateSettingFromExistingMember(new UpdateSettingFromExistingMemberParameters
                 {
                     CustId = (int)criteria["custid"],
@@ -235,6 +229,21 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
                     Ip = ipAddress,
                     Language = CultureInfo.CurrentCulture.Name
                 });
+
+                var model = new EditSettingViewModel
+                {
+                    CustId = existingCustId,
+                    UpLineId = (int)criteria["uplineid"],
+                    Level = GoldDeluxe.CoreSetting.Enumerations.CustomerLevel.Member,
+                    UpLineLevel = GoldDeluxe.CoreSetting.Enumerations.CustomerLevel.Agent,
+                    ActorId = (int)criteria["userid"],
+                    Language = "en-US",
+                    FormType = GoldDeluxe.CoreSetting.Enumerations.FormType.Edit
+                };
+
+                var param = Mapper.Map<EditSettingViewModel, GetSettingParameters>(model);
+                var setting = goldDeluxeService.GetSetting(param);
+                goldDeluxeService.UpdateGameSetting(new UpdateGameSettingParameters { ActorId = (int)criteria["userid"], CustId = (int)criteria["custid"], GameSetting = setting.GameSetting, Ip = ipAddress, Language = "en-US" });
             });
 
             try
@@ -288,6 +297,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
 
                 var customerService = new CustomerService();
                 var oldCustomer = customerService.GetCustomer(oldCustomerContext);
+
                 CheckConstraintData(ref oldCustomer);
 
                 result = customerService.SaveCustomer(null, oldCustomer, currentContext, null);
@@ -311,52 +321,34 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
         private PTRacing.BusinessObjects.Result CopyRacing(Hashtable criteria, int existingCustId, string ipAddress)
         {
             PTRacing.BusinessObjects.Result result = null;
-            var task = Task.Factory.StartNew(() =>
+            PTRacing.Services.ICustomerService racingService = new PTRacing.Services.CustomerService();
+
+            var oldSetting = racingService.GetCustomer(new PTRacing.BusinessObjects.RequestContext
             {
-                PTRacing.Services.ICustomerService racingService = new PTRacing.Services.CustomerService();
-
-                var oldSetting = racingService.GetCustomer(new PTRacing.BusinessObjects.RequestContext
-                {
-                    CustId = (int)criteria["userid"],
-                    UserName = string.Empty,
-                    TargetCustId = existingCustId,
-                    AdminId = (int)criteria["userid"],
-                    RoleId = 2,
-                    TargetRoleId = 1,
-                    FormId = PTRacing.BusinessObjects.FormType.EditPT,
-                    IP = ipAddress
-                });
-
-                var newContext = new PTRacing.BusinessObjects.RequestContext
-                {
-                    CustId = (int)criteria["userid"],
-                    UserName = string.Empty,
-                    TargetCustId = (int)criteria["custid"],
-                    AdminId = (int)criteria["userid"],
-                    RoleId = 2,
-                    TargetRoleId = 1,
-                    FormId = PTRacing.BusinessObjects.FormType.EditPT,
-                    IP = ipAddress
-                };
-
-                PTRacing.BusinessObjects.ICustomer newSetting = new PTRacing.BusinessObjects.Customer();
-                newSetting = oldSetting;
-                newSetting.CustId = (int)criteria["custid"];
-
-                result = racingService.SaveCustomer(oldSetting, newSetting, newContext, null);
+                TargetCustId = (int)criteria["custid"],
+                AdminId = (int)criteria["userid"],
+                CustId = (int)criteria["userid"],
+                RoleId = 2,
+                TargetRoleId = 1,
+                FormId = PTRacing.BusinessObjects.FormType.EditPT,
+                IP = ipAddress
             });
-                       
-            try
+
+            var newContext = new PTRacing.BusinessObjects.RequestContext
             {
-                task.Wait();
-            }
-            catch (AggregateException ae)
-            {
-                foreach (var ex in ae.InnerExceptions)
-                {
-                    ex.Write();
-                }
-            }
+                TargetCustId = existingCustId,
+                AdminId = (int)criteria["userid"],
+                CustId = (int)criteria["userid"],
+                RoleId = 2,
+                TargetRoleId = 1,
+                FormId = PTRacing.BusinessObjects.FormType.EditPT,
+                IP = ipAddress
+            };
+
+            PTRacing.BusinessObjects.ICustomer newSetting = racingService.GetCustomer(newContext);
+            newContext.TargetCustId = newSetting.CustId = (int)criteria["custid"];
+
+            result = racingService.SaveCustomer(oldSetting, newSetting, newContext, null);
 
             return result;
         }
