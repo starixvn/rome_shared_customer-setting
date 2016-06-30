@@ -18,7 +18,9 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
     /// </summary>
     [Serializable]
     public class GetSitesCriteria : CriteriaBase
-    {           
+    {
+        public int UserId { get; set; }
+
         public override string GetSettingKey()
         {
             return "CustomerSetting_SiteSel";

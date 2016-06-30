@@ -12,7 +12,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.ViewModels
 {
     using System;
     using Fanex.CustomerSetting.Module.SearchCopy.Entities;
-
+    using Core.Models;
+    
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
@@ -26,6 +27,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.ViewModels
         public HideSports StatusSports { get; set; }
 
         public int ParentId { get; internal set; }
+
+        Result Result { get; set; }
 
         public string BreadCrumbs { get; set; }
     }

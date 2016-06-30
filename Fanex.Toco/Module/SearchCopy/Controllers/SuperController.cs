@@ -9,12 +9,9 @@
 // </history>
 namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
 {
-    using System;
     using System.Collections;
-    using System.Configuration;
     using System.Data;
     using System.Threading.Tasks;
-    using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.CustomerSetting.Module.SearchCopy.Common;
     using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
@@ -24,9 +21,11 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
     using Fanex.Logging;
     using Fanex.NAP.Framework.Data;
     using Services;
+    using System;
+    using System.Configuration;
+    using System.Web.Mvc;
     using ICommandResults = Fanex.LiveCasino.CoreSetting.DTO.CommandResult.ICommandResults;
     using Fanex.Module.Logs.Services;
-    using Attributes;
     using Casino.Services.Impl;
     using Casino.Repositories.Impl;
     using Casino.Services.Interface;
@@ -35,7 +34,6 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
     /// <summary>
     /// Base racing controller.
     /// </summary>
-    [SpecialSiteFilter]
     public class SuperController : BaseCloneController
     {
         /// <summary>
