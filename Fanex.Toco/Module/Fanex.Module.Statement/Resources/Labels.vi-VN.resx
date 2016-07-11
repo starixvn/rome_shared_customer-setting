@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Accumulated_Total" xml:space="preserve">
-    <value>Accumulated Total</value>
+    <value>Tổng tiền tích luỹ</value>
   </data>
   <data name="Amount" xml:space="preserve">
     <value>Số lượng</value>
@@ -148,7 +148,7 @@
     <value>Thông tin chưa được cập nhật</value>
   </data>
   <data name="Opening_Balance" xml:space="preserve">
-    <value>Opening Balance</value>
+    <value>Số dư đầu ngày</value>
   </data>
   <data name="Outstanding" xml:space="preserve">
     <value>Số  tiền chưa xử lý</value>
@@ -181,7 +181,7 @@
     <value>Statement_Details_on_{0}.xls</value>
   </data>
   <data name="Transfer_Amt" xml:space="preserve">
-    <value>Transfer Amt</value>
+    <value>Chuyển khoản</value>
   </data>
   <data name="Transfer_Details" xml:space="preserve">
     <value>Transfer Details</value>

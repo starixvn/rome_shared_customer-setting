@@ -15,7 +15,7 @@ function EnableStatusController($scope) {
         if (!$scope.entities[i].disabledUplines && !$scope.entities[i].hide) {
             $scope.isDisabledAll = false;
             break;
-        }        
+        }
     }
 
     $scope.Init = function () {
@@ -140,6 +140,12 @@ function EnableStatusController($scope) {
         document.getElementById(scope.item.betTypeId).checked = scope.item.enableDownline;
     };
 
+    $scope.isIE = function () {
+        var myNav = navigator.userAgent.toLowerCase();
+        var isAtLeastIE11 = !!(navigator.userAgent.match(/Trident/) && !navigator.userAgent.match(/MSIE/));;
+        return myNav.indexOf('msie') != -1 || isAtLeastIE11;
+    };
+
     $scope.Update = function (onCompleted) {
         Fanex.CustomerSetting.Core.BlockUI();
 
@@ -176,7 +182,16 @@ function EnableStatusController($scope) {
                     }
 
                     if (model.closePopupFunction != '') {
-                        document.write('<script type="text/javascript">' + model.closePopupFunction + '</script>');
+
+                        // Check IE for issue:
+                        // "document.write()" leads "SEC7111: HTTPS Security is compromised by (null)" for all HTTPS pages
+                        var isIE = $scope.isIE();
+                        if (isIE) {
+                            var closePopupFunction = eval('(function() {' + model.closePopupFunction + '})');
+                            closePopupFunction();
+                        } else {
+                            document.write('<script type="text/javascript">' + model.closePopupFunction + '</script>');
+                        }
                     }
                     else if (model.reloadAfterUpdate) {
                         document.location.reload(true);
@@ -275,7 +290,7 @@ function EnableStatusController($scope) {
             else {
                 $('#submit').addClass('disabledButton');
                 $('#submit').attr('disabled', true);
-            } 
+            }
         }
     };
 
