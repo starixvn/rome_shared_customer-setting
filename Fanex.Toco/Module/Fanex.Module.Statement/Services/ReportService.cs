@@ -9,8 +9,11 @@
 
 namespace Fanex.Module.Statement.Services
 {
+    using Criteria;
+    using CustomerSetting.Module.Core.Models;
+    using Data;
     using Fanex.Module.Statement.Criteria.StatementReport;
-
+    using System;
     /// <summary>
     /// Report Service.
     /// </summary>

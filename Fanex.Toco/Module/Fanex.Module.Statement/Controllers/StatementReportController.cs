@@ -9,7 +9,9 @@
 
 namespace Fanex.Module.Statement.Controllers
 {
-    using System.Web.Mvc;
+    using CustomerSetting.Module.Core.Criteria;
+    using CustomerSetting.Module.Core.Services.Impl;
+    using CustomerSetting.Module.Core.Web;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
     using Fanex.CustomerSetting.Security.Authenticate;
     using Fanex.Module.Statement.Constants;
@@ -18,6 +20,7 @@ namespace Fanex.Module.Statement.Controllers
     using Fanex.Module.Statement.Models.StatementReport;
     using Fanex.Module.Statement.Resources;
     using Fanex.Module.Statement.Services.StatementReport;
+    using System.Web.Mvc;
 
     /// <summary>
     /// Statement Report Controller.
@@ -120,6 +123,18 @@ namespace Fanex.Module.Statement.Controllers
         public JsonResult CheckInternalByUsername(CheckInternalByUsernameCriteria criteria)
         {
             return Json(_statementReportService.CheckInternalByUsername(criteria));
+        }
+
+        public JsonResult CheckSpecialSiteAccess(string userName)
+        {
+            var service = new ServiceBase();
+            var criteria = new CheckSpecialSitePermissionCriteria()
+            {
+                UserID = AppSession.AccId,
+                CustName = userName
+            };
+
+            return Json(service.CheckSpecialSitePermission(criteria));
         }
     }
 }
