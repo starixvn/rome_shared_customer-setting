@@ -298,8 +298,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             var success = false;
             string errMsg = string.Empty;
             var casinoCustomer = new CasinoLibrary.SBAgent.Customer();
-            CasinoDao casinoDao = new CasinoDao();
-            var custInfo = casinoDao.GetCustInfoIBC(customer.CustId, customer.UplineId);
+            CasinoManager casinoManager = new CasinoManager();
+            var custInfo = casinoManager.GetCustInfoIBC(customer.CustId, customer.UplineId);
 
             try
             {
@@ -338,11 +338,48 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
 
             if (success)
             {
+                var settingModel = casinoManager.MemberCasinoModel(custInfo.IBCCustID, custInfo.UpperCustID);
 
+                casinoManager.UpdateCSStatus(
+                    custInfo.IBCCustID,
+                    true,
+                    custInfo.UplineDisabledCasino ? true : custInfo.CasinoDisabled,
+                    custInfo.EnableDownline,
+                    custInfo.UpperCustID,
+                    string.Empty,
+                    0,
+                    "en",
+                    custInfo.UserName,
+                    string.Empty,
+                    out errMsg);
+
+                casinoManager.UpdateMemberSettings(
+                custInfo.IBCCustID,
+                custInfo.RoleId,
+                custInfo.UpperCustID,
+                custInfo.UplineRoleId,
+                customer.IP,
+                customer.Creator,
+                customer.CreatorName,
+                AppSession.CurrentSession.FromSystem,
+                settingModel);
             }
             else
             {
+                casinoManager.UpdateCSStatus(
+                    custInfo.IBCCustID,
+                    false,
+                    custInfo.UplineDisabledCasino ? true : custInfo.CasinoDisabled,
+                    false,
+                    custInfo.UpperCustID,
+                    string.Empty,
+                    0,
+                    "en",
+                    custInfo.UserName,
+                    string.Empty,
+                    out errMsg);
 
+                casinoCustomer.RemoveAccount(custInfo.UserName, customer.IP, custInfo.IBCCustID, custInfo.UserName, AppSession.CurrentSession.FromSystem);
             }
 
             return success;
