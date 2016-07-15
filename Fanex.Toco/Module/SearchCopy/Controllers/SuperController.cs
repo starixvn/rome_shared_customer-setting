@@ -27,9 +27,11 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
     using ICommandResults = Fanex.LiveCasino.CoreSetting.DTO.CommandResult.ICommandResults;
     using Fanex.Module.Logs.Services;
     using Casino.Services.Impl;
-    using Casino.Repositories.Impl;    /// <summary>
-                                       /// Base racing controller.
-                                       /// </summary>
+    using Casino.Repositories.Impl;
+    using Casino.Services.Interface;
+    using CasinoLibrary.SBAgent;/// <summary>
+                                /// Base racing controller.
+                                /// </summary>
     public class SuperController : BaseCloneController
     {
         /// <summary>
@@ -338,7 +340,30 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
 
             if (success)
             {
-                var settingModel = casinoManager.MemberCasinoModel(custInfo.IBCCustID, custInfo.UpperCustID);
+                ICasinoMemberWinLimitService winLimitService = new CasinoMemberWinLimitService();
+                var winLimit = winLimitService.GetMemberWinLimit(customer.ExistingCustId);
+
+                bool isEnableCasino = !custInfo.CasinoDisabled || !custInfo.CasinoSync;
+
+                var casinoApiCustomer = new Customer();
+                if (custInfo.CasinoSync)
+                {
+                    casinoApiCustomer.UpdateMaxTransferMisc(
+                      custInfo.IBCCustID,
+                      customer.DisableCasino,
+                      true,
+                       true,
+                       (decimal)winLimit.MaximumLossLimit,
+                        custInfo.IsAutoReset,
+                        false,
+                        customer.IP,
+                        customer.Creator,
+                        customer.CreatorName,
+                        AppSession.CurrentSession.FromSystem
+                    );
+                }
+
+                var settingModel = casinoManager.MemberCasinoModel(customer.ExistingCustId, custInfo.UpperCustID);
 
                 casinoManager.UpdateCSStatus(
                     custInfo.IBCCustID,
