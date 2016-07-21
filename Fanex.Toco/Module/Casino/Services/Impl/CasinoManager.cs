@@ -27,7 +27,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
     using Fanex.CustomerSetting.Module.Casino.Services.Interface;
     using Fanex.Module.Logs.Services;
     using Fanex.Module.Logs;
-    using CasinoTempLibrary.SBAgent;
+
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
@@ -68,7 +68,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var synced = custInfo.CasinoSync;
             var id = synced ? custId : 0;
             var cust = new Customer();
-            var dt = synced ? cust.GetCustGameKind(custId) : new TempBasicInfo().GetGameKindByCustID(custInfo.CasinoNo, custId);
+            var dt = synced ? cust.GetCustGameKind(custId) : new BasicInfo().GetGameKind(custInfo.CasinoNo);
 
             if (custInfo.RoleId != Super)
             {
@@ -953,7 +953,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var casinoPTResult = new Result();
             var enablePTUpdated = false;
             var cust = new Customer();
-            
+
             try
             {
                 bool isEnableCasino = !customerModel.CasinoDisabled || !customerModel.CasinoSync;
@@ -1090,7 +1090,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var messages = string.Empty;
             var casinoPTResult = new Result();
             var cust = new Customer();
-            
+
             // Update PT/Betting limit settings
             casinoPTResult = this.UpdateMemberSettingsBySuper(
                 custId,
@@ -1131,7 +1131,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var messages = string.Empty;
             var casinoPTResult = new Result();
             var cust = new Customer();
-            
+
             // Update PT/Betting limit settings
             casinoPTResult = this.UpdateMemberSettingsByMaster(
                 custId,
@@ -1223,7 +1223,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             }
         }
 
-        private bool UpdateCSStatus(int custid, bool syncCS, bool disabledCS, bool isUpdDownline, int userId, string ip, int subAccId, string lang, string username, string subUsername, out string errMsg)
+        public bool UpdateCSStatus(int custid, bool syncCS, bool disabledCS, bool isUpdDownline, int userId, string ip, int subAccId, string lang, string username, string subUsername, out string errMsg)
         {
             var cust = new Customer();
             var status = this.DoUpdateCSStatusWithoutSync(custid, syncCS, disabledCS, isUpdDownline, userId, ip, subAccId, lang, out errMsg);
@@ -1241,7 +1241,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             return this._casino.DoUpdateCSStatusWithoutSync(custid, syncCS, disabledCS, isUpdDownline, userId, ip, subAccId, lang, out errMsg);
         }
 
-        private Result UpdateMasterSettings(int custId, int roleId, int uplineId, int uplineRoleId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel model)
+        public Result UpdateMasterSettings(int custId, int roleId, int uplineId, int uplineRoleId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel model)
         {
             var msg = string.Empty;
             var gameKindTable = this.GameKindsDataTable();
@@ -1366,7 +1366,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             return new Result(msg == string.Empty || (resultKind.Rows.Count == 0 && resultType.Rows.Count == 0 && resultStake.Rows.Count == 0) ? 0 : 1, msg);
         }
 
-        private Result UpdateAgentSettings(int custId, int roleId, int uplineId, int uplineRoleId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel model)
+        public Result UpdateAgentSettings(int custId, int roleId, int uplineId, int uplineRoleId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel model)
         {
             var msg = string.Empty;
             var gameKindTable = this.GameKindsDataTable();
@@ -1496,7 +1496,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             return new Result(msg == string.Empty || (resultKind.Rows.Count == 0 && resultType.Rows.Count == 0 && resultStake.Rows.Count == 0) ? 0 : 1, msg);
         }
 
-        private Result UpdateMemberSettings(int custId, int roleId, int uplineId, int uplineRoleId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel model)
+        public Result UpdateMemberSettings(int custId, int roleId, int uplineId, int uplineRoleId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel model)
         {
             var msg = string.Empty;
             var gameKindTable = this.GameKindsDataTable();
