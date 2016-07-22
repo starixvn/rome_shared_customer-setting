@@ -214,6 +214,9 @@
     <value>Microgaming - RnG Casino</value>
   </data>
   <data name="warningVoidBridgeUnsyncedAllDownline" xml:space="preserve">
-    <value>The Mauca Games Setting is not fully available for this line. Please go to Edit Macau Games page to adjust.</value>
+    <value>The Maucau Games Setting is not fully available. Please go to Edit Macau Games page to adjust.</value>
+  </data>
+  <data name="warningAllbetUnsyncedAllDownline" xml:space="preserve">
+    <value>The Allbet Setting is not fully available. Please go to Edit Allbet page to adjust.</value>
   </data>
 </root>

@@ -340,6 +340,15 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The Allbet Setting is not fully available. Please go to Edit Allbet page to adjust..
+        /// </summary>
+        public static string warningAllbetUnsyncedAllDownline {
+            get {
+                return ResourceManager.GetString("warningAllbetUnsyncedAllDownline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Australia setting is being used for Beijing as well.
         /// </summary>
         public static string warningKenoBeijing {
@@ -349,7 +358,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Macau Games Setting is not fully available for this line. Please go to Edit Macau Games page to adjust..
+        ///   Looks up a localized string similar to The Macau Games Setting is not fully available. Please go to Edit Macau Games page to adjust..
         /// </summary>
         public static string warningVoidBridgeUnsyncedAllDownline {
             get {
