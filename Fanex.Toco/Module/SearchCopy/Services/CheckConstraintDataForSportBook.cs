@@ -14,15 +14,15 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
         {
             _htbSporttypeBettype.Add("1", new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "9999" });
             _htbSporttypeBettype.Add("1_live", new string[] { "1", "3", "7", "8" });
-            _htbSporttypeBettype.Add("2", new string[] { "1", "2", "3", "7", "8", "20" });
-            _htbSporttypeBettype.Add("3", new string[] { "1", "2", "3", "20" });
+            _htbSporttypeBettype.Add("2", new string[] { "1", "2", "3", "7", "8", "20", "10" });
+            _htbSporttypeBettype.Add("3", new string[] { "1", "2", "3", "20", "10" });
 
-            _htbSporttypeBettype.Add("5", new string[] { "1", "2", "3", "20", "9999" });
+            _htbSporttypeBettype.Add("5", new string[] { "1", "2", "3", "20", "9999", "10" });
 
-            _htbSporttypeBettype.Add("8", new string[] { "1", "3", "20" });
-            _htbSporttypeBettype.Add("10", new string[] { "1", "2", "3", "20" });
-            _htbSporttypeBettype.Add("11", new string[] { "1", "20" });
-            _htbSporttypeBettype.Add("99", new string[] { "1", "2", "3", "9", "20" });
+            _htbSporttypeBettype.Add("8", new string[] { "1", "3", "20", "10" });
+            _htbSporttypeBettype.Add("10", new string[] { "1", "2", "3", "20", "10" });
+            _htbSporttypeBettype.Add("11", new string[] { "1", "20", "10" });
+            _htbSporttypeBettype.Add("99", new string[] { "1", "2", "3", "9", "20", "10" });
             _htbSporttypeBettype.Add("154", new string[] { "20" });
             _htbSporttypeBettype.Add("161", new string[] { "81", "83", "86", "88" });
             _htbSporttypeBettype.Add("161_live", new string[] { "85", "86", "87", "89", "90" });
