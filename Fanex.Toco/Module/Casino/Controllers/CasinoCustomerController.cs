@@ -1,7 +1,6 @@
 namespace Fanex.CustomerSetting.Module.Casino.Controllers
 {
-    using System;
-    using System.Web.Mvc;
+    using Authenticate;
     using Fanex.CustomerSetting.Module.Casino.Entities;
     using Fanex.CustomerSetting.Module.Casino.Services.Impl;
     using Fanex.CustomerSetting.Module.Casino.Services.Interface;
@@ -11,7 +10,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
     using Fanex.CustomerSetting.Security.Configurations;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
-
+    using System;
+    using System.Web.Mvc;
     public class CasinoCustomerController : BaseController
     {
         public ActionResult CustomerInfo(int id, int uplineId)
@@ -65,6 +65,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Transfer")]
+        [CasinoUMTimeFilter]
         public ActionResult ResetMaxTransfer(int id, string groupName = null)
         {
             var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;

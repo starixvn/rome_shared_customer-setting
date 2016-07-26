@@ -54,7 +54,7 @@ namespace Fanex.CustomerSetting.Security.Configurations
             {
                 if (_instance == null)
                 {
-                      _instance = (CustomerSettingSection)ConfigurationManager.GetSection("CustomerSetting/Security");
+                    _instance = (CustomerSettingSection)ConfigurationManager.GetSection("CustomerSetting/Security");
                 }
 
                 return _instance;
