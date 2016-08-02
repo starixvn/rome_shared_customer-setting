@@ -16,7 +16,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Authenticate
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (CasinoSection.Instance.UMTime)
+            if (CasinoSection.Instance.IsUMTime)
             {
                 ActionDenied(filterContext);
             }

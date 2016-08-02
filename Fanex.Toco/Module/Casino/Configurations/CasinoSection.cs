@@ -38,30 +38,30 @@ namespace Fanex.CustomerSetting.Module.Casino.Configurations
             }
         }
 
-        [ConfigurationProperty("UMTime", DefaultValue = false, IsRequired = false)]
-        public bool UMTime
+        [ConfigurationProperty("IsUMTime", DefaultValue = false, IsRequired = false)]
+        public bool IsUMTime
         {
             get
             {      
-                return (bool)base["UMTime"];
+                return (bool)base["IsUMTime"];
             }
         }
 
-        [ConfigurationProperty("From",  IsRequired = false)]
-        public string From
+        [ConfigurationProperty("UMFrom",  IsRequired = false)]
+        public string UMFrom
         {
             get
             {
-                return (string)base["From"];
+                return (string)base["UMFrom"];
             }
         }
 
-        [ConfigurationProperty("To",  IsRequired = false)]
-        public string To
+        [ConfigurationProperty("UMTo",  IsRequired = false)]
+        public string UMTo
         {
             get
             {
-                return (string)base["To"];
+                return (string)base["UMTo"];
             }
         }
     }
