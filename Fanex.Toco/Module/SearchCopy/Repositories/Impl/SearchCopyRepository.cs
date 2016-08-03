@@ -54,8 +54,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
                 while (dataReader.Read())
                 {
                     custInfo.Site = criteria.IsMember ? string.Empty : dataReader["site"].ToString();
-                    custInfo.Credit = dataReader["credit"].ToString();
-                    custInfo.CreditMax = criteria.IsMember ? dataReader["credit_max"].ToString() : string.Empty;
+                    custInfo.Credit = ((int)Math.Ceiling((decimal)dataReader["credit"])).ToString();
+                    custInfo.CreditMax = criteria.IsMember ? ((int)Math.Ceiling((decimal)dataReader["credit_max"])).ToString() : string.Empty;
                     custInfo.CurrencyId = criteria.IsMember ? 0 : Converter.ToInt(dataReader["currencyID"]);
                     custInfo.Currency = criteria.IsMember ? string.Empty : dataReader["currencyName"].ToString();
                     custInfo.IsSyncCasino = Converter.To<byte>(dataReader["synccasino"]);

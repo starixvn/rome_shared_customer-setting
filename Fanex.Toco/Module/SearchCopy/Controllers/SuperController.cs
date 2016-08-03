@@ -131,7 +131,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                     infoCustomer["userid"] = criteria.Creator;
                     infoCustomer["errcode"] = 0;
                     infoCustomer["errmsg"] = string.Empty;
-                    infoCustomer["uplineid"] = criteria.UplineId;
+                    infoCustomer["copyfromcustid"] = criteria.ExistingCustId;
+                    infoCustomer["isSearchAndCopy"] = 1; 
                 }
 
                 result = criteria.CustLevel == 1 ? SearchCopyServiceInstance.InsertMember(infoCustomer, criteria.ExistingCustId) : SearchCopyServiceInstance.CopyExistingUser(ref criteria);
