@@ -24,5 +24,9 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.ViewModels
         public string Username { get; set; }
 
         public HideSports StatusSports { get; set; }
+
+        public int ParentId { get; internal set; }
+
+        public string BreadCrumbs { get; set; }
     }
 }

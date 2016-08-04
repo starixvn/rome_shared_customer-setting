@@ -13,6 +13,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Data;
     using Fanex.Common;
     using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
     using Fanex.CustomerSetting.Module.SearchCopy.Entities;
@@ -30,9 +31,9 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
         /// </summary>
         /// <param name="criteria">Criteria SearchExistingUserCriteria.</param>
         /// <returns>Return customer id if success else return -1.</returns>
-        public int SearchExistingUser(SearchExistingUserCriteria criteria)
+        public SearchResult SearchExistingUser(SearchExistingUserCriteria criteria)
         {
-            return Convert.ToInt32(ReturnSingleValueByColumnName(criteria, "custid"));
+            return ReturnSingleValueByColumnName(criteria, "custid");
         }
 
         /// <summary>
@@ -52,13 +53,18 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
                 var dataReader = objDb.ExecuteReader(param);
                 while (dataReader.Read())
                 {
-                    custInfo.Site = dataReader["site"].ToString();
-                    custInfo.Credit = dataReader["credit"].ToString();
-                    custInfo.CurrencyId = Converter.ToInt(dataReader["currencyID"]);
-                    custInfo.Currency = dataReader["currencyName"].ToString();
+                    custInfo.Site = criteria.IsMember ? string.Empty : dataReader["site"].ToString();
+                    custInfo.Credit = ((long)Math.Ceiling((decimal)dataReader["credit"])).ToString();
+                    custInfo.CreditMax = criteria.IsMember ? ((long)Math.Ceiling((decimal)dataReader["credit_max"])).ToString() : string.Empty;
+                    custInfo.CurrencyId = criteria.IsMember ? 0 : Converter.ToInt(dataReader["currencyID"]);
+                    custInfo.Currency = criteria.IsMember ? string.Empty : dataReader["currencyName"].ToString();
                     custInfo.IsSyncCasino = Converter.To<byte>(dataReader["synccasino"]);
                     custInfo.IsSyncBingo = Converter.To<byte>(dataReader["syncbingo"]);
-                    custInfo.IsSyncLiveCasino = Converter.To<byte>(dataReader["synclivecasino"]);
+                    custInfo.IsSyncLiveCasino = criteria.IsMember ? (byte)1 : Converter.To<byte>(dataReader["synclivecasino"]);
+                    custInfo.RoleId = Converter.ToInt(dataReader["roleid"]);
+                    custInfo.DisableBingo = Converter.ToBool(dataReader["disableBingo"]);
+                    custInfo.DisableCasino = Converter.ToBool(dataReader["disableCasino"]);
+                    custInfo.DisableLiveCasino = dataReader.GetSchemaTable().Columns.Contains("disableLiveCasino") ? Converter.ToBool(dataReader["disableLiveCasino"]) : false;
                 }                
             }
 
@@ -179,6 +185,28 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
                 db.ExecuteNonQuery(param);
 
                 return GetCommandResult(param);
+            }
+        }
+
+        public CommandResult InsertMember(Hashtable criteria)
+        {
+            using (var db = new ObjectDb("Acc_CustomerInsMember_Ag"))
+            {
+                db.ExecuteNonQuery(criteria);
+                criteria["custid"] = db.GetOuputParams()["custid"];
+
+                return GetCommandResult(criteria);
+            }
+        }
+
+        public DataTable GetSportBookSettingMember(int custId)
+        {
+            using (var db = new ObjectDb("Acc_CustomerSelEditCustomer"))
+            {
+                var param = new Hashtable();
+                param.Add("custid", custId);
+
+                return db.ExecuteDataSet(param).Tables[0];
             }
         }
     }

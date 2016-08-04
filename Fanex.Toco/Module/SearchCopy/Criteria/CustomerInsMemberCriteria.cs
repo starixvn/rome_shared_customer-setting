@@ -11,6 +11,7 @@
 namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
 {
     using System;
+    using System.Collections;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -19,6 +20,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
     [Serializable]
     public class CustomerInsMemberCriteria : CriteriaBase
     {
+        public int UplineId { get; set; }
+
         public int CustId { get; set; }
 
         public int CustLevel { get; set; }
@@ -55,10 +58,18 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
 
         public int Creator { get; set; }
 
+        public string CreatorName { get; set; }
+
         public string Language { get; set; }
 
         public string IP { get; set; }
-    
+
+        public bool DisableCasino { get; set; }
+
+        public bool DisableLiveCasino { get; set; }
+
+        public bool DisableBingo { get; set; }
+
         public override string GetSettingKey()
         {
             return "Acc_CustomerInsMember_CloneSetting_Com";

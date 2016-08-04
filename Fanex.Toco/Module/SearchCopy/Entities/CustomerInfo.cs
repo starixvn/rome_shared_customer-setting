@@ -15,9 +15,13 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Entities
     /// </summary>
     public class CustomerInfo
     {        
+        public int RoleId { get; set; }
+
         public string Site { get; set; }
         
         public string Credit { get; set; }
+
+        public string CreditMax { get; set; }
 
         public int CurrencyId { get; set; }
 
@@ -28,5 +32,11 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Entities
         public byte IsSyncBingo { get; set; }
 
         public byte IsSyncLiveCasino { get; set; }
+
+        public bool DisableCasino { get; set; }
+
+        public bool DisableLiveCasino { get; set; }
+
+        public bool DisableBingo { get; set; }
     }
 }

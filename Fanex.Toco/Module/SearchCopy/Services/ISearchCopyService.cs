@@ -9,7 +9,9 @@
 // </history>
 namespace Fanex.CustomerSetting.Module.SearchCopy.Services
 {
-    using System.Collections.Generic;    
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Data;
     using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
     using Fanex.CustomerSetting.Module.SearchCopy.Entities;
     using Fanex.NAP.Framework.Data;
@@ -19,7 +21,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
     /// </summary>
     public interface ISearchCopyService
     {        
-        int SearchExistingUser(SearchExistingUserCriteria criteria);
+        SearchResult SearchExistingUser(SearchExistingUserCriteria criteria);
 
         HideSports GetSportsStatusByUserName(string username);
 
@@ -29,8 +31,12 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
 
         CommandResult CopyExistingUser(ref CustomerInsMemberCriteria criteria);
 
+        CommandResult InsertMember(Hashtable criteria, int existingCustId);
+
         CommandResult CheckEnableCustomer(CheckCustomerEnabledCriteria criteria);
 
         CommandResult UpdateSync(ICriteria criteria);
+
+        DataTable GetSportBookSettingMember(int custId);
     }
 }

@@ -10,7 +10,9 @@
 
 namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
 {
-    using System.Collections.Generic;    
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Data;
     using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
     using Fanex.CustomerSetting.Module.SearchCopy.Entities;
     using Fanex.CustomerSetting.Module.SearchCopy.Repository.Interface;
@@ -18,7 +20,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
 
     public interface ISearchCopyRepository : IBaseRepository
     {        
-        int SearchExistingUser(SearchExistingUserCriteria criteria);
+        SearchResult SearchExistingUser(SearchExistingUserCriteria criteria);
 
         HideSports GetSportsStatusByUserName(string username);
 
@@ -28,8 +30,12 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
 
         CommandResult CopyExistingUser(ref CustomerInsMemberCriteria criteria);
 
+        CommandResult InsertMember(Hashtable criteria);
+        
         CommandResult CheckEnableCustomer(CheckCustomerEnabledCriteria criteria);
 
         CommandResult UpdateSync(ICriteria criteria);
+
+        DataTable GetSportBookSettingMember(int custId);
     }
 }

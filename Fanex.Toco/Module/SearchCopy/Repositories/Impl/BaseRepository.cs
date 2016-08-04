@@ -12,12 +12,14 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repository.Impl
 {
     using System;
     using System.Collections;
-    using System.Data;    
+    using System.Data;
+    using Fanex.Common;
     using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
     using Fanex.CustomerSetting.Module.SearchCopy.Repository.Interface;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
-
+    using System.Linq;
+    using Entities;
     /// <summary>
     /// Class RepositoryBase.
     /// </summary>    
@@ -46,16 +48,39 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repository.Impl
         /// <param name="criteria">The criteria.</param>
         /// <param name="columnName">The column name.</param>
         /// <returns>System Object.</returns>
-        public object ReturnSingleValueByColumnName(ICriteria criteria, string columnName)
+        public SearchResult ReturnSingleValueByColumnName(ICriteria criteria, string columnName)
         {
+            var orgCriteria = (SearchExistingUserCriteria)criteria;
             // prepare SP parameters
             Hashtable param = criteria.GetSpParams();
             param = (new ResultCriteria()).AddSpParams(param);
-
+            
             using (var objDb = new ObjectDb(criteria.GetSettingKey()))
             {
-                objDb.ExecuteNonQuery(param);
-                return param[columnName];
+                objDb.AssignParamValues(param);
+                var ds = objDb.ExecuteDataSet();
+                var table = ds == null || ds.Tables == null || ds.Tables.Count == 0 ? new DataTable() : ds.Tables[0];
+
+                if (table != null && orgCriteria.IsMember)
+                {
+                    var custRow = table.AsEnumerable().Where(row => (row.Field<int>("roleid") == 1 && orgCriteria.IsMember)).FirstOrDefault();
+                    var agentRow = table.AsEnumerable().Where(row => (row.Field<int>("roleid") == 2)).FirstOrDefault();
+                    var matched = Converter.ToString2(custRow["username"]).Equals(orgCriteria.Username, StringComparison.OrdinalIgnoreCase);
+                    var masterRow = table.AsEnumerable().Where(row => (row.Field<int>("roleid") == 3)).FirstOrDefault();
+                    var superRow = table.AsEnumerable().Where(row => (row.Field<int>("roleid") == 4)).FirstOrDefault();
+                    var breadCrumbs = superRow.Field<string>("username") + " > " + masterRow.Field<string>("username") + " > " + agentRow.Field<string>("username");
+
+                    return new SearchResult { CustId = matched ? Converter.ToInt(custRow[columnName]) : -1, ParentId = Converter.ToInt(agentRow[columnName]), BreadCrumbs = breadCrumbs };
+                }
+                else if (table != null)
+                {
+                    var custRow = table.AsEnumerable().Where(row => row.Field<int>("roleid") == 4).FirstOrDefault();
+                    var matched = Converter.ToString2(custRow["username"]).Equals(orgCriteria.Username, StringComparison.OrdinalIgnoreCase);
+
+                    return new SearchResult { CustId = matched ? Converter.ToInt(custRow[columnName]) : -1, ParentId = 0 };
+                }
+
+                return new SearchResult { CustId = -1, ParentId = -1 };
             }
         }
 

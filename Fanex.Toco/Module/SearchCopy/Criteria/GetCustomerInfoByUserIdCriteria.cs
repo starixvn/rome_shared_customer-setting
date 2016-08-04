@@ -6,6 +6,7 @@
 // -----------------------------------------------------------------------
 // <history>
 //   <change who="Thai.Tran" date="2013.11.05">Created</change>
+//   <change who="Andy.Nguyen" date="2016.06.13">Created</change>
 // </history>
 
 namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
@@ -19,11 +20,13 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
     [Serializable]
     public class GetCustomerInfoByUserIdCriteria : CriteriaBase
     {       
+        public bool IsMember { get; set; }
+
         public int Custid { get; set; }
          
         public override string GetSettingKey()
         {
-            return "Acc_CustomerSelCEditCustomer";
+            return IsMember ? "Acc_CustomerSelEditCustomer" : "Acc_CustomerSelCEditCustomer";
         }
 
         public override bool IsValid()
