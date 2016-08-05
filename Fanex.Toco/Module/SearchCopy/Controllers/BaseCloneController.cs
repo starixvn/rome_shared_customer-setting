@@ -87,7 +87,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             var checkSpecialSiteAccess = permissionService.CheckSpecialSitePermission(new CheckSpecialSitePermissionCriteria() { UserID = AppSession.AccId, CustName = criteria.Username });
             if (checkSpecialSiteAccess.ErrorCode > 0)
             {
-                return -2;
+                return new SearchResult() { CustId = -2 };
             }
 
             return _searchCopyService.SearchExistingUser(criteria);
