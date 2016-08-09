@@ -1,5 +1,6 @@
 ﻿namespace Fanex.CustomerSetting.Module.Core.Attributes
 {
+    using Common;
     using Criteria;
     using CustomerSetting.Module.Core.Web;
     using Services.Impl;
@@ -43,11 +44,11 @@
         private int GetCustIdParam(IDictionary<string, object> param)
         {
             List<int> list = new List<int>();
-            list.Add(param.ContainsKey("custid") ? (int)param["custid"] : 0);
-            list.Add(param.ContainsKey("customerid") ? (int)param["customerid"] : 0);
-            list.Add(param.ContainsKey("superid") ? (int)param["superid"] : 0);
-            list.Add(param.ContainsKey("masterid") ? (int)param["masterid"] : 0);
-            list.Add(param.ContainsKey("agentid") ? (int)param["agentid"] : 0);
+            list.Add(param.ContainsKey("custid") ? Converter.ToInt(param["custid"]) : 0);
+            list.Add(param.ContainsKey("customerid") ? Converter.ToInt(param["customerid"]) : 0);
+            list.Add(param.ContainsKey("superid") ? Converter.ToInt(param["superid"]) : 0);
+            list.Add(param.ContainsKey("masterid") ? Converter.ToInt(param["masterid"]) : 0);
+            list.Add(param.ContainsKey("agentid") ? Converter.ToInt(param["agentid"]) : 0);
 
             var index = list.FindIndex(m => m > 0);
             return index >= 0 ? list[index] : 0;
