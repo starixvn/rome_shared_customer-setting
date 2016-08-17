@@ -51,10 +51,6 @@
     <Reference Include="Fanex.Common">
       <HintPath>..\..\_Dependencies\Fanex\Fanex.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.CustomerSetting.Module.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.CustomerSetting.Module.Core.AllSites.2.0.0.0\lib\net40\Fanex.CustomerSetting.Module.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Fanex.CustomerSetting.Module.Keno.KenoSetting, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.CustomerSetting.Module.Keno.KenoSetting.1.0.0.1\lib\net40\Fanex.CustomerSetting.Module.Keno.KenoSetting.dll</HintPath>
       <Private>True</Private>
@@ -223,7 +219,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\ModuleRegistrator.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="Attributes\SpecialSiteFilterAttribute.cs" />
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Controllers\BaseCloneController.cs" />
     <Compile Include="Controllers\SuperController.cs" />
@@ -281,7 +276,7 @@
       <Name>Casino</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fanex.Toco.Module.Core\_Core.csproj">
-      <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
+      <Project>{af2e11aa-2a92-47ac-86fa-4d48b0aeb5d7}</Project>
       <Name>_Core</Name>
     </ProjectReference>
   </ItemGroup>

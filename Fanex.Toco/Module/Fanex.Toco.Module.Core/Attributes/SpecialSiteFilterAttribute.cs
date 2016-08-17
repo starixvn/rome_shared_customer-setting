@@ -16,7 +16,7 @@
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             var param = filterContext.ActionParameters;
-            int custid = this.GetCustIdParam(param);
+            int? custid = this.GetCustIdParam(param);
             var username = GetUserNameParam(param);
             if (!(custid == 0 && string.IsNullOrEmpty(username)))
             {
@@ -27,21 +27,32 @@
                     CustID = custid,
                     CustName = username
                 });
+
                 if (checkSpecialSite.ErrorCode > 0)
                 {
-                    filterContext.Result = new PartialViewResult
+                    if (filterContext.HttpContext.Request.IsAjaxRequest())
                     {
-                        ViewName = DeniedView
-                    };
+                        filterContext.Result = new JsonResult()
+                        {
+                            Data = checkSpecialSite
+                        };
+                    }
+                    else
+                    {
+                        filterContext.Result = new PartialViewResult
+                        {
+                            ViewName = DeniedView
+                        };
 
-                    (filterContext.Result as PartialViewResult).ViewBag.ErrorMessage = checkSpecialSite.ErrorMessage;
+                        (filterContext.Result as PartialViewResult).ViewBag.ErrorMessage = checkSpecialSite.ErrorMessage;
+                    }
                 }
             }
 
             base.OnActionExecuting(filterContext);
         }
 
-        private int GetCustIdParam(IDictionary<string, object> param)
+        private int? GetCustIdParam(IDictionary<string, object> param)
         {
             List<int> list = new List<int>();
             list.Add(param.ContainsKey("custid") ? Converter.ToInt(param["custid"]) : 0);
@@ -51,7 +62,7 @@
             list.Add(param.ContainsKey("agentid") ? Converter.ToInt(param["agentid"]) : 0);
 
             var index = list.FindIndex(m => m > 0);
-            return index >= 0 ? list[index] : 0;
+            return index >= 0 ? (int?)list[index] : null;
         }
 
         private string GetUserNameParam (IDictionary<string, object> param)

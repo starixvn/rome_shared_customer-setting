@@ -19,9 +19,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
     using Fanex.CustomerSetting.Module.SearchCopy.Entities;
     using Fanex.CustomerSetting.Module.SearchCopy.Services;
     using Fanex.LiveCasino.CoreSetting.Services;
-    using Attributes;
     using Core.Web;
-
+    using Core.Attributes;
     /// <summary>
     /// Class BaseCloneController.
     /// </summary>
@@ -80,16 +79,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             return currentURL.StartsWith("http") ? currentURL : "http://" + currentURL;
         }
 
-        [SpecialSiteFilter]
         public SearchResult SearchExistingUser(SearchExistingUserCriteria criteria)
         {
-            var permissionService = new PermissionService();
-            var checkSpecialSiteAccess = permissionService.CheckSpecialSitePermission(new CheckSpecialSitePermissionCriteria() { UserID = AppSession.AccId, CustName = criteria.Username });
-            if (checkSpecialSiteAccess.ErrorCode > 0)
-            {
-                return new SearchResult() { CustId = -2 };
-            }
-
             return _searchCopyService.SearchExistingUser(criteria);
         }
 

@@ -30,10 +30,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
     using Casino.Repositories.Impl;
     using Casino.Services.Interface;
     using CasinoLibrary.SBAgent;
+    using Core.Attributes;    
     
-    /// <summary>
-    /// Base racing controller.
-    /// </summary>
     public class SuperController : BaseCloneController
     {
         /// <summary>
@@ -55,6 +53,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
         /// </summary>
         /// <param name="username">The username.</param>
         /// <returns>Return JSONRESULT.</returns>
+        [SpecialSiteFilter]
         public ActionResult SearchExistingSuper(string username, string level = "member")
         {
             var isMember = level.Equals("member", StringComparison.OrdinalIgnoreCase);
@@ -105,6 +104,18 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "SearchAndCopy")]
         public ActionResult CopyExistingSuper(CustomerInsMemberCriteria criteria)
         {
+            var permissionService = new PermissionService();
+            var checkSpecialSite = permissionService.CheckSpecialSitePermission(new CheckSpecialSitePermissionCriteria()
+            {
+                UserID = AppSession.AccId,
+                CustID = criteria.ExistingCustId
+            });
+
+            if (checkSpecialSite.ErrorCode > 0)
+            {
+                return base.Json(checkSpecialSite, JsonRequestBehavior.AllowGet);
+            }
+
             criteria.Userpwd = IBCUtils.Encryption.CfsEnCode(criteria.Userpwd);
             criteria.FirstName = criteria.FirstName ?? string.Empty;
             criteria.LastName = criteria.LastName ?? string.Empty;
