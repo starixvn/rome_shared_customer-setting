@@ -9,6 +9,7 @@
 
 namespace Fanex.Module.Statement.Criteria
 {
+    using CustomerSetting.Module.Core.Web;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -17,6 +18,12 @@ namespace Fanex.Module.Statement.Criteria
     public class GetCustomerInformationByUsername : CriteriaBase
     {
         public string Username { get; set; }
+
+        public int UserId {
+            get {
+                return AppSession.AccId;
+            }
+        }
 
         public override string GetSettingKey()
         {

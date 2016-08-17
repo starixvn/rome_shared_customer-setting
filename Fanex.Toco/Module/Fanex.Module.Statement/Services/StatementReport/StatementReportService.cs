@@ -20,10 +20,10 @@ namespace Fanex.Module.Statement.Services.StatementReport
     using Fanex.Module.Statement.Models;
     using Fanex.Module.Statement.Models.StatementReport;
     using Fanex.Module.Statement.Repositories.StatementReport;
-
-    /// <summary>
-    /// Statement Report Service.
-    /// </summary>
+    using CustomerSetting.Module.Core.Web;
+    using CustomerSetting.Module.Core.Criteria;    /// <summary>
+                                                   /// Statement Report Service.
+                                                   /// </summary>
     public class StatementReportService : IStatementReportService
     {
         private readonly IStatementReportRepository _statementReportRepository;
@@ -49,6 +49,18 @@ namespace Fanex.Module.Statement.Services.StatementReport
             {
                 StatementList = new List<StatementModel>()
             };
+
+            var serviceBase = new ServiceBase();
+            var checkSpecialSite = serviceBase.CheckSpecialSitePermission(
+                new CheckSpecialSitePermissionCriteria()
+                {
+                    UserID = AppSession.AccId,
+                    CustID = criteria.CustId
+                });
+            if (checkSpecialSite.ErrorCode > 0)
+            {
+                return result;
+            }
 
             try
             {
@@ -88,6 +100,18 @@ namespace Fanex.Module.Statement.Services.StatementReport
             {
                 StatementList = new List<StatementModel>()
             };
+
+            var serviceBase = new ServiceBase();
+            var checkSpecialSite = serviceBase.CheckSpecialSitePermission(
+                new CheckSpecialSitePermissionCriteria()
+                {
+                    UserID = AppSession.AccId,
+                    CustID = criteria.CustId
+                });
+            if (checkSpecialSite.ErrorCode > 0)
+            {
+                return result;
+            }
 
             if (criteria.IsValid())
             {

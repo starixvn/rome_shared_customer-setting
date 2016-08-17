@@ -1,8 +1,7 @@
 namespace Fanex.CustomerSetting.Module.Core.Services.Impl
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
+    using Criteria;
+    using Data;
     using Fanex.Caching;
     using Fanex.Common.Helper;
     using Fanex.CustomerSetting.Module.Core.Repository;
@@ -10,6 +9,10 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
     using Fanex.NAP.Core.Web.Context;
     using Fanex.NAP.Core.Web.Session;
     using Fanex.NAP.Framework.Data;
+    using Models;
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ServiceBase : IServiceBase
@@ -51,6 +54,20 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
             }
 
             return new List<T>();
+        }
+        public Result CheckSpecialSitePermission(CheckSpecialSitePermissionCriteria criteria)
+        {
+            Result result = new Result();
+            using (ObjectDb db = new ObjectDb(criteria.GetSettingKey()))
+            {
+                db.AssignParamValues(criteria.GetSpParams());
+                db.ExecuteNonQuery();
+                var outputs = db.GetOuputParams();
+                result.ErrorCode = Convert.IsDBNull(outputs["errcode"]) ? 0 : Convert.ToInt32(outputs["errcode"]);
+                result.ErrorMessage = Convert.IsDBNull(outputs["errmsg"]) ? string.Empty : outputs["errmsg"].ToString();
+            }
+
+            return result;
         }
     }
 }

@@ -51,10 +51,6 @@
     <Reference Include="Fanex.Common">
       <HintPath>..\..\_Dependencies\Fanex\Fanex.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.CustomerSetting.Module.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.CustomerSetting.Module.Core.AllSites.2.0.0.0\lib\net40\Fanex.CustomerSetting.Module.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Fanex.CustomerSetting.Module.Keno.KenoSetting, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.CustomerSetting.Module.Keno.KenoSetting.1.0.0.1\lib\net40\Fanex.CustomerSetting.Module.Keno.KenoSetting.dll</HintPath>
       <Private>True</Private>
@@ -228,6 +224,7 @@
     <Compile Include="Controllers\SuperController.cs" />
     <Compile Include="Criteria\CheckCustomerEnabledCriteria.cs" />
     <Compile Include="Criteria\DCSSettingCopyInsertMemberCriteria.cs" />
+    <Compile Include="Criteria\CheckSpecialSitePermissionCriteria.cs" />
     <Compile Include="Repositories\Interface\IDCSSettingCopyInsertMemberRepository.cs" />
     <Compile Include="Criteria\UpdateSyncBaseForIBCCriteria.cs" />
     <Compile Include="Criteria\UpdateSyncLiveCasinoForIBCCriteria.cs" />
@@ -253,6 +250,7 @@
     <Compile Include="Services\DCSSettingCopyInsertMemberService.cs" />
     <Compile Include="Services\IDCSSettingCopyInsertMemberService.cs" />
     <Compile Include="Services\ISearchCopyService.cs" />
+    <Compile Include="Services\PermissionService.cs" />
     <Compile Include="Services\SearchCopyService.cs" />
     <Compile Include="ViewModels\CustomerSettingView.cs" />
   </ItemGroup>
@@ -278,7 +276,7 @@
       <Name>Casino</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fanex.Toco.Module.Core\_Core.csproj">
-      <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
+      <Project>{af2e11aa-2a92-47ac-86fa-4d48b0aeb5d7}</Project>
       <Name>_Core</Name>
     </ProjectReference>
   </ItemGroup>

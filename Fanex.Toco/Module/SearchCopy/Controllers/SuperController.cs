@@ -9,12 +9,9 @@
 // </history>
 namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
 {
-    using System;
     using System.Collections;
-    using System.Configuration;
     using System.Data;
     using System.Threading.Tasks;
-    using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.CustomerSetting.Module.SearchCopy.Common;
     using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
@@ -24,14 +21,17 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
     using Fanex.Logging;
     using Fanex.NAP.Framework.Data;
     using Services;
+    using System;
+    using System.Configuration;
+    using System.Web.Mvc;
     using ICommandResults = Fanex.LiveCasino.CoreSetting.DTO.CommandResult.ICommandResults;
     using Fanex.Module.Logs.Services;
     using Casino.Services.Impl;
     using Casino.Repositories.Impl;
     using Casino.Services.Interface;
-    using CasinoLibrary.SBAgent;/// <summary>
-                                /// Base racing controller.
-                                /// </summary>
+    using CasinoLibrary.SBAgent;
+    using Core.Attributes;    
+    
     public class SuperController : BaseCloneController
     {
         /// <summary>
@@ -53,6 +53,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
         /// </summary>
         /// <param name="username">The username.</param>
         /// <returns>Return JSONRESULT.</returns>
+        [SpecialSiteFilter]
         public ActionResult SearchExistingSuper(string username, string level = "member")
         {
             var isMember = level.Equals("member", StringComparison.OrdinalIgnoreCase);
@@ -103,6 +104,18 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "SearchAndCopy")]
         public ActionResult CopyExistingSuper(CustomerInsMemberCriteria criteria)
         {
+            var permissionService = new PermissionService();
+            var checkSpecialSite = permissionService.CheckSpecialSitePermission(new CheckSpecialSitePermissionCriteria()
+            {
+                UserID = AppSession.AccId,
+                CustID = criteria.ExistingCustId
+            });
+
+            if (checkSpecialSite.ErrorCode > 0)
+            {
+                return base.Json(checkSpecialSite, JsonRequestBehavior.AllowGet);
+            }
+
             criteria.Userpwd = IBCUtils.Encryption.CfsEnCode(criteria.Userpwd);
             criteria.FirstName = criteria.FirstName ?? string.Empty;
             criteria.LastName = criteria.LastName ?? string.Empty;

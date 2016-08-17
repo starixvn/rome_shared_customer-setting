@@ -10,9 +10,11 @@
 //   <change who="Ricky.Nguyen" date="2012.11.6">Move</change>
 // </history>
 
+using Fanex.CustomerSetting.Module.Core.Criteria;
+using Fanex.CustomerSetting.Module.Core.Models;
+using Fanex.NAP.Framework.Data;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using Fanex.NAP.Framework.Data;
 
 namespace Fanex.CustomerSetting.Module.Core.Services.Interface
 {
@@ -26,5 +28,7 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Interface
         /// <param name="criteria"></param>
         /// <returns></returns>
         IEnumerable<T> GetListData<T>(ICriteria criteria);
+
+        Result CheckSpecialSitePermission(CheckSpecialSitePermissionCriteria criteria);
     }
 }

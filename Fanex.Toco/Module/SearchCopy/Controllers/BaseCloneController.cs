@@ -19,7 +19,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
     using Fanex.CustomerSetting.Module.SearchCopy.Entities;
     using Fanex.CustomerSetting.Module.SearchCopy.Services;
     using Fanex.LiveCasino.CoreSetting.Services;
-
+    using Core.Web;
+    using Core.Attributes;
     /// <summary>
     /// Class BaseCloneController.
     /// </summary>
@@ -101,7 +102,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
         /// <returns>Return list of sites.</returns>
         public ActionResult GetSites()
         {
-            var sites = _searchCopyService.GetSitesExistingSuper(new GetSitesCriteria());
+            var sites = _searchCopyService.GetSitesExistingSuper(new GetSitesCriteria() { UserId = AppSession.AccId });
             return base.Json(sites, JsonRequestBehavior.AllowGet);
             ////return JsonBase(sites);
         }
