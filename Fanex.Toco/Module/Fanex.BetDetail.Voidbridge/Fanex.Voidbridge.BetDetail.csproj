@@ -160,6 +160,7 @@
     <Compile Include="Criteria\GetVoidbridgeResultCriteria.cs" />
     <Compile Include="Extensions\BetListExtension.cs" />
     <Compile Include="Helpers\BetListHelper.cs" />
+    <Compile Include="Models\BetDetailReport.cs" />
     <Compile Include="Models\HandHistory\AuthInfo.cs" />
     <Compile Include="Models\HandHistory\CallInfo.cs" />
     <Compile Include="Models\HandHistory\HandHistoryModel.cs" />
@@ -194,9 +195,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Voidbridge.css" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
