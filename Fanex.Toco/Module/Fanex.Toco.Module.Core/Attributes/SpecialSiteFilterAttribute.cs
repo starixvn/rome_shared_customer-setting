@@ -23,7 +23,7 @@
                 var permissionService = new ServiceBase();
                 var checkSpecialSite = permissionService.CheckSpecialSitePermission(new CheckSpecialSitePermissionCriteria()
                 {
-                    UserID = AppSession.AccId,
+                    UserID = AppSession.CurrentSession.UserId,
                     CustID = custid,
                     CustName = username
                 });
