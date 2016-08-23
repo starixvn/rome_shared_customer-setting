@@ -1116,12 +1116,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
             var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
 
-            if (result.IsSuccess)
-            {
-                ICasinoMemberWinLimitService service = new CasinoMemberWinLimitService();
-                result = service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.MemberWinLimit);
-            }
-
             return result;
         }
 
@@ -1156,12 +1150,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             }
 
             var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
-
-            if (result.IsSuccess)
-            {
-                ICasinoMemberWinLimitService service = new CasinoMemberWinLimitService();
-                result = service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.MemberWinLimit);
-            }
 
             return result;
         }

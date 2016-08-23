@@ -14,10 +14,11 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
     using Fanex.Module.Logs;
     using Newtonsoft.Json;
     using Fanex.Module.Logs.Services;
-
+    using Authenticate;
     public class MasterController : BaseController
     {
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
+        [CasinoUMTimeFilter]
         public ActionResult EditMaster(int id, int uplineId, string groupName = null, bool isSearchAndCopy = false)
         {
             var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
@@ -43,6 +44,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
+        [CasinoUMTimeFilter]
         public ActionResult UpdateMasterPost(int id, string username, int uplineId, int userId, string actorName, string settingModel, string customerModel, string groupName = null)
         {
             var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;

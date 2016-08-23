@@ -133,6 +133,15 @@ namespace Fanex.CustomerSetting.Module.Casino.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are not authorized on this function.
+        /// </summary>
+        public static string errorNotAuthorized {
+            get {
+                return ResourceManager.GetString("errorNotAuthorized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Insert from existing account CustId = {0}. Upline uncheck all game type then get direct default betting limit for write log (CurrencyId = {1})..
         /// </summary>
         public static string InsertFromExistingAccountLogMsg {

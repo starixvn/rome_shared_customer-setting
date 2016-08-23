@@ -345,4 +345,7 @@
   <data name="lblMaxLoss" xml:space="preserve">
     <value>Maximum Loss</value>
   </data>
+  <data name="errorNotAuthorized" xml:space="preserve">
+    <value>You are not authorized on this function</value>
+  </data>
 </root>

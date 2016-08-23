@@ -15,8 +15,7 @@
 /// </summary>
 namespace Fanex.CustomerSetting.Module.Casino.Controllers
 {
-    using System;
-    using System.Web.Mvc;
+    using Authenticate;
     using Fanex.CustomerSetting.Module.Casino.Entities;
     using Fanex.CustomerSetting.Module.Casino.Services.Impl;
     using Fanex.CustomerSetting.Module.Casino.ViewModels;
@@ -25,9 +24,10 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
     using Fanex.CustomerSetting.Security.Authenticate;
     using Fanex.CustomerSetting.Security.Configurations;
     using Fanex.Module.Logs;
-    using Newtonsoft.Json;
     using Fanex.Module.Logs.Services;
-
+    using Newtonsoft.Json;
+    using System;
+    using System.Web.Mvc;
     /// <summary>
     /// Class AgentController.
     /// </summary>
@@ -40,6 +40,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
         /// <param name="uplineId">The upline identifier.</param>
         /// <returns>ActionResult object.</returns>
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
+        [CasinoUMTimeFilter]
         public ActionResult EditAgent(int id, int uplineId, string groupName = null, bool isSearchAndCopy = false)
         {
             var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
@@ -71,6 +72,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
         /// <param name="uplineId">The upline identifier.</param>
         /// <returns>ActionResult object.</returns>
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
+        [CasinoUMTimeFilter]
         public ActionResult ViewAgentBySuper(int id, int uplineId, string groupName = null)
         {
             var obj = System.Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
@@ -106,6 +108,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
         /// <param name="customerModel">The customer model.</param>
         /// <returns>ActionResult object.</returns>
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
+        [CasinoUMTimeFilter]
         public ActionResult UpdateAgentPost(int id, string username, int uplineId, int userId, string actorName, string settingModel, string customerModel, string groupName = null)
         {
             var obj = System.Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
