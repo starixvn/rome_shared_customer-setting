@@ -277,7 +277,7 @@
     <value>모든회원의 거래조건을 바꾸기를 원하십니까</value>
   </data>
   <data name="lblConfirm" xml:space="preserve">
-    <value>Confirm Update Members's PT</value>
+    <value>Confirm Update Members' PT</value>
   </data>
   <data name="lblHaveChangeAgentPositionTaking" xml:space="preserve">
     <value>해당 에이전트는 자동 거래조건을 설정 하지 못하게 변경 하였습니다</value>

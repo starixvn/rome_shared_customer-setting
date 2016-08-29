@@ -277,7 +277,7 @@
     <value>Do you want to update all member's position taking to</value>
   </data>
   <data name="lblConfirm" xml:space="preserve">
-    <value>Confirm Update Members's PT</value>
+    <value>Confirm Update Members' PT</value>
   </data>
   <data name="lblHaveChangeAgentPositionTaking" xml:space="preserve">
     <value>You have changed this agent not to take auto position taking.</value>
