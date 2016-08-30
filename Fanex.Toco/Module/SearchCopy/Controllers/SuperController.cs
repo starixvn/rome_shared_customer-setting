@@ -9,9 +9,14 @@
 // </history>
 namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
 {
+    using System;
     using System.Collections;
-    using System.Data;
-    using System.Threading.Tasks;
+    using System.Configuration;
+    using System.Web.Mvc;
+    using Casino.Services.Impl;
+    using Casino.Services.Interface;
+    using CasinoLibrary.SBAgent;
+    using Core.Attributes;
     using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.CustomerSetting.Module.SearchCopy.Common;
     using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
@@ -19,19 +24,12 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
     using Fanex.CustomerSetting.Module.SearchCopy.ViewModels;
     using Fanex.CustomerSetting.Security.Authenticate;
     using Fanex.Logging;
+    using Fanex.Module.Logs.Services;
+    using Fanex.Module.NG2.Entities;
+    using Fanex.Module.NG2.Services;
     using Fanex.NAP.Framework.Data;
     using Services;
-    using System;
-    using System.Configuration;
-    using System.Web.Mvc;
     using ICommandResults = Fanex.LiveCasino.CoreSetting.DTO.CommandResult.ICommandResults;
-    using Fanex.Module.Logs.Services;
-    using Casino.Services.Impl;
-    using Casino.Repositories.Impl;
-    using Casino.Services.Interface;
-    using CasinoLibrary.SBAgent;
-    using Core.Attributes;    
-    
     public class SuperController : BaseCloneController
     {
         /// <summary>
@@ -157,7 +155,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                     result.Message = string.Join(null, new string[] { "<div class=\"alertboxscc\"><div>", criteria.CustLevel == 1 ? Constants.CopyMessage.SuccessMember : Constants.CopyMessage.Success, "</div></div>" });
                     criteria.IP = CurrentContext.Instance.Ip4Address;
 
-                    // Sync casino, bingo, live casino
+                    // Sync casino, bingo, live casino, ng2
                     UpdateSyncData(criteria);
                 }
                 else
@@ -221,6 +219,13 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             {
                 resultSyncData.Code = -1;
                 resultSyncData.Message = string.Join(null, new string[] { "<div class='alertboxerr'>", resultMessage, "</div>" });
+            }
+
+            if (criteria.IsSyncNG2Upline)
+            {
+                // Sync NG2
+                var ng2Service = new NG2StatusService();
+                ng2Service.AutoInsertAccount(criteria.CustId, criteria.UserName, (RoleId)criteria.CustLevel, criteria.CustLevel == 4 ? criteria.CustId : criteria.UplineId, criteria.DisableNG2, SiteId.NAP);
             }
 
             return resultSyncData;

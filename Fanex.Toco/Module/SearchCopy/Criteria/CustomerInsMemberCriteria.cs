@@ -70,6 +70,10 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
 
         public bool DisableBingo { get; set; }
 
+        public bool DisableNG2 { get; set; }
+
+        public bool IsSyncNG2Upline { get; set; }
+
         public override string GetSettingKey()
         {
             return "Acc_CustomerInsMember_CloneSetting_Com";
