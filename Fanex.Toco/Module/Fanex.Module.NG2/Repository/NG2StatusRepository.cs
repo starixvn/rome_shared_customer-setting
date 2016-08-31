@@ -44,6 +44,8 @@ namespace Fanex.Module.NG2.Repository
                 param.Add("ip", ip);
 
                 db.ExecuteNonQuery(param);
+                result.ErrorCode = Utils.ToInt32(db.GetParameterValue("errcode"));
+                result.ErrorMessage = Utils.ToString(db.GetParameterValue("errmsg"));
             }
 
             return result;
