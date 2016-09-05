@@ -69,5 +69,47 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
 
             return result;
         }
+
+        public bool CheckCustomerBelongToSpecialSite(CheckCustomerIsSpecialSiteCriteria criteria)
+        {
+            bool result = false;
+            using (ObjectDb db = new ObjectDb(criteria.GetSettingKey()))
+            {
+                db.AssignParamValues(criteria.GetSpParams());
+                db.ExecuteNonQuery();
+                var outputs = db.GetOuputParams();
+                result = Convert.IsDBNull(outputs["isspecialsite"]) ? false : Convert.ToBoolean(outputs["isspecialsite"]);
+            }
+
+            return result;
+        }
+
+        public bool CheckCustomerIsInternalAdmin(CheckCustomerIsInternalAdminCriteria criteria)
+        {
+            bool result = false;
+            using (ObjectDb db = new ObjectDb(criteria.GetSettingKey()))
+            {
+                db.AssignParamValues(criteria.GetSpParams());
+                db.ExecuteNonQuery();
+                var outputs = db.GetOuputParams();
+                result = Convert.IsDBNull(outputs["isinternaladmin"]) ? false : Convert.ToBoolean(outputs["isinternaladmin"]);
+            }
+
+            return result;
+        }
+
+        public bool CheckCustomerHasSpecialSitePermission(CheckCustomerHasSpecialSiteFunctionPermissionCriteria criteria)
+        {
+            bool result = false;
+            using (ObjectDb db = new ObjectDb(criteria.GetSettingKey()))
+            {
+                db.AssignParamValues(criteria.GetSpParams());
+                db.ExecuteNonQuery();
+                var outputs = db.GetOuputParams();
+                result = Convert.IsDBNull(outputs["errcode"])? true : Convert.ToInt32(outputs["errcode"]) == 0;
+            }
+
+            return result;
+        }
     }
 }

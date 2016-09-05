@@ -30,5 +30,11 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Interface
         IEnumerable<T> GetListData<T>(ICriteria criteria);
 
         Result CheckSpecialSitePermission(CheckSpecialSitePermissionCriteria criteria);
+
+        bool CheckCustomerBelongToSpecialSite(CheckCustomerIsSpecialSiteCriteria criteria);
+
+        bool CheckCustomerIsInternalAdmin(CheckCustomerIsInternalAdminCriteria criteria);
+
+        bool CheckCustomerHasSpecialSitePermission(CheckCustomerHasSpecialSiteFunctionPermissionCriteria criteria);
     }
 }

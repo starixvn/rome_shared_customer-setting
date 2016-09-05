@@ -110,6 +110,9 @@
     <Compile Include="Constants\SportContants.cs" />
     <Compile Include="Controllers\Base\ControllerExtentions.cs" />
     <Compile Include="Controllers\Base\JsonBase.cs" />
+    <Compile Include="Criteria\CheckCustomerHasSpecialSiteFunctionPermissionCriteria.cs" />
+    <Compile Include="Criteria\CheckCustomerIsInternalAdminCriteria.cs" />
+    <Compile Include="Criteria\CheckCustomerIsSpecialSiteCriteria.cs" />
     <Compile Include="Criteria\CheckSpecialSitePermissionCriteria.cs" />
     <Compile Include="Criteria\GetBettypeCriteria.cs">
       <SubType>Code</SubType>
