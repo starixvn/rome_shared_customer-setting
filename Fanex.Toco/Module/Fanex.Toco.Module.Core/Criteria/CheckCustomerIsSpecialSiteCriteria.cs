@@ -4,7 +4,7 @@ namespace Fanex.CustomerSetting.Module.Core.Criteria
 {
     public class CheckCustomerIsSpecialSiteCriteria : CriteriaBase
     {
-        public int CustID { get; set; }
+        public string UserName { get; set; }
 
         public override string GetSettingKey()
         {
