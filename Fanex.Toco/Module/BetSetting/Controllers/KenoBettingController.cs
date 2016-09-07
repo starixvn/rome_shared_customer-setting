@@ -16,7 +16,7 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Controllers
     using System.Linq;
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.BetSetting.Base;
-    using Fanex.CustomerSetting.Module.KenoStatus.Configurations;
+    using Fanex.CustomerSetting.Module.Keno.KenoSetting.Configurations;
     using Fanex.CustomerSetting.Security.Authenticate;
     using Fanex.CustomerSetting.Security.Configurations;
     using Newtonsoft.Json;

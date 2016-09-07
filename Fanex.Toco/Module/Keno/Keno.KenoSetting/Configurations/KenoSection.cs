@@ -4,7 +4,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace Fanex.CustomerSetting.Module.KenoStatus.Configurations
+namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Configurations
 {
     using System.Collections.Generic;
     using System.Configuration;
