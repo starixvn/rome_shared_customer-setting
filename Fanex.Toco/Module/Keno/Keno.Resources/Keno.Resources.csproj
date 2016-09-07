@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Fanex.CustomerSetting.Module.Keno.Resources</RootNamespace>
-    <AssemblyName>Fanex.CustomerSetting.Module.Keno.Resources</AssemblyName>
+    <AssemblyName>Fanex.CustomerSetting.Module.KenoResources</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
