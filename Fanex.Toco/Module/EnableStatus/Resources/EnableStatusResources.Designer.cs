@@ -88,6 +88,33 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Normal Games.
+        /// </summary>
+        public static string AllbetNormalGames {
+            get {
+                return ResourceManager.GetString("AllbetNormalGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setting of Normal Games is applied for Normal Baccarat, Roulette, SicBo, DragonTiger, VIP Baccarat - SideBet..
+        /// </summary>
+        public static string AllbetNormalGamesNote {
+            get {
+                return ResourceManager.GetString("AllbetNormalGamesNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setting of VIP Baccarat is applied for VIP Baccarat - Join/Reserve..
+        /// </summary>
+        public static string AllbetVIPBaccaratNote {
+            get {
+                return ResourceManager.GetString("AllbetVIPBaccaratNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SA Tote.
         /// </summary>
         public static string b15131 {
@@ -237,6 +264,15 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Resources {
         public static string member {
             get {
                 return ResourceManager.GetString("member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notes.
+        /// </summary>
+        public static string Notes {
+            get {
+                return ResourceManager.GetString("Notes", resourceCulture);
             }
         }
         

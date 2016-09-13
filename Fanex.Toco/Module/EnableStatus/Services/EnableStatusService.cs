@@ -35,8 +35,8 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
         {
             try
             {
-                var model = _data.GetProductStatus(storedProcedure, context);
-                var product = Helper.Products.Where(p => p.Id.Equals(context.ProductId, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+                EnableStatusModel model = _data.GetProductStatus(storedProcedure, context);
+                ProductElementConfiguration product = Helper.Products.Where(p => p.Id.Equals(context.ProductId, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
 
                 context.NewMode = product.NewMode;
                 model.IframeId = Helper.Products.IframeId;
@@ -47,7 +47,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                     (context.Username == null ? string.Empty : context.Username) : model.Entities.FirstOrDefault().Username.ToString();
                 model.RequestContext.Username = model.Username;
 
-                foreach (var item in model.Entities)
+                foreach (EnableStatusEntity item in model.Entities)
                 {
                     if (item.BetTypeId != null && product.HideBetTypes.Contains(item.BetTypeId.ToString()))
                     {
