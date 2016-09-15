@@ -12,7 +12,7 @@
     /// </summary>
     public static class Helper
     {
-        private static string resourceType = "Fanex.CustomerSetting.EnableStatus.AllInOne.Resources.EnableStatusResources";
+        private static string resourceType = "Fanex.CustomerSetting.Module.NG2.EnableStatus.Resources.EnableStatusResources";
         private static ResourceManager resourceManager;
         private static ProductCollectionConfiguration productCollection;
 
