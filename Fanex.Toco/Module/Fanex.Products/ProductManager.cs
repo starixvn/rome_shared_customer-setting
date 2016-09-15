@@ -11,26 +11,24 @@ namespace Fanex.Products
 {
     public static class ProductManager
     {
-        private static IDictionary<int, BaseProduct> _productsDictionary = null;
+        private static readonly IDictionary<int, BaseProduct> ProductsDictionary = null;
 
-        public static IDictionary<int, BaseProduct> ProductsDictionary
+        static ProductManager()
+        {
+            ProductsDictionary = GetProductsDictionary();
+        }
+
+        public static ICollection<BaseProduct> Products
         {
             get
             {
-                if (_productsDictionary == null)
-                {
-                    _productsDictionary = GetProductsDictionary();
-                }
-
-                return _productsDictionary;
+                return ProductsDictionary.Values;
             }
         }
 
         public static void SetProductsStatusToSession(Hashtable outputParams)
         {
-            var products = ProductsDictionary.Values;
-
-            foreach (Product_23 product in products)
+            foreach (BaseProduct product in Products)
             {
                 product.SetProductStatusToSession(outputParams);
             }
@@ -38,44 +36,62 @@ namespace Fanex.Products
 
         public static BaseProduct GetProduct(int productId)
         {
-            var productsDictionary = ProductsDictionary;
+            BaseProduct baseProduct;
 
-            return productsDictionary.ContainsKey(productId) ? productsDictionary[productId] : null;
+            if (ProductsDictionary.TryGetValue(productId, out baseProduct))
+            {
+                return baseProduct;
+            }
+
+            return null;
         }
 
         public static bool IsActive(int productId)
         {
-            var productsDictionary = ProductsDictionary;
+            BaseProduct baseProduct;
 
-            return productsDictionary.ContainsKey(productId) && productsDictionary[productId].Active;
+            if (ProductsDictionary.TryGetValue(productId, out baseProduct))
+            {
+                return baseProduct.Active;
+            }
+
+            return false;
         }
 
-        public static bool IsShowReport(int productId)
+        public static bool IsShowOnWeb(int productId)
         {
-            var productsDictionary = ProductsDictionary;
+            BaseProduct baseProduct;
 
-            return productsDictionary.ContainsKey(productId) && productsDictionary[productId].ShowReport;
-        }
+            if (ProductsDictionary.TryGetValue(productId, out baseProduct))
+            {
+                return baseProduct.ShowOnWeb;
+            }
 
-        public static bool IsShowDCS(int productId)
-        {
-            var productsDictionary = ProductsDictionary;
-
-            return productsDictionary.ContainsKey(productId) && productsDictionary[productId].ShowDCS;
+            return false;
         }
 
         public static bool? IsSynced(int productId)
         {
-            var productsDictionary = ProductsDictionary;
+            BaseProduct baseProduct;
 
-            return productsDictionary.ContainsKey(productId) ? productsDictionary[productId].Synced : new bool?();
+            if (ProductsDictionary.TryGetValue(productId, out baseProduct))
+            {
+                return baseProduct.Synced;
+            }
+
+            return new bool?();
         }
 
         public static bool IsDisabled(int productId)
         {
-            var productsDictionary = ProductsDictionary;
+            BaseProduct baseProduct;
 
-            return productsDictionary.ContainsKey(productId) && productsDictionary[productId].Disabled;
+            if (ProductsDictionary.TryGetValue(productId, out baseProduct))
+            {
+                return baseProduct.Disabled;
+            }
+
+            return true;
         }
 
         public static string GetProductName(int productId)
@@ -88,7 +104,7 @@ namespace Fanex.Products
             IDictionary<int, BaseProduct> products = new Dictionary<int, BaseProduct>(16);
 
             BaseProduct product;
-            string baseProductNamespace = typeof(Product_23).Namespace;
+            string baseProductNamespace = typeof(BaseProduct).Namespace;
 
             var productElements = ProductSection.Instance.Products
                 .Cast<ProductElement>()
@@ -112,7 +128,8 @@ namespace Fanex.Products
                     product.ReportSPParam = item.ReportSPParam;
                     product.ViewPTLink = item.ViewPTLink;
                     product.ViewCommLink = item.ViewCommLink;
-                    product.SettingPTLink = item.SettingPTLink;
+                    product.CustomerSettingLink = item.CustomerSettingLink;
+                    product.EnableStatusLink = item.EnableStatusLink;
 
                     products.Add(product.Id, product);
                 }

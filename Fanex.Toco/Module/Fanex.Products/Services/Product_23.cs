@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections;
-using Fanex.Products.Utilities;
+using System.Data;
+using Fanex.Products.Enums;
+using Fanex.Products.Extensions;
 
 namespace Fanex.Products.Services
 {
     public class Product_23 : BaseProduct, IProduct
     {
-        protected const string SyncedProduct = "_SYNCEDPRODUCT_";
-
         public Product_23(bool webConfigActive)
             : base(webConfigActive)
         {
@@ -34,14 +34,55 @@ namespace Fanex.Products.Services
             }
         }
 
-        protected bool? GetSynced()
+        public override DCSIcon GetDCSIcon(DataRow drow)
         {
-            return SessionUtility.GetSession(SyncedProduct + Id, new bool?());
+            if (ShowOnWeb)
+            {
+                string lowerName = Name.ToLowerInvariant();
+
+                string syncedColumnName = "synced" + lowerName;
+                object synced = drow.GetValue(syncedColumnName);
+
+                if (synced == null || !Convert.ToBoolean(synced))
+                {
+                    return DCSIcon.Synchronized;
+                }
+
+                string disabledColumnName = "disable" + lowerName;
+                object disabled = drow.GetValue(disabledColumnName);
+
+                if (disabled != null && !Convert.ToBoolean(disabled))
+                {
+                    return DCSIcon.EnabledEdit;
+                }
+            }
+
+            return DCSIcon.DisabledEdit;
         }
 
-        protected void SetSynced(bool? value)
+        public override bool ShowDCSLinkForDownline(DataRow drow, int loggedInUserRole)
         {
-            SessionUtility.SetSession(SyncedProduct + Id, value);
+            if (ShowOnWeb)
+            {
+                int roleId = Convert.ToInt32(drow["roleid"]);
+
+                // Direct downline or Member.
+                return (roleId + 1 == loggedInUserRole) || roleId == 1;
+            }
+
+            return false;
+        }
+
+        public override bool ShowEnableStatusLinkForDownline(DataRow drow, int loggedInUserRole)
+        {
+            if (ShowOnWeb)
+            {
+                object synced = drow.GetValue("IsSync");
+
+                return synced != null && Convert.ToBoolean(synced);
+            }
+
+            return false;
         }
     }
 }

@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections;
+using System.Data;
+using Fanex.Products.Enums;
 using Fanex.Products.Utilities;
 
 namespace Fanex.Products.Services
 {
-    public class BaseProduct : IProduct
+    public abstract class BaseProduct : IProduct
     {
         protected const string HideProduct = "_HIDEPRODUCT_";
         protected const string DisabledProduct = "_DISABLEDPRODUCT_";
+        protected const string SyncedProduct = "_SYNCEDPRODUCT_";
 
         private bool _active;
 
@@ -32,7 +35,9 @@ namespace Fanex.Products.Services
 
         public string ViewCommLink { get; set; }
 
-        public string SettingPTLink { get; set; }
+        public string CustomerSettingLink { get; set; }
+
+        public string EnableStatusLink { get; set; }
 
         #endregion
 
@@ -62,15 +67,7 @@ namespace Fanex.Products.Services
             }
         }
 
-        public virtual bool ShowReport
-        {
-            get
-            {
-                return _active && !GetHide();
-            }
-        }
-
-        public virtual bool ShowDCS
+        public virtual bool ShowOnWeb
         {
             get
             {
@@ -96,6 +93,12 @@ namespace Fanex.Products.Services
             }
         }
 
+        public abstract DCSIcon GetDCSIcon(DataRow drow);
+
+        public abstract bool ShowDCSLinkForDownline(DataRow drow, int loggedInUserRole);
+
+        public abstract bool ShowEnableStatusLinkForDownline(DataRow drow, int loggedInUserRole);
+
         #endregion
 
         #region Session Methods
@@ -118,6 +121,16 @@ namespace Fanex.Products.Services
         protected void SetDisabled(bool value)
         {
             SessionUtility.SetSession(DisabledProduct + Id, value);
+        }
+
+        protected bool? GetSynced()
+        {
+            return SessionUtility.GetSession(SyncedProduct + Id, new bool?());
+        }
+
+        protected void SetSynced(bool? value)
+        {
+            SessionUtility.SetSession(SyncedProduct + Id, value);
         }
 
         #endregion

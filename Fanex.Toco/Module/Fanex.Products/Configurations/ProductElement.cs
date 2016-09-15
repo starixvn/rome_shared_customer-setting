@@ -102,17 +102,31 @@ namespace Fanex.Products.Configurations
             }
         }
 
-        [ConfigurationProperty("settingPTLink", DefaultValue = "", IsRequired = false, IsKey = false)]
-        public string SettingPTLink
+        [ConfigurationProperty("customerSettingLink", DefaultValue = "", IsRequired = false, IsKey = false)]
+        public string CustomerSettingLink
         {
             get
             {
-                return this["settingPTLink"].ToString();
+                return this["customerSettingLink"].ToString();
             }
 
             set
             {
-                this["settingPTLink"] = value;
+                this["customerSettingLink"] = value;
+            }
+        }
+
+        [ConfigurationProperty("enableStatusLink", DefaultValue = "", IsRequired = false, IsKey = false)]
+        public string EnableStatusLink
+        {
+            get
+            {
+                return this["enableStatusLink"].ToString();
+            }
+
+            set
+            {
+                this["enableStatusLink"] = value;
             }
         }
 

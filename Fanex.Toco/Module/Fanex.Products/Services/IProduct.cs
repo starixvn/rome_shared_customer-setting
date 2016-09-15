@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using System.Data;
+using Fanex.Products.Enums;
 
 namespace Fanex.Products.Services
 {
@@ -10,10 +12,14 @@ namespace Fanex.Products.Services
 
         bool? Synced { get; }
 
-        bool ShowReport { get; }
-
-        bool ShowDCS { get; }
+        bool ShowOnWeb { get; }
 
         void SetProductStatusToSession(Hashtable outputParams);
+
+        DCSIcon GetDCSIcon(DataRow drow);
+
+        bool ShowDCSLinkForDownline(DataRow drow, int loggedInUserRole);
+
+        bool ShowEnableStatusLinkForDownline(DataRow drow, int loggedInUserRole);
     }
 }
