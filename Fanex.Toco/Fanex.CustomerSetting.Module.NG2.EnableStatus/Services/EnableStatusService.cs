@@ -49,7 +49,14 @@
 
                     if (context.NewMode)
                     {
-                        item.EnableText = item.SportTypeName = item.BetTypeName = RefData.GetSportName(item.SportTypeId.ToString(), context.Language, string.Empty);
+                        if (product.GetFromRemotingRef)
+                        {
+                            item.EnableText = item.SportTypeName = item.BetTypeName = RefData.GetResourceDataByRefIdAndResourceId("Product", context.Product.ToString(), context.Language, string.Empty);
+                        }
+                        else
+                        {
+                            item.EnableText = item.SportTypeName = item.BetTypeName = RefData.GetSportName(item.SportTypeId.ToString(), context.Language, string.Empty);
+                        }
                     }
                     else if (item.BetTypeId != null && Utils.ToInt32(item.BetTypeId) > 0 && (item.SportTypeId == null || Utils.ToInt32(item.SportTypeId) == 0))
                     {

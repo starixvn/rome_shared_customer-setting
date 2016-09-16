@@ -87,6 +87,15 @@
             {
                 return base["closepopupjs"] as string;
             }
-        }        
+        }
+
+        [ConfigurationProperty("getfromremotingref", IsRequired = false, DefaultValue = false)]
+        public bool GetFromRemotingRef
+        {
+            get
+            {
+                return Utils.ToBoolean(base["getfromremotingref"]);
+            }
+        }
     }
 }
