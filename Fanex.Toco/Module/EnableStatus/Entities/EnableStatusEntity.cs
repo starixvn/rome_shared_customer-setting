@@ -23,6 +23,8 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Entities
 
         public bool Hide { get; set; }
 
+        public bool HasDownline { get; set; }
+
         public object SettingType { get; set; }
 
         public int ProductId { get; set; }

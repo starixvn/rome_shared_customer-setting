@@ -96,6 +96,15 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings
             {
                 return base["closepopupjs"] as string;
             }
-        }        
+        }
+
+        [ConfigurationProperty("getfromremotingref", IsRequired = false)]
+        public bool GetFromRemotingRef
+        {
+            get
+            {
+                return Utils.ToBoolean(base["getfromremotingref"]);
+            }
+        }
     }
 }

@@ -35,9 +35,9 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
         {
             try
             {
-                EnableStatusModel model = _data.GetProductStatus(storedProcedure, context);
-                ProductElementConfiguration product = Helper.Products.Where(p => p.Id.Equals(context.ProductId, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
-
+                var model = _data.GetProductStatus(storedProcedure, context);
+                var product = Helper.Products.Where(p => p.Id.Equals(context.ProductId, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+                model.RequestContext.HasDownline = model.Entities.FirstOrDefault().HasDownline ? true : model.RequestContext.HasDownline;
                 context.NewMode = product.NewMode;
                 model.IframeId = Helper.Products.IframeId;
                 model.HasCheckAll = product.HasCheckAll;
@@ -47,7 +47,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                     (context.Username == null ? string.Empty : context.Username) : model.Entities.FirstOrDefault().Username.ToString();
                 model.RequestContext.Username = model.Username;
 
-                foreach (EnableStatusEntity item in model.Entities)
+                foreach (var item in model.Entities)
                 {
                     if (item.BetTypeId != null && product.HideBetTypes.Contains(item.BetTypeId.ToString()))
                     {
@@ -69,9 +69,9 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                         }
                         else
                         {
-                            if (context.Product == 23)
+                            if (product.GetFromRemotingRef)
                             {
-                                item.EnableText = item.SportTypeName = item.BetTypeName = RefData.GetResourceDataByRefIdAndResourceId("Product", "23", context.Language, string.Empty);
+                                item.EnableText = item.SportTypeName = item.BetTypeName = RefData.GetResourceDataByRefIdAndResourceId("Product", context.Product.ToString(), context.Language, string.Empty);
                             }
                             else
                             {

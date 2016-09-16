@@ -1,9 +1,7 @@
 ﻿using System.Configuration;
 using System.Web;
 using Fanex.CustomerSetting.Module.Core;
-using Fanex.CustomerSetting.Module.Core.Criteria;
 using Fanex.CustomerSetting.Module.Core.Models;
-using Fanex.CustomerSetting.Module.Core.Services.Impl;
 using Fanex.CustomerSetting.Module.Core.Web;
 using Fanex.Module.NG2.Entities;
 using Fanex.Module.NG2.Repository;
@@ -15,7 +13,7 @@ namespace Fanex.Module.NG2.Services
     {
         private ING2StatusRepository _repository = new NG2StatusRepository();
 
-        public Result AutoInsertAccount(int custId, string username, RoleId roleId, int uplineId, bool uplineDisabled, SiteId siteId)
+        public Result AutoInsertAccount(int custId, string username, RoleId roleId, int uplineId, bool uplineDisabled, SiteId siteId, string language = "en-US")
         {
             var allowed = false;
             var result = new Result();
@@ -26,34 +24,27 @@ namespace Fanex.Module.NG2.Services
             }
             else
             {
-                var service = new ServiceBase();
-                var hasSpecialPermission = service.CheckSpecialSitePermission(new CheckSpecialSitePermissionCriteria
-                {
-                    CustID = custId,
-                    CustName = username,
-                    UserID = AppSession.CurrentSession.UserId
-                });
-
-                var db = Fanex.Module.NG2.Repository.BaseRepository.CheckAllowedCurrencyAll(custId);
+                var db = BaseRepository.CheckAllowedCurrencyAll(custId);
                 var allowedNG2 = Utils.ToBoolean(db.Outputs["allowedng2"]);
-                allowed = allowedNG2 && hasSpecialPermission.IsSuccess && Utils.ToBoolean(ConfigurationManager.AppSettings["IsShowNG2"]);
+                allowed = allowedNG2 && Utils.ToBoolean(ConfigurationManager.AppSettings["IsShowNG2"]);
             }
             
             if (allowed)
             {
                 // Call API to sync to 3rd.
                 IThirdPartyServices serviceAPI = new ONEbook.NG2.API.Services();
-                var request = new ONEbook.NG2.API.DTO.Request();
+                var request = new ONEbook.NG2.API.DTO.CreateAccount.Request();
 
-                request.Auth.SiteId = ((int)siteId).ToString();
-                request.Call.CustIds.Add(custId);
-                request.Call.RoleId = (int)roleId;
+                request.Auth.SiteId = (int)siteId;
+                request.Call.AccountArray.Add(new ONEbook.NG2.API.DTO.CreateAccount.AccountInfo { ObCustId = custId });
+                request.Call.Level = (int)roleId;
                 request.Call.UplineId = roleId == RoleId.Super  ? custId : uplineId;
-                request.Call.UserId = AppSession.CurrentSession.UserId;
+                request.UserId = AppSession.CurrentSession.UserId;
+                request.Language = language;
 
                 var response = serviceAPI.SyncCustomers(request);
 
-                if (response.Result.ResultDetail[0].IsSuccess)
+                if (response.Result.IsSuccess && response.Result.AccountArray.Count > 0 ? response.Result.AccountArray[0].IsSuccess : true)
                 {                    
                     result = SyncStatus(custId, AppSession.CurrentSession.UserId, HttpContext.Current.Request.UserHostName);
 
