@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using Fanex.CustomerSetting.Module.Core;
-using Fanex.CustomerSetting.Module.Core.Models;
+﻿using System;
+using System.Collections;
 using Fanex.Data;
+using Fanex.Module.Logs.Services;
+using Fanex.Module.NG2.Entities;
 
 namespace Fanex.Module.NG2.Repository
 {
@@ -10,21 +11,30 @@ namespace Fanex.Module.NG2.Repository
         public Result EnableStatus(int custId, int userId, bool disabled, string ip)
         {
             var result = new Result();
-            using (var db = new ObjectDb("Acc_CustSetting_DisableGameStatusUpd"))
+            try
             {
-                var param = new Hashtable();
-                param.Add("custid", custId);
-                param.Add("isdisabled", "<ROOT><ProductStatus SportType=\"213\" BetType=\"2501\" IsDisabled=\"" + (disabled ? "1" : "0") + "\" /></ROOT>");
-                param.Add("msgtype", 0);
-                param.Add("userid", userId);
-                param.Add("subaccid", 0);
-                param.Add("ip", ip);
-                param.Add("errcode", 0);
-                param.Add("errmsg", string.Empty);
+                using (var db = new ObjectDb("Acc_CustSetting_DisableGameStatusUpd"))
+                {
+                    var param = new Hashtable();
+                    param.Add("custid", custId);
+                    param.Add("isdisabled", "<ROOT><ProductStatus SportType=\"213\" BetType=\"2501\" IsDisabled=\"" + (disabled ? "1" : "0") + "\" /></ROOT>");
+                    param.Add("msgtype", 0);
+                    param.Add("userid", userId);
+                    param.Add("subaccid", 0);
+                    param.Add("ip", ip);
+                    param.Add("errcode", 0);
+                    param.Add("errmsg", string.Empty);
 
-                db.ExecuteNonQuery(param);
-                result.ErrorCode = Utils.ToInt32(db.GetParameterValue("errcode"));
-                result.ErrorMessage = Utils.ToString(db.GetParameterValue("errmsg"));
+                    db.ExecuteNonQuery(param);
+                    result.ErrorCode = Convert.ToInt32(db.GetParameterValue("errcode"));
+                    result.ErrorMessage = Convert.ToString(db.GetParameterValue("errmsg"));
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.Write();
+                result.ErrorCode = 1;
+                result.ErrorMessage = ex.Message;
             }
 
             return result;
@@ -33,19 +43,30 @@ namespace Fanex.Module.NG2.Repository
         public Result SyncStatus(int custId, int userId, string ip)
         {
             var result = new Result();
-            using (var db = new ObjectDb("Acc_CustSetting_SyncGameStatusUpd"))
+            try
             {
-                var param = new Hashtable();
-                param.Add("custid", custId);
-                param.Add("issynced", true);
-                param.Add("productid", 23);
-                param.Add("userid", userId);
-                param.Add("subaccid", 0);
-                param.Add("ip", ip);
+                using (var db = new ObjectDb("Acc_CustSetting_SyncGameStatusUpd"))
+                {
+                    var param = new Hashtable();
+                    param.Add("custid", custId);
+                    param.Add("issynced", true);
+                    param.Add("productid", 23);
+                    param.Add("userid", userId);
+                    param.Add("subaccid", 0);
+                    param.Add("ip", ip);
+                    param.Add("errcode", 0);
+                    param.Add("errmsg", string.Empty);
 
-                db.ExecuteNonQuery(param);
-                result.ErrorCode = Utils.ToInt32(db.GetParameterValue("errcode"));
-                result.ErrorMessage = Utils.ToString(db.GetParameterValue("errmsg"));
+                    db.ExecuteNonQuery(param);
+                    result.ErrorCode = Convert.ToInt32(db.GetParameterValue("errcode"));
+                    result.ErrorMessage = Convert.ToString(db.GetParameterValue("errmsg"));
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.Write();
+                result.ErrorCode = 1;
+                result.ErrorMessage = ex.Message;
             }
 
             return result;

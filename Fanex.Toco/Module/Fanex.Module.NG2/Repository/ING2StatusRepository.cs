@@ -1,4 +1,4 @@
-﻿using Fanex.CustomerSetting.Module.Core.Models;
+﻿using Fanex.Module.NG2.Entities;
 
 namespace Fanex.Module.NG2.Repository
 {

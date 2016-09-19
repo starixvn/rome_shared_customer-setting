@@ -1,5 +1,4 @@
-﻿using Fanex.CustomerSetting.Module.Core.Models;
-using Fanex.Module.NG2.Entities;
+﻿using Fanex.Module.NG2.Entities;
 
 namespace Fanex.Module.NG2.Services
 {
@@ -9,6 +8,6 @@ namespace Fanex.Module.NG2.Services
 
         Result EnableStatus(int custId, int userId, bool disabled, string ip);
 
-        Result AutoInsertAccount(int custId, string username, RoleId roleId, int uplineId, bool uplineDisabled, SiteId siteId, int currencyId, string language = "en-US");
+        Result AutoInsertAccount(int custId, string username, RoleId roleId, int uplineId, bool uplineDisabled, SiteId siteId, int currencyId, int userId, string language = "en-US");
     }
 }

@@ -221,11 +221,11 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                 resultSyncData.Message = string.Join(null, new string[] { "<div class='alertboxerr'>", resultMessage, "</div>" });
             }
 
-            if (criteria.IsSyncNG2Upline)
+            if (criteria.IsSyncNG2)
             {
                 // Sync NG2
                 var ng2Service = new NG2StatusService();
-                ng2Service.AutoInsertAccount(criteria.CustId, criteria.UserName, (RoleId)criteria.CustLevel, criteria.CustLevel == 4 ? criteria.CustId : criteria.UplineId, criteria.DisableNG2, SiteId.NAP, criteria.CurrencyId);
+                ng2Service.AutoInsertAccount(criteria.CustId, criteria.UserName, (RoleId)criteria.CustLevel, criteria.CustLevel == 4 ? criteria.CustId : criteria.UplineId, criteria.DisableNG2, SiteId.NAP, criteria.CurrencyId, criteria.Creator);
             }
 
             return resultSyncData;

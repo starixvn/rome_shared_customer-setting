@@ -1,8 +1,6 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.Web;
-using Fanex.CustomerSetting.Module.Core;
-using Fanex.CustomerSetting.Module.Core.Models;
-using Fanex.CustomerSetting.Module.Core.Web;
 using Fanex.Module.NG2.Entities;
 using Fanex.Module.NG2.Repository;
 using ONEbook.NG2.API.Interface;
@@ -13,7 +11,7 @@ namespace Fanex.Module.NG2.Services
     {
         private ING2StatusRepository _repository = new NG2StatusRepository();
 
-        public Result AutoInsertAccount(int custId, string username, RoleId roleId, int uplineId, bool uplineDisabled, SiteId siteId, int currencyId, string language = "en-US")
+        public Result AutoInsertAccount(int custId, string username, RoleId roleId, int uplineId, bool uplineDisabled, SiteId siteId, int currencyId, int userId, string language = "en-US")
         {
             var allowed = false;
             var result = new Result();
@@ -25,8 +23,8 @@ namespace Fanex.Module.NG2.Services
             else
             {
                 var db = BaseRepository.CheckAllowedCurrencyAll(custId);
-                var allowedNG2 = Utils.ToBoolean(db.Outputs["allowedng2"]);
-                allowed = allowedNG2 && Utils.ToBoolean(ConfigurationManager.AppSettings["IsShowNG2"]);
+                var allowedNG2 = Convert.ToBoolean(db.Outputs["allowedng2"]);
+                allowed = allowedNG2 && ConfigurationManager.AppSettings["IsShowNG2"] == "1";
             }
             
             if (allowed)
@@ -39,7 +37,7 @@ namespace Fanex.Module.NG2.Services
                 request.Call.AccountArray.Add(new ONEbook.NG2.API.DTO.CreateAccount.AccountInfo { ObCustId = custId });
                 request.Call.Level = (int)roleId;
                 request.Call.UplineId = roleId == RoleId.Super  ? custId : uplineId;
-                request.UserId = AppSession.CurrentSession.UserId;
+                request.UserId = userId;
                 request.Language = language;
                 request.Call.CurrencyId = currencyId;
 
@@ -47,11 +45,11 @@ namespace Fanex.Module.NG2.Services
 
                 if (response.Result.IsSuccess && response.Result.AccountArray.Count > 0 ? response.Result.AccountArray[0].IsSuccess : true)
                 {                    
-                    result = SyncStatus(custId, AppSession.CurrentSession.UserId, HttpContext.Current.Request.UserHostName);
+                    result = SyncStatus(custId, userId, HttpContext.Current.Request.UserHostName);
 
                     if (result.IsSuccess)
                     {
-                        result = EnableStatus(custId, AppSession.CurrentSession.UserId, uplineDisabled, HttpContext.Current.Request.UserHostAddress);
+                        result = EnableStatus(custId, userId, uplineDisabled, HttpContext.Current.Request.UserHostAddress);
                     }
                 }
             }

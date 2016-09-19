@@ -72,7 +72,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Criteria
 
         public bool DisableNG2 { get; set; }
 
-        public bool IsSyncNG2Upline { get; set; }
+        public bool IsSyncNG2 { get; set; }
 
         public override string GetSettingKey()
         {

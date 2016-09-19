@@ -59,6 +59,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
                     custInfo.CurrencyId = criteria.IsMember ? 0 : Converter.ToInt(dataReader["currencyID"]);
                     custInfo.Currency = criteria.IsMember ? string.Empty : dataReader["currencyName"].ToString();
                     custInfo.IsSyncCasino = Converter.To<byte>(dataReader["synccasino"]);
+                    custInfo.IsSyncNG2 = dataReader.GetSchemaTable().Columns.Contains("syncng2") ? Converter.To<byte>(dataReader["syncng2"]) : (byte)1;
                     custInfo.IsSyncBingo = Converter.To<byte>(dataReader["syncbingo"]);
                     custInfo.IsSyncLiveCasino = criteria.IsMember ? (byte)1 : Converter.To<byte>(dataReader["synclivecasino"]);
                     custInfo.RoleId = Converter.ToInt(dataReader["roleid"]);
