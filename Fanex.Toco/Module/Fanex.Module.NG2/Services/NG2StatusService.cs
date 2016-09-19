@@ -13,7 +13,7 @@ namespace Fanex.Module.NG2.Services
     {
         private ING2StatusRepository _repository = new NG2StatusRepository();
 
-        public Result AutoInsertAccount(int custId, string username, RoleId roleId, int uplineId, bool uplineDisabled, SiteId siteId, string language = "en-US")
+        public Result AutoInsertAccount(int custId, string username, RoleId roleId, int uplineId, bool uplineDisabled, SiteId siteId, int currencyId, string language = "en-US")
         {
             var allowed = false;
             var result = new Result();
@@ -41,6 +41,7 @@ namespace Fanex.Module.NG2.Services
                 request.Call.UplineId = roleId == RoleId.Super  ? custId : uplineId;
                 request.UserId = AppSession.CurrentSession.UserId;
                 request.Language = language;
+                request.Call.CurrencyId = currencyId;
 
                 var response = serviceAPI.SyncCustomers(request);
 

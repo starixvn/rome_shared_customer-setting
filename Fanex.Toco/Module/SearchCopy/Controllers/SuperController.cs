@@ -225,7 +225,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             {
                 // Sync NG2
                 var ng2Service = new NG2StatusService();
-                ng2Service.AutoInsertAccount(criteria.CustId, criteria.UserName, (RoleId)criteria.CustLevel, criteria.CustLevel == 4 ? criteria.CustId : criteria.UplineId, criteria.DisableNG2, SiteId.NAP);
+                ng2Service.AutoInsertAccount(criteria.CustId, criteria.UserName, (RoleId)criteria.CustLevel, criteria.CustLevel == 4 ? criteria.CustId : criteria.UplineId, criteria.DisableNG2, SiteId.NAP, criteria.CurrencyId);
             }
 
             return resultSyncData;

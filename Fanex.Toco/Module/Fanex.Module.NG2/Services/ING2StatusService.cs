@@ -9,6 +9,6 @@ namespace Fanex.Module.NG2.Services
 
         Result EnableStatus(int custId, int userId, bool disabled, string ip);
 
-        Result AutoInsertAccount(int custId, string username, RoleId roleId, int uplineId, bool uplineDisabled, SiteId siteId, string language = "en-US");
+        Result AutoInsertAccount(int custId, string username, RoleId roleId, int uplineId, bool uplineDisabled, SiteId siteId, int currencyId, string language = "en-US");
     }
 }
