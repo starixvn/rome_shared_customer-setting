@@ -43,7 +43,7 @@ namespace Fanex.Module.NG2.Services
 
                 var response = serviceAPI.SyncCustomers(request);
 
-                if (response.Result.IsSuccess && response.Result.AccountArray.Count > 0 ? response.Result.AccountArray[0].IsSuccess : true)
+                if (response.Result.IsSuccess && (response.Result.AccountArray.Count > 0 ? response.Result.AccountArray[0].IsSuccess : true))
                 {                    
                     result = SyncStatus(custId, userId, HttpContext.Current.Request.UserHostName);
 
