@@ -121,7 +121,7 @@
     <value>Account was disabled.</value>
   </data>
   <data name="BetSetting" xml:space="preserve">
-    <value>Bet Setting</value>
+    <value>Giới hạn cược</value>
   </data>
   <data name="LessThan" xml:space="preserve">
     <value>should be less than or equal to</value>

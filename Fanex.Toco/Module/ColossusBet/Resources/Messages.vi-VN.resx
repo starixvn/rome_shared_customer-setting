@@ -133,7 +133,7 @@
     <value>Tất cả</value>
   </data>
   <data name="BetSetting" xml:space="preserve">
-    <value>Tiền Cược</value>
+    <value>Giới hạn cược</value>
   </data>
   <data name="Commission" xml:space="preserve">
     <value>Tiền hoa hồng</value>

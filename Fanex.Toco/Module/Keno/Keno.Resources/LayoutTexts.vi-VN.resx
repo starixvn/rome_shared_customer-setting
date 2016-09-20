@@ -139,7 +139,7 @@
     <value>All</value>
   </data>
   <data name="BetSetting" xml:space="preserve">
-    <value>Bet Setting</value>
+    <value>Giới hạn cược</value>
   </data>
   <data name="BettingLimit" xml:space="preserve">
     <value>Betting Limit</value>
@@ -310,7 +310,7 @@
     <value>Edit Multiple Keno</value>
   </data>
   <data name="lblCopyAllBetSetting" xml:space="preserve">
-    <value>Copy All Bet Setting from Australia Acttab</value>
+    <value>Sao chép tất cả thiết lập về giới hạn cược từ Australia Acttab</value>
   </data>
   <data name="lblCopyAllPT" xml:space="preserve">
     <value>Copy all Position Taking from Australia Acttab</value>
