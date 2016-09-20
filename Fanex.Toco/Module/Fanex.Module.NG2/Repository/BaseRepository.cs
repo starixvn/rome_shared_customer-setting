@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Fanex.Data;
 using Fanex.Data.DNAide;
+using Fanex.Module.Logs.Services;
 
 namespace Fanex.Module.NG2.Repository
 {
@@ -12,7 +13,7 @@ namespace Fanex.Module.NG2.Repository
     {
         public static DbResult CheckAllowedCurrencyAll(int custId)
         {
-            DbResult checkCurrency = null;
+            DbResult checkCurrency = new DbResult(new Hashtable(), new System.Data.DataSet());
             try
             {
                 var param = new Hashtable();
@@ -30,7 +31,7 @@ namespace Fanex.Module.NG2.Repository
             }
             catch (Exception ex)
             {
-                throw ex;
+                ex.Write();
             }
 
             return checkCurrency;

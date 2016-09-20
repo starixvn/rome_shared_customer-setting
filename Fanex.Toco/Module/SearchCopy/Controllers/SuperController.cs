@@ -12,6 +12,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
     using System;
     using System.Collections;
     using System.Configuration;
+    using System.Threading;
     using System.Web.Mvc;
     using Casino.Services.Impl;
     using Casino.Services.Interface;
@@ -151,11 +152,13 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                 criteria.CustId = criteria.CustLevel == 1 ? (int)infoCustomer["custid"] : criteria.CustId;
 
                 if (result.IsSuccessful)
-                {
+                {                    
                     result.Message = string.Join(null, new string[] { "<div class=\"alertboxscc\"><div>", criteria.CustLevel == 1 ? Constants.CopyMessage.SuccessMember : Constants.CopyMessage.Success, "</div></div>" });
                     criteria.IP = CurrentContext.Instance.Ip4Address;
 
+                    Thread.Sleep(3000);
                     // Sync casino, bingo, live casino, ng2
+                    SyncNG2(criteria);
                     UpdateSyncData(criteria);
                 }
                 else
@@ -221,14 +224,17 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                 resultSyncData.Message = string.Join(null, new string[] { "<div class='alertboxerr'>", resultMessage, "</div>" });
             }
 
+            return resultSyncData;
+        }
+
+        private void SyncNG2(CustomerInsMemberCriteria criteria)
+        {
             if (criteria.IsSyncNG2)
             {
                 // Sync NG2
                 var ng2Service = new NG2StatusService();
                 ng2Service.AutoInsertAccount(criteria.CustId, criteria.UserName, (RoleId)criteria.CustLevel, criteria.CustLevel == 4 ? criteria.CustId : criteria.UplineId, criteria.DisableNG2, SiteId.NAP, criteria.CurrencyId, criteria.Creator);
             }
-
-            return resultSyncData;
         }
 
         /// <summary>
