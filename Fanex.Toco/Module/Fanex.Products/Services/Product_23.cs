@@ -36,7 +36,7 @@ namespace Fanex.Products.Services
 
         public override DCSIcon GetDCSIcon(DataRow drow)
         {
-            if (ShowOnWeb)
+            if (ShowOnWeb && Synced == true)
             {
                 string lowerName = Name.ToLowerInvariant();
 
@@ -62,7 +62,7 @@ namespace Fanex.Products.Services
 
         public override bool ShowDCSLinkForDownline(DataRow drow, int loggedInUserRole)
         {
-            if (ShowOnWeb)
+            if (ShowOnWeb && Synced == true)
             {
                 int roleId = Convert.ToInt32(drow["roleid"]);
 
@@ -75,7 +75,7 @@ namespace Fanex.Products.Services
 
         public override bool ShowEnableStatusLinkForDownline(DataRow drow, int loggedInUserRole)
         {
-            if (ShowOnWeb)
+            if (ShowOnWeb && Synced == true)
             {
                 object synced = drow.GetValue("IsSync");
 
