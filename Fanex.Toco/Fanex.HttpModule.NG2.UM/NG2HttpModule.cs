@@ -2,6 +2,7 @@
 using System;
 using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Web;
 
 namespace Fanex.HttpModule.NG2.UM
@@ -35,12 +36,17 @@ namespace Fanex.HttpModule.NG2.UM
             HttpContext context = application.Context;
             bool isAjaxRequest = context.Request.Headers["X-Requested-With"] == "XMLHttpRequest";
             var NG2Section = NumberGame2Section.Instance;
-            var url = context.Request.AppRelativeCurrentExecutionFilePath.TrimStart(new Char[] { '~', '/' });
+            //var url = context.Request.AppRelativeCurrentExecutionFilePath.TrimStart(new Char[] { '~', '/' });
+            var url = context.Request.RawUrl;
             url = url ?? string.Empty;
+            if (context.Request.HttpMethod == WebRequestMethods.Http.Post)
+            {
+                url += "?" + HttpUtility.HtmlDecode(context.Request.Params.ToString());
+            }
+
             var isNG2RequireUM = (from NumberGame2Element ele in NG2Section.WebUrl
-                                      where ele.Url.ToLower().Contains(url.ToLower())
+                                  where url.ToLower().Contains(ele.Url.ToLower())
                                   select ele).ToList();
-            isNG2RequireUM = isNG2RequireUM.Where(ele => ele.Url.Contains(url)).ToList();
             var UMService = new ONEbook.UM.ThirdParty.Services.Impl.UMService();
             if (!string.IsNullOrEmpty(url) && isNG2RequireUM.Count > 0 && UMService.GetUnderMaintenanceTime(23).IsUnderMaintenanceTime)
             {

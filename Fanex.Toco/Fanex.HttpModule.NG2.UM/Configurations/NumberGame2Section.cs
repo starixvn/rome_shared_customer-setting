@@ -148,16 +148,16 @@ namespace Fanex.HttpModule.NG2.UM.Configurations
             }
         }
 
-        [ConfigurationProperty("url", IsRequired = true)]
+        [ConfigurationProperty("filter", IsRequired = true)]
         public string Url
         {
             get
             {
-                return (string)this["url"] ?? string.Empty;
+                return (string)this["filter"] ?? string.Empty;
             }
             set
             {
-                this["url"] = value;
+                this["filter"] = value;
             }
         }
     }
