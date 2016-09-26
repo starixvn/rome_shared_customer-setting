@@ -40,5 +40,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Entities
         public bool DisableLiveCasino { get; set; }
 
         public bool DisableBingo { get; set; }
+
+        public byte DisableNG2 { get; internal set; }
     }
 }

@@ -51,6 +51,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
             using (var objDb = new ObjectDb(criteria.GetSettingKey()))
             {
                 var dataReader = objDb.ExecuteReader(param);
+                dynamic productInfo = GetProductInfo(criteria.Custid, 23);
                 while (dataReader.Read())
                 {
                     custInfo.Site = criteria.IsMember ? string.Empty : dataReader["site"].ToString();
@@ -59,7 +60,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
                     custInfo.CurrencyId = criteria.IsMember ? 0 : Converter.ToInt(dataReader["currencyID"]);
                     custInfo.Currency = criteria.IsMember ? string.Empty : dataReader["currencyName"].ToString();
                     custInfo.IsSyncCasino = Converter.To<byte>(dataReader["synccasino"]);
-                    custInfo.IsSyncNG2 = (byte)(IsSyncProduct(criteria.Custid, 23).IsSynced ? 1 : 0);
+                    custInfo.IsSyncNG2 = (byte)(productInfo.IsSynced ? 1 : 0);
+                    custInfo.DisableNG2 = (byte)(productInfo.IsDisabled ? 1 : 0);
                     custInfo.IsSyncBingo = Converter.To<byte>(dataReader["syncbingo"]);
                     custInfo.IsSyncLiveCasino = criteria.IsMember ? (byte)1 : Converter.To<byte>(dataReader["synclivecasino"]);
                     custInfo.RoleId = Converter.ToInt(dataReader["roleid"]);
@@ -213,9 +215,9 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
             }
         }
 
-        public dynamic IsSyncProduct(int custId, int productId)
+        public dynamic GetProductInfo(int custId, int productId)
         {
-            using (var db = new ObjectDb("Acc_CustSetting_SyncGameStatusSelect"))
+            using (var db = new ObjectDb("Acc_CustSetting_DisableGameStatusSelect"))
             {
                 var param = new Hashtable();
                 param.Add("custid", custId);
@@ -227,13 +229,13 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
                     {
                         while (reader.Read())
                         {
-                            return new { IsSynced = reader["IsSynced"], IsSyncedUpline = reader["IsSyncedUpline"] };
+                            return new { IsSynced = reader["IsSync"], IsDisabled = reader["IsDisabled"] };
                         }
                     }
                 }
             }
 
-            return new { IsSynced = false, IsSyncedUpline = false };
+            return new { IsSynced = false, IsDisabled = false };
         }
     }
 }
