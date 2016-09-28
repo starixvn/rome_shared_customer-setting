@@ -39,6 +39,8 @@ namespace Fanex.Products.Services
 
         public string EnableStatusLink { get; set; }
 
+        public string SyncCustomerLink { get; set; }
+
         #endregion
 
         #region Virtual and Override Methods

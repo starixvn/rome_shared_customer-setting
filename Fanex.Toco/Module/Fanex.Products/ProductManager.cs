@@ -130,6 +130,7 @@ namespace Fanex.Products
                     product.ViewCommLink = item.ViewCommLink;
                     product.CustomerSettingLink = item.CustomerSettingLink;
                     product.EnableStatusLink = item.EnableStatusLink;
+                    product.SyncCustomerLink = item.SyncCustomerLink;
 
                     products.Add(product.Id, product);
                 }

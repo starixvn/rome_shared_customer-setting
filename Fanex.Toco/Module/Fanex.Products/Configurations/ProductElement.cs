@@ -130,6 +130,20 @@ namespace Fanex.Products.Configurations
             }
         }
 
+        [ConfigurationProperty("syncCustomerLink", DefaultValue = "", IsRequired = false, IsKey = false)]
+        public string SyncCustomerLink
+        {
+            get
+            {
+                return this["syncCustomerLink"].ToString();
+            }
+
+            set
+            {
+                this["syncCustomerLink"] = value;
+            }
+        }
+
         [ConfigurationProperty("statusHandlerType", DefaultValue = "", IsRequired = false, IsKey = false)]
         public string StatusHandlerType
         {
