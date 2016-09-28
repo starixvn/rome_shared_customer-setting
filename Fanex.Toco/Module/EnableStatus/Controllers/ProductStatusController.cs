@@ -8,20 +8,20 @@
 //   <change who="Andy.Nguyen" date="2016.2.2">Documented.</change>
 // </history>
 
+using System;
+using System.Linq;
+using System.Web.Mvc;
+using Fanex.CustomerSetting.EnableStatus.AllInOne.Entities;
+using Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers;
+using Fanex.CustomerSetting.EnableStatus.AllInOne.Models;
+using Fanex.CustomerSetting.EnableStatus.AllInOne.Services;
+using Fanex.CustomerSetting.Module.Core.Web;
+using Fanex.CustomerSetting.Module.Core.Web.Controllers;
+using Fanex.CustomerSetting.Security.Authenticate;
+using Newtonsoft.Json;
+
 namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers
 {
-    using System;
-    using System.Linq;
-    using System.Web.Mvc;
-    using Fanex.CustomerSetting.EnableStatus.AllInOne.Entities;
-    using Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers;
-    using Fanex.CustomerSetting.EnableStatus.AllInOne.Models;
-    using Fanex.CustomerSetting.EnableStatus.AllInOne.Services;
-    using Fanex.CustomerSetting.Module.Core.Web;
-    using Fanex.CustomerSetting.Module.Core.Web.Controllers;
-    using Fanex.CustomerSetting.Security.Authenticate;
-    using Newtonsoft.Json;
-
     /// <summary>
     /// Product status controller to use for NAP, ALPHA, EXTNAP.
     /// </summary>
@@ -30,7 +30,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers
         /// <summary>
         /// Enable status service.
         /// </summary>
-        private IEnableStatusService _service = new EnableStatusService();
+        private IEnableStatusService _service = new EnrichedEnableStatusService(new EnableStatusService());
 
         /// <summary>
         /// Gets index page of enable status form.
@@ -45,16 +45,16 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers
             var actionPath = controlName + "/" + mainAction;
             var authenticationType = AuthenticateAction.AuthenticationType.Read;
             var authenticateFactory = AuthenticateFactory.Create(authenticationType, mainAction);
-            
+
             if (!authenticateFactory.AllowRead(actionPath) || !authenticateFactory.IsBelong(context.CustId, context.Username, AppSession.CurrentSession.CurrencyGroup))
             {
-                return this.ActionDenied(this.Request);
+                return ActionDenied(Request);
             }
 
-            var sp = Helper.GetStoredProcedures(context.ProductId).Where(p => p.Type == StoredProcedure.SpType.SELECT).FirstOrDefault();            
-            var model = this._service.GetProductStatus(sp, context);            
+            var sp = Helper.GetStoredProcedures(context.ProductId).Where(p => p.Type == StoredProcedure.SpType.SELECT).FirstOrDefault();
+            var model = _service.GetProductStatus(sp, context);
 
-            return this.View("~/Areas/CustomerSetting/Views/EnableStatus/Index.cshtml", model);
+            return View("~/Areas/CustomerSetting/Views/EnableStatus/Index.cshtml", model);
         }
 
         /// <summary>        
@@ -75,13 +75,13 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers
 
             if (!auth.AllowUpdate(actionPath) || !auth.IsBelong(modelObj.RequestContext.CustId, modelObj.RequestContext.Username, AppSession.CurrentSession.CurrencyGroup))
             {
-                return this.ActionDenied(this.Request);
+                return ActionDenied(Request);
             }
-                        
-            var sp = Helper.GetStoredProcedures(modelObj.RequestContext.ProductId).Where(p => p.Type == StoredProcedure.SpType.UPDATE).FirstOrDefault();
-            var results = this._service.UpdateProductStatus(modelObj, sp);
 
-            return this.JsonBase(results);
+            var sp = Helper.GetStoredProcedures(modelObj.RequestContext.ProductId).Where(p => p.Type == StoredProcedure.SpType.UPDATE).FirstOrDefault();
+            var results = _service.UpdateProductStatus(modelObj, sp);
+
+            return JsonBase(results);
         }
     }
 }

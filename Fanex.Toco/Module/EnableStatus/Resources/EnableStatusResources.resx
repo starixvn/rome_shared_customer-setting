@@ -219,4 +219,16 @@
   <data name="warningAllbetUnsyncedAllDownline" xml:space="preserve">
     <value>The Allbet Setting is not fully available. Please go to Edit Allbet page to adjust.</value>
   </data>
+  <data name="AllbetNormalGames" xml:space="preserve">
+    <value>Normal Games</value>
+  </data>
+  <data name="AllbetNormalGamesNote" xml:space="preserve">
+    <value>Setting of Normal Games is applied for Normal Baccarat, Roulette, SicBo, DragonTiger, VIP Baccarat - SideBet.</value>
+  </data>
+  <data name="AllbetVIPBaccaratNote" xml:space="preserve">
+    <value>Setting of VIP Baccarat is applied for VIP Baccarat - Join/Reserve.</value>
+  </data>
+  <data name="Notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
 </root>

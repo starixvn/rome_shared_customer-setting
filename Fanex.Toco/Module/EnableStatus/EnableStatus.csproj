@@ -166,6 +166,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EnableStatusResources.zh-TW.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\EnrichedEnableStatusService.cs" />
     <Compile Include="Services\EnableStatusService.cs" />
     <Compile Include="Services\IEnableStatusService.cs" />
   </ItemGroup>
