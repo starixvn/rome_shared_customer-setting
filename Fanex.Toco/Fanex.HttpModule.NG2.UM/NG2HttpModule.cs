@@ -34,6 +34,11 @@ namespace Fanex.HttpModule.NG2.UM
             // request and response properties.
             HttpApplication application = (HttpApplication)source;
             HttpContext context = application.Context;
+            if (IsStaticContentRequest(context))
+            {
+                return;
+            }
+
             bool isAjaxRequest = context.Request.Headers["X-Requested-With"] == "XMLHttpRequest";
             var NG2Section = NumberGame2Section.Instance;
             //var url = context.Request.AppRelativeCurrentExecutionFilePath.TrimStart(new Char[] { '~', '/' });
@@ -67,6 +72,11 @@ namespace Fanex.HttpModule.NG2.UM
 
         public void Dispose()
         {
+        }
+
+        private bool IsStaticContentRequest(HttpContext context)
+        {
+            return context.Session == null;
         }
     }
 }

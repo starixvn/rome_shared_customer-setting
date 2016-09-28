@@ -87,6 +87,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HttpModule", "HttpModule", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.HttpModule.NG2.UM", "Fanex.HttpModule.NG2.UM\Fanex.HttpModule.NG2.UM.csproj", "{67059127-7643-4968-B4AE-411FED43F873}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.HttpModule.NG2.CheckBelonging", "Fanex.HttpModule.NG2.CheckBelonging\Fanex.HttpModule.NG2.CheckBelonging.csproj", "{4B64F26A-1099-4BA9-B46F-BCE1098205DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -193,6 +195,10 @@ Global
 		{67059127-7643-4968-B4AE-411FED43F873}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67059127-7643-4968-B4AE-411FED43F873}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67059127-7643-4968-B4AE-411FED43F873}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B64F26A-1099-4BA9-B46F-BCE1098205DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B64F26A-1099-4BA9-B46F-BCE1098205DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B64F26A-1099-4BA9-B46F-BCE1098205DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B64F26A-1099-4BA9-B46F-BCE1098205DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -229,5 +235,6 @@ Global
 		{4C182B8C-4F5A-4C06-96F8-AC0CC3195649} = {A4196916-8667-40CA-86C5-F69C769625E3}
 		{6B437F2D-43FB-4538-8958-BFDD809F75E7} = {937844B9-8603-4BD9-8E7B-49788D8F6292}
 		{67059127-7643-4968-B4AE-411FED43F873} = {6B437F2D-43FB-4538-8958-BFDD809F75E7}
+		{4B64F26A-1099-4BA9-B46F-BCE1098205DD} = {6B437F2D-43FB-4538-8958-BFDD809F75E7}
 	EndGlobalSection
 EndGlobal
