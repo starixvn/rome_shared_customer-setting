@@ -21,6 +21,14 @@ namespace Fanex.Products.Services
             }
         }
 
+        public override bool ShowSettings
+        {
+            get
+            {
+                return base.ShowSettings && GetSynced() == true;
+            }
+        }
+
         public override void SetProductStatusToSession(Hashtable outputParams)
         {
             base.SetProductStatusToSession(outputParams);
@@ -36,7 +44,7 @@ namespace Fanex.Products.Services
 
         public override DCSIcon GetDCSIcon(DataRow drow)
         {
-            if (ShowOnWeb && Synced == true)
+            if (ShowSettings)
             {
                 string lowerName = Name.ToLowerInvariant();
 
@@ -62,20 +70,22 @@ namespace Fanex.Products.Services
 
         public override bool ShowDCSLinkForDownline(DataRow drow, int loggedInUserRole)
         {
-            if (ShowOnWeb && Synced == true)
+            object downlineRoleValue = drow.GetValue("roleid");
+
+            if (ShowSettings && downlineRoleValue != null)
             {
-                int roleId = Convert.ToInt32(drow["roleid"]);
+                int downlineRoleId = Convert.ToInt32(downlineRoleValue);
 
                 // Direct downline or Member.
-                return (roleId + 1 == loggedInUserRole) || roleId == 1;
+                return (downlineRoleId + 1 == loggedInUserRole) || downlineRoleId == 1;
             }
 
             return false;
         }
 
-        public override bool ShowEnableStatusLinkForDownline(DataRow drow, int loggedInUserRole)
+        public override bool ShowEnableStatusLinkForDownline(DataRow drow)
         {
-            if (ShowOnWeb && Synced == true)
+            if (ShowSettings)
             {
                 object synced = drow.GetValue("IsSync");
 

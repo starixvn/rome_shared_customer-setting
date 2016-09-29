@@ -58,13 +58,25 @@ namespace Fanex.Products
             return false;
         }
 
-        public static bool IsShowOnWeb(int productId)
+        public static bool IsShowReport(int productId)
         {
             BaseProduct baseProduct;
 
             if (ProductsDictionary.TryGetValue(productId, out baseProduct))
             {
-                return baseProduct.ShowOnWeb;
+                return baseProduct.ShowReport;
+            }
+
+            return false;
+        }
+
+        public static bool IsShowSettings(int productId)
+        {
+            BaseProduct baseProduct;
+
+            if (ProductsDictionary.TryGetValue(productId, out baseProduct))
+            {
+                return baseProduct.ShowSettings;
             }
 
             return false;

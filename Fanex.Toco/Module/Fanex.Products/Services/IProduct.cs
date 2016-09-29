@@ -12,7 +12,9 @@ namespace Fanex.Products.Services
 
         bool? Synced { get; }
 
-        bool ShowOnWeb { get; }
+        bool ShowReport { get; }
+
+        bool ShowSettings { get; }
 
         void SetProductStatusToSession(Hashtable outputParams);
 
@@ -20,6 +22,6 @@ namespace Fanex.Products.Services
 
         bool ShowDCSLinkForDownline(DataRow drow, int loggedInUserRole);
 
-        bool ShowEnableStatusLinkForDownline(DataRow drow, int loggedInUserRole);
+        bool ShowEnableStatusLinkForDownline(DataRow drow);
     }
 }

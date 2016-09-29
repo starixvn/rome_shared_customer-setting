@@ -69,7 +69,15 @@ namespace Fanex.Products.Services
             }
         }
 
-        public virtual bool ShowOnWeb
+        public virtual bool ShowReport
+        {
+            get
+            {
+                return _active && !GetHide();
+            }
+        }
+
+        public virtual bool ShowSettings
         {
             get
             {
@@ -99,7 +107,7 @@ namespace Fanex.Products.Services
 
         public abstract bool ShowDCSLinkForDownline(DataRow drow, int loggedInUserRole);
 
-        public abstract bool ShowEnableStatusLinkForDownline(DataRow drow, int loggedInUserRole);
+        public abstract bool ShowEnableStatusLinkForDownline(DataRow drow);
 
         #endregion
 

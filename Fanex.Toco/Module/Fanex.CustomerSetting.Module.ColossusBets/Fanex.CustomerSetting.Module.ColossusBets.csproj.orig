@@ -97,8 +97,8 @@
 <<<<<<< HEAD
       <HintPath>..\..\packages\RemotingRef.1.0.0.13\lib\net40\RemotingRef.dll</HintPath>
 =======
-      <HintPath>..\..\packages\RemotingRef.1.0.0.9\lib\net40\RemotingRef.dll</HintPath>
->>>>>>> #61397 -[NG2] Add new Fanex.Products project
+      <HintPath>..\..\packages\RemotingRef.1.0.0.12\lib\net40\RemotingRef.dll</HintPath>
+>>>>>>> #61397 - [NG2] Upgrade remoting ref and check IsSync NG2
       <Private>True</Private>
     </Reference>
     <Reference Include="SPSRemoting">
