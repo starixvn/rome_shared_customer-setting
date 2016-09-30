@@ -68,14 +68,10 @@ namespace Fanex.Products.Services
             return DCSIcon.DisabledEdit;
         }
 
-        public override bool ShowDCSLinkForDownline(DataRow drow, int loggedInUserRole)
+        public override bool ShowDCSLinkForDownline(DataRow drow, int loggedInUserRole, int downlineRoleId)
         {
-            object downlineRoleValue = drow.GetValue("roleid");
-
-            if (ShowSettings && downlineRoleValue != null)
+            if (ShowSettings)
             {
-                int downlineRoleId = Convert.ToInt32(downlineRoleValue);
-
                 // Direct downline or Member.
                 return (downlineRoleId + 1 == loggedInUserRole) || downlineRoleId == 1;
             }

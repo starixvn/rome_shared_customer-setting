@@ -20,7 +20,7 @@ namespace Fanex.Products.Services
 
         DCSIcon GetDCSIcon(DataRow drow);
 
-        bool ShowDCSLinkForDownline(DataRow drow, int loggedInUserRole);
+        bool ShowDCSLinkForDownline(DataRow drow, int loggedInUserRole, int downlineRoleId);
 
         bool ShowEnableStatusLinkForDownline(DataRow drow);
     }

@@ -105,7 +105,7 @@ namespace Fanex.Products.Services
 
         public abstract DCSIcon GetDCSIcon(DataRow drow);
 
-        public abstract bool ShowDCSLinkForDownline(DataRow drow, int loggedInUserRole);
+        public abstract bool ShowDCSLinkForDownline(DataRow drow, int loggedInUserRole, int downlineRoleId);
 
         public abstract bool ShowEnableStatusLinkForDownline(DataRow drow);
 
