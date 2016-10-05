@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Fanex.CustomerSetting.EnableStatus.AllInOne.Entities;
 using Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings;
 using Fanex.CustomerSetting.EnableStatus.AllInOne.Models;
@@ -30,12 +29,6 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
 
         private void EnrichAllbetProductStatus(EnableStatusModel enableStatusModel)
         {
-            enableStatusModel.Notes = new List<string>()
-            {
-                Resources.EnableStatusResources.AllbetNormalGamesNote,
-                Resources.EnableStatusResources.AllbetVIPBaccaratNote
-            };
-
             foreach (EnableStatusEntity enableStatusEntity in enableStatusModel.Entities)
             {
                 if (enableStatusEntity.BetTypeId.ToString() == "2401")
