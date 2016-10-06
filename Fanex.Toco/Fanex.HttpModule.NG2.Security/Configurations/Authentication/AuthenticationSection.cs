@@ -1,4 +1,4 @@
-﻿namespace Fanex.HttpModule.NG2.CheckBelonging.Configurations.AuthenticationSection
+﻿namespace Fanex.HttpModule.NG2.Security.Configurations.Authentication
 {
     using System.Configuration;
 
@@ -12,7 +12,7 @@
             get
             {
                 var authenticationSection =
-                 ConfigurationManager.GetSection("AuthenticationSection") as AuthenticationSection;
+                 ConfigurationManager.GetSection("AuthenticationSectionNG2") as AuthenticationSection;
                 return authenticationSection;
             }
         }

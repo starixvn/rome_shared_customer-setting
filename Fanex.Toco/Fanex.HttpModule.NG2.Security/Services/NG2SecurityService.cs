@@ -1,6 +1,6 @@
 ﻿using Fanex.Common;
-using Fanex.HttpModule.NG2.CheckBelonging.Configurations.AuthenticationSection;
-using Fanex.HttpModule.NG2.CheckBelonging.Repositories;
+using Fanex.HttpModule.NG2.Security.Configurations.Authentication;
+using Fanex.HttpModule.NG2.Security.Repositories;
 using Sunplus.Agent.Model.BL;
 using Sunplus.Agent.Model.Entities;
 using System;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 
-namespace Fanex.HttpModule.NG2.CheckBelonging.Services
+namespace Fanex.HttpModule.NG2.Security.Services
 {
     public class NG2SecurityService
     {

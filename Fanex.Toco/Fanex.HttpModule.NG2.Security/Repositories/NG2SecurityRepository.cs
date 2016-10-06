@@ -2,7 +2,7 @@
 using Fanex.Data;
 using System.Collections;
 
-namespace Fanex.HttpModule.NG2.CheckBelonging.Repositories
+namespace Fanex.HttpModule.NG2.Security.Repositories
 {
     public class NG2SecurityRepository
     {

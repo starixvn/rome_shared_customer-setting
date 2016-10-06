@@ -87,7 +87,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HttpModule", "HttpModule", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.HttpModule.NG2.UM", "Fanex.HttpModule.NG2.UM\Fanex.HttpModule.NG2.UM.csproj", "{67059127-7643-4968-B4AE-411FED43F873}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.HttpModule.NG2.CheckBelonging", "Fanex.HttpModule.NG2.CheckBelonging\Fanex.HttpModule.NG2.CheckBelonging.csproj", "{4B64F26A-1099-4BA9-B46F-BCE1098205DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.HttpModule.NG2.Security", "Fanex.HttpModule.NG2.Security\Fanex.HttpModule.NG2.Security.csproj", "{4B64F26A-1099-4BA9-B46F-BCE1098205DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

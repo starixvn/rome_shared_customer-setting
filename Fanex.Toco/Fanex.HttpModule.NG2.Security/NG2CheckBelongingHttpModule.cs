@@ -1,19 +1,17 @@
 ﻿using Fanex.Common;
-using Fanex.HttpModule.NG2.CheckBelonging.Configurations;
-using Fanex.HttpModule.NG2.CheckBelonging.Configurations.AuthenticationSection;
-using Fanex.HttpModule.NG2.CheckBelonging.Services;
+using Fanex.HttpModule.NG2.Security.Configurations;
+using Fanex.HttpModule.NG2.Security.Configurations.Authentication;
+using Fanex.HttpModule.NG2.Security.Services;
 using Sunplus.Agent.Model.BL;
 using Sunplus.Agent.Model.Entities;
 using System;
 using System.Text.RegularExpressions;
 using System.Web;
 
-namespace Fanex.HttpModule.NG2.CheckBelonging
+namespace Fanex.HttpModule.NG2.Security
 {
     public class NG2CheckBelongingHttpModule : IHttpModule
     {
-        private IUserSession _currentUserSession;
-
         private string rngArea = "CustomerSetting/Casino";
 
         private NG2SecurityService _ng2SecurityService;
@@ -21,8 +19,7 @@ namespace Fanex.HttpModule.NG2.CheckBelonging
 
         public NG2CheckBelongingHttpModule()
         {
-            _currentUserSession = UserSessionService.GetUserSessionInstance(HttpContext.Current.Session.SessionID);
-            _ng2SecurityService = new NG2SecurityService();
+            
         }
 
         public String ModuleName
@@ -42,6 +39,7 @@ namespace Fanex.HttpModule.NG2.CheckBelonging
         private void Application_AcquireRequestState(Object source,
              EventArgs e)
         {
+            _ng2SecurityService = new NG2SecurityService();
             // Create HttpApplication and HttpContext objects to access
             // request and response properties.
             HttpApplication application = (HttpApplication)source;
