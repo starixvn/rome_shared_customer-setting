@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Web;
 using Fanex.Module.NG2.Entities;
 using Fanex.Module.NG2.Repository;
+using ONEbook.NG2.API.DTO.CreateAccount;
 using ONEbook.NG2.API.Interface;
 
 namespace Fanex.Module.NG2.Services
@@ -11,10 +12,10 @@ namespace Fanex.Module.NG2.Services
     {
         private ING2StatusRepository _repository = new NG2StatusRepository();
 
-        public Result AutoInsertAccount(int custId, string username, RoleId roleId, int uplineId, bool uplineDisabled, SiteId siteId, int currencyId, int userId, string language = "en-US")
+        public Entities.Result AutoInsertAccount(int custId, string username, RoleId roleId, int uplineId, bool uplineDisabled, SiteId siteId, int currencyId, int userId, string language = "en-US")
         {
             var allowed = false;
-            var result = new Result();
+            var result = new Entities.Result();
 
             if (siteId == SiteId.Alpha)
             {
@@ -40,6 +41,7 @@ namespace Fanex.Module.NG2.Services
                 request.UserId = userId;
                 request.Language = language;
                 request.Call.CurrencyId = currencyId;
+                request.Call.IsDisabled = uplineDisabled;
 
                 var response = serviceAPI.SyncCustomers(request);
 
@@ -57,12 +59,35 @@ namespace Fanex.Module.NG2.Services
             return result;
         }
 
-        public Result EnableStatus(int custId, int userId, bool disabled, string ip)
+        public Entities.Result EnableStatus(int custId, int userId, bool disabled, string ip)
         {
             return _repository.EnableStatus(custId, userId, disabled, ip);
         }
 
-        public Result SyncStatus(int custId, int userId, string ip)
+        public Entities.Result RetrySyncCustomers(Request request)
+        {
+            var result = new Entities.Result();
+            IThirdPartyServices serviceAPI = new ONEbook.NG2.API.Services();
+
+            var response = serviceAPI.RetrySyncCustomers(request);
+
+            result.ErrorCode = response.Result.ErrorCode;
+            result.ErrorMessage = response.Result.ErrorDescription;
+
+            if (response.Result.IsSuccess && response.Result.AccountArray.Count > 0 && response.Result.AccountArray[0].IsSuccess)
+            {
+                result = _repository.SyncStatus(request.Call.AccountArray[0].ObCustId, request.UserId, HttpContext.Current.Request.UserHostAddress);
+
+                if (result.IsSuccess)
+                {
+                    result = _repository.EnableStatus(request.Call.AccountArray[0].ObCustId, request.UserId, request.Call.IsDisabled, HttpContext.Current.Request.UserHostAddress);
+                }
+            }
+            
+            return result;
+        }
+
+        public Entities.Result SyncStatus(int custId, int userId, string ip)
         {
             return _repository.SyncStatus(custId, userId, ip);
         }
