@@ -39,8 +39,8 @@ namespace Fanex.HttpModule.NG2.UM
                 return;
             }
 
-            bool isAjaxRequest = context.Request.Headers["X-Requested-With"] == "XMLHttpRequest";
             var NG2Section = NumberGame2Section.Instance;
+            
             //var url = context.Request.AppRelativeCurrentExecutionFilePath.TrimStart(new Char[] { '~', '/' });
             var url = context.Request.RawUrl;
             url = url ?? string.Empty;
@@ -49,16 +49,17 @@ namespace Fanex.HttpModule.NG2.UM
                 url += "?" + HttpUtility.HtmlDecode(context.Request.Params.ToString());
             }
 
-            var isNG2RequireUM = (from NumberGame2Element ele in NG2Section.WebUrl
+            var matchingUrlList = (from NumberGame2Element ele in NG2Section.WebUrl
                                   where url.ToLower().Contains(ele.Url.ToLower())
                                   select ele).ToList();
             var UMService = new ONEbook.UM.ThirdParty.Services.Impl.UMService();
-            if (!string.IsNullOrEmpty(url) && isNG2RequireUM.Count > 0 && UMService.GetUnderMaintenanceTime(23).IsUnderMaintenanceTime)
+            if (!string.IsNullOrEmpty(url) && matchingUrlList.Count > 0 && UMService.GetUnderMaintenanceTime(23).IsUnderMaintenanceTime)
             {
+                bool isAjaxRequest = matchingUrlList[0].IsAjax || context.Request.Headers["X-Requested-With"] == "XMLHttpRequest";
                 if (isAjaxRequest)
                 {
                     context.Response.ContentType = "application/json; charset=utf-8";
-                    string result = "{\"ErrorCode\":\"123\", \"ErrorMessage\":\"Special Site UM\"}";
+                    string result = "{\"ErrorCode\":\"5003\", \"ErrorMessage\":\"Special Site UM\"}";
                     context.Response.Write(result);
                     context.Response.End();
                 }

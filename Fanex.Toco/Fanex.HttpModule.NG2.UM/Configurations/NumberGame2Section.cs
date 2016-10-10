@@ -160,5 +160,18 @@ namespace Fanex.HttpModule.NG2.UM.Configurations
                 this["filter"] = value;
             }
         }
+
+        [ConfigurationProperty("isajax", IsRequired = false, DefaultValue = false)]
+        public bool IsAjax
+        {
+            get
+            {
+                return (bool)this["isajax"];
+            }
+            set
+            {
+                this["isajax"] = value;
+            }
+        }
     }
 }

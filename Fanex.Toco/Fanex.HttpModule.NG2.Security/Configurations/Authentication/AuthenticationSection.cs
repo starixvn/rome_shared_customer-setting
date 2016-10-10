@@ -32,11 +32,5 @@
             get { return (string)this["fullpermission"]; }
             set { this["fullpermission"] = value.ToLower(); }
         }
-
-        [ConfigurationProperty("LoginUrl", IsRequired = true)]
-        public string LoginUrl
-        {
-            get { return (string)this["LoginUrl"]; }
-        }
     }
 }

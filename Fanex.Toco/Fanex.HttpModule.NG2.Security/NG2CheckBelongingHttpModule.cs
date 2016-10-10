@@ -5,6 +5,7 @@ using Fanex.HttpModule.NG2.Security.Services;
 using Sunplus.Agent.Model.BL;
 using Sunplus.Agent.Model.Entities;
 using System;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 
@@ -19,7 +20,7 @@ namespace Fanex.HttpModule.NG2.Security
 
         public NG2CheckBelongingHttpModule()
         {
-            
+
         }
 
         public String ModuleName
@@ -39,33 +40,33 @@ namespace Fanex.HttpModule.NG2.Security
         private void Application_AcquireRequestState(Object source,
              EventArgs e)
         {
-            _ng2SecurityService = new NG2SecurityService();
             // Create HttpApplication and HttpContext objects to access
             // request and response properties.
             HttpApplication application = (HttpApplication)source;
             HttpContext context = application.Context;
-            var ng2SecuritySection = AuthenticationSection.Instance;
             if (IsStaticContentRequest(context))
             {
                 return;
             }
 
+            var ng2SecuritySection = AuthenticationSection.Instance;
+            _ng2SecurityService = new NG2SecurityService();
             int custId = GetCustomerIdFromRequest();
-            long transId= GetTransIdFromRequest(context.Request);
-            bool isDataWarehouse= (context.Request["iswhcheck"] == "1");
+            long transId = GetTransIdFromRequest(context.Request);
+            bool isDataWarehouse = (context.Request["iswhcheck"] == "1");
             var currentUrl = GetRequestPath();
 
             if (_ng2SecurityService.IsLoginAccClosed())
             {
                 context.Session.Clear();
-                context.Response.Redirect(ng2SecuritySection.LoginUrl, true);
+                //context.Response.Redirect(ng2SecuritySection.LoginUrl, true);
                 return;
             }
 
             if (!_ng2SecurityService.IsBelonging(custId, transId, isDataWarehouse, currentUrl))
             {
                 context.Session.Abandon();
-                context.Response.Redirect(ng2SecuritySection.LoginUrl, true);
+                //context.Response.Redirect(ng2SecuritySection.LoginUrl, true);
                 return;
             }
         }
@@ -79,6 +80,19 @@ namespace Fanex.HttpModule.NG2.Security
             return context.Session == null;
         }
 
+        private string GetRequestPath()
+        {
+            var url = HttpContext.Current.Request.Path;
+            if (IsRnGCasinoUri)
+            {
+                url = GetRnGCasinoUri();
+            }
+
+            url = url.Remove(0, 1).ToLower();
+
+            return GetUrlAccessByCustomerWithoutDirectoryPath(url);
+        }
+
         private string GetUrlAccessByCustomerWithoutDirectoryPath(string url)
         {
             var virtualDirectory = WebAppSettings.VirtualDirectory;
@@ -89,19 +103,6 @@ namespace Fanex.HttpModule.NG2.Security
 
                 return urlWithOutVirtualDirectory;
             }
-
-            return url;
-        }
-
-        private string GetRequestPath()
-        {
-            var url = HttpContext.Current.Request.Path;
-            if (IsRnGCasinoUri)
-            {
-                url = GetRnGCasinoUri();
-            }
-
-            url = url.Remove(0, 1).ToLower();
 
             return url;
         }
@@ -137,11 +138,10 @@ namespace Fanex.HttpModule.NG2.Security
             }
             else
             {
+                var bytes = new byte[HttpContext.Current.Request.InputStream.Length];
+                HttpContext.Current.Request.InputStream.Read(bytes, 0, bytes.Length);
                 HttpContext.Current.Request.InputStream.Position = 0;
-                using (var reader = new System.IO.StreamReader(HttpContext.Current.Request.InputStream))
-                {
-                    trackingValue = reader.ReadToEnd();
-                }
+                trackingValue = Encoding.ASCII.GetString(bytes);
             }
 
             var belongingParams = WebAppSettings.BelongingParams;
