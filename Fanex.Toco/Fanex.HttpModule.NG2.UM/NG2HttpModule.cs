@@ -59,6 +59,8 @@ namespace Fanex.HttpModule.NG2.UM
                 if (isAjaxRequest)
                 {
                     context.Response.ContentType = "application/json; charset=utf-8";
+                    context.Response.StatusCode = 302;
+                    context.Response.RedirectLocation = context.Request.ApplicationPath + NG2Section.UMPageUrl.Replace("~", string.Empty);
                     string result = "{\"ErrorCode\":\"5003\", \"ErrorMessage\":\"Special Site UM\"}";
                     context.Response.Write(result);
                     context.Response.End();
