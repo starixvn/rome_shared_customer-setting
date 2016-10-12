@@ -74,14 +74,20 @@ namespace Fanex.Module.NG2.Services
             result.ErrorCode = response.Result.ErrorCode;
             result.ErrorMessage = response.Result.ErrorDescription;
 
-            if (response.Result.IsSuccess && response.Result.AccountArray.Count > 0 && response.Result.AccountArray[0].IsSuccess)
+            if (response.Result.IsSuccess && response.Result.AccountArray.Count > 0)
             {
-                result = _repository.SyncStatus(request.Call.AccountArray[0].ObCustId, request.UserId, HttpContext.Current.Request.UserHostAddress);
-
-                if (result.IsSuccess)
+                foreach (var cust in response.Result.AccountArray)
                 {
-                    result = _repository.EnableStatus(request.Call.AccountArray[0].ObCustId, request.UserId, request.Call.IsDisabled, HttpContext.Current.Request.UserHostAddress);
-                }
+                    if (cust.IsSuccess)
+                    {
+                        result = _repository.SyncStatus(cust.ObCustId, request.UserId, HttpContext.Current.Request.UserHostAddress);
+
+                        if (result.IsSuccess)
+                        {
+                            result = _repository.EnableStatus(cust.ObCustId, request.UserId, request.Call.IsDisabled, HttpContext.Current.Request.UserHostAddress);
+                        }
+                    }                
+                }            
             }
             
             return result;
