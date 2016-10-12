@@ -80,13 +80,8 @@ namespace Fanex.Module.NG2.Services
                 {
                     if (cust.IsSuccess)
                     {
-                        result = _repository.SyncStatus(cust.ObCustId, request.UserId, HttpContext.Current.Request.UserHostAddress);
-
-                        if (result.IsSuccess)
-                        {
-                            result = _repository.EnableStatus(cust.ObCustId, request.UserId, request.Call.IsDisabled, HttpContext.Current.Request.UserHostAddress);
-                        }
-                    }                
+                        result = _repository.SyncStatus(cust.ObCustId, request.UserId, HttpContext.Current.Request.UserHostAddress);                        
+                    }
                 }            
             }
             
