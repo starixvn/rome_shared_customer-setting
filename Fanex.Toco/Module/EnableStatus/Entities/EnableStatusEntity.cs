@@ -9,21 +9,29 @@
 
 namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Entities
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     /// <summary>
     /// TODO: Update summary.
-    /// </summary>
+    /// </summary>    
     public class EnableStatusEntity
     {
+        private bool _hasDownline = true;
+
         public bool IsDirty { get; set; }
 
         public bool Hide { get; set; }
+                
+        public bool HasDownline
+        {
+            get
+            {
+                return _hasDownline;
+            }
 
-        public bool HasDownline { get; set; }
+            set
+            {
+                _hasDownline = value;
+            }
+        }
 
         public object SettingType { get; set; }
 

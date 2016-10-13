@@ -64,13 +64,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logging", "Logging", "{0B16
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Module.Logs", "Module\Fanex.Module.Logs.Fomater\Fanex.Module.Logs.csproj", "{4B4A0C26-C71F-41DE-B558-06B58AFE714F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8318E1FE-9DA7-4F88-BA4D-6AE0FD0CA2F2}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Module.RNGCasino", "Module\Fanex.Module.RNGCasino\Fanex.Module.RNGCasino.csproj", "{CC2CCCC5-2EB5-4200-BE30-14D8EE8C1DEE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Voidbridge.BetDetail", "Module\Fanex.BetDetail.Voidbridge\Fanex.Voidbridge.BetDetail.csproj", "{DAA5A14E-2DB9-42D0-8115-D6C84E323E6C}"
