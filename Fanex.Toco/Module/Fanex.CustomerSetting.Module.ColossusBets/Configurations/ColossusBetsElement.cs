@@ -1,8 +1,7 @@
-﻿namespace Fanex.CustomerSetting.Module.ColossusBets.Configurations
-{
-    using System.Configuration;
-    using Fanex.Common;
+﻿using System.Configuration;
 
+namespace Fanex.CustomerSetting.Module.ColossusBets.Configurations
+{
     public class ColossusBetsElement : ConfigurationElement
     {
         [ConfigurationProperty("key", IsKey = true, IsRequired = true, DefaultValue = "")]
@@ -10,7 +9,7 @@
         {
             get
             {
-                return Converter.ToString2(this["key"]);
+                return (string)this["key"];
             }
 
             set
@@ -24,7 +23,7 @@
         {
             get
             {
-                return Converter.ToString2(this["value"]);
+                return (string)this["value"];
             }
 
             set

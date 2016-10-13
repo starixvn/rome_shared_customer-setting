@@ -1,72 +1,89 @@
-﻿namespace Fanex.CustomerSetting.Module.ColossusBets.Services
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Net;
-    using Fanex.BetList.Core.Entities;
-    using Fanex.Common;
-    using Fanex.CustomerSetting.Module.ColossusBets.Configurations;
-    using Fanex.CustomerSetting.Module.ColossusBets.Constants;
-    using Fanex.CustomerSetting.Module.ColossusBets.Criteria;
-    using Fanex.CustomerSetting.Module.ColossusBets.Models;
-    using Fanex.CustomerSetting.Module.ColossusBets.Repositories;
-    using Fanex.CustomerSetting.Module.ColossusBets.Resources;
-    using Fanex.Module.Logs.Services;
-    using Newtonsoft.Json;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using Fanex.BetList.Core.Entities;
+using Fanex.CustomerSetting.Module.ColossusBets.Configurations;
+using Fanex.CustomerSetting.Module.ColossusBets.Constants;
+using Fanex.CustomerSetting.Module.ColossusBets.Criteria;
+using Fanex.CustomerSetting.Module.ColossusBets.Models;
+using Fanex.CustomerSetting.Module.ColossusBets.Repositories;
+using Fanex.CustomerSetting.Module.ColossusBets.Resources;
+using Fanex.Module.Logs.Services;
+using Fanex.NAP.Framework.Data;
+using Newtonsoft.Json;
 
+namespace Fanex.CustomerSetting.Module.ColossusBets.Services
+{
     public class ColossusBetsService : IColossusBetsService
     {
         private readonly IColossusBetsRepository _colossusBetsRepository;
 
-        public ColossusBetsService()
-            : this(null)
-        {
-        }
-
-        public ColossusBetsService(IColossusBetsRepository colossusBetsRepository)
+        public ColossusBetsService(IColossusBetsRepository colossusBetsRepository = null)
         {
             _colossusBetsRepository = colossusBetsRepository ?? new ColossusBetsRepository();
         }
 
         public IEnumerable<ITicket> BetDetails(GetColossusBetsBetDetailsCriteria criteria)
         {
-            var detailsTickets = _colossusBetsRepository.BetDetails(criteria).ToList();
-            return detailsTickets;
+            return _colossusBetsRepository.BetDetails(criteria).ToList();
         }
 
         public ViewMemberChoiceResultModel MemberChoice(GetColossusBetsBetDetailsCriteria criteria)
         {
-            var token = GetToken(criteria);
-            var siteId = GetSiteId_ColossusBets(criteria);
-            var iframe = string.Format(
-                ColossusBetsSection.Instance.Configurations["ColossusBetsAPI_MemberChoice"].Value,
+            var siteId = GetSiteId(criteria.RoleId);
+            var tokenResult = GetTokenResult(criteria.AccId, criteria.CustId);
+            var memberChoice = string.Format(
+                ColossusBetsSection.MemberChoice,
                 criteria.EventId,
-                token != null ? token.Data.Authorization : string.Empty,
+                tokenResult != null ? tokenResult.Data.Authorization : string.Empty,
                 siteId);
+
+            var siteIdByCustomer = GetSiteIdByCustomerId(criteria.CustId);
+            var domain = ColossusBetsSection.GetDomainBySiteId(siteIdByCustomer);
+
             var result = new ViewMemberChoiceResultModel
             {
-                Iframe = iframe
+                Iframe = domain + memberChoice
             };
 
-            result.ActionInfo = token != null ?
-               new ResultDetail { ResultCode = token.ErrorCode, ResultMessage = token.ErrorMsg } :
+            result.ActionInfo = tokenResult != null ?
+               new ResultDetail { ResultCode = tokenResult.ErrorCode, ResultMessage = tokenResult.ErrorMsg } :
                new ResultDetail { ResultCode = 1, ResultMessage = Labels.ColossusBetsAPI_FailedToConnect };
 
             return result;
         }
 
-        private ViewTokenResultModel GetToken(GetColossusBetsBetDetailsCriteria criteria)
+        private string GetSiteId(int roleId)
+        {
+            var siteIds = ColossusBetsSection.SiteId.Split(new char[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
+
+            switch (roleId)
+            {
+                case RoleIdConstants.Super:
+                    return siteIds[0];
+
+                case RoleIdConstants.Master:
+                    return siteIds[1];
+
+                case RoleIdConstants.Agent:
+                    return siteIds[2];
+
+                default:
+                    return siteIds[0];
+            }
+        }
+
+        private ViewTokenResultModel GetTokenResult(int userId, int customerId)
         {
             try
             {
-                var getTokenAPI = string.Format(
-                    ColossusBetsSection.Instance.Configurations["ColossusBetsAPI_GetToken"].Value,
-                    criteria.AccId,
-                    criteria.CustId);
+                string tokenUrl = string.Format(ColossusBetsSection.TokenUrl, userId, customerId);
+
                 WebClient client = new WebClient();
-                var result = JsonConvert.DeserializeObject<ViewTokenResultModel>(client.DownloadString(new Uri(getTokenAPI)));
-                return result;
+                string resultJSON = client.DownloadString(new Uri(tokenUrl));
+
+                return JsonConvert.DeserializeObject<ViewTokenResultModel>(resultJSON);
             }
             catch (Exception exception)
             {
@@ -76,20 +93,11 @@
             return null;
         }
 
-        private int GetSiteId_ColossusBets(GetColossusBetsBetDetailsCriteria criteria)
+        private string GetSiteIdByCustomerId(int customerId)
         {
-            var siteIds = ColossusBetsSection.Instance.Configurations["SiteId"].Value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-            switch (criteria.RoleId)
-            {
-                case RoleIdConstants.Super:
-                    return Converter.ToInt(siteIds[0]);
-                case RoleIdConstants.Master:
-                    return Converter.ToInt(siteIds[1]);
-                case RoleIdConstants.Agent:
-                    return Converter.ToInt(siteIds[2]);
-                default:
-                    return Converter.ToInt(siteIds[0]);
-            }
+            ICriteria criteria = new GetSiteIdByCustomerIdCriteria(customerId);
+
+            return _colossusBetsRepository.GetSiteIdByCustomerId(criteria);
         }
     }
 }
