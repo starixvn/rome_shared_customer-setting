@@ -49,6 +49,11 @@ namespace Fanex.HttpModule.NG2.UM
                 url += "?" + HttpUtility.HtmlDecode(context.Request.Params.ToString());
             }
 
+            if (context.Request.UrlReferrer != null && context.Request.UrlReferrer.PathAndQuery != null)
+            {
+                url += context.Request.UrlReferrer.PathAndQuery;
+            }
+
             var matchingUrlList = (from NumberGame2Element ele in NG2Section.WebUrl
                                   where url.ToLower().Contains(ele.Url.ToLower())
                                   select ele).ToList();
