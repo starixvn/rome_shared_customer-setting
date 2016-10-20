@@ -19,9 +19,24 @@ namespace Fanex.CustomerSetting.Module.NG2.EnableStatus.Entities
     /// </summary>
     public class EnableStatusEntity
     {
+        private bool _hasDownline = true;
+
         public bool IsDirty { get; set; }
 
         public bool Hide { get; set; }
+
+        public bool HasDownline
+        {
+            get
+            {
+                return _hasDownline;
+            }
+
+            set
+            {
+                _hasDownline = value;
+            }
+        }
 
         public object SettingType { get; set; }
 
