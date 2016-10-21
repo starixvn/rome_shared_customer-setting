@@ -70,7 +70,7 @@ namespace Fanex.Products.Services
 
         public override bool ShowDCSLinkForDownline(DataRow drow, int loggedInUserRole, int downlineRoleId)
         {
-            if (ShowSettings)
+            if (!string.IsNullOrEmpty(CustomerSettingLink) && ShowSettings)
             {
                 // Direct downline or Member.
                 return (downlineRoleId + 1 == loggedInUserRole) || downlineRoleId == 1;
@@ -81,7 +81,7 @@ namespace Fanex.Products.Services
 
         public override bool ShowEnableStatusLinkForDownline(DataRow drow)
         {
-            if (ShowSettings)
+            if (!string.IsNullOrEmpty(EnableStatusLink) && ShowSettings)
             {
                 object synced = drow.GetValue("IsSync");
 

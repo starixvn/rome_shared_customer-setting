@@ -135,11 +135,12 @@ namespace Fanex.Products
                 {
                     product.Id = item.Id;
                     product.Name = item.Name;
-                    product.RemotingRefName = RefDataUtility.GetProductName(item.Id);
                     product.SportId = item.SportId;
                     product.ReportSPParam = item.ReportSPParam;
                     product.ViewPTLink = item.ViewPTLink;
                     product.ViewCommLink = item.ViewCommLink;
+                    product.MicroSiteNameAppSetting = item.MicroSiteNameAppSetting;
+
                     product.CustomerSettingLink = item.CustomerSettingLink;
                     product.EnableStatusLink = item.EnableStatusLink;
                     product.SyncCustomerLink = item.SyncCustomerLink;

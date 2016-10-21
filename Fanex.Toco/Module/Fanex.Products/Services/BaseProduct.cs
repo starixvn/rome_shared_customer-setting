@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections;
+using System.Configuration;
 using System.Data;
+using System.Text.RegularExpressions;
+using System.Web;
 using Fanex.Products.Enums;
 using Fanex.Products.Utilities;
 
@@ -14,6 +17,10 @@ namespace Fanex.Products.Services
 
         private bool _active;
 
+        private string _customerSettingLink;
+        private string _enableStatusLink;
+        private string _syncCustomerLink;
+
         public BaseProduct(bool webConfigActive)
         {
             _active = webConfigActive;
@@ -25,7 +32,13 @@ namespace Fanex.Products.Services
 
         public string Name { get; set; }
 
-        public string RemotingRefName { get; set; }
+        public string RemotingRefName
+        {
+            get
+            {
+                return RefDataUtility.GetProductName(Id);
+            }
+        }
 
         public int SportId { get; set; }
 
@@ -35,11 +48,46 @@ namespace Fanex.Products.Services
 
         public string ViewCommLink { get; set; }
 
-        public string CustomerSettingLink { get; set; }
+        public string MicroSiteNameAppSetting { get; set; }
 
-        public string EnableStatusLink { get; set; }
+        public string CustomerSettingLink
+        {
+            get
+            {
+                return GetAppPath(_customerSettingLink);
+            }
 
-        public string SyncCustomerLink { get; set; }
+            set
+            {
+                _customerSettingLink = value;
+            }
+        }
+
+        public string EnableStatusLink
+        {
+            get
+            {
+                return GetAppPath(_enableStatusLink);
+            }
+
+            set
+            {
+                _enableStatusLink = value;
+            }
+        }
+
+        public string SyncCustomerLink
+        {
+            get
+            {
+                return GetAppPath(_syncCustomerLink);
+            }
+
+            set
+            {
+                _syncCustomerLink = value;
+            }
+        }
 
         #endregion
 
@@ -144,5 +192,12 @@ namespace Fanex.Products.Services
         }
 
         #endregion
+
+        private string GetAppPath(string pathModifier)
+        {
+            string appPath = HttpContext.Current.Response.ApplyAppPathModifier(pathModifier);
+
+            return Regex.Replace(appPath, HttpRuntime.AppDomainAppVirtualPath, ConfigurationManager.AppSettings[MicroSiteNameAppSetting], RegexOptions.IgnoreCase);
+        }
     }
 }
