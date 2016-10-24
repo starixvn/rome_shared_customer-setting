@@ -66,6 +66,7 @@ namespace Fanex.Module.NG2.Services
 
         public Entities.Result RetrySyncCustomers(Request request)
         {
+            var config = ONEbook.NG2.API.Configuration.NG2Configuration.Instance;
             var result = new Entities.Result();
             IThirdPartyServices serviceAPI = new ONEbook.NG2.API.Services();
 
@@ -74,15 +75,18 @@ namespace Fanex.Module.NG2.Services
             result.ErrorCode = response.Result.ErrorCode;
             result.ErrorMessage = response.Result.ErrorDescription;
 
-            if (response.Result.IsSuccess && response.Result.AccountArray.Count > 0)
+            if (response.Result.IsSuccess)
             {
-                foreach (var cust in response.Result.AccountArray)
+                var index = 0;
+                foreach (var cust in request.Call.AccountArray)
                 {
-                    if (cust.IsSuccess)
+                    if ((config.Debug == "1" && response.Result.IsSuccess) || (response.Result.IsSuccess && response.Result.AccountArray[index].IsSuccess))
                     {
-                        result = _repository.SyncStatus(cust.ObCustId, request.UserId, HttpContext.Current.Request.UserHostAddress);                        
+                        result = _repository.SyncStatus(cust.ObCustId, request.UserId, HttpContext.Current.Request.UserHostAddress);
                     }
-                }            
+
+                    ++index;
+                }
             }
             
             return result;
