@@ -89,7 +89,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Module.NG2, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Module.NG2.1.0.0-NAP-091\lib\net40\Fanex.Module.NG2.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.Module.NG2.1.0.0.1-NAP-01\lib\net40\Fanex.Module.NG2.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.NAP.Core, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
@@ -156,7 +156,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="ONEbook.NG2.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ONEbook.NG2.API.1.0.0.1-NAP-04\lib\net40\ONEbook.NG2.API.dll</HintPath>
+      <HintPath>..\..\packages\ONEbook.NG2.API.1.0.0.1-NAP-08\lib\net40\ONEbook.NG2.API.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ONEbook.UM.ThirdParty, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -309,6 +309,7 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Logs\APILoggerSpNames.xml" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -333,6 +334,27 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\ONEbook.NG2.API.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Logs\LogsConfiguration.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Logs\APILoggerConnectionStrings.uat.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Logs\APILoggerConnectionStrings.sit.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Logs\APILoggerConnectionStrings.pro.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Logs\APILoggerConnectionStrings.mnl.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Logs\APILoggerConnectionStrings.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

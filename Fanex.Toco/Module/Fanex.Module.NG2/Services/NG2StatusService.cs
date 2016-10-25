@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Net;
 using System.Web;
 using Fanex.Module.NG2.Entities;
 using Fanex.Module.NG2.Repository;
@@ -82,7 +83,7 @@ namespace Fanex.Module.NG2.Services
                 {
                     if ((config.Debug == "1" && response.Result.IsSuccess) || (response.Result.IsSuccess && response.Result.AccountArray[index].IsSuccess))
                     {
-                        result = _repository.SyncStatus(cust.ObCustId, request.UserId, HttpContext.Current.Request.UserHostAddress);
+                        result = _repository.SyncStatus(cust.ObCustId, request.UserId, GetIpAddress());
                     }
 
                     ++index;
@@ -95,6 +96,21 @@ namespace Fanex.Module.NG2.Services
         public Entities.Result SyncStatus(int custId, int userId, string ip)
         {
             return _repository.SyncStatus(custId, userId, ip);
+        }
+
+        private string GetIpAddress()
+        {
+            var ip = string.Empty;
+            foreach (IPAddress ipa in Dns.GetHostAddresses(Dns.GetHostName()))
+            {
+                if (ipa.AddressFamily.ToString().Equals("InterNetwork"))
+                {
+                    ip = ipa.ToString();
+                    break;
+                }
+            }
+
+            return ip.Trim();
         }
     }
 }
