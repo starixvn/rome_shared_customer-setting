@@ -115,7 +115,7 @@
       <HintPath>..\_Dependencies\Web\Newtonsoft.Json.dll-3.5\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="ONEbook.NG2.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ONEbook.NG2.API.1.0.0.1-NAP-08\lib\net40\ONEbook.NG2.API.dll</HintPath>
+      <HintPath>..\packages\ONEbook.NG2.API.1.0.0.1-NAP-09\lib\net40\ONEbook.NG2.API.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ONEbook.UM.ThirdParty, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -1467,7 +1467,6 @@
     <Content Include="Areas\Statement\Views\Guideline\MemberGuildeline.cshtml" />
     <Content Include="Areas\Statement\Views\Guideline\SMAGuildeline.cshtml" />
     <Content Include="Areas\Statement\Views\Guideline\Styles\Guideline.less" />
-    <Content Include="Areas\Logs\LogsConfiguration.config" />
     <Content Include="Areas\RNGCasino\Views\BetDetails\Index.cshtml" />
     <Content Include="Areas\RNGCasino\Views\BetDetails\Styles\BetDetails.less" />
     <Content Include="Areas\RNGCasino\Views\Web.config" />
@@ -1487,6 +1486,7 @@
     <Content Include="Areas\Voidbridge\Views\BetDetails\_Tickets.cshtml" />
     <Content Include="packages.config" />
     <Content Include="Areas\ONEbook.NG2.API.config" />
+    <Content Include="Areas\Logs\LogsConfiguration.config" />
     <Content Include="Areas\Logs\APILoggerConnectionStrings.uat.config" />
     <Content Include="Areas\Logs\APILoggerConnectionStrings.sit.config" />
     <Content Include="Areas\Logs\APILoggerConnectionStrings.pro.config" />
