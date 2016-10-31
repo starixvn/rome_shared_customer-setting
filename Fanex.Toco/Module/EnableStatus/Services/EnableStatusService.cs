@@ -21,6 +21,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories;
     using Fanex.CustomerSetting.Module.Core;
     using Fanex.CustomerSetting.Module.Core.Models;
+    using Module.Core.Services.Impl;
     using RemotingRef;
 
     /// <summary>
@@ -64,24 +65,24 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                     {
                         if (model.Entities.Count > 1)
                         {
-                            item.EnableText = item.BetTypeName = RefData.GetBetTypeName(item.BetTypeId.ToString(), context.Language, string.Empty);
-                            item.SportTypeName = RefData.GetSportName(item.SportTypeId.ToString(), context.Language, string.Empty);
+                            item.EnableText = item.BetTypeName = CacheRef.GetBettype(item.BetTypeId.ToString());
+                            item.SportTypeName = CacheRef.GetSportName(item.SportTypeId.ToString());
                         }
                         else
                         {
                             if (product.GetFromRemotingRef)
                             {
-                                item.EnableText = item.SportTypeName = item.BetTypeName = RefData.GetResourceDataByRefIdAndResourceId("Product", context.Product.ToString(), context.Language, string.Empty);
+                                item.EnableText = item.SportTypeName = item.BetTypeName = CacheRef.GetRefResourceByRefIdAndResourceId("Product", context.Product.ToString(), context.Language, string.Empty);
                             }
                             else
                             {
-                                item.EnableText = item.SportTypeName = item.BetTypeName = RefData.GetSportName(item.SportTypeId.ToString(), context.Language, string.Empty);
+                                item.EnableText = item.SportTypeName = item.BetTypeName = CacheRef.GetSportName(item.SportTypeId.ToString());
                             }
                         }                        
                     }
                     else if (item.BetTypeId != null && Utils.ToInt32(item.BetTypeId) > 0 && (item.SportTypeId == null || Utils.ToInt32(item.SportTypeId) == 0))
                     {
-                        item.EnableText = item.BetTypeName = RefData.GetBetTypeName(item.BetTypeId.ToString(), context.Language, string.Empty);
+                        item.EnableText = item.BetTypeName = CacheRef.GetBettype(item.BetTypeId.ToString());
                     }
                     else if (item.BetTypeId != null && item.SportTypeId != null && Utils.ToInt32(item.BetTypeId) > 0 && Utils.ToInt32(item.SportTypeId) > 0)
                     {
