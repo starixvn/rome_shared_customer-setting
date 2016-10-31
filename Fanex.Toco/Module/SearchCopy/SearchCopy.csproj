@@ -89,7 +89,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Module.NG2, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Module.NG2.1.0.0.1-NAP-01\lib\net40\Fanex.Module.NG2.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.Module.NG2.1.0.0.1-NAP-02\lib\net40\Fanex.Module.NG2.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.NAP.Core, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
