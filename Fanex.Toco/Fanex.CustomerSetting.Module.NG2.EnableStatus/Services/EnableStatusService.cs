@@ -1,18 +1,18 @@
 ﻿namespace Fanex.CustomerSetting.Module.NG2.EnableStatus.Services
 {
-    using Core;
-    using Core.Models;
-    using Entities;
-    using Helpers;
-    using Mappings;
-    using Models;
-    using RemotingRef;
-    using Repositories;
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Xml.Linq;
+    using Core;
+    using Core.Models;
+    using Core.Services.Impl;
+    using Entities;
+    using Helpers;
+    using Mappings;
+    using Models;
+    using Repositories;
     public class EnableStatusService : IEnableStatusService
     {
         private IEnableStatusRepository _data = new EnableStatusRepository();
@@ -51,16 +51,16 @@
                     {
                         if (product.GetFromRemotingRef)
                         {
-                            item.EnableText = item.SportTypeName = item.BetTypeName = RefData.GetResourceDataByRefIdAndResourceId("Product", context.Product.ToString(), context.Language, string.Empty);
+                            item.EnableText = item.SportTypeName = item.BetTypeName = CacheRef.GetRefResourceByRefIdAndResourceId("Product", context.Product.ToString(), context.Language, string.Empty);
                         }
                         else
                         {
-                            item.EnableText = item.SportTypeName = item.BetTypeName = RefData.GetSportName(item.SportTypeId.ToString(), context.Language, string.Empty);
+                            item.EnableText = item.SportTypeName = item.BetTypeName = CacheRef.GetSportName(item.SportTypeId.ToString());
                         }
                     }
                     else if (item.BetTypeId != null && Utils.ToInt32(item.BetTypeId) > 0 && (item.SportTypeId == null || Utils.ToInt32(item.SportTypeId) == 0))
                     {
-                        item.EnableText = item.BetTypeName = RefData.GetBetTypeName(item.BetTypeId.ToString(), context.Language, string.Empty);
+                        item.EnableText = item.BetTypeName = CacheRef.GetBettype(item.BetTypeId.ToString());
                     }
                     else if (item.BetTypeId != null && item.SportTypeId != null && Utils.ToInt32(item.BetTypeId) > 0 && Utils.ToInt32(item.SportTypeId) > 0)
                     {

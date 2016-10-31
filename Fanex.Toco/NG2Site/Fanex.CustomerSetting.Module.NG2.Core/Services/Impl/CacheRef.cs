@@ -25,7 +25,7 @@ namespace Fanex.CustomerSetting.Module.NG2.Core.Services.Impl
                 case "zh-CN": return "cs"; // Simplified
                 case "ja-JP": return "jp";
                 case "ko-KR": return "ko";
-                case "vi-VN": return "vi";
+                case "vi-VN": return "vn";
                 case "th-TH": return "th"; // Thai
                 default: return "en";
             }
@@ -45,37 +45,42 @@ namespace Fanex.CustomerSetting.Module.NG2.Core.Services.Impl
                 resourceId = betID.ToString().Substring(1);
             }
 
-            return RefData.GetBetTypeName(bettypeId.ToString(), TWLang(AppSession.Language), string.Empty, resourceId);
+            return RefData.GetBetTypeName(bettypeId.ToString(), TWLang(AppSession.CurrentSession.Language), string.Empty, resourceId);
         }
 
         public static string GetSportName(object sportID)
         {
-            return RefData.GetSportName(Converter.ToString2(sportID), TWLang(AppSession.Language), string.Empty);
+            return RefData.GetSportName(Converter.ToString2(sportID), TWLang(AppSession.CurrentSession.Language), string.Empty);
         }
 
         public static string GetTeamName(object teamID)
         {
-            return RefData.GetTeamName(Converter.ToString2(teamID), TWLang(AppSession.Language), string.Empty);
+            return RefData.GetTeamName(Converter.ToString2(teamID), TWLang(AppSession.CurrentSession.Language), string.Empty);
         }
 
         public static string GetLeagueName(object leagueID)
         {
-            return RefData.GetLeagueName(Converter.ToString2(leagueID), TWLang(AppSession.Language), string.Empty);
+            return RefData.GetLeagueName(Converter.ToString2(leagueID), TWLang(AppSession.CurrentSession.Language), string.Empty);
         }
 
         public static string GetFncIndexName(object indexId)
         {
-            return RefData.GetFncIndexName(Converter.ToString2(indexId), TWLang(AppSession.Language));
+            return RefData.GetFncIndexName(Converter.ToString2(indexId), TWLang(AppSession.CurrentSession.Language));
         }
 
         public static string GetHorseTeamName(object codeID)
         {
-            return RefData.GetHorseTeamName(Converter.ToString2(codeID), TWLang(AppSession.Language));
+            return RefData.GetHorseTeamName(Converter.ToString2(codeID), TWLang(AppSession.CurrentSession.Language));
         }
 
         public static string GetOddsTypeName(object oddsType)
         {
-            return RefData.GetOddsTypeName(Converter.ToString2(oddsType), TWLang(AppSession.Language));
+            return RefData.GetOddsTypeName(Converter.ToString2(oddsType), TWLang(AppSession.CurrentSession.Language));
+        }
+
+        public static string GetRefResourceByRefIdAndResourceId(string refId, string resourceId, string language, string defaultValue)
+        {
+            return RefData.GetResourceDataByRefIdAndResourceId(refId, resourceId, TWLang(language), defaultValue);
         }
 
         public static string GetCombinationName(string betteam)
@@ -133,29 +138,29 @@ namespace Fanex.CustomerSetting.Module.NG2.Core.Services.Impl
                     result = "P.Pair";
                     break;
             }*/
-            return RefData.GetCasinoBetItem(Converter.ToString2(resultId), TWLang(AppSession.Language));
+            return RefData.GetCasinoBetItem(Converter.ToString2(resultId), TWLang(AppSession.CurrentSession.Language));
         }
 
         public static string GetRouletteBetItem(int itemId)
         {
-            return RefData.GetRouletteBetItem(Converter.ToString2(itemId), TWLang(AppSession.Language));
+            return RefData.GetRouletteBetItem(Converter.ToString2(itemId), TWLang(AppSession.CurrentSession.Language));
         }
 
         public static string GetBettypeNameSportingSolution(object betypeId, string resourceId)
         {
             string bettypeName = string.Empty;
-            bettypeName = RefData.GetBetTypeName(Converter.ToString2(betypeId), TWLang(AppSession.Language), string.Empty, resourceId);
+            bettypeName = RefData.GetBetTypeName(Converter.ToString2(betypeId), TWLang(AppSession.CurrentSession.Language), string.Empty, resourceId);
             return bettypeName;
         }
 
         public static string GetCasinoBetItem(object betStatusId)
         {
-            return RefData.GetCasinoBetItem(betStatusId.ToString(), TWLang(AppSession.Language), string.Empty);
+            return RefData.GetCasinoBetItem(betStatusId.ToString(), TWLang(AppSession.CurrentSession.Language), string.Empty);
         }
 
         public static string GetRouletteBetItem(object itemId)
         {
-            return RefData.GetRouletteBetItem(itemId.ToString(), TWLang(AppSession.Language), string.Empty);
+            return RefData.GetRouletteBetItem(itemId.ToString(), TWLang(AppSession.CurrentSession.Language), string.Empty);
         }
     }
 }
