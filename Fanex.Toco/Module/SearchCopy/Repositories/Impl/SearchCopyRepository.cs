@@ -60,7 +60,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
                     custInfo.CurrencyId = Converter.ToInt(dataReader["currencyID"]);
                     custInfo.Currency = criteria.IsMember ? string.Empty : dataReader["currencyName"].ToString();
                     custInfo.IsSyncCasino = Converter.To<byte>(dataReader["synccasino"]);
-                    custInfo.IsSyncNG2 = (byte)(productInfo.IsSynced ? 1 : 0);
+                    custInfo.IsSyncNG2 = (byte)(productInfo.IsSynced || (bool) Fanex.Module.NG2.Repository.BaseRepository.CheckAllowedCurrencyAll(criteria.Custid).Outputs["allowedng2"] ? 1 : 0);
                     custInfo.DisableNG2 = (byte)(productInfo.IsDisabled ? 1 : 0);
                     custInfo.IsSyncBingo = Converter.To<byte>(dataReader["syncbingo"]);
                     custInfo.IsSyncLiveCasino = criteria.IsMember ? (byte)1 : Converter.To<byte>(dataReader["synclivecasino"]);
