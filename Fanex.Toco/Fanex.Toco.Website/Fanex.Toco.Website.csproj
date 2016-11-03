@@ -70,10 +70,6 @@
       <HintPath>..\packages\Fanex.Module.Logs.2.0.0.2\lib\net40\Fanex.Module.Logs.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.Module.NG2, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.Module.NG2.1.0.0.1-NAP-02\lib\net40\Fanex.Module.NG2.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\EnterpriseLibrary.Common.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
@@ -1492,6 +1488,7 @@
     <Content Include="Areas\Logs\APILoggerConnectionStrings.pro.config" />
     <Content Include="Areas\Logs\APILoggerConnectionStrings.mnl.config" />
     <Content Include="Areas\Logs\APILoggerConnectionStrings.config" />
+    <Content Include="Areas\NumberGame2Section.config" />
     <None Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3-custom.less" />
   </ItemGroup>
   <ItemGroup>
@@ -1522,6 +1519,10 @@
     <ProjectReference Include="..\Module\Fanex.CustomerSetting.Module.ColossusBets\Fanex.CustomerSetting.Module.ColossusBets.csproj">
       <Project>{4DC252E8-DF63-49B0-8BAA-717E10B30932}</Project>
       <Name>Fanex.CustomerSetting.Module.ColossusBets</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Module\Fanex.Module.NG2\Fanex.Module.NG2.csproj">
+      <Project>{d6a0afbc-5f0f-4d16-a4ee-82a73c08b1a3}</Project>
+      <Name>Fanex.Module.NG2</Name>
     </ProjectReference>
     <ProjectReference Include="..\Module\Fanex.Module.RNGCasino\Fanex.Module.RNGCasino.csproj">
       <Project>{cc2cccc5-2eb5-4200-be30-14d8ee8c1dee}</Project>

@@ -2,7 +2,9 @@
 
 @{
     ViewBag.Title = "title";
-  
+    var service = new Fanex.Module.NG2.Services.SyncCustomerService();
+    var result = service.CheckSyncCustomers();
+    var tmp = result;
 }
 <script type="text/javascript">
     function resolveClientUrl(relativePath) {

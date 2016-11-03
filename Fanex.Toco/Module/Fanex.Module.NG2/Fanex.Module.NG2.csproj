@@ -134,14 +134,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\LogInfo.cs" />
     <Compile Include="Entities\Result.cs" />
     <Compile Include="Entities\SiteId.cs" />
+    <Compile Include="Entities\SyncCustomerResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Repository\ING2StatusRepository.cs" />
+    <Compile Include="Repository\SyncCustomerRepository.cs" />
+    <Compile Include="Repository\ISyncCustomerRepository.cs" />
     <Compile Include="Repository\NG2StatusRepository.cs" />
     <Compile Include="Services\ING2StatusService.cs" />
+    <Compile Include="Services\ISyncCustomerService.cs" />
     <Compile Include="Services\NG2StatusService.cs" />
+    <Compile Include="Services\SyncCustomerService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
