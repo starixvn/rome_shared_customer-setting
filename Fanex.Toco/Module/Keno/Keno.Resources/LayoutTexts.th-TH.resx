@@ -319,6 +319,6 @@
     <value>คัดลอกการตั้งค่ากสถานะจากออสเตรเลีย</value>
   </data>
   <data name="WarningPowerKeno" xml:space="preserve">
-    <value>Australia PT setting is being used for Power Keno as well</value>
+    <value>การตั้งค่าเอี่ยวของ Keno ออสเตรเลียจะถูกใช้กับ Max Keno และ Max Keno 2.</value>
   </data>
 </root>

@@ -319,6 +319,6 @@
     <value>從澳洲複製所有狀態</value>
   </data>
   <data name="WarningPowerKeno" xml:space="preserve">
-    <value>澳大利亞占成設定也同時使用於Max Keno</value>
+    <value>澳洲的佔成數設置被用於Max Keno和Max Keno 2。</value>
   </data>
 </root>

@@ -42,9 +42,9 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         }
 
         [HttpPost]
-        ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "UpdateSuper")]
+        ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateSuper")]
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "KenoSetting")]
-        [AntiXSRFFilter]
+        ////[AntiXSRFFilter]
         public JsonResult UpdateSuper(SuperSettingViewModel superSetting)
         {
             var results = _kenoSettingService.UpdateSuperCustomerSetting(superSetting);
@@ -63,7 +63,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         [HttpPost]
         ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateMaster")]
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "KenoSetting")]
-        [AntiXSRFFilter]
+        ////[AntiXSRFFilter]
         public JsonResult UpdateMaster(MasterSettingViewModel masterSetting)
         {
             var results = _kenoSettingService.UpdateMasterCustomerSetting(masterSetting);
@@ -82,7 +82,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         [HttpPost]
         ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateAgent")]
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "KenoSetting")]
-        [AntiXSRFFilter]
+        ////[AntiXSRFFilter]
         public JsonResult UpdateAgent(AgentSettingViewModel agentSetting)
         {
             var results = _kenoSettingService.UpdateAgentCustomerSetting(agentSetting);
@@ -101,7 +101,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         [HttpPost]
         ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateSuperOnMember")]
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "KenoSetting")]
-        [AntiXSRFFilter]
+        ////[AntiXSRFFilter]
         public JsonResult UpdateSuperOnMember(SuperEditMemberSettingViewModel memberSetting)
         {
             var results = _kenoSettingService.UpdateMemberCustomerSettingInCaseOfSuperEditMember(memberSetting);
@@ -120,7 +120,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         [HttpPost]
         ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateMasterOnMember")]
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "KenoSetting")]
-        [AntiXSRFFilter]
+        ////[AntiXSRFFilter]
         public JsonResult UpdateMasterOnMember(MasterEditMemberSettingViewModel memberSetting)
         {
             var results = _kenoSettingService.UpdateMemberCustomerSettingInCaseOfMasterEditMember(memberSetting);
@@ -139,7 +139,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         [HttpPost]
         ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateAgentOnMember")]
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "KenoSetting")]
-        [AntiXSRFFilter]
+        ////[AntiXSRFFilter]
         public JsonResult UpdateAgentOnMember(AgentEditMemberSettingViewModel memberSetting)
         {
             var results = _kenoSettingService.UpdateMemberCustomerSettingInCaseOfAgentEditMember(memberSetting);

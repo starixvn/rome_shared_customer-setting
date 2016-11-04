@@ -44,6 +44,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\_Dependencies\Fanex\Fanex.Common.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.CustomerSetting.Module.Keno.KenoResources, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Fanex.CustomerSetting.Module.Keno.KenoResources.1.0.0.4-MaxKeno2\lib\net40\Fanex.CustomerSetting.Module.Keno.KenoResources.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Fanex.Data, Version=0.5.404.59, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\_Dependencies\Fanex\Fanex.Data.dll</HintPath>
@@ -217,13 +221,12 @@
       <Project>{91E16AE3-1209-4BF2-8846-7E36363167B3}</Project>
       <Name>Security</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Keno.Resources\Keno.Resources.csproj">
-      <Project>{F317B419-340B-418D-B2AB-8C43F18B85D6}</Project>
-      <Name>Keno.Resources</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="web.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
