@@ -371,7 +371,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
 
                 bool isEnableCasino = !custInfo.CasinoDisabled || !custInfo.CasinoSync;
 
-                var casinoApiCustomer = new Customer();
+                var casinoApiCustomer = new CasinoLibrary.SBAgent.Customer();
                 if (custInfo.CasinoSync)
                 {
                     casinoApiCustomer.UpdateMaxTransferMisc(
