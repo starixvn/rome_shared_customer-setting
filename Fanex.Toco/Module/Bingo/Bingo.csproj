@@ -122,7 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bingo.Resources\Bingo.Resources.csproj">
-      <Project>{B4ECC635-F693-4EF8-9AC2-84B8900DDBCC}</Project>
+      <Project>{b4ecc635-f693-4ef8-9ac2-84b8900ddbcc}</Project>
       <Name>Bingo.Resources</Name>
     </ProjectReference>
     <ProjectReference Include="..\Casino\Casino.csproj">
