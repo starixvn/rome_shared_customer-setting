@@ -33,10 +33,14 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Entities
 
         public byte IsSyncLiveCasino { get; set; }
 
+        public byte IsSyncNG2 { get; set; }
+
         public bool DisableCasino { get; set; }
 
         public bool DisableLiveCasino { get; set; }
 
         public bool DisableBingo { get; set; }
+
+        public byte DisableNG2 { get; internal set; }
     }
 }

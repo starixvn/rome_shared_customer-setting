@@ -51,20 +51,25 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
             using (var objDb = new ObjectDb(criteria.GetSettingKey()))
             {
                 var dataReader = objDb.ExecuteReader(param);
+                dynamic productInfo = GetProductInfo(criteria.Custid, 23);
                 while (dataReader.Read())
                 {
                     custInfo.Site = criteria.IsMember ? string.Empty : dataReader["site"].ToString();
                     custInfo.Credit = ((long)Math.Ceiling((decimal)dataReader["credit"])).ToString();
                     custInfo.CreditMax = criteria.IsMember ? ((long)Math.Ceiling((decimal)dataReader["credit_max"])).ToString() : string.Empty;
-                    custInfo.CurrencyId = criteria.IsMember ? 0 : Converter.ToInt(dataReader["currencyID"]);
+                    custInfo.CurrencyId = Converter.ToInt(dataReader["currencyID"]);
                     custInfo.Currency = criteria.IsMember ? string.Empty : dataReader["currencyName"].ToString();
                     custInfo.IsSyncCasino = Converter.To<byte>(dataReader["synccasino"]);
+                    custInfo.IsSyncNG2 = (byte)(productInfo.IsSynced || (bool) Fanex.Module.NG2.Repository.BaseRepository.CheckAllowedCurrencyAll(criteria.Custid).Outputs["allowedng2"] ? 1 : 0);
+                    custInfo.DisableNG2 = (byte)(productInfo.IsDisabled ? 1 : 0);
                     custInfo.IsSyncBingo = Converter.To<byte>(dataReader["syncbingo"]);
                     custInfo.IsSyncLiveCasino = criteria.IsMember ? (byte)1 : Converter.To<byte>(dataReader["synclivecasino"]);
                     custInfo.RoleId = Converter.ToInt(dataReader["roleid"]);
                     custInfo.DisableBingo = Converter.ToBool(dataReader["disableBingo"]);
                     custInfo.DisableCasino = Converter.ToBool(dataReader["disableCasino"]);
                     custInfo.DisableLiveCasino = dataReader.GetSchemaTable().Columns.Contains("disableLiveCasino") ? Converter.ToBool(dataReader["disableLiveCasino"]) : false;
+
+                    break;
                 }                
             }
 
@@ -208,6 +213,29 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
 
                 return db.ExecuteDataSet(param).Tables[0];
             }
+        }
+
+        public dynamic GetProductInfo(int custId, int productId)
+        {
+            using (var db = new ObjectDb("Acc_CustSetting_DisableGameStatusSelect"))
+            {
+                var param = new Hashtable();
+                param.Add("custid", custId);
+                param.Add("productid", productId);
+
+                using (var reader = db.ExecuteReader(param))
+                {
+                    if (reader != null)
+                    {
+                        while (reader.Read())
+                        {
+                            return new { IsSynced = reader["IsSync"], IsDisabled = reader["IsDisabled"] };
+                        }
+                    }
+                }
+            }
+
+            return new { IsSynced = false, IsDisabled = false };
         }
     }
 }

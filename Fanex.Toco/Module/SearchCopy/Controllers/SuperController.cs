@@ -9,9 +9,15 @@
 // </history>
 namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
 {
+    using System;
     using System.Collections;
-    using System.Data;
-    using System.Threading.Tasks;
+    using System.Configuration;
+    using System.Threading;
+    using System.Web.Mvc;
+    using Casino.Services.Impl;
+    using Casino.Services.Interface;
+    using CasinoLibrary.SBAgent;
+    using Core.Attributes;
     using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.CustomerSetting.Module.SearchCopy.Common;
     using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
@@ -19,19 +25,12 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
     using Fanex.CustomerSetting.Module.SearchCopy.ViewModels;
     using Fanex.CustomerSetting.Security.Authenticate;
     using Fanex.Logging;
+    using Fanex.Module.Logs.Services;
+    using Fanex.Module.NG2.Entities;
+    using Fanex.Module.NG2.Services;
     using Fanex.NAP.Framework.Data;
     using Services;
-    using System;
-    using System.Configuration;
-    using System.Web.Mvc;
     using ICommandResults = Fanex.LiveCasino.CoreSetting.DTO.CommandResult.ICommandResults;
-    using Fanex.Module.Logs.Services;
-    using Casino.Services.Impl;
-    using Casino.Repositories.Impl;
-    using Casino.Services.Interface;
-    using CasinoLibrary.SBAgent;
-    using Core.Attributes;    
-    
     public class SuperController : BaseCloneController
     {
         /// <summary>
@@ -153,11 +152,13 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                 criteria.CustId = criteria.CustLevel == 1 ? (int)infoCustomer["custid"] : criteria.CustId;
 
                 if (result.IsSuccessful)
-                {
+                {                    
                     result.Message = string.Join(null, new string[] { "<div class=\"alertboxscc\"><div>", criteria.CustLevel == 1 ? Constants.CopyMessage.SuccessMember : Constants.CopyMessage.Success, "</div></div>" });
                     criteria.IP = CurrentContext.Instance.Ip4Address;
 
-                    // Sync casino, bingo, live casino
+                    Thread.Sleep(3000);
+                    // Sync casino, bingo, live casino, ng2
+                    SyncNG2(criteria);
                     UpdateSyncData(criteria);
                 }
                 else
@@ -224,6 +225,16 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             }
 
             return resultSyncData;
+        }
+
+        private void SyncNG2(CustomerInsMemberCriteria criteria)
+        {
+            if (criteria.IsSyncNG2)
+            {
+                // Sync NG2
+                var ng2Service = new NG2StatusService();
+                ng2Service.AutoInsertAccount(criteria.CustId, criteria.UserName, (RoleId)criteria.CustLevel, criteria.CustLevel == 4 ? criteria.CustId : criteria.UplineId, criteria.DisableNG2, SiteId.NAP, criteria.CurrencyId, criteria.Creator);
+            }
         }
 
         /// <summary>
@@ -360,7 +371,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
 
                 bool isEnableCasino = !custInfo.CasinoDisabled || !custInfo.CasinoSync;
 
-                var casinoApiCustomer = new Customer();
+                var casinoApiCustomer = new CasinoLibrary.SBAgent.Customer();
                 if (custInfo.CasinoSync)
                 {
                     casinoApiCustomer.UpdateMaxTransferMisc(

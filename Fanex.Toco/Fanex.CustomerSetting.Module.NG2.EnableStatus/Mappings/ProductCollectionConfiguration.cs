@@ -1,0 +1,58 @@
+﻿namespace Fanex.CustomerSetting.Module.NG2.EnableStatus.Mappings
+{
+    using System.Collections.Generic;
+    using System.Configuration;
+    using System.Linq;
+
+    /// <summary>
+    /// TODO: Update summary.
+    /// </summary>
+    [ConfigurationCollection(typeof(ProductElementConfiguration), AddItemName = "product")]
+    public class ProductCollectionConfiguration : ConfigurationElementCollection, IEnumerable<ProductElementConfiguration>
+    {
+        [ConfigurationProperty("iframeid", IsRequired = true)]
+        public string IframeId
+        {
+            get
+            {
+                return base["iframeid"] as string;
+            }
+
+            set
+            {
+                base["iframeid"] = value;
+            }
+        }
+
+        public ProductElementConfiguration this[int index]
+        {
+            get
+            {
+                return BaseGet(index) as ProductElementConfiguration;
+            }
+        }
+
+        protected override ConfigurationElement CreateNewElement()
+        {
+            return new ProductElementConfiguration();
+        }
+
+        protected override object GetElementKey(ConfigurationElement element)
+        {
+            var configElement = element as ProductElementConfiguration;
+            if (configElement != null)
+            {
+                return configElement.Id;
+            }
+
+            return string.Empty;
+        }                   
+        
+        IEnumerator<ProductElementConfiguration> IEnumerable<ProductElementConfiguration>.GetEnumerator()
+        {
+            return (from i in Enumerable.Range(0, this.Count)
+                    select this[i])
+                    .GetEnumerator();
+        }        
+    }
+}

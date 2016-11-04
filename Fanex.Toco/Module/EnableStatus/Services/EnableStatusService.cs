@@ -21,6 +21,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories;
     using Fanex.CustomerSetting.Module.Core;
     using Fanex.CustomerSetting.Module.Core.Models;
+    using Module.Core.Services.Impl;
     using RemotingRef;
 
     /// <summary>
@@ -35,9 +36,9 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
         {
             try
             {
-                EnableStatusModel model = _data.GetProductStatus(storedProcedure, context);
-                ProductElementConfiguration product = Helper.Products.Where(p => p.Id.Equals(context.ProductId, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
-
+                var model = _data.GetProductStatus(storedProcedure, context);
+                var product = Helper.Products.Where(p => p.Id.Equals(context.ProductId, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+                model.RequestContext.HasDownline = model.Entities.FirstOrDefault().HasDownline ? true : model.RequestContext.HasDownline;
                 context.NewMode = product.NewMode;
                 model.IframeId = Helper.Products.IframeId;
                 model.HasCheckAll = product.HasCheckAll;
@@ -47,7 +48,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                     (context.Username == null ? string.Empty : context.Username) : model.Entities.FirstOrDefault().Username.ToString();
                 model.RequestContext.Username = model.Username;
 
-                foreach (EnableStatusEntity item in model.Entities)
+                foreach (var item in model.Entities)
                 {
                     if (item.BetTypeId != null && product.HideBetTypes.Contains(item.BetTypeId.ToString()))
                     {
@@ -62,19 +63,26 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
 
                     if (context.NewMode)
                     {
-                        if (model.Entities.Count() > 1)
+                        if (model.Entities.Count > 1)
                         {
-                            item.SportTypeName = RefData.GetSportName(item.SportTypeId.ToString(), context.Language, string.Empty);
-                            item.EnableText = item.BetTypeName = RefData.GetBetTypeName(item.BetTypeId.ToString(), context.Language, string.Empty);
+                            item.EnableText = item.BetTypeName = CacheRef.GetBettype(item.BetTypeId.ToString());
+                            item.SportTypeName = CacheRef.GetSportName(item.SportTypeId.ToString());
                         }
                         else
                         {
-                            item.EnableText = item.SportTypeName = item.BetTypeName = RefData.GetSportName(item.SportTypeId.ToString(), context.Language, string.Empty);
-                        }
+                            if (product.GetFromRemotingRef)
+                            {
+                                item.EnableText = item.SportTypeName = item.BetTypeName = CacheRef.GetRefResourceByRefIdAndResourceId("Product", context.Product.ToString(), context.Language, string.Empty);
+                            }
+                            else
+                            {
+                                item.EnableText = item.SportTypeName = item.BetTypeName = CacheRef.GetSportName(item.SportTypeId.ToString());
+                            }
+                        }                        
                     }
                     else if (item.BetTypeId != null && Utils.ToInt32(item.BetTypeId) > 0 && (item.SportTypeId == null || Utils.ToInt32(item.SportTypeId) == 0))
                     {
-                        item.EnableText = item.BetTypeName = RefData.GetBetTypeName(item.BetTypeId.ToString(), context.Language, string.Empty);
+                        item.EnableText = item.BetTypeName = CacheRef.GetBettype(item.BetTypeId.ToString());
                     }
                     else if (item.BetTypeId != null && item.SportTypeId != null && Utils.ToInt32(item.BetTypeId) > 0 && Utils.ToInt32(item.SportTypeId) > 0)
                     {
