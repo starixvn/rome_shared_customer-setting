@@ -219,4 +219,7 @@
   <data name="warningAllbetUnsyncedAllDownline" xml:space="preserve">
     <value>The Allbet Setting is not fully available. Please go to Edit Allbet page to adjust.</value>
   </data>
+  <data name="uplineDisabled" xml:space="preserve">
+    <value>由于账号的此产品已关闭导致无法更改下线产品状态。</value>
+  </data>
 </root>

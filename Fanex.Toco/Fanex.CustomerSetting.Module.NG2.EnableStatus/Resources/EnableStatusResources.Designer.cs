@@ -340,6 +340,15 @@ namespace Fanex.CustomerSetting.Module.NG2.EnableStatus.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to edit downline&apos;s Product Status because the account disabled for this product..
+        /// </summary>
+        public static string uplineDisabled {
+            get {
+                return ResourceManager.GetString("uplineDisabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The Allbet Setting is not fully available. Please go to Edit Allbet page to adjust..
         /// </summary>
         public static string warningAllbetUnsyncedAllDownline {

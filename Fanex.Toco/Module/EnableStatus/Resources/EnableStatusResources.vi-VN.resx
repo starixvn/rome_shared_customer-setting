@@ -222,4 +222,7 @@
   <data name="AllbetNormalGames" xml:space="preserve">
     <value>Baccarat, Roulette, Sic Bo, Dragon Tiger</value>
   </data>
+  <data name="uplineDisabled" xml:space="preserve">
+    <value>Không thể tùy chỉnh trạng thái trò chơi của thành viên cấp dưới bởi vì tài khoản hiện tại không được phép chơi trò này.</value>
+  </data>
 </root>

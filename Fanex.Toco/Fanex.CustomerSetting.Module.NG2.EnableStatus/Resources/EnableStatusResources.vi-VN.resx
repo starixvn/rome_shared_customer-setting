@@ -219,4 +219,7 @@
   <data name="warningAllbetUnsyncedAllDownline" xml:space="preserve">
     <value>The Allbet Setting is not fully available. Please go to Edit Allbet page to adjust.</value>
   </data>
+  <data name="uplineDisabled" xml:space="preserve">
+    <value>Không thể tùy chỉnh trạng thái trò chơi của thành viên cấp dưới bởi vì tài khoản hiện tại không được phép chơi trò này.</value>
+  </data>
 </root>

@@ -222,4 +222,7 @@
   <data name="AllbetNormalGames" xml:space="preserve">
     <value>บาคาร่า, รูเล็ต, ไฮโล, Dragon Tiger</value>
   </data>
+  <data name="uplineDisabled" xml:space="preserve">
+    <value>ไม่สามารถแก้ไขสถานะผลิตภัณฑ์ของดาวน์ไลน์ได้ เนื่องจากไม่ได้เปิดการใช้งานผลิตภัณฑ์นี้</value>
+  </data>
 </root>

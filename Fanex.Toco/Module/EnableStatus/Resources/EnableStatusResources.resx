@@ -225,4 +225,7 @@
   <data name="Notes" xml:space="preserve">
     <value>Notes</value>
   </data>
+  <data name="uplineDisabled" xml:space="preserve">
+    <value>Unable to edit downline's Product Status because the account disabled for this product.</value>
+  </data>
 </root>

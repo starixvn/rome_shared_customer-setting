@@ -222,4 +222,7 @@
   <data name="AllbetNormalGames" xml:space="preserve">
     <value>百家樂，輪盤，骰寶，龍虎</value>
   </data>
+  <data name="uplineDisabled" xml:space="preserve">
+    <value>由於賬號的此產品已關閉導致無法更改下線產品狀態。</value>
+  </data>
 </root>

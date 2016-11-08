@@ -136,6 +136,11 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                             }
                         }
 
+                        if (result.ErrorCode == 101)
+                        {
+                            message = Helper.GetResource("uplineDisabled");
+                        }
+
                         result = new Result(999, message);
                         results.Add(result);
                     }
