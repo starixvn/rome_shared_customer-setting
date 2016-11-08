@@ -157,5 +157,19 @@ namespace Fanex.Products.Configurations
                 this["statusHandlerType"] = value;
             }
         }
+
+        [ConfigurationProperty("microSiteNameAppSetting", DefaultValue = "", IsRequired = false, IsKey = false)]
+        public string MicroSiteNameAppSetting
+        {
+            get
+            {
+                return this["microSiteNameAppSetting"].ToString();
+            }
+
+            set
+            {
+                this["microSiteNameAppSetting"] = value;
+            }
+        }
     }
 }
