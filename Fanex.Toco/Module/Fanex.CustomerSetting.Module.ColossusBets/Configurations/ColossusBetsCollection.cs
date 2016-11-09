@@ -1,7 +1,7 @@
-﻿namespace Fanex.CustomerSetting.Module.ColossusBets.Configurations
-{
-    using System.Configuration;
+﻿using System.Configuration;
 
+namespace Fanex.CustomerSetting.Module.ColossusBets.Configurations
+{
     public class ColossusBetsCollection : ConfigurationElementCollection
     {
         public override ConfigurationElementCollectionType CollectionType

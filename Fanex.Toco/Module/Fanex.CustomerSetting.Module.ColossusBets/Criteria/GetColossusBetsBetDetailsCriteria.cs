@@ -1,8 +1,8 @@
-﻿namespace Fanex.CustomerSetting.Module.ColossusBets.Criteria
-{
-    using System;
-    using Fanex.NAP.Framework.Data;
+﻿using System;
+using Fanex.NAP.Framework.Data;
 
+namespace Fanex.CustomerSetting.Module.ColossusBets.Criteria
+{
     public class GetColossusBetsBetDetailsCriteria : CriteriaBase
     {
         public int CustId { get; set; }

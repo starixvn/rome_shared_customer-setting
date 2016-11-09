@@ -1,13 +1,13 @@
-﻿namespace Fanex.CustomerSetting.Module.ColossusBets.Controllers
-{
-    using System.Web.Mvc;
-    using Fanex.Common;
-    using Fanex.CustomerSetting.Module.ColossusBets.Configurations;
-    using Fanex.CustomerSetting.Module.ColossusBets.Criteria;
-    using Fanex.CustomerSetting.Module.ColossusBets.Models;
-    using Fanex.CustomerSetting.Module.ColossusBets.Services;
-    using Fanex.CustomerSetting.Module.Core.Web.Controllers;
+﻿using System.Web.Mvc;
+using Fanex.Common;
+using Fanex.CustomerSetting.Module.ColossusBets.Configurations;
+using Fanex.CustomerSetting.Module.ColossusBets.Criteria;
+using Fanex.CustomerSetting.Module.ColossusBets.Models;
+using Fanex.CustomerSetting.Module.ColossusBets.Services;
+using Fanex.CustomerSetting.Module.Core.Web.Controllers;
 
+namespace Fanex.CustomerSetting.Module.ColossusBets.Controllers
+{
     public class ColossusBetsController : BaseController
     {
         private readonly IColossusBetsService _colossusBetsService;
@@ -20,7 +20,8 @@
         [HttpGet]
         public ActionResult BetDetails(GetColossusBetsBetDetailsCriteria criteria)
         {
-            if (ColossusBetsSection.Instance.Configurations["IsViewBetlistDetail"] != null && !Converter.ToBool(ColossusBetsSection.Instance.Configurations["IsViewBetlistDetail"].Value))
+            if (ColossusBetsSection.Instance.Configurations["IsViewBetlistDetail"] != null &&
+                !Converter.ToBool(ColossusBetsSection.Instance.Configurations["IsViewBetlistDetail"].Value))
             {
                 return new EmptyResult();
             }
