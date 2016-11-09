@@ -32,23 +32,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CasinoLibrary, Version=1.0.2.14, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\CasinoLibrary.1.0.2.14\lib\net40\CasinoLibrary.dll</HintPath>
+      <HintPath>..\packages\CasinoLibrary.1.0.2.16\lib\net40\CasinoLibrary.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CasinoSetting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\CasinoLibrary.1.0.2.14\lib\net40\CasinoSetting.dll</HintPath>
+      <HintPath>..\packages\CasinoLibrary.1.0.2.16\lib\net40\CasinoSetting.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CasinoUtility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\CasinoLibrary.1.0.2.14\lib\net40\CasinoUtility.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Fanex.CustomerSetting.Module.Casino, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\CasinoLibrary.1.0.2.14\lib\net40\Fanex.CustomerSetting.Module.Casino.dll</HintPath>
+      <HintPath>..\packages\CasinoLibrary.1.0.2.16\lib\net40\CasinoUtility.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.CustomerSetting.Module.NG2.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.CustomerSetting.Module.NG2.Core.1.0.0.2-ng2-site-03\lib\Fanex.CustomerSetting.Module.NG2.Core.dll</HintPath>
+      <HintPath>..\packages\Fanex.CustomerSetting.Module.NG2.Core.1.0.0.3\lib\Fanex.CustomerSetting.Module.NG2.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.CustomerSetting.Security, Version=2.0.0.1, Culture=neutral, processorArchitecture=MSIL">
@@ -68,7 +64,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="HandHistoryLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\CasinoLibrary.1.0.2.14\lib\net40\HandHistoryLibrary.dll</HintPath>
+      <HintPath>..\packages\CasinoLibrary.1.0.2.16\lib\net40\HandHistoryLibrary.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="IBCFile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

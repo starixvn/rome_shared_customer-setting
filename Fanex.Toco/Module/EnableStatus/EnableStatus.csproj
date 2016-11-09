@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CasinoLibrary, Version=1.0.2.13, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CasinoLibrary-ThirdParty.1.0.2.12\lib\net40\CasinoLibrary.dll</HintPath>
+    <Reference Include="CasinoLibrary, Version=1.0.2.14, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CasinoLibrary-ThirdParty.1.0.2.14\lib\net40\CasinoLibrary.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Caching">
@@ -43,7 +43,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.CustomerSetting.Module.Core, Version=2.0.1.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.CustomerSetting.Module.Core.AllSites.2.0.1.6-ng2-02\lib\net40\Fanex.CustomerSetting.Module.Core.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.CustomerSetting.Module.Core.AllSites.2.0.1.6\lib\net40\Fanex.CustomerSetting.Module.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.CustomerSetting.Security, Version=2.0.0.1, Culture=neutral, processorArchitecture=MSIL">
