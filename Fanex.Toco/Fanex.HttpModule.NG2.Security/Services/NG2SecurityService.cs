@@ -118,8 +118,8 @@ namespace Fanex.HttpModule.NG2.Security.Services
             lock (_blockStatus)
             {
                 if (_currentUserSession == null ||
-                    _currentUserSession.CustId == null ||
-                    _currentUserSession.SubAccId == null)
+                    _currentUserSession.CustId == 0 ||
+                    _currentUserSession.SubAccId == 0)
                 {
                     return true;
                 }
