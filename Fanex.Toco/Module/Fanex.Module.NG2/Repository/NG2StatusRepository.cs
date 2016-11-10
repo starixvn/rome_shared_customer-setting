@@ -8,7 +8,7 @@ namespace Fanex.Module.NG2.Repository
 {
     public class NG2StatusRepository : ING2StatusRepository
     {
-        public Result EnableStatus(int custId, int userId, bool disabled, string ip)
+        public Result EnableStatus(int custId, int userId, bool disabled, string ip, int subAccId = 0)
         {
             var result = new Result();
             try
@@ -20,7 +20,7 @@ namespace Fanex.Module.NG2.Repository
                     param.Add("isdisabled", "<ROOT><ProductStatus SportType=\"213\" BetType=\"2501\" IsDisabled=\"" + (disabled ? "1" : "0") + "\" /></ROOT>");
                     param.Add("msgtype", 0);
                     param.Add("userid", userId);
-                    param.Add("subaccid", 0);
+                    param.Add("subaccid", subAccId);
                     param.Add("ip", ip);
                     param.Add("errcode", 0);
                     param.Add("errmsg", string.Empty);
@@ -40,7 +40,7 @@ namespace Fanex.Module.NG2.Repository
             return result;
         }
 
-        public Result SyncStatus(int custId, int userId, string ip)
+        public Result SyncStatus(int custId, int userId, string ip, int subAccId = 0)
         {
             var result = new Result();
             try
@@ -52,7 +52,7 @@ namespace Fanex.Module.NG2.Repository
                     param.Add("issynced", true);
                     param.Add("productid", 23);
                     param.Add("userid", userId);
-                    param.Add("subaccid", 0);
+                    param.Add("subaccid", subAccId);
                     param.Add("ip", ip);
                     param.Add("errcode", 0);
                     param.Add("errmsg", string.Empty);
