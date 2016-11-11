@@ -12,7 +12,7 @@ namespace Fanex.Module.NG2.Services
     {
         private ING2StatusRepository _repository = new NG2StatusRepository();
 
-        public Entities.Result AutoInsertAccount(int custId, string username, RoleId roleId, int uplineId, bool uplineDisabled, SiteId siteId, int currencyId, int userId, string language = "en-US")
+        public Entities.Result AutoInsertAccount(int custId, string username, RoleId roleId, int uplineId, bool uplineDisabled, SiteId siteId, int currencyId, int userId, string language = "en-US", int subAccId = 0)
         {
             var allowed = false;
             var result = new Entities.Result();
@@ -47,11 +47,11 @@ namespace Fanex.Module.NG2.Services
 
                 if (response.Result.IsSuccess && (response.Result.AccountArray.Count > 0 ? response.Result.AccountArray[0].IsSuccess : true))
                 {                    
-                    result = SyncStatus(custId, userId, HttpContext.Current.Request.UserHostName);
+                    result = SyncStatus(custId, userId, HttpContext.Current.Request.UserHostName, subAccId);
 
                     if (result.IsSuccess)
                     {
-                        result = EnableStatus(custId, userId, uplineDisabled, HttpContext.Current.Request.UserHostAddress);
+                        result = EnableStatus(custId, userId, uplineDisabled, HttpContext.Current.Request.UserHostAddress, subAccId);
                     }
                 }
             }
@@ -59,9 +59,9 @@ namespace Fanex.Module.NG2.Services
             return result;
         }
 
-        public Entities.Result EnableStatus(int custId, int userId, bool disabled, string ip)
+        public Entities.Result EnableStatus(int custId, int userId, bool disabled, string ip, int subAccId = 0)
         {
-            return _repository.EnableStatus(custId, userId, disabled, ip);
+            return _repository.EnableStatus(custId, userId, disabled, ip, subAccId);
         }
 
         public Entities.Result RetrySyncCustomers(Request request)
@@ -92,9 +92,9 @@ namespace Fanex.Module.NG2.Services
             return result;
         }
 
-        public Entities.Result SyncStatus(int custId, int userId, string ip)
+        public Entities.Result SyncStatus(int custId, int userId, string ip, int subAccId = 0)
         {
-            return _repository.SyncStatus(custId, userId, ip);
+            return _repository.SyncStatus(custId, userId, ip, subAccId);
         }        
     }
 }
