@@ -84,18 +84,16 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
             return result;
         }
 
-        public bool CheckCustomerIsInternalAdmin(CheckCustomerIsInternalAdminCriteria criteria)
+        public void CheckCustomerIsInternalAdmin(CheckCustomerIsInternalAdminCriteria criteria, ref bool isInternalAdmin, ref bool isAllowAccess)
         {
-            bool result = false;
             using (ObjectDb db = new ObjectDb(criteria.GetSettingKey()))
             {
                 db.AssignParamValues(criteria.GetSpParams());
                 db.ExecuteNonQuery();
                 var outputs = db.GetOuputParams();
-                result = Convert.IsDBNull(outputs["isinternaladmin"]) ? false : Convert.ToBoolean(outputs["isinternaladmin"]);
+                isInternalAdmin = Convert.IsDBNull(outputs["isinternaladmin"]) ? false : Convert.ToBoolean(outputs["isinternaladmin"]);
+                isAllowAccess = Convert.IsDBNull(outputs["isallowaccess"]) ? false : Convert.ToBoolean(outputs["isallowaccess"]);
             }
-
-            return result;
         }
 
         public bool CheckCustomerHasSpecialSitePermission(CheckCustomerHasSpecialSiteFunctionPermissionCriteria criteria)
