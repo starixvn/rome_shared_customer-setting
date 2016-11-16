@@ -67,7 +67,7 @@ namespace Fanex.CustomerSetting.Module.Core.Web.Controllers
         /// <param name="filterContext"></param>
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            string cultureName = AppSession.Language;
+            string cultureName = AppSession.CurrentSession.Language;
             if (string.IsNullOrEmpty(cultureName))
             {
                 cultureName = "en-US"; // default
