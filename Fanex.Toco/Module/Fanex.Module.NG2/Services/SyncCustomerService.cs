@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using Fanex.Caching;
 using Fanex.Module.NG2.Entities;
 using Fanex.Module.NG2.Repository;
 using ONEbook.NG2.API.DTO.CheckIsSyncCustomer;
@@ -22,14 +23,21 @@ namespace Fanex.Module.NG2.Services
         public SyncCustomerResult CheckSyncCustomers()
         {
             var result = new SyncCustomerResult();
+            var cache = CacheService.CreateInstance(CacheType.MemoryCache);
+            var preResult = cache.Get<SyncCustomerResult>("SyncCustomerResult_" + DateTime.Now.ToString("yyyyMMdd")) ?? new SyncCustomerResult();
             try
             {
+                // Gets old list
+                result.NotSyncedInMbcCustomers = preResult.NotSyncedInMbcCustomers;
+                result.NotSyncedIn3rdCustomers = preResult.NotSyncedIn3rdCustomers;
+
                 var logs = _repo.Logs(ConfigurationManager.AppSettings["IsTest"] == "1");
                 if (logs != null && logs.Count > 0)
                 {
                     var custIds = logs.Select(l => l.CustId);
                     var ids = string.Empty;
                     var index = 0;
+                    var failedCustIds = new List<int>();
 
                     IThirdPartyServices service = new ONEbook.NG2.API.Services();
                     IEnumerable<Customer> customers = new List<Customer>();
@@ -55,6 +63,13 @@ namespace Fanex.Module.NG2.Services
                                     customers.Where(c => c.CustId == customer.ObCustId).FirstOrDefault().IsSyncIn3rd = customer.IsCreated == 1;
                                 }
                             }
+                            else
+                            {
+                                foreach (var custId in request.Call.AccountArray)
+                                {
+                                    failedCustIds.Add(custId.ObCustId);
+                                }                                
+                            }
 
                             var notSyncedInMbc = customers.Where(c => !c.IsSyncInMBC && c.IsSyncIn3rd);
                             var notSyncedIn3rd = customers.Where(c => c.IsSyncInMBC && !c.IsSyncIn3rd);
@@ -70,11 +85,14 @@ namespace Fanex.Module.NG2.Services
                         }
                     }
                     
-                    var logIds = logs.Select(l => l.LogId);
+                    var logIds = logs.Where(l => !failedCustIds.Contains(l.CustId)).Select(l => l.LogId);
                     var idsLog = string.Join(",", logIds);
 
                     result.ErrorCode = result.NotSyncedInMbcCustomers.Count() > 0 || result.NotSyncedIn3rdCustomers.Count() > 0 ? 1 : 0;
                     result.LogIds = idsLog;
+
+                    // Cache result
+                    cache.Set("SyncCustomerResult_" + DateTime.Now.ToString("yyyyMMdd"), result, DateTime.Now.AddHours(26));
                 }
             }
             catch (Exception ex)
