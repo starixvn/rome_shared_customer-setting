@@ -19,8 +19,10 @@ namespace Fanex.Module.Statement.Criteria
     {
         public string Username { get; set; }
 
-        public int UserId {
-            get {
+        public int UserId
+        {
+            get
+            {
                 return AppSession.AccId;
             }
         }

@@ -8,7 +8,6 @@ namespace Fanex.CustomerSetting.Module.NG2.Core.Criteria
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class GetBettypeCriteria : CriteriaBase
     {
         public ProductType Mode { get; set; }

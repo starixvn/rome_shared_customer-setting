@@ -10,17 +10,18 @@
 
 namespace Fanex.CustomerSetting.Module.NG2.EnableStatus.Controllers
 {
-    using System;
-    using System.Linq;
-    using System.Web.Mvc;
+    using Fanex.CustomerSetting.Module.NG2.Core.Web;
+    using Fanex.CustomerSetting.Module.NG2.Core.Web.Controllers;
     using Fanex.CustomerSetting.Module.NG2.EnableStatus.Entities;
     using Fanex.CustomerSetting.Module.NG2.EnableStatus.Helpers;
     using Fanex.CustomerSetting.Module.NG2.EnableStatus.Models;
     using Fanex.CustomerSetting.Module.NG2.EnableStatus.Services;
-    using Fanex.CustomerSetting.Module.NG2.Core.Web;
-    using Fanex.CustomerSetting.Module.NG2.Core.Web.Controllers;
     using Newtonsoft.Json;
     using Security.Authenticate;
+    using System;
+    using System.Linq;
+    using System.Web.Mvc;
+
     /// <summary>
     /// Product status controller to use for NAP, ALPHA, EXTNAP.
     /// </summary>

@@ -6,7 +6,6 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Fanex.CustomerSetting.Module.NG2.Core.Services.Interface
 {
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public interface IServiceBase
     {
         /// <summary>

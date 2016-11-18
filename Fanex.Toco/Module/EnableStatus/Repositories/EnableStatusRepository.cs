@@ -26,6 +26,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
     using Fanex.Module.Logs;
     using Fanex.Module.Logs.Services;
     using System.Linq;
+    
     /// <summary>
     /// Enable status repository.
     /// </summary>

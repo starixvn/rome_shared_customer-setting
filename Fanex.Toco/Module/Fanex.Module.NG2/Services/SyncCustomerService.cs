@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using Fanex.Caching;
+﻿using Fanex.Caching;
 using Fanex.Module.NG2.Entities;
 using Fanex.Module.NG2.Repository;
 using ONEbook.NG2.API.DTO.CheckIsSyncCustomer;
 using ONEbook.NG2.API.Interface;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace Fanex.Module.NG2.Services
 {
@@ -20,6 +21,7 @@ namespace Fanex.Module.NG2.Services
         /// <returns>SyncCustomerResult object. 
         /// If SyncCustomerResult.IsSuccess = false then export excel 2 customer list to send mail to IT 
         /// and call UpdateNotifiedEmail(SyncCustomerResult.LogIds) to update notified in DB.</returns>
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         public SyncCustomerResult CheckSyncCustomers()
         {
             var result = new SyncCustomerResult();

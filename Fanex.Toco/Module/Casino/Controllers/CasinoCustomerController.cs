@@ -12,6 +12,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
     using Newtonsoft.Json.Serialization;
     using System;
     using System.Web.Mvc;
+
     public class CasinoCustomerController : BaseController
     {
         public ActionResult CustomerInfo(int id, int uplineId)

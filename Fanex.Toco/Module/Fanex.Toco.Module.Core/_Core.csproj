@@ -20,7 +20,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>0</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ExcelUtil">
@@ -116,7 +116,9 @@
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Constants\BetTypeContants.cs" />
-    <Compile Include="Constants\SportContants.cs" />
+    <Compile Include="Constants\SportContants.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Controllers\Base\ControllerExtentions.cs" />
     <Compile Include="Controllers\Base\JsonBase.cs" />
     <Compile Include="Criteria\CheckCustomerHasSpecialSiteFunctionPermissionCriteria.cs" />

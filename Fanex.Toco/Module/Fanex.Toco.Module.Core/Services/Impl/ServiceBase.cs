@@ -14,9 +14,9 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ServiceBase : IServiceBase
     {
+        #region generated code
         protected readonly IDynamicRepository DynamicRepository;
 
         protected readonly ICache _cacheManager;
@@ -26,7 +26,7 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
         protected readonly ICurrentContext _context;
 
         protected readonly ICurrentSession _session;
-
+        #endregion
         public ServiceBase(IDynamicRepository repository = null)
         {
             this.DynamicRepository = repository ?? new DynamicRepository();
@@ -34,17 +34,17 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
             this._repository = new BaseRepository();
             this._context = this._context ?? new CurrentContext();
         }
-        
+
         protected IDynamicRepository Repository
         {
             get { return this.DynamicRepository; }
         }
-        
+
         public void HandleException(Exception ex)
         {
             LoggingHandler.Log(ex);
         }
-        
+
         public virtual IEnumerable<T> GetListData<T>(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
@@ -55,6 +55,7 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
 
             return new List<T>();
         }
+
         public Result CheckSpecialSitePermission(CheckSpecialSitePermissionCriteria criteria)
         {
             Result result = new Result();
@@ -104,7 +105,7 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
                 db.AssignParamValues(criteria.GetSpParams());
                 db.ExecuteNonQuery();
                 var outputs = db.GetOuputParams();
-                result = Convert.IsDBNull(outputs["errcode"])? true : Convert.ToInt32(outputs["errcode"]) == 0;
+                result = Convert.IsDBNull(outputs["errcode"]) ? true : Convert.ToInt32(outputs["errcode"]) == 0;
             }
 
             return result;

@@ -5,7 +5,6 @@ namespace Fanex.CustomerSetting.Module.NG2.Core.Extensions
 {
     public class ResourceExtension
     {
-      
         /// <summary>
         /// Get Resource Value
         /// </summary>
@@ -18,11 +17,12 @@ namespace Fanex.CustomerSetting.Module.NG2.Core.Extensions
             {
                 var globalResourceObject = HttpContext.GetGlobalResourceObject(resourceClass, key);
                 if (globalResourceObject != null)
+                {
                     return globalResourceObject.ToString();
+                }
             }
             catch (Exception)
             {
-                
                 throw new Exception("Key: " + key + " does not exist in resource: " + resourceClass);
             }
 

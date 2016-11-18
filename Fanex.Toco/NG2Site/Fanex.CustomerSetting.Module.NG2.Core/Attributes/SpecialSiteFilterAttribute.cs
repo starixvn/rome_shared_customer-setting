@@ -9,9 +9,9 @@
 
     public class SpecialSiteFilterAttribute : ActionFilterAttribute
     {
-        private readonly string[] CustIdParamName = { "custid", "customerid", "superid", "masterid", "agentid" };
-
         private const string DeniedView = "~/Areas/CustomerSetting/Views/Security/AccessDenied.cshtml";
+
+        private readonly string[] custIdParamName = { "custid", "customerid", "superid", "masterid", "agentid" };
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
@@ -65,7 +65,7 @@
             return index >= 0 ? (int?)list[index] : null;
         }
 
-        private string GetUserNameParam (IDictionary<string, object> param)
+        private string GetUserNameParam(IDictionary<string, object> param)
         {
             string username = param.ContainsKey("username") ? (param["username"] ?? string.Empty).ToString() : string.Empty;
             return username;

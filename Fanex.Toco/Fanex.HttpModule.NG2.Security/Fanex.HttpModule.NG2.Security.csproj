@@ -20,8 +20,10 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>0</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <NoWarn>
+    </NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -124,7 +126,9 @@
     <Compile Include="Configurations\Authentication\PageAccessCollection.cs" />
     <Compile Include="Configurations\Authentication\PageAccessElement.cs" />
     <Compile Include="Configurations\WebAppSettings.cs" />
-    <Compile Include="NG2CheckBelongingHttpModule.cs" />
+    <Compile Include="NG2CheckBelongingHttpModule.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\NG2SecurityRepository.cs" />
     <Compile Include="Services\NG2SecurityService.cs" />

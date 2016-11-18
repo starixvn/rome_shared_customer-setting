@@ -2,10 +2,11 @@ namespace Fanex.CustomerSetting.Module.NG2.Core.Web
 {
     using Module.Core.NG2;
     using System.Web.UI;
-    
-    public class CurrentSession :Page, ICurrentSession
+
+    public class CurrentSession : Page, ICurrentSession
     {
         public const string _Language = "LANGUAGE";
+
         public string UserName
         {
             get;

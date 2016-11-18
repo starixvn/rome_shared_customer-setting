@@ -178,6 +178,7 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
         /// </summary>
         /// <param name="criteria">The criteria.</param>
         /// <returns>The transfer details.</returns>
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         public StatementReportModel TransferDetails(TransferDetailsCriteria criteria)
         {
             StatementReportModel result = new StatementReportModel

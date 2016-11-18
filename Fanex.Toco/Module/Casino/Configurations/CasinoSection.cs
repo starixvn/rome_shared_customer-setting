@@ -6,11 +6,8 @@
 
 namespace Fanex.CustomerSetting.Module.Casino.Configurations
 {
-    using System.Collections.Generic;
     using System.Configuration;
-    using System.Linq;
-    using Fanex.CustomerSetting.Module.Core;
-    using System;
+
     /// <summary>
     /// Keno config section.
     /// </summary>

@@ -1,21 +1,21 @@
 ﻿namespace Fanex.CustomerSetting.Module.NG2.EnableStatus.Repositories
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using CasinoLibrary.SBAgent;
+    using Fanex.CustomerSetting.Module.NG2.Core;
+    using Fanex.CustomerSetting.Module.NG2.Core.Models;
+    using Fanex.CustomerSetting.Module.NG2.Core.Web;
     using Fanex.CustomerSetting.Module.NG2.EnableStatus.Entities;
     using Fanex.CustomerSetting.Module.NG2.EnableStatus.Helpers;
     using Fanex.CustomerSetting.Module.NG2.EnableStatus.Mappings;
     using Fanex.CustomerSetting.Module.NG2.EnableStatus.Models;
-    using Fanex.CustomerSetting.Module.NG2.Core;
-    using Fanex.CustomerSetting.Module.NG2.Core.Models;
-    using Fanex.CustomerSetting.Module.NG2.Core.Web;
     using Fanex.Data;
     using Fanex.Data.DNAide;
     using Fanex.Module.Logs;
     using Fanex.Module.Logs.Services;
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
 
     public class EnableStatusRepository : IEnableStatusRepository

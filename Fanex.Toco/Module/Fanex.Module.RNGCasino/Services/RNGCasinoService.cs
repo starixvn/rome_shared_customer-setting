@@ -1,14 +1,10 @@
 ﻿namespace Fanex.Module.RNGCasino.Services
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Net;
-    using System.Web;
     using Common;
     using Configurations;
     using Constants;
     using Criteria;
+    using CustomerSetting.Module.Core.Web;
     using Extensions;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
@@ -22,7 +18,12 @@
     using Repositories;
     using Resources;
     using Result.Core.Voidbridge;
-    using CustomerSetting.Module.Core.Web;
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Net;
+    using System.Web;
+
     public class RNGCasinoService : IRNGCasinoService
     {
         private readonly IRNGCasinoRepository _rngCasinoRepository;

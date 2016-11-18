@@ -1,11 +1,12 @@
 ﻿namespace Fanex.Module.RNGCasino.Controllers
 {
-    using System.Web.Mvc;
     using Criteria;
     using CustomerSetting.Module.Core.Web.Controllers;
+    using Resources;
     using Services;
     using System;
-    using Resources;
+    using System.Web.Mvc;
+
     public class RNGCasinoBetListController : BaseController
     {
         private readonly IRNGCasinoService _rngCasinoService;

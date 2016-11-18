@@ -9,9 +9,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Authenticate
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.Casino.Configurations;
     using Fanex.CustomerSetting.Module.Casino.Resources;
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
+    
     public class CasinoUMTimeFilter : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)

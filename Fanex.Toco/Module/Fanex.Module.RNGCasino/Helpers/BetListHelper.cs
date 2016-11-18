@@ -31,6 +31,7 @@
                 ticket.SportTypeId == SportContants.RNG_Mobile;
         }
 
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
         public static string GetCommonHeaderRows(int siteId)
         {
             var result = new StringBuilder();
@@ -84,7 +85,8 @@
                     ticketDetail.Ticket.SportTypeId + "," +
                     "'" + (ticketDetail.Ticket.BetCheck ?? string.Empty) + "'," +
                     "'" + ticketDetail.Ticket.WinlostDate.ToShortFormatedDate() + "')";
-                statusLabel = "<div id=\"rngcasino_brokengame_" + ticketDetail.Ticket.TransId + "\" onclick=\"" + viewBrokenGame + "\" class=\"viewbrokengame-link\">" + status.ToUpper() + "</div>";
+                statusLabel = "<div id=\"rngcasino_brokengame_" + ticketDetail.Ticket.TransId + "\" onclick=\"" + viewBrokenGame 
+                    + "\" class=\"viewbrokengame-link\">" + status.ToUpper() + "</div>";
             }
             else
             {

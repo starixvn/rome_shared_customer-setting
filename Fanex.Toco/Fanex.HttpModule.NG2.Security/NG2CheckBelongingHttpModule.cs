@@ -5,6 +5,7 @@ using Fanex.HttpModule.NG2.Security.Services;
 using Sunplus.Agent.Model.BL;
 using Sunplus.Agent.Model.Entities;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -17,13 +18,25 @@ namespace Fanex.HttpModule.NG2.Security
 
         private NG2SecurityService _ng2SecurityService;
 
-
         public NG2CheckBelongingHttpModule()
         {
-
         }
 
-        public String ModuleName
+        private bool IsRnGCasinoUri
+        {
+            get
+            {
+                var url = HttpContext.Current.Request.Path.ToString();
+                if (url.IndexOf(rngArea, StringComparison.OrdinalIgnoreCase) != -1)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+        }
+
+        public string ModuleName
         {
             get { return "NG2HttpModule"; }
         }
@@ -32,13 +45,10 @@ namespace Fanex.HttpModule.NG2.Security
         // events by adding your handlers.
         public void Init(HttpApplication application)
         {
-            application.AcquireRequestState +=
-                (new EventHandler(this.Application_AcquireRequestState));
-
+            application.AcquireRequestState += new EventHandler(this.Application_AcquireRequestState);
         }
 
-        private void Application_AcquireRequestState(Object source,
-             EventArgs e)
+        private void Application_AcquireRequestState(object source, EventArgs e)
         {
             // Create HttpApplication and HttpContext objects to access
             // request and response properties.
@@ -53,20 +63,17 @@ namespace Fanex.HttpModule.NG2.Security
             _ng2SecurityService = new NG2SecurityService();
             int custId = GetCustomerIdFromRequest();
             long transId = GetTransIdFromRequest(context.Request);
-            bool isDataWarehouse = (context.Request["iswhcheck"] == "1");
+            bool isDataWarehouse = context.Request["iswhcheck"] == "1";
             var currentUrl = GetRequestPath();
-
             if (_ng2SecurityService.IsLoginAccClosed())
             {
                 context.Session.Clear();
-                //context.Response.Redirect(ng2SecuritySection.LoginUrl, true);
                 return;
             }
 
             if (!_ng2SecurityService.IsBelonging(custId, transId, isDataWarehouse, currentUrl))
             {
                 context.Session.Abandon();
-                //context.Response.Redirect(ng2SecuritySection.LoginUrl, true);
                 return;
             }
         }
@@ -117,17 +124,7 @@ namespace Fanex.HttpModule.NG2.Security
             return uri;
         }
 
-        private bool IsRnGCasinoUri
-        {
-            get
-            {
-                var url = HttpContext.Current.Request.Path.ToString();
-                if (url.IndexOf(rngArea, StringComparison.OrdinalIgnoreCase) != -1) { return true; }
-
-                return false;
-            }
-        }
-
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         private int GetCustomerIdFromRequest()
         {
             var custId = 0;

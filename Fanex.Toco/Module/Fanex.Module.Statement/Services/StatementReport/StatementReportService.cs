@@ -9,21 +9,20 @@
 
 namespace Fanex.Module.Statement.Services.StatementReport
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.IO;
-    using System.Linq;
+    using CustomerSetting.Module.Core.Criteria;
+    using CustomerSetting.Module.Core.Web;
     using Fanex.CustomerSetting.Module.Core.Services.Impl;
     using Fanex.Module.Statement.Criteria;
     using Fanex.Module.Statement.Criteria.StatementReport;
     using Fanex.Module.Statement.Models;
     using Fanex.Module.Statement.Models.StatementReport;
     using Fanex.Module.Statement.Repositories.StatementReport;
-    using CustomerSetting.Module.Core.Web;
-    using CustomerSetting.Module.Core.Criteria;    /// <summary>
-                                                   /// Statement Report Service.
-                                                   /// </summary>
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.IO;
+    using System.Linq;
+
     public class StatementReportService : IStatementReportService
     {
         private readonly IStatementReportRepository _statementReportRepository;

@@ -32,6 +32,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
         private IEnableStatusRepository _data = new EnableStatusRepository();
 
         [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
         public EnableStatusModel GetProductStatus(SpElementConfiguration storedProcedure, RequestContext context)
         {
             try
@@ -115,6 +116,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
             }
         }
 
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         public IList<Result> UpdateProductStatus(EnableStatusModel model, SpElementConfiguration storedProcedure)
         {
             try

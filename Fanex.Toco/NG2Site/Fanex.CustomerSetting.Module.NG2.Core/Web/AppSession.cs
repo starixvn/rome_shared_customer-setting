@@ -7,9 +7,8 @@ using System.Web;
 
 namespace Fanex.CustomerSetting.Module.NG2.Core.Web
 {
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
-	public static class AppSession
-	{
+    public static class AppSession
+    {
         public static ICurrentSession CurrentSession
         {
             get
@@ -57,7 +56,11 @@ namespace Fanex.CustomerSetting.Module.NG2.Core.Web
                     return 0;
                 }
             }
-            set { HttpContext.Current.Session["AccId"] = value; }
+
+            set
+            {
+                HttpContext.Current.Session["AccId"] = value;
+            }
         }
 
         public static string AccUserName
@@ -73,184 +76,195 @@ namespace Fanex.CustomerSetting.Module.NG2.Core.Web
                     return string.Empty;
                 }
             }
-            set { HttpContext.Current.Session["AccUserName"] = value; }
+
+            set
+            {
+                HttpContext.Current.Session["AccUserName"] = value;
+            }
         }
 
-		/// <summary>
-		/// Gets or sets current login user
-		/// </summary>
-		public static User CurrentUser
-		{
-			get
-			{
-				return SessionManager.Get<User>(CommonConstants.CURRENT_LOG_IN_USER);
-			}
+        /// <summary>
+        /// Gets or sets current login user
+        /// </summary>
+        public static User CurrentUser
+        {
+            get
+            {
+                return SessionManager.Get<User>(CommonConstants.CURRENT_LOG_IN_USER);
+            }
 
-			set
-			{
-				SessionManager.Set<User>(CommonConstants.CURRENT_LOG_IN_USER, value);
-			}
-		}
+            set
+            {
+                SessionManager.Set<User>(CommonConstants.CURRENT_LOG_IN_USER, value);
+            }
+        }
 
-		/// <summary>
-		/// Gets or sets menu of current login user
-		/// </summary>
-		public static IList<MenuItem> CurrentUserMenu
-		{
-			get
-			{
-				return SessionManager.Get<IList<MenuItem>>(CommonConstants.CURRENT_USER_MENU);
-			}
+        /// <summary>
+        /// Gets or sets menu of current login user
+        /// </summary>
+        public static IList<MenuItem> CurrentUserMenu
+        {
+            get
+            {
+                return SessionManager.Get<IList<MenuItem>>(CommonConstants.CURRENT_USER_MENU);
+            }
 
-			set
-			{
-				SessionManager.Set<IList<MenuItem>>(CommonConstants.CURRENT_USER_MENU, value);
-			}
-		}
+            set
+            {
+                SessionManager.Set<IList<MenuItem>>(CommonConstants.CURRENT_USER_MENU, value);
+            }
+        }
 
-		public static Dictionary<string, int> RoleAccess
-		{
-			get
-			{
-				try
-				{
-					return SessionManager.Get<Dictionary<string, int>>(CommonConstants.CURRENT_USER_ROLE_ACCESS);
-				}
-				catch (Exception)
-				{
-					return null;
-				}
-			}
+        public static Dictionary<string, int> RoleAccess
+        {
+            get
+            {
+                try
+                {
+                    return SessionManager.Get<Dictionary<string, int>>(CommonConstants.CURRENT_USER_ROLE_ACCESS);
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
 
-			set
-			{
-				SessionManager.Set<Dictionary<string, int>>(CommonConstants.CURRENT_USER_ROLE_ACCESS, value);
-			}
-		}
+            set
+            {
+                SessionManager.Set<Dictionary<string, int>>(CommonConstants.CURRENT_USER_ROLE_ACCESS, value);
+            }
+        }
 
-		/// <summary>
-		/// Gets or sets current working menu url
-		/// </summary>
-		public static MenuItem CurrentWorkingOnMenu
-		{
-			get
-			{
-				return SessionManager.Get<MenuItem>(CommonConstants.CURRENT_WORKING_ON_MENU);
-			}
+        /// <summary>
+        /// Gets or sets current working menu url
+        /// </summary>
+        public static MenuItem CurrentWorkingOnMenu
+        {
+            get
+            {
+                return SessionManager.Get<MenuItem>(CommonConstants.CURRENT_WORKING_ON_MENU);
+            }
 
-			set
-			{
-				SessionManager.Set<MenuItem>(CommonConstants.CURRENT_WORKING_ON_MENU, value);
-			}
-		}
+            set
+            {
+                SessionManager.Set<MenuItem>(CommonConstants.CURRENT_WORKING_ON_MENU, value);
+            }
+        }
 
-		/// <summary>
-		/// Gets or sets IsTrackedMenu: determine current working on menu is
-		/// tracked for page tracking or not
-		/// </summary>
-		public static string CurrentActionName
-		{
-			get
-			{
-				return SessionManager.Get<string>(CommonConstants.CURRENT_ACTION_NAME);
-			}
+        /// <summary>
+        /// Gets or sets IsTrackedMenu: determine current working on menu is
+        /// tracked for page tracking or not
+        /// </summary>
+        public static string CurrentActionName
+        {
+            get
+            {
+                return SessionManager.Get<string>(CommonConstants.CURRENT_ACTION_NAME);
+            }
 
-			set
-			{
-				SessionManager.Set<string>(CommonConstants.CURRENT_ACTION_NAME, value);
-			}
-		}
+            set
+            {
+                SessionManager.Set<string>(CommonConstants.CURRENT_ACTION_NAME, value);
+            }
+        }
 
-		public static bool ViewIPVN
-		{
-			get
-			{
-				return SessionManager.Get<bool>(CommonConstants.VIEW_IP_VN);
-			}
-			set
-			{
-				SessionManager.Set<bool>(CommonConstants.VIEW_IP_VN, value);
-			}
-		}
+        public static bool ViewIPVN
+        {
+            get
+            {
+                return SessionManager.Get<bool>(CommonConstants.VIEW_IP_VN);
+            }
 
-		// Progressive Bonus
-		public static int AdminId
-		{
-			get
-			{
-				return SessionManager.Get<int>(CommonConstants.ADMIN_ID);
-			}
-			set
-			{
-				SessionManager.Set<int>(CommonConstants.ADMIN_ID, value);
-			}
-		}
+            set
+            {
+                SessionManager.Set<bool>(CommonConstants.VIEW_IP_VN, value);
+            }
+        }
 
-		public static string AdminUsername
-		{
-			get
-			{
-				return SessionManager.Get<string>(CommonConstants.ADMIN_USERNAME);
-			}
-			set
-			{
-				SessionManager.Set<string>(CommonConstants.ADMIN_USERNAME, value);
-			}
-		}
+        // Progressive Bonus
+        public static int AdminId
+        {
+            get
+            {
+                return SessionManager.Get<int>(CommonConstants.ADMIN_ID);
+            }
 
-		public static int AdminRoleId
-		{
-			get
-			{
-				return SessionManager.Get<int>(CommonConstants.ADMIN_ROLEID);
-			}
-			set
-			{
-				SessionManager.Set<int>(CommonConstants.ADMIN_ROLEID, value);
-			}
-		}
+            set
+            {
+                SessionManager.Set<int>(CommonConstants.ADMIN_ID, value);
+            }
+        }
 
-		public static int UserRoleId
-		{
-			get
-			{
-				return SessionManager.Get<int>(CommonConstants.USER_ROLEID);
-			}
-			set
-			{
-				SessionManager.Set<int>(CommonConstants.USER_ROLEID, value);
-			}
-		}
+        public static string AdminUsername
+        {
+            get
+            {
+                return SessionManager.Get<string>(CommonConstants.ADMIN_USERNAME);
+            }
 
-		public static bool? IsAllowProgressiveBonus
-		{
-			get
-			{
-				object value = SessionManager.Get(CommonConstants.IS_ALLOW_PROGRESSIVE_BONUS);
-				if (value != null)
-				{
-					return Convert.ToBoolean(value);
-				}
+            set
+            {
+                SessionManager.Set<string>(CommonConstants.ADMIN_USERNAME, value);
+            }
+        }
 
-				return null;
-			}
-			set
-			{
-				SessionManager.Set<bool?>(CommonConstants.IS_ALLOW_PROGRESSIVE_BONUS, value);
-			}
-		}
+        public static int AdminRoleId
+        {
+            get
+            {
+                return SessionManager.Get<int>(CommonConstants.ADMIN_ROLEID);
+            }
 
-		public static int SubAccountId
-		{
-			get
-			{
-				return SessionManager.Get<int>(CommonConstants.SUB_ACCOUNT_ID);
-			}
-			set
-			{
-				SessionManager.Set<int>(CommonConstants.SUB_ACCOUNT_ID, value);
-			}
-		}
+            set
+            {
+                SessionManager.Set<int>(CommonConstants.ADMIN_ROLEID, value);
+            }
+        }
+
+        public static int UserRoleId
+        {
+            get
+            {
+                return SessionManager.Get<int>(CommonConstants.USER_ROLEID);
+            }
+
+            set
+            {
+                SessionManager.Set<int>(CommonConstants.USER_ROLEID, value);
+            }
+        }
+
+        public static bool? IsAllowProgressiveBonus
+        {
+            get
+            {
+                object value = SessionManager.Get(CommonConstants.IS_ALLOW_PROGRESSIVE_BONUS);
+                if (value != null)
+                {
+                    return Convert.ToBoolean(value);
+                }
+
+                return null;
+            }
+
+            set
+            {
+                SessionManager.Set<bool?>(CommonConstants.IS_ALLOW_PROGRESSIVE_BONUS, value);
+            }
+        }
+
+        public static int SubAccountId
+        {
+            get
+            {
+                return SessionManager.Get<int>(CommonConstants.SUB_ACCOUNT_ID);
+            }
+
+            set
+            {
+                SessionManager.Set<int>(CommonConstants.SUB_ACCOUNT_ID, value);
+            }
+        }
 
         public static string SubAccountName
         {
@@ -265,28 +279,30 @@ namespace Fanex.CustomerSetting.Module.NG2.Core.Web
             }
         }
 
-		public static string Language
-		{
-			get
-			{
-				return SessionManager.Get<string>(CommonConstants.LANGUAGE);
-			}
-			set
-			{
-				SessionManager.Set<string>(CommonConstants.LANGUAGE, value);
-			}
-		}
+        public static string Language
+        {
+            get
+            {
+                return SessionManager.Get<string>(CommonConstants.LANGUAGE);
+            }
 
-		public static object ProgressiveBonusOldValue
-		{
-			get
-			{
-				return SessionManager.Get<object>(CommonConstants.PROGRESSIVE_BONUS_OLD_VALUE);
-			}
-			set
-			{
-				SessionManager.Set<object>(CommonConstants.PROGRESSIVE_BONUS_OLD_VALUE, value);
-			}
-		}
-	}
+            set
+            {
+                SessionManager.Set<string>(CommonConstants.LANGUAGE, value);
+            }
+        }
+
+        public static object ProgressiveBonusOldValue
+        {
+            get
+            {
+                return SessionManager.Get<object>(CommonConstants.PROGRESSIVE_BONUS_OLD_VALUE);
+            }
+
+            set
+            {
+                SessionManager.Set<object>(CommonConstants.PROGRESSIVE_BONUS_OLD_VALUE, value);
+            }
+        }
+    }
 }

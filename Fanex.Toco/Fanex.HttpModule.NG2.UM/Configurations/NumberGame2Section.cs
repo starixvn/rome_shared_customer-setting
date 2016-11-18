@@ -1,10 +1,20 @@
-﻿using System.Configuration;
+﻿#pragma warning disable 1306,1402
+using System.Configuration;
 
 namespace Fanex.HttpModule.NG2.UM.Configurations
 {
     public class NumberGame2Section : ConfigurationSection
     {
         private static NumberGame2Section _numberGame2Session = null;
+
+        public static NumberGame2Section Instance
+        {
+            get
+            {
+                _numberGame2Session = _numberGame2Session ?? ConfigurationManager.GetSection("NumberGame2Section") as NumberGame2Section;
+                return _numberGame2Session;
+            }
+        }
 
         [ConfigurationProperty("WebUrl", IsDefaultCollection = false)]
         [ConfigurationCollection(typeof(NumberGame2Collection),
@@ -22,23 +32,13 @@ namespace Fanex.HttpModule.NG2.UM.Configurations
             get { return (string)this["UMPageUrl"]; }
         }
 
-        public static NumberGame2Section Instance
-        {
-            get
-            {
-                _numberGame2Session = _numberGame2Session ?? ConfigurationManager.GetSection("NumberGame2Section") as NumberGame2Section;
-                return _numberGame2Session;
-            }
-        }
-
         public NumberGame2Collection this[NumberGame2Collection name]
         {
             get
             {
                 var numberGame2Collection =
                     (NumberGame2Collection)
-                    this.GetType().GetProperty(name.ToString()).GetValue(this, System.Reflection.BindingFlags.GetField,
-                                                                         null, null, null);
+                    this.GetType().GetProperty(name.ToString()).GetValue(this, System.Reflection.BindingFlags.GetField, null, null, null);
                 return numberGame2Collection;
             }
         }
@@ -58,6 +58,32 @@ namespace Fanex.HttpModule.NG2.UM.Configurations
             }
         }
 
+        public NumberGame2Element this[int index]
+        {
+            get
+            {
+                return (NumberGame2Element)BaseGet(index);
+            }
+
+            set
+            {
+                if (BaseGet(index) != null)
+                {
+                    BaseRemoveAt(index);
+                }
+
+                BaseAdd(index, value);
+            }
+        }
+
+        public new NumberGame2Element this[string name]
+        {
+            get
+            {
+                return (NumberGame2Element)BaseGet(name);
+            }
+        }
+
         public void Add(NumberGame2Element settingElement)
         {
             BaseAdd(settingElement);
@@ -71,7 +97,9 @@ namespace Fanex.HttpModule.NG2.UM.Configurations
         public void Remove(NumberGame2Element settingElement)
         {
             if (BaseIndexOf(settingElement) >= 0)
+            {
                 BaseRemove(settingElement.Name);
+            }
         }
 
         public void RemoveAt(int index)
@@ -87,30 +115,6 @@ namespace Fanex.HttpModule.NG2.UM.Configurations
         public void Clear()
         {
             BaseClear();
-        }
-
-        public NumberGame2Element this[int index]
-        {
-            get
-            {
-                return (NumberGame2Element)BaseGet(index);
-            }
-            set
-            {
-                if (BaseGet(index) != null)
-                {
-                    BaseRemoveAt(index);
-                }
-                BaseAdd(index, value);
-            }
-        }
-
-        new public NumberGame2Element this[string Name]
-        {
-            get
-            {
-                return (NumberGame2Element)BaseGet(Name);
-            }
         }
 
         public int IndexOf(NumberGame2Element settingElement)
@@ -142,6 +146,7 @@ namespace Fanex.HttpModule.NG2.UM.Configurations
             {
                 return (string)this["name"];
             }
+
             set
             {
                 this["name"] = value;
@@ -155,6 +160,7 @@ namespace Fanex.HttpModule.NG2.UM.Configurations
             {
                 return (string)this["filter"] ?? string.Empty;
             }
+
             set
             {
                 this["filter"] = value;
@@ -168,6 +174,7 @@ namespace Fanex.HttpModule.NG2.UM.Configurations
             {
                 return (bool)this["isajax"];
             }
+
             set
             {
                 this["isajax"] = value;

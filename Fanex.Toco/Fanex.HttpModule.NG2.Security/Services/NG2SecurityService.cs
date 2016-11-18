@@ -1,25 +1,24 @@
-﻿using Fanex.Common;
+﻿#pragma warning disable 618
+using Fanex.Common;
 using Fanex.HttpModule.NG2.Security.Configurations.Authentication;
 using Fanex.HttpModule.NG2.Security.Repositories;
 using Sunplus.Agent.Model.BL;
 using Sunplus.Agent.Model.Entities;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Text;
 using System.Web;
 
 namespace Fanex.HttpModule.NG2.Security.Services
 {
     public class NG2SecurityService
     {
+        private static object _blockStatus = new object();
         private string _customerClosedStatusSessionKey = "Fanex.Razorbill.Security.Services.Authentication.CheckingClosedStatus";
-        private string _subAccountPermissionSessionKey = "Fanex.Razorbill.Security.Services.Authentication.CheckingCustomerPermission";
         private IUserSession _currentUserSession;
         private NG2SecurityRepository _ng2SecurityRepository;
         private IUserSession _userSession;
-        private static object _blockStatus = new object();
 
         public NG2SecurityService()
         {
@@ -40,6 +39,7 @@ namespace Fanex.HttpModule.NG2.Security.Services
             }
         }
 
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
         public bool IsBelonging(int custId, long transId, bool isDataWarehouse, string currentUrlAccess)
         {
             var isBelonging = true;
@@ -82,14 +82,24 @@ namespace Fanex.HttpModule.NG2.Security.Services
                                     _userSession = UserSessionService.GetUserSessionInstance(netSessionId);
 
                                     if (pageElement.IsViewedByGroupHeadline
-                                        && _ng2SecurityRepository.Age_Rpt_CustomerConsolidatedGroup_CheckBelonging(custId, _userSession.CustId, _userSession.SubAccId, transId, _userSession.IsInternal))
+                                        && _ng2SecurityRepository.Age_Rpt_CustomerConsolidatedGroup_CheckBelonging(
+                                            custId,
+                                            _userSession.CustId,
+                                            _userSession.SubAccId,
+                                            transId,
+                                            _userSession.IsInternal))
                                     {
                                         return true;
                                     }
 
                                     return isDataWarehouse
                                         ? _ng2SecurityRepository.Age_CustomerSelCheckBelonging_OLD(custId, _userSession.CustId, transId)
-                                        : _ng2SecurityRepository.Age_CustomerSelCheckBelonging(custId, _userSession.CustId, _userSession.SubAccId, transId, _userSession.IsInternal);
+                                        : _ng2SecurityRepository.Age_CustomerSelCheckBelonging(
+                                            custId,
+                                            _userSession.CustId,
+                                            _userSession.SubAccId,
+                                            transId,
+                                            _userSession.IsInternal);
                                 }
                             }
 
@@ -104,7 +114,12 @@ namespace Fanex.HttpModule.NG2.Security.Services
 
         public bool HasSubAccReadPermission(int custId)
         {
-            return _ng2SecurityRepository.Age_CustomerSelCheckBelonging(custId, _currentUserSession.CustId, _currentUserSession.SubAccId, 0, _currentUserSession.IsInternal);
+            return _ng2SecurityRepository.Age_CustomerSelCheckBelonging(
+                custId,
+                _currentUserSession.CustId,
+                _currentUserSession.SubAccId,
+                0,
+                _currentUserSession.IsInternal);
         }
 
         public bool HasSubAccUpdatePermission(int custId)

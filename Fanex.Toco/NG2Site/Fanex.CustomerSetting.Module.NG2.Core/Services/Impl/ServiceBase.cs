@@ -14,9 +14,9 @@ namespace Fanex.CustomerSetting.Module.NG2.Core.Services.Impl
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class ServiceBase : IServiceBase
     {
+        #region generated code
         protected readonly IDynamicRepository DynamicRepository;
 
         protected readonly ICache _cacheManager;
@@ -26,7 +26,7 @@ namespace Fanex.CustomerSetting.Module.NG2.Core.Services.Impl
         protected readonly ICurrentContext _context;
 
         protected readonly ICurrentSession _session;
-
+        #endregion
         public ServiceBase(IDynamicRepository repository = null)
         {
             this.DynamicRepository = repository ?? new DynamicRepository();
@@ -55,6 +55,7 @@ namespace Fanex.CustomerSetting.Module.NG2.Core.Services.Impl
 
             return new List<T>();
         }
+
         public Result CheckSpecialSitePermission(CheckSpecialSitePermissionCriteria criteria)
         {
             Result result = new Result();

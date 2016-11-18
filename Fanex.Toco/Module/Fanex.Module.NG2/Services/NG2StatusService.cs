@@ -12,7 +12,17 @@ namespace Fanex.Module.NG2.Services
     {
         private ING2StatusRepository _repository = new NG2StatusRepository();
 
-        public Entities.Result AutoInsertAccount(int custId, string username, RoleId roleId, int uplineId, bool uplineDisabled, SiteId siteId, int currencyId, int userId, string language = "en-US", int subAccId = 0)
+        public Entities.Result AutoInsertAccount(
+            int custId, 
+            string username,
+            RoleId roleId, 
+            int uplineId, 
+            bool uplineDisabled,
+            SiteId siteId, 
+            int currencyId,
+            int userId, 
+            string language = "en-US", 
+            int subAccId = 0)
         {
             var allowed = false;
             var result = new Entities.Result();
