@@ -224,10 +224,6 @@
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
     </Reference>
-    <Reference Include="Antlr3.Runtime">
-      <Private>True</Private>
-      <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_GlobalResources\Error.Designer.cs">
@@ -1501,22 +1497,6 @@
     <None Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3-custom.less" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Module\BetSetting\BetSetting.csproj">
-      <Project>{F9261CF3-913A-436F-AD9D-6607C190367E}</Project>
-      <Name>BetSetting</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Module\Bingo.Resources\Bingo.Resources.csproj">
-      <Project>{b4ecc635-f693-4ef8-9ac2-84b8900ddbcc}</Project>
-      <Name>Bingo.Resources</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Module\Bingo\Bingo.csproj">
-      <Project>{8B0CB9F3-0D8F-4B0B-8F66-931BFE44B40A}</Project>
-      <Name>Bingo</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Module\Casino\Casino.csproj">
-      <Project>{5F8F3877-90E3-48A3-BAD7-4207DCBA088D}</Project>
-      <Name>Casino</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Module\EnableStatus\EnableStatus.csproj">
       <Project>{22F2A79C-5F7A-4A4B-9F4B-1011228914E3}</Project>
       <Name>EnableStatus</Name>
@@ -1541,10 +1521,6 @@
       <Project>{2B8BF7A6-3C6D-42E9-956E-D4B144EDDAEE}</Project>
       <Name>Fanex.Module.Statement</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Module\Fanex.Toco.Module.Core\_Core.csproj">
-      <Project>{AF2E11AA-2A92-47AC-86FA-4D48B0AEB5D7}</Project>
-      <Name>_Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Module\Keno\Keno.Resources\Keno.Resources.csproj">
       <Project>{F317B419-340B-418D-B2AB-8C43F18B85D6}</Project>
       <Name>Keno.Resources</Name>
@@ -1552,10 +1528,6 @@
     <ProjectReference Include="..\Module\Keno\Keno.KenoSetting\Fanex.CustomerSetting.Module.Keno.KenoSetting.csproj">
       <Project>{4204CDC3-7A3E-46C6-A97F-4CB07D2DF45E}</Project>
       <Name>Fanex.CustomerSetting.Module.Keno.KenoSetting</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Module\Racebook\Racebook.csproj">
-      <Project>{63D0DC31-9FEF-4BEE-9D43-E1E3A3BE42A5}</Project>
-      <Name>Racebook</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

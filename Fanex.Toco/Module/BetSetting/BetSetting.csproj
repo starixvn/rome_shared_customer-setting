@@ -34,9 +34,17 @@
     <Reference Include="AutoMapper">
       <HintPath>..\..\_Dependencies\GoldDeluxe\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="Couchbase, Version=1.0.0.0, Culture=neutral, PublicKeyToken=81137140da4e57ef, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Caching.1.0.404.97\lib\net40\Couchbase.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Enyim.Caching, Version=2.12.0.0, Culture=neutral, PublicKeyToken=81137140da4e57ef, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Caching.1.0.404.97\lib\net40\Enyim.Caching.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Fanex.Caching, Version=1.0.404.95, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\_Dependencies\Fanex\Fanex.Caching.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.Caching.1.0.404.97\lib\net40\Fanex.Caching.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Common, Version=1.0.404.97, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Common.1.0.404.97\lib\net40\Fanex.Common.dll</HintPath>
@@ -57,37 +65,24 @@
       <HintPath>..\..\_Dependencies\LiveCasino\Fanex.LiveCasinoSetting.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\_Dependencies\Fanex\Fanex.Logging.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.Logging.1.0.0.0\lib\net40\Fanex.Logging.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.NAP.Framework, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.NAP.Framework.1.0.0.2\lib\net40\Fanex.NAP.Framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.PTEngine">
-      <HintPath>..\..\_Dependencies\Fanex\Fanex.PTEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.PTRacing, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\_Dependencies\Fanex\Fanex.PTRacing.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.PTVirtualSports">
-      <HintPath>..\..\_Dependencies\Fanex\Fanex.PTVirtualSports.dll</HintPath>
-    </Reference>
-    <Reference Include="IBCCrypt, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\_Dependencies\Casino\IBCCrypt.dll</HintPath>
-    </Reference>
-    <Reference Include="IBCDBLibrary">
-      <HintPath>..\..\_Dependencies\Casino\IBCDBLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="IBCFile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.File.1.0.0\lib\net40\IBCFile.dll</HintPath>
+    <Reference Include="Fanex.PTEngine, Version=1.0.4.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.PTEngine.1.0.4.2\lib\net40\Fanex.PTEngine.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ILogger, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\_Dependencies\Casino\ILogger.dll</HintPath>
+    <Reference Include="Fanex.PTRacing, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.PTRacing.1.0.0.3\lib\net40\Fanex.PTRacing.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.PTVirtualSports, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.PTVirtualSports.1.0.0.1\lib\net40\Fanex.PTVirtualSports.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="LiveCasinoLibrary">
       <HintPath>..\..\_Dependencies\Bingo\LiveCasinoLibrary.dll</HintPath>
@@ -96,12 +91,20 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\_Dependencies\Casino\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EnterpriseLibrary.Caching.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EnterpriseLibrary.Common.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EnterpriseLibrary.Data.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EnterpriseLibrary.Logging.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.ObjectBuilder2">
@@ -152,20 +155,11 @@
     <Reference Include="Sunplus.Bingo.Services">
       <HintPath>..\..\_Dependencies\Bingo\Sunplus.Bingo.Services.dll</HintPath>
     </Reference>
-    <Reference Include="Sunplus.Core.LoggingLib">
-      <HintPath>..\..\_Dependencies\Bingo\Sunplus.Core.LoggingLib.dll</HintPath>
-    </Reference>
-    <Reference Include="Sunplus.Libraries.AOP">
-      <HintPath>..\..\_Dependencies\Casino\Sunplus.Libraries.AOP.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Web.Optimization">
-      <HintPath>..\..\_Dependencies\Web\System.Web.Optimization.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
