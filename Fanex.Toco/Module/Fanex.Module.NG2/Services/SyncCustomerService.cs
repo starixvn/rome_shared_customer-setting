@@ -94,6 +94,10 @@ namespace Fanex.Module.NG2.Services
                     // Cache result
                     cache.Set("SyncCustomerResult_" + DateTime.Now.ToString("yyyyMMdd"), result, DateTime.Now.AddHours(26));
                 }
+                else
+                {
+                    result.ErrorCode = 0;
+                }
             }
             catch (Exception ex)
             {
