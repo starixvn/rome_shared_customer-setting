@@ -56,7 +56,7 @@ namespace Fanex.Module.NG2.Services
                             customers = _repo.Customers(ids.Substring(0, ids.Length - 1));
                             response = service.CheckIsSyncCustomers(request);
 
-                            if (response.Result.IsSuccess && response.Result.AccountArray.Count > 0)
+                            if (response.Result.AccountArray.Count > 0)
                             {
                                 foreach (var customer in response.Result.AccountArray)
                                 {
