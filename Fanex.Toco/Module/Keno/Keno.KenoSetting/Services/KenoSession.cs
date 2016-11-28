@@ -46,7 +46,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
         {
             get
             {
-                return AppSession.Language;
+                return AppSession.CurrentSession.Language;
             }
         }
 
