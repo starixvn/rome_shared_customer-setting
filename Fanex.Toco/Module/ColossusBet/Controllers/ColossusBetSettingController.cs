@@ -33,7 +33,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
 
         [HttpPost]
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "ColossusBetSetting")]
-        [AntiXSRFFilter]
+        // [AntiXSRFFilter]
         public JsonResult UpdateSetting(ColossusBetModel model)
         {
             var colossusBetSession = new ColossusBetSession();
