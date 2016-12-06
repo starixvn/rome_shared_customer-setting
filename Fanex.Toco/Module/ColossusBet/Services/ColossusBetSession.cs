@@ -37,7 +37,7 @@
         {
             get
             {
-                return AppSession.Language;
+                return AppSession.CurrentSession.Language;
             }
         }
 
