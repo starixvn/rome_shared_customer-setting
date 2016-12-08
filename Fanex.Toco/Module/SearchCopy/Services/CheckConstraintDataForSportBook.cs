@@ -142,7 +142,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
 
         public void GenerateBettingLimit(DataRow dr, ref Hashtable htbParameters)
         {
-            string[] sportTypes = new string[] { "1", "2", "3", "5", "8", "10", "11", "99", "99mp", "154", "161" };
+            string[] sportTypes = new string[] { "1", "1mp", "2", "3", "5", "8", "10", "11", "99", "99mp", "154", "161" };
             string[] parameters = new string[] 
                                     {
                                         "minbetv{0}",
