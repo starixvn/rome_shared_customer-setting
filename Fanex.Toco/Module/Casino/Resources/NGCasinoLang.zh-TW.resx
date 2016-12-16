@@ -354,4 +354,19 @@
   <data name="errorNotAuthorized" xml:space="preserve">
     <value>You are not authorized on this function</value>
   </data>
+  <data name="lblClickToViewCurrentWinLossAmount" xml:space="preserve">
+    <value>點擊查看目前輸贏數額</value>
+  </data>
+  <data name="lblCurrentWinLossAmount" xml:space="preserve">
+    <value>目前輸贏數額</value>
+  </data>
+  <data name="lblLosing" xml:space="preserve">
+    <value>輸</value>
+  </data>
+  <data name="lblMemberWinLossLimit" xml:space="preserve">
+    <value>Member Win/Loss Limit</value>
+  </data>
+  <data name="lblWinning" xml:space="preserve">
+    <value>贏</value>
+  </data>
 </root>

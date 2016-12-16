@@ -59,20 +59,21 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 new JsonSerializerSettings
                 {
                     ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                    NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore
+                    NullValueHandling = NullValueHandling.Ignore
                 });
 
-            return this.Content("var customerModel = " + result + ";");
+            return Content("var customerModel = " + result + ";");
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Transfer")]
         [CasinoUMTimeFilter]
         public ActionResult ResetMaxTransfer(int id, string groupName = null)
         {
-            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
-            if (!obj.IsBelong(id, null, groupName))
+            var authenticateService = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+
+            if (!authenticateService.IsBelong(id, null, groupName))
             {
-                return this.ActionDenied(this.Request);
+                return ActionDenied(Request);
             }
 
             var customerInfo = new CasinoLibrary.SBAgent.Customer();
@@ -83,23 +84,24 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 AppSession.CurrentSession.UserName,
                 AppSession.CurrentSession.FromSystem);
 
-            return this.JsonBase(new { ErrorCode = success ? 0 : 1, ErrorMessage = success ? string.Empty : "Reset max transfer failed" });
+            return JsonBase(new { ErrorCode = success ? 0 : 1, ErrorMessage = success ? string.Empty : "Reset max transfer failed" });
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
         public ActionResult GetCurrentWinLimit(int id, string groupName = null)
         {
-            var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
-            if (!obj.IsBelong(id, null, groupName))
+            var authenticateService = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
+
+            if (!authenticateService.IsBelong(id, null, groupName))
             {
-                return this.ActionDenied(this.Request);
+                return ActionDenied(Request);
             }
 
             ICasinoMemberWinLimitService service = new CasinoMemberWinLimitService();
 
             var result = service.GetCurrentWinLimit(id);
 
-            return this.JsonBase(new { ErrorCode = 0, ErrorMessage = string.Empty, Result = result });
+            return JsonBase(new { ErrorCode = 0, ErrorMessage = string.Empty, Result = result });
         }
     }
 }

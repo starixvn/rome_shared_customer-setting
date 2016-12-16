@@ -61,50 +61,39 @@
                     ex.Write();
 
                     throw ex;
-                }                
+                }
             }
         }
 
-        public CurrentMemberWinLimit GetCurrentWinLimit(int custId)
+        public CurrentMemberWinLoss GetCurrentWinLimit(int custId)
         {
-            var winLimit = new CurrentMemberWinLimit();
+            var param = new Hashtable
+            {
+                { "custid", custId },
+                { "sporttype", 208 },
+                { "bettype", 2101 }
+            };
 
             using (var db = new ObjectDb("Acc_CustomerWinLimitSel"))
             {
-                var param = new Hashtable();
-                param.Add("custid", custId);
-                param.Add("sporttype", 208);
-                param.Add("bettype", 2101);
-
                 db.AssignParamValues(param);
 
-                try
+                using (var reader = db.ExecuteReader())
                 {
-                    using (var reader = db.ExecuteReader())
+                    if (reader.Read())
                     {
-                        if (reader != null)
-                        {
-                            while (reader.Read())
-                            {
-                                winLimit.Balance = reader.ToDecimal("Balance");
-                                winLimit.MaxWinCredit = reader.ToDecimal("MaxWinCredit");
-                                winLimit.MaxWinLimit = reader.ToInt32("MaxWinLimit");
-                                winLimit.WinPercent = reader.ToDecimal("WinPercent");
+                        decimal winPercent = reader.ToDecimal("WinPercent");
+                        decimal maxWinLimit = reader.ToDecimal("MaxWinLimit");
+                        decimal maxWinCredit = reader.ToDecimal("MaxWinCredit");
+                        decimal lossPercent = reader.ToDecimal("LossPercent");
+                        decimal? maxLossAmount = reader["MaxLossAmount"] == DBNull.Value ? new decimal?() : reader.ToDecimal("MaxLossAmount");
 
-                                break;
-                            }
-                        }
+                        return new CurrentMemberWinLoss(winPercent, maxWinLimit, maxWinCredit, lossPercent, maxLossAmount);
                     }
-                }
-                catch (Exception ex)
-                {
-                    ex.Write();
-
-                    throw ex;
                 }
             }
 
-            return winLimit;
+            return new CurrentMemberWinLoss();
         }
 
         public Result UpdateMemberWinLimit(int custId, int userId, int subAccId, MemberWinLimit memberWinLimit)
@@ -139,7 +128,7 @@
 
                     throw ex;
                 }
-            }            
+            }
         }
 
         private MemberWinLimit MapMemberWinLimits(MemberWinLimit winLimit, int maxWinLimit, int uplineMaxWinLimit)
@@ -168,7 +157,7 @@
                     winLimit.MaximumWinLimits.Add(new KeyValuePair<string, int>("3X", 3));
 
                     break;
-                default:                    
+                default:
                     winLimit.MaximumWinLimits.Add(new KeyValuePair<string, int>("3X", 3));
 
                     break;

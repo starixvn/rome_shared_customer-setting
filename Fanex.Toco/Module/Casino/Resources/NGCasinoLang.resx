@@ -372,4 +372,19 @@
   <data name="errorNotAuthorized" xml:space="preserve">
     <value>You are not authorized on this function</value>
   </data>
+  <data name="lblClickToViewCurrentWinLossAmount" xml:space="preserve">
+    <value>Click to view Current Win/Loss Amount</value>
+  </data>
+  <data name="lblCurrentWinLossAmount" xml:space="preserve">
+    <value>Current Win/Loss Amount</value>
+  </data>
+  <data name="lblLosing" xml:space="preserve">
+    <value>Losing</value>
+  </data>
+  <data name="lblMemberWinLossLimit" xml:space="preserve">
+    <value>Member Win/Loss Limit</value>
+  </data>
+  <data name="lblWinning" xml:space="preserve">
+    <value>Winning</value>
+  </data>
 </root>
