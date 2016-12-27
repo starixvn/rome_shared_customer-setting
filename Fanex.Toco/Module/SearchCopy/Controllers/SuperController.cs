@@ -29,6 +29,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
     using Fanex.Module.NG2.Entities;
     using Fanex.Module.NG2.Services;
     using Fanex.NAP.Framework.Data;
+    using LiveCasino.CoreSetting.Models;
     using Services;
     using ICommandResults = Fanex.LiveCasino.CoreSetting.DTO.CommandResult.ICommandResults;
     public class SuperController : BaseCloneController
@@ -545,7 +546,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
         /// </returns>
         private ICommandResults SyncLiveCasino(CustomerInsMemberCriteria customer)
         {
-            return _settingService.AutoInsertAccountFromExisting(
+            var commandResult = _settingService.AutoInsertAccountFromExisting(
                 customer.CustId,
                 customer.ExistingCustId,
                 customer.UserName,
@@ -554,6 +555,33 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                 0, string.Empty,
                 customer.IP,
                 "E");
+
+            if (commandResult.IsSuccessful)
+            {
+                var settingContext = new LiveCasinoSettingContext
+                {
+                    Customer = new LiveCasino.CoreSetting.Models.Customer
+                    {
+                        Id = customer.CustId
+                    },
+                    Actor = new User
+                    {
+                        Id = customer.Creator
+                    },
+                    SubAccount = new User
+                    {
+                        Id = AppSession.SubAccountId
+                    },
+                    IP = customer.IP,
+                    Language = "E"
+                };
+
+                var liveCasinoInfo = _settingService.GetCustomerLiveCasinoInfo(customer.ExistingCustId);
+
+                commandResult.Results.Add(_settingService.UpdateLiveCasinoStatus(settingContext, liveCasinoInfo.DisableLiveCasino));
+            }
+
+            return commandResult;
         }
 
         /// <summary>

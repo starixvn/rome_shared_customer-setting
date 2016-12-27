@@ -98,6 +98,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Entities
             set;
         }
 
+        public bool GoldDeluxeDisabled { get; set; }
+
         public int Currency
         {
             get;

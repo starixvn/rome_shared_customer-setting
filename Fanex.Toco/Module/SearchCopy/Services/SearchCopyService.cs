@@ -17,6 +17,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
     using System.Globalization;
     using System.Threading.Tasks;
     using AutoMapper;
+    using Casino.Services.Impl;
     using Core.Web;
     using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
     using Fanex.CustomerSetting.Module.SearchCopy.Entities;
@@ -135,7 +136,9 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
         private void CheckConstraintData(ref ICustomer oldCustomerSettings)
         {
             //check status
-            oldCustomerSettings.StatusSetting.DisableVirtualSports = oldCustomerSettings.StatusSetting.DisableUplineVirtualSports;
+            oldCustomerSettings.StatusSetting.DisableVirtualSports =
+                oldCustomerSettings.StatusSetting.DisableUplineVirtualSports ? true :
+                oldCustomerSettings.StatusSetting.DisableVirtualSports;
 
             //check betting limit
             var index = 0;
@@ -217,11 +220,12 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
             IMultipleCommandResults result = null;
             var task = Task.Factory.StartNew(() =>
             {
+                int custId = (int)criteria["custid"];
                 var goldDeluxeService = new SettingService();
 
                 result = goldDeluxeService.UpdateSettingFromExistingMember(new UpdateSettingFromExistingMemberParameters
                 {
-                    CustId = (int)criteria["custid"],
+                    CustId = custId,
                     FromCustId = existingCustId,
                     UpLineId = (int)criteria["userid"],
                     ActorId = (int)criteria["userid"],
@@ -243,7 +247,19 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
 
                 var param = Mapper.Map<EditSettingViewModel, GetSettingParameters>(model);
                 var setting = goldDeluxeService.GetSetting(param);
-                goldDeluxeService.UpdateGameSetting(new UpdateGameSettingParameters { ActorId = (int)criteria["userid"], CustId = (int)criteria["custid"], GameSetting = setting.GameSetting, Ip = ipAddress, Language = "en-US" });
+                goldDeluxeService.UpdateGameSetting(new UpdateGameSettingParameters { ActorId = (int)criteria["userid"], CustId = custId, GameSetting = setting.GameSetting, Ip = ipAddress, Language = "en-US" });
+
+                if (result.IsSuccessful)
+                {
+                    var custInfoIBC = CasinoManager.Instance.GetCustInfoIBC(existingCustId, 0);
+
+                    result.CommandResultsList.Add(goldDeluxeService.UpdateStatus(new UpdateDisableStatusParameters()
+                    {
+                        CustId = custId,
+                        Disable = custInfoIBC.GoldDeluxeDisabled,
+                        EnableDownlines = false
+                    }));
+                }
             });
 
             try
