@@ -16,7 +16,6 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
     using System.Web.Mvc;
     using Casino.Services.Impl;
     using Casino.Services.Interface;
-    using CasinoLibrary.SBAgent;
     using Core.Attributes;
     using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.CustomerSetting.Module.SearchCopy.Common;
@@ -333,7 +332,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             try
             {
                 success = casinoCustomer.AutoInsertAccount(
-                    "01", custInfo.IBCCustID,
+                    "01",
+                    custInfo.IBCCustID,
                     custInfo.UserName,
                     custInfo.UserName2,
                     custInfo.FirstName,
@@ -370,7 +370,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                 ICasinoMemberWinLimitService winLimitService = new CasinoMemberWinLimitService();
                 var winLimit = winLimitService.GetMemberWinLimit(customer.ExistingCustId);
 
-                bool isEnableCasino = !custInfo.CasinoDisabled || !custInfo.CasinoSync;
+                //bool isEnableCasino = !custInfo.CasinoDisabled || !custInfo.CasinoSync;
 
                 var casinoApiCustomer = new CasinoLibrary.SBAgent.Customer();
                 if (custInfo.CasinoSync)
@@ -395,7 +395,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                 casinoManager.UpdateCSStatus(
                     custInfo.IBCCustID,
                     true,
-                    custInfo.UplineDisabledCasino ? true : custInfo.CasinoDisabled,
+                    custInfo.UplineDisabledCasino ? true : customer.DisableCasino,
                     custInfo.EnableDownline,
                     custInfo.UpperCustID,
                     string.Empty,
@@ -421,7 +421,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                 casinoManager.UpdateCSStatus(
                     custInfo.IBCCustID,
                     false,
-                    custInfo.UplineDisabledCasino ? true : custInfo.CasinoDisabled,
+                    custInfo.UplineDisabledCasino ? true : customer.DisableCasino,
                     false,
                     custInfo.UpperCustID,
                     string.Empty,
@@ -576,9 +576,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                     Language = "E"
                 };
 
-                var liveCasinoInfo = _settingService.GetCustomerLiveCasinoInfo(customer.ExistingCustId);
-
-                commandResult.Results.Add(_settingService.UpdateLiveCasinoStatus(settingContext, liveCasinoInfo.DisableLiveCasino));
+                commandResult.Results.Add(_settingService.UpdateLiveCasinoStatus(settingContext, customer.DisableLiveCasino));
             }
 
             return commandResult;
