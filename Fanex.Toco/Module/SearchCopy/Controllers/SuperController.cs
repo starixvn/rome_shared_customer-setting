@@ -315,7 +315,6 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                 var casinoMemberWinLimitService = new CasinoMemberWinLimitService();
                 var memberLimit = casinoMemberWinLimitService.GetMemberWinLimit(customer.ExistingCustId);
                 casinoMemberWinLimitService.UpdateMemberWinLimit(customer.CustId, customer.Creator, 0, memberLimit);
-
             }
 
             return success;
@@ -406,15 +405,17 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                     out errMsg);
 
                 casinoManager.UpdateMemberSettings(
-                custInfo.IBCCustID,
-                custInfo.RoleId,
-                custInfo.UpperCustID,
-                custInfo.UplineRoleId,
-                customer.IP,
-                customer.Creator,
-                customer.CreatorName,
-                AppSession.CurrentSession.FromSystem,
-                settingModel);
+                    custInfo.IBCCustID,
+                    custInfo.RoleId,
+                    custInfo.UpperCustID,
+                    custInfo.UplineRoleId,
+                    customer.IP,
+                    customer.Creator,
+                    customer.CreatorName,
+                    AppSession.CurrentSession.FromSystem,
+                    settingModel);
+
+                winLimitService.UpdateMemberWinLimit(customer.CustId, customer.Creator, 0, winLimit);
             }
             else
             {

@@ -1497,6 +1497,10 @@
     <None Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3-custom.less" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Module\Casino\Casino.csproj">
+      <Project>{5f8f3877-90e3-48a3-bad7-4207dcba088d}</Project>
+      <Name>Casino</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Module\EnableStatus\EnableStatus.csproj">
       <Project>{22F2A79C-5F7A-4A4B-9F4B-1011228914E3}</Project>
       <Name>EnableStatus</Name>
