@@ -17,6 +17,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
     using System.Globalization;
     using System.Threading.Tasks;
     using AutoMapper;
+    using Casino.Services.Impl;
     using Core.Web;
     using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
     using Fanex.CustomerSetting.Module.SearchCopy.Entities;
@@ -135,7 +136,9 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
         private void CheckConstraintData(ref ICustomer oldCustomerSettings)
         {
             //check status
-            oldCustomerSettings.StatusSetting.DisableVirtualSports = oldCustomerSettings.StatusSetting.DisableUplineVirtualSports;
+            oldCustomerSettings.StatusSetting.DisableVirtualSports =
+                oldCustomerSettings.StatusSetting.DisableUplineVirtualSports ? true :
+                oldCustomerSettings.StatusSetting.DisableVirtualSports;
 
             //check betting limit
             var index = 0;
@@ -143,12 +146,23 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
             {
                 foreach (BettingLimitItem bettingLimitItem in oldCustomerSettings.BettingLimit.BettingLimitItems)
                 {
-                    oldCustomerSettings.BettingLimit.BettingLimitItems[index].MinBet = bettingLimitItem.MinBet > bettingLimitItem.MinBetMax ?
-                                                                                        bettingLimitItem.MinBet : bettingLimitItem.MinBetMax;
-                    oldCustomerSettings.BettingLimit.BettingLimitItems[index].MaxBet = bettingLimitItem.MaxBet < bettingLimitItem.MaxBetMin ?
-                                                                                        bettingLimitItem.MaxBet : bettingLimitItem.MaxBetMin;
-                    oldCustomerSettings.BettingLimit.BettingLimitItems[index].MaxPerMatch = bettingLimitItem.MaxPerMatch < bettingLimitItem.MaxPerMatchMax ?
-                                                                                            bettingLimitItem.MaxPerMatch : bettingLimitItem.MaxPerMatchMax;
+                    var minBetMax = bettingLimitItem.MinBetMax;
+                    var maxBetMin = bettingLimitItem.MaxBetMin;
+                    var maxPerMatchMax = bettingLimitItem.MaxPerMatchMax;
+                    var uplineIsUnlimited = minBetMax == 0 && maxBetMin == 0 && maxPerMatchMax == 0;
+
+                    var minBet = bettingLimitItem.MinBet;
+                    var maxBet = bettingLimitItem.MaxBet;
+                    var maxPerMatch = bettingLimitItem.MaxPerMatch;
+
+                    oldCustomerSettings.BettingLimit.BettingLimitItems[index].MinBet = minBet > minBetMax ?
+                                                                                        minBet : minBetMax;
+
+                    oldCustomerSettings.BettingLimit.BettingLimitItems[index].MaxBet = (maxBet < maxBetMin || uplineIsUnlimited) ?
+                                                                                        maxBet : maxBetMin;
+
+                    oldCustomerSettings.BettingLimit.BettingLimitItems[index].MaxPerMatch = (maxPerMatch < maxPerMatchMax || uplineIsUnlimited) ?
+                                                                                            maxPerMatch : maxPerMatchMax;
                     index++;
                 }
             }
@@ -217,14 +231,17 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
             IMultipleCommandResults result = null;
             var task = Task.Factory.StartNew(() =>
             {
+                int custId = (int)criteria["custid"];
+                int actorId = (int)criteria["userid"];
+
                 var goldDeluxeService = new SettingService();
 
                 result = goldDeluxeService.UpdateSettingFromExistingMember(new UpdateSettingFromExistingMemberParameters
                 {
-                    CustId = (int)criteria["custid"],
+                    CustId = custId,
                     FromCustId = existingCustId,
                     UpLineId = (int)criteria["userid"],
-                    ActorId = (int)criteria["userid"],
+                    ActorId = actorId,
                     SubAccId = 0,
                     Ip = ipAddress,
                     Language = CultureInfo.CurrentCulture.Name
@@ -236,14 +253,29 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
                     UpLineId = (int)criteria["uplineid"],
                     Level = GoldDeluxe.CoreSetting.Enumerations.CustomerLevel.Member,
                     UpLineLevel = GoldDeluxe.CoreSetting.Enumerations.CustomerLevel.Agent,
-                    ActorId = (int)criteria["userid"],
+                    ActorId = actorId,
                     Language = "en-US",
                     FormType = GoldDeluxe.CoreSetting.Enumerations.FormType.Edit
                 };
 
                 var param = Mapper.Map<EditSettingViewModel, GetSettingParameters>(model);
                 var setting = goldDeluxeService.GetSetting(param);
-                goldDeluxeService.UpdateGameSetting(new UpdateGameSettingParameters { ActorId = (int)criteria["userid"], CustId = (int)criteria["custid"], GameSetting = setting.GameSetting, Ip = ipAddress, Language = "en-US" });
+                goldDeluxeService.UpdateGameSetting(new UpdateGameSettingParameters { ActorId = actorId, CustId = custId, GameSetting = setting.GameSetting, Ip = ipAddress, Language = "en-US" });
+
+                if (result.IsSuccessful)
+                {
+                    var custInfoIBC = CasinoManager.Instance.GetCustInfoIBC(existingCustId, 0);
+
+                    result.CommandResultsList.Add(goldDeluxeService.UpdateStatus(new UpdateDisableStatusParameters()
+                    {
+                        CustId = custId,
+                        Disable = custInfoIBC.GoldDeluxeDisabled,
+                        EnableDownlines = false,
+                        ActorId = actorId,
+                        SubAccId = 0,
+                        Ip = ipAddress
+                    }));
+                }
             });
 
             try

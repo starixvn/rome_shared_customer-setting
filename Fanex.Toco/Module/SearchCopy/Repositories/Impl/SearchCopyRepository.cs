@@ -14,6 +14,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
     using System.Collections;
     using System.Collections.Generic;
     using System.Data;
+    using Core;
     using Fanex.Common;
     using Fanex.CustomerSetting.Module.SearchCopy.Criteria;
     using Fanex.CustomerSetting.Module.SearchCopy.Entities;
@@ -52,6 +53,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
             {
                 var dataReader = objDb.ExecuteReader(param);
                 dynamic productInfo = GetProductInfo(criteria.Custid, 23);
+
                 while (dataReader.Read())
                 {
                     custInfo.Site = criteria.IsMember ? string.Empty : dataReader["site"].ToString();
@@ -65,9 +67,9 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
                     custInfo.IsSyncBingo = Converter.To<byte>(dataReader["syncbingo"]);
                     custInfo.IsSyncLiveCasino = criteria.IsMember ? (byte)1 : Converter.To<byte>(dataReader["synclivecasino"]);
                     custInfo.RoleId = Converter.ToInt(dataReader["roleid"]);
-                    custInfo.DisableBingo = Converter.ToBool(dataReader["disableBingo"]);
-                    custInfo.DisableCasino = Converter.ToBool(dataReader["disableCasino"]);
-                    custInfo.DisableLiveCasino = dataReader.GetSchemaTable().Columns.Contains("disableLiveCasino") ? Converter.ToBool(dataReader["disableLiveCasino"]) : false;
+                    custInfo.DisableBingo = Utils.ToBoolean(dataReader["disableBingo"]);
+                    custInfo.DisableCasino = Utils.ToBoolean(dataReader["disableCasino"]);
+                    custInfo.DisableLiveCasino = Utils.ToBoolean(dataReader["DisableLiveCasino"]);
 
                     break;
                 }                

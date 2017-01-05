@@ -16,7 +16,6 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
     using System.Web.Mvc;
     using Casino.Services.Impl;
     using Casino.Services.Interface;
-    using CasinoLibrary.SBAgent;
     using Core.Attributes;
     using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.CustomerSetting.Module.SearchCopy.Common;
@@ -29,6 +28,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
     using Fanex.Module.NG2.Entities;
     using Fanex.Module.NG2.Services;
     using Fanex.NAP.Framework.Data;
+    using LiveCasino.CoreSetting.Models;
     using Services;
     using ICommandResults = Fanex.LiveCasino.CoreSetting.DTO.CommandResult.ICommandResults;
     public class SuperController : BaseCloneController
@@ -315,7 +315,6 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                 var casinoMemberWinLimitService = new CasinoMemberWinLimitService();
                 var memberLimit = casinoMemberWinLimitService.GetMemberWinLimit(customer.ExistingCustId);
                 casinoMemberWinLimitService.UpdateMemberWinLimit(customer.CustId, customer.Creator, 0, memberLimit);
-
             }
 
             return success;
@@ -332,7 +331,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             try
             {
                 success = casinoCustomer.AutoInsertAccount(
-                    "01", custInfo.IBCCustID,
+                    "01",
+                    custInfo.IBCCustID,
                     custInfo.UserName,
                     custInfo.UserName2,
                     custInfo.FirstName,
@@ -369,7 +369,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                 ICasinoMemberWinLimitService winLimitService = new CasinoMemberWinLimitService();
                 var winLimit = winLimitService.GetMemberWinLimit(customer.ExistingCustId);
 
-                bool isEnableCasino = !custInfo.CasinoDisabled || !custInfo.CasinoSync;
+                //bool isEnableCasino = !custInfo.CasinoDisabled || !custInfo.CasinoSync;
 
                 var casinoApiCustomer = new CasinoLibrary.SBAgent.Customer();
                 if (custInfo.CasinoSync)
@@ -394,7 +394,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                 casinoManager.UpdateCSStatus(
                     custInfo.IBCCustID,
                     true,
-                    custInfo.UplineDisabledCasino ? true : custInfo.CasinoDisabled,
+                    custInfo.UplineDisabledCasino ? true : customer.DisableCasino,
                     custInfo.EnableDownline,
                     custInfo.UpperCustID,
                     string.Empty,
@@ -405,22 +405,24 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                     out errMsg);
 
                 casinoManager.UpdateMemberSettings(
-                custInfo.IBCCustID,
-                custInfo.RoleId,
-                custInfo.UpperCustID,
-                custInfo.UplineRoleId,
-                customer.IP,
-                customer.Creator,
-                customer.CreatorName,
-                AppSession.CurrentSession.FromSystem,
-                settingModel);
+                    custInfo.IBCCustID,
+                    custInfo.RoleId,
+                    custInfo.UpperCustID,
+                    custInfo.UplineRoleId,
+                    customer.IP,
+                    customer.Creator,
+                    customer.CreatorName,
+                    AppSession.CurrentSession.FromSystem,
+                    settingModel);
+
+                winLimitService.UpdateMemberWinLimit(customer.CustId, customer.Creator, 0, winLimit);
             }
             else
             {
                 casinoManager.UpdateCSStatus(
                     custInfo.IBCCustID,
                     false,
-                    custInfo.UplineDisabledCasino ? true : custInfo.CasinoDisabled,
+                    custInfo.UplineDisabledCasino ? true : customer.DisableCasino,
                     false,
                     custInfo.UpperCustID,
                     string.Empty,
@@ -545,7 +547,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
         /// </returns>
         private ICommandResults SyncLiveCasino(CustomerInsMemberCriteria customer)
         {
-            return _settingService.AutoInsertAccountFromExisting(
+            var commandResult = _settingService.AutoInsertAccountFromExisting(
                 customer.CustId,
                 customer.ExistingCustId,
                 customer.UserName,
@@ -554,6 +556,31 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                 0, string.Empty,
                 customer.IP,
                 "E");
+
+            if (commandResult.IsSuccessful)
+            {
+                var settingContext = new LiveCasinoSettingContext
+                {
+                    Customer = new LiveCasino.CoreSetting.Models.Customer
+                    {
+                        Id = customer.CustId
+                    },
+                    Actor = new User
+                    {
+                        Id = customer.Creator
+                    },
+                    SubAccount = new User
+                    {
+                        Id = AppSession.SubAccountId
+                    },
+                    IP = customer.IP,
+                    Language = "E"
+                };
+
+                commandResult.Results.Add(_settingService.UpdateLiveCasinoStatus(settingContext, customer.DisableLiveCasino));
+            }
+
+            return commandResult;
         }
 
         /// <summary>

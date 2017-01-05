@@ -40,7 +40,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
             customerDetail.CasinoNo = "01";
             customerDetail.UplineDisabledCasino = uplineId != 0 ? (bool)upline.ResultSet.Tables[0].Rows[0]["disablecasino"] : false;
 
-
             if (dr.ResultSet.Tables[0].Rows.Count > 0)
             {
                 row = dr.ResultSet.Tables[0].Rows[0];
@@ -65,6 +64,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
                 customerDetail.CasinoSync = Utils.ToBoolean(row["synccasino"]);
                 customerDetail.BingoSync = Utils.ToBoolean(row["syncbingo"]);
                 customerDetail.CasinoDisabled = Utils.ToBoolean(row["disablecasino"]);
+
+                customerDetail.GoldDeluxeDisabled = Utils.ToBoolean(row["disablegolddeluxe"]);
 
                 customerDetail.LiveCasinoSync = Utils.ToBoolean(row["synclivecasino"]);
                 customerDetail.LiveCasinoDisabled = Utils.ToBoolean(row["disablelivecasino"]);
