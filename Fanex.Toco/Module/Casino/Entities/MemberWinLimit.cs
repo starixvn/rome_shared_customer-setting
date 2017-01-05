@@ -9,7 +9,7 @@
 
         public decimal CurrentWinLimit { get; set; }
 
-       // [JsonConverter(typeof(JsonConverterExt))]
+        [JsonConverter(typeof(JsonConverterExt))]
         public KeyValuePair<string, int> MaximumWin { get; set; }
 
         public decimal MinimumLoss { get; set; }
