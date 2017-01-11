@@ -15,7 +15,7 @@
             return _data.GetMemberWinLimit(custId);
         }
 
-        public CurrentMemberWinLimit GetCurrentWinLimit(int custId)
+        public CurrentMemberWinLoss GetCurrentWinLimit(int custId)
         {
             return _data.GetCurrentWinLimit(custId);
         }

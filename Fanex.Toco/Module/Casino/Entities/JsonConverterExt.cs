@@ -20,6 +20,7 @@
             serializer.Serialize(writer, value);
         }
 
+        /// Use for build NAP nuget package.
         public override object ReadJson(JsonReader reader, Type objectType, JsonSerializer serializer)
         {
             KeyValuePair<string, int> result;
@@ -40,6 +41,7 @@
             return result;
         }
 
+        /// Use for build Alpha nuget package.
         //public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         //{
         //    KeyValuePair<string, int> result;

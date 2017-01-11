@@ -259,6 +259,15 @@ namespace Fanex.CustomerSetting.Module.Casino.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Click to view Current Win/Loss Amount.
+        /// </summary>
+        public static string lblClickToViewCurrentWinLossAmount {
+            get {
+                return ResourceManager.GetString("lblClickToViewCurrentWinLossAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string lblClose {
@@ -282,6 +291,15 @@ namespace Fanex.CustomerSetting.Module.Casino.Resources {
         public static string lblCurrentWinLimit {
             get {
                 return ResourceManager.GetString("lblCurrentWinLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Win/Loss Amount.
+        /// </summary>
+        public static string lblCurrentWinLossAmount {
+            get {
+                return ResourceManager.GetString("lblCurrentWinLossAmount", resourceCulture);
             }
         }
         
@@ -394,6 +412,15 @@ namespace Fanex.CustomerSetting.Module.Casino.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Losing.
+        /// </summary>
+        public static string lblLosing {
+            get {
+                return ResourceManager.GetString("lblLosing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Auto Master Preset.
         /// </summary>
         public static string lblMasterAutoPresetPT {
@@ -498,6 +525,15 @@ namespace Fanex.CustomerSetting.Module.Casino.Resources {
         public static string lblMemberWinLimit {
             get {
                 return ResourceManager.GetString("lblMemberWinLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Member Win/Loss Limit.
+        /// </summary>
+        public static string lblMemberWinLossLimit {
+            get {
+                return ResourceManager.GetString("lblMemberWinLossLimit", resourceCulture);
             }
         }
         
@@ -669,6 +705,15 @@ namespace Fanex.CustomerSetting.Module.Casino.Resources {
         public static string lblUsername {
             get {
                 return ResourceManager.GetString("lblUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Winning.
+        /// </summary>
+        public static string lblWinning {
+            get {
+                return ResourceManager.GetString("lblWinning", resourceCulture);
             }
         }
         

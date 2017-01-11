@@ -348,4 +348,19 @@
   <data name="errorNotAuthorized" xml:space="preserve">
     <value>You are not authorized on this function</value>
   </data>
+  <data name="lblClickToViewCurrentWinLossAmount" xml:space="preserve">
+    <value>Nhấn để xem giá trị thắng thua hiện tại</value>
+  </data>
+  <data name="lblCurrentWinLossAmount" xml:space="preserve">
+    <value>Giá trị thắng thua hiện tại</value>
+  </data>
+  <data name="lblLosing" xml:space="preserve">
+    <value>Thua</value>
+  </data>
+  <data name="lblMemberWinLossLimit" xml:space="preserve">
+    <value>Member Win/Loss Limit</value>
+  </data>
+  <data name="lblWinning" xml:space="preserve">
+    <value>Thắng</value>
+  </data>
 </root>

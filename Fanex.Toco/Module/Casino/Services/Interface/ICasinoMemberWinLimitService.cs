@@ -7,7 +7,7 @@
     {
         MemberWinLimit GetMemberWinLimit(int custId);
 
-        CurrentMemberWinLimit GetCurrentWinLimit(int custId);
+        CurrentMemberWinLoss GetCurrentWinLimit(int custId);
 
         Result UpdateMemberWinLimit(int custId, int userId, int subAccId, MemberWinLimit memberWinLimit);
     }
