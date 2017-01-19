@@ -69,7 +69,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
                     custInfo.RoleId = Converter.ToInt(dataReader["roleid"]);
                     custInfo.DisableBingo = Utils.ToBoolean(dataReader["disableBingo"]);
                     custInfo.DisableCasino = Utils.ToBoolean(dataReader["disableCasino"]);
-                    custInfo.DisableLiveCasino = Utils.ToBoolean(dataReader["DisableLiveCasino"]);
+                    custInfo.DisableLiveCasino = dataReader.GetSchemaTable().Columns.Contains("disableLiveCasino") ? Converter.ToBool(dataReader["disableLiveCasino"]) : false;
 
                     break;
                 }                
