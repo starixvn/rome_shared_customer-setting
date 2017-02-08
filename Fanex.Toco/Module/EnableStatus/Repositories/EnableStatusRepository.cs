@@ -67,7 +67,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                     model.Warning = null;
                 }
             }
-            else if(product.Id.Equals("fishingworld", StringComparison.InvariantCultureIgnoreCase))
+            else if(product.Id.Equals("fishingworld", StringComparison.InvariantCultureIgnoreCase) || product.Id.Equals("24", StringComparison.InvariantCultureIgnoreCase))
             {
                 var isSyncedAllDownlineFishingWorld = this.IsSyncedAllDownlineFishingWorld(currentCustInfo);
                 model.ReadOnly = model.ReadOnly || !isSyncedAllDownlineFishingWorld;
