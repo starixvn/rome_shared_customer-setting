@@ -159,7 +159,8 @@ namespace Fanex.Module.RNGCasino.Services
                 {
                     CustId = criteria.CustId.ToString(),
                     GameId = criteria.GameplayId,
-                    SiteId = siteId.ToString()
+                    SiteId = siteId.ToString(),
+                    Language = language
                 });
             }
             catch (Exception ex)
