@@ -224,5 +224,7 @@
   </data>
   <data name="uplineDisabled" xml:space="preserve">
     <value>ไม่สามารถแก้ไขสถานะผลิตภัณฑ์ของดาวน์ไลน์ได้ เนื่องจากไม่ได้เปิดการใช้งานผลิตภัณฑ์นี้</value>
+  <data name="warningFishingWorldUnsyncedAllDownline" xml:space="preserve">
+    <value>The Fishing World Setting is not fully available. Please go to Edit Fishing World page to adjust.</value>
   </data>
 </root>

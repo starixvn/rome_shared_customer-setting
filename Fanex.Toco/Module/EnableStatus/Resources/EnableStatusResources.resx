@@ -227,5 +227,7 @@
   </data>
   <data name="uplineDisabled" xml:space="preserve">
     <value>Unable to edit downline's Product Status because the account disabled for this product.</value>
+  <data name="warningFishingWorldUnsyncedAllDownline" xml:space="preserve">
+    <value>The Fishing World Setting is not fully available. Please go to Edit Fishing World page to adjust.</value>
   </data>
 </root>

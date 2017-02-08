@@ -224,5 +224,7 @@
   </data>
   <data name="uplineDisabled" xml:space="preserve">
     <value>由於賬號的此產品已關閉導致無法更改下線產品狀態。</value>
+  <data name="warningFishingWorldUnsyncedAllDownline" xml:space="preserve">
+    <value>The Fishing World Setting is not fully available. Please go to Edit Fishing World page to adjust.</value>
   </data>
 </root>
