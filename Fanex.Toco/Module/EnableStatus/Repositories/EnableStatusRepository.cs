@@ -67,6 +67,15 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                     model.Warning = null;
                 }
             }
+            else if(product.Id.Equals("fishingworld", StringComparison.InvariantCultureIgnoreCase) || product.Id.Equals("24", StringComparison.InvariantCultureIgnoreCase))
+            {
+                var isSyncedAllDownlineFishingWorld = this.IsSyncedAllDownlineFishingWorld(currentCustInfo);
+                model.ReadOnly = model.ReadOnly || !isSyncedAllDownlineFishingWorld;
+                if (isSyncedAllDownlineFishingWorld)
+                {
+                    model.Warning = null;
+                }
+            }
             else if (product.Id.Equals("allbet", StringComparison.CurrentCultureIgnoreCase))
             {
                 var isSyncedAllDownlineAllbet = this.IsSyncedAllDownlineAllbet(currentCustInfo);
@@ -363,6 +372,24 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
             param.Add("custid", custId);
 
             return DbHelper.ExecuteDbResult("Age_CustomerSelUserInfo", param);
+        }
+
+        private bool IsSyncedAllDownlineFishingWorld(DbResult currentCustomer)
+        {
+            if (currentCustomer == null ||
+                   currentCustomer.ResultSet == null ||
+                   currentCustomer.ResultSet.Tables == null ||
+                   currentCustomer.ResultSet.Tables.Count == 0 ||
+                   currentCustomer.ResultSet.Tables[0] == null ||
+                   currentCustomer.ResultSet.Tables[0].Rows == null ||
+                   currentCustomer.ResultSet.Tables[0].Rows.Count == 0)
+            {
+                return true;
+            }
+
+            var row = currentCustomer.ResultSet.Tables[0].Rows[0];
+
+            return Utils.ToBoolean(row["SyncedFishingWorld"]) && Utils.ToBoolean(row["SyncedFishingWorldDownline"]);
         }
 
         private bool IsSyncedAllDownlineVoidbridge(DbResult currentCustomer)

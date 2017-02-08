@@ -88,6 +88,15 @@ namespace Fanex.Module.RNGCasino.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fishing World.
+        /// </summary>
+        public static string FishingWorld {
+            get {
+                return ResourceManager.GetString("FishingWorld", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Master.
         /// </summary>
         public static string Master {

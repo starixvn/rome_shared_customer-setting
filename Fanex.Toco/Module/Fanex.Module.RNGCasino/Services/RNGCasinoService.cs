@@ -1,4 +1,7 @@
-﻿namespace Fanex.Module.RNGCasino.Services
+﻿using Fanex.Result.Core.GlobalGaming;
+using Fanex.Result.Core.GlobalGaming.DTO;
+
+namespace Fanex.Module.RNGCasino.Services
 {
     using Common;
     using Configurations;
@@ -55,6 +58,7 @@
                 foreach (var ticket in rawData)
                 {
                     var ticketDetail = new TicketDetail();
+                    ticket.CustId = criteria.CustId;
                     ticketDetail.Ticket = ticket;
                     ticketHelper.IsShowOddsWithChoice = betListHelper.IsShowOddsWithChoice(ticketDetail.Ticket.BetTypeId);
                     ticketDetail.TransDateHtml = builder.BuildTrans(ticketDetail.Ticket);
@@ -124,6 +128,44 @@
             catch (Exception ex)
             {
                 result.ActionInfo = new ResultDetail()
+                {
+                    ResultCode = 1,
+                    ResultMessage = ex.Message
+                };
+            }
+
+            return result;
+        }
+
+        public HandHistoryModel GetResultCriteria(GetResultCriteria criteria, string language)
+        {
+            HandHistoryModel result = new HandHistoryModel();
+            result.ActionInfo = new ResultDetail();
+            try
+            {
+                GlobalGamingResultApi globalGamingResultApi = new GlobalGamingResultApi();
+                int siteId = 3200;
+                switch (criteria.RoleId)
+                {
+                    case 3:
+                        siteId = 3100;
+                        break;
+                    case 2:
+                        siteId = 3000;
+                        break;
+                }
+
+                result.Iframe = globalGamingResultApi.GetResultUrl(new GlobalGamingDTO
+                {
+                    CustId = criteria.CustId.ToString(),
+                    GameId = criteria.GameplayId,
+                    SiteId = siteId.ToString(),
+                    Language = language
+                });
+            }
+            catch (Exception ex)
+            {
+                result.ActionInfo = new ResultDetail
                 {
                     ResultCode = 1,
                     ResultMessage = ex.Message

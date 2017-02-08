@@ -104,7 +104,8 @@
                         ticketDetail.Ticket.BetTypeId + "," +
                         ticketDetail.Ticket.SportTypeId + "," +
                         "'" + (ticketDetail.Ticket.BetCheck ?? string.Empty) + "'," +
-                        "\'" + ticketDetail.Ticket.WinlostDate.ToShortFormatedDate() + "\')";
+                        "\'" + ticketDetail.Ticket.WinlostDate.ToShortFormatedDate() + "\'" + "," +
+                        ticketDetail.Ticket.CustId + ")";
             }
 
             var resultLink1 = string.IsNullOrEmpty(resultLink) ?

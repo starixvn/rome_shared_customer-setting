@@ -222,4 +222,7 @@
   <data name="AllbetNormalGames" xml:space="preserve">
     <value>Baccarat, Roulette, Sic Bo, Dragon Tiger</value>
   </data>
+  <data name="warningFishingWorldUnsyncedAllDownline" xml:space="preserve">
+    <value>The Fishing World Setting is not fully available. Please go to Edit Fishing World page to adjust.</value>
+  </data>
 </root>

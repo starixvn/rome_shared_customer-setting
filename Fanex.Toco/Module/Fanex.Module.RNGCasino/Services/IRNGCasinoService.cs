@@ -14,5 +14,7 @@
         HandHistoryModel GetHandHistory(GetRNGCasinoResultCriteria criteria);
 
         HandHistoryModel GetVoidbridgeResult(GetVoidbridgeResultCriteria criteria, string language);
+
+        HandHistoryModel GetResultCriteria(GetResultCriteria criteria, string language);
     }
 }

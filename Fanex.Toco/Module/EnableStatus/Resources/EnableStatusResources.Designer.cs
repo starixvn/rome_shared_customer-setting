@@ -376,6 +376,15 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The Fishing World Setting is not fully available. Please go to Edit Fishing World page to adjust..
+        /// </summary>
+        public static string warningFishingWorldUnsyncedAllDownline {
+            get {
+                return ResourceManager.GetString("warningFishingWorldUnsyncedAllDownline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Australia setting is being used for Beijing as well.
         /// </summary>
         public static string warningKenoBeijing {
