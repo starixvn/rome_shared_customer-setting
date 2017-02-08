@@ -182,6 +182,7 @@
     <EmbeddedResource Include="Resources\BetListResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BetListResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\BetListResources.ja-JP.resx" />
     <EmbeddedResource Include="Resources\BetListResources.ko-KR.resx" />

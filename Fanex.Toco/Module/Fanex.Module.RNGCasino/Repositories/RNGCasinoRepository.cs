@@ -32,6 +32,7 @@
                             StatusId = Converter.ToInt(reader["statusid"]),
 
                             Odds = Converter.ToDecimal(reader["odds"]),
+                            Currency = Converter.ToString2(reader["currency"]),
                             Stake = Converter.ToDecimal(reader["stake"]),
                             ActualStake = Converter.ToDecimal(reader["actual_stake"]),
                             Winlost = Converter.ToDecimal(reader["WinLost"]),
@@ -53,7 +54,9 @@
                             SuperPositionTaking = Converter.ToDecimal(reader["spositiontaking"]),
                             SuperComm = Converter.ToDecimal(reader["scomm"]),
                             SuperDiscount = Converter.ToDecimal(reader["sdiscount"]),
-                            BetCheck = Converter.ToString2(reader["BetCheck"])
+                            BetCheck = Converter.ToString2(reader["BetCheck"]),
+
+                            MatchCode = Converter.ToString2(reader["matchcode"])
                         });
                     }
                 }
