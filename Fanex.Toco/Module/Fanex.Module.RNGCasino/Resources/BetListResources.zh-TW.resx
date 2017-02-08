@@ -171,4 +171,7 @@
   <data name="Voidbridge" xml:space="preserve">
     <value>Macau Games</value>
   </data>
+  <data name="FishingWorld" xml:space="preserve">
+    <value>Fishing World</value>
+  </data>
 </root>
