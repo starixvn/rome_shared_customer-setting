@@ -45,7 +45,15 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="CasinoLibrary, Version=1.0.2.14, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CasinoLibrary-ThirdParty.1.0.2.14\lib\net40\CasinoLibrary.dll</HintPath>
+      <HintPath>..\..\packages\CasinoLibrary.1.0.2.17\lib\net40\CasinoLibrary.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CasinoSetting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CasinoLibrary.1.0.2.17\lib\net40\CasinoSetting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CasinoUtility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CasinoLibrary.1.0.2.17\lib\net40\CasinoUtility.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Couchbase, Version=1.0.0.0, Culture=neutral, PublicKeyToken=81137140da4e57ef, processorArchitecture=MSIL">
@@ -96,6 +104,10 @@
     </Reference>
     <Reference Include="GotDotNet.ApplicationBlocks.Data">
       <HintPath>..\..\_Dependencies\Casino\GotDotNet.ApplicationBlocks.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="HandHistoryLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CasinoLibrary.1.0.2.17\lib\net40\HandHistoryLibrary.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="IBCCrypt">
       <HintPath>..\..\_Dependencies\Casino\IBCCrypt.dll</HintPath>

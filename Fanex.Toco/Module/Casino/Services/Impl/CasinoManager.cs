@@ -12,21 +12,22 @@
 namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Configuration;
     using System.Data;
     using System.Linq;
+    using CasinoLibrary.Model.UserException;
     using CasinoLibrary.SBAgent;
     using Fanex.CustomerSetting.Module.Casino.Entities;
     using Fanex.CustomerSetting.Module.Casino.Repositories.Impl;
+    using Fanex.CustomerSetting.Module.Casino.Services.Interface;
     using Fanex.CustomerSetting.Module.Casino.ViewModels;
     using Fanex.CustomerSetting.Module.Core;
     using Fanex.CustomerSetting.Module.Core.Models;
     using Fanex.CustomerSetting.Module.Core.Web;
-    using System.Collections;
-    using Fanex.CustomerSetting.Module.Casino.Services.Interface;
-    using Fanex.Module.Logs.Services;
     using Fanex.Module.Logs;
+    using Fanex.Module.Logs.Services;
 
     /// <summary>
     /// TODO: Update summary.
@@ -616,6 +617,10 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                         customerModel.IsDisableAutoMPT);
                 }
             }
+            catch (ErrorException casinoException)
+            {
+                casinoException.Write(Formater.LogType.Warning);
+            }
             catch (Exception ex)
             {
                 ex.Write(Formater.LogType.Warning);
@@ -748,6 +753,10 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                         customerModel.IsDisableAutoMPT);
                 }
             }
+            catch (ErrorException casinoException)
+            {
+                casinoException.Write(Formater.LogType.Warning);
+            }
             catch (Exception ex)
             {
                 ex.Write(Formater.LogType.Warning);
@@ -776,7 +785,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     enablePTUpdated = cust.UpdateCustEnablePT(custId, true);
                 }
             }
-
 
             // Update PT/Betting limit settings
             casinoPTResult = this.UpdateMasterSettings(
@@ -885,6 +893,10 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 {
                     enablePTUpdated = cust.UpdateCustEnablePT(custId, true);
                 }
+            }
+            catch (ErrorException casinoException)
+            {
+                casinoException.Write(Formater.LogType.Warning);
             }
             catch (Exception ex)
             {
@@ -1020,11 +1032,14 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     }
                 }
             }
+            catch (ErrorException casinoException)
+            {
+                casinoException.Write(Formater.LogType.Warning);
+            }
             catch (Exception)
             {
                 // Bypass this exception because this customer had setting but update status failed, before.
             }
-
 
             // Update Status for direct downline only
             if ((settingsInserted && !customerModel.CasinoSync) || customerModel.CasinoSync)
@@ -1048,7 +1063,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     enablePTUpdated = cust.UpdateCustEnablePT(custId, true);
                 }
             }
-
 
             // Update PT/Betting limit settings
             casinoPTResult = this.UpdateMemberSettings(
