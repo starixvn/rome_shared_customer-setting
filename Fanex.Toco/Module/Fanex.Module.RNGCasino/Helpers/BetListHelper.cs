@@ -68,6 +68,11 @@
             Justification = "Reviewed. Suppression is OK here.")]
         public string StatusRefNo(TicketDetail ticketDetail)
         {
+            if (IsFishingWorld(ticketDetail.Ticket.SportTypeId))
+            {
+                return GetFishingWorldStatus(ticketDetail);
+            }
+
             BetListHelper betlistHelper = new BetListHelper();
             string status = ticketDetail.Ticket.Status.ToLower();
             string statusLabel = string.Empty;
@@ -119,6 +124,37 @@
         public bool IsShowOddsWithChoice(int betTypeId)
         {
             return betTypeId == BetTypeContants.MixParlay || betTypeId == BetTypeContants.SystemParlay;
+        }
+
+        public bool IsFishingWorld(int sportType)
+        {
+            return sportType == SportContants.FishingWorld;
+        }
+
+        public string GetFishingWorldStatus(TicketDetail ticketDetail)
+        {
+            var statusLabel = string.Empty;
+            var status = ticketDetail.Ticket.Status.ToLower();
+            bool isWonStatus = string.Equals(status, "won", StringComparison.OrdinalIgnoreCase);
+            bool isLoseStatus = string.Equals(status, "lose", StringComparison.OrdinalIgnoreCase);
+            bool isDrawStatus = string.Equals(status, "draw", StringComparison.OrdinalIgnoreCase);
+
+            statusLabel = "<div class=\"bl_status c\">" + status.ToUpper() + "</div>";
+
+            var resultLink = string.Empty;
+            if (isWonStatus || isLoseStatus || isDrawStatus)
+            {
+                resultLink = string.IsNullOrEmpty(ticketDetail.Ticket.BetCheck) ?
+                     string.Empty :
+                     "ViewFishingWorldResult(" + ticketDetail.Ticket.CustId + ", '" + ticketDetail.Ticket.BetCheck + "')";
+            }
+
+            var resultLink1 = string.IsNullOrEmpty(resultLink) ?
+                 string.Empty :
+                 "<br />" +
+                 "<a id=\"result_" + ticketDetail.Ticket.TransId + "\" onclick=\"" + resultLink + "\">" + BetListResources.Result + "</a>" +
+                 "<br />";
+            return statusLabel + resultLink1;
         }
     }
 }

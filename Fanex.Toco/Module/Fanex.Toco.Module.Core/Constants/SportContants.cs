@@ -58,5 +58,6 @@ namespace Fanex.CustomerSetting.Module.Core.Constants
         public const int RNG_RNGGame = 208;
         public const int RNG_MiniGame = 209;
         public const int RNG_Mobile = 210;
+        public const int FishingWorld = 219;
     }
 }
