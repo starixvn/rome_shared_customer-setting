@@ -228,4 +228,13 @@
   <data name="warningFishingWorldUnsyncedAllDownline" xml:space="preserve">
     <value>The Fishing World Setting is not fully available. Please go to Edit Fishing World page to adjust.</value>
   </data>
+  <data name="errorNotAllowedDisableDownline" xml:space="preserve">
+    <value>您不能禁用下线的产品。</value>
+  </data>
+  <data name="errorProductIsNotOfferedForThisLine" xml:space="preserve">
+    <value>此产品没有提供给此用户</value>
+  </data>
+  <data name="warningUpdateSettingForEnabledDownlines" xml:space="preserve">
+    <value>您刚启用了一个产品给下线。请转至“会员设置”页面配置设置。</value>
+  </data>
 </root>

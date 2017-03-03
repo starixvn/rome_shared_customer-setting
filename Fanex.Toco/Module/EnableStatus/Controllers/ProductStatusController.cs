@@ -57,6 +57,31 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers
             return View("~/Areas/CustomerSetting/Views/EnableStatus/Index.cshtml", model);
         }
 
+        /// <summary>
+        /// Gets index page of enable status form.
+        /// </summary>
+        /// <param name="context">Request context to get enable product status form.</param>
+        /// <returns>ActionResult object.</returns>
+        [HttpGet]
+        public ActionResult GetProductStatusNotAllowDisabledDownline(RequestContext context)
+        {
+            var controlName = typeof(ProductStatusController).Name;
+            var mainAction = Helper.Products.Where(p => p.Id.Equals(context.ProductId, StringComparison.OrdinalIgnoreCase)).FirstOrDefault().Function;
+            var actionPath = controlName + "/" + mainAction;
+            var authenticationType = AuthenticateAction.AuthenticationType.Read;
+            var authenticateFactory = AuthenticateFactory.Create(authenticationType, mainAction);
+
+            if (!authenticateFactory.AllowRead(actionPath) || !authenticateFactory.IsBelong(context.CustId, context.Username, AppSession.CurrentSession.CurrencyGroup))
+            {
+                return ActionDenied(Request);
+            }
+
+            var sp = Helper.GetStoredProcedures(context.ProductId).Where(p => p.Type == StoredProcedure.SpType.SELECT).FirstOrDefault();
+            var model = _service.GetProductStatus(sp, context);
+
+            return View("~/Areas/CustomerSetting/Views/EnableStatusNotAllowDisabledDownline/Index.cshtml", model);
+        }
+
         /// <summary>        
         /// Updates enable status.
         /// </summary>
