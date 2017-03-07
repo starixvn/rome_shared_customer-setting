@@ -21,6 +21,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
     using Fanex.CustomerSetting.Module.SearchCopy.Repository.Impl;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
+    using System.Linq;
 
     /// <summary>
     /// Class SearchCopyRepository.
@@ -69,7 +70,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
                     custInfo.RoleId = Converter.ToInt(dataReader["roleid"]);
                     custInfo.DisableBingo = Utils.ToBoolean(dataReader["disableBingo"]);
                     custInfo.DisableCasino = Utils.ToBoolean(dataReader["disableCasino"]);
-                    custInfo.DisableLiveCasino = dataReader.GetSchemaTable().Columns.Contains("disableLiveCasino") ? Converter.ToBool(dataReader["disableLiveCasino"]) : false;
+                    custInfo.DisableLiveCasino = dataReader.GetOrdinal("disableLiveCasino") > -1 ? Utils.ToBoolean(dataReader["disableLiveCasino"]) : false;
 
                     break;
                 }                
