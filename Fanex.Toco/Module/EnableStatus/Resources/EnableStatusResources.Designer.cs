@@ -214,6 +214,24 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are not allowed to disable downline&apos;s product..
+        /// </summary>
+        public static string errorNotAllowedDisableDownline {
+            get {
+                return ResourceManager.GetString("errorNotAllowedDisableDownline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The product is not offered for this customer line..
+        /// </summary>
+        public static string errorProductIsNotOfferedForThisLine {
+            get {
+                return ResourceManager.GetString("errorProductIsNotOfferedForThisLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to HR Fixed Odds.
         /// </summary>
         public static string hrfixedodds {
@@ -390,6 +408,15 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Resources {
         public static string warningKenoBeijing {
             get {
                 return ResourceManager.GetString("warningKenoBeijing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You&apos;ve just enabled for downlines. Please go to member setting page for your own settings..
+        /// </summary>
+        public static string warningUpdateSettingForEnabledDownlines {
+            get {
+                return ResourceManager.GetString("warningUpdateSettingForEnabledDownlines", resourceCulture);
             }
         }
         

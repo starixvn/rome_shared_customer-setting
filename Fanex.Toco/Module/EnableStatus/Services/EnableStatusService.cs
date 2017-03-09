@@ -142,7 +142,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                         {
                             message = Helper.GetResource("uplineDisabled");
                         }
-
+;
                         result = new Result(999, message);
                         results.Add(result);
                     }

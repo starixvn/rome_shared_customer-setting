@@ -208,8 +208,8 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                         {
                             customer.UpdateCustEnableCasino(
                                 context.CustId, 
-                                !(bool)entity.Disabled, 
-                                !(bool)entity.DisabledDownlines, 
+                                !Utils.ToBoolean(entity.Disabled), 
+                                !Utils.ToBoolean(entity.DisabledDownlines), 
                                 context.Ip, 
                                 context.UserId, 
                                 AppSession.CurrentSession.UserName, 
@@ -267,8 +267,8 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                                     product, 
                                     entity.SportTypeId, 
                                     entity.BetTypeId, 
-                                    (bool)entity.Disabled ? 1 : 0, 
-                                    (bool)entity.DisabledDownlines && context.Level != EnableStatusEnum.Level.Member ? 1 : 0);
+                                    Utils.ToBoolean(entity.Disabled) ? 1 : 0,
+                                    Utils.ToBoolean(entity.DisabledDownlines) && context.Level != EnableStatusEnum.Level.Member ? 1 : 0);
                             }
                         }
 
@@ -305,8 +305,8 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                         {
                             customer.UpdateCustEnableCasino(
                                 context.CustId, 
-                                !(bool)entities[0].Disabled, 
-                                !(bool)entities[0].DisabledDownlines, 
+                                !Utils.ToBoolean(entities[0].Disabled), 
+                                !Utils.ToBoolean(entities[0].DisabledDownlines), 
                                 context.Ip, 
                                 context.UserId, 
                                 AppSession.CurrentSession.UserName, 

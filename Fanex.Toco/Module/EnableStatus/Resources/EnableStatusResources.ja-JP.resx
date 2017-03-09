@@ -225,4 +225,13 @@
   <data name="warningFishingWorldUnsyncedAllDownline" xml:space="preserve">
     <value>The Fishing World Setting is not fully available. Please go to Edit Fishing World page to adjust.</value>
   </data>
+  <data name="errorNotAllowedDisableDownline" xml:space="preserve">
+    <value>You are not allowed to disable downline's product.</value>
+  </data>
+  <data name="errorProductIsNotOfferedForThisLine" xml:space="preserve">
+    <value>The product is not offered for this customer line.</value>
+  </data>
+  <data name="warningUpdateSettingForEnabledDownlines" xml:space="preserve">
+    <value>You've just enabled for downlines. Please go to member setting page for your own settings.</value>
+  </data>
 </root>

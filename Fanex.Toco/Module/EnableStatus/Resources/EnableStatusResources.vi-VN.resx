@@ -228,4 +228,13 @@
   <data name="warningFishingWorldUnsyncedAllDownline" xml:space="preserve">
     <value>The Fishing World Setting is not fully available. Please go to Edit Fishing World page to adjust.</value>
   </data>
+  <data name="errorNotAllowedDisableDownline" xml:space="preserve">
+    <value>Bạn không được phép vô hiệu hoá sản phẩm cược của cấp dưới.</value>
+  </data>
+  <data name="errorProductIsNotOfferedForThisLine" xml:space="preserve">
+    <value>Trò chơi không được cung cấp cho những khách hàng thuộc nhóm này.</value>
+  </data>
+  <data name="warningUpdateSettingForEnabledDownlines" xml:space="preserve">
+    <value>Bạn vừa kích hoạt một sản phẩm cược cho cấp dưới. Vui lòng vào trang Tuỳ Chỉnh Member để cấu hình các thiết lập.</value>
+  </data>
 </root>
