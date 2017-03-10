@@ -16,6 +16,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
     using System.Web.Mvc;
     using Casino.Services.Impl;
     using Casino.Services.Interface;
+    using CasinoLibrary.Model.UserException;
     using Core.Attributes;
     using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.CustomerSetting.Module.SearchCopy.Common;
@@ -267,6 +268,12 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                     result.Message = Constants.FailedSyncMessage.Casino;
                 }
             }
+            catch (ErrorException casinoException)
+            {
+                result.Code = -1;
+                result.Message = casinoException.Message;
+                casinoException.Write();
+            }
             catch (Exception ex)
             {
                 result.Code = -1;
@@ -358,6 +365,10 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                     customer.CreatorName,
                     3
                 );
+            }
+            catch (ErrorException casinoException)
+            {
+                errMsg = casinoException.Message;
             }
             catch (Exception e)
             {

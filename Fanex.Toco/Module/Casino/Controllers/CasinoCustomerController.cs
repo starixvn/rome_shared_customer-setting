@@ -12,6 +12,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
     using Newtonsoft.Json.Serialization;
     using System;
     using System.Web.Mvc;
+    using CasinoLibrary.Model.UserException;
 
     public class CasinoCustomerController : BaseController
     {
@@ -26,7 +27,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             var customerUpline = new CasinoCustomer();
 
             customerUpline.IBCCustID = uplineId;
-            
+
             if (uplineId != 0)
             {
                 CasinoManager.Instance.GetCustSettingCS(ref customerUpline);
@@ -40,7 +41,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
             //// For get autoMaster.
             customerInfo.IsDisableAutoMPT = customerUpline.IsDisableAutoMPT;
-            
+
             // Not synced case
             if (uplineId != 0 && customerUpline.RoleId == customerInfo.RoleId)
             {
@@ -77,14 +78,26 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             }
 
             var customerInfo = new CasinoLibrary.SBAgent.Customer();
-            var success = customerInfo.ResetMaxTransfer(
-                id, 
-                Request.UserHostAddress, 
-                AppSession.CurrentSession.UserId, 
-                AppSession.CurrentSession.UserName,
-                AppSession.CurrentSession.FromSystem);
 
-            return JsonBase(new { ErrorCode = success ? 0 : 1, ErrorMessage = success ? string.Empty : "Reset max transfer failed" });
+            try
+            {
+                var success = customerInfo.ResetMaxTransfer(
+                    id,
+                    Request.UserHostAddress,
+                    AppSession.CurrentSession.UserId,
+                    AppSession.CurrentSession.UserName,
+                    AppSession.CurrentSession.FromSystem);
+
+                return JsonBase(new { ErrorCode = success ? 0 : 1, ErrorMessage = success ? string.Empty : "Reset max transfer failed" });
+            }
+            catch (ErrorException casinoException)
+            {
+                return JsonBase(new { ErrorCode = 9999, ErrorMessage = casinoException.Message });
+            }
+            catch (Exception ex)
+            {
+                return JsonBase(new { ErrorCode = 1, ErrorMessage = ex.Message });
+            }
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
