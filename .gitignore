@@ -22,11 +22,11 @@ Thumbs.db
 [Dd]ebug*/
 *.lib
 *.sbr
+*.orig
 obj/
 [Rr]elease*/
 _ReSharper*/
 [Tt]est[Rr]esult*
 Fanex.Toco/Fanex.Toco.sln.GhostDoc.xml
-Fanex.Toco/Fanex.Toco.Website/Fanex.Toco.Website.csproj.orig
 Fanex.Toco/.vs/config/applicationhost.config
 packages/
