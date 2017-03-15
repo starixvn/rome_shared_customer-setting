@@ -272,7 +272,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             {
                 result.Code = -1;
                 result.Message = casinoException.Message;
-                casinoException.Write();
+                LogService.Error(casinoException.Message, casinoException);
             }
             catch (Exception ex)
             {
@@ -369,6 +369,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             catch (ErrorException casinoException)
             {
                 errMsg = casinoException.Message;
+                LogService.Error(casinoException.Message, casinoException);
             }
             catch (Exception e)
             {

@@ -28,6 +28,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
     using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.Module.Logs;
     using Fanex.Module.Logs.Services;
+    using Logging;
 
     /// <summary>
     /// TODO: Update summary.
@@ -619,7 +620,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             }
             catch (ErrorException casinoException)
             {
-                casinoException.Write(Formater.LogType.Warning);
+                LogService.Error(casinoException.Message, casinoException);
             }
             catch (Exception ex)
             {
@@ -755,7 +756,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             }
             catch (ErrorException casinoException)
             {
-                casinoException.Write(Formater.LogType.Warning);
+                LogService.Error(casinoException.Message, casinoException);
             }
             catch (Exception ex)
             {
@@ -896,7 +897,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             }
             catch (ErrorException casinoException)
             {
-                casinoException.Write(Formater.LogType.Warning);
+                LogService.Error(casinoException.Message, casinoException);
             }
             catch (Exception ex)
             {
@@ -1034,7 +1035,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             }
             catch (ErrorException casinoException)
             {
-                casinoException.Write(Formater.LogType.Warning);
+                LogService.Error(casinoException.Message, casinoException);
             }
             catch (Exception)
             {

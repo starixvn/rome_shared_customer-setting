@@ -13,6 +13,8 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
     using System.Collections;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using CasinoLibrary.Model.UserException;
     using CasinoLibrary.SBAgent;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Entities;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers;
@@ -25,8 +27,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
     using Fanex.Data.DNAide;
     using Fanex.Module.Logs;
     using Fanex.Module.Logs.Services;
-    using System.Linq;
-    using CasinoLibrary.Model.UserException;
+    using Logging;
 
     /// <summary>
     /// Enable status repository.
@@ -216,9 +217,9 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                                 AppSession.CurrentSession.UserName, 
                                 AppSession.CurrentSession.FromSystem);
                         }
-                        catch (ErrorException casinoEx)
+                        catch (ErrorException casinoException)
                         {
-                            casinoEx.Write(Formater.LogType.Warning);
+                            LogService.Error(casinoException.Message, casinoException);
                         }
                         catch (Exception ex)
                         {
@@ -317,9 +318,9 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                                 AppSession.CurrentSession.UserName, 
                                 AppSession.CurrentSession.FromSystem);
                         }
-                        catch (ErrorException casinoEx)
+                        catch (ErrorException casinoException)
                         {
-                            casinoEx.Write(Formater.LogType.Warning);
+                            LogService.Error(casinoException.Message, casinoException);
                         }
                         catch (Exception ex)
                         {
