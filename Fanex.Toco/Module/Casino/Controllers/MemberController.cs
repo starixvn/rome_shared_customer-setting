@@ -4,6 +4,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
     using System;
     using System.Web.Mvc;
     using Authenticate;
+    using CasinoLibrary.Model.UserException;
     using Fanex.CustomerSetting.Module.Casino.Entities;
     using Fanex.CustomerSetting.Module.Casino.Services.Impl;
     using Fanex.CustomerSetting.Module.Casino.ViewModels;
@@ -33,11 +34,15 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 customerSetting = CasinoManager.Instance.MemberCasinoModel(id, uplineId);
                 customerSetting.IsReadOnly = isSearchAndCopy;
             }
+            catch (ErrorException e)
+            {
+                e.Write(Formater.LogType.Warning);
+                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", e.Message);
+            }
             catch (Exception ex)
             {
                 ex.Write(Formater.LogType.Warning);
-
-                return PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml");
+                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", ex.Message);
             }
 
             return PartialView("~/Areas/CustomerSetting/Views/Casino/Member/EditMember.cshtml", customerSetting);
@@ -59,11 +64,15 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 customerSetting = CasinoManager.Instance.MemberCasinoModelByMaster(id, uplineId);
                 customerSetting.IsReadOnly = isSearchAndCopy;
             }
+            catch (ErrorException e)
+            {
+                e.Write(Formater.LogType.Warning);
+                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", e.Message);
+            }
             catch (Exception ex)
             {
                 ex.Write(Formater.LogType.Warning);
-
-                return PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml");
+                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", ex.Message);
             }
 
             return PartialView("~/Areas/CustomerSetting/Views/Casino/Member/EditMemberByMaster.cshtml", customerSetting);
@@ -85,11 +94,15 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 customerSetting = CasinoManager.Instance.MemberCasinoModelBySuper(id, uplineId);
                 customerSetting.IsReadOnly = isSearchAndCopy;
             }
+            catch (ErrorException e)
+            {
+                e.Write(Formater.LogType.Warning);
+                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", e.Message);
+            }
             catch (Exception ex)
             {
                 ex.Write(Formater.LogType.Warning);
-
-                return PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml");
+                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", ex.Message);
             }
 
             return PartialView("~/Areas/CustomerSetting/Views/Casino/Member/EditMemberBySuper.cshtml", customerSetting);

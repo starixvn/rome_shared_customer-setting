@@ -536,11 +536,22 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 // Get max transfer information
                 if (custIBC.UpperCustID != 0)
                 {
-                    var dt2 = cust.GetDefaultMaxTransfer(custIBC.UpperCustID, 0, false);
-                    custIBC.MaxTransferCreditLimit = Utils.ToDouble(dt2.Rows[0]["MaxLimit"]);
-                    custIBC.MinTransferCreditLimit = Utils.ToDouble(dt2.Rows[0]["MinLimit"]);
+                    try
+                    {
+                        var dt2 = cust.GetDefaultMaxTransfer(custIBC.UpperCustID, 0, false);
+                        custIBC.MaxTransferCreditLimit = Utils.ToDouble(dt2.Rows[0]["MaxLimit"]);
+                        custIBC.MinTransferCreditLimit = Utils.ToDouble(dt2.Rows[0]["MinLimit"]);
 
-                    custIBC.DefaultTransferCredit = Utils.ToDouble(dt2.Rows[0]["DefMaxTransferCredit"]);
+                        custIBC.DefaultTransferCredit = Utils.ToDouble(dt2.Rows[0]["DefMaxTransferCredit"]);
+                    }
+                    catch (ErrorException e)
+                    {
+                        e.Write(Formater.LogType.Warning);
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.Write(Formater.LogType.Warning);
+                    }
                 }
 
                 custIBC.NoCSData = false;
@@ -674,7 +685,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 retMsg += string.Format("{0}{1}", item, ", ");
             }
 
-            var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
+            var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg.EndsWith(", ") ? retMsg.Substring(0, retMsg.Length - 2) : retMsg);
 
             if (result.IsSuccess)
             {
@@ -810,7 +821,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 retMsg += string.Format("{0}{1}", item, ", ");
             }
 
-            var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
+            var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg.EndsWith(", ") ? retMsg.Substring(0, retMsg.Length - 2) : retMsg);
 
             if (result.IsSuccess)
             {
@@ -945,7 +956,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 retMsg += string.Format("{0}{1}", item, ", ");
             }
 
-            var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
+            var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg.EndsWith(", ") ? retMsg.Substring(0, retMsg.Length - 2) : retMsg);
 
             if (result.IsSuccess)
             {
@@ -1088,7 +1099,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 retMsg += string.Format("{0}{1}", item, ", ");
             }
 
-            var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
+            var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg.EndsWith(", ") ? retMsg.Substring(0, retMsg.Length - 2) : retMsg);
 
             if (result.IsSuccess)
             {
@@ -1129,7 +1140,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 retMsg += string.Format("{0}{1}", item, ", ");
             }
 
-            var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
+            var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg.EndsWith(", ") ? retMsg.Substring(0, retMsg.Length - 2) : retMsg);
 
             return result;
         }
@@ -1164,7 +1175,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 retMsg += string.Format("{0}{1}", item, ", ");
             }
 
-            var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
+            var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg.EndsWith(", ") ? retMsg.Substring(0, retMsg.Length - 2) : retMsg);
 
             return result;
         }
@@ -1236,7 +1247,24 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 return false;
             }
 
-            return cust.UpdateCustEnableCasino(custid, !disabledCS, isUpdDownline, ip, custid, username, 2);
+            try
+            {
+                status = cust.UpdateCustEnableCasino(custid, !disabledCS, isUpdDownline, ip, custid, username, 2);
+            }
+            catch (ErrorException ex)
+            {
+                ex.Write(Formater.LogType.Warning);
+                errMsg = ex.Message;
+                status = false;
+            }
+            catch (Exception e)
+            {
+                e.Write(Formater.LogType.Info);
+                errMsg = e.Message;
+                status = false;
+            }
+
+            return status;
         }
 
         private bool DoUpdateCSStatusWithoutSync(int custid, bool syncCS, bool disabledCS, bool isUpdDownline, int userId, string ip, int subAccId, string lang, out string errMsg)

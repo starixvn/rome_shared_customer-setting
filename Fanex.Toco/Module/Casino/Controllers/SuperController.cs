@@ -15,6 +15,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
     using Newtonsoft.Json;
     using System;
     using System.Web.Mvc;
+    using CasinoLibrary.Model.UserException;
+
     public class SuperController : BaseController
     {
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
@@ -34,10 +36,15 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 customerSetting = CasinoManager.Instance.SuperCasinoModel(id, uplineId);
                 customerSetting.IsReadOnly = isSearchAndCopy;
             }
+            catch (ErrorException e)
+            {
+                e.Write(Formater.LogType.Warning);
+                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", e.Message);
+            }
             catch (Exception ex)
             {
                 ex.Write(Formater.LogType.Warning);
-                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml");
+                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", ex.Message);
             }
 
             return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Super/EditSuper.cshtml", customerSetting);
