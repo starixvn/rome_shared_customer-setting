@@ -1,6 +1,9 @@
 namespace Fanex.CustomerSetting.Module.Casino.Controllers
 {
+    using System;
+    using System.Web.Mvc;
     using Authenticate;
+    using CasinoLibrary.Model.UserException;
     using Fanex.CustomerSetting.Module.Casino.Entities;
     using Fanex.CustomerSetting.Module.Casino.Services.Impl;
     using Fanex.CustomerSetting.Module.Casino.Services.Interface;
@@ -8,11 +11,10 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
     using Fanex.CustomerSetting.Security.Authenticate;
     using Fanex.CustomerSetting.Security.Configurations;
+    using Fanex.Module.Logs;
+    using Fanex.Module.Logs.Services;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
-    using System;
-    using System.Web.Mvc;
-    using CasinoLibrary.Model.UserException;
 
     public class CasinoCustomerController : BaseController
     {
@@ -90,9 +92,10 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
                 return JsonBase(new { ErrorCode = success ? 0 : 1, ErrorMessage = success ? string.Empty : "Reset max transfer failed" });
             }
-            catch (ErrorException casinoException)
+            catch (ErrorException casinoEx)
             {
-                return JsonBase(new { ErrorCode = 9999, ErrorMessage = casinoException.Message });
+                casinoEx.WriteCasinoException(Formater.LogType.Warning);
+                return JsonBase(new { ErrorCode = 9999, ErrorMessage = casinoEx.Message });
             }
             catch (Exception ex)
             {

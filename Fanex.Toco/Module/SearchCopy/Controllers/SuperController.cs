@@ -25,6 +25,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
     using Fanex.CustomerSetting.Module.SearchCopy.ViewModels;
     using Fanex.CustomerSetting.Security.Authenticate;
     using Fanex.Logging;
+    using Fanex.Module.Logs;
     using Fanex.Module.Logs.Services;
     using Fanex.Module.NG2.Entities;
     using Fanex.Module.NG2.Services;
@@ -268,11 +269,11 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                     result.Message = Constants.FailedSyncMessage.Casino;
                 }
             }
-            catch (ErrorException casinoException)
+            catch (ErrorException casinoEx)
             {
                 result.Code = -1;
-                result.Message = casinoException.Message;
-                LogService.Error(casinoException.Message, casinoException);
+                result.Message = casinoEx.Message;
+                casinoEx.WriteCasinoException();
             }
             catch (Exception ex)
             {
@@ -366,10 +367,10 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                     3
                 );
             }
-            catch (ErrorException casinoException)
+            catch (ErrorException casinoEx)
             {
-                errMsg = casinoException.Message;
-                LogService.Error(casinoException.Message, casinoException);
+                errMsg = casinoEx.Message;
+                casinoEx.WriteCasinoException(Formater.LogType.Warning);
             }
             catch (Exception e)
             {

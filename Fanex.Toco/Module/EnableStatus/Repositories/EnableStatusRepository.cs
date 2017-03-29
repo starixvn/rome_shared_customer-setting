@@ -217,9 +217,9 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                                 AppSession.CurrentSession.UserName, 
                                 AppSession.CurrentSession.FromSystem);
                         }
-                        catch (ErrorException casinoException)
+                        catch (ErrorException casinoEx)
                         {
-                            LogService.Error(casinoException.Message, casinoException);
+                            casinoEx.WriteCasinoException(Formater.LogType.Warning);
                         }
                         catch (Exception ex)
                         {
@@ -318,9 +318,9 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                                 AppSession.CurrentSession.UserName, 
                                 AppSession.CurrentSession.FromSystem);
                         }
-                        catch (ErrorException casinoException)
+                        catch (ErrorException casinoEx)
                         {
-                            LogService.Error(casinoException.Message, casinoException);
+                            casinoEx.WriteCasinoException(Formater.LogType.Warning);
                         }
                         catch (Exception ex)
                         {

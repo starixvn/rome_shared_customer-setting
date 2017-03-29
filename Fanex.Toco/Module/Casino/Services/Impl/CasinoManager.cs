@@ -629,9 +629,9 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                         customerModel.IsDisableAutoMPT);
                 }
             }
-            catch (ErrorException casinoException)
+            catch (ErrorException casinoEx)
             {
-                LogService.Error(casinoException.Message, casinoException);
+                casinoEx.WriteCasinoException(Formater.LogType.Warning);
             }
             catch (Exception ex)
             {
@@ -765,9 +765,9 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                         customerModel.IsDisableAutoMPT);
                 }
             }
-            catch (ErrorException casinoException)
+            catch (ErrorException casinoEx)
             {
-                LogService.Error(casinoException.Message, casinoException);
+                casinoEx.WriteCasinoException(Formater.LogType.Warning);
             }
             catch (Exception ex)
             {
@@ -906,9 +906,9 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     enablePTUpdated = cust.UpdateCustEnablePT(custId, true);
                 }
             }
-            catch (ErrorException casinoException)
+            catch (ErrorException casinoEx)
             {
-                LogService.Error(casinoException.Message, casinoException);
+                casinoEx.WriteCasinoException(Formater.LogType.Warning);
             }
             catch (Exception ex)
             {
@@ -1044,9 +1044,9 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     }
                 }
             }
-            catch (ErrorException casinoException)
+            catch (ErrorException casinoEx)
             {
-                LogService.Error(casinoException.Message, casinoException);
+                casinoEx.WriteCasinoException(Formater.LogType.Warning);
             }
             catch (Exception)
             {
