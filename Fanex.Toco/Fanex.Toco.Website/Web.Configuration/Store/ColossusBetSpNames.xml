@@ -2,18 +2,18 @@
 <Functions>
   <Function Name="Colossus Bets">
     <Function Name="Get Setting">
-      <Setting Key="Acc_CustomerSelEditSuperColossusBet" SpName="Acc_CustomerSelEditSuperColossusBet_xtest" DbName="DBCust.CustDB.bodbAdminNet"/>
-      <Setting Key="Acc_CustomerSelEditMasterColossusBet" SpName="Acc_CustomerSelEditMasterColossusBet_xtest" DbName="DBCust.CustDB.bodbAdminNet"/>
-      <Setting Key="Acc_CustomerSelEditAgentColossusBet" SpName="Acc_CustomerSelEditAgentColossusBet_xtest" DbName="DBCust.CustDB.bodbAdminNet"/>
-      <Setting Key="Acc_CustomerSelEditMemberColossusBet" SpName="Acc_CustomerSelEditMemberColossusBet_xtest" DbName="DBCust.CustDB.bodbAdminNet"/>
+      <Setting Key="Acc_CustomerSelEditSuperColossusBet" SpName="Acc_CustomerSelEditSuperColossusBet" DbName="DBCust.CustDB.bodbAdminNet"/>
+      <Setting Key="Acc_CustomerSelEditMasterColossusBet" SpName="Acc_CustomerSelEditMasterColossusBet" DbName="DBCust.CustDB.bodbAdminNet"/>
+      <Setting Key="Acc_CustomerSelEditAgentColossusBet" SpName="Acc_CustomerSelEditAgentColossusBet" DbName="DBCust.CustDB.bodbAdminNet"/>
+      <Setting Key="Acc_CustomerSelEditMemberColossusBet" SpName="Acc_CustomerSelEditMemberColossusBet" DbName="DBCust.CustDB.bodbAdminNet"/>
       <Setting Key="Acc_CustomerSelSiteByCustId" SpName="Acc_CustomerSelSiteByCustId" DbName="DBCust.CustDB.bodbAdminNet"/>
     </Function>
     <Function Name="Update Setting">
-      <Setting Key="Acc_CustomerUpdColossusBet" SpName="Acc_CustomerUpdColossusBet_xtest" DbName="DBCust.CustDB.bodbAdminNet"/>
-      <Setting Key="Acc_CustomerUpdDisableColossusBet" SpName="Acc_CustomerUpdDisableColossusBet_xtest" DbName="DBCust.CustDB.bodbAdminNet"/>
+      <Setting Key="Acc_CustomerUpdColossusBet" SpName="Acc_CustomerUpdColossusBet" DbName="DBCust.CustDB.bodbAdminNet"/>
+      <Setting Key="Acc_CustomerUpdDisableColossusBet" SpName="Acc_CustomerUpdDisableColossusBet" DbName="DBCust.CustDB.bodbAdminNet"/>
     </Function>
     <Function Name="Bet List Detail">
-      <Setting Key="BetList_ColossusBets_BetDetails" SpName="Acc_BetListCB_Details_uat1" DbName="DBAGE.bodb02.bodbAdminNet" Plain="0" />
+      <Setting Key="BetList_ColossusBets_BetDetails" SpName="Acc_BetListCB_Details" DbName="DBAGE.bodb02.bodbAdminNet" Plain="0" />
     </Function>
   </Function>
 </Functions>

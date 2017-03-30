@@ -13,6 +13,8 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
     using System.Collections;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using CasinoLibrary.Model.UserException;
     using CasinoLibrary.SBAgent;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Entities;
     using Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers;
@@ -25,8 +27,8 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
     using Fanex.Data.DNAide;
     using Fanex.Module.Logs;
     using Fanex.Module.Logs.Services;
-    using System.Linq;
-    
+    using Logging;
+
     /// <summary>
     /// Enable status repository.
     /// </summary>
@@ -215,9 +217,13 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                                 AppSession.CurrentSession.UserName, 
                                 AppSession.CurrentSession.FromSystem);
                         }
-                        catch (Exception casinoEx)
+                        catch (ErrorException casinoEx)
                         {
-                            casinoEx.Write(Formater.LogType.Warning);
+                            casinoEx.WriteCasinoException(Formater.LogType.Warning);
+                        }
+                        catch (Exception ex)
+                        {
+                            ex.Write(Formater.LogType.Warning);
                         }         
                     }
 
@@ -312,9 +318,13 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                                 AppSession.CurrentSession.UserName, 
                                 AppSession.CurrentSession.FromSystem);
                         }
-                        catch (Exception casinoEx)
+                        catch (ErrorException casinoEx)
                         {
-                            casinoEx.Write(Formater.LogType.Warning);
+                            casinoEx.WriteCasinoException(Formater.LogType.Warning);
+                        }
+                        catch (Exception ex)
+                        {
+                            ex.Write(Formater.LogType.Warning);
                         }
                     }
 

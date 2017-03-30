@@ -1,6 +1,9 @@
 namespace Fanex.CustomerSetting.Module.Casino.Controllers
 {
+    using System;
+    using System.Web.Mvc;
     using Authenticate;
+    using CasinoLibrary.Model.UserException;
     using Fanex.CustomerSetting.Module.Casino.Entities;
     using Fanex.CustomerSetting.Module.Casino.Services.Impl;
     using Fanex.CustomerSetting.Module.Casino.Services.Interface;
@@ -8,10 +11,10 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
     using Fanex.CustomerSetting.Security.Authenticate;
     using Fanex.CustomerSetting.Security.Configurations;
+    using Fanex.Module.Logs;
+    using Fanex.Module.Logs.Services;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
-    using System;
-    using System.Web.Mvc;
 
     public class CasinoCustomerController : BaseController
     {
@@ -26,7 +29,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             var customerUpline = new CasinoCustomer();
 
             customerUpline.IBCCustID = uplineId;
-            
+
             if (uplineId != 0)
             {
                 CasinoManager.Instance.GetCustSettingCS(ref customerUpline);
@@ -40,7 +43,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
             //// For get autoMaster.
             customerInfo.IsDisableAutoMPT = customerUpline.IsDisableAutoMPT;
-            
+
             // Not synced case
             if (uplineId != 0 && customerUpline.RoleId == customerInfo.RoleId)
             {
@@ -77,14 +80,27 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             }
 
             var customerInfo = new CasinoLibrary.SBAgent.Customer();
-            var success = customerInfo.ResetMaxTransfer(
-                id, 
-                Request.UserHostAddress, 
-                AppSession.CurrentSession.UserId, 
-                AppSession.CurrentSession.UserName,
-                AppSession.CurrentSession.FromSystem);
 
-            return JsonBase(new { ErrorCode = success ? 0 : 1, ErrorMessage = success ? string.Empty : "Reset max transfer failed" });
+            try
+            {
+                var success = customerInfo.ResetMaxTransfer(
+                    id,
+                    Request.UserHostAddress,
+                    AppSession.CurrentSession.UserId,
+                    AppSession.CurrentSession.UserName,
+                    AppSession.CurrentSession.FromSystem);
+
+                return JsonBase(new { ErrorCode = success ? 0 : 1, ErrorMessage = success ? string.Empty : "Reset max transfer failed" });
+            }
+            catch (ErrorException casinoEx)
+            {
+                casinoEx.WriteCasinoException(Formater.LogType.Warning);
+                return JsonBase(new { ErrorCode = 9999, ErrorMessage = casinoEx.Message });
+            }
+            catch (Exception ex)
+            {
+                return JsonBase(new { ErrorCode = 1, ErrorMessage = ex.Message });
+            }
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]

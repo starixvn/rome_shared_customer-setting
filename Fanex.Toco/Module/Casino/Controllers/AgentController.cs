@@ -28,6 +28,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
     using Newtonsoft.Json;
     using System;
     using System.Web.Mvc;
+    using CasinoLibrary.Model.UserException;
+
     /// <summary>
     /// Class AgentController.
     /// </summary>
@@ -56,10 +58,15 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 customerSetting = CasinoManager.Instance.AgentCasinoModel(id, uplineId);
                 customerSetting.IsReadOnly = isSearchAndCopy;
             }
+            catch (ErrorException e)
+            {
+                e.Write(Formater.LogType.Warning);
+                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", e.Message);
+            }
             catch (Exception ex)
             {
                 ex.Write(Formater.LogType.Warning);
-                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml");
+                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", ex.Message);
             }
 
             return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Agent/EditAgent.cshtml", customerSetting);
@@ -87,10 +94,15 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             {
                 customerSetting = CasinoManager.Instance.AgentCasinoModelBySuper(id, uplineId);
             }
+            catch (ErrorException e)
+            {
+                e.Write(Formater.LogType.Warning);
+                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", e.Message);
+            }
             catch (Exception ex)
             {
                 ex.Write(Formater.LogType.Warning);
-                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml");
+                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", ex.Message);
             }
 
             return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Agent/ViewAgentBySuper.cshtml", customerSetting);

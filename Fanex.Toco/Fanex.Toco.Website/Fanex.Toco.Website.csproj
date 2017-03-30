@@ -47,6 +47,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CasinoLibrary, Version=1.0.2.14, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CasinoLibrary-ThirdParty.1.0.2.15\lib\net40\CasinoLibrary.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="dotless.Core">
       <HintPath>..\_Dependencies\Web\dotless.Core.dll</HintPath>
     </Reference>
@@ -58,8 +62,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\_Dependencies\Fanex\Fanex.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.CustomerSetting.Module.SearchCopy, Version=2.0.1.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.CustomerSetting.Module.SearchCopy.NAP.2.0.1.3\lib\net40\Fanex.CustomerSetting.Module.SearchCopy.dll</HintPath>
+    <Reference Include="Fanex.CustomerSetting.Module.SearchCopy, Version=2.0.1.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.CustomerSetting.Module.SearchCopy.NAP.2.0.1.7\lib\net40\Fanex.CustomerSetting.Module.SearchCopy.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Data, Version=0.5.404.59, Culture=neutral, processorArchitecture=MSIL">
@@ -70,8 +74,8 @@
       <HintPath>..\packages\Fanex.Logging.1.0.0.0\lib\net40\Fanex.Logging.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.Module.Logs, Version=2.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.Module.Logs.2.0.0.2\lib\net40\Fanex.Module.Logs.dll</HintPath>
+    <Reference Include="Fanex.Module.Logs, Version=2.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.Module.Logs.2.0.0.3\lib\net40\Fanex.Module.Logs.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Module.NG2, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -115,8 +119,8 @@
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.6.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.NAP.3.5.0\lib\net40\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ONEbook.NG2.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

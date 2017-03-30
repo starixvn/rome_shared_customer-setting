@@ -14,6 +14,7 @@ namespace Fanex.Module.Logs.Services
     using System.Data.SqlClient;
     using System.Globalization;
     using System.Web;
+    using CasinoLibrary.Model.UserException;
     using Fanex.Logging;
     using Fanex.Module.Logs.Mappings;
 
@@ -60,6 +61,27 @@ namespace Fanex.Module.Logs.Services
                     LogService.Error(ex.FormatLog());
                 }
             }            
+        }
+
+        public static void WriteCasinoException(this ErrorException ex, Formater.LogType logType = Formater.LogType.Auto)
+        {
+            var baseException = ex.GetBaseException();
+
+            if (baseException != null)
+            {
+                var logException = new Exception(ex.Message, baseException)
+                {
+                    Source = ex.Source,
+                    HelpLink = ex.HelpLink
+                };
+
+                var data = logException.Data ?? new Hashtable();
+
+                data["TARGETSITE"] = baseException.TargetSite;
+                data["STACKTRACE"] = baseException.StackTrace;
+
+                logException.Write(logType);
+            }
         }
 
         private static void WriteLog(this Exception ex, Formater.LogType logType)

@@ -12,21 +12,23 @@
 namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Configuration;
     using System.Data;
     using System.Linq;
+    using CasinoLibrary.Model.UserException;
     using CasinoLibrary.SBAgent;
     using Fanex.CustomerSetting.Module.Casino.Entities;
     using Fanex.CustomerSetting.Module.Casino.Repositories.Impl;
+    using Fanex.CustomerSetting.Module.Casino.Services.Interface;
     using Fanex.CustomerSetting.Module.Casino.ViewModels;
     using Fanex.CustomerSetting.Module.Core;
     using Fanex.CustomerSetting.Module.Core.Models;
     using Fanex.CustomerSetting.Module.Core.Web;
-    using System.Collections;
-    using Fanex.CustomerSetting.Module.Casino.Services.Interface;
-    using Fanex.Module.Logs.Services;
     using Fanex.Module.Logs;
+    using Fanex.Module.Logs.Services;
+    using Logging;
 
     /// <summary>
     /// TODO: Update summary.
@@ -534,11 +536,22 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 // Get max transfer information
                 if (custIBC.UpperCustID != 0)
                 {
-                    var dt2 = cust.GetDefaultMaxTransfer(custIBC.UpperCustID, 0, false);
-                    custIBC.MaxTransferCreditLimit = Utils.ToDouble(dt2.Rows[0]["MaxLimit"]);
-                    custIBC.MinTransferCreditLimit = Utils.ToDouble(dt2.Rows[0]["MinLimit"]);
+                    try
+                    {
+                        var dt2 = cust.GetDefaultMaxTransfer(custIBC.UpperCustID, 0, false);
+                        custIBC.MaxTransferCreditLimit = Utils.ToDouble(dt2.Rows[0]["MaxLimit"]);
+                        custIBC.MinTransferCreditLimit = Utils.ToDouble(dt2.Rows[0]["MinLimit"]);
 
-                    custIBC.DefaultTransferCredit = Utils.ToDouble(dt2.Rows[0]["DefMaxTransferCredit"]);
+                        custIBC.DefaultTransferCredit = Utils.ToDouble(dt2.Rows[0]["DefMaxTransferCredit"]);
+                    }
+                    catch (ErrorException e)
+                    {
+                        e.Write(Formater.LogType.Warning);
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.Write(Formater.LogType.Warning);
+                    }
                 }
 
                 custIBC.NoCSData = false;
@@ -616,6 +629,10 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                         customerModel.IsDisableAutoMPT);
                 }
             }
+            catch (ErrorException casinoEx)
+            {
+                casinoEx.WriteCasinoException(Formater.LogType.Warning);
+            }
             catch (Exception ex)
             {
                 ex.Write(Formater.LogType.Warning);
@@ -668,7 +685,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 retMsg += string.Format("{0}{1}", item, ", ");
             }
 
-            var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
+            var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg.EndsWith(", ") ? retMsg.Substring(0, retMsg.Length - 2) : retMsg);
 
             if (result.IsSuccess)
             {
@@ -748,6 +765,10 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                         customerModel.IsDisableAutoMPT);
                 }
             }
+            catch (ErrorException casinoEx)
+            {
+                casinoEx.WriteCasinoException(Formater.LogType.Warning);
+            }
             catch (Exception ex)
             {
                 ex.Write(Formater.LogType.Warning);
@@ -777,7 +798,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 }
             }
 
-
             // Update PT/Betting limit settings
             casinoPTResult = this.UpdateMasterSettings(
                 custId,
@@ -801,7 +821,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 retMsg += string.Format("{0}{1}", item, ", ");
             }
 
-            var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
+            var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg.EndsWith(", ") ? retMsg.Substring(0, retMsg.Length - 2) : retMsg);
 
             if (result.IsSuccess)
             {
@@ -886,6 +906,10 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     enablePTUpdated = cust.UpdateCustEnablePT(custId, true);
                 }
             }
+            catch (ErrorException casinoEx)
+            {
+                casinoEx.WriteCasinoException(Formater.LogType.Warning);
+            }
             catch (Exception ex)
             {
                 ex.Write(Formater.LogType.Warning);
@@ -932,7 +956,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 retMsg += string.Format("{0}{1}", item, ", ");
             }
 
-            var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
+            var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg.EndsWith(", ") ? retMsg.Substring(0, retMsg.Length - 2) : retMsg);
 
             if (result.IsSuccess)
             {
@@ -1020,11 +1044,14 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     }
                 }
             }
+            catch (ErrorException casinoEx)
+            {
+                casinoEx.WriteCasinoException(Formater.LogType.Warning);
+            }
             catch (Exception)
             {
                 // Bypass this exception because this customer had setting but update status failed, before.
             }
-
 
             // Update Status for direct downline only
             if ((settingsInserted && !customerModel.CasinoSync) || customerModel.CasinoSync)
@@ -1049,7 +1076,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 }
             }
 
-
             // Update PT/Betting limit settings
             casinoPTResult = this.UpdateMemberSettings(
                 custId,
@@ -1073,7 +1099,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 retMsg += string.Format("{0}{1}", item, ", ");
             }
 
-            var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
+            var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg.EndsWith(", ") ? retMsg.Substring(0, retMsg.Length - 2) : retMsg);
 
             if (result.IsSuccess)
             {
@@ -1114,7 +1140,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 retMsg += string.Format("{0}{1}", item, ", ");
             }
 
-            var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
+            var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg.EndsWith(", ") ? retMsg.Substring(0, retMsg.Length - 2) : retMsg);
 
             return result;
         }
@@ -1149,7 +1175,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 retMsg += string.Format("{0}{1}", item, ", ");
             }
 
-            var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg);
+            var result = new Result(retMsg == string.Empty || retMsg == "<br />" ? 0 : 1, retMsg.EndsWith(", ") ? retMsg.Substring(0, retMsg.Length - 2) : retMsg);
 
             return result;
         }
@@ -1221,7 +1247,24 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 return false;
             }
 
-            return cust.UpdateCustEnableCasino(custid, !disabledCS, isUpdDownline, ip, custid, username, 2);
+            try
+            {
+                status = cust.UpdateCustEnableCasino(custid, !disabledCS, isUpdDownline, ip, custid, username, 2);
+            }
+            catch (ErrorException ex)
+            {
+                ex.Write(Formater.LogType.Warning);
+                errMsg = ex.Message;
+                status = false;
+            }
+            catch (Exception e)
+            {
+                e.Write(Formater.LogType.Info);
+                errMsg = e.Message;
+                status = false;
+            }
+
+            return status;
         }
 
         private bool DoUpdateCSStatusWithoutSync(int custid, bool syncCS, bool disabledCS, bool isUpdDownline, int userId, string ip, int subAccId, string lang, out string errMsg)
