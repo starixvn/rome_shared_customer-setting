@@ -1,0 +1,23 @@
+﻿namespace ThirdPartyProducts.StatusSetting.Enums
+{
+    internal enum ProductEnum
+    {
+        Racing = 2,
+
+        VirtualSport = 5,
+
+        Casino = 6,
+
+        Keno = 8,
+
+        ColossusBet = 15,
+
+        Allbet = 21,
+
+        MacauGames = 22,
+
+        NG2 = 23,
+
+        FishingWorld = 24
+    }
+}
