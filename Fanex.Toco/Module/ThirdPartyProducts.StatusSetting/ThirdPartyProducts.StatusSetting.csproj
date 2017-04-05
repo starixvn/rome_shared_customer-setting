@@ -147,6 +147,41 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BetTypeName.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\DCSMessage.ja-JP.Designer.cs">
+      <DependentUpon>DCSMessage.ja-JP.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\DCSMessage.ko-KR.Designer.cs">
+      <DependentUpon>DCSMessage.ko-KR.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\DCSMessage.th-TH.Designer.cs">
+      <DependentUpon>DCSMessage.th-TH.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\DCSMessage.vi-VN.Designer.cs">
+      <DependentUpon>DCSMessage.vi-VN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\DCSMessage.zh-CN.Designer.cs">
+      <DependentUpon>DCSMessage.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\DCSMessage.zh-TW.Designer.cs">
+      <DependentUpon>DCSMessage.zh-TW.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\DCSMessage.Designer.cs">
+      <DependentUpon>DCSMessage.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Resources\Message.vi-VN.Designer.cs">
       <DependentUpon>Message.vi-VN.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -252,6 +287,34 @@
     <EmbeddedResource Include="Resources\BetTypeName.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>BetTypeName.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\DCSMessage.ja-JP.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DCSMessage.ja-JP.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\DCSMessage.ko-KR.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DCSMessage.ko-KR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\DCSMessage.th-TH.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DCSMessage.th-TH.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\DCSMessage.vi-VN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DCSMessage.vi-VN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\DCSMessage.zh-CN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DCSMessage.zh-CN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\DCSMessage.zh-TW.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DCSMessage.zh-TW.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\DCSMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DCSMessage.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Message.vi-VN.resx">
       <Generator>ResXFileCodeGenerator</Generator>

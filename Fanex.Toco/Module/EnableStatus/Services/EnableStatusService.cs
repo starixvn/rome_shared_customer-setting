@@ -132,6 +132,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                         var message = string.Empty;
                         foreach (var attr in xmlMessage.Attributes())
                         {
+                            
                             if (attr.Name.ToString().Equals("Msg", StringComparison.OrdinalIgnoreCase))
                             {
                                 message += string.Join("\r\n", attr.Value);

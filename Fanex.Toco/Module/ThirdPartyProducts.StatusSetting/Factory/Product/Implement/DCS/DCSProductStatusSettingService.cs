@@ -70,7 +70,9 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement.DCS
             };
 
             criteria.MapSPParams(productStatus);
-            result.Add(ExecuteNonQuery(criteria));
+            var output = ExecuteNonQuery(criteria);
+            output.ConvertXMLErrorMessage();
+            result.Add(output);
             return result;
         }
     }
