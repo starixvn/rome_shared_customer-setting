@@ -412,7 +412,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You&apos;ve just enabled for downlines. Please go to member setting page for your own settings..
+        ///   Looks up a localized string similar to You&apos;ve just enabled a product for downlines. Please go to Member Setting page to configure your OWN PT Settings..
         /// </summary>
         public static string warningUpdateSettingForEnabledDownlines {
             get {

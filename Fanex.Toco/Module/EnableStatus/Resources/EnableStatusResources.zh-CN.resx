@@ -235,6 +235,6 @@
     <value>此产品没有提供给此用户</value>
   </data>
   <data name="warningUpdateSettingForEnabledDownlines" xml:space="preserve">
-    <value>您刚启用了一个产品给下线。请转至“会员设置”页面配置设置。</value>
+    <value>您刚启用了产品予下线。 请您点击到会员设定页面设置您自己的占成数。</value>
   </data>
 </root>
