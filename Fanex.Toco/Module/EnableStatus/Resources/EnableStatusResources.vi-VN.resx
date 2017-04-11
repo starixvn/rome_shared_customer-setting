@@ -235,6 +235,6 @@
     <value>Trò chơi không được cung cấp cho những khách hàng thuộc nhóm này.</value>
   </data>
   <data name="warningUpdateSettingForEnabledDownlines" xml:space="preserve">
-    <value>Bạn vừa kích hoạt một sản phẩm cược cho cấp dưới. Vui lòng vào trang Tuỳ Chỉnh Member để cấu hình các thiết lập.</value>
+    <value>Bạn vừa kích hoạt một sản phẩm cược cho cấp dưới. Vui lòng vào trang Cấu Hình Member để thiết lập giá trị Position Taking của mình.</value>
   </data>
 </root>
