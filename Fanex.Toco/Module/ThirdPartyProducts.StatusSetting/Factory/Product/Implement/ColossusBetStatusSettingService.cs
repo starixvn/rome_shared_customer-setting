@@ -27,7 +27,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
                 UserId = userId,
                 SystemId = systemId,
                 Disable = productStatus[0].IsDisabled,
-                DisableDownlines = productStatus[0].IsDisabledDownline
+                EnableDownlines = !productStatus[0].IsDisabledDownline
             };
 
             result.Add(ExecuteNonQuery(criteria));

@@ -121,10 +121,10 @@
     <value>百家乐，轮盘，骰宝，龙虎</value>
   </data>
   <data name="BetType_31" xml:space="preserve">
-    <value>英国/爱尔兰彩池</value>
+    <value>南非彩池</value>
   </data>
   <data name="BetType_41" xml:space="preserve">
-    <value>南非彩池</value>
+    <value>英国/爱尔兰彩池</value>
   </data>
   <data name="BetType_51" xml:space="preserve">
     <value>澳大利亚彩池</value>

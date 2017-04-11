@@ -1,8 +1,11 @@
 ﻿using Fanex.Data;
 using System.Collections.Generic;
+using System.Text;
+using System.Xml;
 using ThirdPartyProducts.StatusSetting.Factory.Product.Criteria;
 using ThirdPartyProducts.StatusSetting.Factory.Product.Criteria.DCS;
 using ThirdPartyProducts.StatusSetting.Model;
+using ThirdPartyProducts.StatusSetting.Resources;
 
 namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement.DCS
 {
@@ -49,13 +52,13 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement.DCS
         }
 
         public override List<ProductStatusResult> Update(
-            int custId, 
+            int custId,
             int subAccId,
             int uplineId,
-            int productId, 
-            int userId, 
-            int systemId, 
-            string ip, 
+            int productId,
+            int userId,
+            int systemId,
+            string ip,
             List<ProductStatus> productStatus)
         {
             var result = new List<ProductStatusResult>();
@@ -70,9 +73,43 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement.DCS
             };
 
             criteria.MapSPParams(productStatus);
-            var output = ExecuteNonQuery(criteria);
-            output.ConvertXMLErrorMessage();
-            result.Add(output);
+            result.Add(ExecuteNonQuery(criteria));
+            return result;
+        }
+
+        internal ProductStatusResult ConvertXMLErrorMessage(ProductStatusResult productStatusResultWithXmlErrorMessage, bool showBettypes)
+        {
+            var result = new ProductStatusResult()
+            {
+                ErrorCode = productStatusResultWithXmlErrorMessage.ErrorCode,
+                ErrorMessage = productStatusResultWithXmlErrorMessage.ErrorMessage
+            };
+            var xmlErrMsg = productStatusResultWithXmlErrorMessage.ErrorMessage;
+            if (!string.IsNullOrEmpty(xmlErrMsg) && xmlErrMsg.StartsWith("<"))
+            {
+                var xmlDoc = new XmlDocument();
+                xmlDoc.LoadXml(xmlErrMsg);
+                var errCode = xmlDoc.FirstChild.Attributes["MsgID"].Value;
+                var newErrorMessage = new StringBuilder(DCSMessage.ResourceManager.GetString("Msg" + errCode));
+                var language = Utils.GetLanguageKeyForRemotingRef();
+                var childNodes = xmlDoc.FirstChild.ChildNodes;
+                if (showBettypes)
+                {
+                    foreach (XmlNode node in xmlDoc.FirstChild.ChildNodes)
+                    {
+                        string bettypeName = Utils.GetBetTypeName(node.Attributes["BetType"].Value, language);
+                        newErrorMessage.Append("\r\n\t");
+                        newErrorMessage.Append(bettypeName);
+                    }
+                }
+
+                return new ProductStatusResult()
+                {
+                    ErrorMessage = newErrorMessage.ToString(),
+                    ErrorCode = errCode
+                };
+            }
+
             return result;
         }
     }

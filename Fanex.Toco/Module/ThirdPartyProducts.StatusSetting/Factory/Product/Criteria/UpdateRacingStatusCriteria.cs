@@ -18,35 +18,17 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria
 
         public int SystemId { get; set; }
 
-        public bool UpdateDisable151_31
-        {
-            get { return true; }
-        }
+        public bool UpdateDisable151_31 { get; set; }
 
-        public bool UpdateDisable151_41
-        {
-            get { return true; }
-        }
+        public bool UpdateDisable151_41 { get; set; }
 
-        public bool UpdateDisable151_51
-        {
-            get { return true; }
-        }
+        public bool UpdateDisable151_51 { get; set; }
 
-        public bool UpdateDisable152_41
-        {
-            get { return true; }
-        }
+        public bool UpdateDisable152_41 { get; set; }
 
-        public bool UpdateDisable152_51
-        {
-            get { return true; }
-        }
+        public bool UpdateDisable152_51 { get; set; }
 
-        public bool UpdateDisable153_51
-        {
-            get { return true; }
-        }
+        public bool UpdateDisable153_51 { get; set; }
 
         public bool Disable151_31 { get; set; }
 
@@ -92,16 +74,19 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria
                     {
                         this.Disable151_31 = item.IsDisabled;
                         this.DisableDownlines151_31 = item.IsDisabledDownline;
+                        this.UpdateDisable151_31 = true;
                     }
                     else if (item.BetType == 41)
                     {
                         this.Disable151_41 = item.IsDisabled;
                         this.DisableDownlines151_41 = item.IsDisabledDownline;
+                        this.UpdateDisable151_41 = true;
                     }
                     else if (item.BetType == 51)
                     {
                         this.Disable151_51 = item.IsDisabled;
                         this.DisableDownlines151_51 = item.IsDisabledDownline;
+                        this.UpdateDisable151_51 = true;
                     }
                 }
                 else if (item.SportType == 152)
@@ -110,11 +95,13 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria
                     {
                         this.Disable152_41 = item.IsDisabled;
                         this.DisableDownlines152_41 = item.IsDisabledDownline;
+                        this.UpdateDisable152_41 = true;
                     }
                     else if (item.BetType == 51)
                     {
                         this.Disable152_51 = item.IsDisabled;
                         this.DisableDownlines152_51 = item.IsDisabledDownline;
+                        this.UpdateDisable152_51 = true;
                     }
                 }
                 else if (item.SportType == 153)
@@ -123,6 +110,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria
                     {
                         this.Disable153_51 = item.IsDisabled;
                         this.DisableDownlines153_51 = item.IsDisabledDownline;
+                        this.UpdateDisable153_51 = true;
                     }
                 }
             }

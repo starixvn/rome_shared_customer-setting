@@ -11,7 +11,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product
 {
     internal abstract class ProductStatusSettingServiceBase : IProductStatusSettingService
     {
-        private static readonly int[] hiddenBettypes = { 1502, 1506, 1507, 1509 };
+        private static readonly int[] HiddenBettypes = { 1502, 1506, 1507, 1509 };
 
         public virtual List<ProductStatus> Select(int custId, int productId, int roleId)
         {
@@ -113,7 +113,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product
 
         private bool IsHiddenBettype(int bettypeId)
         {
-            if (Array.Find<int>(hiddenBettypes, p=> p==bettypeId) != 0)
+            if (Array.Find<int>(HiddenBettypes, p => p == bettypeId) != 0)
             {
                 return true;
             }

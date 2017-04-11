@@ -1,11 +1,4 @@
-﻿using RemotingRef;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ThirdPartyProducts.StatusSetting.Model
+﻿namespace ThirdPartyProducts.StatusSetting.Model
 {
     public class ProductStatus
     {
@@ -42,32 +35,9 @@ namespace ThirdPartyProducts.StatusSetting.Model
         internal void GetNameFromRemotingRef()
         {
             var language = Utils.GetLanguageKeyForRemotingRef();
-            this.GetProductName(language);
-            this.GetSportName(language);
-            this.GetBetTypeName(language);
-        }
-
-        private void GetProductName(string language)
-        {
-            this.ProductName = RefData.GetResourceDataByRefIdAndResourceId("Product", this.ProductId.ToString(), language, string.Empty);
-        }
-
-        private void GetSportName(string language)
-        {
-            this.SportName = Resources.SportName.ResourceManager.GetString("Sport_" + this.SportType);
-            if (string.IsNullOrEmpty(this.SportName))
-            {
-                this.SportName = RefData.GetSportName(this.SportType.ToString(), language, string.Empty);
-            }
-        }
-
-        private void GetBetTypeName(string language)
-        {
-            this.BetTypeName = Resources.BetTypeName.ResourceManager.GetString("BetType_" + this.BetType);
-            if (string.IsNullOrEmpty(this.BetTypeName))
-            {
-                this.BetTypeName = RefData.GetBetTypeName(this.BetType.ToString(), language, string.Empty);
-            }
+            this.ProductName = Utils.GetProductName(this.ProductId.ToString(), language);
+            this.SportName = Utils.GetSportName(this.SportType.ToString(), language);
+            this.BetTypeName = Utils.GetBetTypeName(this.BetType.ToString(), language);
         }
     }
 }

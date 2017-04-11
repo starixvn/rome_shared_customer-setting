@@ -121,10 +121,10 @@
     <value>Baccarat, Roulette, Sic Bo, Dragon Tiger</value>
   </data>
   <data name="BetType_31" xml:space="preserve">
-    <value>UK/Irish Tote</value>
+    <value>SA Tote</value>
   </data>
   <data name="BetType_41" xml:space="preserve">
-    <value>SA Tote</value>
+    <value>UK/Irish Tote</value>
   </data>
   <data name="BetType_51" xml:space="preserve">
     <value>Aust Tote</value>

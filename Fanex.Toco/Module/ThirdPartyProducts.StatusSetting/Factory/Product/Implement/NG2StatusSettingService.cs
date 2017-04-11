@@ -68,9 +68,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
             };
 
             criteria.MapSPParams(productStatus);
-            var output = ExecuteNonQuery(criteria);
-            output.ConvertXMLErrorMessage();
-            result.Add(output);
+            result.Add(ConvertXMLErrorMessage(ExecuteNonQuery(criteria), false));
             return result;
         }
     }

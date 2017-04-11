@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RemotingRef;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -178,6 +179,33 @@ namespace ThirdPartyProducts.StatusSetting
                 case "th-TH": return "th"; // Thai
                 default: return "en";
             }
+        }
+
+        internal static string GetProductName(string productId, string language)
+        {
+            return RefData.GetResourceDataByRefIdAndResourceId("Product", productId, language, string.Empty);
+        }
+
+        internal static string GetSportName(string sportType, string language)
+        {
+            var sportName = Resources.SportName.ResourceManager.GetString("Sport_" + sportType);
+            if (string.IsNullOrEmpty(sportName))
+            {
+                sportName = RefData.GetSportName(sportType.ToString(), language, string.Empty);
+            }
+
+            return sportName;
+        }
+
+        internal static string GetBetTypeName(string betType, string language)
+        {
+            var betTypeName = Resources.BetTypeName.ResourceManager.GetString("BetType_" + betType);
+            if (string.IsNullOrEmpty(betTypeName))
+            {
+                betTypeName = RefData.GetBetTypeName(betType.ToString(), language, string.Empty);
+            }
+
+            return betTypeName;
         }
     }
 }

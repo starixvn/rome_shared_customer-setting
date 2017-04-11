@@ -70,7 +70,7 @@ namespace ThirdPartyProducts.StatusSetting.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UK/Irish Tote.
+        ///   Looks up a localized string similar to SA Tote.
         /// </summary>
         internal static string BetType_31 {
             get {
@@ -79,7 +79,7 @@ namespace ThirdPartyProducts.StatusSetting.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SA Tote.
+        ///   Looks up a localized string similar to UK/Irish Tote.
         /// </summary>
         internal static string BetType_41 {
             get {

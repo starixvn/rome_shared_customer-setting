@@ -34,10 +34,16 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
                     DisableDownlines = item.IsDisabledDownline
                 };
 
-                result.Add(ExecuteNonQuery(criteria));
+                result.Add(RefineErrorMessage(item, ExecuteNonQuery(criteria)));
             }
 
             return result;
+        }
+
+        private ProductStatusResult RefineErrorMessage(ProductStatus input, ProductStatusResult output)
+        {
+            output.ErrorMessage = Utils.GetBetTypeName(input.BetType.ToString(), Utils.GetLanguageKeyForRemotingRef()) + ": " + output.ErrorMessage;
+            return output;
         }
     }
 }

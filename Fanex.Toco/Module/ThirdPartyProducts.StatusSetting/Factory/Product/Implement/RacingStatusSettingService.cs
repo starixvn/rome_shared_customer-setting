@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ThirdPartyProducts.StatusSetting.Factory.Product.Criteria;
 using ThirdPartyProducts.StatusSetting.Model;
 
@@ -6,10 +7,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
 {
     internal class RacingStatusSettingService : ProductStatusSettingServiceBase
     {
-        public override List<ProductStatus> Select(int custId, int productId, int roleId)
-        {
-            return base.Select(custId, productId, roleId);
-        }
+        private const char RacingSpliter = '\a';
 
         public override List<ProductStatusResult> Update(
             int custId,
@@ -34,8 +32,34 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
             };
 
             criteria.MapSPParam(productStatus);
-            result.Add(ExecuteNonQuery(criteria));
+            result.Add(RefineErrorMessage(ExecuteNonQuery(criteria)));
             return result;
+        }
+
+        /// <summary>
+        /// Old SP return -109, -110, -113, -114, -115, -116 as successful update message for each racing sporttype bettype. 
+        /// If failed, only 1 ErrorCode, ErrorMessage returned.
+        /// New behavior only need 1 success message, failed one will be as it is.
+        /// Solution: Truncate all success messages & leave error message untouch.
+        /// </summary>
+        /// <param name="productStatusResult"></param>
+        internal ProductStatusResult RefineErrorMessage(ProductStatusResult productStatusResult)
+        {
+            productStatusResult.ErrorCode = productStatusResult.ErrorCode.Trim(RacingSpliter);
+            productStatusResult.ErrorMessage = productStatusResult.ErrorMessage.Trim(RacingSpliter);
+            string[] errCodeArray = productStatusResult.ErrorCode.Split(RacingSpliter);
+            if (IsSuccessCode(Convert.ToInt32(errCodeArray[0])))
+            {
+                productStatusResult.ErrorCode = "0";
+                productStatusResult.ErrorMessage = string.Empty;
+            }
+
+            return productStatusResult;
+        }
+
+        private bool IsSuccessCode(int code)
+        {
+            return code >= 0;
         }
     }
 }
