@@ -127,6 +127,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 userId, 
                 actorName,
                 AppSession.CurrentSession.FromSystem, 
+                systemId,
                 JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), 
                 JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
 
@@ -151,6 +152,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 userId, 
                 actorName,
                 AppSession.CurrentSession.FromSystem, 
+                systemId,
                 JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), 
                 JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
 
@@ -175,6 +177,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 userId, 
                 actorName,
                 AppSession.CurrentSession.FromSystem, 
+                SystemId,
                 JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), 
                 JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
 

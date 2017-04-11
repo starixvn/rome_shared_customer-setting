@@ -30,7 +30,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria
 
         public override string GetSettingKey()
         {
-            return "Acc_UpdCSStatus_Cust";
+            return "Acc_UpdCSStatus";
         }
 
         public override bool IsValid()

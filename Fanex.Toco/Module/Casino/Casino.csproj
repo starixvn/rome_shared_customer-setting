@@ -180,10 +180,6 @@
       <HintPath>..\..\packages\RemotingRef.1.0.0.13\lib\net40\RemotingRef.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RemotingRef, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\RemotingRef.1.0.0.13\lib\net40\RemotingRef.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="SPSRemoting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SPSRemoting.1.0.0\lib\net40\SPSRemoting.dll</HintPath>
       <Private>True</Private>
@@ -275,6 +271,10 @@
     <Folder Include="Criteria\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Fanex.Toco.Module.Core\_Core.csproj">
+      <Project>{af2e11aa-2a92-47ac-86fa-4d48b0aeb5d7}</Project>
+      <Name>_Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\_Security\Security.csproj">
       <Project>{91E16AE3-1209-4BF2-8846-7E36363167B3}</Project>
       <Name>Security</Name>

@@ -11,8 +11,6 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product
 {
     internal abstract class ProductStatusSettingServiceBase : IProductStatusSettingService
     {
-        private static readonly int[] HiddenBettypes = { 1502, 1506, 1507, 1509 };
-
         public virtual List<ProductStatus> Select(int custId, int productId, int roleId)
         {
             var criteria = new SelectProductStatusCriteria()
@@ -43,11 +41,6 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product
                         IsHidden = Utils.ToBoolean(reader["IsHidden"]),
                         IsHiddenUpline = Utils.ToBoolean(reader["IsHiddenUpline"])
                     };
-
-                    if (this.IsHiddenBettype(producStatus.BetType))
-                    {
-                        continue;
-                    }
 
                     producStatus.GetNameFromRemotingRef();
                     result.Add(producStatus);
@@ -109,16 +102,6 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product
             {
                 throw new ArgumentNullException("ProductStatus", string.Format(Message.ArgumentCannotBeNullOrEmpty, "ProductStatus"));
             }
-        }
-
-        private bool IsHiddenBettype(int bettypeId)
-        {
-            if (Array.Find<int>(HiddenBettypes, p => p == bettypeId) != 0)
-            {
-                return true;
-            }
-
-            return false;
         }
     }
 }

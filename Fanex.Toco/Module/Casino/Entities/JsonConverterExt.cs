@@ -20,7 +20,7 @@
             serializer.Serialize(writer, value);
         }
 
-        /// Use for build NAP nuget package.
+        //// Use for build NAP nuget package.
         public override object ReadJson(JsonReader reader, Type objectType, JsonSerializer serializer)
         {
             KeyValuePair<string, int> result;

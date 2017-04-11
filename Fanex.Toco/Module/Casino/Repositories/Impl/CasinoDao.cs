@@ -66,7 +66,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
                 customerDetail.CasinoSync = Utils.ToBoolean(row["synccasino"]);
                 customerDetail.BingoSync = Utils.ToBoolean(row["syncbingo"]);
                 customerDetail.CasinoDisabled = Utils.ToBoolean(row["disablecasino"]);
-
+                customerDetail.CasinoDisabledDownline = Utils.ToBoolean(row["disablecasinodownline"]);
+                customerDetail.HasDownline = Utils.ToBoolean(row["hasdownline"]);
                 customerDetail.GoldDeluxeDisabled = Utils.ToBoolean(row["disablegolddeluxe"]);
 
                 customerDetail.LiveCasinoSync = Utils.ToBoolean(row["synclivecasino"]);
@@ -135,7 +136,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
             return Utils.ToBoolean(dr.Outputs["status"]);
         }
 
-        public bool UpdateCSStatus(int custid, bool syncCS, bool disabledCS, int userId, string ip, int subAccId, string lang, string username, string subUsername)
+        public bool UpdateCSStatus(int custid, bool syncCS, bool disabledCS, int userId, string ip, int subAccId, string lang, string username, string subUsername, byte systemId)
         {
             Hashtable param = new Hashtable();
             param.Add("custid", custid);
@@ -147,6 +148,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
             param.Add("subaccid", subAccId);
             param.Add("loginip", ip);
             param.Add("language", lang);
+            param.Add("systemid", systemId);
 
             DbResult dr = DbHelper.ExecuteDbResult("Acc_UpdCSStatus", param, 300);
 
@@ -161,7 +163,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
             return cust.UpdateCustEnableCasino(custid, !disabledCS, true, ip, custid, subAccId == 0 ? username : subUsername, 2);
         }
 
-        public bool DoUpdateCSStatusWithoutSync(int custid, bool syncCS, bool disabledCS, bool isUpdDownline, int userId, string ip, int subAccId, string lang, out string errMsg)
+        public bool DoUpdateCSStatusWithoutSync(int custid, bool syncCS, bool disabledCS, bool isUpdDownline, int userId, string ip, int subAccId, byte systemId, string lang, out string errMsg)
         {
             Hashtable param = new Hashtable();
             param.Add("custid", custid);
@@ -173,7 +175,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
             param.Add("subaccid", subAccId);
             param.Add("loginip", ip);
             param.Add("language", lang);
-
+            param.Add("systemid", systemId);
             DbResult dr = DbHelper.ExecuteDbResult("Acc_UpdCSStatus", param, 300);
 
             errMsg = dr.Outputs["errmsg"].ToString();

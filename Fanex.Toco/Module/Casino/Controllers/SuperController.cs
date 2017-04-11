@@ -16,7 +16,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
     using System;
     using System.Web.Mvc;
     using CasinoLibrary.Model.UserException;
-
+    using System.Configuration;
     public class SuperController : BaseController
     {
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
@@ -68,7 +68,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 Request.UserHostAddress, 
                 userId, 
                 actorName,
-                AppSession.CurrentSession.FromSystem, 
+                AppSession.CurrentSession.FromSystem,
+                SystemId,
                 JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), 
                 JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
 
