@@ -9,6 +9,8 @@
 
 namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Criteria
 {
+    using System;
+    using System.Configuration;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities;
     using Fanex.NAP.Framework.Data;
 
@@ -42,6 +44,22 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Criteria
         public string Ip { get; set; }
 
         public string Language { get; set; }
+
+        public int SystemId
+        {
+            get
+            {
+                int systemId;
+                string systemIdInConfig = ConfigurationManager.AppSettings["SystemId"];
+
+                if (string.IsNullOrWhiteSpace(systemIdInConfig) || !int.TryParse(systemIdInConfig, out systemId))
+                {
+                    throw new ArgumentException("SystemId is null, empty or not a integer number.", "SystemId");
+                }
+
+                return systemId;
+            }
+        }
 
         public string ErrCode { get; set; }
 
