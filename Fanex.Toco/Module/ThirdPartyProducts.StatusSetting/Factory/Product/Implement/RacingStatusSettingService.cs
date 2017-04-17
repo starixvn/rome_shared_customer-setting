@@ -59,7 +59,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
 
         private bool IsSuccessCode(int code)
         {
-            return code >= 0;
+            return code <= 0;
         }
     }
 }

@@ -16,8 +16,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Entities
     {
         public string CasinoNo { get; set; }
 
-        public bool EnableDownline { get; set; }
-
         public decimal GivenCredit { get; set; }
 
         public double MinTransferCreditLimit { get; set; }
