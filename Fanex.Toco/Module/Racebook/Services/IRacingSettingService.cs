@@ -24,7 +24,7 @@ namespace Fanex.CustomerSetting.Module.Racebook.Services
         Setting GetCustomerInfo(int custId, int roleId);
 
         Fanex.PTRacing.BusinessObjects.Result SaveCustomerSettings(
-            ICustomer oldCustomerSettings, 
+            ICustomer oldCustomerSettings,
             ICustomer newCustomerSettings,
             RequestContext currentContext,
             Hashtable otherSettings);
