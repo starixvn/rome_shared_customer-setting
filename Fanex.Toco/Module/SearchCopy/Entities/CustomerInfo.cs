@@ -29,6 +29,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Entities
 
         public byte IsSyncCasino { get; set; }
 
+        public bool IsDirectCustomer { get; set; }
+
         public byte IsSyncBingo { get; set; }
 
         public byte IsSyncLiveCasino { get; set; }

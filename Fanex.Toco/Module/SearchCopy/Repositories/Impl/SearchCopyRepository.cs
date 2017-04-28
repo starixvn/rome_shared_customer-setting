@@ -71,7 +71,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Repositories
                     custInfo.DisableBingo = Utils.ToBoolean(dataReader["disableBingo"]);
                     custInfo.DisableCasino = Utils.ToBoolean(dataReader["disableCasino"]);
                     custInfo.DisableLiveCasino = dataReader.GetOrdinal("disableLiveCasino") > -1 ? Utils.ToBoolean(dataReader["disableLiveCasino"]) : false;
-
+                    custInfo.IsDirectCustomer = Utils.ToBoolean(dataReader["IsDirectCustomer"]);
                     break;
                 }                
             }
