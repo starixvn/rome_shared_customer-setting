@@ -262,7 +262,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
 
             if (result.IsSuccessful)
             {
-                var custInfoIBC = CasinoManager.Instance.GetCustInfoIBC(existingCustId, 0);
+                    var custInfoIBC = CasinoManager.Instance.GetCustInfoIBC(existingCustId, (int)criteria["uplineid"]);
 
                 result.CommandResultsList.Add(goldDeluxeService.UpdateStatus(new UpdateDisableStatusParameters()
                 {
