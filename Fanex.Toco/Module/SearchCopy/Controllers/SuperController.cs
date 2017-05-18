@@ -235,7 +235,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             {
                 // Sync NG2
                 var ng2Service = new NG2StatusService();
-                ng2Service.AutoInsertAccount(criteria.CustId, criteria.UserName, (RoleId)criteria.CustLevel, criteria.CustLevel == 4 ? criteria.CustId : criteria.UplineId, criteria.DisableNG2, SiteId.NAP, criteria.CurrencyId, criteria.Creator);
+                ng2Service.AutoInsertAccount(criteria.CustId, criteria.UserName, (RoleId)criteria.CustLevel, criteria.CustLevel == 4 ? criteria.CustId : criteria.UplineId, criteria.DisableNG2, SiteId.NAP, criteria.CurrencyId, criteria.Creator, SystemId);
             }
         }
 
@@ -407,11 +407,12 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                 casinoManager.UpdateCSStatus(
                     custInfo.IBCCustID,
                     true,
-                    custInfo.UplineDisabledCasino ? true : customer.DisableCasino,
-                    custInfo.EnableDownline,
+                    custInfo.UplineDisabledCasino ? true : custInfo.CasinoDisabled,
+                    !custInfo.CasinoDisabledDownline,
                     custInfo.UpperCustID,
                     string.Empty,
                     0,
+                    SystemId,
                     "en",
                     custInfo.UserName,
                     string.Empty,
@@ -440,6 +441,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                     custInfo.UpperCustID,
                     string.Empty,
                     0,
+                    SystemId,
                     "en",
                     custInfo.UserName,
                     string.Empty,

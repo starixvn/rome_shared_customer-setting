@@ -281,9 +281,9 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
         private VSResult CopyVirtualSports(Hashtable criteria, int existingCustId, string ipAddress)
         {
             VSResult result = null;
-            var task = Task.Factory.StartNew(() =>
+            try
             {
-
+                
                 var oldCustomerContext = new RequestContext
                 {
                     CustId = (int)criteria["userid"],
@@ -314,15 +314,8 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
 
                 var customerService = new CustomerService();
                 var oldCustomer = customerService.GetCustomer(oldCustomerContext);
-
                 CheckConstraintData(ref oldCustomer);
-
                 result = customerService.SaveCustomer(null, oldCustomer, currentContext, null);
-            });
-
-            try
-            {
-                task.Wait();
             }
             catch (AggregateException ae)
             {
@@ -373,7 +366,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
         private Core.Models.Result CopyDCS(Hashtable criteria, int existingCustId, string ipAddress)
         {
             Core.Models.Result result = null;
-            var task = Task.Factory.StartNew(() =>
+            try
             {
                 IDCSSettingCopyInsertMemberService _dcsSettingService = new DCSSettingCopyInsertMemberService();
                 result = _dcsSettingService.CorrectMemberPositionTaking(new DCSSettingCopyInsertMemberCriteria
@@ -383,11 +376,6 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
                     UserID = (int)criteria["userid"],
                     IpAddress = ipAddress
                 });
-            });
-
-            try
-            {
-                task.Wait();
             }
             catch (AggregateException ae)
             {
