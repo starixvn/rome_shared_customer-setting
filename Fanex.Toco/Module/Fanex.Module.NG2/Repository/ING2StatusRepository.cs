@@ -6,6 +6,6 @@ namespace Fanex.Module.NG2.Repository
     {
         Result SyncStatus(int custId, int userId, string ip, int subAccId = 0);
 
-        Result EnableStatus(int custId, int userId, bool disabled, string ip, int subAccId = 0);
+        Result EnableStatus(int custId, int userId, bool disabled, string ip, byte systemId, int subAccId = 0);
     }
 }

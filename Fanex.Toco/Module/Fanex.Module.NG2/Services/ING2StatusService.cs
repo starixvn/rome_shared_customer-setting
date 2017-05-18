@@ -6,7 +6,7 @@ namespace Fanex.Module.NG2.Services
     {
         Result SyncStatus(int custId, int userId, string ip, int subAccId = 0);
 
-        Result EnableStatus(int custId, int userId, bool disabled, string ip, int subAccId = 0);
+        Result EnableStatus(int custId, int userId, bool disabled, string ip, byte systemId, int subAccId = 0);
 
         Result AutoInsertAccount(
             int custId, 
@@ -16,7 +16,8 @@ namespace Fanex.Module.NG2.Services
             bool uplineDisabled, 
             SiteId siteId, 
             int currencyId, 
-            int userId, 
+            int userId,
+            byte systemId,
             string language = "en-US", 
             int subAccId = 0);
 
