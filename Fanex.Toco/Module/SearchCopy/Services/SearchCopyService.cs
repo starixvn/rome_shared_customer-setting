@@ -228,66 +228,51 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
 
         private IMultipleCommandResults CopyGoldDeluxe(Hashtable criteria, int existingCustId, string ipAddress)
         {
-            IMultipleCommandResults result = null;
-            var task = Task.Factory.StartNew(() =>
+            IMultipleCommandResults result = null;            
+            int custId = (int)criteria["custid"];
+            int actorId = (int)criteria["userid"];
+
+            var goldDeluxeService = new SettingService();
+
+            result = goldDeluxeService.UpdateSettingFromExistingMember(new UpdateSettingFromExistingMemberParameters
             {
-                int custId = (int)criteria["custid"];
-                int actorId = (int)criteria["userid"];
-
-                var goldDeluxeService = new SettingService();
-
-                result = goldDeluxeService.UpdateSettingFromExistingMember(new UpdateSettingFromExistingMemberParameters
-                {
-                    CustId = custId,
-                    FromCustId = existingCustId,
-                    UpLineId = (int)criteria["userid"],
-                    ActorId = actorId,
-                    SubAccId = 0,
-                    Ip = ipAddress,
-                    Language = CultureInfo.CurrentCulture.Name
-                });
-
-                var model = new EditSettingViewModel
-                {
-                    CustId = existingCustId,
-                    UpLineId = (int)criteria["uplineid"],
-                    Level = GoldDeluxe.CoreSetting.Enumerations.CustomerLevel.Member,
-                    UpLineLevel = GoldDeluxe.CoreSetting.Enumerations.CustomerLevel.Agent,
-                    ActorId = actorId,
-                    Language = "en-US",
-                    FormType = GoldDeluxe.CoreSetting.Enumerations.FormType.Edit
-                };
-
-                var param = Mapper.Map<EditSettingViewModel, GetSettingParameters>(model);
-                var setting = goldDeluxeService.GetSetting(param);
-                goldDeluxeService.UpdateGameSetting(new UpdateGameSettingParameters { ActorId = actorId, CustId = custId, GameSetting = setting.GameSetting, Ip = ipAddress, Language = "en-US" });
-
-                if (result.IsSuccessful)
-                {
-                    var custInfoIBC = CasinoManager.Instance.GetCustInfoIBC(existingCustId, 0);
-
-                    result.CommandResultsList.Add(goldDeluxeService.UpdateStatus(new UpdateDisableStatusParameters()
-                    {
-                        CustId = custId,
-                        Disable = custInfoIBC.GoldDeluxeDisabled,
-                        EnableDownlines = false,
-                        ActorId = actorId,
-                        SubAccId = 0,
-                        Ip = ipAddress
-                    }));
-                }
+                CustId = custId,
+                FromCustId = existingCustId,
+                UpLineId = (int)criteria["userid"],
+                ActorId = actorId,
+                SubAccId = 0,
+                Ip = ipAddress,
+                Language = CultureInfo.CurrentCulture.Name
             });
 
-            try
+            var model = new EditSettingViewModel
             {
-                task.Wait();
-            }
-            catch (AggregateException ae)
+                CustId = existingCustId,
+                UpLineId = (int)criteria["uplineid"],
+                Level = GoldDeluxe.CoreSetting.Enumerations.CustomerLevel.Member,
+                UpLineLevel = GoldDeluxe.CoreSetting.Enumerations.CustomerLevel.Agent,
+                ActorId = actorId,
+                Language = "en-US",
+                FormType = GoldDeluxe.CoreSetting.Enumerations.FormType.Edit
+            };
+
+            var param = Mapper.Map<EditSettingViewModel, GetSettingParameters>(model);
+            var setting = goldDeluxeService.GetSetting(param);
+            goldDeluxeService.UpdateGameSetting(new UpdateGameSettingParameters { ActorId = actorId, CustId = custId, GameSetting = setting.GameSetting, Ip = ipAddress, Language = "en-US" });
+
+            if (result.IsSuccessful)
             {
-                foreach (var ex in ae.InnerExceptions)
+                var custInfoIBC = CasinoManager.Instance.GetCustInfoIBC(existingCustId, 0);
+
+                result.CommandResultsList.Add(goldDeluxeService.UpdateStatus(new UpdateDisableStatusParameters()
                 {
-                    ex.Write();
-                }
+                    CustId = custId,
+                    Disable = custInfoIBC.GoldDeluxeDisabled,
+                    EnableDownlines = false,
+                    ActorId = actorId,
+                    SubAccId = 0,
+                    Ip = ipAddress
+                }));
             }
 
             return result;
