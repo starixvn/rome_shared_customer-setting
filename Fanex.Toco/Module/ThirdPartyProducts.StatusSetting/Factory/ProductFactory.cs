@@ -11,7 +11,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory
 
         public static ProductStatusSettingServiceBase CreateInstance(int productId)
         {
-            var productName = ((ProductEnum)productId).ToString();
+            var productName = ((Enums.Product)productId).ToString();
             return (ProductStatusSettingServiceBase)Activator.CreateInstance(
                 Type.GetType(
                     string.Format(

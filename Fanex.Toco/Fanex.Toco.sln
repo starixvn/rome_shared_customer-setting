@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{99A825B1-BE53-4620-8177-783BE55A6F21}"
 EndProject
@@ -88,7 +88,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThirdPartyProducts.StatusSe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Racebook.Resources", "Module\Racebook.Resources\Racebook.Resources.csproj", "{12AF9E40-FCCD-4570-9035-607C7E4E8C27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThirdPartyProducts.StatusSettingTests", "ThirdPartyProducts.StatusSettingTests\ThirdPartyProducts.StatusSettingTests.csproj", "{2FDF1BFC-D7D0-4F06-8EC7-E5774E33F5CE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{CC5117F5-38F3-4790-AFF4-1A3D583E87C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThirdPartyProducts.StatusSetting.Test", "ThirdPartyProducts.StatusSetting.Test\ThirdPartyProducts.StatusSetting.Test.csproj", "{C197B7D8-341D-48E9-8168-3CF273545A99}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SonarQube", "SonarQube", "{FA51B955-0890-486E-8C4C-BBA06B42D468}"
+	ProjectSection(SolutionItems) = preProject
+		SonarQube\Customer.SettingCSharp.ruleset = SonarQube\Customer.SettingCSharp.ruleset
+		SonarQube\SolutionBinding.sqconfig = SonarQube\SolutionBinding.sqconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -212,10 +220,10 @@ Global
 		{12AF9E40-FCCD-4570-9035-607C7E4E8C27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12AF9E40-FCCD-4570-9035-607C7E4E8C27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12AF9E40-FCCD-4570-9035-607C7E4E8C27}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2FDF1BFC-D7D0-4F06-8EC7-E5774E33F5CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2FDF1BFC-D7D0-4F06-8EC7-E5774E33F5CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2FDF1BFC-D7D0-4F06-8EC7-E5774E33F5CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2FDF1BFC-D7D0-4F06-8EC7-E5774E33F5CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C197B7D8-341D-48E9-8168-3CF273545A99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C197B7D8-341D-48E9-8168-3CF273545A99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C197B7D8-341D-48E9-8168-3CF273545A99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C197B7D8-341D-48E9-8168-3CF273545A99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -256,5 +264,6 @@ Global
 		{D07D42D2-EC3E-4DCC-8AD7-7A9DBBF36D57} = {35597BDC-D8EC-4E5C-BDEC-DB5C273D5D00}
 		{2A82BC2F-A685-4D5A-AB23-0A4C8FEE4BD2} = {35597BDC-D8EC-4E5C-BDEC-DB5C273D5D00}
 		{12AF9E40-FCCD-4570-9035-607C7E4E8C27} = {8437DA5E-8BC0-4BDC-AB04-CFC2FC306A72}
+		{C197B7D8-341D-48E9-8168-3CF273545A99} = {CC5117F5-38F3-4790-AFF4-1A3D583E87C7}
 	EndGlobalSection
 EndGlobal

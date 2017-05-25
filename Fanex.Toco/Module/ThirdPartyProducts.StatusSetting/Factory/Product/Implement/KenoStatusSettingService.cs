@@ -29,13 +29,13 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
             Validate(custId, subAccId, productId, userId, systemId, ip, productStatus);
             foreach (var item in productStatus)
             {
-                var criteria = new UpdateKenoStatusCriteria()
+                var criteria = new UpdateKenoStatusCriteria
                 {
                     CustId = custId,
                     Bettype = item.BetType,
                     UplineId = uplineId,
-                    IP = ip,
-                    Language = Utils.GetLanguageKeyForSQL(),
+                    Ip = ip,
+                    Language = Utils.GetLanguageKeyForSql(),
                     SubAccId = subAccId,
                     UserId = userId,
                     SystemId = systemId,
@@ -49,7 +49,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
             return result;
         }
 
-        private ProductStatusResult RefineErrorMessage(ProductStatus input, ProductStatusResult output)
+        private static ProductStatusResult RefineErrorMessage(ProductStatus input, ProductStatusResult output)
         {
             if (Convert.ToInt32(output.ErrorCode) != 0)
             {
@@ -59,7 +59,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
             return output;
         }
 
-        private bool IsHiddenBettype(int bettypeId)
+        private static bool IsHiddenBettype(int bettypeId)
         {
             if (Array.Find<int>(HiddenBettypes, p => p == bettypeId) != 0)
             {

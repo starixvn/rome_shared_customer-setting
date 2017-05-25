@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>ThirdPartyProducts.StatusSetting.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>ThirdPartyProducts.StatusSetting.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Fanex.Common, Version=1.0.404.97, Culture=neutral, processorArchitecture=MSIL">
@@ -107,6 +109,7 @@
     <Compile Include="Factory\Product\Implement\CasinoStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\ColossusBetStatusSettingService.cs" />
     <Compile Include="Factory\Product\ProductStatusSettingServiceBase.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Model\ProductStatus.cs" />
     <Compile Include="Model\ProductStatusResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -258,6 +261,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="ThirdPartyProducts.StatusSetting.ruleset" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\BetTypeName.zh-CN.resx">
@@ -373,7 +377,11 @@
       <LastGenOutput>SportName.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.5.10.1.1411\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.5.10.1.1411\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.5.10.1.1411\analyzers\SonarAnalyzer.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

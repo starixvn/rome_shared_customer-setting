@@ -14,7 +14,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria
 
         public string Language { get; set; }
 
-        public string IP { get; set; }
+        public string Ip { get; set; }
 
         public int SystemId { get; set; }
 
@@ -64,7 +64,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria
             return true;
         }
 
-        public void MapSPParam(List<ProductStatus> productStatus)
+        public void MapSpParam(List<ProductStatus> productStatus)
         {
             foreach (var item in productStatus)
             {
@@ -82,7 +82,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria
                         this.DisableDownlines151_41 = item.IsDisabledDownline;
                         this.UpdateDisable151_41 = true;
                     }
-                    else if (item.BetType == 51)
+                    else 
                     {
                         this.Disable151_51 = item.IsDisabled;
                         this.DisableDownlines151_51 = item.IsDisabledDownline;
@@ -97,14 +97,14 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria
                         this.DisableDownlines152_41 = item.IsDisabledDownline;
                         this.UpdateDisable152_41 = true;
                     }
-                    else if (item.BetType == 51)
+                    else
                     {
                         this.Disable152_51 = item.IsDisabled;
                         this.DisableDownlines152_51 = item.IsDisabledDownline;
                         this.UpdateDisable152_51 = true;
                     }
                 }
-                else if (item.SportType == 153)
+                else
                 {
                     if (item.BetType == 51)
                     {

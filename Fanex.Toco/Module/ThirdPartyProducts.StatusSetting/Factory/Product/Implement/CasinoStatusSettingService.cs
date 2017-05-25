@@ -18,11 +18,11 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
         {
             var result = new List<ProductStatusResult>();
             Validate(custId, subAccId, productId, userId, systemId, ip, productStatus);
-            var criteria = new UpdateCasinoStatusCriteria()
+            var criteria = new UpdateCasinoStatusCriteria
             {
                 CustId = custId,
                 LoginIP = ip,
-                Language = Utils.GetLanguageKeyForSQL(),
+                Language = Utils.GetLanguageKeyForSql(),
                 SubAccId = subAccId,
                 UserId = userId,
                 SystemId = systemId,

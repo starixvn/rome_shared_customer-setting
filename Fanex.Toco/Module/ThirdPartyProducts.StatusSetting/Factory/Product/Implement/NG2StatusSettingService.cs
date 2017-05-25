@@ -12,7 +12,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
     {
         public override List<ProductStatus> Select(int custId, int productId, int roleId)
         {
-            var criteria = new SelectNG2ProductStatusCriteria()
+            var criteria = new SelectNG2ProductStatusCriteria
             {
                 CustId = custId,
                 ProductId = productId
@@ -25,9 +25,9 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
                 var reader = db.ExecuteReader();
                 while (reader.Read())
                 {
-                    var producStatus = new ProductStatus()
+                    var producStatus = new ProductStatus
                     {
-                        ProductId = (int)ProductEnum.NG2,
+                        ProductId = (int)Enums.Product.NG2,
                         BetType = Utils.ToInt32(reader["Bettype"]),
                         SportType = Utils.ToInt32(reader["Sporttype"]),
                         IsDisabled = Utils.ToBoolean(reader["IsDisabled"]),
@@ -58,17 +58,17 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
         {
             var result = new List<ProductStatusResult>();
             Validate(custId, subAccId, productId, userId, systemId, ip, productStatus);
-            var criteria = new UpdateNG2ProductStatusCriteria()
+            var criteria = new UpdateNG2ProductStatusCriteria
             {
                 CustId = custId,
                 SubAccId = subAccId,
                 UserId = userId,
-                IP = ip,
+                Ip = ip,
                 SystemId = systemId
             };
 
-            criteria.MapSPParams(productStatus);
-            result.Add(ConvertXMLErrorMessage(ExecuteNonQuery(criteria), false));
+            criteria.MapSpParams(productStatus);
+            result.Add(ConvertXmlErrorMessage(ExecuteNonQuery(criteria), false));
             return result;
         }
     }

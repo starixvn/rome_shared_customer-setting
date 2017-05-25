@@ -12,13 +12,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria
 
         public bool DisabledCS { get; set; }
 
-        public bool SyncCS
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public const bool SyncCS = true;
 
         public int SystemId { get; set; }
 

@@ -13,7 +13,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product
     {
         public virtual List<ProductStatus> Select(int custId, int productId, int roleId)
         {
-            var criteria = new SelectProductStatusCriteria()
+            var criteria = new SelectProductStatusCriteria
             {
                 CustId = custId,
                 ProductId = productId
@@ -26,7 +26,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product
                 var reader = db.ExecuteReader();
                 while (reader.Read())
                 {
-                    var producStatus = new ProductStatus()
+                    var producStatus = new ProductStatus
                     {
                         ProductId = Utils.ToInt32(reader["ProductID"]),
                         BetType = Utils.ToInt32(reader["Bettype"]),
@@ -67,10 +67,10 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product
                 db.AssignParamValues(criteria.GetSpParams());
                 db.ExecuteNonQuery();
                 var outputs = db.GetOuputParams();
-                return new ProductStatusResult()
+                return new ProductStatusResult
                 {
-                    ErrorCode = db.GetOuputParams()["errcode"].ToString(),
-                    ErrorMessage = db.GetOuputParams()["errmsg"].ToString()
+                    ErrorCode = outputs["errcode"].ToString(),
+                    ErrorMessage = outputs["errmsg"].ToString()
                 };
             }
         }
@@ -95,12 +95,12 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product
 
             if (string.IsNullOrEmpty(ip))
             {
-                throw new ArgumentOutOfRangeException("IP", productId, string.Format(Message.ArgumentCannotBeNullOrEmpty, "IP"));
+                throw new ArgumentOutOfRangeException("ip", productId, string.Format(Message.ArgumentCannotBeNullOrEmpty, "ip"));
             }
 
             if (productStatus == null || productStatus.Count == 0)
             {
-                throw new ArgumentNullException("ProductStatus", string.Format(Message.ArgumentCannotBeNullOrEmpty, "ProductStatus"));
+                throw new ArgumentNullException("productStatus", string.Format(Message.ArgumentCannotBeNullOrEmpty, "productStatus"));
             }
         }
     }

@@ -10,13 +10,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria
 
         public int RoleId { get; set; }
 
-        public int SettingType
-        {
-            get
-            {
-                return 13;
-            }
-        }
+        public const int SettingType = 13;
 
         public override string GetSettingKey()
         {

@@ -16,7 +16,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria.DCS
 
         public int UserId { get; set; }
 
-        public string IP { get; set; }
+        public string Ip { get; set; }
 
         public int SystemId { get; set; }
 
@@ -30,7 +30,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria.DCS
             return true;
         }
 
-        public void MapSPParams(List<ProductStatus> productStatus)
+        public void MapSpParams(List<ProductStatus> productStatus)
         {
             string productStatusFormat = "<ProductStatus SportType=\"{0}\" BetType=\"{1}\" IsDisabled=\"{2}\" IsDisabledDownline=\"{3}\" />";
             var writer = new StringBuilder();

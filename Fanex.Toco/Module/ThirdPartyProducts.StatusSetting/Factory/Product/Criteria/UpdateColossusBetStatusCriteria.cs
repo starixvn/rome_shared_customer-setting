@@ -18,7 +18,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria
 
         public string Language { get; set; }
 
-        public string IP { get; set; }
+        public string Ip { get; set; }
 
         public override string GetSettingKey()
         {

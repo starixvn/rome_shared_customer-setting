@@ -13,7 +13,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement.DCS
     {
         public override List<ProductStatus> Select(int custId, int productId, int roleId)
         {
-            var criteria = new SelectDCSProductStatusCriteria()
+            var criteria = new SelectDCSProductStatusCriteria
             {
                 CustId = custId,
                 ProductId = productId,
@@ -27,7 +27,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement.DCS
                 var reader = db.ExecuteReader();
                 while (reader.Read())
                 {
-                    var producStatus = new ProductStatus()
+                    var producStatus = new ProductStatus
                     {
                         ProductId = Utils.ToInt32(reader["ProductID"]),
                         BetType = Utils.ToInt32(reader["Bettype"]),
@@ -63,23 +63,23 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement.DCS
         {
             var result = new List<ProductStatusResult>();
             Validate(custId, subAccId, productId, userId, systemId, ip, productStatus);
-            var criteria = new UpdateDCSProductStatusCriteria()
+            var criteria = new UpdateDCSProductStatusCriteria
             {
                 CustId = custId,
                 SubAccId = subAccId,
                 UserId = userId,
-                IP = ip,
+                Ip = ip,
                 SystemId = systemId
             };
 
-            criteria.MapSPParams(productStatus);
+            criteria.MapSpParams(productStatus);
             result.Add(ExecuteNonQuery(criteria));
             return result;
         }
 
-        internal ProductStatusResult ConvertXMLErrorMessage(ProductStatusResult productStatusResultWithXmlErrorMessage, bool showBettypes)
+        internal ProductStatusResult ConvertXmlErrorMessage(ProductStatusResult productStatusResultWithXmlErrorMessage, bool showBettypes)
         {
-            var result = new ProductStatusResult()
+            var result = new ProductStatusResult
             {
                 ErrorCode = productStatusResultWithXmlErrorMessage.ErrorCode,
                 ErrorMessage = productStatusResultWithXmlErrorMessage.ErrorMessage
@@ -95,7 +95,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement.DCS
                 var childNodes = xmlDoc.FirstChild.ChildNodes;
                 if (showBettypes)
                 {
-                    foreach (XmlNode node in xmlDoc.FirstChild.ChildNodes)
+                    foreach (XmlNode node in childNodes)
                     {
                         string bettypeName = Utils.GetBetTypeName(node.Attributes["BetType"].Value, language);
                         newErrorMessage.Append("\r\n\t");
@@ -103,7 +103,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement.DCS
                     }
                 }
 
-                return new ProductStatusResult()
+                return new ProductStatusResult
                 {
                     ErrorMessage = newErrorMessage.ToString(),
                     ErrorCode = errCode

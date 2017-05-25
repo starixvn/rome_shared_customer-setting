@@ -21,7 +21,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
             var result = base.Update(custId, subAccId, uplineId, productId, userId, systemId, ip, productStatus);
             if (result.Count > 0)
             {
-                result[0] = ConvertXMLErrorMessage(result[0], true);
+                result[0] = ConvertXmlErrorMessage(result[0], true);
             }
 
             return result;

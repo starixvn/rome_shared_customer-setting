@@ -40,7 +40,7 @@ namespace ThirdPartyProducts.StatusSetting
 
         internal static decimal ToDecimal(object value)
         {
-            var val = 0.0m;
+            decimal val;
 
             if (value == null || value == DBNull.Value || value.ToString() == string.Empty)
             {
@@ -97,7 +97,7 @@ namespace ThirdPartyProducts.StatusSetting
 
         internal static DateTime ToDateTime(object value)
         {
-            var val = DateTime.MinValue;
+            DateTime val;
 
             if (value == null || value == DBNull.Value || value.ToString() == string.Empty)
             {
@@ -151,12 +151,11 @@ namespace ThirdPartyProducts.StatusSetting
             return val;
         }
 
-        internal static string GetLanguageKeyForSQL()
+        internal static string GetLanguageKeyForSql()
         {
             var langCode = Thread.CurrentThread.CurrentCulture.Name;
             switch (langCode)
             {
-                case "en-US": return "E";
                 case "ja-JP": return "J";
                 case "zh-TW": return "CT";
                 case "zh-CN": return "CS";
@@ -170,7 +169,6 @@ namespace ThirdPartyProducts.StatusSetting
             var langCode = Thread.CurrentThread.CurrentCulture.Name;
             switch (langCode)
             {
-                case "en-US": return "en";
                 case "zh-TW": return "ch"; // Traditional
                 case "zh-CN": return "cs"; // Simplified
                 case "ja-JP": return "jp";
@@ -191,7 +189,7 @@ namespace ThirdPartyProducts.StatusSetting
             var sportName = Resources.SportName.ResourceManager.GetString("Sport_" + sportType);
             if (string.IsNullOrEmpty(sportName))
             {
-                sportName = RefData.GetSportName(sportType.ToString(), language, string.Empty);
+                sportName = RefData.GetSportName(sportType, language, string.Empty);
             }
 
             return sportName;
@@ -202,7 +200,7 @@ namespace ThirdPartyProducts.StatusSetting
             var betTypeName = Resources.BetTypeName.ResourceManager.GetString("BetType_" + betType);
             if (string.IsNullOrEmpty(betTypeName))
             {
-                betTypeName = RefData.GetBetTypeName(betType.ToString(), language, string.Empty);
+                betTypeName = RefData.GetBetTypeName(betType, language, string.Empty);
             }
 
             return betTypeName;

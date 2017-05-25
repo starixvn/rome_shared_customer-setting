@@ -21,17 +21,17 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
         {
             var result = new List<ProductStatusResult>();
             Validate(custId, subAccId, productId, userId, systemId, ip, productStatus);
-            var criteria = new UpdateRacingStatusCriteria()
+            var criteria = new UpdateRacingStatusCriteria
             {
                 CustId = custId,
-                IP = ip,
-                Language = Utils.GetLanguageKeyForSQL(),
+                Ip = ip,
+                Language = Utils.GetLanguageKeyForSql(),
                 SubAccId = subAccId,
                 UserId = userId,
                 SystemId = systemId
             };
 
-            criteria.MapSPParam(productStatus);
+            criteria.MapSpParam(productStatus);
             result.Add(RefineErrorMessage(ExecuteNonQuery(criteria)));
             return result;
         }
@@ -43,7 +43,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
         /// Solution: Truncate all success messages & leave error message untouch.
         /// </summary>
         /// <param name="productStatusResult"></param>
-        internal ProductStatusResult RefineErrorMessage(ProductStatusResult productStatusResult)
+        static internal ProductStatusResult RefineErrorMessage(ProductStatusResult productStatusResult)
         {
             productStatusResult.ErrorCode = productStatusResult.ErrorCode.Trim(RacingSpliter);
             productStatusResult.ErrorMessage = productStatusResult.ErrorMessage.Trim(RacingSpliter);
@@ -57,7 +57,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
             return productStatusResult;
         }
 
-        private bool IsSuccessCode(int code)
+        private static bool IsSuccessCode(int code)
         {
             return code <= 0;
         }
