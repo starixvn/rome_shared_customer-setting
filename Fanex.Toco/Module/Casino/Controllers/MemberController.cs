@@ -110,7 +110,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
         [CasinoUMTimeFilter]
-        [AntiXSRFFilter]
+        [AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
         public ActionResult UpdateMemberPost(int id, string username, int uplineId, int userId, string actorName, string settingModel, string customerModel, string groupName = null)
         {
             if (!IsBelong(id, groupName))
@@ -135,7 +135,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
         [CasinoUMTimeFilter]
-        [AntiXSRFFilter]
+        [AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
         public ActionResult UpdateMemberBySuperPost(int id, int uplineId, int userId, string actorName, string settingModel, string customerModel, string groupName = null)
         {
             if (!IsBelong(id, groupName))
@@ -159,7 +159,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
         [CasinoUMTimeFilter]
-        [AntiXSRFFilter]
+        [AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
         public ActionResult UpdateMemberByMasterPost(int id, int uplineId, int userId, string actorName, string settingModel, string customerModel, string groupName = null)
         {
             if (!IsBelong(id, groupName))
