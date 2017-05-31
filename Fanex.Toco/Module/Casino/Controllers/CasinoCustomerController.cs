@@ -70,6 +70,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Transfer")]
         [CasinoUMTimeFilter]
+        [AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
         public ActionResult ResetMaxTransfer(int id, string groupName = null)
         {
             var authenticateService = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
@@ -104,6 +105,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
+        [AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
         public ActionResult GetCurrentWinLimit(int id, string groupName = null)
         {
             var authenticateService = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;

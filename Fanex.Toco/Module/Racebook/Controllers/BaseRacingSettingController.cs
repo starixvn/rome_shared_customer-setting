@@ -97,6 +97,7 @@ namespace Fanex.CustomerSetting.Module.Racebook.Controllers
         /// <returns>Return JSON result.</returns>
         [HttpPost]
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Racing")]
+        [AntiXSRFFilter]
         public ActionResult UpdateCustomerSetting(Customer oldSettings, Customer newSettings, RequestContext currentContext, Dictionary<object, object> otherSettings, string groupName = null)
         {
             var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
