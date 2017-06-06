@@ -61,7 +61,7 @@ namespace ThirdPartyProducts.StatusSetting.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {} cannot be null or empty..
+        ///   Looks up a localized string similar to {0} cannot be null or empty..
         /// </summary>
         internal static string ArgumentCannotBeNullOrEmpty {
             get {
@@ -70,7 +70,7 @@ namespace ThirdPartyProducts.StatusSetting.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {} must greater than zero..
+        ///   Looks up a localized string similar to {0} must greater than zero..
         /// </summary>
         internal static string ArgumentMustGreaterThanZero {
             get {
@@ -79,7 +79,7 @@ namespace ThirdPartyProducts.StatusSetting.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {} must be either 1,2 or 4 value..
+        ///   Looks up a localized string similar to {0} must be either 1,2 or 4 value..
         /// </summary>
         internal static string ArgumentSystemIdMustBeInRange {
             get {

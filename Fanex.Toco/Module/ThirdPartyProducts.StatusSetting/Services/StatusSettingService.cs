@@ -8,7 +8,7 @@ namespace ThirdPartyProducts.StatusSetting.Services
     {
         public List<ProductStatus> GetProductStatus(int custId, int productId, int roleId)
         {
-            var productService = ProductFactory.CreateInstance(productId);
+            var productService = ProductFactory.CreateProductServiceFunc(productId);
             return productService.Select(custId, productId, roleId);
         }
 
@@ -22,7 +22,7 @@ namespace ThirdPartyProducts.StatusSetting.Services
             string ip, 
             List<ProductStatus> productStatus)
         {
-            var productService = ProductFactory.CreateInstance(productId);
+            var productService = ProductFactory.CreateProductServiceFunc(productId);
             return productService.Update(custId, subAccId, uplineId, productId, userId, systemId, ip, productStatus);
         }
     }

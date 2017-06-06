@@ -2,10 +2,12 @@
 using Fanex.NAP.Framework.Data;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using ThirdPartyProducts.StatusSetting.Factory.Product.Criteria;
 using ThirdPartyProducts.StatusSetting.Factory.Product.Interface;
 using ThirdPartyProducts.StatusSetting.Model;
 using ThirdPartyProducts.StatusSetting.Resources;
+using System.Linq;
 
 namespace ThirdPartyProducts.StatusSetting.Factory.Product
 {
@@ -19,35 +21,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product
                 ProductId = productId
             };
 
-            var result = new List<ProductStatus>();
-            using (var db = new ObjectDb(criteria.GetSettingKey()))
-            {
-                db.AssignParamValues(criteria.GetSpParams());
-                var reader = db.ExecuteReader();
-                while (reader.Read())
-                {
-                    var producStatus = new ProductStatus
-                    {
-                        ProductId = Utils.ToInt32(reader["ProductID"]),
-                        BetType = Utils.ToInt32(reader["Bettype"]),
-                        SportType = Utils.ToInt32(reader["Sporttype"]),
-                        IsDisabled = Utils.ToBoolean(reader["IsDisabled"]),
-                        IsDisabledUpline = Utils.ToBoolean(reader["IsDisabledUpline"]),
-                        IsDisabledDownline = Utils.ToBoolean(reader["IsDisabledDownline"]),
-                        HasDownline = Utils.ToBoolean(reader["HasDownline"]),
-                        IsSync = Utils.ToBoolean(reader["IsSync"]),
-                        IsSyncedUpline = Utils.ToBoolean(reader["IsSyncedUpline"]),
-                        IsSyncedDownline = Utils.ToBoolean(reader["IsSyncedDownline"]),
-                        IsHidden = Utils.ToBoolean(reader["IsHidden"]),
-                        IsHiddenUpline = Utils.ToBoolean(reader["IsHiddenUpline"])
-                    };
-
-                    producStatus.GetNameFromRemotingRef();
-                    result.Add(producStatus);
-                }
-
-                return result;
-            }
+            return ObjectDbFactory.ExecuteReaderFunc(criteria, MapSpData).ToList();
         }
 
         public abstract List<ProductStatusResult> Update(
@@ -60,19 +34,36 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product
             string ip,
             List<ProductStatus> productStatus);
 
+        protected virtual ProductStatus MapSpData(IDataRecord record)
+        {
+            var producStatus = new ProductStatus
+            {
+                ProductId = Utils.ToInt32(record["ProductID"]),
+                BetType = Utils.ToInt32(record["Bettype"]),
+                SportType = Utils.ToInt32(record["Sporttype"]),
+                IsDisabled = Utils.ToBoolean(record["IsDisabled"]),
+                IsDisabledUpline = Utils.ToBoolean(record["IsDisabledUpline"]),
+                IsDisabledDownline = Utils.ToBoolean(record["IsDisabledDownline"]),
+                HasDownline = Utils.ToBoolean(record["HasDownline"]),
+                IsSync = Utils.ToBoolean(record["IsSync"]),
+                IsSyncedUpline = Utils.ToBoolean(record["IsSyncedUpline"]),
+                IsSyncedDownline = Utils.ToBoolean(record["IsSyncedDownline"]),
+                IsHidden = Utils.ToBoolean(record["IsHidden"]),
+                IsHiddenUpline = Utils.ToBoolean(record["IsHiddenUpline"])
+            };
+
+            producStatus.GetNameFromRemotingRef();
+            return producStatus;
+        }
+
         protected ProductStatusResult ExecuteNonQuery(CriteriaBase criteria)
         {
-            using (var db = new ObjectDb(criteria.GetSettingKey()))
+            var outputs = ObjectDbFactory.ExecuteNonQueryFunc(criteria);
+            return new ProductStatusResult
             {
-                db.AssignParamValues(criteria.GetSpParams());
-                db.ExecuteNonQuery();
-                var outputs = db.GetOuputParams();
-                return new ProductStatusResult
-                {
-                    ErrorCode = outputs["errcode"].ToString(),
-                    ErrorMessage = outputs["errmsg"].ToString()
-                };
-            }
+                ErrorCode = outputs["errcode"].ToString(),
+                ErrorMessage = outputs["errmsg"].ToString()
+            };
         }
 
         protected virtual void Validate(int custId, int subAccId, int productId, int userId, int systemId, string ip, List<ProductStatus> productStatus)
@@ -90,12 +81,12 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product
 
             if (systemId != 1 && systemId != 2 && systemId != 4)
             {
-                throw new ArgumentOutOfRangeException("systemId", productId, string.Format(Message.ArgumentSystemIdMustBeInRange, "SystemId"));
+                throw new ArgumentOutOfRangeException("systemId", systemId, string.Format(Message.ArgumentSystemIdMustBeInRange, "SystemId"));
             }
 
             if (string.IsNullOrEmpty(ip))
             {
-                throw new ArgumentOutOfRangeException("ip", productId, string.Format(Message.ArgumentCannotBeNullOrEmpty, "ip"));
+                throw new ArgumentNullException("ip", string.Format(Message.ArgumentCannotBeNullOrEmpty, "ip"));
             }
 
             if (productStatus == null || productStatus.Count == 0)

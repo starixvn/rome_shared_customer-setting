@@ -10,48 +10,6 @@ namespace ThirdPartyProducts.StatusSetting
 {
     internal static class Utils
     {
-        internal static byte ToByte(object value)
-        {
-            byte val = 0;
-
-            if (value == null || value == DBNull.Value || value.ToString() == string.Empty)
-            {
-                return val;
-            }
-
-            byte.TryParse(value.ToString(), out val);
-
-            return val;
-        }
-
-        internal static short ToInt16(object value)
-        {
-            short val = 0;
-
-            if (value == null || value == DBNull.Value || value.ToString() == string.Empty)
-            {
-                return val;
-            }
-
-            short.TryParse(value.ToString(), out val);
-
-            return val;
-        }
-
-        internal static decimal ToDecimal(object value)
-        {
-            decimal val;
-
-            if (value == null || value == DBNull.Value || value.ToString() == string.Empty)
-            {
-                return 0.0m;
-            }
-
-            decimal.TryParse(value.ToString(), out val);
-
-            return val;
-        }
-
         internal static bool ToBoolean(object value)
         {
             var val = false;
@@ -67,48 +25,10 @@ namespace ThirdPartyProducts.StatusSetting
             }
 
             bool.TryParse(value.ToString(), out val);
-
+            
             return val;
         }
-
-        internal static string ToString(object value)
-        {
-            if (value == null || value == DBNull.Value || value.ToString() == string.Empty)
-            {
-                return string.Empty;
-            }
-
-            return Convert.ToString(value);
-        }
-
-        internal static double ToDouble(object value)
-        {
-            var val = 0.0d;
-
-            if (value == null || value == DBNull.Value || value.ToString() == string.Empty)
-            {
-                return 0.0d;
-            }
-
-            double.TryParse(value.ToString(), out val);
-
-            return val;
-        }
-
-        internal static DateTime ToDateTime(object value)
-        {
-            DateTime val;
-
-            if (value == null || value == DBNull.Value || value.ToString() == string.Empty)
-            {
-                return DateTime.MinValue;
-            }
-
-            DateTime.TryParse(value.ToString(), out val);
-
-            return val;
-        }
-
+        
         internal static int ToInt32(object value)
         {
             var val = 0;
@@ -129,28 +49,7 @@ namespace ThirdPartyProducts.StatusSetting
 
             return val;
         }
-
-        internal static long ToInt64(object value)
-        {
-            var val = 0L;
-
-            if (value == null || value == DBNull.Value || value.ToString() == string.Empty)
-            {
-                return 0L;
-            }
-
-            if (value is decimal || value is double)
-            {
-                val = Convert.ToInt64(value);
-            }
-            else
-            {
-                long.TryParse(value.ToString(), out val);
-            }
-
-            return val;
-        }
-
+        
         internal static string GetLanguageKeyForSql()
         {
             var langCode = Thread.CurrentThread.CurrentCulture.Name;

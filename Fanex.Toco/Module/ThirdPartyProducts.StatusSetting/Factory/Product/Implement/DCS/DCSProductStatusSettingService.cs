@@ -1,5 +1,7 @@
 ﻿using Fanex.Data;
 using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using System.Text;
 using System.Xml;
 using ThirdPartyProducts.StatusSetting.Factory.Product.Criteria;
@@ -11,7 +13,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement.DCS
 {
     internal class DCSProductStatusSettingService : ProductStatusSettingServiceBase
     {
-        public override List<ProductStatus> Select(int custId, int productId, int roleId)
+        public virtual List<ProductStatus> Select(int custId, int productId, int roleId)
         {
             var criteria = new SelectDCSProductStatusCriteria
             {
@@ -20,35 +22,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement.DCS
                 RoleId = roleId
             };
 
-            var result = new List<ProductStatus>();
-            using (var db = new ObjectDb(criteria.GetSettingKey()))
-            {
-                db.AssignParamValues(criteria.GetSpParams());
-                var reader = db.ExecuteReader();
-                while (reader.Read())
-                {
-                    var producStatus = new ProductStatus
-                    {
-                        ProductId = Utils.ToInt32(reader["ProductID"]),
-                        BetType = Utils.ToInt32(reader["Bettype"]),
-                        SportType = Utils.ToInt32(reader["Sporttype"]),
-                        IsDisabled = Utils.ToBoolean(reader["IsDisabled"]),
-                        IsDisabledUpline = Utils.ToBoolean(reader["IsDisabledUpline"]),
-                        IsDisabledDownline = Utils.ToBoolean(reader["IsDisabledDownline"]),
-                        HasDownline = Utils.ToBoolean(reader["HasDownline"]),
-                        IsSync = Utils.ToBoolean(reader["IsSync"]),
-                        IsSyncedUpline = Utils.ToBoolean(reader["IsSyncedUpline"]),
-                        IsSyncedDownline = Utils.ToBoolean(reader["IsSyncedDownline"]),
-                        IsHidden = Utils.ToBoolean(reader["IsHidden"]),
-                        IsHiddenUpline = Utils.ToBoolean(reader["IsHiddenUpline"])
-                    };
-
-                    producStatus.GetNameFromRemotingRef();
-                    result.Add(producStatus);
-                }
-
-                return result;
-            }
+            return ObjectDbFactory.ExecuteReaderFunc(criteria, MapSpData).ToList();
         }
 
         public override List<ProductStatusResult> Update(
@@ -92,10 +66,9 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement.DCS
                 var errCode = xmlDoc.FirstChild.Attributes["MsgID"].Value;
                 var newErrorMessage = new StringBuilder(DCSMessage.ResourceManager.GetString("Msg" + errCode));
                 var language = Utils.GetLanguageKeyForRemotingRef();
-                var childNodes = xmlDoc.FirstChild.ChildNodes;
                 if (showBettypes)
                 {
-                    foreach (XmlNode node in childNodes)
+                    foreach (XmlNode node in xmlDoc.FirstChild.ChildNodes)
                     {
                         string bettypeName = Utils.GetBetTypeName(node.Attributes["BetType"].Value, language);
                         newErrorMessage.Append("\r\n\t");
@@ -111,6 +84,28 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement.DCS
             }
 
             return result;
+        }
+
+        protected override ProductStatus MapSpData(IDataRecord record)
+        {
+            var producStatus = new ProductStatus
+            {
+                ProductId = Utils.ToInt32(record["ProductID"]),
+                BetType = Utils.ToInt32(record["Bettype"]),
+                SportType = Utils.ToInt32(record["Sporttype"]),
+                IsDisabled = Utils.ToBoolean(record["IsDisabled"]),
+                IsDisabledUpline = Utils.ToBoolean(record["IsDisabledUpline"]),
+                IsDisabledDownline = Utils.ToBoolean(record["IsDisabledDownline"]),
+                HasDownline = Utils.ToBoolean(record["HasDownline"]),
+                IsSync = Utils.ToBoolean(record["IsSync"]),
+                IsSyncedUpline = Utils.ToBoolean(record["IsSyncedUpline"]),
+                IsSyncedDownline = Utils.ToBoolean(record["IsSyncedDownline"]),
+                IsHidden = Utils.ToBoolean(record["IsHidden"]),
+                IsHiddenUpline = Utils.ToBoolean(record["IsHiddenUpline"])
+            };
+
+            producStatus.GetNameFromRemotingRef();
+            return producStatus;
         }
     }
 }

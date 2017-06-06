@@ -2,12 +2,8 @@
 
 namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria
 {
-    internal class SelectDCSProductStatusCriteria : CriteriaBase
+    internal class SelectDCSProductStatusCriteria : SelectProductStatusCriteria
     {
-        public int CustId { get; set; }
-
-        public int ProductId { get; set; }
-
         public int RoleId { get; set; }
 
         public const int SettingType = 13;
@@ -15,11 +11,6 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria
         public override string GetSettingKey()
         {
             return "Acc_CustSetting_StatusSettingSelect";
-        }
-
-        public override bool IsValid()
-        {
-            return true;
         }
     }
 }

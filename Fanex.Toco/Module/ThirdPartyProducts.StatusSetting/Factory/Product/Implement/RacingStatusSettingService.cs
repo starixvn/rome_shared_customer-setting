@@ -31,7 +31,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
                 SystemId = systemId
             };
 
-            criteria.MapSpParam(productStatus);
+            criteria.MapSpParams(productStatus);
             result.Add(RefineErrorMessage(ExecuteNonQuery(criteria)));
             return result;
         }
@@ -43,7 +43,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
         /// Solution: Truncate all success messages & leave error message untouch.
         /// </summary>
         /// <param name="productStatusResult"></param>
-        static internal ProductStatusResult RefineErrorMessage(ProductStatusResult productStatusResult)
+        private static ProductStatusResult RefineErrorMessage(ProductStatusResult productStatusResult)
         {
             productStatusResult.ErrorCode = productStatusResult.ErrorCode.Trim(RacingSpliter);
             productStatusResult.ErrorMessage = productStatusResult.ErrorMessage.Trim(RacingSpliter);

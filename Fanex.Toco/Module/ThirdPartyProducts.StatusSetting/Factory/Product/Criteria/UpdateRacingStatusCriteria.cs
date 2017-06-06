@@ -64,54 +64,59 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria
             return true;
         }
 
-        public void MapSpParam(List<ProductStatus> productStatus)
+        public void MapSpParams(List<ProductStatus> productStatuses)
         {
-            foreach (var item in productStatus)
+            foreach (var productStatus in productStatuses)
             {
-                if (item.SportType == 151)
+                MapProductStatusToSpParam(productStatus);
+            }
+        }
+
+        private void MapProductStatusToSpParam(ProductStatus productStatus)
+        {
+            if (productStatus.SportType == 151)
+            {
+                if (productStatus.BetType == 31)
                 {
-                    if (item.BetType == 31)
-                    {
-                        this.Disable151_31 = item.IsDisabled;
-                        this.DisableDownlines151_31 = item.IsDisabledDownline;
-                        this.UpdateDisable151_31 = true;
-                    }
-                    else if (item.BetType == 41)
-                    {
-                        this.Disable151_41 = item.IsDisabled;
-                        this.DisableDownlines151_41 = item.IsDisabledDownline;
-                        this.UpdateDisable151_41 = true;
-                    }
-                    else 
-                    {
-                        this.Disable151_51 = item.IsDisabled;
-                        this.DisableDownlines151_51 = item.IsDisabledDownline;
-                        this.UpdateDisable151_51 = true;
-                    }
+                    this.Disable151_31 = productStatus.IsDisabled;
+                    this.DisableDownlines151_31 = productStatus.IsDisabledDownline;
+                    this.UpdateDisable151_31 = true;
                 }
-                else if (item.SportType == 152)
+                else if (productStatus.BetType == 41)
                 {
-                    if (item.BetType == 41)
-                    {
-                        this.Disable152_41 = item.IsDisabled;
-                        this.DisableDownlines152_41 = item.IsDisabledDownline;
-                        this.UpdateDisable152_41 = true;
-                    }
-                    else
-                    {
-                        this.Disable152_51 = item.IsDisabled;
-                        this.DisableDownlines152_51 = item.IsDisabledDownline;
-                        this.UpdateDisable152_51 = true;
-                    }
+                    this.Disable151_41 = productStatus.IsDisabled;
+                    this.DisableDownlines151_41 = productStatus.IsDisabledDownline;
+                    this.UpdateDisable151_41 = true;
                 }
                 else
                 {
-                    if (item.BetType == 51)
-                    {
-                        this.Disable153_51 = item.IsDisabled;
-                        this.DisableDownlines153_51 = item.IsDisabledDownline;
-                        this.UpdateDisable153_51 = true;
-                    }
+                    this.Disable151_51 = productStatus.IsDisabled;
+                    this.DisableDownlines151_51 = productStatus.IsDisabledDownline;
+                    this.UpdateDisable151_51 = true;
+                }
+            }
+            else if (productStatus.SportType == 152)
+            {
+                if (productStatus.BetType == 41)
+                {
+                    this.Disable152_41 = productStatus.IsDisabled;
+                    this.DisableDownlines152_41 = productStatus.IsDisabledDownline;
+                    this.UpdateDisable152_41 = true;
+                }
+                else
+                {
+                    this.Disable152_51 = productStatus.IsDisabled;
+                    this.DisableDownlines152_51 = productStatus.IsDisabledDownline;
+                    this.UpdateDisable152_51 = true;
+                }
+            }
+            else
+            {
+                if (productStatus.BetType == 51)
+                {
+                    this.Disable153_51 = productStatus.IsDisabled;
+                    this.DisableDownlines153_51 = productStatus.IsDisabledDownline;
+                    this.UpdateDisable153_51 = true;
                 }
             }
         }

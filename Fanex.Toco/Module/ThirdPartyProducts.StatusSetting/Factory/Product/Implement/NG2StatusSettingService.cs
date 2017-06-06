@@ -1,5 +1,6 @@
 ﻿using Fanex.Data;
 using System.Collections.Generic;
+using System.Data;
 using ThirdPartyProducts.StatusSetting.Enums;
 using ThirdPartyProducts.StatusSetting.Factory.Product.Criteria;
 using ThirdPartyProducts.StatusSetting.Factory.Product.Criteria.DCS;
@@ -10,51 +11,15 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
 {
     internal class NG2StatusSettingService : DCSProductStatusSettingService
     {
-        public override List<ProductStatus> Select(int custId, int productId, int roleId)
-        {
-            var criteria = new SelectNG2ProductStatusCriteria
-            {
-                CustId = custId,
-                ProductId = productId
-            };
-
-            var result = new List<ProductStatus>();
-            using (var db = new ObjectDb(criteria.GetSettingKey()))
-            {
-                db.AssignParamValues(criteria.GetSpParams());
-                var reader = db.ExecuteReader();
-                while (reader.Read())
-                {
-                    var producStatus = new ProductStatus
-                    {
-                        ProductId = (int)Enums.Product.NG2,
-                        BetType = Utils.ToInt32(reader["Bettype"]),
-                        SportType = Utils.ToInt32(reader["Sporttype"]),
-                        IsDisabled = Utils.ToBoolean(reader["IsDisabled"]),
-                        IsDisabledUpline = Utils.ToBoolean(reader["IsDisabledUpline"]),
-                        IsDisabledDownline = Utils.ToBoolean(reader["IsDisabledDownline"]),
-                        HasDownline = Utils.ToBoolean(reader["HasDownline"]),
-                        IsSync = Utils.ToBoolean(reader["IsSync"]),
-                        IsHidden = Utils.ToBoolean(reader["IsHidden"])
-                    };
-
-                    producStatus.GetNameFromRemotingRef();
-                    result.Add(producStatus);
-                }
-
-                return result;
-            }
-        }
-
         public override List<ProductStatusResult> Update(
-           int custId,
-           int subAccId,
+            int custId,
+            int subAccId,
             int uplineId,
-           int productId,
-           int userId,
-           int systemId,
-           string ip,
-           List<ProductStatus> productStatus)
+            int productId,
+            int userId,
+            int systemId,
+            string ip,
+            List<ProductStatus> productStatus)
         {
             var result = new List<ProductStatusResult>();
             Validate(custId, subAccId, productId, userId, systemId, ip, productStatus);
@@ -70,6 +35,25 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
             criteria.MapSpParams(productStatus);
             result.Add(ConvertXmlErrorMessage(ExecuteNonQuery(criteria), false));
             return result;
+        }
+
+        protected override ProductStatus MapSpData(IDataRecord record)
+        {
+            var producStatus = new ProductStatus
+            {
+                ProductId = (int)Enums.Product.NG2,
+                BetType = Utils.ToInt32(record["Bettype"]),
+                SportType = Utils.ToInt32(record["Sporttype"]),
+                IsDisabled = Utils.ToBoolean(record["IsDisabled"]),
+                IsDisabledUpline = Utils.ToBoolean(record["IsDisabledUpline"]),
+                IsDisabledDownline = Utils.ToBoolean(record["IsDisabledDownline"]),
+                HasDownline = Utils.ToBoolean(record["HasDownline"]),
+                IsSync = Utils.ToBoolean(record["IsSync"]),
+                IsHidden = Utils.ToBoolean(record["IsHidden"])
+            };
+
+            producStatus.GetNameFromRemotingRef();
+            return producStatus;
         }
     }
 }
