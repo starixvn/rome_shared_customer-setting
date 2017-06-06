@@ -44,7 +44,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         [HttpPost]
         ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateSuper")] // Used for NAP
         ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "KenoSetting")] // Used for ExtNAP
-        ////[AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
+        [AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
         public JsonResult UpdateSuper(SuperSettingViewModel superSetting)
         {
             var results = _kenoSettingService.UpdateSuperCustomerSetting(superSetting);
@@ -63,7 +63,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         [HttpPost]
         ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateMaster")] // Used for NAP
         ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "KenoSetting")] // Used for ExtNAP
-        ////[AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
+        [AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
         public JsonResult UpdateMaster(MasterSettingViewModel masterSetting)
         {
             var results = _kenoSettingService.UpdateMasterCustomerSetting(masterSetting);
@@ -82,7 +82,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         [HttpPost]
         ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateAgent")] // Used for NAP
         ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "KenoSetting")] // Used for ExtNAP
-        ////[AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
+        [AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
         public JsonResult UpdateAgent(AgentSettingViewModel agentSetting)
         {
             var results = _kenoSettingService.UpdateAgentCustomerSetting(agentSetting);
@@ -101,7 +101,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         [HttpPost]
         ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateSuperOnMember")] // Used for NAP
         ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "KenoSetting")] // Used for ExtNAP
-        ////[AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
+        [AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
         public JsonResult UpdateSuperOnMember(SuperEditMemberSettingViewModel memberSetting)
         {
             var results = _kenoSettingService.UpdateMemberCustomerSettingInCaseOfSuperEditMember(memberSetting);
@@ -120,7 +120,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         [HttpPost]
         ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateMasterOnMember")] // Used for NAP
         ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "KenoSetting")] // Used for ExtNAP
-        ////[AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
+        [AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
         public JsonResult UpdateMasterOnMember(MasterEditMemberSettingViewModel memberSetting)
         {
             var results = _kenoSettingService.UpdateMemberCustomerSettingInCaseOfMasterEditMember(memberSetting);
@@ -139,7 +139,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         [HttpPost]
         ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateAgentOnMember")] // Used for NAP
         ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "KenoSetting")] // Used for ExtNAP
-        ////[AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
+        [AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
         public JsonResult UpdateAgentOnMember(AgentEditMemberSettingViewModel memberSetting)
         {
             var results = _kenoSettingService.UpdateMemberCustomerSettingInCaseOfAgentEditMember(memberSetting);
