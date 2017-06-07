@@ -13,7 +13,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement.DCS
 {
     internal class DCSProductStatusSettingService : ProductStatusSettingServiceBase
     {
-        public virtual List<ProductStatus> Select(int custId, int productId, int roleId)
+        public override List<ProductStatus> Select(int custId, int productId, int roleId)
         {
             var criteria = new SelectDCSProductStatusCriteria
             {
