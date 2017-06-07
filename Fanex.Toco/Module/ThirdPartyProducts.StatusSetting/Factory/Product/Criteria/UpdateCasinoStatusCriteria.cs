@@ -12,7 +12,14 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria
 
         public bool DisabledCS { get; set; }
 
-        public const bool SyncCS = true;
+        // Do not make this property as static, Fanex.Data will not pass static, const, readonly to SP inputs.
+        public bool SyncCS
+        {
+            get
+            {
+                return true;
+            }
+        }
 
         public int SystemId { get; set; }
 

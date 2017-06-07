@@ -101,7 +101,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         [HttpPost]
         //[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateSuperOnMember")] // Used for NAP
         ////[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "KenoSetting")] // Used for ExtNAP
-        //[AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
+        [AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
         public JsonResult UpdateSuperOnMember(SuperEditMemberSettingViewModel memberSetting)
         {
             var results = _kenoSettingService.UpdateMemberCustomerSettingInCaseOfSuperEditMember(memberSetting);
