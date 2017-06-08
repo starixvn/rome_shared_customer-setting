@@ -72,7 +72,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria
             }
         }
 
-        private void MapProductStatusToSpParam(ProductStatus productStatus)
+        public void MapProductStatusToSpParam(ProductStatus productStatus)
         {
             if (productStatus.SportType == 151)
             {

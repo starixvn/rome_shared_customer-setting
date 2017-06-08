@@ -29,7 +29,6 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Implement
                 1,
                 "127.0.0.1",
                 new List<ProductStatus>(){
-                    new ProductStatus(),
                     new ProductStatus()
                 });
             ObjectDbFactory.ExecuteNonQueryFunc = null;

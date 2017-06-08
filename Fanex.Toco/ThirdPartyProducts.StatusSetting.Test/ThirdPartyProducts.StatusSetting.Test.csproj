@@ -92,8 +92,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factory\Product\Criteria\DCS\NG2\SelectNG2ProductStatusCriteriaTest.cs" />
+    <Compile Include="Factory\Product\Criteria\DCS\NG2\UpdateNG2ProductStatusCriteriaTest.cs" />
+    <Compile Include="Factory\Product\Criteria\DCS\UpdateDCSProductStatusCriteriaTest.cs" />
+    <Compile Include="Factory\Product\Criteria\DCS\SelectDCSProductStatusCriteriaTest.cs" />
+    <Compile Include="Factory\Product\Criteria\UpdateRacingStatusCriteriaMock.cs" />
+    <Compile Include="Factory\Product\Criteria\SelectProductStatusCriteriaTest.cs" />
+    <Compile Include="Factory\Product\Criteria\UpdateRacingStatusCriteriaTest.cs" />
+    <Compile Include="Factory\Product\Criteria\UpdateCasinoStatusCriteriaTest.cs" />
+    <Compile Include="Factory\Product\Criteria\UpdateColossusBetStatusCriteriaTest.cs" />
+    <Compile Include="Factory\Product\Criteria\UpdateKenoStatusCriteriaTest.cs" />
+    <Compile Include="Factory\Product\Criteria\UpdateVirtualSportStatusCriteriaTest.cs" />
+    <Compile Include="Factory\Product\Implement\CasinoStatusSettingServiceTest.cs" />
+    <Compile Include="Factory\Product\Implement\DCS\DCSProductStatusSettingServiceMock.cs" />
+    <Compile Include="Factory\Product\Implement\DCS\DCSProductStatusSettingServiceTest.cs" />
+    <Compile Include="Factory\Product\Implement\KenoStatusSettingServiceTest.cs" />
+    <Compile Include="Factory\Product\Implement\AllbetStatusSettingServiceTest.cs" />
+    <Compile Include="Factory\Product\Implement\MacauGamesStatusSettingServiceTest.cs" />
+    <Compile Include="Factory\Product\Implement\NG2StatusSettingServiceMock.cs" />
     <Compile Include="Factory\Product\Implement\RacingStatusSettingServiceTest.cs" />
     <Compile Include="Factory\Product\Implement\NG2StatusSettingServiceTest.cs" />
+    <Compile Include="Factory\Product\Implement\ColossusBetStatusSettingServiceTest.cs" />
     <Compile Include="Factory\Product\Implement\VirtualSportStatusSettingServiceTest.cs" />
     <Compile Include="Factory\Product\ProductStatusSettingServiceBaseMock.cs" />
     <Compile Include="Factory\Product\ProductStatusSettingServiceBaseTest.cs" />

@@ -19,7 +19,7 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Implement
             // Arrange
             ObjectDbFactory.ExecuteNonQueryFunc = criteria => ExecuteNonQueryTest();
             var expectedValue = new List<ProductStatusResult>();
-            expectedValue.Add(new ProductStatusResult() { ErrorCode = "0", ErrorMessage= string.Empty });
+            expectedValue.Add(new ProductStatusResult() { ErrorCode = "60035", ErrorMessage = "You are not allowed to disable downline's product." });
             // Actual
             var actualValue = new MacauGamesStatusSettingService().Update(
                 1,
@@ -30,7 +30,6 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Implement
                 1,
                 "127.0.0.1",
                 new List<ProductStatus>(){
-                    new ProductStatus(),
                     new ProductStatus()
                 });
             ObjectDbFactory.ExecuteNonQueryFunc = null;
@@ -43,8 +42,8 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Implement
         {
             return new Hashtable()
             {
-                { "errcode", "0" },
-                { "errmsg", string.Empty }
+                { "errcode", "102" },
+                { "errmsg", "<Root MsgID=\"60035\" Msg=\"You are not allowed to disable for downlines.\"><Row SportType=\"211\" BetType=\"2401\"/></Root>" }
             };
         }
     }

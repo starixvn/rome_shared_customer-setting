@@ -51,7 +51,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement.DCS
             return result;
         }
 
-        internal ProductStatusResult ConvertXmlErrorMessage(ProductStatusResult productStatusResultWithXmlErrorMessage, bool showBettypes)
+        protected ProductStatusResult ConvertXmlErrorMessage(ProductStatusResult productStatusResultWithXmlErrorMessage, bool showBettypes)
         {
             var result = new ProductStatusResult
             {

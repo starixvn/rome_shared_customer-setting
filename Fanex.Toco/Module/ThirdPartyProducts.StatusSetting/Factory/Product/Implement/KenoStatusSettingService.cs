@@ -49,7 +49,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
             return result;
         }
 
-        private static ProductStatusResult RefineErrorMessage(ProductStatus input, ProductStatusResult output)
+        public static ProductStatusResult RefineErrorMessage(ProductStatus input, ProductStatusResult output)
         {
             if (Convert.ToInt32(output.ErrorCode) != 0)
             {
@@ -59,7 +59,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
             return output;
         }
 
-        private static bool IsHiddenBettype(int bettypeId)
+        public static bool IsHiddenBettype(int bettypeId)
         {
             if (Array.Find<int>(HiddenBettypes, p => p == bettypeId) != 0)
             {
