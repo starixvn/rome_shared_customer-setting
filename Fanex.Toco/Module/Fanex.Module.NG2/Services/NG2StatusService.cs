@@ -20,7 +20,8 @@ namespace Fanex.Module.NG2.Services
             bool uplineDisabled,
             SiteId siteId, 
             int currencyId,
-            int userId, 
+            int userId,
+            byte systemId,
             string language = "en-US", 
             int subAccId = 0)
         {
@@ -61,7 +62,7 @@ namespace Fanex.Module.NG2.Services
 
                     if (result.IsSuccess)
                     {
-                        result = EnableStatus(custId, userId, uplineDisabled, HttpContext.Current.Request.UserHostAddress, subAccId);
+                        result = EnableStatus(custId, userId, uplineDisabled, HttpContext.Current.Request.UserHostAddress, systemId, subAccId);
                     }
                 }
             }
@@ -69,9 +70,9 @@ namespace Fanex.Module.NG2.Services
             return result;
         }
 
-        public Entities.Result EnableStatus(int custId, int userId, bool disabled, string ip, int subAccId = 0)
+        public Entities.Result EnableStatus(int custId, int userId, bool disabled, string ip, byte systemId, int subAccId = 0)
         {
-            return _repository.EnableStatus(custId, userId, disabled, ip, subAccId);
+            return _repository.EnableStatus(custId, userId, disabled, ip, systemId, subAccId);
         }
 
         public Entities.Result RetrySyncCustomers(Request request)

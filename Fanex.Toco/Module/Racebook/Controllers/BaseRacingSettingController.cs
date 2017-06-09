@@ -42,7 +42,7 @@ namespace Fanex.CustomerSetting.Module.Racebook.Controllers
 
         public BaseRacingSettingController(IRacingSettingService racingSettingService)
         {
-            _racingSettingService = racingSettingService ?? new RacingSettingService();
+            _racingSettingService = racingSettingService ?? new RacingSettingService(SystemId);
         }
 
         /// <summary>

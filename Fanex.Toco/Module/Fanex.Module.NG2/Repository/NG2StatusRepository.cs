@@ -8,7 +8,7 @@ namespace Fanex.Module.NG2.Repository
 {
     public class NG2StatusRepository : ING2StatusRepository
     {
-        public Result EnableStatus(int custId, int userId, bool disabled, string ip, int subAccId = 0)
+        public Result EnableStatus(int custId, int userId, bool disabled, string ip, byte systemId, int subAccId = 0)
         {
             var result = new Result();
             try
@@ -22,6 +22,7 @@ namespace Fanex.Module.NG2.Repository
                     param.Add("userid", userId);
                     param.Add("subaccid", subAccId);
                     param.Add("ip", ip);
+                    param.Add("systemid", systemId);
                     param.Add("errcode", 0);
                     param.Add("errmsg", string.Empty);
 

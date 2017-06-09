@@ -24,6 +24,7 @@ namespace Fanex.CustomerSetting.Module.Core.Web.Controllers
     using Fanex.ExternalAccount.Controllers.Base;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
+    using System.Configuration;
 
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public class BaseController : Controller
@@ -36,8 +37,14 @@ namespace Fanex.CustomerSetting.Module.Core.Web.Controllers
 
         public const int Member = 1;
 
+        public byte SystemId = 1;
+
         public BaseController()
         {
+            if (!byte.TryParse(ConfigurationManager.AppSettings["SystemId"], out SystemId))
+            {
+                SystemId = 1;
+            }
         }
 
         /// <summary>

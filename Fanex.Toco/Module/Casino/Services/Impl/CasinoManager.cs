@@ -558,7 +558,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             }
         }
 
-        public Result UpdateSuper(int custId, string custName, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel settingModel, CasinoCustomer customerModel)
+        public Result UpdateSuper(int custId, string custName, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, byte systemId, CasinoSettingModel settingModel, CasinoCustomer customerModel)
         {
             var errMsg = string.Empty;
             var messages = string.Empty;
@@ -646,10 +646,11 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     custId,
                     true,
                     customerModel.UplineDisabledCasino ? true : customerModel.CasinoDisabled,
-                    customerModel.EnableDownline,
+                    !customerModel.CasinoDisabledDownline,
                     modifiedId,
                     ip,
                     AppSession.SubAccountId,
+                    systemId,
                     AppSession.Language,
                     customerModel.UserName,
                     string.Empty,
@@ -696,7 +697,17 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             return result;
         }
 
-        public Result UpdateMaster(int custId, string custName, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel settingModel, CasinoCustomer customerModel)
+        public Result UpdateMaster(
+            int custId, 
+            string custName, 
+            int uplineId, 
+            string ip, 
+            int modifiedId, 
+            string modifiedBy, 
+            int fromSystem, 
+            byte systemId, 
+            CasinoSettingModel settingModel, 
+            CasinoCustomer customerModel)
         {
             var errMsg = string.Empty;
             var messages = string.Empty;
@@ -782,10 +793,11 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     custId,
                     true,
                     customerModel.UplineDisabledCasino ? true : customerModel.CasinoDisabled,
-                    customerModel.EnableDownline,
+                    !customerModel.CasinoDisabledDownline,
                     uplineId,
                     string.Empty,
                     0,
+                    systemId,
                     "en",
                     customerModel.UserName,
                     string.Empty,
@@ -832,7 +844,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             return result;
         }
 
-        public Result UpdateAgent(int custId, string custName, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel settingModel, CasinoCustomer customerModel)
+        public Result UpdateAgent(int custId, string custName, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, byte systemId, CasinoSettingModel settingModel, CasinoCustomer customerModel)
         {
             var errMsg = string.Empty;
             var messages = string.Empty;
@@ -923,10 +935,11 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     custId,
                     true,
                     customerModel.UplineDisabledCasino ? true : customerModel.CasinoDisabled,
-                    customerModel.EnableDownline,
+                    !customerModel.CasinoDisabledDownline,
                     uplineId,
                     string.Empty,
                     0,
+                    systemId,
                     "en",
                     customerModel.UserName,
                     string.Empty,
@@ -967,7 +980,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             return result;
         }
 
-        public Result UpdateMember(int custId, string custName, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel settingModel, CasinoCustomer customerModel)
+        public Result UpdateMember(int custId, string custName, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, byte systemId, CasinoSettingModel settingModel, CasinoCustomer customerModel)
         {
             var errMsg = string.Empty;
             var messages = string.Empty;
@@ -1060,10 +1073,11 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     custId,
                     true,
                     customerModel.UplineDisabledCasino ? true : customerModel.CasinoDisabled,
-                    customerModel.EnableDownline,
+                    !customerModel.CasinoDisabledDownline,
                     uplineId,
                     string.Empty,
                     0,
+                    systemId,
                     "en",
                     customerModel.UserName,
                     string.Empty,
@@ -1110,7 +1124,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             return result;
         }
 
-        public Result UpdateMemberBySuper(int custId, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel settingModel, CasinoCustomer customerModel)
+        public Result UpdateMemberBySuper(int custId, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, byte systemId, CasinoSettingModel settingModel, CasinoCustomer customerModel)
         {
             var errMsg = string.Empty;
             var messages = string.Empty;
@@ -1145,7 +1159,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             return result;
         }
 
-        public Result UpdateMemberByMaster(int custId, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel settingModel, CasinoCustomer customerModel)
+        public Result UpdateMemberByMaster(int custId, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, byte systemId, CasinoSettingModel settingModel, CasinoCustomer customerModel)
         {
             var errMsg = string.Empty;
             var messages = string.Empty;
@@ -1237,10 +1251,10 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             }
         }
 
-        public bool UpdateCSStatus(int custid, bool syncCS, bool disabledCS, bool isUpdDownline, int userId, string ip, int subAccId, string lang, string username, string subUsername, out string errMsg)
+        public bool UpdateCSStatus(int custid, bool syncCS, bool disabledCS, bool isUpdDownline, int userId, string ip, int subAccId, byte systemId, string lang, string username, string subUsername, out string errMsg)
         {
             var cust = new Customer();
-            var status = this.DoUpdateCSStatusWithoutSync(custid, syncCS, disabledCS, isUpdDownline, userId, ip, subAccId, lang, out errMsg);
+            var status = this.DoUpdateCSStatusWithoutSync(custid, syncCS, disabledCS, isUpdDownline, userId, ip, subAccId, systemId, lang, out errMsg);
 
             if (!status)
             {
@@ -1267,9 +1281,9 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             return status;
         }
 
-        private bool DoUpdateCSStatusWithoutSync(int custid, bool syncCS, bool disabledCS, bool isUpdDownline, int userId, string ip, int subAccId, string lang, out string errMsg)
+        private bool DoUpdateCSStatusWithoutSync(int custid, bool syncCS, bool disabledCS, bool isUpdDownline, int userId, string ip, int subAccId, byte systemId, string lang, out string errMsg)
         {
-            return this._casino.DoUpdateCSStatusWithoutSync(custid, syncCS, disabledCS, isUpdDownline, userId, ip, subAccId, lang, out errMsg);
+            return this._casino.DoUpdateCSStatusWithoutSync(custid, syncCS, disabledCS, isUpdDownline, userId, ip, subAccId, systemId, lang, out errMsg);
         }
 
         public Result UpdateMasterSettings(int custId, int roleId, int uplineId, int uplineRoleId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel model)

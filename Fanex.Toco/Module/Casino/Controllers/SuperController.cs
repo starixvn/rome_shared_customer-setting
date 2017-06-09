@@ -16,7 +16,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
     using System;
     using System.Web.Mvc;
     using CasinoLibrary.Model.UserException;
-
+    using System.Configuration;
     public class SuperController : BaseController
     {
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
@@ -52,7 +52,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
         [CasinoUMTimeFilter]
-        [AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
+        //[AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
         public ActionResult UpdateSuperPost(int id, string username, int uplineId, int userId, string actorName, string settingModel, string customerModel, string groupName = null)
         {
             var obj = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
@@ -68,7 +68,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 Request.UserHostAddress, 
                 userId, 
                 actorName,
-                AppSession.CurrentSession.FromSystem, 
+                AppSession.CurrentSession.FromSystem,
+                SystemId,
                 JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), 
                 JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
 

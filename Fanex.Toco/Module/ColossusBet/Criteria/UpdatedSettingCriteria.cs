@@ -1,5 +1,7 @@
 ﻿namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Criteria
 {
+    using System;
+    using System.Configuration;
     using Fanex.CustomerSetting.Module.ColossusBetSetting.Entities;
     using Fanex.NAP.Framework.Data;
 
@@ -26,6 +28,22 @@
         public int UserID { get; set; }
 
         public string Language { get; set; }
+
+        public int SystemId
+        {
+            get
+            {
+                int systemId;
+                string systemIdInConfig = ConfigurationManager.AppSettings["SystemId"];
+
+                if (string.IsNullOrWhiteSpace(systemIdInConfig) || !int.TryParse(systemIdInConfig, out systemId))
+                {
+                    throw new ArgumentException("SystemId is null, empty or not a integer number.", "SystemId");
+                }
+
+                return systemId;
+            }
+        }
 
         public override string GetSettingKey()
         {

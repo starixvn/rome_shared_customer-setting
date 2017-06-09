@@ -57,9 +57,14 @@ namespace Fanex.CustomerSetting.Module.Racebook.Services
         {
         }
 
-        public RacingSettingService(ICustomerService customerService, IRacingDAO racingDao, ICache cacheManager)
+        public RacingSettingService(byte systemId)
+           : this(null, null, null, systemId)
         {
-            _customerService = customerService ?? new CustomerService();
+        }
+
+        public RacingSettingService(ICustomerService customerService, IRacingDAO racingDao, ICache cacheManager, byte SystemId = 1)
+        {
+            _customerService = customerService ?? new CustomerService(SystemId);
             _racingDao = racingDao ?? new RacingDAO();
             _cacheManager = cacheManager ?? CacheService.CreateInstance();
         }
