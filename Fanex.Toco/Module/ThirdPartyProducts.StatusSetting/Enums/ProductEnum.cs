@@ -1,6 +1,6 @@
 ﻿namespace ThirdPartyProducts.StatusSetting.Enums
 {
-    internal enum Product
+    public enum Product
     {
         Racing = 2,
 
