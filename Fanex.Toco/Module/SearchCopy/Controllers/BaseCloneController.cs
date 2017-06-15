@@ -26,7 +26,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
     /// </summary>
     public class BaseCloneController : BaseController
     {
-        private static ISearchCopyService _searchCopyService;
+        protected static ISearchCopyService _searchCopyService;
         protected ISettingService _settingService;
 
         public BaseCloneController()
