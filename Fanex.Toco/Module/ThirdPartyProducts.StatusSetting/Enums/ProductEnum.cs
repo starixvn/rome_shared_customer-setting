@@ -18,6 +18,8 @@
 
         NG2 = 23,
 
-        FishingWorld = 24
+        FishingWorld = 24,
+
+        GoldDeluxe = 12
     }
 }
