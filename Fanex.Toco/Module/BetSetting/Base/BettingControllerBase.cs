@@ -20,8 +20,8 @@ namespace Fanex.CustomerSetting.Module.BetSetting.Base
     using Fanex.CustomerSetting.Module.BetSetting.ViewModels;
     using Fanex.CustomerSetting.Module.Casino.Services.Impl;
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
+    using Fanex.CustomerSetting.Module.Keno.KenoSetting.Services;
     using Fanex.LiveCasinoSetting.Business;
-using Fanex.CustomerSetting.Module.Keno.KenoSetting.Services;
 
     /// <summary>
     /// Base class for getting customer info and services.
@@ -37,11 +37,6 @@ using Fanex.CustomerSetting.Module.Keno.KenoSetting.Services;
         /// The _racing service.
         /// </summary>
         private Fanex.PTRacing.Services.ICustomerService _racingService = new Fanex.PTRacing.Services.CustomerService();
-        
-        /// <summary>
-        /// The _virtual sports service.
-        /// </summary>
-        private Fanex.PTVirtualSports.Services.ICustomerService _virtualSportsService = new Fanex.PTVirtualSports.Services.CustomerService();
         
         /// <summary>
         /// The _member win limit service.
@@ -110,18 +105,6 @@ using Fanex.CustomerSetting.Module.Keno.KenoSetting.Services;
             get
             {
                 return this._racingService ?? new Fanex.PTRacing.Services.CustomerService();
-            }
-        }
-
-        /// <summary>
-        /// Gets the virtual sports service.
-        /// </summary>
-        /// <value>The virtual sports service.</value>
-        public Fanex.PTVirtualSports.Services.ICustomerService VirtualSportsService
-        {
-            get
-            {
-                return this._virtualSportsService ?? new Fanex.PTVirtualSports.Services.CustomerService();
             }
         }
 
