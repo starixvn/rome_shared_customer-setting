@@ -181,7 +181,7 @@ namespace Fanex.Products.Services
             SessionUtility.SetSession(DisabledProduct + Id, value);
         }
 
-        protected bool? GetSynced()
+        protected virtual bool? GetSynced()
         {
             return SessionUtility.GetSession(SyncedProduct + Id, new bool?());
         }

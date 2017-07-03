@@ -112,10 +112,13 @@
     <Compile Include="Factory\Product\Implement\RacingStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\CasinoStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\ColossusBetStatusSettingService.cs" />
+    <Compile Include="Factory\Product\Implement\VirtualSportDepositStatusSettingService.cs" />
     <Compile Include="Factory\Product\ProductStatusSettingServiceBase.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Model\GetProductStatusRequest.cs" />
     <Compile Include="Model\ProductStatus.cs" />
     <Compile Include="Model\ProductStatusResult.cs" />
+    <Compile Include="Model\UpdateProductStatusRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Factory\Product\Implement\VirtualSportStatusSettingService.cs" />
     <Compile Include="Factory\Product\Interface\IProductStatusSettingService.cs" />

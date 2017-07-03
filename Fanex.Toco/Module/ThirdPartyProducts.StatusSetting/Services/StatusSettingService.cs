@@ -6,24 +6,16 @@ namespace ThirdPartyProducts.StatusSetting.Services
 {
     public class StatusSettingService
     {
-        public List<ProductStatus> GetProductStatus(int custId, int productId, int roleId)
+        public List<ProductStatus> GetProductStatus(GetProductStatusRequest request)
         {
-            var productService = ProductFactory.CreateProductServiceFunc(productId);
-            return productService.Select(custId, productId, roleId);
+            var productService = ProductFactory.CreateProductServiceFunc(request.ProductId);
+            return productService.Select(request);
         }
 
-        public List<ProductStatusResult> UpdateProductStatus(
-            int custId, 
-            int subAccId, 
-            int uplineId,
-            int productId, 
-            int userId, 
-            int systemId, 
-            string ip, 
-            List<ProductStatus> productStatus)
+        public List<ProductStatusResult> UpdateProductStatus(UpdateProductStatusRequest request)
         {
-            var productService = ProductFactory.CreateProductServiceFunc(productId);
-            return productService.Update(custId, subAccId, uplineId, productId, userId, systemId, ip, productStatus);
+            var productService = ProductFactory.CreateProductServiceFunc(request.ProductId);
+            return productService.Update(request);
         }
     }
 }

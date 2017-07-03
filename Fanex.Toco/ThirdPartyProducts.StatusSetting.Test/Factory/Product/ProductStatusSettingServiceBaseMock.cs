@@ -8,15 +8,7 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product
 {
     internal class ProductStatusSettingServiceBaseMock : ProductStatusSettingServiceBase
     {
-        public override List<ProductStatusResult> Update(
-            int custId,
-            int subAccId,
-            int uplineId,
-            int productId,
-            int userId,
-            int systemId,
-            string ip,
-            List<ProductStatus> productStatus)
+        public override List<ProductStatusResult> Update(UpdateProductStatusRequest request)
         {
             return new List<ProductStatusResult>();
         }
@@ -26,16 +18,9 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product
             return base.ExecuteNonQuery(criteria);
         }
 
-        public void Validate(
-            int custId,
-            int subAccId,
-            int productId,
-            int userId,
-            int systemId,
-            string ip,
-            List<ProductStatus> productStatus)
+        public void Validate(UpdateProductStatusRequest request)
         {
-            base.Validate(custId, subAccId, productId, userId, systemId, ip, productStatus);
+            base.Validate(request);
         }
 
         public ProductStatus MapSpData(IDataRecord record)

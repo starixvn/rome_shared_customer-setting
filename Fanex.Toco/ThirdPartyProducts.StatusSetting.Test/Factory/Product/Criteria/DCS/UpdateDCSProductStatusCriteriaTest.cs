@@ -6,16 +6,31 @@ using ThirdPartyProducts.StatusSetting.Model;
 namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Criteria.DCS
 {
     [TestFixture]
+    [Category("ThirdPartyProducts.StatusSetting.Test.Factory.Product.Criteria.DCS")]
     public class UpdateDCSProductStatusCriteriaTest
     {
         [Test]
-        public void GetSettingKey_ReturnCorrectValue()
+        public void GetSettingKey_Credit_ReturnCorrectValue()
         {
             // Arrange
             var expectedValue = "Acc_CustSetting_DisableNewProductStatusUpd";
 
             // Actual
             var actualValue = new UpdateDCSProductStatusCriteria().GetSettingKey();
+
+            // Assert
+            Assert.AreEqual(expectedValue, actualValue);
+        }
+
+        [Test]
+        public void GetSettingKey_Deposit_ReturnCorrectValue()
+        {
+            // Arrange
+            var expectedValue = "Acc_Dep_CustSetting_DisableStatUpd";
+            var criteria = new UpdateDCSProductStatusCriteria() { IsDeposit = true };
+
+            // Actual
+            var actualValue = criteria.GetSettingKey();
 
             // Assert
             Assert.AreEqual(expectedValue, actualValue);

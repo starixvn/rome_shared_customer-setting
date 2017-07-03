@@ -6,6 +6,7 @@ using ThirdPartyProducts.StatusSetting.Model;
 namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Criteria
 {
     [TestFixture]
+    [Category("ThirdPartyProducts.StatusSetting.Test.Factory.Product.Criteria")]
     public class UpdateRacingStatusCriteriaTest
     {
         [Test]

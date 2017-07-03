@@ -10,35 +10,27 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
     {
         private static readonly int[] HiddenBettypes = { 1502, 1506, 1507, 1509 };
 
-        public override List<ProductStatus> Select(int custId, int productId, int roleId)
+        public override List<ProductStatus> Select(GetProductStatusRequest request)
         {
-            return base.Select(custId, productId, roleId).Where(o => !IsHiddenBettype(o.BetType)).ToList();
+            return base.Select(request).Where(o => !IsHiddenBettype(o.BetType)).ToList();
         }
 
-        public override List<ProductStatusResult> Update(
-            int custId,
-            int subAccId,
-            int uplineId,
-            int productId,
-            int userId,
-            int systemId,
-            string ip,
-            List<ProductStatus> productStatus)
+        public override List<ProductStatusResult> Update(UpdateProductStatusRequest request)
         {
             var result = new List<ProductStatusResult>();
-            Validate(custId, subAccId, productId, userId, systemId, ip, productStatus);
-            foreach (var item in productStatus)
+            Validate(request);
+            foreach (var item in request.ProductStatus)
             {
                 var criteria = new UpdateKenoStatusCriteria
                 {
-                    CustId = custId,
+                    CustId = request.CustId,
                     Bettype = item.BetType,
-                    UplineId = uplineId,
-                    Ip = ip,
+                    UplineId = request.UplineId,
+                    Ip = request.Ip,
                     Language = Utils.GetLanguageKeyForSql(),
-                    SubAccId = subAccId,
-                    UserId = userId,
-                    SystemId = systemId,
+                    SubAccId = request.SubAccId,
+                    UserId = request.UserId,
+                    SystemId = request.SystemId,
                     Disable = item.IsDisabled,
                     DisableDownlines = item.IsDisabledDownline
                 };

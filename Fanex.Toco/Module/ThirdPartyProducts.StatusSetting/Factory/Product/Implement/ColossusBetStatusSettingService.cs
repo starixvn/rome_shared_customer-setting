@@ -6,28 +6,20 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
 {
     internal class ColossusBetStatusSettingService : ProductStatusSettingServiceBase
     {
-        public override List<ProductStatusResult> Update(
-            int custId, 
-            int subAccId,
-            int uplineId,
-            int productId, 
-            int userId, 
-            int systemId,
-            string ip, 
-            List<ProductStatus> productStatus)
+        public override List<ProductStatusResult> Update(UpdateProductStatusRequest request)
         {
             var result = new List<ProductStatusResult>();
-            Validate(custId, subAccId, productId, userId, systemId, ip, productStatus);
+            Validate(request);
             var criteria = new UpdateColossusBetStatusCriteria
             {
-                CustId = custId,
-                Ip = ip,
+                CustId = request.CustId,
+                Ip = request.Ip,
                 Language = Utils.GetLanguageKeyForSql(),
-                SubAccId = subAccId,
-                UserId = userId,
-                SystemId = systemId,
-                Disable = productStatus[0].IsDisabled,
-                EnableDownlines = !productStatus[0].IsDisabledDownline
+                SubAccId = request.SubAccId,
+                UserId = request.UserId,
+                SystemId = request.SystemId,
+                Disable = request.ProductStatus[0].IsDisabled,
+                EnableDownlines = !request.ProductStatus[0].IsDisabledDownline
             };
 
             result.Add(ExecuteNonQuery(criteria));

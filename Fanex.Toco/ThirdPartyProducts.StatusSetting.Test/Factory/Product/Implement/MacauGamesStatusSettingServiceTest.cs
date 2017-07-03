@@ -17,21 +17,24 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Implement
         public void Update_AnyArgument_ReturnCorrectData()
         {
             // Arrange
+            var request = new UpdateProductStatusRequest()
+            {
+                CustId = 1,
+                SubAccId = 1,
+                ProductId = 1,
+                SystemId = 1,
+                UplineId = 1,
+                UserId = 1,
+                Ip = "127.0.0.1",
+                ProductStatus = new List<ProductStatus>() {
+                    new ProductStatus()
+                }
+            };
             ObjectDbFactory.ExecuteNonQueryFunc = criteria => ExecuteNonQueryTest();
             var expectedValue = new List<ProductStatusResult>();
             expectedValue.Add(new ProductStatusResult() { ErrorCode = "60035", ErrorMessage = "You are not allowed to disable downline's product." });
             // Actual
-            var actualValue = new MacauGamesStatusSettingService().Update(
-                1,
-                1,
-                1,
-                1,
-                1,
-                1,
-                "127.0.0.1",
-                new List<ProductStatus>(){
-                    new ProductStatus()
-                });
+            var actualValue = new MacauGamesStatusSettingService().Update(request);
             ObjectDbFactory.ExecuteNonQueryFunc = null;
 
             // Assert

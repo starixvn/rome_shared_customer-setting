@@ -24,23 +24,26 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Implement
         public void Update_AnyArgument_ReturnSuccess(string expectedErrCode, string errCode)
         {
             // Arrange
+            var request = new UpdateProductStatusRequest()
+            {
+                CustId = 1,
+                SubAccId = 1,
+                ProductId = 1,
+                SystemId = 1,
+                UplineId = 1,
+                UserId = 1,
+                Ip = "127.0.0.1",
+                ProductStatus = new List<ProductStatus>() {
+                    new ProductStatus(),
+                    new ProductStatus()
+                }
+            };
             ObjectDbFactory.ExecuteNonQueryFunc = criteria => ExecuteNonQueryTest(errCode, string.Empty);
             var expectedValue = new List<ProductStatusResult>();
             expectedValue.Add(new ProductStatusResult() { ErrorCode = expectedErrCode, ErrorMessage = string.Empty });
 
             // Actual
-            var actualValue = new RacingStatusSettingService().Update(
-                1,
-                1,
-                1,
-                1,
-                1,
-                1,
-                "127.0.0.1",
-                new List<ProductStatus>(){
-                    new ProductStatus(),
-                    new ProductStatus()
-                });
+            var actualValue = new RacingStatusSettingService().Update(request);
             ObjectDbFactory.ExecuteNonQueryFunc = null;
 
             // Assert

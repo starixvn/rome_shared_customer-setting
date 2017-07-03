@@ -13,40 +13,34 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement.DCS
 {
     internal class DCSProductStatusSettingService : ProductStatusSettingServiceBase
     {
-        public override List<ProductStatus> Select(int custId, int productId, int roleId)
+        public override List<ProductStatus> Select(GetProductStatusRequest request)
         {
             var criteria = new SelectDCSProductStatusCriteria
             {
-                CustId = custId,
-                ProductId = productId,
-                RoleId = roleId
+                CustId = request.CustId,
+                ProductId = request.ProductId,
+                RoleId = request.RoleId,
+                IsDeposit = request.IsDeposit
             };
 
             return ObjectDbFactory.ExecuteReaderFunc(criteria, MapSpData).ToList();
         }
 
-        public override List<ProductStatusResult> Update(
-            int custId,
-            int subAccId,
-            int uplineId,
-            int productId,
-            int userId,
-            int systemId,
-            string ip,
-            List<ProductStatus> productStatus)
+        public override List<ProductStatusResult> Update(UpdateProductStatusRequest request)
         {
             var result = new List<ProductStatusResult>();
-            Validate(custId, subAccId, productId, userId, systemId, ip, productStatus);
+            Validate(request);
             var criteria = new UpdateDCSProductStatusCriteria
             {
-                CustId = custId,
-                SubAccId = subAccId,
-                UserId = userId,
-                Ip = ip,
-                SystemId = systemId
+                CustId = request.CustId,
+                SubAccId = request.SubAccId,
+                UserId = request.UserId,
+                Ip = request.Ip,
+                SystemId = request.SystemId,
+                IsDeposit = request.IsDeposit
             };
 
-            criteria.MapSpParams(productStatus);
+            criteria.MapSpParams(request.ProductStatus);
             result.Add(ExecuteNonQuery(criteria));
             return result;
         }
