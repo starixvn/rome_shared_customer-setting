@@ -23,5 +23,7 @@
         GoldDeluxe = 12,
         
         VirtualSports2 = 27
+        
+        Lottery = 28
     }
 }
