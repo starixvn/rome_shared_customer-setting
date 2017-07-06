@@ -33,5 +33,31 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Criteria.DCS
             // Assert
             Assert.AreEqual(expectedValue, actualValue);
         }
+
+        [Test]
+        public void GetSettingType_Credit_Return13()
+        {
+            // Arrange
+            var expectedValue = 13;
+
+            // Actual
+            var actualValue = new SelectDCSProductStatusCriteria() { IsDeposit = false }.SettingType;
+
+            // Assert
+            Assert.AreEqual(expectedValue, actualValue);
+        }
+
+        [Test]
+        public void GetSettingType_Deposit_Return4()
+        {
+            // Arrange
+            var expectedValue = 4;
+
+            // Actual
+            var actualValue = new SelectDCSProductStatusCriteria() { IsDeposit = true }.SettingType;
+
+            // Assert
+            Assert.AreEqual(expectedValue, actualValue);
+        }
     }
 }

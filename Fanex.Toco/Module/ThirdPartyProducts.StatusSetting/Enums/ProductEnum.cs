@@ -20,6 +20,8 @@
 
         FishingWorld = 24,
 
-        GoldDeluxe = 12
+        GoldDeluxe = 12,
+        
+        BetradarVirtualSport = 27
     }
 }

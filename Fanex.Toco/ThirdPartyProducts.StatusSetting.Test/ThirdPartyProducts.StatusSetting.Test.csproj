@@ -106,6 +106,8 @@
     <Compile Include="Factory\Product\Criteria\UpdateKenoStatusCriteriaTest.cs" />
     <Compile Include="Factory\Product\Criteria\UpdateVirtualSportStatusCriteriaTest.cs" />
     <Compile Include="Factory\Product\Implement\CasinoStatusSettingServiceTest.cs" />
+    <Compile Include="Factory\Product\Implement\DCS\SingleBettypeDCSProductStatusSettingServiceTest.cs" />
+    <Compile Include="Factory\Product\Implement\DCS\MultipleBettypeDCSProductStatusSettingServiceTest.cs" />
     <Compile Include="Factory\Product\Implement\DCS\DCSProductStatusSettingServiceMock.cs" />
     <Compile Include="Factory\Product\Implement\DCS\DCSProductStatusSettingServiceTest.cs" />
     <Compile Include="Factory\Product\Implement\KenoStatusSettingServiceTest.cs" />
