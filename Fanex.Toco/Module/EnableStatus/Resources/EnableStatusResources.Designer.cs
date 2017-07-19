@@ -403,6 +403,15 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The Gold Deluxe Setting is not fully available. Please go to Edit Gold Deluxe page to adjust..
+        /// </summary>
+        public static string warningGoldDeluxeUnsyncedAllDownline {
+            get {
+                return ResourceManager.GetString("warningGoldDeluxeUnsyncedAllDownline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Australia setting is being used for Beijing as well.
         /// </summary>
         public static string warningKenoBeijing {

@@ -237,4 +237,7 @@
   <data name="warningUpdateSettingForEnabledDownlines" xml:space="preserve">
     <value>Bạn vừa kích hoạt một sản phẩm cược cho cấp dưới. Vui lòng vào trang Cấu Hình Member để thiết lập giá trị Position Taking của mình.</value>
   </data>
+  <data name="warningGoldDeluxeUnsyncedAllDownline" xml:space="preserve">
+    <value>The Gold Deluxe Setting is not fully available. Please go to Edit Gold Deluxe page to adjust.</value>
+  </data>
 </root>

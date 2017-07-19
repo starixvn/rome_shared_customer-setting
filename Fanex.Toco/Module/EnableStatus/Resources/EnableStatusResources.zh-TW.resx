@@ -237,4 +237,7 @@
   <data name="warningUpdateSettingForEnabledDownlines" xml:space="preserve">
     <value>您剛啟用了產品予下線。 請您點擊到會員設定頁面設置您自己的占成數。</value>
   </data>
+  <data name="warningGoldDeluxeUnsyncedAllDownline" xml:space="preserve">
+    <value>The Gold Deluxe Setting is not fully available. Please go to Edit Gold Deluxe page to adjust.</value>
+  </data>
 </root>
