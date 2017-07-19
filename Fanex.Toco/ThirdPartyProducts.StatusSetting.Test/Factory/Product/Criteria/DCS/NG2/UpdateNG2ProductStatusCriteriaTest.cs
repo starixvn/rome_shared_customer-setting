@@ -10,7 +10,7 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Criteria.DCS.NG2
         public void GetSettingKey_ReturnCorrectValue()
         {
             // Arrange
-            var expectedValue = "Acc_CustSetting_StatusSettingSelect";
+            var expectedValue = "Acc_CustSetting_DisableGameStatusUpd";
 
             // Actual
             var actualValue = new UpdateNG2ProductStatusCriteria().GetSettingKey();
