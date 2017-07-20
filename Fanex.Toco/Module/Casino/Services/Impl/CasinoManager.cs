@@ -44,6 +44,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
         private static CasinoManager instance = new CasinoManager();
         private readonly CasinoDao _casino = new CasinoDao();
+        private DataTable _tblCustMultipleStakeLevel;
 
         public static CasinoManager Instance
         {
@@ -698,15 +699,15 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
         }
 
         public Result UpdateMaster(
-            int custId, 
-            string custName, 
-            int uplineId, 
-            string ip, 
-            int modifiedId, 
-            string modifiedBy, 
-            int fromSystem, 
-            byte systemId, 
-            CasinoSettingModel settingModel, 
+            int custId,
+            string custName,
+            int uplineId,
+            string ip,
+            int modifiedId,
+            string modifiedBy,
+            int fromSystem,
+            byte systemId,
+            CasinoSettingModel settingModel,
             CasinoCustomer customerModel)
         {
             var errMsg = string.Empty;
@@ -2028,7 +2029,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var gameTypes = new List<GameType>();
             var dt = synced ? cust.GetCustGameType(custId, gameKindID) : new BasicInfo().GetGameType(gameKindID);
             List<decimal?> s4s = new List<decimal?>(), n4s = new List<decimal?>(), scos = new List<decimal?>();
-
+            this._tblCustMultipleStakeLevel = cust.GetCustMultipleStakeLevel(custId, gameKindID);
             foreach (DataRow row in dt.Rows)
             {
                 var gameType = new GameType();
@@ -2074,6 +2075,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var cust = new Customer();
             var gameTypes = new List<GameType>();
             var dt = cust.GetCustGameType(custId, gameKindID);
+            this._tblCustMultipleStakeLevel = cust.GetCustMultipleStakeLevel(custId, gameKindID);
             List<decimal?> scos = new List<decimal?>(), s4s = new List<decimal?>(),
                 us3s = new List<decimal?>(), m3s = new List<decimal?>(), n3s = new List<decimal?>();
 
@@ -2138,7 +2140,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var gameTypes = new List<GameType>();
             var dt = cust.GetCustGameType(custId, gameKindID);
             List<decimal?> mcos = new List<decimal?>(), m3s = new List<decimal?>(), um2s = new List<decimal?>(), a2s = new List<decimal?>(), n2s = new List<decimal?>();
-
+            this._tblCustMultipleStakeLevel = cust.GetCustMultipleStakeLevel(custId, gameKindID);
             foreach (DataRow row in dt.Rows)
             {
                 var gameType = new GameType();
@@ -2200,7 +2202,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var cust = new Customer();
             var gameTypes = new List<GameType>();
             var dt = cust.GetCustGameType(custId, gameKindID);
-
+            this._tblCustMultipleStakeLevel = cust.GetCustMultipleStakeLevel(custId, gameKindID);
             foreach (DataRow row in dt.Rows)
             {
                 var gameType = new GameType();
@@ -2228,6 +2230,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var cust = new Customer();
             var gameTypes = new List<GameType>();
             var dt = cust.GetCustGameType(custId, gameKindID);
+            this._tblCustMultipleStakeLevel = cust.GetCustMultipleStakeLevel(custId, gameKindID);
             List<decimal?> acos = new List<decimal?>(), m2s = new List<decimal?>(), n2s = new List<decimal?>();
 
             foreach (DataRow row in dt.Rows)
@@ -2279,6 +2282,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var gameTypes = new List<GameType>();
             var dt = cust.GetCustGameType_EditMember(custId, gameKindID);
             var dtsuper = cust.GetCustGameType(custId, gameKindID);
+            this._tblCustMultipleStakeLevel = cust.GetCustMultipleStakeLevel(custId, gameKindID);
             List<decimal?> s4s = new List<decimal?>(), us3s = new List<decimal?>(), m3s = new List<decimal?>(), n3s = new List<decimal?>();
 
             foreach (DataRow row in dt.Rows)
@@ -2345,6 +2349,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var gameTypes = new List<GameType>();
             var dtMaster = cust.GetCustGameType(custId, gameKindID);
             var dt = cust.GetCustGameType_EditMember(custId, gameKindID);
+            this._tblCustMultipleStakeLevel = cust.GetCustMultipleStakeLevel(custId, gameKindID);
             List<decimal?> s4s = new List<decimal?>(), m3s = new List<decimal?>(), n2s = new List<decimal?>();
 
             foreach (DataRow row in dt.Rows)
@@ -2405,7 +2410,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
         {
             var cust = new Customer();
             var stakeLevels = new List<StakeLevel>();
-            var dt = custId != 0 ? cust.GetCustStakeLevel(custId, gameTypeID) : new BasicInfo() { SiteName = site }.GetGameTypeStakeLevel(gameTypeID, exchangeId);
+            var dt = custId != 0 ? GetCustStakeLevel(gameTypeID) : new BasicInfo() { SiteName = site }.GetGameTypeStakeLevel(gameTypeID, exchangeId);
+            //var dt = custId != 0 ? cust.GetCustStakeLevel(custId, gameTypeID) : new BasicInfo() { SiteName = site }.GetGameTypeStakeLevel(gameTypeID, exchangeId);
             dt = dt == null ? new BasicInfo() { SiteName = site }.GetGameTypeStakeLevel(gameTypeID, exchangeId) : dt;
 
             foreach (DataRow row in dt.Rows)
@@ -2431,6 +2437,13 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             }
 
             return stakeLevels;
+        }
+
+        private DataTable GetCustStakeLevel(int gameTypeID)
+        {
+            DataRow[] result = null;
+            result = this._tblCustMultipleStakeLevel.Select("GameTypeID = " + gameTypeID);
+            return result == null || result.Length == 0 ? this._tblCustMultipleStakeLevel.Clone() : result.CopyToDataTable();
         }
     }
 }
