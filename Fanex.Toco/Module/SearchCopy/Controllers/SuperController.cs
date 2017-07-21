@@ -103,7 +103,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
         /// <param name="criteria">The criteria for copying.</param>
         /// <returns>The JSONRESULT .</returns>        
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "SearchAndCopy")]
-        public ActionResult CopyExistingSuper(CustomerInsMemberCriteria criteria)
+        public ActionResult CopyExistingSuper(CustomerInsMemberCriteria criteria, string code)
         {
             var permissionService = new PermissionService();
             var checkSpecialSite = permissionService.CheckSpecialSitePermission(new CheckSpecialSitePermissionCriteria()
@@ -117,7 +117,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
                 return base.Json(checkSpecialSite, JsonRequestBehavior.AllowGet);
             }
 
-            criteria.Userpwd = IBCUtils.Encryption.CfsEnCode(criteria.Userpwd);
+            criteria.Userpwd = IBCUtils.Encryption.CfsEnCode(Encryptor.Decrypt(criteria.Userpwd, code));
             criteria.FirstName = criteria.FirstName ?? string.Empty;
             criteria.LastName = criteria.LastName ?? string.Empty;
             criteria.Phone = criteria.Phone ?? string.Empty;
