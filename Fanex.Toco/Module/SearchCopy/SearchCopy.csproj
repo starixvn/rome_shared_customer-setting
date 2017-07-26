@@ -324,6 +324,7 @@
     <Compile Include="Repositories\Interface\ISearchCopyRepository.cs" />
     <Compile Include="Services\CheckConstraintDataForSportBook.cs" />
     <Compile Include="Services\DCSSettingCopyInsertMemberService.cs" />
+    <Compile Include="Services\Encryptor.cs" />
     <Compile Include="Services\IDCSSettingCopyInsertMemberService.cs" />
     <Compile Include="Services\ISearchCopyService.cs" />
     <Compile Include="Services\PermissionService.cs" />
