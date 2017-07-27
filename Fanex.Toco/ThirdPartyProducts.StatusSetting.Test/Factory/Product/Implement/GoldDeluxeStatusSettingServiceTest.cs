@@ -30,7 +30,8 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Implement
         public void Select_Always_ReturnsCorrectData()
         {
             // Actual
-            var request = new GetProductStatusRequest() {
+            var request = new GetProductStatusRequest()
+            {
                 CustId = 0
             };
             var actualValue = _settingService.Select(request);
@@ -59,13 +60,13 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Implement
             // Actual
             var request = new UpdateProductStatusRequest()
             {
-                CustId=1,
+                CustId = 1,
                 SubAccId = 1,
                 UplineId = 1,
                 ProductId = 1,
                 UserId = 1,
                 SystemId = 1,
-                Ip= "127.0.0.1",
+                Ip = "127.0.0.1",
                 ProductStatus = productStatus
             };
 
