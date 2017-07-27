@@ -8,38 +8,30 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
 {
     internal class GoldDeluxeStatusSettingService : ProductStatusSettingServiceBase
     {
-        public override List<ProductStatus> Select(int custId, int productId, int roleId)
+        public override List<ProductStatus> Select(GetProductStatusRequest request)
         {
-            var criteria = new SelectGoldDeluxeStatusCriteria(custId);
+            var criteria = new SelectGoldDeluxeStatusCriteria(request.CustId);
 
             return ObjectDbFactory.ExecuteReaderFunc(criteria, MapSpData).ToList();
         }
 
-        public override List<ProductStatusResult> Update(
-            int custId,
-            int subAccId,
-            int uplineId,
-            int productId,
-            int userId,
-            int systemId,
-            string ip,
-            List<ProductStatus> productStatus)
+        public override List<ProductStatusResult> Update(UpdateProductStatusRequest request)
         {
             var result = new List<ProductStatusResult>();
 
-            Validate(custId, subAccId, productId, userId, systemId, ip, productStatus);
+            Validate(request);
 
-            var goldDeluxeStatus = productStatus[0];
+            var goldDeluxeStatus = request.ProductStatus[0];
 
             var criteria = new UpdateGoldDeluxeStatusCriteria
             {
-                CustId = custId,
+                CustId = request.CustId,
                 Disable = goldDeluxeStatus.IsDisabled,
                 EnableDownlines = !goldDeluxeStatus.IsDisabledDownline,
-                SystemId = systemId,
-                UserId = userId,
-                SubAccId = subAccId,
-                Ip = ip,
+                SystemId = request.SystemId,
+                UserId = request.UserId,
+                SubAccId = request.SubAccId,
+                Ip = request.Ip,
                 Language = Utils.GetLanguageKeyForSql()
             };
 
