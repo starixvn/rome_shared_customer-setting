@@ -3,11 +3,11 @@ using Fanex.NAP.Framework.Data;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using ThirdPartyProducts.StatusSetting.Factory.Product.Criteria;
 using ThirdPartyProducts.StatusSetting.Factory.Product.Interface;
 using ThirdPartyProducts.StatusSetting.Model;
 using ThirdPartyProducts.StatusSetting.Resources;
-using System.Linq;
 
 namespace ThirdPartyProducts.StatusSetting.Factory.Product
 {

@@ -4,7 +4,7 @@
     {
         Racing = 2,
 
-        VirtualSport = 5,
+        VirtualSports = 5,
 
         Casino = 6,
 
@@ -22,6 +22,6 @@
 
         GoldDeluxe = 12,
         
-        BetradarVirtualSport = 27
+        VirtualSports2 = 27
     }
 }

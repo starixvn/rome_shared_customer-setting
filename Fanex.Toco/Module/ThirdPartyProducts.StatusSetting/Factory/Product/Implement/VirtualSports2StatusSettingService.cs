@@ -2,7 +2,7 @@
 
 namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
 {
-    internal class VirtualSportStatusSettingService : SingleBettypeDCSProductStatusSettingService
+    internal class VirtualSports2StatusSettingService : SingleBettypeDCSProductStatusSettingService
     {
     }
 }

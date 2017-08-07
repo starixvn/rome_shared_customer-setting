@@ -2,7 +2,7 @@
 
 namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
 {
-    internal class FishingWorldStatusSettingService : MacauGamesStatusSettingService
+    internal class FishingWorldStatusSettingService : SingleBettypeDCSProductStatusSettingService
     {
     }
 }
