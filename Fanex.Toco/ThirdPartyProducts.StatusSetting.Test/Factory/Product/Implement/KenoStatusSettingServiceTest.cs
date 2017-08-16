@@ -55,24 +55,27 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Implement
         public void Update_AnyArgument_ReturnCorrectData()
         {
             // Arrange
+            var request = new UpdateProductStatusRequest()
+            {
+                CustId = 1,
+                SubAccId = 1,
+                ProductId = 1,
+                SystemId = 1,
+                UplineId = 1,
+                UserId = 1,
+                Ip = "127.0.0.1",
+                ProductStatus = new List<ProductStatus>() {
+                    new ProductStatus(),
+                    new ProductStatus()
+                }
+            };
             ObjectDbFactory.ExecuteNonQueryFunc = criteria => ExecuteNonQueryTest();
             var expectedValue = new List<ProductStatusResult>();
             expectedValue.Add(new ProductStatusResult() { ErrorCode = "0", ErrorMessage = string.Empty });
             expectedValue.Add(new ProductStatusResult() { ErrorCode = "0", ErrorMessage = string.Empty });
 
             // Actual
-            var actualValue = new KenoStatusSettingService().Update(
-                1,
-                1,
-                1,
-                1,
-                1,
-                1,
-                "127.0.0.1",
-                new List<ProductStatus>(){
-                    new ProductStatus(),
-                    new ProductStatus()
-                });
+            var actualValue = new KenoStatusSettingService().Update(request);
             ObjectDbFactory.ExecuteNonQueryFunc = null;
 
             // Assert
@@ -95,7 +98,7 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Implement
             };
 
             // Actual
-            var actualValue = new KenoStatusSettingService().Select(Arg.Any<int>(), Arg.Any<int>(), Arg.Any<int>());
+            var actualValue = new KenoStatusSettingService().Select(new GetProductStatusRequest());
             ObjectDbFactory.ExecuteReaderFunc = null;
 
             // Assert

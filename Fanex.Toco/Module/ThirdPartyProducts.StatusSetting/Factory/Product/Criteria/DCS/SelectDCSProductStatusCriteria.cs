@@ -6,11 +6,20 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria
     {
         public int RoleId { get; set; }
 
-        public const int SettingType = 13;
+        [SpParam(Ignored = true)]
+        public bool IsDeposit { get; set; }
+
+        public int SettingType
+        {
+            get
+            {
+                return IsDeposit ? 4 : 13;
+            }
+        }
 
         public override string GetSettingKey()
         {
-            return "Acc_CustSetting_StatusSettingSelect";
+            return IsDeposit ? "Acc_Dep_CustSetting_StatusSettingSelect" : "Acc_CustSetting_StatusSettingSelect";
         }
     }
 }

@@ -11,28 +11,20 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
 {
     internal class NG2StatusSettingService : DCSProductStatusSettingService
     {
-        public override List<ProductStatusResult> Update(
-            int custId,
-            int subAccId,
-            int uplineId,
-            int productId,
-            int userId,
-            int systemId,
-            string ip,
-            List<ProductStatus> productStatus)
+        public override List<ProductStatusResult> Update(UpdateProductStatusRequest request)
         {
             var result = new List<ProductStatusResult>();
-            Validate(custId, subAccId, productId, userId, systemId, ip, productStatus);
+            Validate(request);
             var criteria = new UpdateNG2ProductStatusCriteria
             {
-                CustId = custId,
-                SubAccId = subAccId,
-                UserId = userId,
-                Ip = ip,
-                SystemId = systemId
+                CustId = request.CustId,
+                SubAccId = request.SubAccId,
+                UserId = request.UserId,
+                Ip = request.Ip,
+                SystemId = request.SystemId
             };
 
-            criteria.MapSpParams(productStatus);
+            criteria.MapSpParams(request.ProductStatus);
             result.Add(ConvertXmlErrorMessage(ExecuteNonQuery(criteria), false));
             return result;
         }

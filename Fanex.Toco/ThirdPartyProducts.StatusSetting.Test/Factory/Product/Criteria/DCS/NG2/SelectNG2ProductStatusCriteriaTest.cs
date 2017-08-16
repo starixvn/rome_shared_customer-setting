@@ -4,6 +4,7 @@ using ThirdPartyProducts.StatusSetting.Factory.Product.Criteria;
 namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Criteria.DCS.NG2
 {
     [TestFixture]
+    [Category("ThirdPartyProducts.StatusSetting.Test.Factory.Product.Criteria.DCS.NG2")]
     public class SelectNG2ProductStatusCriteriaTest
     {
         [Test]

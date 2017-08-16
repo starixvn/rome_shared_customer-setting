@@ -43,7 +43,7 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product
             };
 
             // Act
-            var actualValue = new ProductStatusSettingServiceBaseMock().Select(Arg.Any<int>(), Arg.Any<int>(), Arg.Any<int>());
+            var actualValue = new ProductStatusSettingServiceBaseMock().Select(new GetProductStatusRequest());
 
             // Assert
             Assert.AreEqual(JsonConvert.SerializeObject(expectedValue), JsonConvert.SerializeObject(actualValue));
@@ -69,17 +69,26 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product
         public void Validate_CustIdIsLessThanOrEqualZero_ThrowArgumentOutOfRangeException(int custId)
         {
             // Arrange
-            var listProductStatus = new List<ProductStatus>();
-            listProductStatus.Add(new ProductStatus());
-            listProductStatus.Add(new ProductStatus());
-
-            // Arrange
+            var request = new UpdateProductStatusRequest()
+            {
+                CustId = custId,
+                SubAccId = 1,
+                ProductId = 1,
+                SystemId = 1,
+                UplineId = 1,
+                UserId = 1,
+                Ip = "127.0.0.1",
+                ProductStatus = new List<ProductStatus>() {
+                    new ProductStatus(),
+                    new ProductStatus()
+                }
+            };
             var expectedException = new ArgumentOutOfRangeException("custId", custId, string.Format(Message.ArgumentMustGreaterThanZero, "CustId"));
 
             // Assert
             Assert.Throws(Is.TypeOf<ArgumentOutOfRangeException>()
                 .And.Message.EqualTo(expectedException.Message),
-                delegate { new ProductStatusSettingServiceBaseMock().Validate(custId, 1, 1, 1, 1, "127.0.0.1", listProductStatus); });
+                delegate { new ProductStatusSettingServiceBaseMock().Validate(request); });
         }
 
         [Test]
@@ -88,12 +97,22 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product
         public void Validate_CustIdIsGreaterThanZero_NotThrowException(int custId)
         {
             // Arrange
-            var listProductStatus = new List<ProductStatus>();
-            listProductStatus.Add(new ProductStatus());
-            listProductStatus.Add(new ProductStatus());
-
+            var request = new UpdateProductStatusRequest()
+            {
+                CustId = custId,
+                SubAccId = 1,
+                ProductId = 1,
+                SystemId = 1,
+                UplineId = 1,
+                UserId = 1,
+                Ip = "127.0.0.1",
+                ProductStatus = new List<ProductStatus>() {
+                    new ProductStatus(),
+                    new ProductStatus()
+                }
+            };
             // Assert
-            Assert.DoesNotThrow(delegate { new ProductStatusSettingServiceBaseMock().Validate(custId, 1, 1, 1, 1, "127.0.0.1", listProductStatus); });
+            Assert.DoesNotThrow(delegate { new ProductStatusSettingServiceBaseMock().Validate(request); });
         }
 
         [Test]
@@ -103,17 +122,26 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product
         public void Validate_ProductIdIsLessThanOrEqualZero_ThrowArgumentOutOfRangeException(int productId)
         {
             // Arrange
-            var listProductStatus = new List<ProductStatus>();
-            listProductStatus.Add(new ProductStatus());
-            listProductStatus.Add(new ProductStatus());
-
-            // Arrange
+            var request = new UpdateProductStatusRequest()
+            {
+                CustId = 1,
+                SubAccId = 1,
+                ProductId = productId,
+                SystemId = 1,
+                UplineId = 1,
+                UserId = 1,
+                Ip = "127.0.0.1",
+                ProductStatus = new List<ProductStatus>() {
+                    new ProductStatus(),
+                    new ProductStatus()
+                }
+            };
             var expectedException = new ArgumentOutOfRangeException("productId", productId, string.Format(Message.ArgumentMustGreaterThanZero, "ProductId"));
 
             // Assert
             Assert.Throws(Is.TypeOf<ArgumentOutOfRangeException>()
                 .And.Message.EqualTo(expectedException.Message),
-                delegate { new ProductStatusSettingServiceBaseMock().Validate(1, 1, productId, 1, 1, "127.0.0.1", listProductStatus); });
+                delegate { new ProductStatusSettingServiceBaseMock().Validate(request); });
         }
 
         [Test]
@@ -122,12 +150,23 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product
         public void Validate_ProductIdIsGreaterThanZero_NotThrowException(int productId)
         {
             // Arrange
-            var listProductStatus = new List<ProductStatus>();
-            listProductStatus.Add(new ProductStatus());
-            listProductStatus.Add(new ProductStatus());
+            var request = new UpdateProductStatusRequest()
+            {
+                CustId = 1,
+                SubAccId = 1,
+                ProductId = productId,
+                SystemId = 1,
+                UplineId = 1,
+                UserId = 1,
+                Ip = "127.0.0.1",
+                ProductStatus = new List<ProductStatus>() {
+                    new ProductStatus(),
+                    new ProductStatus()
+                }
+            };
 
             // Assert
-            Assert.DoesNotThrow(delegate { new ProductStatusSettingServiceBaseMock().Validate(1, 1, productId, 1, 1, "127.0.0.1", listProductStatus); });
+            Assert.DoesNotThrow(delegate { new ProductStatusSettingServiceBaseMock().Validate(request); });
         }
 
         [Test]
@@ -139,17 +178,26 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product
         public void Validate_SystemIdNotInRange_ThrowArgumentOutOfRangeException(int systemId)
         {
             // Arrange
-            var listProductStatus = new List<ProductStatus>();
-            listProductStatus.Add(new ProductStatus());
-            listProductStatus.Add(new ProductStatus());
-
-            // Arrange
+            var request = new UpdateProductStatusRequest()
+            {
+                CustId = 1,
+                SubAccId = 1,
+                ProductId = 1,
+                SystemId = systemId,
+                UplineId = 1,
+                UserId = 1,
+                Ip = "127.0.0.1",
+                ProductStatus = new List<ProductStatus>() {
+                    new ProductStatus(),
+                    new ProductStatus()
+                }
+            };
             var expectedException = new ArgumentOutOfRangeException("systemId", systemId, string.Format(Message.ArgumentSystemIdMustBeInRange, "SystemId"));
 
             // Assert
             Assert.Throws(Is.TypeOf<ArgumentOutOfRangeException>()
                 .And.Message.EqualTo(expectedException.Message),
-                delegate { new ProductStatusSettingServiceBaseMock().Validate(1, 1, 1, 1, systemId, "127.0.0.1", listProductStatus); });
+                delegate { new ProductStatusSettingServiceBaseMock().Validate(request); });
         }
 
         [Test]
@@ -159,12 +207,23 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product
         public void Validate_SystemIdInRange_NotThrowException(int systemId)
         {
             // Arrange
-            var listProductStatus = new List<ProductStatus>();
-            listProductStatus.Add(new ProductStatus());
-            listProductStatus.Add(new ProductStatus());
+            var request = new UpdateProductStatusRequest()
+            {
+                CustId = 1,
+                SubAccId = 1,
+                ProductId = 1,
+                SystemId = systemId,
+                UplineId = 1,
+                UserId = 1,
+                Ip = "127.0.0.1",
+                ProductStatus = new List<ProductStatus>() {
+                    new ProductStatus(),
+                    new ProductStatus()
+                }
+            };
 
             // Assert
-            Assert.DoesNotThrow(delegate { new ProductStatusSettingServiceBaseMock().Validate(1, 1, 1, 1, systemId, "127.0.0.1", listProductStatus); });
+            Assert.DoesNotThrow(delegate { new ProductStatusSettingServiceBaseMock().Validate(request); });
         }
 
         [Test]
@@ -173,9 +232,20 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product
         public void Validate_IPIsNullOrEmpty_ThrowArgumentNullException(string ip)
         {
             // Arrange
-            var listProductStatus = new List<ProductStatus>();
-            listProductStatus.Add(new ProductStatus());
-            listProductStatus.Add(new ProductStatus());
+            var request = new UpdateProductStatusRequest()
+            {
+                CustId = 1,
+                SubAccId = 1,
+                ProductId = 1,
+                SystemId = 1,
+                UplineId = 1,
+                UserId = 1,
+                Ip = ip,
+                ProductStatus = new List<ProductStatus>() {
+                    new ProductStatus(),
+                    new ProductStatus()
+                }
+            };
 
             // Arrange
             var expectedException = new ArgumentNullException("ip", string.Format(Message.ArgumentCannotBeNullOrEmpty, "ip"));
@@ -183,7 +253,7 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product
             // Assert
             Assert.Throws(Is.TypeOf<ArgumentNullException>()
                 .And.Message.EqualTo(expectedException.Message),
-                delegate { new ProductStatusSettingServiceBaseMock().Validate(1, 1, 1, 1, 1, ip, listProductStatus); });
+                delegate { new ProductStatusSettingServiceBaseMock().Validate(request); });
         }
 
         [Test]
@@ -192,19 +262,52 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product
         public void Validate_IPIsNotEmpty_NotThrowException(string ip)
         {
             // Arrange
-            var listProductStatus = new List<ProductStatus>();
-            listProductStatus.Add(new ProductStatus());
-            listProductStatus.Add(new ProductStatus());
+            var request = new UpdateProductStatusRequest()
+            {
+                CustId = 1,
+                SubAccId = 1,
+                ProductId = 1,
+                SystemId = 1,
+                UplineId = 1,
+                UserId = 1,
+                Ip = ip,
+                ProductStatus = new List<ProductStatus>() {
+                    new ProductStatus(),
+                    new ProductStatus()
+                }
+            };
 
             // Assert
-            Assert.DoesNotThrow(delegate { new ProductStatusSettingServiceBaseMock().Validate(1, 1, 1, 1, 1, ip, listProductStatus); });
+            Assert.DoesNotThrow(delegate { new ProductStatusSettingServiceBaseMock().Validate(request); });
         }
 
         [Test]
         public void Validate_ProductStatusIsNullOrEmpty_ThrowArgumentNullException()
         {
             // Arrange
-            var listProductStatus = new List<ProductStatus>();
+            var requestWithNullProductStatus = new UpdateProductStatusRequest()
+            {
+                CustId = 1,
+                SubAccId = 1,
+                ProductId = 1,
+                SystemId = 1,
+                UplineId = 1,
+                UserId = 1,
+                Ip = "127.0.0.1",
+                ProductStatus = null
+            };
+
+            var requestWithEmptyProductStatus = new UpdateProductStatusRequest()
+            {
+                CustId = 1,
+                SubAccId = 1,
+                ProductId = 1,
+                SystemId = 1,
+                UplineId = 1,
+                UserId = 1,
+                Ip = "127.0.0.1",
+                ProductStatus = new List<ProductStatus>()
+            };
 
             // Arrange
             var expectedException = new ArgumentNullException("productStatus", string.Format(Message.ArgumentCannotBeNullOrEmpty, "productStatus"));
@@ -212,23 +315,34 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product
             // Assert
             Assert.Throws(Is.TypeOf<ArgumentNullException>()
                 .And.Message.EqualTo(expectedException.Message),
-                delegate { new ProductStatusSettingServiceBaseMock().Validate(1, 1, 1, 1, 1, "127.0.0.1", null); });
+                delegate { new ProductStatusSettingServiceBaseMock().Validate(requestWithNullProductStatus); });
 
             Assert.Throws(Is.TypeOf<ArgumentNullException>()
                .And.Message.EqualTo(expectedException.Message),
-               delegate { new ProductStatusSettingServiceBaseMock().Validate(1, 1, 1, 1, 1, "127.0.0.1", listProductStatus); });
+               delegate { new ProductStatusSettingServiceBaseMock().Validate(requestWithEmptyProductStatus); });
         }
 
         [Test]
         public void Validate_ProductStatusIsNotEmpty_NotThrowException()
         {
             // Arrange
-            var listProductStatus = new List<ProductStatus>();
-            listProductStatus.Add(new ProductStatus());
-            listProductStatus.Add(new ProductStatus());
+            var request = new UpdateProductStatusRequest()
+            {
+                CustId = 1,
+                SubAccId = 1,
+                ProductId = 1,
+                SystemId = 1,
+                UplineId = 1,
+                UserId = 1,
+                Ip = "127.0.0.1",
+                ProductStatus = new List<ProductStatus>() {
+                    new ProductStatus(),
+                    new ProductStatus()
+                }
+            };
 
             // Assert
-            Assert.DoesNotThrow(delegate { new ProductStatusSettingServiceBaseMock().Validate(1, 1, 1, 1, 1, "127.0.0.1", listProductStatus); });
+            Assert.DoesNotThrow(delegate { new ProductStatusSettingServiceBaseMock().Validate(request); });
         }
 
         [Test]

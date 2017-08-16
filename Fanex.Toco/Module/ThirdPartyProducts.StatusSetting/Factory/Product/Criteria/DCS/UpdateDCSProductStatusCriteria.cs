@@ -20,9 +20,11 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria.DCS
 
         public int SystemId { get; set; }
 
+        public bool IsDeposit { get; set; }
+
         public override string GetSettingKey()
         {
-            return "Acc_CustSetting_DisableNewProductStatusUpd";
+            return IsDeposit ? "Acc_Dep_CustSetting_DisableStatUpd" : "Acc_CustSetting_DisableNewProductStatusUpd";
         }
 
         public override bool IsValid()

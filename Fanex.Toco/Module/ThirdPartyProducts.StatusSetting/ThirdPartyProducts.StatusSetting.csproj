@@ -101,8 +101,9 @@
     <Compile Include="Factory\Product\Criteria\UpdateCasinoStatusCriteria.cs" />
     <Compile Include="Factory\Product\Criteria\UpdateKenoStatusCriteria.cs" />
     <Compile Include="Factory\Product\Criteria\UpdateColossusBetStatusCriteria.cs" />
-    <Compile Include="Factory\Product\Criteria\UpdateVirtualSportStatusCriteria.cs" />
     <Compile Include="Factory\Product\Implement\GoldDeluxeStatusSettingService.cs" />
+    <Compile Include="Factory\Product\Implement\DCS\MultipleBettypeDCSProductStatusSettingService.cs" />
+    <Compile Include="Factory\Product\Implement\DCS\SingleBettypeDCSProductStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\NG2StatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\FishingWorldStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\MacauGamesStatusSettingService.cs" />
@@ -112,12 +113,15 @@
     <Compile Include="Factory\Product\Implement\RacingStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\CasinoStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\ColossusBetStatusSettingService.cs" />
+    <Compile Include="Factory\Product\Implement\VirtualSports2StatusSettingService.cs" />
     <Compile Include="Factory\Product\ProductStatusSettingServiceBase.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Model\GetProductStatusRequest.cs" />
     <Compile Include="Model\ProductStatus.cs" />
     <Compile Include="Model\ProductStatusResult.cs" />
+    <Compile Include="Model\UpdateProductStatusRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Factory\Product\Implement\VirtualSportStatusSettingService.cs" />
+    <Compile Include="Factory\Product\Implement\VirtualSportsStatusSettingService.cs" />
     <Compile Include="Factory\Product\Interface\IProductStatusSettingService.cs" />
     <Compile Include="Resources\BetTypeName.zh-CN.Designer.cs">
       <DependentUpon>BetTypeName.zh-CN.resx</DependentUpon>

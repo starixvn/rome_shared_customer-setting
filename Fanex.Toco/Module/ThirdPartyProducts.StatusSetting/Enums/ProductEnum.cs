@@ -4,7 +4,7 @@
     {
         Racing = 2,
 
-        VirtualSport = 5,
+        VirtualSports = 5,
 
         Casino = 6,
 
@@ -20,6 +20,8 @@
 
         FishingWorld = 24,
 
-        GoldDeluxe = 12
+        GoldDeluxe = 12,
+        
+        VirtualSports2 = 27
     }
 }

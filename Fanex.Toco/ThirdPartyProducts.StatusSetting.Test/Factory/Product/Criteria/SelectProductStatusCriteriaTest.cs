@@ -4,6 +4,7 @@ using ThirdPartyProducts.StatusSetting.Factory.Product.Criteria;
 namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Criteria
 {
     [TestFixture]
+    [Category("ThirdPartyProducts.StatusSetting.Test.Factory.Product.Criteria")]
     public class SelectProductStatusCriteriaTest
     {
         [Test]

@@ -3,36 +3,28 @@ using Fanex.NAP.Framework.Data;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using ThirdPartyProducts.StatusSetting.Factory.Product.Criteria;
 using ThirdPartyProducts.StatusSetting.Factory.Product.Interface;
 using ThirdPartyProducts.StatusSetting.Model;
 using ThirdPartyProducts.StatusSetting.Resources;
-using System.Linq;
 
 namespace ThirdPartyProducts.StatusSetting.Factory.Product
 {
     internal abstract class ProductStatusSettingServiceBase : IProductStatusSettingService
     {
-        public virtual List<ProductStatus> Select(int custId, int productId, int roleId)
+        public virtual List<ProductStatus> Select(GetProductStatusRequest request)
         {
             var criteria = new SelectProductStatusCriteria
             {
-                CustId = custId,
-                ProductId = productId
+                CustId = request.CustId,
+                ProductId = request.ProductId
             };
 
             return ObjectDbFactory.ExecuteReaderFunc(criteria, MapSpData).ToList();
         }
 
-        public abstract List<ProductStatusResult> Update(
-            int custId,
-            int subAccId,
-            int uplineId,
-            int productId,
-            int userId,
-            int systemId,
-            string ip,
-            List<ProductStatus> productStatus);
+        public abstract List<ProductStatusResult> Update(UpdateProductStatusRequest request);
 
         protected virtual ProductStatus MapSpData(IDataRecord record)
         {
@@ -66,30 +58,30 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product
             };
         }
 
-        protected virtual void Validate(int custId, int subAccId, int productId, int userId, int systemId, string ip, List<ProductStatus> productStatus)
+        protected virtual void Validate(UpdateProductStatusRequest updateProductStatusRequest)
         {
             // Validate input custid & productId > 0, productStatus != null && Count > 0
-            if (custId <= 0)
+            if (updateProductStatusRequest.CustId <= 0)
             {
-                throw new ArgumentOutOfRangeException("custId", custId, string.Format(Message.ArgumentMustGreaterThanZero, "CustId"));
+                throw new ArgumentOutOfRangeException("custId", updateProductStatusRequest.CustId, string.Format(Message.ArgumentMustGreaterThanZero, "CustId"));
             }
 
-            if (productId <= 0)
+            if (updateProductStatusRequest.ProductId <= 0)
             {
-                throw new ArgumentOutOfRangeException("productId", productId, string.Format(Message.ArgumentMustGreaterThanZero, "ProductId"));
+                throw new ArgumentOutOfRangeException("productId", updateProductStatusRequest.ProductId, string.Format(Message.ArgumentMustGreaterThanZero, "ProductId"));
             }
 
-            if (systemId != 1 && systemId != 2 && systemId != 4)
+            if (updateProductStatusRequest.SystemId != 1 && updateProductStatusRequest.SystemId != 2 && updateProductStatusRequest.SystemId != 4)
             {
-                throw new ArgumentOutOfRangeException("systemId", systemId, string.Format(Message.ArgumentSystemIdMustBeInRange, "SystemId"));
+                throw new ArgumentOutOfRangeException("systemId", updateProductStatusRequest.SystemId, string.Format(Message.ArgumentSystemIdMustBeInRange, "SystemId"));
             }
 
-            if (string.IsNullOrEmpty(ip))
+            if (string.IsNullOrEmpty(updateProductStatusRequest.Ip))
             {
                 throw new ArgumentNullException("ip", string.Format(Message.ArgumentCannotBeNullOrEmpty, "ip"));
             }
 
-            if (productStatus == null || productStatus.Count == 0)
+            if (updateProductStatusRequest.ProductStatus == null || updateProductStatusRequest.ProductStatus.Count == 0)
             {
                 throw new ArgumentNullException("productStatus", string.Format(Message.ArgumentCannotBeNullOrEmpty, "productStatus"));
             }
