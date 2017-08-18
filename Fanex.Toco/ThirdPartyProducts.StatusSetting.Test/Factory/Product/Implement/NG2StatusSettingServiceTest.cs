@@ -15,6 +15,33 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Implement
     [Category("ThirdPartyProducts.StatusSetting.Test.Factory.Product.Implement")]
     public class NG2StatusSettingServiceTest
     {
+        private NG2StatusSettingServiceMock _settingService;
+        private IEnumerable<ProductStatus> _dataTest;
+
+        [SetUp]
+        public void Init()
+        {
+            _settingService = new NG2StatusSettingServiceMock();
+
+            _dataTest = CreateDataTest();
+            ObjectDbFactory.ExecuteReaderFunc = (criteria, MapSpData) => _dataTest;
+        }
+
+        [Test]
+        public void Select_Always_ReturnsCorrectData()
+        {
+            // Actual
+            var request = new GetProductStatusRequest()
+            {
+                CustId = 0,
+                ProductId = 0
+            };
+            var actualValue = _settingService.Select(request);
+
+            // Assert
+            Assert.AreEqual(JsonConvert.SerializeObject(_dataTest), JsonConvert.SerializeObject(actualValue));
+        }
+
         [Test]
         public void MapSpData_AnyArgument_MapDataCorrect()
         {
@@ -44,7 +71,7 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Implement
             };
 
             // Actual
-            var actualvalue = new NG2StatusSettingServiceMock().MapSpDataMock(substitute);
+            var actualvalue = _settingService.MapSpDataMock(substitute);
 
             // Assert
             Assert.AreEqual(JsonConvert.SerializeObject(expectedValue), JsonConvert.SerializeObject(actualvalue));
@@ -71,7 +98,7 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Implement
             var expectedValue = new List<ProductStatusResult>();
             expectedValue.Add(new ProductStatusResult() { ErrorCode = "60035", ErrorMessage = "You are not allowed to disable downline's product." });
             // Actual
-            var actualValue = new NG2StatusSettingService().Update(request);
+            var actualValue = _settingService.Update(request);
             ObjectDbFactory.ExecuteNonQueryFunc = null;
 
             // Assert
@@ -85,6 +112,21 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Implement
                 { "errcode", "102" },
                 { "errmsg", "<Root MsgID=\"60035\" Msg=\"You are not allowed to disable for downlines.\"><Row SportType=\"211\" BetType=\"2401\"/></Root>" }
             };
+        }
+
+        private IEnumerable<ProductStatus> CreateDataTest()
+        {
+            var result = new List<ProductStatus>()
+            {
+                new ProductStatus()
+                {
+                    BetType =2401,
+                    SportType =211,
+                    ProductId =23
+                },
+            };
+
+            return result;
         }
     }
 }

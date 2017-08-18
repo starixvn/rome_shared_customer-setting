@@ -1,6 +1,7 @@
 ﻿using Fanex.Data;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using ThirdPartyProducts.StatusSetting.Enums;
 using ThirdPartyProducts.StatusSetting.Factory.Product.Criteria;
 using ThirdPartyProducts.StatusSetting.Factory.Product.Criteria.DCS;
@@ -11,6 +12,17 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
 {
     internal class NG2StatusSettingService : DCSProductStatusSettingService
     {
+        public override List<ProductStatus> Select(GetProductStatusRequest request)
+        {
+            var criteria = new SelectNG2ProductStatusCriteria
+            {
+                CustId = request.CustId,
+                ProductId = request.ProductId
+            };
+
+            return ObjectDbFactory.ExecuteReaderFunc(criteria, MapSpData).ToList();
+        }
+
         public override List<ProductStatusResult> Update(UpdateProductStatusRequest request)
         {
             var result = new List<ProductStatusResult>();

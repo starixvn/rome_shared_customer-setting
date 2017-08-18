@@ -69,7 +69,7 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Implement
                 ProductStatus = productStatus
             };
 
-            var actualValue = new GoldDeluxeStatusSettingServiceMock().Update(request);
+            var actualValue = _settingService.Update(request);
             ObjectDbFactory.ExecuteNonQueryFunc = null;
 
             // Assert
