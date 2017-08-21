@@ -2029,7 +2029,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var gameTypes = new List<GameType>();
             var dt = synced ? cust.GetCustGameType(custId, gameKindID) : new BasicInfo().GetGameType(gameKindID);
             List<decimal?> s4s = new List<decimal?>(), n4s = new List<decimal?>(), scos = new List<decimal?>();
-            this._tblCustMultipleStakeLevel = cust.GetCustMultipleStakeLevel(custId, gameKindID);
+            this._tblCustMultipleStakeLevel = custId != 0 ? cust.GetCustMultipleStakeLevel(custId, gameKindID) : null;
             foreach (DataRow row in dt.Rows)
             {
                 var gameType = new GameType();
@@ -2075,7 +2075,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var cust = new Customer();
             var gameTypes = new List<GameType>();
             var dt = cust.GetCustGameType(custId, gameKindID);
-            this._tblCustMultipleStakeLevel = cust.GetCustMultipleStakeLevel(custId, gameKindID);
+            this._tblCustMultipleStakeLevel = custId != 0 ? cust.GetCustMultipleStakeLevel(custId, gameKindID) : null;
             List<decimal?> scos = new List<decimal?>(), s4s = new List<decimal?>(),
                 us3s = new List<decimal?>(), m3s = new List<decimal?>(), n3s = new List<decimal?>();
 
@@ -2140,7 +2140,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var gameTypes = new List<GameType>();
             var dt = cust.GetCustGameType(custId, gameKindID);
             List<decimal?> mcos = new List<decimal?>(), m3s = new List<decimal?>(), um2s = new List<decimal?>(), a2s = new List<decimal?>(), n2s = new List<decimal?>();
-            this._tblCustMultipleStakeLevel = cust.GetCustMultipleStakeLevel(custId, gameKindID);
+            this._tblCustMultipleStakeLevel = custId != 0 ? cust.GetCustMultipleStakeLevel(custId, gameKindID) : null;
             foreach (DataRow row in dt.Rows)
             {
                 var gameType = new GameType();
@@ -2202,7 +2202,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var cust = new Customer();
             var gameTypes = new List<GameType>();
             var dt = cust.GetCustGameType(custId, gameKindID);
-            this._tblCustMultipleStakeLevel = cust.GetCustMultipleStakeLevel(custId, gameKindID);
+            this._tblCustMultipleStakeLevel = custId != 0 ? cust.GetCustMultipleStakeLevel(custId, gameKindID) : null;
             foreach (DataRow row in dt.Rows)
             {
                 var gameType = new GameType();
@@ -2230,7 +2230,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var cust = new Customer();
             var gameTypes = new List<GameType>();
             var dt = cust.GetCustGameType(custId, gameKindID);
-            this._tblCustMultipleStakeLevel = cust.GetCustMultipleStakeLevel(custId, gameKindID);
+            this._tblCustMultipleStakeLevel = custId != 0 ? cust.GetCustMultipleStakeLevel(custId, gameKindID) : null;
             List<decimal?> acos = new List<decimal?>(), m2s = new List<decimal?>(), n2s = new List<decimal?>();
 
             foreach (DataRow row in dt.Rows)
@@ -2282,7 +2282,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var gameTypes = new List<GameType>();
             var dt = cust.GetCustGameType_EditMember(custId, gameKindID);
             var dtsuper = cust.GetCustGameType(custId, gameKindID);
-            this._tblCustMultipleStakeLevel = cust.GetCustMultipleStakeLevel(custId, gameKindID);
+            this._tblCustMultipleStakeLevel = custId != 0 ? cust.GetCustMultipleStakeLevel(custId, gameKindID) : null;
             List<decimal?> s4s = new List<decimal?>(), us3s = new List<decimal?>(), m3s = new List<decimal?>(), n3s = new List<decimal?>();
 
             foreach (DataRow row in dt.Rows)
@@ -2349,7 +2349,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var gameTypes = new List<GameType>();
             var dtMaster = cust.GetCustGameType(custId, gameKindID);
             var dt = cust.GetCustGameType_EditMember(custId, gameKindID);
-            this._tblCustMultipleStakeLevel = cust.GetCustMultipleStakeLevel(custId, gameKindID);
+            this._tblCustMultipleStakeLevel = custId != 0 ? cust.GetCustMultipleStakeLevel(custId, gameKindID) : null;
             List<decimal?> s4s = new List<decimal?>(), m3s = new List<decimal?>(), n2s = new List<decimal?>();
 
             foreach (DataRow row in dt.Rows)
