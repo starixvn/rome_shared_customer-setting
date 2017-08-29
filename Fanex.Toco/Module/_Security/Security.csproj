@@ -108,6 +108,12 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resource\Errors.ja-JP.resx" />
+    <EmbeddedResource Include="Resource\Errors.zh-CN.resx" />
+    <EmbeddedResource Include="Resource\Errors.ko-KR.resx" />
+    <EmbeddedResource Include="Resource\Errors.vi-VN.resx" />
+    <EmbeddedResource Include="Resource\Errors.th-TH.resx" />
+    <EmbeddedResource Include="Resource\Errors.zh-TW.resx" />
     <EmbeddedResource Include="Resource\Errors.resx" />
   </ItemGroup>
   <ItemGroup>
