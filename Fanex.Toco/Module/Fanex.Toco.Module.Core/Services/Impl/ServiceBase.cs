@@ -71,7 +71,7 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
             return result;
         }
 
-        public void CheckCustomerBelongToSpecialSite(CheckCustomerIsSpecialSiteCriteria criteria, ref bool isSpecialSite, ref bool isSpecialHeadline)
+        public void CheckCustomerBelongToSpecialSite(CheckCustomerIsSpecialSiteCriteria criteria, ref bool isSpecialSite, ref bool isSpecialHeadline, ref int siteCode)
         {
             bool result = false;
             using (ObjectDb db = new ObjectDb(criteria.GetSettingKey()))
@@ -81,6 +81,7 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
                 var outputs = db.GetOuputParams();
                 isSpecialSite = Convert.IsDBNull(outputs["isspecialsite"]) ? false : Convert.ToBoolean(outputs["isspecialsite"]);
                 isSpecialHeadline = Convert.IsDBNull(outputs["isspecialheadline"]) ? false : Convert.ToBoolean(outputs["isspecialheadline"]);
+                siteCode = Convert.IsDBNull(outputs["sitecode"]) ? 1 : Convert.ToInt32(outputs["sitecode"]);
             }
         }
 
