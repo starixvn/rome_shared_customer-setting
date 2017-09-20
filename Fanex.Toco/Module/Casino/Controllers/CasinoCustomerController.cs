@@ -28,36 +28,37 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             var customerInfo = CasinoManager.Instance.GetCustInfoIBC(id, uplineId);
             var customerUpline = new CasinoCustomer();
 
-            customerUpline.IBCCustID = uplineId;
+            customerUpline.GeneralInfo.IBCCustID = uplineId;
 
             if (uplineId != 0)
             {
                 CasinoManager.Instance.GetCustSettingCS(ref customerUpline);
             }
 
-            customerInfo.IBCCustID = customerInfo.CasinoSync ? id : uplineId;
+            customerInfo.GeneralInfo.IBCCustID = customerInfo.GeneralInfo.CasinoSync ? id : uplineId;
             CasinoManager.Instance.GetCustSettingCS(ref customerInfo);
 
-            customerInfo.UplineRoleId = uplineId != 0 ? customerUpline.RoleId : 5;
-            customerInfo.IsAutoReset = !customerInfo.CasinoSync ? true : customerInfo.IsAutoReset;
+            customerInfo.GeneralInfo.UplineRoleId = uplineId != 0 ? customerUpline.GeneralInfo.RoleId : 5;
+            customerInfo.GeneralInfo.IsAutoReset = !customerInfo.GeneralInfo.CasinoSync ? true : customerInfo.GeneralInfo.IsAutoReset;
 
             //// For get autoMaster.
-            customerInfo.IsDisableAutoMPT = customerUpline.IsDisableAutoMPT;
+            customerInfo.GeneralInfo.IsDisableAutoMPT = customerUpline.GeneralInfo.IsDisableAutoMPT;
 
             // Not synced case
-            if (uplineId != 0 && customerUpline.RoleId == customerInfo.RoleId)
+            if (uplineId != 0 && customerUpline.GeneralInfo.RoleId == customerInfo.GeneralInfo.RoleId)
             {
-                customerInfo.RoleId = customerUpline.RoleId - 1;
-                customerInfo.UplineRoleId = customerInfo.RoleId + 1;
-                customerInfo.IBCCustID = id;
+                customerInfo.GeneralInfo.RoleId = customerUpline.GeneralInfo.RoleId - 1;
+                customerInfo.GeneralInfo.UplineRoleId = customerInfo.GeneralInfo.RoleId + 1;
+                customerInfo.GeneralInfo.IBCCustID = id;
             }
 
             // Gets member win limit information.
             ICasinoMemberWinLimitService winLimitService = new CasinoMemberWinLimitService();
-            customerInfo.MemberWinLimit = winLimitService.GetMemberWinLimit(id);
+            customerInfo.GeneralInfo.MemberWinLimit = winLimitService.GetMemberWinLimit(id);
 
+            var generalCustomer = customerInfo.GeneralInfo;
             var result = JsonConvert.SerializeObject(
-                customerInfo,
+                generalCustomer,
                 Formatting.None,
                 new JsonSerializerSettings
                 {

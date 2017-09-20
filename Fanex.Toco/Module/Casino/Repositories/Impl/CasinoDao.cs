@@ -39,45 +39,45 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
 
             DataRow row = null;
             CasinoCustomer customerDetail = new CasinoCustomer();
-            customerDetail.CasinoNo = "01";
-            customerDetail.UplineDisabledCasino = uplineId != 0 ? (bool)upline.ResultSet.Tables[0].Rows[0]["disablecasino"] : false;
+            customerDetail.GeneralInfo.CasinoNo = "01";
+            customerDetail.GeneralInfo.UplineDisabledCasino = uplineId != 0 ? (bool)upline.ResultSet.Tables[0].Rows[0]["disablecasino"] : false;
 
             if (dr.ResultSet.Tables[0].Rows.Count > 0)
             {
                 row = dr.ResultSet.Tables[0].Rows[0];
-                customerDetail.UserName = Utils.ToString(row["username"]);
-                customerDetail.UserName2 = Utils.ToString(row["username2"]);
-                customerDetail.FirstName = Utils.ToString(row["firstname"]);
-                customerDetail.LastName = Utils.ToString(row["lastname"]);
-                customerDetail.Phone = Utils.ToString(row["phone"]);
-                customerDetail.MobilePhone = Utils.ToString(row["mobilephone"]);
-                customerDetail.Fax = Utils.ToString(row["fax"]);
-                customerDetail.Email = Utils.ToString(row["email"]);
-                customerDetail.RoleId = Utils.ToInt32(row["roleid"]);
-                customerDetail.Currency = Utils.ToInt32(row["currency"]);
-                customerDetail.Closed = Utils.ToBoolean(row["closed"]);
-                customerDetail.Suspend = Utils.ToBoolean(row["suspend"]);
+                customerDetail.GeneralInfo.UserName = Utils.ToString(row["username"]);
+                customerDetail.GeneralInfo.UserName2 = Utils.ToString(row["username2"]);
+                customerDetail.GeneralInfo.FirstName = Utils.ToString(row["firstname"]);
+                customerDetail.GeneralInfo.LastName = Utils.ToString(row["lastname"]);
+                customerDetail.GeneralInfo.Phone = Utils.ToString(row["phone"]);
+                customerDetail.GeneralInfo.MobilePhone = Utils.ToString(row["mobilephone"]);
+                customerDetail.GeneralInfo.Fax = Utils.ToString(row["fax"]);
+                customerDetail.GeneralInfo.Email = Utils.ToString(row["email"]);
+                customerDetail.GeneralInfo.RoleId = Utils.ToInt32(row["roleid"]);
+                customerDetail.GeneralInfo.Currency = Utils.ToInt32(row["currency"]);
+                customerDetail.GeneralInfo.Closed = Utils.ToBoolean(row["closed"]);
+                customerDetail.GeneralInfo.Suspend = Utils.ToBoolean(row["suspend"]);
                 customerDetail.SIBCCustID = Utils.ToInt32(row["superid"]);
                 customerDetail.MIBCCustID = Utils.ToInt32(row["masterid"]);
                 customerDetail.AIBCCustID = Utils.ToInt32(row["agentid"]);
 
-                customerDetail.GivenCredit = Utils.ToDecimal(row["credit"]).Format();
+                customerDetail.GeneralInfo.GivenCredit = Utils.ToDecimal(row["credit"]).Format();
 
-                customerDetail.CasinoSync = Utils.ToBoolean(row["synccasino"]);
-                customerDetail.BingoSync = Utils.ToBoolean(row["syncbingo"]);
-                customerDetail.CasinoDisabled = Utils.ToBoolean(row["disablecasino"]);
-                customerDetail.CasinoDisabledDownline = Utils.ToBoolean(row["disablecasinodownline"]);
-                customerDetail.HasDownline = Utils.ToBoolean(row["hasdownline"]);
-                customerDetail.GoldDeluxeDisabled = Utils.ToBoolean(row["disablegolddeluxe"]);
+                customerDetail.GeneralInfo.CasinoSync = Utils.ToBoolean(row["synccasino"]);
+                customerDetail.GeneralInfo.BingoSync = Utils.ToBoolean(row["syncbingo"]);
+                customerDetail.GeneralInfo.CasinoDisabled = Utils.ToBoolean(row["disablecasino"]);
+                customerDetail.GeneralInfo.CasinoDisabledDownline = Utils.ToBoolean(row["disablecasinodownline"]);
+                customerDetail.GeneralInfo.HasDownline = Utils.ToBoolean(row["hasdownline"]);
+                customerDetail.GeneralInfo.GoldDeluxeDisabled = Utils.ToBoolean(row["disablegolddeluxe"]);
 
-                customerDetail.LiveCasinoSync = Utils.ToBoolean(row["synclivecasino"]);
-                customerDetail.LiveCasinoDisabled = Utils.ToBoolean(row["disablelivecasino"]);
+                customerDetail.GeneralInfo.LiveCasinoSync = Utils.ToBoolean(row["synclivecasino"]);
+                customerDetail.GeneralInfo.LiveCasinoDisabled = Utils.ToBoolean(row["disablelivecasino"]);
 
-                customerDetail.IBCCustID = Utils.ToInt32(row["custid"]);
+                customerDetail.GeneralInfo.IBCCustID = Utils.ToInt32(row["custid"]);
                 customerDetail.UserPwd = Utils.ToString(row["userpwd"]);
-                customerDetail.UpperCustID = uplineId;
-                customerDetail.NoCSData = true;
-                customerDetail.IsEnablePT = true;
+                customerDetail.GeneralInfo.UpperCustID = uplineId;
+                customerDetail.GeneralInfo.NoCSData = true;
+                customerDetail.GeneralInfo.IsEnablePT = true;
 
                 // Get max transfer information
                 CasinoLibrary.SBAgent.Customer customer = new CasinoLibrary.SBAgent.Customer();
@@ -86,30 +86,30 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
                 if (uplineId == 0)
                 {
                     var allCustomerInfoParam = new Hashtable();
-                    allCustomerInfoParam.Add("username", customerDetail.UserName);
+                    allCustomerInfoParam.Add("username", customerDetail.GeneralInfo.UserName);
                     DbResult allCustomerInfoDr = DbHelper.ExecuteDbResult("SelAllInfo", allCustomerInfoParam, 300);
-                    customerDetail.IsDeposit = Utils.ToBoolean(allCustomerInfoDr.ResultSet.Tables[0].Rows[0]["isdeposit"]);
-                    customerDetail.SiteName =
-                        customerDetail.IsDeposit ?
+                    customerDetail.GeneralInfo.IsDeposit = Utils.ToBoolean(allCustomerInfoDr.ResultSet.Tables[0].Rows[0]["isdeposit"]);
+                    customerDetail.GeneralInfo.SiteName =
+                        customerDetail.GeneralInfo.IsDeposit ?
                         Utils.ToString(allCustomerInfoDr.ResultSet.Tables[0].Rows[0]["site"]) :
                         "ibcbet";
                 }
 
                 try
                 {
-                    dt = customer.GetDefaultMaxTransfer(customerDetail.UpperCustID, customerDetail.Currency, uplineId == 0);
+                    dt = customer.GetDefaultMaxTransfer(customerDetail.GeneralInfo.UpperCustID, customerDetail.GeneralInfo.Currency, uplineId == 0);
 
-                    if (customerDetail.RoleId != 4 && dt != null && dt.Rows.Count > 0)
+                    if (customerDetail.GeneralInfo.RoleId != 4 && dt != null && dt.Rows.Count > 0)
                     {
-                        customerDetail.MaxTransferCreditLimit = Utils.ToDouble(dt.Rows[0]["MaxLimit"]);
-                        customerDetail.MinTransferCreditLimit = Utils.ToDouble(dt.Rows[0]["MinLimit"]);
-                        customerDetail.DefaultTransferCredit = Utils.ToDouble(dt.Rows[0]["DefMaxTransferCredit"]);
+                        customerDetail.GeneralInfo.MaxTransferCreditLimit = Utils.ToDouble(dt.Rows[0]["MaxLimit"]);
+                        customerDetail.GeneralInfo.MinTransferCreditLimit = Utils.ToDouble(dt.Rows[0]["MinLimit"]);
+                        customerDetail.GeneralInfo.DefaultTransferCredit = Utils.ToDouble(dt.Rows[0]["DefMaxTransferCredit"]);
                     }
                     else
                     {
-                        customerDetail.MaxTransferCreditLimit = Utils.ToDouble(dt.Rows[0]["MaxTransferCredit"]);
-                        customerDetail.MinTransferCreditLimit = customerDetail.MaxTransferCreditLimit;
-                        customerDetail.DefaultTransferCredit = Utils.ToDouble(dt.Rows[0]["SuperMaxTransfer"]);
+                        customerDetail.GeneralInfo.MaxTransferCreditLimit = Utils.ToDouble(dt.Rows[0]["MaxTransferCredit"]);
+                        customerDetail.GeneralInfo.MinTransferCreditLimit = customerDetail.GeneralInfo.MaxTransferCreditLimit;
+                        customerDetail.GeneralInfo.DefaultTransferCredit = Utils.ToDouble(dt.Rows[0]["SuperMaxTransfer"]);
                     }
                 }
                 catch (ErrorException ex)
@@ -121,7 +121,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
                     e.Write(Fanex.Module.Logs.Formater.LogType.Warning);
                 }
 
-                customerDetail.NoIBCData = false;
+                customerDetail.GeneralInfo.NoIBCData = false;
             }
 
             return customerDetail;
