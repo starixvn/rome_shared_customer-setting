@@ -559,7 +559,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             }
         }
 
-        public Result UpdateSuper(int custId, string custName, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, byte systemId, CasinoSettingModel settingModel, CasinoCustomer customerModel)
+        public Result UpdateSuper(int custId, string custName, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, byte systemId, CasinoSettingModel settingModel, GeneralCasinoCustomer customerModel)
         {
             var errMsg = string.Empty;
             var messages = string.Empty;
@@ -574,16 +574,16 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             {
                 var custInfo = this.GetCustInfoIBC(custId, uplineId);
 
-                bool isEnableCasino = !customerModel.GeneralInfo.CasinoDisabled || !customerModel.GeneralInfo.CasinoSync;
-                if (customerModel.GeneralInfo.CasinoSync)
+                bool isEnableCasino = !customerModel.CasinoDisabled || !customerModel.CasinoSync;
+                if (customerModel.CasinoSync)
                 {
                     maxTransferUpdated = cust.UpdateMaxTransferMisc(
                       custId,
                       isEnableCasino,
                        !isEnableCasino,
                        true,
-                       (decimal)customerModel.GeneralInfo.MaxTransferCredit,
-                        customerModel.GeneralInfo.IsAutoReset,
+                       (decimal)customerModel.MaxTransferCredit,
+                        customerModel.IsAutoReset,
                         settingModel.IsPtByGameType,
                         ip,
                         modifiedId,
@@ -599,35 +599,35 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                         "01",
                         custId,
                         custName,
-                        customerModel.GeneralInfo.UserName2,
-                        customerModel.GeneralInfo.FirstName,
-                        customerModel.GeneralInfo.LastName,
+                        customerModel.UserName2,
+                        customerModel.FirstName,
+                        customerModel.LastName,
                         custInfo.UserPwd,
-                        customerModel.GeneralInfo.Phone,
-                        customerModel.GeneralInfo.MobilePhone,
-                        customerModel.GeneralInfo.Currency,
-                        customerModel.GeneralInfo.Fax,
-                        customerModel.GeneralInfo.Closed,
-                        customerModel.GeneralInfo.Suspend,
-                        customerModel.GeneralInfo.IsEnablePT,
-                        (decimal)customerModel.GeneralInfo.MaxWin,
-                        (decimal)customerModel.GeneralInfo.MaxLose,
+                        customerModel.Phone,
+                        customerModel.MobilePhone,
+                        customerModel.Currency,
+                        customerModel.Fax,
+                        customerModel.Closed,
+                        customerModel.Suspend,
+                        customerModel.IsEnablePT,
+                        (decimal)customerModel.MaxWin,
+                        (decimal)customerModel.MaxLose,
                         true,
-                        (decimal)customerModel.GeneralInfo.MaxTransferCredit,
+                        (decimal)customerModel.MaxTransferCredit,
                         custInfo.SIBCCustID,
                         custId,
                         custInfo.AIBCCustID,
-                        customerModel.GeneralInfo.PTByGameType,
-                        customerModel.GeneralInfo.RoleId.ToString(),
+                        customerModel.PTByGameType,
+                        customerModel.RoleId.ToString(),
                         DateTime.Now,
                         ip,
                         modifiedId,
                         modifiedBy,
                         fromSystem,
-                        customerModel.GeneralInfo.IsAutoReset,
+                        customerModel.IsAutoReset,
                         false,
                         false,
-                        customerModel.GeneralInfo.IsDisableAutoMPT);
+                        customerModel.IsDisableAutoMPT);
                 }
             }
             catch (ErrorException casinoEx)
@@ -641,19 +641,19 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             }
 
             // Update Status for direct downline only
-            if ((settingsInserted && !customerModel.GeneralInfo.CasinoSync) || customerModel.GeneralInfo.CasinoSync)
+            if ((settingsInserted && !customerModel.CasinoSync) || customerModel.CasinoSync)
             {
                 statusUpdated = this.UpdateCSStatus(
                     custId,
                     true,
-                    customerModel.GeneralInfo.UplineDisabledCasino ? true : customerModel.GeneralInfo.CasinoDisabled,
-                    !customerModel.GeneralInfo.CasinoDisabledDownline,
+                    customerModel.UplineDisabledCasino ? true : customerModel.CasinoDisabled,
+                    !customerModel.CasinoDisabledDownline,
                     modifiedId,
                     ip,
                     AppSession.SubAccountId,
                     systemId,
                     AppSession.Language,
-                    customerModel.GeneralInfo.UserName,
+                    customerModel.UserName,
                     string.Empty,
                     out errMsg);
 
@@ -667,9 +667,9 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             // Update PT/Betting limit settings
             casinoPTResult = this.UpdateMasterSettings(
                 custId,
-                customerModel.GeneralInfo.RoleId,
+                customerModel.RoleId,
                 uplineId,
-                customerModel.GeneralInfo.UplineRoleId,
+                customerModel.UplineRoleId,
                 ip,
                 modifiedId,
                 modifiedBy,
@@ -692,7 +692,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             if (result.IsSuccess)
             {
                 ICasinoMemberWinLimitService service = new CasinoMemberWinLimitService();
-                result = service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.GeneralInfo.MemberWinLimit);
+                result = service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.MemberWinLimit);
             }
 
             return result;
@@ -708,7 +708,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             int fromSystem,
             byte systemId,
             CasinoSettingModel settingModel,
-            CasinoCustomer customerModel)
+            GeneralCasinoCustomer customerModel)
         {
             var errMsg = string.Empty;
             var messages = string.Empty;
@@ -721,17 +721,17 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
             try
             {
-                bool isEnableCasino = !customerModel.GeneralInfo.CasinoDisabled || !customerModel.GeneralInfo.CasinoSync;
+                bool isEnableCasino = !customerModel.CasinoDisabled || !customerModel.CasinoSync;
 
-                if (customerModel.GeneralInfo.CasinoSync)
+                if (customerModel.CasinoSync)
                 {
                     maxTransferUpdated = cust.UpdateMaxTransferMisc(
                       custId,
                       isEnableCasino,
                        !isEnableCasino,
                        true,
-                       (decimal)customerModel.GeneralInfo.MaxTransferCredit,
-                        customerModel.GeneralInfo.IsAutoReset,
+                       (decimal)customerModel.MaxTransferCredit,
+                        customerModel.IsAutoReset,
                         settingModel.IsPtByGameType,
                         ip,
                         modifiedId,
@@ -740,42 +740,42 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     );
                 }
 
-                if (!customerModel.GeneralInfo.CasinoSync)
+                if (!customerModel.CasinoSync)
                 {
                     var customerInfo = this.GetCustInfoIBC(custId, uplineId);
                     settingsInserted = cust.InsertCustSetting(
                         "01",
                         custId,
                         custName,
-                        customerModel.GeneralInfo.UserName2,
-                        customerModel.GeneralInfo.FirstName,
-                        customerModel.GeneralInfo.LastName,
+                        customerModel.UserName2,
+                        customerModel.FirstName,
+                        customerModel.LastName,
                         customerInfo.UserPwd,
-                        customerModel.GeneralInfo.Phone,
-                        customerModel.GeneralInfo.MobilePhone,
-                        customerModel.GeneralInfo.Currency,
-                        customerModel.GeneralInfo.Fax,
-                        customerModel.GeneralInfo.Closed,
-                        customerModel.GeneralInfo.Suspend,
-                        customerModel.GeneralInfo.IsEnablePT,
-                        (decimal)customerModel.GeneralInfo.MaxWin,
-                        (decimal)customerModel.GeneralInfo.MaxLose,
+                        customerModel.Phone,
+                        customerModel.MobilePhone,
+                        customerModel.Currency,
+                        customerModel.Fax,
+                        customerModel.Closed,
+                        customerModel.Suspend,
+                        customerModel.IsEnablePT,
+                        (decimal)customerModel.MaxWin,
+                        (decimal)customerModel.MaxLose,
                         true,
-                        (decimal)customerModel.GeneralInfo.MaxTransferCredit,
+                        (decimal)customerModel.MaxTransferCredit,
                         customerInfo.SIBCCustID,
                         customerInfo.MIBCCustID,
                         custId,
-                        customerModel.GeneralInfo.PTByGameType,
-                        customerModel.GeneralInfo.RoleId.ToString(),
+                        customerModel.PTByGameType,
+                        customerModel.RoleId.ToString(),
                         DateTime.Now,
                         ip,
                         modifiedId,
                         modifiedBy,
                         fromSystem,
-                        customerModel.GeneralInfo.IsAutoReset,
+                        customerModel.IsAutoReset,
                         false,
                         false,
-                        customerModel.GeneralInfo.IsDisableAutoMPT);
+                        customerModel.IsDisableAutoMPT);
                 }
             }
             catch (ErrorException casinoEx)
@@ -789,19 +789,19 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             }
 
             // Update Status for direct downline only
-            if ((settingsInserted && !customerModel.GeneralInfo.CasinoSync) || customerModel.GeneralInfo.CasinoSync)
+            if ((settingsInserted && !customerModel.CasinoSync) || customerModel.CasinoSync)
             {
                 statusUpdated = this.UpdateCSStatus(
                     custId,
                     true,
-                    customerModel.GeneralInfo.UplineDisabledCasino ? true : customerModel.GeneralInfo.CasinoDisabled,
-                    !customerModel.GeneralInfo.CasinoDisabledDownline,
+                    customerModel.UplineDisabledCasino ? true : customerModel.CasinoDisabled,
+                    !customerModel.CasinoDisabledDownline,
                     uplineId,
                     string.Empty,
                     0,
                     systemId,
                     "en",
-                    customerModel.GeneralInfo.UserName,
+                    customerModel.UserName,
                     string.Empty,
                     out errMsg);
 
@@ -815,9 +815,9 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             // Update PT/Betting limit settings
             casinoPTResult = this.UpdateMasterSettings(
                 custId,
-                customerModel.GeneralInfo.RoleId,
+                customerModel.RoleId,
                 uplineId,
-                customerModel.GeneralInfo.UplineRoleId,
+                customerModel.UplineRoleId,
                 ip,
                 modifiedId,
                 modifiedBy,
@@ -840,13 +840,13 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             if (result.IsSuccess)
             {
                 ICasinoMemberWinLimitService service = new CasinoMemberWinLimitService();
-                result = service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.GeneralInfo.MemberWinLimit);
+                result = service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.MemberWinLimit);
             }
 
             return result;
         }
 
-        public Result UpdateAgent(int custId, string custName, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, byte systemId, CasinoSettingModel settingModel, CasinoCustomer customerModel)
+        public Result UpdateAgent(int custId, string custName, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, byte systemId, CasinoSettingModel settingModel, GeneralCasinoCustomer customerModel)
         {
             var errMsg = string.Empty;
             var messages = string.Empty;
@@ -859,17 +859,17 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
             try
             {
-                bool isEnableCasino = !customerModel.GeneralInfo.CasinoDisabled || !customerModel.GeneralInfo.CasinoSync;
+                bool isEnableCasino = !customerModel.CasinoDisabled || !customerModel.CasinoSync;
 
-                if (customerModel.GeneralInfo.CasinoSync)
+                if (customerModel.CasinoSync)
                 {
                     maxTransferUpdated = cust.UpdateMaxTransferMisc(
                       custId,
                       isEnableCasino,
                        !isEnableCasino,
                        true,
-                       (decimal)customerModel.GeneralInfo.MaxTransferCredit,
-                        customerModel.GeneralInfo.IsAutoReset,
+                       (decimal)customerModel.MaxTransferCredit,
+                        customerModel.IsAutoReset,
                         settingModel.IsPtByGameType,
                         ip,
                         modifiedId,
@@ -884,35 +884,35 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                         "01",
                         custId,
                         custName,
-                        customerModel.GeneralInfo.UserName2,
-                        customerModel.GeneralInfo.FirstName,
-                        customerModel.GeneralInfo.LastName,
+                        customerModel.UserName2,
+                        customerModel.FirstName,
+                        customerModel.LastName,
                         customerInfo.UserPwd,
-                        customerModel.GeneralInfo.Phone,
-                        customerModel.GeneralInfo.MobilePhone,
-                        customerModel.GeneralInfo.Currency,
-                        customerModel.GeneralInfo.Fax,
-                        customerModel.GeneralInfo.Closed,
-                        customerModel.GeneralInfo.Suspend,
-                        customerModel.GeneralInfo.IsEnablePT,
-                        (decimal)customerModel.GeneralInfo.MaxWin,
-                        (decimal)customerModel.GeneralInfo.MaxLose,
+                        customerModel.Phone,
+                        customerModel.MobilePhone,
+                        customerModel.Currency,
+                        customerModel.Fax,
+                        customerModel.Closed,
+                        customerModel.Suspend,
+                        customerModel.IsEnablePT,
+                        (decimal)customerModel.MaxWin,
+                        (decimal)customerModel.MaxLose,
                         true,
-                        (decimal)customerModel.GeneralInfo.MaxTransferCredit,
+                        (decimal)customerModel.MaxTransferCredit,
                         customerInfo.SIBCCustID,
                         customerInfo.MIBCCustID,
                         custId,
-                        customerModel.GeneralInfo.PTByGameType,
-                        customerModel.GeneralInfo.RoleId.ToString(),
+                        customerModel.PTByGameType,
+                        customerModel.RoleId.ToString(),
                         DateTime.Now,
                         ip,
                         modifiedId,
                         modifiedBy,
                         fromSystem,
-                        customerModel.GeneralInfo.IsAutoReset,
+                        customerModel.IsAutoReset,
                         false,
                         false,
-                        customerModel.GeneralInfo.IsDisableAutoMPT);
+                        customerModel.IsDisableAutoMPT);
                 }
 
                 // Enable PT/Update max transfer for direct downline only
@@ -932,19 +932,19 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             }
 
             // Update Status for direct downline only
-            if ((settingsInserted && !customerModel.GeneralInfo.CasinoSync) || customerModel.GeneralInfo.CasinoSync)
+            if ((settingsInserted && !customerModel.CasinoSync) || customerModel.CasinoSync)
             {
                 statusUpdated = this.UpdateCSStatus(
                     custId,
                     true,
-                    customerModel.GeneralInfo.UplineDisabledCasino ? true : customerModel.GeneralInfo.CasinoDisabled,
-                    !customerModel.GeneralInfo.CasinoDisabledDownline,
+                    customerModel.UplineDisabledCasino ? true : customerModel.CasinoDisabled,
+                    !customerModel.CasinoDisabledDownline,
                     uplineId,
                     string.Empty,
                     0,
                     systemId,
                     "en",
-                    customerModel.GeneralInfo.UserName,
+                    customerModel.UserName,
                     string.Empty,
                     out errMsg);
             }
@@ -952,9 +952,9 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             // Update PT/Betting limit settings
             casinoPTResult = this.UpdateAgentSettings(
                 custId,
-                customerModel.GeneralInfo.RoleId,
+                customerModel.RoleId,
                 uplineId,
-                customerModel.GeneralInfo.UplineRoleId,
+                customerModel.UplineRoleId,
                 ip,
                 modifiedId,
                 modifiedBy,
@@ -977,13 +977,13 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             if (result.IsSuccess)
             {
                 ICasinoMemberWinLimitService service = new CasinoMemberWinLimitService();
-                result = service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.GeneralInfo.MemberWinLimit);
+                result = service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.MemberWinLimit);
             }
 
             return result;
         }
 
-        public Result UpdateMember(int custId, string custName, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, byte systemId, CasinoSettingModel settingModel, CasinoCustomer customerModel)
+        public Result UpdateMember(int custId, string custName, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, byte systemId, CasinoSettingModel settingModel, GeneralCasinoCustomer customerModel)
         {
             var errMsg = string.Empty;
             var messages = string.Empty;
@@ -996,17 +996,17 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
             try
             {
-                bool isEnableCasino = !customerModel.GeneralInfo.CasinoDisabled || !customerModel.GeneralInfo.CasinoSync;
+                bool isEnableCasino = !customerModel.CasinoDisabled || !customerModel.CasinoSync;
 
-                if (customerModel.GeneralInfo.CasinoSync)
+                if (customerModel.CasinoSync)
                 {
                     maxTransferUpdated = cust.UpdateMaxTransferMisc(
                       custId,
                       isEnableCasino,
                       !isEnableCasino,
                        true,
-                       (decimal)customerModel.GeneralInfo.MaxTransferCredit,
-                        customerModel.GeneralInfo.IsAutoReset,
+                       (decimal)customerModel.MaxTransferCredit,
+                        customerModel.IsAutoReset,
                         settingModel.IsPtByGameType,
                         ip,
                         modifiedId,
@@ -1015,7 +1015,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     );
                 }
 
-                if (!customerModel.GeneralInfo.CasinoSync)
+                if (!customerModel.CasinoSync)
                 {
                     try
                     {
@@ -1024,35 +1024,35 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                             "01",
                             custId,
                             custName,
-                            customerModel.GeneralInfo.UserName2,
-                            customerModel.GeneralInfo.FirstName,
-                            customerModel.GeneralInfo.LastName,
+                            customerModel.UserName2,
+                            customerModel.FirstName,
+                            customerModel.LastName,
                             customerInfo.UserPwd,
-                            customerModel.GeneralInfo.Phone,
-                            customerModel.GeneralInfo.MobilePhone,
-                            customerModel.GeneralInfo.Currency,
-                            customerModel.GeneralInfo.Fax,
-                            customerModel.GeneralInfo.Closed,
-                            customerModel.GeneralInfo.Suspend,
-                            customerModel.GeneralInfo.IsEnablePT,
-                            (decimal)customerModel.GeneralInfo.MaxWin,
-                            (decimal)customerModel.GeneralInfo.MaxLose,
+                            customerModel.Phone,
+                            customerModel.MobilePhone,
+                            customerModel.Currency,
+                            customerModel.Fax,
+                            customerModel.Closed,
+                            customerModel.Suspend,
+                            customerModel.IsEnablePT,
+                            (decimal)customerModel.MaxWin,
+                            (decimal)customerModel.MaxLose,
                             true,
-                            (decimal)customerModel.GeneralInfo.MaxTransferCredit,
+                            (decimal)customerModel.MaxTransferCredit,
                             customerInfo.SIBCCustID,
                             customerInfo.MIBCCustID,
                             customerInfo.AIBCCustID,
-                            customerModel.GeneralInfo.PTByGameType,
-                            customerModel.GeneralInfo.RoleId.ToString(),
+                            customerModel.PTByGameType,
+                            customerModel.RoleId.ToString(),
                             DateTime.Now,
                             ip,
                             modifiedId,
                             modifiedBy,
                             fromSystem,
-                            customerModel.GeneralInfo.IsAutoReset,
+                            customerModel.IsAutoReset,
                             false,
                             false,
-                            customerModel.GeneralInfo.IsDisableAutoMPT);
+                            customerModel.IsDisableAutoMPT);
                     }
                     catch (Exception ex)
                     {
@@ -1071,19 +1071,19 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             }
 
             // Update Status for direct downline only
-            if ((settingsInserted && !customerModel.GeneralInfo.CasinoSync) || customerModel.GeneralInfo.CasinoSync)
+            if ((settingsInserted && !customerModel.CasinoSync) || customerModel.CasinoSync)
             {
                 statusUpdated = this.UpdateCSStatus(
                     custId,
                     true,
-                    customerModel.GeneralInfo.UplineDisabledCasino ? true : customerModel.GeneralInfo.CasinoDisabled,
-                    !customerModel.GeneralInfo.CasinoDisabledDownline,
+                    customerModel.UplineDisabledCasino ? true : customerModel.CasinoDisabled,
+                    !customerModel.CasinoDisabledDownline,
                     uplineId,
                     string.Empty,
                     0,
                     systemId,
                     "en",
-                    customerModel.GeneralInfo.UserName,
+                    customerModel.UserName,
                     string.Empty,
                     out errMsg);
 
@@ -1097,9 +1097,9 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             // Update PT/Betting limit settings
             casinoPTResult = this.UpdateMemberSettings(
                 custId,
-                customerModel.GeneralInfo.RoleId,
+                customerModel.RoleId,
                 uplineId,
-                customerModel.GeneralInfo.UplineRoleId,
+                customerModel.UplineRoleId,
                 ip,
                 modifiedId,
                 modifiedBy,
@@ -1122,13 +1122,13 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             if (result.IsSuccess)
             {
                 ICasinoMemberWinLimitService service = new CasinoMemberWinLimitService();
-                result = service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.GeneralInfo.MemberWinLimit);
+                result = service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.MemberWinLimit);
             }
 
             return result;
         }
 
-        public Result UpdateMemberBySuper(int custId, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, byte systemId, CasinoSettingModel settingModel, CasinoCustomer customerModel)
+        public Result UpdateMemberBySuper(int custId, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, byte systemId, CasinoSettingModel settingModel, GeneralCasinoCustomer customerModel)
         {
             var errMsg = string.Empty;
             var messages = string.Empty;
@@ -1138,9 +1138,9 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             // Update PT/Betting limit settings
             casinoPTResult = this.UpdateMemberSettingsBySuper(
                 custId,
-                customerModel.GeneralInfo.RoleId,
+                customerModel.RoleId,
                 uplineId,
-                customerModel.GeneralInfo.UplineRoleId,
+                customerModel.UplineRoleId,
                 ip,
                 modifiedId,
                 modifiedBy,
@@ -1163,7 +1163,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             return result;
         }
 
-        public Result UpdateMemberByMaster(int custId, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, byte systemId, CasinoSettingModel settingModel, CasinoCustomer customerModel)
+        public Result UpdateMemberByMaster(int custId, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, byte systemId, CasinoSettingModel settingModel, GeneralCasinoCustomer customerModel)
         {
             var errMsg = string.Empty;
             var messages = string.Empty;
@@ -1173,9 +1173,9 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             // Update PT/Betting limit settings
             casinoPTResult = this.UpdateMemberSettingsByMaster(
                 custId,
-                customerModel.GeneralInfo.RoleId,
+                customerModel.RoleId,
                 uplineId,
-                customerModel.GeneralInfo.UplineRoleId,
+                customerModel.UplineRoleId,
                 ip,
                 modifiedId,
                 modifiedBy,
