@@ -103,6 +103,7 @@
     <Compile Include="Factory\Product\Criteria\UpdateColossusBetStatusCriteria.cs" />
     <Compile Include="Factory\Product\Implement\GoldDeluxeStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\DCS\MultipleBettypeDCSProductStatusSettingService.cs" />
+    <Compile Include="Factory\Product\Implement\Lucky3StatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\LotteryStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\DCS\SingleBettypeDCSProductStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\NG2StatusSettingService.cs" />

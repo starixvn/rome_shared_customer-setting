@@ -24,6 +24,8 @@
         
         VirtualSports2 = 27,
         
-        Lottery = 28
+        Lottery = 28,
+
+        Lucky3 = 26
     }
 }
