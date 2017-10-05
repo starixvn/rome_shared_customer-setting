@@ -71,29 +71,31 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
             return result;
         }
 
-        public void CheckCustomerBelongToSpecialSite(CheckCustomerIsSpecialSiteCriteria criteria, ref bool isSpecialSite, ref bool isSpecialHeadline, ref int siteCode)
+        public CheckCustomerBelongToSpecialSiteResult CheckCustomerBelongToSpecialSite(CheckCustomerIsSpecialSiteCriteria criteria)
         {
-            bool result = false;
             using (ObjectDb db = new ObjectDb(criteria.GetSettingKey()))
             {
                 db.AssignParamValues(criteria.GetSpParams());
                 db.ExecuteNonQuery();
                 var outputs = db.GetOuputParams();
-                isSpecialSite = Convert.IsDBNull(outputs["isspecialsite"]) ? false : Convert.ToBoolean(outputs["isspecialsite"]);
-                isSpecialHeadline = Convert.IsDBNull(outputs["isspecialheadline"]) ? false : Convert.ToBoolean(outputs["isspecialheadline"]);
-                siteCode = Convert.IsDBNull(outputs["sitecode"]) ? 1 : Convert.ToInt32(outputs["sitecode"]);
+                return new CheckCustomerBelongToSpecialSiteResult(
+                    Convert.IsDBNull(outputs["isspecialsite"]) ? false : Convert.ToBoolean(outputs["isspecialsite"]),
+                    Convert.IsDBNull(outputs["isspecialheadline"]) ? false : Convert.ToBoolean(outputs["isspecialheadline"]),
+                    Convert.IsDBNull(outputs["sitecode"]) ? 1 : Convert.ToInt32(outputs["sitecode"]));
             }
         }
 
-        public void CheckCustomerIsInternalAdmin(CheckCustomerIsInternalAdminCriteria criteria, ref bool isInternalAdmin, ref bool isAllowAccess)
+        public CheckCustomerIsInternalAdminResult CheckCustomerIsInternalAdmin(CheckCustomerIsInternalAdminCriteria criteria)
         {
+            CheckCustomerIsInternalAdminResult result = null;
             using (ObjectDb db = new ObjectDb(criteria.GetSettingKey()))
             {
                 db.AssignParamValues(criteria.GetSpParams());
                 db.ExecuteNonQuery();
                 var outputs = db.GetOuputParams();
-                isInternalAdmin = Convert.IsDBNull(outputs["isinternaladmin"]) ? false : Convert.ToBoolean(outputs["isinternaladmin"]);
-                isAllowAccess = Convert.IsDBNull(outputs["isallowaccess"]) ? false : Convert.ToBoolean(outputs["isallowaccess"]);
+                return new CheckCustomerIsInternalAdminResult(
+                    Convert.IsDBNull(outputs["isinternaladmin"]) ? false : Convert.ToBoolean(outputs["isinternaladmin"]),
+                    Convert.IsDBNull(outputs["isallowaccess"]) ? false : Convert.ToBoolean(outputs["isallowaccess"]));
             }
         }
 

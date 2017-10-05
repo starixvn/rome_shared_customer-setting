@@ -31,9 +31,9 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Interface
 
         Result CheckSpecialSitePermission(CheckSpecialSitePermissionCriteria criteria);
 
-        void CheckCustomerBelongToSpecialSite(CheckCustomerIsSpecialSiteCriteria criteria, ref bool isSpecialSite, ref bool isSpecialHeadline, ref int siteCode);
+        CheckCustomerBelongToSpecialSiteResult CheckCustomerBelongToSpecialSite(CheckCustomerIsSpecialSiteCriteria criteria);
 
-        void CheckCustomerIsInternalAdmin(CheckCustomerIsInternalAdminCriteria criteria, ref bool isInternalAdmin, ref bool isAllowAccess);
+        CheckCustomerIsInternalAdminResult CheckCustomerIsInternalAdmin(CheckCustomerIsInternalAdminCriteria criteria);
 
         bool CheckCustomerHasSpecialSitePermission(CheckCustomerHasSpecialSiteFunctionPermissionCriteria criteria);
     }
