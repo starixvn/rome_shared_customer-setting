@@ -38,7 +38,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product
                 HasDownline = Utils.ToBoolean(record["HasDownline"]),
                 IsSync = Utils.ToBoolean(record["IsSync"]),
                 IsSyncedUpline = Utils.ToBoolean(record["IsSyncedUpline"]),
-                IsSyncedDownline = Utils.ToBoolean(record["IsSyncedDownline"]),
+                //IsSyncedDownline = Utils.ToBoolean(record["IsSyncedDownline"]),
                 IsHidden = Utils.ToBoolean(record["IsHidden"]),
                 IsHiddenUpline = Utils.ToBoolean(record["IsHiddenUpline"])
             };

@@ -359,7 +359,6 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product
             substitute["HasDownline"].Returns(1);
             substitute["IsSync"].Returns(1);
             substitute["IsSyncedUpline"].Returns(1);
-            substitute["IsSyncedDownline"].Returns(1);
             substitute["IsHidden"].Returns(1);
             substitute["IsHiddenUpline"].Returns(1);
             var expectedValue = new ProductStatus()
@@ -373,7 +372,6 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product
                 HasDownline = true,
                 IsSync = true,
                 IsSyncedUpline = true,
-                IsSyncedDownline = true,
                 IsHidden = true,
                 IsHiddenUpline = true,
                 ProductName = string.Empty,

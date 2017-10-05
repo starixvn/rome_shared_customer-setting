@@ -133,7 +133,6 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Implement.DCS
             substitute["HasDownline"].Returns("true");
             substitute["IsSync"].Returns("true");
             substitute["IsSyncedUpline"].Returns("true");
-            substitute["IsSyncedDownline"].Returns("true");
             substitute["IsHidden"].Returns("true");
             substitute["IsHiddenUpline"].Returns("true");
             var expectedValue = new ProductStatus()
@@ -147,7 +146,6 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Implement.DCS
                 HasDownline = true,
                 IsSync = true,
                 IsSyncedUpline = true,
-                IsSyncedDownline = true,
                 IsHidden = true,
                 IsHiddenUpline = true,
                 SportName = string.Empty,

@@ -49,7 +49,6 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
                 BetType = Utils.ToInt32(record["Bettype"]),
 
                 IsDisabled = Utils.ToBoolean(record["IsDisabled"]),
-                IsSyncedDownline = Utils.ToBoolean(record["IsSyncedDownline"]),
                 HasDownline = Utils.ToBoolean(record["HasDownline"]),
                 IsDisabledUpline = Utils.ToBoolean(record["IsDisabledUpline"]),
                 IsSyncedUpline = Utils.ToBoolean(record["IsSyncedUpline"]),

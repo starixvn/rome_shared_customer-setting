@@ -88,7 +88,6 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Implement
             substitute["Bettype"].Returns(1);
 
             substitute["IsDisabled"].Returns(1);
-            substitute["IsSyncedDownline"].Returns(1);
             substitute["HasDownline"].Returns(1);
 
             substitute["IsDisabledUpline"].Returns(1);
@@ -103,7 +102,6 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Implement
                 BetType = 1,
 
                 IsDisabled = true,
-                IsSyncedDownline = true,
                 HasDownline = true,
                 IsDisabledUpline = true,
                 IsSyncedUpline = true,
