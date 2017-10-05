@@ -171,6 +171,8 @@
     <Compile Include="Extensions\ResourceExtension.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Bettype.cs" />
+    <Compile Include="Models\CheckCustomerBelongToSpecialSiteResult.cs" />
+    <Compile Include="Models\CheckCustomerIsInternalAdminResult.cs" />
     <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\Licensee.cs" />
