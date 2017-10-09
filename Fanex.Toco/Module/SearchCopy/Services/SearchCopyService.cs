@@ -387,5 +387,10 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
 
             return result;
         }
+
+        public dynamic GetProductInfo(int custId, int productId)
+        {
+            return _searchCopyRepository.GetProductInfo(custId, productId);
+        }
     }
 }

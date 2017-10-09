@@ -38,5 +38,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Services
         CommandResult UpdateSync(ICriteria criteria);
 
         DataTable GetSportBookSettingMember(int custId);
+
+        dynamic GetProductInfo(int custId, int productId);
     }
 }
