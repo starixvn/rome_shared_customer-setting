@@ -13,7 +13,7 @@ namespace Fanex.Module.NG2.Services
 {
     public class SyncCustomerService : ISyncCustomerService
     {
-        private ISyncCustomerRepository _repo = new SyncCustomerRepository();
+        private readonly ISyncCustomerRepository _repo = new SyncCustomerRepository();
 
         /// <summary>
         /// For mail station call first to check sync status of NG2.

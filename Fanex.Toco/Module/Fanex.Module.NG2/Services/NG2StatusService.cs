@@ -10,7 +10,7 @@ namespace Fanex.Module.NG2.Services
 {
     public class NG2StatusService : ING2StatusService
     {
-        private ING2StatusRepository _repository = new NG2StatusRepository();
+        private readonly ING2StatusRepository _repository = new NG2StatusRepository();
 
         public Entities.Result AutoInsertAccount(
             int custId, 
@@ -25,6 +25,7 @@ namespace Fanex.Module.NG2.Services
             string language = "en-US", 
             int subAccId = 0)
         {
+            var logInfo = string.Empty;
             var allowed = false;
             var result = new Entities.Result();
 
@@ -41,31 +42,49 @@ namespace Fanex.Module.NG2.Services
             
             if (allowed)
             {
-                // Call API to sync to 3rd.
-                IThirdPartyServices serviceAPI = new ONEbook.NG2.API.Services();
-                var request = new ONEbook.NG2.API.DTO.CreateAccount.Request();
+                try
+                {
+                    // Call API to sync to 3rd.
+                    IThirdPartyServices serviceAPI = new ONEbook.NG2.API.Services();
+                    var request = new ONEbook.NG2.API.DTO.CreateAccount.Request();
 
-                request.Auth.SiteId = (int)siteId;
-                request.Call.AccountArray.Add(new ONEbook.NG2.API.DTO.CreateAccount.AccountInfo { ObCustId = custId });
-                request.Call.Level = (int)roleId;
-                request.Call.UplineId = roleId == RoleId.Super  ? custId : uplineId;
-                request.UserId = userId;
-                request.Language = language;
-                request.Call.CurrencyId = currencyId;
-                request.Call.IsDisabled = uplineDisabled;
+                    request.Auth.SiteId = (int)siteId;
+                    request.Call.AccountArray.Add(new ONEbook.NG2.API.DTO.CreateAccount.AccountInfo { ObCustId = custId });
+                    request.Call.Level = (int)roleId;
+                    request.Call.UplineId = roleId == RoleId.Super ? custId : uplineId;
+                    request.UserId = userId;
+                    request.Language = language;
+                    request.Call.CurrencyId = currencyId;
+                    request.Call.IsDisabled = uplineDisabled;
 
-                var response = serviceAPI.SyncCustomers(request);
+                    logInfo += "1. Calling CreateAccount - CustId: " + request.Call.AccountArray[0].ObCustId;
+                    var response = serviceAPI.SyncCustomers(request);
+                    logInfo += "<br />2. Result from 3rd - Success: " + response.Result.IsSuccess;
 
-                if (response.Result.IsSuccess && (response.Result.AccountArray.Count > 0 ? response.Result.AccountArray[0].IsSuccess : true))
-                {                    
-                    result = SyncStatus(custId, userId, HttpContext.Current.Request.UserHostName, subAccId);
-
-                    if (result.IsSuccess)
+                    if (response.Result.IsSuccess && (response.Result.AccountArray.Count > 0 ? response.Result.AccountArray[0].IsSuccess : true))
                     {
-                        result = EnableStatus(custId, userId, uplineDisabled, HttpContext.Current.Request.UserHostAddress, systemId, subAccId);
+                        logInfo += "<br />3. Calling update sync at MBC";
+                        result = SyncStatus(custId, userId, HttpContext.Current.Request.UserHostName, subAccId);
+
+                        logInfo += "<br />4. Update sync at MBC - Success: " + result.IsSuccess;
+                        if (result.IsSuccess)
+                        {
+                            logInfo += "<br />5. Calling update disable status: " + uplineDisabled;
+                            result = EnableStatus(custId, userId, uplineDisabled, HttpContext.Current.Request.UserHostAddress, systemId, subAccId);
+                            logInfo += "<br />6. Update disable status - Success: " + result.IsSuccess;
+                        }
                     }
                 }
-            }
+                catch (Exception ex)
+                {
+                    logInfo += "<br />Exception occurs: " + ex;
+                }
+
+                if (roleId == RoleId.Super)
+                {
+                    Fanex.Logging.Logger.Log.Info(logInfo);
+                }
+            }                  
 
             return result;
         }
