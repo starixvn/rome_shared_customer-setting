@@ -39,7 +39,15 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria.DCS
             writer.Append("<ROOT>");
             foreach (var item in productStatus)
             {
-                writer.Append(string.Format(productStatusFormat, item.SportType, item.BetType, Convert.ToInt32(item.IsDisabled), Convert.ToInt32(item.IsDisabledDownline)));
+                var isDisabled = item.IsDisabled;
+
+                writer.Append(
+                    string.Format(
+                        productStatusFormat, 
+                        item.SportType, 
+                        item.BetType, 
+                        Convert.ToInt32(isDisabled), 
+                        Convert.ToInt32(!isDisabled && item.IsDisabledDownline)));
             }
 
             writer.Append("</ROOT>");
