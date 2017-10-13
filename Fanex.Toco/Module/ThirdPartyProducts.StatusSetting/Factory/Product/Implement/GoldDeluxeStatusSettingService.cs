@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using ThirdPartyProducts.StatusSetting.Factory.Product.Criteria;
@@ -28,7 +29,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
             {
                 CustId = request.CustId,
                 Disable = isDisabled,
-                EnableDownlines = !isDisabled && !goldDeluxeStatus.IsDisabledDownline,
+                EnableDownlines = GetEnableDownlineValue(request),
                 SystemId = request.SystemId,
                 UserId = request.UserId,
                 SubAccId = request.SubAccId,

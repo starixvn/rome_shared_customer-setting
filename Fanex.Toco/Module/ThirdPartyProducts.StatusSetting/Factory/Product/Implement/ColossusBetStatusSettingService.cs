@@ -21,7 +21,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
                 UserId = request.UserId,
                 SystemId = request.SystemId,
                 Disable = isDisabled,
-                EnableDownlines = !isDisabled && !request.ProductStatus[0].IsDisabledDownline
+                EnableDownlines = GetEnableDownlineValue(request)
             };
 
             result.Add(ExecuteNonQuery(criteria));

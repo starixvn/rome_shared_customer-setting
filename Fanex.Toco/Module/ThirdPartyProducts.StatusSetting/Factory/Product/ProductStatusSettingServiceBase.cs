@@ -38,13 +38,22 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product
                 HasDownline = Utils.ToBoolean(record["HasDownline"]),
                 IsSync = Utils.ToBoolean(record["IsSync"]),
                 IsSyncedUpline = Utils.ToBoolean(record["IsSyncedUpline"]),
-                //IsSyncedDownline = Utils.ToBoolean(record["IsSyncedDownline"]),
                 IsHidden = Utils.ToBoolean(record["IsHidden"]),
                 IsHiddenUpline = Utils.ToBoolean(record["IsHiddenUpline"])
             };
 
             producStatus.GetNameFromRemotingRef();
             return producStatus;
+        }
+
+        protected static object GetEnableDownlineValue(UpdateProductStatusRequest request)
+        {
+            if (request.ProductStatus[0].HasDownline)
+            {
+                return !request.ProductStatus[0].IsDisabledDownline;
+            }
+
+            return DBNull.Value;
         }
 
         protected ProductStatusResult ExecuteNonQuery(CriteriaBase criteria)

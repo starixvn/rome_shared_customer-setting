@@ -2,11 +2,11 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
 {
     using System;
     using System.Web.Mvc;
-    using Fanex.CustomerSetting.Module.ColossusBetSetting.Criteria;
-    using Fanex.CustomerSetting.Module.ColossusBetSetting.Entities;
-    using Fanex.CustomerSetting.Module.ColossusBetSetting.Resources;
-    using Fanex.CustomerSetting.Module.ColossusBetSetting.Services;
-    using Fanex.CustomerSetting.Security.Authenticate;
+    using Criteria;
+    using Entities;
+    using Resources;
+    using Security.Authenticate;
+    using Services;
 
     public class ColossusBetSettingController : ColossusBetSettingBaseController
     {
@@ -33,14 +33,15 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
 
         [HttpPost]
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "ColossusBetSetting")]
-        [AntiXSRFFilter] // Comment this attribute when buiding for NAP & Alpha
+       // [AntiXSRFFilter] // Comment this attribute when buiding for NAP & Alpha
         public JsonResult UpdateSetting(ColossusBetModel model)
         {
             var colossusBetSession = new ColossusBetSession();
             model.CashInSharePartial.CashInShareValue = model.CashInSharePartial.CashInShareValue / 100;
             model.ComissionPartial.CommisionValue = model.ComissionPartial.CommisionValue / 100;
+
             var result = _colossusBetService.UpdateSetting(
-                    new UpdatedSettingCriteria()
+                    new UpdatedSettingCriteria
                     {
                         CustId = model.CustomerInformationPartial.CustId,
                         IsUpdateCommission = model.ComissionPartial.IsCommisionUpdated,
@@ -48,14 +49,24 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
                         IsUpdateDisable = model.StatusPartial.IsStatusUpdated,
                         V204Commission_18001 = model.ComissionPartial.CommisionValue,
                         V204CashInShare_18002 = model.CashInSharePartial.CashInShareValue,
-                        EnableDownlines = model.StatusPartial.IsDownlinesEnabled,
                         Disable = !model.StatusPartial.IsEnabled,
+                        EnableDownlines = GetEnableDownlineValue(model.StatusPartial),
                         IP = colossusBetSession.Ip,
                         UserID = model.CustomerInformationPartial.UserId,
                         Language = colossusBetSession.Language
                     });
 
             return Json(result);
+        }
+
+        private static object GetEnableDownlineValue(Status status)
+        {
+            if (status.IsHasDownlines)
+            {
+                return status.IsDownlinesEnabled;
+            }
+
+            return DBNull.Value;
         }
     }
 }

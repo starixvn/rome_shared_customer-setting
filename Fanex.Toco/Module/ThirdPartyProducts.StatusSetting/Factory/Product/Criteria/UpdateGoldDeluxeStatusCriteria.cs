@@ -8,7 +8,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria
 
         public bool Disable { get; set; }
 
-        public bool EnableDownlines { get; set; }
+        public object EnableDownlines { get; set; }
 
         public int SystemId { get; set; }
 
