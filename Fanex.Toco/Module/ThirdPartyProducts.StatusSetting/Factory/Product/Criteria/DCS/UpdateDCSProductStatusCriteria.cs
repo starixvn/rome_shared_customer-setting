@@ -47,7 +47,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria.DCS
 
             if (productStatus.HasDownline)
             {
-                productStatusElement.Add(new XAttribute("IsDisabledDownline", Convert.ToInt32(productStatus.IsDisabled && productStatus.IsDisabledDownline)));
+                productStatusElement.Add(new XAttribute("IsDisabledDownline", Convert.ToInt32(productStatus.IsDisabledDownline)));
             }
 
             return productStatusElement;
