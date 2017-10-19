@@ -34,5 +34,5 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.1.1")]
 [assembly: AssemblyFileVersion("1.0.1.1")]
-[assembly: InternalsVisibleTo("ThirdPartyProducts.StatusSetting.Test")]
+[assembly: InternalsVisibleTo("ThirdPartyProducts.StatusSetting.Tests")]
 [assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
