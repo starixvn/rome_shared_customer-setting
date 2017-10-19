@@ -1,5 +1,4 @@
-﻿using Fanex.Data;
-using Fanex.NAP.Framework.Data;
+﻿using Fanex.NAP.Framework.Data;
 using System;
 using System.Collections.Generic;
 using System.Data;

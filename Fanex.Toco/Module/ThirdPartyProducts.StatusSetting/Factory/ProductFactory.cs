@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Reflection;
-using ThirdPartyProducts.StatusSetting.Enums;
-using ThirdPartyProducts.StatusSetting.Factory.Product;
 using ThirdPartyProducts.StatusSetting.Factory.Product.Interface;
 
 namespace ThirdPartyProducts.StatusSetting.Factory

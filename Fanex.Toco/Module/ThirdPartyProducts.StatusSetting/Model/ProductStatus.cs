@@ -35,9 +35,9 @@
         internal void GetNameFromRemotingRef()
         {
             var language = Utils.GetLanguageKeyForRemotingRef();
-            this.ProductName = Utils.GetProductName(this.ProductId.ToString(), language);
-            this.SportName = Utils.GetSportName(this.SportType.ToString(), language);
-            this.BetTypeName = Utils.GetBetTypeName(this.BetType.ToString(), language);
+            ProductName = Utils.GetProductName(ProductId.ToString(), language);
+            SportName = Utils.GetSportName(SportType.ToString(), language);
+            BetTypeName = Utils.GetBetTypeName(BetType.ToString(), language);
         }
     }
 }

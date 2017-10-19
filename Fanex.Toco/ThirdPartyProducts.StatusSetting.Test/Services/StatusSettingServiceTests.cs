@@ -12,13 +12,11 @@ namespace ThirdPartyProducts.StatusSetting.Services.Tests
     [Category("ThirdPartyProducts.StatusSetting.Services")]
     public class StatusSettingServiceTests
     {
-        private StatusSettingService _statusSettingService;
         private IProductStatusSettingService _substitute;
 
         [SetUp]
         public void Init()
         {
-            _statusSettingService = new StatusSettingService();
             _substitute = Substitute.For<IProductStatusSettingService>();
             ProductFactory.CreateProductServiceFunc = id => _substitute;
         }
@@ -40,7 +38,7 @@ namespace ThirdPartyProducts.StatusSetting.Services.Tests
             _substitute.Select(Arg.Any<GetProductStatusRequest>()).Returns(expectedValue);
             
             // Act
-            var actualValue = _statusSettingService.GetProductStatus(new GetProductStatusRequest() {
+            var actualValue = StatusSettingService.GetProductStatus(new GetProductStatusRequest() {
                 CustId=1,
                 ProductId =1,
                 RoleId = 1
@@ -75,7 +73,7 @@ namespace ThirdPartyProducts.StatusSetting.Services.Tests
                 Arg.Any<UpdateProductStatusRequest>()).Returns(expectedValue);
 
             // Act
-            var actualValue = _statusSettingService.UpdateProductStatus(request);
+            var actualValue = StatusSettingService.UpdateProductStatus(request);
 
             // Assert
             Assert.AreEqual(expectedValue, actualValue);

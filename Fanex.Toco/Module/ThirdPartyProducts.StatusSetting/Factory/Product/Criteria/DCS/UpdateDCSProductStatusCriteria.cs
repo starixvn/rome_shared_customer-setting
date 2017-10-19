@@ -43,7 +43,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria.DCS
             }
 
             writer.Append("</ROOT>");
-            this.IsDisabled = writer.ToString();
+            IsDisabled = writer.ToString();
         }
     }
 }

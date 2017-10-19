@@ -122,148 +122,178 @@
     <Compile Include="Model\ProductStatus.cs" />
     <Compile Include="Model\ProductStatusResult.cs" />
     <Compile Include="Model\UpdateProductStatusRequest.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="Factory\Product\Implement\VirtualSportsStatusSettingService.cs" />
     <Compile Include="Factory\Product\Interface\IProductStatusSettingService.cs" />
     <Compile Include="Resources\BetTypeName.zh-CN.Designer.cs">
       <DependentUpon>BetTypeName.zh-CN.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Resources\BetTypeName.zh-TW.Designer.cs">
       <DependentUpon>BetTypeName.zh-TW.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Resources\BetTypeName.vi-VN.Designer.cs">
       <DependentUpon>BetTypeName.vi-VN.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Resources\BetTypeName.th-TH.Designer.cs">
       <DependentUpon>BetTypeName.th-TH.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Resources\BetTypeName.ko-KR.Designer.cs">
       <DependentUpon>BetTypeName.ko-KR.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Resources\BetTypeName.ja-JP.Designer.cs">
       <DependentUpon>BetTypeName.ja-JP.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Resources\BetTypeName.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BetTypeName.resx</DependentUpon>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Resources\DCSMessage.ja-JP.Designer.cs">
       <DependentUpon>DCSMessage.ja-JP.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Resources\DCSMessage.ko-KR.Designer.cs">
       <DependentUpon>DCSMessage.ko-KR.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Resources\DCSMessage.th-TH.Designer.cs">
       <DependentUpon>DCSMessage.th-TH.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Resources\DCSMessage.vi-VN.Designer.cs">
       <DependentUpon>DCSMessage.vi-VN.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Resources\DCSMessage.zh-CN.Designer.cs">
       <DependentUpon>DCSMessage.zh-CN.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Resources\DCSMessage.zh-TW.Designer.cs">
       <DependentUpon>DCSMessage.zh-TW.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Resources\DCSMessage.Designer.cs">
       <DependentUpon>DCSMessage.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Resources\Message.vi-VN.Designer.cs">
       <DependentUpon>Message.vi-VN.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Resources\Message.zh-TW.Designer.cs">
       <DependentUpon>Message.zh-TW.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Resources\Message.zh-CN.Designer.cs">
       <DependentUpon>Message.zh-CN.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Resources\Message.th-TH.Designer.cs">
       <DependentUpon>Message.th-TH.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Resources\Message.ko-KR.Designer.cs">
       <DependentUpon>Message.ko-KR.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Resources\Message.ja-JP.Designer.cs">
       <DependentUpon>Message.ja-JP.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Resources\Message.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Message.resx</DependentUpon>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Resources\SportName-ja-JP.Designer.cs">
       <DependentUpon>SportName-ja-JP.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Resources\SportName.ko-KR.Designer.cs">
       <DependentUpon>SportName.ko-KR.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Resources\SportName.th-TH.Designer.cs">
       <DependentUpon>SportName.th-TH.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Resources\SportName.vi-VN.Designer.cs">
       <DependentUpon>SportName.vi-VN.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Resources\SportName.zh-CN.Designer.cs">
       <DependentUpon>SportName.zh-CN.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Resources\SportName.zh-TW.Designer.cs">
       <DependentUpon>SportName.zh-TW.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Resources\SportName.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SportName.resx</DependentUpon>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Services\StatusSettingService.cs" />
     <Compile Include="Utils.cs" />

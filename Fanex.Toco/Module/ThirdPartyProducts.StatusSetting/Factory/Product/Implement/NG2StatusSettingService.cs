@@ -1,8 +1,6 @@
-﻿using Fanex.Data;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using ThirdPartyProducts.StatusSetting.Enums;
 using ThirdPartyProducts.StatusSetting.Factory.Product.Criteria;
 using ThirdPartyProducts.StatusSetting.Factory.Product.Criteria.DCS;
 using ThirdPartyProducts.StatusSetting.Factory.Product.Implement.DCS;
