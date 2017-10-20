@@ -1,6 +1,4 @@
-﻿using Fanex.NAP.Framework.Data;
-
-namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria
+﻿namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria
 {
     internal class SelectNG2ProductStatusCriteria : SelectProductStatusCriteria
     {

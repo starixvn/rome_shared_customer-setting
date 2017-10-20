@@ -1,5 +1,4 @@
 ﻿using Fanex.NAP.Framework.Data;
-using ThirdPartyProducts.StatusSetting.Factory.Product.Criteria.DCS;
 
 namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria
 {

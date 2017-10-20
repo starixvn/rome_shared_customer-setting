@@ -78,45 +78,45 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria
             {
                 if (productStatus.BetType == 31)
                 {
-                    this.Disable151_31 = productStatus.IsDisabled;
-                    this.DisableDownlines151_31 = productStatus.IsDisabledDownline;
-                    this.UpdateDisable151_31 = true;
+                    Disable151_31 = productStatus.IsDisabled;
+                    DisableDownlines151_31 = productStatus.IsDisabledDownline;
+                    UpdateDisable151_31 = true;
                 }
                 else if (productStatus.BetType == 41)
                 {
-                    this.Disable151_41 = productStatus.IsDisabled;
-                    this.DisableDownlines151_41 = productStatus.IsDisabledDownline;
-                    this.UpdateDisable151_41 = true;
+                    Disable151_41 = productStatus.IsDisabled;
+                    DisableDownlines151_41 = productStatus.IsDisabledDownline;
+                    UpdateDisable151_41 = true;
                 }
                 else
                 {
-                    this.Disable151_51 = productStatus.IsDisabled;
-                    this.DisableDownlines151_51 = productStatus.IsDisabledDownline;
-                    this.UpdateDisable151_51 = true;
+                    Disable151_51 = productStatus.IsDisabled;
+                    DisableDownlines151_51 = productStatus.IsDisabledDownline;
+                    UpdateDisable151_51 = true;
                 }
             }
             else if (productStatus.SportType == 152)
             {
                 if (productStatus.BetType == 41)
                 {
-                    this.Disable152_41 = productStatus.IsDisabled;
-                    this.DisableDownlines152_41 = productStatus.IsDisabledDownline;
-                    this.UpdateDisable152_41 = true;
+                    Disable152_41 = productStatus.IsDisabled;
+                    DisableDownlines152_41 = productStatus.IsDisabledDownline;
+                    UpdateDisable152_41 = true;
                 }
                 else
                 {
-                    this.Disable152_51 = productStatus.IsDisabled;
-                    this.DisableDownlines152_51 = productStatus.IsDisabledDownline;
-                    this.UpdateDisable152_51 = true;
+                    Disable152_51 = productStatus.IsDisabled;
+                    DisableDownlines152_51 = productStatus.IsDisabledDownline;
+                    UpdateDisable152_51 = true;
                 }
             }
             else
             {
                 if (productStatus.BetType == 51)
                 {
-                    this.Disable153_51 = productStatus.IsDisabled;
-                    this.DisableDownlines153_51 = productStatus.IsDisabledDownline;
-                    this.UpdateDisable153_51 = true;
+                    Disable153_51 = productStatus.IsDisabled;
+                    DisableDownlines153_51 = productStatus.IsDisabledDownline;
+                    UpdateDisable153_51 = true;
                 }
             }
         }

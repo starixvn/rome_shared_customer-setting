@@ -12,6 +12,7 @@
     <AssemblyName>Fanex.CustomerSetting.Module.Bingo.Resources</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SonarQubeExclude>True</SonarQubeExclude>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -61,7 +62,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Bingo.Resources.ruleset" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

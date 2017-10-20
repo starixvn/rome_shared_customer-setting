@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <SonarQubeExclude>True</SonarQubeExclude>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -138,7 +139,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="AuthenticationSection.config" />
-    <None Include="Fanex.HttpModule.NG2.Security.ruleset" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

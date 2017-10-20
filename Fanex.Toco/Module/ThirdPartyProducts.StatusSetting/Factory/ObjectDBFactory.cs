@@ -4,8 +4,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
 using ThirdPartyProducts.StatusSetting.Model;
 
 namespace ThirdPartyProducts.StatusSetting.Factory

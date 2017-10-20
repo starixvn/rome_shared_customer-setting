@@ -11,6 +11,7 @@
     <AssemblyName>Fanex.Voidbridge.BetDetail</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SonarQubeExclude>True</SonarQubeExclude>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -208,7 +209,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Fanex.Voidbridge.BetDetail.ruleset" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -14,6 +14,7 @@
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <SonarQubeExclude>True</SonarQubeExclude>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -193,7 +194,6 @@
     <None Include="Areas\Logs\APILoggerConnectionStrings.uat.config" />
     <None Include="Areas\Logs\LogsConfiguration.config" />
     <None Include="Areas\ONEbook.NG2.API.config" />
-    <None Include="Fanex.Module.NG2.ruleset" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

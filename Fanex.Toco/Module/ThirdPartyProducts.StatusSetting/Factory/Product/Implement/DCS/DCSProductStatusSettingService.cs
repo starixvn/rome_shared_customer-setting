@@ -1,5 +1,4 @@
-﻿using Fanex.Data;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -78,28 +77,6 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement.DCS
             }
 
             return result;
-        }
-
-        protected override ProductStatus MapSpData(IDataRecord record)
-        {
-            var producStatus = new ProductStatus
-            {
-                ProductId = Utils.ToInt32(record["ProductID"]),
-                BetType = Utils.ToInt32(record["Bettype"]),
-                SportType = Utils.ToInt32(record["Sporttype"]),
-                IsDisabled = Utils.ToBoolean(record["IsDisabled"]),
-                IsDisabledUpline = Utils.ToBoolean(record["IsDisabledUpline"]),
-                IsDisabledDownline = Utils.ToBoolean(record["IsDisabledDownline"]),
-                HasDownline = Utils.ToBoolean(record["HasDownline"]),
-                IsSync = Utils.ToBoolean(record["IsSync"]),
-                IsSyncedUpline = Utils.ToBoolean(record["IsSyncedUpline"]),
-                IsSyncedDownline = Utils.ToBoolean(record["IsSyncedDownline"]),
-                IsHidden = Utils.ToBoolean(record["IsHidden"]),
-                IsHiddenUpline = Utils.ToBoolean(record["IsHiddenUpline"])
-            };
-
-            producStatus.GetNameFromRemotingRef();
-            return producStatus;
         }
     }
 }

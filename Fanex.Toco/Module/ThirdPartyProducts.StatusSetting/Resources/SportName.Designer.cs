@@ -8,10 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ThirdPartyProducts.StatusSetting.Resources {
-    using System;
-    
-    
+namespace ThirdPartyProducts.StatusSetting.Resources
+{
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>

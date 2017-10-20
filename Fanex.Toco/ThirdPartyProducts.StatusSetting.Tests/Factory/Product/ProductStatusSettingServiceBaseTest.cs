@@ -83,7 +83,7 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product
                     new ProductStatus()
                 }
             };
-            var expectedException = new ArgumentOutOfRangeException("custId", custId, string.Format(Message.ArgumentMustGreaterThanZero, "CustId"));
+            var expectedException = new ArgumentOutOfRangeException("updateProductStatusRequest", custId, string.Format(Message.ArgumentMustGreaterThanZero, "CustId"));
 
             // Assert
             Assert.Throws(Is.TypeOf<ArgumentOutOfRangeException>()
@@ -136,7 +136,7 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product
                     new ProductStatus()
                 }
             };
-            var expectedException = new ArgumentOutOfRangeException("productId", productId, string.Format(Message.ArgumentMustGreaterThanZero, "ProductId"));
+            var expectedException = new ArgumentOutOfRangeException("updateProductStatusRequest", productId, string.Format(Message.ArgumentMustGreaterThanZero, "ProductId"));
 
             // Assert
             Assert.Throws(Is.TypeOf<ArgumentOutOfRangeException>()
@@ -192,7 +192,7 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product
                     new ProductStatus()
                 }
             };
-            var expectedException = new ArgumentOutOfRangeException("systemId", systemId, string.Format(Message.ArgumentSystemIdMustBeInRange, "SystemId"));
+            var expectedException = new ArgumentOutOfRangeException("updateProductStatusRequest", systemId, string.Format(Message.ArgumentSystemIdMustBeInRange, "SystemId"));
 
             // Assert
             Assert.Throws(Is.TypeOf<ArgumentOutOfRangeException>()
@@ -248,7 +248,7 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product
             };
 
             // Arrange
-            var expectedException = new ArgumentNullException("ip", string.Format(Message.ArgumentCannotBeNullOrEmpty, "ip"));
+            var expectedException = new ArgumentNullException("updateProductStatusRequest", string.Format(Message.ArgumentCannotBeNullOrEmpty, "Ip"));
 
             // Assert
             Assert.Throws(Is.TypeOf<ArgumentNullException>()
@@ -310,7 +310,7 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product
             };
 
             // Arrange
-            var expectedException = new ArgumentNullException("productStatus", string.Format(Message.ArgumentCannotBeNullOrEmpty, "productStatus"));
+            var expectedException = new ArgumentNullException("updateProductStatusRequest", string.Format(Message.ArgumentCannotBeNullOrEmpty, "ProductStatus"));
 
             // Assert
             Assert.Throws(Is.TypeOf<ArgumentNullException>()
