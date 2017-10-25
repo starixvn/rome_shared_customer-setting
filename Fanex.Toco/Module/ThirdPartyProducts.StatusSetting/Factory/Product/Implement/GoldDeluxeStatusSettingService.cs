@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using ThirdPartyProducts.StatusSetting.Factory.Product.Criteria;
@@ -22,12 +23,13 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
             Validate(request);
 
             var goldDeluxeStatus = request.ProductStatus[0];
+            var isDisabled = goldDeluxeStatus.IsDisabled;
 
             var criteria = new UpdateGoldDeluxeStatusCriteria
             {
                 CustId = request.CustId,
-                Disable = goldDeluxeStatus.IsDisabled,
-                EnableDownlines = !goldDeluxeStatus.IsDisabledDownline,
+                Disable = isDisabled,
+                EnableDownlines = GetEnableDownlineValue(request),
                 SystemId = request.SystemId,
                 UserId = request.UserId,
                 SubAccId = request.SubAccId,
@@ -49,7 +51,6 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
                 BetType = Utils.ToInt32(record["Bettype"]),
 
                 IsDisabled = Utils.ToBoolean(record["IsDisabled"]),
-                IsSyncedDownline = Utils.ToBoolean(record["IsSyncedDownline"]),
                 HasDownline = Utils.ToBoolean(record["HasDownline"]),
                 IsDisabledUpline = Utils.ToBoolean(record["IsDisabledUpline"]),
                 IsSyncedUpline = Utils.ToBoolean(record["IsSyncedUpline"]),

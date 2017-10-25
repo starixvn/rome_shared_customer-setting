@@ -33,14 +33,14 @@
             {
                 case 4:
                     return _colossusBetSettingRepository.GetSetting(
-                         new GetSuperSettingCriteria()
+                         new GetSuperSettingCriteria
                                 {
                                     CustId = settingContext.CustId
                                 },
                                 settingContext);
                 case 3:
                     return _colossusBetSettingRepository.GetSetting(
-                      new GetMasterSettingCriteria()
+                      new GetMasterSettingCriteria
              {
                  CustId = settingContext.CustId,
                  Srecommend = settingContext.Srecommend
@@ -49,7 +49,7 @@
 
                 case 2:
                     return _colossusBetSettingRepository.GetSetting(
-                    new GetAgentSettingCriteria()
+                    new GetAgentSettingCriteria
            {
                CustId = settingContext.CustId,
                Mrecommend = settingContext.Mrecommend
@@ -57,7 +57,7 @@
            settingContext);
                 default:
                     return _colossusBetSettingRepository.GetSetting(
-                   new GetMemberSettingCriteria()
+                   new GetMemberSettingCriteria
                    {
                        CustId = settingContext.CustId,
                        Recommend = settingContext.Recommend

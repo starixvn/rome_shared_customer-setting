@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using ThirdPartyProducts.StatusSetting.Model;
+using System.Linq;
+using System.Xml.Linq;
 
 namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria.DCS
 {
@@ -23,27 +25,32 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria.DCS
         public bool IsDeposit { get; set; }
 
         public override string GetSettingKey()
+            => IsDeposit ? "Acc_Dep_CustSetting_DisableStatUpd" : "Acc_CustSetting_DisableNewProductStatusUpd";
+
+        public override bool IsValid() => true;
+
+        public void MapSpParams(List<ProductStatus> products)
         {
-            return IsDeposit ? "Acc_Dep_CustSetting_DisableStatUpd" : "Acc_CustSetting_DisableNewProductStatusUpd";
+            var rootElement = new XElement("ROOT");
+
+            rootElement.Add(products.Select(product => BuildProductStatusElement(product)));
+           
+            this.IsDisabled = rootElement.ToString();
         }
 
-        public override bool IsValid()
+        public static XElement BuildProductStatusElement(ProductStatus productStatus)
         {
-            return true;
-        }
+            var productStatusElement = new XElement("ProductStatus");
+            productStatusElement.Add(new XAttribute("SportType", productStatus.SportType));
+            productStatusElement.Add(new XAttribute("BetType", productStatus.BetType));
+            productStatusElement.Add(new XAttribute("IsDisabled", Convert.ToInt32(productStatus.IsDisabled)));
 
-        public void MapSpParams(List<ProductStatus> productStatus)
-        {
-            string productStatusFormat = "<ProductStatus SportType=\"{0}\" BetType=\"{1}\" IsDisabled=\"{2}\" IsDisabledDownline=\"{3}\" />";
-            var writer = new StringBuilder();
-            writer.Append("<ROOT>");
-            foreach (var item in productStatus)
+            if (productStatus.HasDownline)
             {
-                writer.Append(string.Format(productStatusFormat, item.SportType, item.BetType, Convert.ToInt32(item.IsDisabled), Convert.ToInt32(item.IsDisabledDownline)));
+                productStatusElement.Add(new XAttribute("IsDisabledDownline", Convert.ToInt32(productStatus.IsDisabledDownline)));
             }
 
-            writer.Append("</ROOT>");
-            IsDisabled = writer.ToString();
+            return productStatusElement;
         }
     }
 }

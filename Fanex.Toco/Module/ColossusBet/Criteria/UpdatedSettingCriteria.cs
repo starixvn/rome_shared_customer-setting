@@ -2,8 +2,8 @@
 {
     using System;
     using System.Configuration;
-    using Fanex.CustomerSetting.Module.ColossusBetSetting.Entities;
-    using Fanex.NAP.Framework.Data;
+    using Entities;
+    using NAP.Framework.Data;
 
     public class UpdatedSettingCriteria : CriteriaBase
     {
@@ -19,7 +19,7 @@
 
         public decimal V204CashInShare_18002 { get; set; }
 
-        public bool EnableDownlines { get; set; }
+        public object EnableDownlines { get; set; }
 
         public bool Disable { get; set; }
 
