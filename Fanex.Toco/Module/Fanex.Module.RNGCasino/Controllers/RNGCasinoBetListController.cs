@@ -1,11 +1,12 @@
 ﻿namespace Fanex.Module.RNGCasino.Controllers
 {
-    using Criteria;
-    using CustomerSetting.Module.Core.Web.Controllers;
-    using Resources;
-    using Services;
     using System;
     using System.Web.Mvc;
+    using Criteria;
+    using CustomerSetting.Module.Core.Web.Controllers;
+    using Models;
+    using Resources;
+    using Services;
 
     public class RNGCasinoBetListController : BaseController
     {
@@ -20,15 +21,15 @@
         [Obsolete]
         public ActionResult BetDetails(GetRNGCasinoBetDetailsCriteria criteria)
         {
-            var result = _rngCasinoService.BetDetails(criteria);
+            var result = GetBetDetail(criteria);
             return View("~/Areas/RNGCasino/Views/BetDetails/Index.cshtml", result);
         }
 
         [HttpGet]
         public ActionResult BetDetailsPaging(GetRNGCasinoBetDetailsCriteria criteria)
         {
-            var details = _rngCasinoService.BetDetails(criteria);
-            return PartialView("~/Areas/RNGCasino/Views/BetDetails/_Tickets.cshtml", details);
+            var result = GetBetDetail(criteria);
+            return PartialView("~/Areas/RNGCasino/Views/BetDetails/_Tickets.cshtml", result);
         }
 
         [HttpGet]
@@ -53,6 +54,26 @@
             ViewBag.ProductName = BetListResources.FishingWorld;
             var result = _rngCasinoService.GetResultCriteria(criteria, Session[Session.SessionID + "_LANGUAGE"].ToString());
             return View("~/Areas/RNGCasino/Views/HandHistory_API/Index.cshtml", result);
+        }
+
+        [NonAction]
+        private BetDetail GetBetDetail(GetRNGCasinoBetDetailsCriteria criteria)
+        {
+            criteria.PageIndex++;
+            if (criteria.PageSize == 0)
+            {
+                criteria.PageSize = 100;
+            }
+
+            var ticketDetails = _rngCasinoService.BetDetails(criteria);
+
+            return new BetDetail
+            {
+                PageIndex = criteria.PageIndex,
+                PageSize = criteria.PageSize,
+                TotalRows = criteria.TotalRows,
+                TicketDetails = ticketDetails
+            };
         }
     }
 }

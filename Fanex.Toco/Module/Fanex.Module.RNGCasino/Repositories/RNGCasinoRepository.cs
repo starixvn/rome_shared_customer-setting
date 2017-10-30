@@ -60,6 +60,8 @@
                         });
                     }
                 }
+
+                criteria.TotalRows = Converter.ToInt(objDb.GetOuputParams()["totalrows"]);
             }
 
             return result;
