@@ -11,7 +11,6 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
             var result = new List<ProductStatusResult>();
             Validate(request);
 
-            var isDisabled = request.ProductStatus[0].IsDisabled;
             var criteria = new UpdateColossusBetStatusCriteria
             {
                 CustId = request.CustId,
@@ -20,7 +19,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
                 SubAccId = request.SubAccId,
                 UserId = request.UserId,
                 SystemId = request.SystemId,
-                Disable = isDisabled,
+                Disable = request.ProductStatus[0].IsDisabled,
                 EnableDownlines = GetEnableDownlineValue(request)
             };
 

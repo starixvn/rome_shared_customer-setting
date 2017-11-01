@@ -23,12 +23,11 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
             Validate(request);
 
             var goldDeluxeStatus = request.ProductStatus[0];
-            var isDisabled = goldDeluxeStatus.IsDisabled;
 
             var criteria = new UpdateGoldDeluxeStatusCriteria
             {
                 CustId = request.CustId,
-                Disable = isDisabled,
+                Disable = goldDeluxeStatus.IsDisabled,
                 EnableDownlines = GetEnableDownlineValue(request),
                 SystemId = request.SystemId,
                 UserId = request.UserId,

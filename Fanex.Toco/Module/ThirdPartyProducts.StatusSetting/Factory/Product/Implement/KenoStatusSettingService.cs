@@ -32,7 +32,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
                     UserId = request.UserId,
                     SystemId = request.SystemId,
                     Disable = item.IsDisabled,
-                    DisableDownlines = !item.IsDisabled && item.IsDisabledDownline
+                    DisableDownlines = item.IsDisabledDownline
                 };
 
                 result.Add(RefineErrorMessage(item, ExecuteNonQuery(criteria)));

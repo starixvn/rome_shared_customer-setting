@@ -10,7 +10,6 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
         {
             var result = new List<ProductStatusResult>();
             Validate(request);
-            var isDisabled = request.ProductStatus[0].IsDisabled;
 
             var criteria = new UpdateCasinoStatusCriteria
             {
@@ -20,8 +19,8 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Implement
                 SubAccId = request.SubAccId,
                 UserId = request.UserId,
                 SystemId = request.SystemId,
-                DisabledCS = isDisabled,
-                EnableDownline = !isDisabled && !request.ProductStatus[0].IsDisabledDownline,
+                DisabledCS = request.ProductStatus[0].IsDisabled,
+                EnableDownline = !request.ProductStatus[0].IsDisabledDownline
             };
 
             result.Add(ExecuteNonQuery(criteria));
