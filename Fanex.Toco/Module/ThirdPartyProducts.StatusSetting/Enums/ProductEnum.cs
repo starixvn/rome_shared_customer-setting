@@ -21,11 +21,13 @@
         FishingWorld = 24,
 
         GoldDeluxe = 12,
-        
+
         VirtualSports2 = 27,
-        
+
         Lottery = 28,
 
-        Lucky3 = 26
+        Lucky3 = 26,
+
+        Bullfighting = 30
     }
 }
