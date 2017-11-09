@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>
+		Fanex.Module.RNGCasino
+	 </id>
+    <version>
+    	1.0.1.2
+    </version>
+    <title>
+    	Fanex.Module.RNGCasino
+    </title>
+    <authors>Starixsoft Solutions</authors>
+    <owners>Starixsoft Solutions</owners>
+    <projectUrl>http://nuget</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>http://nuget</licenseUrl>
+    <summary></summary>
+    <description>
+		Fanex.Module.RNGCasino
+    </description>
+    <releaseNotes>
+    	Input Release Notes
+    </releaseNotes>
+    <tags>
+    	Fanex.Module.RNGCasino
+    </tags>
+    <dependencies>
+		<dependency id="CasinoLibrary" version="[1.0.2.17,)" />
+		<dependency id="EnterpriseLibrary.Common" version="[5.0.414.0,)" />
+		<dependency id="EnterpriseLibrary.Data" version="[5.0.414.0,)" />
+		<dependency id="EnterpriseLibrary.Logging" version="[5.0.414.0,)" />
+		<dependency id="EnterpriseLibrary.Unity" version="[5.0.414.0,)" />
+		<dependency id="Fanex.BetList.Core" version="[2.15.5.2,)" />
+		<dependency id="Fanex.Common" version="[1.0.404.97,)" />
+		<dependency id="Fanex.CustomerSetting.Module.Core.AllSites" version="[2.0.1.6,)" />
+		<dependency id="Fanex.Data" version="[0.5.404.59,)" />
+		<dependency id="Fanex.File" version="[1.0.0,)" />
+		<dependency id="Fanex.Logging" version="[1.0.0.0,)" />
+		<dependency id="Fanex.Module.Logs" version="[2.0.0.4,)" />
+		<dependency id="Fanex.NAP.Framework" version="[1.0.0.2,)" />
+		<dependency id="Fanex.Result.Core.GlobalGaming" version="[1.0.0-beta,)" />
+		<dependency id="Fanex.Result.Core.Voidbridge" version="[1.0.1.2,)" />
+		<dependency id="Fanex.Result.Core-NPOI.2.0.6" version="[2.0.6.0-beta,)" />
+		<dependency id="IBCCrypt" version="[1.1.0.0,)" />
+		<dependency id="Newtonsoft.Json.NAP" version="[3.5.0,)" />
+		<dependency id="NPOI" version="[2.0.6,)" />
+		<dependency id="RazorEngine" version="[3.7.0,)" />
+		<dependency id="RemotingRef" version="[1.0.0.13,)" />
+		<dependency id="SharpZipLib" version="[0.86.0,)" />
+		<dependency id="SonarAnalyzer.CSharp" version="[5.11.0.1761,)" />
+		<dependency id="SPSRemoting" version="[1.0.0,)" />
+		<dependency id="Sunplus.Core.Common" version="[1.1.4505.19054,)" />
+		<dependency id="TplCore" version="[1.0.4694.29951,)" />
+    </dependencies>
+  </metadata>
+  <files>
+  		<file src="..\bin\Release\Fanex.Module.RNGCasino.dll" target="lib\net40" />
+  		<file src="..\bin\Release\zh-TW\Fanex.Module.RNGCasino.resources.dll" target="lib\net40\zh-TW" />
+  		<file src="..\bin\Release\zh-CN\Fanex.Module.RNGCasino.resources.dll" target="lib\net40\zh-CN" />
+  		<file src="..\bin\Release\vi-VN\Fanex.Module.RNGCasino.resources.dll" target="lib\net40\vi-VN" />
+  		<file src="..\bin\Release\th-TH\Fanex.Module.RNGCasino.resources.dll" target="lib\net40\th-TH" />
+  		<file src="..\bin\Release\ko-KR\Fanex.Module.RNGCasino.resources.dll" target="lib\net40\ko-KR" />
+  		<file src="..\bin\Release\ja-JP\Fanex.Module.RNGCasino.resources.dll" target="lib\net40\ja-JP" />
+  </files>
+</package>

@@ -301,6 +301,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="ThirdPartyProducts.StatusSetting.ruleset" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\BetTypeName.zh-CN.resx">
