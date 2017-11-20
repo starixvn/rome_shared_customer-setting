@@ -179,7 +179,7 @@ namespace Fanex.CustomerSetting.Module.SearchCopy.Controllers
             {
                 LogService.Error(ex.Message);
                 result.Code = -1;
-                result.Message = string.Join(null, new string[] { "<div class=\"alertboxerr\"><div>", Constants.CopyMessage.Failed, "</div></div>" });
+                result.Message = string.Join(null, new string[] { "<div class=\"alertboxerr\"><div>", criteria.CustLevel == 1 ? Constants.CopyMessage.FailedMember : Constants.CopyMessage.Failed, "</div></div>" });
 
                 return base.Json(result, JsonRequestBehavior.AllowGet);
                 ////return JsonBase(result);
