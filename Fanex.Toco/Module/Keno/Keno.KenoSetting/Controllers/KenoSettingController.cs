@@ -10,10 +10,12 @@
 namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
 {
     using System.Web.Mvc;
+    using Configurations;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.Services;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.ViewModels;
     using Fanex.CustomerSetting.Security.Authenticate;
+    using Filters;
 
     /// <summary>
     /// Keno controller.
@@ -34,6 +36,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
 
         //[AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditSuper")] // Used for NAP
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "KenoSetting")] // Used for ExtNAP & Alpha
+        [KenoAuthorization(IsHost = false)]
         public ActionResult EditSuper(CustomerInformationViewModel customerInformationViewModel)
         {
             SetTitleForMultipleEdit(customerInformationViewModel);
@@ -42,6 +45,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         }
 
         [HttpPost]
+        [KenoAuthorization(IsHost = true)]
         //[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateSuper")] // Used for NAP
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "KenoSetting")] // Used for ExtNAP & Alpha
         //[AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
@@ -53,6 +57,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
 
         //[AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditMaster")] // Used for NAP
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "KenoSetting")] // Used for ExtNAP & Alpha
+        [KenoAuthorization(IsHost = false)]
         public ActionResult EditMaster(CustomerInformationViewModel customerInformationViewModel)
         {
             SetTitleForMultipleEdit(customerInformationViewModel);
@@ -61,6 +66,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         }
 
         [HttpPost]
+        [KenoAuthorization(IsHost = true)]
         //[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateMaster")] // Used for NAP
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "KenoSetting")] // Used for ExtNAP & Alpha
         //[AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
@@ -72,6 +78,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
 
         //[AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "EditAgent")] // Used for NAP
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "KenoSetting")] // Used for ExtNAP & Alpha
+        [KenoAuthorization(IsHost = false)]
         public ActionResult EditAgent(CustomerInformationViewModel customerInformationViewModel)
         {
             SetTitleForMultipleEdit(customerInformationViewModel);
@@ -83,6 +90,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         //[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateAgent")] // Used for NAP
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "KenoSetting")] // Used for ExtNAP & Alpha
         //[AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
+        [KenoAuthorization(IsHost = true)]
         public JsonResult UpdateAgent(AgentSettingViewModel agentSetting)
         {
             var results = _kenoSettingService.UpdateAgentCustomerSetting(agentSetting);
@@ -91,6 +99,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
 
         //[AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "SuperEditMember")] // Used for NAP
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "KenoSetting")] // Used for ExtNAP & Alpha
+        [KenoAuthorization(IsHost = false)]
         public ActionResult SuperEditMember(CustomerInformationViewModel customerInformationViewModel)
         {
             SetTitleForMultipleEdit(customerInformationViewModel);
@@ -102,6 +111,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         //[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateSuperOnMember")] // Used for NAP
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "KenoSetting")] // Used for ExtNAP & Alpha
         [AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
+        [KenoAuthorization(IsHost = true)]
         public JsonResult UpdateSuperOnMember(SuperEditMemberSettingViewModel memberSetting)
         {
             var results = _kenoSettingService.UpdateMemberCustomerSettingInCaseOfSuperEditMember(memberSetting);
@@ -110,6 +120,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
 
         //[AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "MasterEditMember")] // Used for NAP
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "KenoSetting")] // Used for ExtNAP & Alpha
+        [KenoAuthorization(IsHost = false)]
         public ActionResult MasterEditMember(CustomerInformationViewModel customerInformationViewModel)
         {
             SetTitleForMultipleEdit(customerInformationViewModel);
@@ -121,6 +132,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         //[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateMasterOnMember")] // Used for NAP
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "KenoSetting")] // Used for ExtNAP & Alpha
         //[AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
+        [KenoAuthorization(IsHost = true)]
         public JsonResult UpdateMasterOnMember(MasterEditMemberSettingViewModel memberSetting)
         {
             var results = _kenoSettingService.UpdateMemberCustomerSettingInCaseOfMasterEditMember(memberSetting);
@@ -129,6 +141,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
 
         //[AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "AgentEditMember")] // Used for NAP
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "KenoSetting")] // Used for ExtNAP & Alpha
+        [KenoAuthorization(IsHost = false)]
         public ActionResult AgentEditMember(CustomerInformationViewModel customerInformationViewModel)
         {
             SetTitleForMultipleEdit(customerInformationViewModel);
@@ -140,10 +153,16 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         //[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateAgentOnMember")] // Used for NAP
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "KenoSetting")] // Used for ExtNAP & Alpha
         //[AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
+        [KenoAuthorization(IsHost = true)]
         public JsonResult UpdateAgentOnMember(AgentEditMemberSettingViewModel memberSetting)
         {
             var results = _kenoSettingService.UpdateMemberCustomerSettingInCaseOfAgentEditMember(memberSetting);
             return Json(results);
+        }
+
+        public ActionResult UnAuthorized()
+        {
+            return View(KenoSection.Instance.UnAuthorizedPath);
         }
 
         private void SetTitleForMultipleEdit(CustomerInformationViewModel customerInformationViewModel)

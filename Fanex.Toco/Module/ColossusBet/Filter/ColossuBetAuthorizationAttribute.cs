@@ -12,14 +12,14 @@
     {
         public bool IsHost { get; set; }
 
-        public IColossusBetAuthorizationService GoldDeluxeAuthenticationService { get; set; }
+        public IColossusBetAuthorizationService authenticationService { get; set; }
 
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
             base.OnAuthorization(filterContext);
 
             var authorizationType = Type.GetType(ColossusBetSection.Instance.AuthorizationServiceType);
-            GoldDeluxeAuthenticationService = Activator.CreateInstance(authorizationType) as IColossusBetAuthorizationService;
+            authenticationService = Activator.CreateInstance(authorizationType) as IColossusBetAuthorizationService;
 
             var isAuthorized = false;
             if (filterContext.ActionDescriptor.ActionName.ToLower().Contains("multiple"))
@@ -64,7 +64,7 @@
 
         private bool IsAuthorizedHost(AuthorizationContext filterContext)
         {
-            return GoldDeluxeAuthenticationService.IsAuthorizedHost(filterContext);
+            return authenticationService.IsAuthorizedHost(filterContext);
         }
 
         private bool IsAuthorizedHostMultiple(AuthorizationContext filterContext)
@@ -72,12 +72,12 @@
             var valueProvider = filterContext.Controller.ValueProvider;
             var usernames = GetActionParameterValue(valueProvider, "Usernames").Split(',').ToList();
 
-            return GoldDeluxeAuthenticationService.IsAuthorizedHostMultiple(filterContext, usernames);
+            return authenticationService.IsAuthorizedHostMultiple(filterContext, usernames);
         }
 
         private bool IsAuthorizedRead(AuthorizationContext filterContext)
         {
-            return GoldDeluxeAuthenticationService.IsAuthorizedRead(filterContext);
+            return authenticationService.IsAuthorizedRead(filterContext);
         }
 
         private bool IsAuthorizedReadMultiple(AuthorizationContext filterContext)
@@ -85,7 +85,7 @@
             var requestForm = filterContext.HttpContext.Request.Form;
             var usernames = requestForm["usernames"];
 
-            return GoldDeluxeAuthenticationService.IsAuthorizedReadMultiple(filterContext, usernames.Trim().Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries));
+            return authenticationService.IsAuthorizedReadMultiple(filterContext, usernames.Trim().Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries));
         }
 
     }

@@ -51,8 +51,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\_Dependencies\Fanex\Fanex.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.CustomerSetting.Module.Keno.KenoResources, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.CustomerSetting.Module.Keno.KenoResources.1.0.0.5\lib\net40\Fanex.CustomerSetting.Module.Keno.KenoResources.dll</HintPath>
+    <Reference Include="Fanex.CustomerSetting.Module.Keno.KenoResources, Version=1.0.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Fanex.CustomerSetting.Module.Keno.KenoResources.1.0.0.6-SecurityInOct-01\lib\net40\Fanex.CustomerSetting.Module.Keno.KenoResources.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Data, Version=0.5.404.59, Culture=neutral, processorArchitecture=MSIL">
@@ -173,6 +173,7 @@
     <Compile Include="Entities\MasterPositionTaking.cs" />
     <Compile Include="Entities\SuperPositionTaking.cs" />
     <Compile Include="Entities\CustomerSettingBase.cs" />
+    <Compile Include="Filters\KenoAuthorizationAttribute.cs" />
     <Compile Include="Helpers\DataRecordExtensions.cs" />
     <Compile Include="Helpers\IMessageHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -192,6 +193,7 @@
     <Compile Include="Services\CriteriaGeneratorService\SuperCriteriaGeneratorService.cs" />
     <Compile Include="Services\ICriteriaGeneratorService.cs" />
     <Compile Include="Services\CriteriaGeneratorServiceBase.cs" />
+    <Compile Include="Services\IKenoAuthorizationService.cs" />
     <Compile Include="Services\IKenoSession.cs" />
     <Compile Include="Services\IKenoSettingService.cs" />
     <Compile Include="Services\KenoSession.cs" />

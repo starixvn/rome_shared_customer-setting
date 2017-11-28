@@ -28,7 +28,7 @@
             }
         }
 
-        [ConfigurationProperty("UnAuthorizedPath", DefaultValue = "", IsRequired = true)]
+        [ConfigurationProperty("UnAuthorizedPath", DefaultValue = "", IsRequired = false)]
         public string UnAuthorizedPath
         {
             get

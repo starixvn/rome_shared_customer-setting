@@ -73,7 +73,25 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Configurations
                 return (string)base["excludesetting"];
             }
         }
-                
+
+        [ConfigurationProperty("AuthorizationServiceType", DefaultValue = "", IsRequired = true)]
+        public string AuthorizationServiceType
+        {
+            get
+            {
+                return (string)base["AuthorizationServiceType"];
+            }
+        }
+
+        [ConfigurationProperty("UnAuthorizedPath", DefaultValue = "", IsRequired = false)]
+        public string UnAuthorizedPath
+        {
+            get
+            {
+                return (string)base["UnAuthorizedPath"];
+            }
+        }
+
         public IList<int> ExcludeBetTypeList
         {
             get

@@ -124,6 +124,15 @@ namespace Fanex.CustomerSetting.Module.Keno.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are not authorized on this function.
+        /// </summary>
+        public static string UnauthorizeMsg {
+            get {
+                return ResourceManager.GetString("UnauthorizeMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update customer setting failed!.
         /// </summary>
         public static string UpdatedFail {
