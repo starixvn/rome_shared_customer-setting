@@ -12,6 +12,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using CasinoLibrary.Model.UserException;
@@ -25,9 +26,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
     using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.Data;
     using Fanex.Data.DNAide;
-    using Fanex.Module.Logs;
-    using Fanex.Module.Logs.Services;
-    using Logging;
+    using Logging.Extensions.Web;
 
     /// <summary>
     /// Enable status repository.
@@ -160,7 +159,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                 }
                 catch (Exception ex)
                 {
-                    ex.Write();
+                    ExceptionHandler.Handle(ex);
 
                     throw ex;
                 }                
@@ -219,11 +218,11 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                         }
                         catch (ErrorException casinoEx)
                         {
-                            casinoEx.WriteCasinoException(Formater.LogType.Warning);
+                            ExceptionHandler.Handle(new Exception(casinoEx.Message), TraceEventType.Warning);
                         }
                         catch (Exception ex)
                         {
-                            ex.Write(Formater.LogType.Warning);
+                            ExceptionHandler.Handle(ex, TraceEventType.Warning);
                         }         
                     }
 
@@ -231,7 +230,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                 }
                 catch (Exception ex)
                 {
-                    ex.Write();
+                    ExceptionHandler.Handle(ex);
 
                     throw ex;
                 }
@@ -320,11 +319,11 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                         }
                         catch (ErrorException casinoEx)
                         {
-                            casinoEx.WriteCasinoException(Formater.LogType.Warning);
+                            ExceptionHandler.Handle(new Exception(casinoEx.Message), TraceEventType.Warning);
                         }
                         catch (Exception ex)
                         {
-                            ex.Write(Formater.LogType.Warning);
+                            ExceptionHandler.Handle(ex, TraceEventType.Warning);
                         }
                     }
 
@@ -332,7 +331,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                 }
                 catch (Exception ex)
                 {
-                    ex.Write();
+                    ExceptionHandler.Handle(ex);
 
                     throw ex;
                 }
@@ -370,7 +369,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
             }
             catch (Exception ex)
             {
-                ex.Write();
+                ExceptionHandler.Handle(ex);
 
                 return true;
             }
