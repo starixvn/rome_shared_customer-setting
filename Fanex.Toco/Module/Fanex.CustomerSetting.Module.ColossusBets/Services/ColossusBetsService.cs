@@ -9,7 +9,7 @@ using Fanex.CustomerSetting.Module.ColossusBets.Criteria;
 using Fanex.CustomerSetting.Module.ColossusBets.Models;
 using Fanex.CustomerSetting.Module.ColossusBets.Repositories;
 using Fanex.CustomerSetting.Module.ColossusBets.Resources;
-using Fanex.Module.Logs.Services;
+using Fanex.Logging.Extensions.Web;
 using Fanex.NAP.Framework.Data;
 using Newtonsoft.Json;
 
@@ -87,7 +87,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBets.Services
             }
             catch (Exception exception)
             {
-                exception.Write();
+                ExceptionHandler.Handle(exception);
             }
 
             return null;
