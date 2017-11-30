@@ -3,7 +3,10 @@
 namespace Fanex.CustomerSetting.Module.Casino.Controllers
 {
     using System;
+    using System.Diagnostics;
     using System.Web.Mvc;
+    using Authenticate;
+    using CasinoLibrary.Model.UserException;
     using Fanex.CustomerSetting.Module.Casino.Entities;
     using Fanex.CustomerSetting.Module.Casino.Services.Impl;
     using Fanex.CustomerSetting.Module.Casino.ViewModels;
@@ -11,11 +14,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
     using Fanex.CustomerSetting.Security.Authenticate;
     using Fanex.CustomerSetting.Security.Configurations;
-    using Fanex.Module.Logs;
+    using Logging.Extensions.Web;
     using Newtonsoft.Json;
-    using Fanex.Module.Logs.Services;
-    using Authenticate;
-    using CasinoLibrary.Model.UserException;
 
     public class MasterController : BaseController
     {
@@ -36,14 +36,16 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 customerSetting = CasinoManager.Instance.MasterCasinoModel(id, uplineId);
                 customerSetting.IsReadOnly = isSearchAndCopy;
             }
-            catch (ErrorException e)
+            catch (ErrorException casinoEx)
             {
-                e.Write(Formater.LogType.Warning);
-                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", e.Message);
+                ExceptionHandler.Handle(new Exception(casinoEx.Message), TraceEventType.Warning);
+
+                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", casinoEx.Message);
             }
             catch (Exception ex)
             {
-                ex.Write(Formater.LogType.Warning);
+                ExceptionHandler.Handle(ex, TraceEventType.Warning);
+
                 return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", ex.Message);
             }
 

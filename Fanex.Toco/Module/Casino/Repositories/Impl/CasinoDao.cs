@@ -14,12 +14,13 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
     using System;
     using System.Collections;
     using System.Data;
+    using System.Diagnostics;
+    using CasinoLibrary.Model.UserException;
     using CasinoLibrary.SBAgent;
     using Fanex.CustomerSetting.Module.Casino.Entities;
-    using Fanex.Data.DNAide;
     using Fanex.CustomerSetting.Module.Core;
-    using CasinoLibrary.Model.UserException;
-    using Fanex.Module.Logs.Services;
+    using Fanex.Data.DNAide;
+    using Logging.Extensions.Web;
 
     /// <summary>
     /// TODO: Update summary.
@@ -112,13 +113,13 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
                         customerDetail.GeneralInfo.DefaultTransferCredit = Utils.ToDouble(dt.Rows[0]["SuperMaxTransfer"]);
                     }
                 }
-                catch (ErrorException ex)
+                catch (ErrorException casinoEx)
                 {
-                    ex.Write(Fanex.Module.Logs.Formater.LogType.Warning);
+                    ExceptionHandler.Handle(new Exception(casinoEx.Message), TraceEventType.Warning);
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    e.Write(Fanex.Module.Logs.Formater.LogType.Warning);
+                    ExceptionHandler.Handle(ex, TraceEventType.Warning);
                 }
 
                 customerDetail.GeneralInfo.NoIBCData = false;

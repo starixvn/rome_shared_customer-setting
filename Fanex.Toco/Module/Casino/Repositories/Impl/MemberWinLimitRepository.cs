@@ -11,7 +11,7 @@
     using Fanex.CustomerSetting.Module.Core.Models;
     using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.Data;
-    using Fanex.Module.Logs.Services;
+    using Logging.Extensions.Web;
 
     public class MemberWinLimitRepository : IMemberWinLimitRepository
     {
@@ -58,7 +58,7 @@
                 }
                 catch (Exception ex)
                 {
-                    ex.Write();
+                    ExceptionHandler.Handle(ex);
 
                     throw ex;
                 }
@@ -124,7 +124,7 @@
                 }
                 catch (Exception ex)
                 {
-                    ex.Write();
+                    ExceptionHandler.Handle(ex);
 
                     throw ex;
                 }
