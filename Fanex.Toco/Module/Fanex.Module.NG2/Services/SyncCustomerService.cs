@@ -1,13 +1,14 @@
-﻿using Fanex.Caching;
-using Fanex.Module.NG2.Entities;
-using Fanex.Module.NG2.Repository;
-using ONEbook.NG2.API.DTO.CheckIsSyncCustomer;
-using ONEbook.NG2.API.Interface;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Fanex.Caching;
+using Fanex.Logging.Extensions.Web;
+using Fanex.Module.NG2.Entities;
+using Fanex.Module.NG2.Repository;
+using ONEbook.NG2.API.DTO.CheckIsSyncCustomer;
+using ONEbook.NG2.API.Interface;
 
 namespace Fanex.Module.NG2.Services
 {
@@ -103,7 +104,7 @@ namespace Fanex.Module.NG2.Services
             }
             catch (Exception ex)
             {
-                Logging.Logger.Log.Error(ex.Message, ex);
+                ExceptionHandler.Handle(ex);
             }
 
             return result;
@@ -138,7 +139,7 @@ namespace Fanex.Module.NG2.Services
             }
             catch (Exception ex)
             {
-                Logging.Logger.Log.Error(ex.Message, ex);
+                ExceptionHandler.Handle(ex);
             }            
 
             return result;

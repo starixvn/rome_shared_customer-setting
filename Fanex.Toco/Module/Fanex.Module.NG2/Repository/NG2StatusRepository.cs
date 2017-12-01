@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Fanex.Data;
-using Fanex.Module.Logs.Services;
+using Fanex.Logging.Extensions.Web;
 using Fanex.Module.NG2.Entities;
 
 namespace Fanex.Module.NG2.Repository
@@ -33,7 +33,7 @@ namespace Fanex.Module.NG2.Repository
             }
             catch (Exception ex)
             {
-                ex.Write();
+                ExceptionHandler.Handle(ex);
                 result.ErrorCode = 1;
                 result.ErrorMessage = ex.Message;
             }
@@ -65,7 +65,7 @@ namespace Fanex.Module.NG2.Repository
             }
             catch (Exception ex)
             {
-                ex.Write();
+                ExceptionHandler.Handle(ex);
                 result.ErrorCode = 1;
                 result.ErrorMessage = ex.Message;
             }
