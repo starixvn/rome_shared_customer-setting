@@ -1534,21 +1534,9 @@
       <Project>{22F2A79C-5F7A-4A4B-9F4B-1011228914E3}</Project>
       <Name>EnableStatus</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Module\Fanex.BetDetail.Voidbridge\Fanex.Voidbridge.BetDetail.csproj">
-      <Project>{daa5a14e-2db9-42d0-8115-d6c84e323e6c}</Project>
-      <Name>Fanex.Voidbridge.BetDetail</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Module\Fanex.CustomerSetting.Module.CloneSetting\Fanex.CustomerSetting.Module.CloneSetting.csproj">
-      <Project>{37A65793-85E8-4AC4-9254-F5F35BBC2E35}</Project>
-      <Name>Fanex.CustomerSetting.Module.CloneSetting</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Module\Fanex.CustomerSetting.Module.ColossusBets\Fanex.CustomerSetting.Module.ColossusBets.csproj">
       <Project>{4DC252E8-DF63-49B0-8BAA-717E10B30932}</Project>
       <Name>Fanex.CustomerSetting.Module.ColossusBets</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Module\Fanex.Module.RNGCasino\Fanex.Module.RNGCasino.csproj">
-      <Project>{cc2cccc5-2eb5-4200-be30-14d8ee8c1dee}</Project>
-      <Name>Fanex.Module.RNGCasino</Name>
     </ProjectReference>
     <ProjectReference Include="..\Module\Fanex.Module.Statement\Fanex.Module.Statement.csproj">
       <Project>{2B8BF7A6-3C6D-42E9-956E-D4B144EDDAEE}</Project>
