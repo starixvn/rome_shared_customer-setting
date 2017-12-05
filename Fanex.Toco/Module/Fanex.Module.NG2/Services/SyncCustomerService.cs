@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Fanex.Caching;
+using System.Text;
 using Fanex.Logging.Extensions.Web;
 using Fanex.Module.NG2.Entities;
 using Fanex.Module.NG2.Repository;
@@ -30,15 +30,14 @@ namespace Fanex.Module.NG2.Services
             var preResult = cache.Get<SyncCustomerResult>("SyncCustomerResult_" + DateTime.Now.ToString("yyyyMMdd")) ?? new SyncCustomerResult();
             try
             {
-                // Gets old list
-                result.NotSyncedInMbcCustomers = preResult.NotSyncedInMbcCustomers;
-                result.NotSyncedIn3rdCustomers = preResult.NotSyncedIn3rdCustomers;
+                var oldCustIds = preResult.NotSyncedIn3rdCustomers.Select(l => l.CustId)
+                    .Concat(preResult.NotSyncedInMbcCustomers.Select(l => l.CustId));
 
                 var logs = _repo.Logs(ConfigurationManager.AppSettings["IsTest"] == "1");
-                if (logs != null && logs.Count > 0)
+                if (logs.Any() || oldCustIds.Any())
                 {
-                    var custIds = logs.Select(l => l.CustId);
-                    var ids = string.Empty;
+                    var custIds = logs.Select(l => l.CustId).Concat(oldCustIds);
+                    var ids = new StringBuilder();
                     var index = 0;
                     var failedCustIds = new List<int>();
 
@@ -51,19 +50,19 @@ namespace Fanex.Module.NG2.Services
                     for (int i = 0; i < custIds.Count(); i++)
                     {
                         ++index;
-                        ids += custIds.ElementAt(i) + ",";
+                        ids.Append(custIds.ElementAt(i) + ",");
                         request.Call.AccountArray.Add(new AccountInfo { ObCustId = custIds.ElementAt(i) });
 
                         if (i == custIds.Count() - 1 || index == 500)
                         {
-                            customers = _repo.Customers(ids.Substring(0, ids.Length - 1));
+                            customers = _repo.Customers(ids.ToString().Substring(0, ids.ToString().Length - 1));
                             response = service.CheckIsSyncCustomers(request);
 
                             if (response.Result.AccountArray.Count > 0)
                             {
                                 foreach (var customer in response.Result.AccountArray)
                                 {
-                                    customers.Where(c => c.CustId == customer.ObCustId).FirstOrDefault().IsSyncIn3rd = customer.IsCreated == 1;
+                                    customers.FirstOrDefault(c => c.CustId == customer.ObCustId).IsSyncIn3rd = customer.IsCreated == 1;
                                 }
                             }
                             else
@@ -81,7 +80,7 @@ namespace Fanex.Module.NG2.Services
                             result.NotSyncedIn3rdCustomers = result.NotSyncedIn3rdCustomers.Concat(notSyncedIn3rd);
 
                             // Reset indexes to perform next batch of 500 customers
-                            ids = string.Empty;
+                            ids = new StringBuilder();
                             index = 0;
                             request = new Request();
                             request.Auth.SiteId = 2000;
@@ -91,7 +90,7 @@ namespace Fanex.Module.NG2.Services
                     var logIds = logs.Where(l => !failedCustIds.Contains(l.CustId)).Select(l => l.LogId);
                     var idsLog = string.Join(",", logIds);
 
-                    result.ErrorCode = result.NotSyncedInMbcCustomers.Count() > 0 || result.NotSyncedIn3rdCustomers.Count() > 0 ? 1 : 0;
+                    result.ErrorCode = result.NotSyncedInMbcCustomers.Any() || result.NotSyncedIn3rdCustomers.Any() ? 1 : 0;
                     result.LogIds = idsLog;
 
                     // Cache result
@@ -106,7 +105,7 @@ namespace Fanex.Module.NG2.Services
             {
                 ExceptionHandler.Handle(ex);
             }
-
+            
             return result;
         }
 
@@ -119,21 +118,21 @@ namespace Fanex.Module.NG2.Services
         {
             var ids = logIds.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
             var index = 0;
-            var idsLog = string.Empty;
+            var idsLog = new StringBuilder();
             var result = false;
             try
             {
                 for (int i = 0; i < ids.Length; i++)
                 {
                     ++index;
-                    idsLog += ids.ElementAt(i) + ",";
+                    idsLog.Append(ids.ElementAt(i) + ",");
 
                     if (i == ids.Length - 1 || index == 200)
                     {
-                        result = _repo.UpdateIsNotified(idsLog.Substring(0, idsLog.Length - 1));
+                        result = _repo.UpdateIsNotified(idsLog.ToString().Substring(0, idsLog.ToString().Length - 1));
 
                         index = 0;
-                        idsLog = string.Empty;
+                        idsLog = new StringBuilder();
                     }
                 }
             }
