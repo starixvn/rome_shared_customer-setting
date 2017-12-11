@@ -10,6 +10,8 @@ namespace Fanex.CustomerSetting.Module.Core.Criteria
 
         public string CustName { get; set; }
 
+        public byte? CheckCustId { get; set; }
+
         public override string GetSettingKey()
         {
             return "Acc_CustomerIsAllowedAccess";
