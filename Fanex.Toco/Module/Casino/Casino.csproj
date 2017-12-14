@@ -249,6 +249,7 @@
     <Compile Include="Controllers\CasinoCustomerController.cs" />
     <Compile Include="Entities\CasinoCustomer.cs" />
     <Compile Include="Entities\CurrentMemberWinLoss.cs" />
+    <Compile Include="Entities\GeneralCasinoCustomer.cs" />
     <Compile Include="Entities\JsonConverterExt.cs" />
     <Compile Include="Entities\MemberWinLimit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

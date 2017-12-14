@@ -129,7 +129,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 AppSession.CurrentSession.FromSystem, 
                 SystemId,
                 JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), 
-                JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
+                JsonConvert.DeserializeObject<GeneralCasinoCustomer>(customerModel));
 
             return JsonBase(new { ErrorCode = result.IsSuccess ? 0 : 1, ErrorMessage = result.ErrorMessage });
         }
@@ -154,7 +154,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 AppSession.CurrentSession.FromSystem, 
                 SystemId,
                 JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), 
-                JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
+                JsonConvert.DeserializeObject<GeneralCasinoCustomer>(customerModel));
 
             return JsonBase(new { ErrorCode = result.IsSuccess ? 0 : 1, ErrorMessage = result.ErrorMessage });
         }
@@ -179,7 +179,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 AppSession.CurrentSession.FromSystem, 
                 SystemId,
                 JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), 
-                JsonConvert.DeserializeObject<CasinoCustomer>(customerModel));
+                JsonConvert.DeserializeObject<GeneralCasinoCustomer>(customerModel));
 
             return JsonBase(new { ErrorCode = result.IsSuccess ? 0 : 1, ErrorMessage = result.ErrorMessage });
         }
