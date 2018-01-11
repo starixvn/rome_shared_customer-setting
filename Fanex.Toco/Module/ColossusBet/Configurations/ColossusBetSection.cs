@@ -19,7 +19,7 @@
             }
         }
 
-        [ConfigurationProperty("AuthorizationServiceType", DefaultValue = "", IsRequired = true)]
+        [ConfigurationProperty("AuthorizationServiceType", DefaultValue = "", IsRequired = false)]
         public string AuthorizationServiceType
         {
             get

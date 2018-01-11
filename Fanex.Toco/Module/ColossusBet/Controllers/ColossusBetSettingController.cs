@@ -25,7 +25,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "ColossusBetSetting")]
-        [ColossuBetAuthorization(IsHost = false)]
+        [IsBelonging]
         public ActionResult EditSetting(SettingContext settingContext)
         {
             var setting = _colossusBetService.EditSetting(settingContext);
@@ -36,7 +36,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
 
         [HttpPost]
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "ColossusBetSetting")]
-        [ColossuBetAuthorization(IsHost = true)]
+        [IsBelonging]
         // [AntiXSRFFilter] // Comment this attribute when buiding for NAP & Alpha
         public JsonResult UpdateSetting(ColossusBetModel model)
         {

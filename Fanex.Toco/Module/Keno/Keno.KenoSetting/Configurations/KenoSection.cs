@@ -74,7 +74,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Configurations
             }
         }
 
-        [ConfigurationProperty("AuthorizationServiceType", DefaultValue = "", IsRequired = true)]
+        [ConfigurationProperty("AuthorizationServiceType", DefaultValue = "", IsRequired = false)]
         public string AuthorizationServiceType
         {
             get

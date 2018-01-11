@@ -193,7 +193,7 @@
     <Compile Include="Services\CriteriaGeneratorService\SuperCriteriaGeneratorService.cs" />
     <Compile Include="Services\ICriteriaGeneratorService.cs" />
     <Compile Include="Services\CriteriaGeneratorServiceBase.cs" />
-    <Compile Include="Services\IKenoAuthorizationService.cs" />
+    <Compile Include="Services\IKenoCheckBelongingService.cs" />
     <Compile Include="Services\IKenoSession.cs" />
     <Compile Include="Services\IKenoSettingService.cs" />
     <Compile Include="Services\KenoSession.cs" />

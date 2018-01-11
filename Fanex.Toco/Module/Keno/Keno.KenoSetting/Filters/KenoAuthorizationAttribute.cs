@@ -3,90 +3,60 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text;
     using System.Web;
     using System.Web.Mvc;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.Configurations;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.Services;
     using Fanex.CustomerSetting.Module.Keno.Resources;
 
-    public class KenoAuthorizationAttribute: AuthorizeAttribute
+    public class IsBelongingAttribute : AuthorizeAttribute
     {
-        public bool IsHost { get; set; }
-
-        public IKenoAuthorizationService authenticationService { get; set; }
+        public IKenoCheckBelongingService service { get; set; }
 
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
             base.OnAuthorization(filterContext);
 
-            var authorizationType = Type.GetType(KenoSection.Instance.AuthorizationServiceType);
-            authenticationService = Activator.CreateInstance(authorizationType) as IKenoAuthorizationService;
+            if (HasConfiguredKeno())
+            {
+                var authorizationType = Type.GetType(KenoSection.Instance.AuthorizationServiceType);
+                service = Activator.CreateInstance(authorizationType) as IKenoCheckBelongingService;
 
-            var isAuthorized = false;
-            if (filterContext.ActionDescriptor.ActionName.ToLower().Contains("multiple"))
-            {
-                isAuthorized = IsHost ? IsAuthorizedHostMultiple(filterContext) : IsAuthorizedReadMultiple(filterContext);
-            }
-            else
-            {
-                isAuthorized = IsHost ? IsAuthorizedHost(filterContext) : IsAuthorizedRead(filterContext);
-            }
-
-            if (!isAuthorized)
-            {
-                UnAuthorizedAction(filterContext);
+                var isBelonging = service.IsBelonging();
+                if (!isBelonging)
+                {
+                    HandleAccessDeniedFunction(filterContext);
+                }
             }
         }
 
-        private void UnAuthorizedAction(AuthorizationContext filterContext)
-        {
-            HttpResponseBase response = filterContext.HttpContext.Response;
+        private bool HasConfiguredKeno()
+            => KenoSection.Instance != null && !string.IsNullOrEmpty(KenoSection.Instance.AuthorizationServiceType);
 
+        private void HandleAccessDeniedFunction(AuthorizationContext filterContext)
+        {
             if (filterContext.HttpContext.Request.IsAjaxRequest())
             {
-                response.Clear();
-                response.Write(Messages.UnauthorizeMsg);
-                filterContext.Result = new HttpUnauthorizedResult();
-                filterContext.Result.ExecuteResult(filterContext.Controller.ControllerContext);
-                response.End();
+                filterContext.Result = new JsonResult
+                {
+                    Data = new
+                    {
+                        isSuccess = false,
+                        errorCode = "1",
+                        errorMessage = Messages.UnauthorizeMsg
+                    },
+                    ContentEncoding = Encoding.UTF8,
+                    ContentType = "application/json",
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+                    MaxJsonLength = int.MaxValue,
+                    RecursionLimit = int.MaxValue
+                };
             }
             else
             {
-                filterContext.Result = new RedirectResult("~/CustomerSetting/ColossusBetSetting/ColossusBetSetting/UnAuthorized");
+                filterContext.Result = new RedirectResult("~/CustomerSetting/KenoSetting/KenoSetting/UnAuthorized");
             }
-        }
-
-        private string GetActionParameterValue(IValueProvider valueProvider, string parameterName)
-        {
-            return valueProvider.GetValue(parameterName) != null
-                                ? valueProvider.GetValue(parameterName).AttemptedValue
-                                : string.Empty;
-        }
-
-        private bool IsAuthorizedHost(AuthorizationContext filterContext)
-        {
-            return authenticationService.IsAuthorizedHost(filterContext);
-        }
-
-        private bool IsAuthorizedHostMultiple(AuthorizationContext filterContext)
-        {
-            var valueProvider = filterContext.Controller.ValueProvider;
-            var usernames = GetActionParameterValue(valueProvider, "Usernames").Split(',').ToList();
-
-            return authenticationService.IsAuthorizedHostMultiple(filterContext, usernames);
-        }
-
-        private bool IsAuthorizedRead(AuthorizationContext filterContext)
-        {
-            return authenticationService.IsAuthorizedRead(filterContext);
-        }
-
-        private bool IsAuthorizedReadMultiple(AuthorizationContext filterContext)
-        {
-            var requestForm = filterContext.HttpContext.Request.Form;
-            var usernames = requestForm["usernames"];
-
-            return authenticationService.IsAuthorizedReadMultiple(filterContext, usernames.Trim().Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries));
         }
     }
 }

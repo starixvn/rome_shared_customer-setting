@@ -252,7 +252,7 @@
   <data name="Update" xml:space="preserve">
     <value>Update</value>
   </data>
-  <data name="UnauthorizeMsg" xml:space="preserve">
+  <data name="DontHavePermission" xml:space="preserve">
     <value>You are not authorized on this function</value>
   </data>
 </root>
