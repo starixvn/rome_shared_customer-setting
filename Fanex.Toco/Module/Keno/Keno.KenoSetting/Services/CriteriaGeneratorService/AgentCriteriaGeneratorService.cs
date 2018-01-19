@@ -44,7 +44,6 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
                 BetType = betSetting.BetTypeId,
                 UpdateStatus = betSetting.IsStatusUpdated,
                 Disable = !betSetting.IsEnabled,
-                DisableDownLines = !betSetting.IsDownlinesEnabled,
                 UpdateMinMaxBet = betSetting.IsBetSettingUpdated,
                 MinBet = betSetting.MinBet,
                 MaxBet = betSetting.MaxBet,

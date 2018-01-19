@@ -69,7 +69,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             return Content("var customerModel = " + result + ";");
         }
 
-        
+
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
         [AntiXSRFFilter]
         public ActionResult GetCurrentWinLimit(int id, string groupName = null)

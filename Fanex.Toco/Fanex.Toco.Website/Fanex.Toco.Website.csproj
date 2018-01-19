@@ -1085,7 +1085,9 @@
     <Content Include="Areas\Voidbridge\Views\HandHistory_API\Styles\HandHistory.less" />
     <Content Include="Areas\Voidbridge\Views\Web.config" />
     <Content Include="Areas\Voidbridge\Views\BetDetails\_Tickets.cshtml" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\NumberGame2Section.config" />
     <None Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3-custom.less" />
   </ItemGroup>

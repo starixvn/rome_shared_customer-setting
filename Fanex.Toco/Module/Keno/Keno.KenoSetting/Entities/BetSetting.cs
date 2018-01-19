@@ -30,8 +30,6 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
 
         public bool IsEnabled { get; set; }
 
-        public bool IsDownlinesEnabled { get; set; }
-
         public bool IsStatusUpdated { get; set; }
 
         public BetSetting Upline { get; set; }

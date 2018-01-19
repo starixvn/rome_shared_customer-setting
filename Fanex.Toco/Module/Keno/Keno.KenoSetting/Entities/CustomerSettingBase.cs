@@ -120,7 +120,6 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
         internal static void CopyToOneStatus(BetSetting sourceBetSetting, BetSetting destinationBetSetting)
         {
             destinationBetSetting.IsEnabled = sourceBetSetting.IsEnabled;
-            destinationBetSetting.IsDownlinesEnabled = sourceBetSetting.IsDownlinesEnabled;
             destinationBetSetting.IsStatusUpdated = true;
         }
 
