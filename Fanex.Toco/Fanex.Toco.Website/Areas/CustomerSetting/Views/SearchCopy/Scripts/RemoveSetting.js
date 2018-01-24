@@ -40,32 +40,6 @@ PTSetting.SportType = new function () {
 
     };
 
-    var RemoveRacingCustInfo = function () {
-        var $content = $("#frmRacing").contents();
-        $content.find('#divCustInfo').remove();
-        //disable edit
-        setTimeout(function () {
-            $content.find('input:checkbox').attr('disabled', true);
-            $content.find('input:text').attr('disabled', true);
-            $content.find('select').attr('disabled', true);
-        }, delayTime);
-    };
-
-    var RemoveRacingMinPT = function () {
-        var $content = $("#frmRacingMinPT").contents();
-        setTimeout(function () {
-            $content.find('.maincontent_box').remove();
-            $content = $content.find('#SettingContent');
-            $content.find('.tblcollapse')[0].remove();
-        }, delayTime);
-
-        //disable edit
-        setTimeout(function () {
-            $content.find('input:checkbox').attr('disabled', true);
-            $content.find('select').attr('disabled', true);
-        }, delayTime);
-    };
-
     var RemoveCasinoCustInfo = function () {
         var $content = $("#frmCasino").contents();
         for (var i = 0; i < 2; i++) {
@@ -93,37 +67,6 @@ PTSetting.SportType = new function () {
         }, delayTime);
     };
 
-    var RemoveBingoCustInfo = function () {
-        var $content = $("#frmBingo").contents();
-        for (var i = 0; i < 5; i++) {
-            $content.find('.tblcollapse tr:eq(0)').remove();
-        }
-        $content.find('.maincontent_box').remove();
-        $content.find('#tblHideUpdate').remove();
-
-        //disable edit
-        setTimeout(function () {
-            $content.find('input:checkbox').attr('disabled', true);
-            $content.find('input:text').attr('readonly', 'readonly');
-            $content.find('select').attr('disabled', true);
-            $content.find('.canchange').css('display', 'none');
-        }, delayTime);
-    };
-
-    var RemoveLiveCasinoCustInfo = function () {
-        var $content = $("#frmLiveCasino").contents();
-        for (var i = 0; i < 2; i++) {
-            $content.find('.tblcollapse tr:eq(0)').remove();
-        }
-        $content.find('.maincontent_box').remove();
-        //disable edit
-        setTimeout(function () {
-            $content.find('input:checkbox').attr('disabled', true);
-            $content.find('select').attr('disabled', true);
-            $content.find('.btnUpdateSetting').remove();
-        }, delayTime);
-    };
-
     this.SetFrameLoaded = function () {
         var tabId = $("#listSports").val();
 
@@ -131,12 +74,8 @@ PTSetting.SportType = new function () {
         switch (tabId) {
             case '1': RemoveSportBookCustInfo(); RemoveButtons('#frmSportbook'); break;
             case '2': RemoveSportBookMinPT(); RemoveButtons('#frmSportbookMinPT'); break;
-            case '3': RemoveRacingCustInfo(); RemoveButtons('#frmRacing'); break;
-            case '4': RemoveRacingMinPT(); RemoveButtons('#frmRacingMinPT'); break;
             case '5': RemoveCasinoCustInfo(); RemoveButtons('#frmCasino'); break;
             case '6': RemoveVirtualSportsCustInfo(); RemoveButtons('#frmVirtualSports'); break;
-            case '7': RemoveBingoCustInfo(); RemoveButtons('#frmBingo'); break;
-            case '8': RemoveLiveCasinoCustInfo(); RemoveButtons('#frmLiveCasino'); break;
         }
     }
 };

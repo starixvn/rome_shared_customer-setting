@@ -7,13 +7,11 @@ namespace Fanex.CustomerSetting.Module.Core.Constants
         public const int Soccer = 1;
         public const int Casino = 71;
         public const int P2P = 72;
-        public const int Bingo = 252;
         public const int CombinationMixParlay = 98;
 
         public const int Motorsports = 99;
         public const int NumberGame = 161;
-        public const int LiveCasino = 162;
-
+        
         public const int Basketball = 2;
         public const int Netball = 32;
         public const int Football = 3;

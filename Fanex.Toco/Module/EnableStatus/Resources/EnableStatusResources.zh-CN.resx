@@ -147,9 +147,6 @@
   <data name="b3" xml:space="preserve">
     <value>Muay Thai</value>
   </data>
-  <data name="bingo" xml:space="preserve">
-    <value>Bingo</value>
-  </data>
   <data name="bonus" xml:space="preserve">
     <value>Bonus</value>
   </data>
@@ -165,12 +162,6 @@
   <data name="enableDownline" xml:space="preserve">
     <value>启用下线</value>
   </data>
-  <data name="hrfixedodds" xml:space="preserve">
-    <value>HR Fixed Odds</value>
-  </data>
-  <data name="livecasino" xml:space="preserve">
-    <value>Live Casino</value>
-  </data>
   <data name="master" xml:space="preserve">
     <value>总代理</value>
   </data>
@@ -179,18 +170,6 @@
   </data>
   <data name="poker" xml:space="preserve">
     <value>Poker</value>
-  </data>
-  <data name="racing" xml:space="preserve">
-    <value>Racing</value>
-  </data>
-  <data name="s151" xml:space="preserve">
-    <value>Horse Racing</value>
-  </data>
-  <data name="s152" xml:space="preserve">
-    <value>Greyhound</value>
-  </data>
-  <data name="s153" xml:space="preserve">
-    <value>Harness</value>
   </data>
   <data name="s44" xml:space="preserve">
     <value>Sportsbook2</value>

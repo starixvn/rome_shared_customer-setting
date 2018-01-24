@@ -826,24 +826,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Status: Updated successfully..
-        /// </summary>
-        public static string UpdateLiveCasinoStatusSuccess {
-            get {
-                return ResourceManager.GetString("UpdateLiveCasinoStatusSuccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Updated Status unsuccessfully because Live Casino status has been disabled at upline..
-        /// </summary>
-        public static string UpdateLiveCasinoStatusUnSuccess {
-            get {
-                return ResourceManager.GetString("UpdateLiveCasinoStatusUnSuccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Updated Successfully..
         /// </summary>
         public static string UpdateSuccessfully {

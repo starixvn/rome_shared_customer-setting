@@ -8,8 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ThirdPartyProducts.StatusSetting.Resources
-{
+namespace ThirdPartyProducts.StatusSetting.Resources {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -55,33 +57,6 @@ namespace ThirdPartyProducts.StatusSetting.Resources
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Racing.
-        /// </summary>
-        internal static string Sport_151 {
-            get {
-                return ResourceManager.GetString("Sport_151", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Greyhounds.
-        /// </summary>
-        internal static string Sport_152 {
-            get {
-                return ResourceManager.GetString("Sport_152", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Harness.
-        /// </summary>
-        internal static string Sport_153 {
-            get {
-                return ResourceManager.GetString("Sport_153", resourceCulture);
             }
         }
     }

@@ -13,7 +13,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.App_Start
     using Fanex.CustomerSetting.Module.Core.Web.App_Start;
 
     /// <summary>
-    /// Register racing module.
+    /// Register module.
     /// </summary>
     public class ModuleRegistrator : AppAreaRegistrator
     {

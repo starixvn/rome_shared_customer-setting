@@ -312,12 +312,6 @@
   <data name="UpdatedWinLimitSuccessfully" xml:space="preserve">
     <value>最高赢取倍数: 修改成功</value>
   </data>
-  <data name="UpdateLiveCasinoStatusSuccess" xml:space="preserve">
-    <value>狀態: 修改成功</value>
-  </data>
-  <data name="UpdateLiveCasinoStatusUnSuccess" xml:space="preserve">
-    <value>修改失敗，因為上線的娛樂廳狀態以被禁止</value>
-  </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>修改成功</value>
   </data>

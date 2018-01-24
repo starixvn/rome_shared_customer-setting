@@ -65,15 +65,11 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
                 customerDetail.GeneralInfo.GivenCredit = Utils.ToDecimal(row["credit"]).Format();
 
                 customerDetail.GeneralInfo.CasinoSync = Utils.ToBoolean(row["synccasino"]);
-                customerDetail.GeneralInfo.BingoSync = Utils.ToBoolean(row["syncbingo"]);
                 customerDetail.GeneralInfo.CasinoDisabled = Utils.ToBoolean(row["disablecasino"]);
                 customerDetail.GeneralInfo.CasinoDisabledDownline = Utils.ToBoolean(row["disablecasinodownline"]);
                 customerDetail.GeneralInfo.HasDownline = Utils.ToBoolean(row["hasdownline"]);
                 customerDetail.GeneralInfo.GoldDeluxeDisabled = Utils.ToBoolean(row["disablegolddeluxe"]);
-
-                customerDetail.GeneralInfo.LiveCasinoSync = Utils.ToBoolean(row["synclivecasino"]);
-                customerDetail.GeneralInfo.LiveCasinoDisabled = Utils.ToBoolean(row["disablelivecasino"]);
-
+                                
                 customerDetail.GeneralInfo.IBCCustID = Utils.ToInt32(row["custid"]);
                 customerDetail.UserPwd = Utils.ToString(row["userpwd"]);
                 customerDetail.GeneralInfo.UpperCustID = uplineId;

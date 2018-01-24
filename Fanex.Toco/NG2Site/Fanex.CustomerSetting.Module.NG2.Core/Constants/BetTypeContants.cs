@@ -30,17 +30,8 @@
         public const int _60MinOE = 65;
         public const int EndOfDayOE = 66;
 
-        public const int WinToteOdds = 31;
-        public const int PlateToteOdds = 32;
-        public const int WinPlaceToteOdds = 33;
-
-        public const int WinFixedOdds = 41;
-        public const int PlaceFixedOdds = 42;
-        public const int WinPlaceFixedOdds = 43;
-
         public const int CasinoGames = 71;
         public const int P2P = 72;
-        public const int Bingo = 73;
         public const int P2PGames = 1000;
         public const int Baccarat = 1101;
         public const int Roulette = 1102;
@@ -66,12 +57,6 @@
 
         public const int Outright = 10;
         public const int RNGCasinoBonus = 72;
-        public const int Win = 31;
-        public const int Place = 32;
-        public const int WinPlace = 33;
-        public const int WinUKTote = 41;
-        public const int PlaceUKTote = 42;
-        public const int WinPlaceUKTote = 43;
         public const int VirtualSportWin = 1231;
         public const int VirtualSportPlace = 1232;
         public const int VirtualSportWinPlace = 1233;

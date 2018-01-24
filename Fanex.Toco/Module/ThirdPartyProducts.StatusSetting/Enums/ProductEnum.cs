@@ -2,8 +2,6 @@
 {
     public enum Product
     {
-        Racing = 2,
-
         VirtualSports = 5,
 
         Casino = 6,

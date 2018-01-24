@@ -309,12 +309,6 @@
   <data name="UpdatedWinLimitSuccessfully" xml:space="preserve">
     <value>Tiền thắng cược lớn nhất: Câp nhật thành công</value>
   </data>
-  <data name="UpdateLiveCasinoStatusSuccess" xml:space="preserve">
-    <value>Trạng thái: Câp nhật thành công</value>
-  </data>
-  <data name="UpdateLiveCasinoStatusUnSuccess" xml:space="preserve">
-    <value>Quá trình câp nhật không thành công bởi vì Live Casino đã bị khóa bởi cấp trên</value>
-  </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>Câp nhật thành công</value>
   </data>

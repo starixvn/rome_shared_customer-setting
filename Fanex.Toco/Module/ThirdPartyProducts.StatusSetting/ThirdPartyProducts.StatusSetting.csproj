@@ -97,7 +97,6 @@
     <Compile Include="Factory\Product\Criteria\SelectGoldDeluxeStatusCriteria.cs" />
     <Compile Include="Factory\Product\Criteria\SelectProductStatusCriteria.cs" />
     <Compile Include="Factory\Product\Criteria\UpdateGoldDeluxeStatusCriteria.cs" />
-    <Compile Include="Factory\Product\Criteria\UpdateRacingStatusCriteria.cs" />
     <Compile Include="Factory\Product\Criteria\UpdateCasinoStatusCriteria.cs" />
     <Compile Include="Factory\Product\Criteria\UpdateKenoStatusCriteria.cs" />
     <Compile Include="Factory\Product\Criteria\UpdateColossusBetStatusCriteria.cs" />
@@ -113,7 +112,6 @@
     <Compile Include="Factory\Product\Implement\AllbetStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\DCS\DCSProductStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\KenoStatusSettingService.cs" />
-    <Compile Include="Factory\Product\Implement\RacingStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\CasinoStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\ColossusBetStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\VirtualSports2StatusSettingService.cs" />
@@ -392,6 +390,7 @@
     <EmbeddedResource Include="Resources\SportName-ja-JP.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SportName-ja-JP.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\SportName.ko-KR.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -404,6 +403,7 @@
     <EmbeddedResource Include="Resources\SportName.vi-VN.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SportName.vi-VN.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\SportName.zh-CN.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -416,6 +416,7 @@
     <EmbeddedResource Include="Resources\SportName.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SportName.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

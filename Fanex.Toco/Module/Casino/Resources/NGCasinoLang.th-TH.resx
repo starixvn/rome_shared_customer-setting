@@ -312,12 +312,6 @@
   <data name="UpdatedWinLimitSuccessfully" xml:space="preserve">
     <value>วงเงินชนะสูงสุด: อัพเดทเสร็จสมบูรณ์</value>
   </data>
-  <data name="UpdateLiveCasinoStatusSuccess" xml:space="preserve">
-    <value>สถานะ: อัพเดทเสร็จสมบูรณ์</value>
-  </data>
-  <data name="UpdateLiveCasinoStatusUnSuccess" xml:space="preserve">
-    <value>อัพเดตไม่สำเร็จ เนื่องจาก สถานะของคาซิโนเกมสด ได้ถูกปิดการใช้งาน โดย อัพไลด์</value>
-  </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>อัพเดทเสร็จสมบูรณ์</value>
   </data>

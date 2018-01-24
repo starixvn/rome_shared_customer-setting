@@ -102,9 +102,7 @@
     <Compile Include="Factory\Product\Criteria\DCS\SelectDCSProductStatusCriteriaTest.cs" />
     <Compile Include="Factory\Product\Criteria\SelectGoldDeluxeStatusCriteriaTest.cs" />
     <Compile Include="Factory\Product\Criteria\UpdateGoldDeluxeStatusCriteriaTest.cs" />
-    <Compile Include="Factory\Product\Criteria\UpdateRacingStatusCriteriaMock.cs" />
     <Compile Include="Factory\Product\Criteria\SelectProductStatusCriteriaTest.cs" />
-    <Compile Include="Factory\Product\Criteria\UpdateRacingStatusCriteriaTest.cs" />
     <Compile Include="Factory\Product\Criteria\UpdateCasinoStatusCriteriaTest.cs" />
     <Compile Include="Factory\Product\Criteria\UpdateColossusBetStatusCriteriaTest.cs" />
     <Compile Include="Factory\Product\Criteria\UpdateKenoStatusCriteriaTest.cs" />
@@ -117,7 +115,6 @@
     <Compile Include="Factory\Product\Implement\AllbetStatusSettingServiceTest.cs" />
     <Compile Include="Factory\Product\Implement\MacauGamesStatusSettingServiceTest.cs" />
     <Compile Include="Factory\Product\Implement\NG2StatusSettingServiceMock.cs" />
-    <Compile Include="Factory\Product\Implement\RacingStatusSettingServiceTest.cs" />
     <Compile Include="Factory\Product\Implement\NG2StatusSettingServiceTest.cs" />
     <Compile Include="Factory\Product\Implement\ColossusBetStatusSettingServiceTest.cs" />
     <Compile Include="Factory\Product\ProductStatusSettingServiceBaseMock.cs" />
