@@ -48,7 +48,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         [IsBelonging]
         //[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateSuper")] // Used for NAP
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "KenoSetting")] // Used for ExtNAP & Alpha
-        //[AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
+        [AntiXSRFFilter]
         public JsonResult UpdateSuper(SuperSettingViewModel superSetting)
         {
             var results = _kenoSettingService.UpdateSuperCustomerSetting(superSetting);
@@ -69,7 +69,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         [IsBelonging]
         //[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateMaster")] // Used for NAP
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "KenoSetting")] // Used for ExtNAP & Alpha
-        //[AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
+        [AntiXSRFFilter]
         public JsonResult UpdateMaster(MasterSettingViewModel masterSetting)
         {
             var results = _kenoSettingService.UpdateMasterCustomerSetting(masterSetting);
@@ -89,7 +89,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         [HttpPost]
         //[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateAgent")] // Used for NAP
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "KenoSetting")] // Used for ExtNAP & Alpha
-        //[AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
+        [AntiXSRFFilter]
         [IsBelonging]
         public JsonResult UpdateAgent(AgentSettingViewModel agentSetting)
         {
@@ -108,9 +108,9 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         }
 
         [HttpPost]
-        //[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateSuperOnMember")] // Used for NAP
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "KenoSetting")] // Used for ExtNAP & Alpha
-        //[AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateSuperOnMember")] // Used for NAP
+        //[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "KenoSetting")] // Used for ExtNAP & Alpha
+        [AntiXSRFFilter]
         [IsBelonging]
         public JsonResult UpdateSuperOnMember(SuperEditMemberSettingViewModel memberSetting)
         {
@@ -118,8 +118,8 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
             return Json(results);
         }
 
-        //[AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "MasterEditMember")] // Used for NAP
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "KenoSetting")] // Used for ExtNAP & Alpha
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "MasterEditMember")] // Used for NAP
+        //[AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "KenoSetting")] // Used for ExtNAP & Alpha
         [IsBelonging]
         public ActionResult MasterEditMember(CustomerInformationViewModel customerInformationViewModel)
         {
@@ -129,9 +129,9 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         }
 
         [HttpPost]
-        //[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateMasterOnMember")] // Used for NAP
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "KenoSetting")] // Used for ExtNAP & Alpha
-        //[AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateMasterOnMember")] // Used for NAP
+        //[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "KenoSetting")] // Used for ExtNAP & Alpha
+        [AntiXSRFFilter]
         [IsBelonging]
         public JsonResult UpdateMasterOnMember(MasterEditMemberSettingViewModel memberSetting)
         {
@@ -139,8 +139,8 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
             return Json(results);
         }
 
-        //[AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "AgentEditMember")] // Used for NAP
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "KenoSetting")] // Used for ExtNAP & Alpha
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "AgentEditMember")] // Used for NAP
+        //[AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "KenoSetting")] // Used for ExtNAP & Alpha
         [IsBelonging]
         public ActionResult AgentEditMember(CustomerInformationViewModel customerInformationViewModel)
         {
@@ -150,9 +150,9 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
         }
 
         [HttpPost]
-        //[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateAgentOnMember")] // Used for NAP
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "KenoSetting")] // Used for ExtNAP & Alpha
-        //[AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "UpdateAgentOnMember")] // Used for NAP
+        //[AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "KenoSetting")] // Used for ExtNAP & Alpha
+        [AntiXSRFFilter]
         [IsBelonging]
         public JsonResult UpdateAgentOnMember(AgentEditMemberSettingViewModel memberSetting)
         {
