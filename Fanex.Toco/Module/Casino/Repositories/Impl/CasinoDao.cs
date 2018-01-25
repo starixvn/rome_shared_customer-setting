@@ -64,8 +64,10 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
                 customerDetail.GeneralInfo.GivenCredit = Utils.ToDecimal(row["credit"]).Format();
                 customerDetail.GeneralInfo.CasinoSync = Utils.ToBoolean(row["synccasino"]);
                 customerDetail.GeneralInfo.CasinoDisabled = Utils.ToBoolean(row["disablecasino"]);
-                customerDetail.GeneralInfo.CasinoDisabledDownline = Utils.ToBoolean(row["disablecasinodownline"]);
-                customerDetail.GeneralInfo.HasDownline = Utils.ToBoolean(row["hasdownline"]);
+                // TO DO hard code
+                customerDetail.GeneralInfo.CasinoDisabledDownline = false;
+                customerDetail.GeneralInfo.HasDownline = true;
+
                 customerDetail.GeneralInfo.GoldDeluxeDisabled = Utils.ToBoolean(row["disablegolddeluxe"]);
                 customerDetail.GeneralInfo.IBCCustID = Utils.ToInt32(row["custid"]);
                 customerDetail.UserPwd = Utils.ToString(row["userpwd"]);
@@ -137,7 +139,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
             param.Add("custid", custid);
             param.Add("disabledcs", disabledCS);
             param.Add("synccs", syncCS);
-            param.Add("enabledownline", isUpdDownline);
+            // param.Add("enabledownline", isUpdDownline);
 
             param.Add("userid", userId);
             param.Add("subaccid", subAccId);
