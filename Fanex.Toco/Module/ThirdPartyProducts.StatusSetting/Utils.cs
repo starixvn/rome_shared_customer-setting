@@ -21,10 +21,10 @@ namespace ThirdPartyProducts.StatusSetting
             }
 
             bool.TryParse(value.ToString(), out val);
-            
+
             return val;
         }
-        
+
         internal static int ToInt32(object value)
         {
             var val = 0;
@@ -45,7 +45,7 @@ namespace ThirdPartyProducts.StatusSetting
 
             return val;
         }
-        
+
         internal static string GetLanguageKeyForSql()
         {
             var langCode = Thread.CurrentThread.CurrentCulture.Name;
@@ -81,13 +81,7 @@ namespace ThirdPartyProducts.StatusSetting
 
         internal static string GetSportName(string sportType, string language)
         {
-            var sportName = Resources.SportName.ResourceManager.GetString("Sport_" + sportType);
-            if (string.IsNullOrEmpty(sportName))
-            {
-                sportName = RefData.GetSportName(sportType, language, string.Empty);
-            }
-
-            return sportName;
+            return RefData.GetSportName(sportType, language, string.Empty);
         }
 
         internal static string GetBetTypeName(string betType, string language)

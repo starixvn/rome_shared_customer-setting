@@ -252,48 +252,6 @@
       <DependentUpon>Message.resx</DependentUpon>
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
-    <Compile Include="Resources\SportName-ja-JP.Designer.cs">
-      <DependentUpon>SportName-ja-JP.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <SonarQubeExclude>true</SonarQubeExclude>
-    </Compile>
-    <Compile Include="Resources\SportName.ko-KR.Designer.cs">
-      <DependentUpon>SportName.ko-KR.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <SonarQubeExclude>true</SonarQubeExclude>
-    </Compile>
-    <Compile Include="Resources\SportName.th-TH.Designer.cs">
-      <DependentUpon>SportName.th-TH.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <SonarQubeExclude>true</SonarQubeExclude>
-    </Compile>
-    <Compile Include="Resources\SportName.vi-VN.Designer.cs">
-      <DependentUpon>SportName.vi-VN.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <SonarQubeExclude>true</SonarQubeExclude>
-    </Compile>
-    <Compile Include="Resources\SportName.zh-CN.Designer.cs">
-      <DependentUpon>SportName.zh-CN.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <SonarQubeExclude>true</SonarQubeExclude>
-    </Compile>
-    <Compile Include="Resources\SportName.zh-TW.Designer.cs">
-      <DependentUpon>SportName.zh-TW.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <SonarQubeExclude>true</SonarQubeExclude>
-    </Compile>
-    <Compile Include="Resources\SportName.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SportName.resx</DependentUpon>
-      <SonarQubeExclude>true</SonarQubeExclude>
-    </Compile>
     <Compile Include="Services\StatusSettingService.cs" />
     <Compile Include="Utils.cs" />
   </ItemGroup>
@@ -386,37 +344,6 @@
     <EmbeddedResource Include="Resources\Message.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Message.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\SportName-ja-JP.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>SportName-ja-JP.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\SportName.ko-KR.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>SportName.ko-KR.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\SportName.th-TH.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>SportName.th-TH.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\SportName.vi-VN.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>SportName.vi-VN.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\SportName.zh-CN.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>SportName.zh-CN.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\SportName.zh-TW.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>SportName.zh-TW.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\SportName.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>SportName.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
