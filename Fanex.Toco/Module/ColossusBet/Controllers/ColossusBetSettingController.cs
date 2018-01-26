@@ -37,7 +37,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
         [HttpPost]
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "ColossusBetSetting")]
         [IsBelonging]
-        // [AntiXSRFFilter] // Comment this attribute when buiding for NAP & Alpha
+        [AntiXSRFFilter] // Comment this attribute when buiding for NAP & Alpha
         public JsonResult UpdateSetting(ColossusBetModel model)
         {
             var colossusBetSession = new ColossusBetSession();
@@ -54,7 +54,6 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
                         V204Commission_18001 = model.ComissionPartial.CommisionValue,
                         V204CashInShare_18002 = model.CashInSharePartial.CashInShareValue,
                         Disable = !model.StatusPartial.IsEnabled,
-                        EnableDownlines = GetEnableDownlineValue(model.StatusPartial),
                         IP = colossusBetSession.Ip,
                         UserID = model.CustomerInformationPartial.UserId,
                         Language = colossusBetSession.Language
@@ -66,16 +65,6 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
         public ActionResult UnAuthorized()
         {
             return View(ColossusBetSection.Instance.UnAuthorizedPath);
-        }
-
-        private static object GetEnableDownlineValue(Status status)
-        {
-            if (status.IsHasDownlines)
-            {
-                return status.IsDownlinesEnabled;
-            }
-
-            return DBNull.Value;
         }
     }
 }
