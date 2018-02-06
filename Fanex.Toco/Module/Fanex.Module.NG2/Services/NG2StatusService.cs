@@ -36,8 +36,7 @@ namespace Fanex.Module.NG2.Services
             else
             {
                 var db = BaseRepository.CheckAllowedCurrencyAll(custId);
-                var allowedNG2 = Convert.ToBoolean(db.Outputs["allowedng2"]);
-                allowed = allowedNG2 && ConfigurationManager.AppSettings["IsShowNG2"] == "1";
+                allowed = Convert.ToBoolean(db.Outputs["allowedng2"]);
             }
             
             if (allowed)
