@@ -9,8 +9,8 @@
 
         public decimal CurrentWinLimit { get; set; }
 
-        // Comment 'JsonConverter Attribute' when building nuget for Alpha.
-        [JsonConverter(typeof(JsonConverterExt))]
+        //Comment 'JsonConverter Attribute' when building nuget for Alpha.
+        //[JsonConverter(typeof(JsonConverterExt))]
         public KeyValuePair<string, int> MaximumWin { get; set; }
 
         public decimal MinimumLoss { get; set; }

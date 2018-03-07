@@ -15,7 +15,11 @@
 /// </summary>
 namespace Fanex.CustomerSetting.Module.Casino.Controllers
 {
+    using System;
+    using System.Diagnostics;
+    using System.Web.Mvc;
     using Authenticate;
+    using CasinoLibrary.Model.UserException;
     using Fanex.CustomerSetting.Module.Casino.Entities;
     using Fanex.CustomerSetting.Module.Casino.Services.Impl;
     using Fanex.CustomerSetting.Module.Casino.ViewModels;
@@ -23,12 +27,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
     using Fanex.CustomerSetting.Security.Authenticate;
     using Fanex.CustomerSetting.Security.Configurations;
-    using Fanex.Module.Logs;
-    using Fanex.Module.Logs.Services;
+    using Logging.Extensions.Web;
     using Newtonsoft.Json;
-    using System;
-    using System.Web.Mvc;
-    using CasinoLibrary.Model.UserException;
 
     /// <summary>
     /// Class AgentController.
@@ -58,14 +58,16 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 customerSetting = CasinoManager.Instance.AgentCasinoModel(id, uplineId);
                 customerSetting.IsReadOnly = isSearchAndCopy;
             }
-            catch (ErrorException e)
+            catch (ErrorException casinoEx)
             {
-                e.Write(Formater.LogType.Warning);
-                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", e.Message);
+                ExceptionHandler.Handle(new Exception(casinoEx.Message), TraceEventType.Warning);
+
+                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", casinoEx.Message);
             }
             catch (Exception ex)
             {
-                ex.Write(Formater.LogType.Warning);
+                ExceptionHandler.Handle(ex, TraceEventType.Warning);
+
                 return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", ex.Message);
             }
 
@@ -94,14 +96,16 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             {
                 customerSetting = CasinoManager.Instance.AgentCasinoModelBySuper(id, uplineId);
             }
-            catch (ErrorException e)
+            catch (ErrorException casinoEx)
             {
-                e.Write(Formater.LogType.Warning);
-                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", e.Message);
+                ExceptionHandler.Handle(new Exception(casinoEx.Message), TraceEventType.Warning);
+
+                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", casinoEx.Message);
             }
             catch (Exception ex)
             {
-                ex.Write(Formater.LogType.Warning);
+                ExceptionHandler.Handle(ex, TraceEventType.Warning);
+
                 return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", ex.Message);
             }
 
@@ -121,7 +125,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
         /// <returns>ActionResult object.</returns>
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
         [CasinoUMTimeFilter]
-        //[AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
+        [AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
         public ActionResult UpdateAgentPost(int id, string username, int uplineId, int userId, string actorName, string settingModel, string customerModel, string groupName = null)
         {
             var obj = System.Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;

@@ -1,6 +1,7 @@
 namespace Fanex.CustomerSetting.Module.Casino.Controllers
 {
     using System;
+    using System.Diagnostics;
     using System.Web.Mvc;
     using Authenticate;
     using CasinoLibrary.Model.UserException;
@@ -11,8 +12,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
     using Fanex.CustomerSetting.Security.Authenticate;
     using Fanex.CustomerSetting.Security.Configurations;
-    using Fanex.Module.Logs;
-    using Fanex.Module.Logs.Services;
+    using Logging.Extensions.Web;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
 
@@ -71,7 +71,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Transfer")]
         [CasinoUMTimeFilter]
-        //[AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
+        [AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
         public ActionResult ResetMaxTransfer(int id, string groupName = null)
         {
             var authenticateService = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
@@ -96,7 +96,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             }
             catch (ErrorException casinoEx)
             {
-                casinoEx.WriteCasinoException(Formater.LogType.Warning);
+                ExceptionHandler.Handle(new Exception(casinoEx.Message), TraceEventType.Warning);
+
                 return JsonBase(new { ErrorCode = 9999, ErrorMessage = casinoEx.Message });
             }
             catch (Exception ex)
@@ -106,7 +107,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
-        //[AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
+        [AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
         public ActionResult GetCurrentWinLimit(int id, string groupName = null)
         {
             var authenticateService = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;

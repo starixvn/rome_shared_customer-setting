@@ -2,6 +2,7 @@
 namespace Fanex.CustomerSetting.Module.Casino.Controllers
 {
     using System;
+    using System.Diagnostics;
     using System.Web.Mvc;
     using Authenticate;
     using CasinoLibrary.Model.UserException;
@@ -12,8 +13,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
     using Fanex.CustomerSetting.Module.Core.Web.Controllers;
     using Fanex.CustomerSetting.Security.Authenticate;
     using Fanex.CustomerSetting.Security.Configurations;
-    using Fanex.Module.Logs;
-    using Fanex.Module.Logs.Services;
+    using Logging.Extensions.Web;
     using Newtonsoft.Json;
 
     public class MemberController : BaseController
@@ -34,14 +34,16 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 customerSetting = CasinoManager.Instance.MemberCasinoModel(id, uplineId);
                 customerSetting.IsReadOnly = isSearchAndCopy;
             }
-            catch (ErrorException e)
+            catch (ErrorException casinoEx)
             {
-                e.Write(Formater.LogType.Warning);
-                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", e.Message);
+                ExceptionHandler.Handle(new Exception(casinoEx.Message), TraceEventType.Warning);
+
+                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", casinoEx.Message);
             }
             catch (Exception ex)
             {
-                ex.Write(Formater.LogType.Warning);
+                ExceptionHandler.Handle(ex, TraceEventType.Warning);
+
                 return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", ex.Message);
             }
 
@@ -64,14 +66,16 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 customerSetting = CasinoManager.Instance.MemberCasinoModelByMaster(id, uplineId);
                 customerSetting.IsReadOnly = isSearchAndCopy;
             }
-            catch (ErrorException e)
+            catch (ErrorException casinoEx)
             {
-                e.Write(Formater.LogType.Warning);
-                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", e.Message);
+                ExceptionHandler.Handle(new Exception(casinoEx.Message), TraceEventType.Warning);
+
+                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", casinoEx.Message);
             }
             catch (Exception ex)
             {
-                ex.Write(Formater.LogType.Warning);
+                ExceptionHandler.Handle(ex, TraceEventType.Warning);
+
                 return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", ex.Message);
             }
 
@@ -94,14 +98,16 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 customerSetting = CasinoManager.Instance.MemberCasinoModelBySuper(id, uplineId);
                 customerSetting.IsReadOnly = isSearchAndCopy;
             }
-            catch (ErrorException e)
+            catch (ErrorException casinoEx)
             {
-                e.Write(Formater.LogType.Warning);
-                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", e.Message);
+                ExceptionHandler.Handle(new Exception(casinoEx.Message), TraceEventType.Warning);
+
+                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", casinoEx.Message);
             }
             catch (Exception ex)
             {
-                ex.Write(Formater.LogType.Warning);
+                ExceptionHandler.Handle(ex, TraceEventType.Warning);
+
                 return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", ex.Message);
             }
 
@@ -110,7 +116,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
         [CasinoUMTimeFilter]
-        //[AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
+        [AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
         public ActionResult UpdateMemberPost(int id, string username, int uplineId, int userId, string actorName, string settingModel, string customerModel, string groupName = null)
         {
             if (!IsBelong(id, groupName))
@@ -136,7 +142,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
         [CasinoUMTimeFilter]
-        //[AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
+        [AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
         public ActionResult UpdateMemberBySuperPost(int id, int uplineId, int userId, string actorName, string settingModel, string customerModel, string groupName = null)
         {
             if (!IsBelong(id, groupName))
@@ -161,7 +167,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
         [CasinoUMTimeFilter]
-        //[AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
+        [AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
         public ActionResult UpdateMemberByMasterPost(int id, int uplineId, int userId, string actorName, string settingModel, string customerModel, string groupName = null)
         {
             if (!IsBelong(id, groupName))

@@ -16,6 +16,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
     using System.Collections.Generic;
     using System.Configuration;
     using System.Data;
+    using System.Diagnostics;
     using System.Linq;
     using CasinoLibrary.Model.UserException;
     using CasinoLibrary.SBAgent;
@@ -26,9 +27,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
     using Fanex.CustomerSetting.Module.Core;
     using Fanex.CustomerSetting.Module.Core.Models;
     using Fanex.CustomerSetting.Module.Core.Web;
-    using Fanex.Module.Logs;
-    using Fanex.Module.Logs.Services;
-    using Logging;
+    using Logging.Extensions.Web;
 
     /// <summary>
     /// TODO: Update summary.
@@ -80,8 +79,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
             this.GetCustSettingCS(ref custInfo);
             gameModel.IsPtByGameType = custInfo.GeneralInfo.PTByGameType;
-
-
 
             foreach (DataRow row in dt.Rows)
             {
@@ -545,13 +542,13 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
                         custIBC.GeneralInfo.DefaultTransferCredit = Utils.ToDouble(dt2.Rows[0]["DefMaxTransferCredit"]);
                     }
-                    catch (ErrorException e)
+                    catch (ErrorException casinoEx)
                     {
-                        e.Write(Formater.LogType.Warning);
+                        ExceptionHandler.Handle(new Exception(casinoEx.Message), TraceEventType.Warning);
                     }
                     catch (Exception ex)
                     {
-                        ex.Write(Formater.LogType.Warning);
+                        ExceptionHandler.Handle(ex, TraceEventType.Warning);
                     }
                 }
 
@@ -632,11 +629,11 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             }
             catch (ErrorException casinoEx)
             {
-                casinoEx.WriteCasinoException(Formater.LogType.Warning);
+                ExceptionHandler.Handle(new Exception(casinoEx.Message), TraceEventType.Warning);
             }
             catch (Exception ex)
             {
-                ex.Write(Formater.LogType.Warning);
+                ExceptionHandler.Handle(ex, TraceEventType.Warning);
                 // Bypass this exception because this customer had setting but update status failed, before.
             }
 
@@ -780,11 +777,11 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             }
             catch (ErrorException casinoEx)
             {
-                casinoEx.WriteCasinoException(Formater.LogType.Warning);
+                ExceptionHandler.Handle(new Exception(casinoEx.Message), TraceEventType.Warning);
             }
             catch (Exception ex)
             {
-                ex.Write(Formater.LogType.Warning);
+                ExceptionHandler.Handle(ex, TraceEventType.Warning);
                 // Bypass this exception because this customer had setting but update status failed, before.
             }
 
@@ -923,11 +920,11 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             }
             catch (ErrorException casinoEx)
             {
-                casinoEx.WriteCasinoException(Formater.LogType.Warning);
+                ExceptionHandler.Handle(new Exception(casinoEx.Message), TraceEventType.Warning);
             }
             catch (Exception ex)
             {
-                ex.Write(Formater.LogType.Warning);
+                ExceptionHandler.Handle(ex, TraceEventType.Warning);
                 // Bypass this exception because this customer had setting but update status failed, before.
             }
 
@@ -1056,14 +1053,14 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     }
                     catch (Exception ex)
                     {
-                        ex.Write(Formater.LogType.Warning);
+                        ExceptionHandler.Handle(ex, TraceEventType.Warning);
                         settingsInserted = false;
                     }
                 }
             }
             catch (ErrorException casinoEx)
             {
-                casinoEx.WriteCasinoException(Formater.LogType.Warning);
+                ExceptionHandler.Handle(new Exception(casinoEx.Message), TraceEventType.Warning);
             }
             catch (Exception)
             {
@@ -1269,16 +1266,16 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             {
                 status = cust.UpdateCustEnableCasino(custid, !disabledCS, isUpdDownline, ip, custid, username, 2);
             }
-            catch (ErrorException ex)
+            catch (ErrorException casinoEx)
             {
-                ex.Write(Formater.LogType.Warning);
-                errMsg = ex.Message;
+                ExceptionHandler.Handle(new Exception(casinoEx.Message), TraceEventType.Warning);
+                errMsg = casinoEx.Message;
                 status = false;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                e.Write(Formater.LogType.Info);
-                errMsg = e.Message;
+                ExceptionHandler.Handle(ex, TraceEventType.Information);
+                errMsg = ex.Message;
                 status = false;
             }
 

@@ -1,5 +1,11 @@
 ﻿namespace Fanex.CustomerSetting.Module.NG2.EnableStatus.Repositories
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using CasinoLibrary.SBAgent;
     using Fanex.CustomerSetting.Module.NG2.Core;
     using Fanex.CustomerSetting.Module.NG2.Core.Models;
@@ -10,13 +16,7 @@
     using Fanex.CustomerSetting.Module.NG2.EnableStatus.Models;
     using Fanex.Data;
     using Fanex.Data.DNAide;
-    using Fanex.Module.Logs;
-    using Fanex.Module.Logs.Services;
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
+    using Logging.Extensions.Web;
 
     public class EnableStatusRepository : IEnableStatusRepository
     {
@@ -137,7 +137,7 @@
                 }
                 catch (Exception ex)
                 {
-                    ex.Write();
+                    ExceptionHandler.Handle(ex);
 
                     throw ex;
                 }                
@@ -196,7 +196,7 @@
                         }
                         catch (Exception casinoEx)
                         {
-                            casinoEx.Write(Formater.LogType.Warning);
+                            ExceptionHandler.Handle(new Exception(casinoEx.Message), TraceEventType.Warning);
                         }         
                     }
 
@@ -204,7 +204,7 @@
                 }
                 catch (Exception ex)
                 {
-                    ex.Write();
+                    ExceptionHandler.Handle(ex);
 
                     throw ex;
                 }
@@ -293,7 +293,7 @@
                         }
                         catch (Exception casinoEx)
                         {
-                            casinoEx.Write(Formater.LogType.Warning);
+                            ExceptionHandler.Handle(new Exception(casinoEx.Message), TraceEventType.Warning);
                         }
                     }
 
@@ -301,7 +301,7 @@
                 }
                 catch (Exception ex)
                 {
-                    ex.Write();
+                    ExceptionHandler.Handle(ex);
 
                     throw ex;
                 }
@@ -339,7 +339,7 @@
             }
             catch (Exception ex)
             {
-                ex.Write();
+                ExceptionHandler.Handle(ex);
 
                 return true;
             }

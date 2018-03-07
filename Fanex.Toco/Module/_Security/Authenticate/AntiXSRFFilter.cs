@@ -7,11 +7,11 @@
 namespace Fanex.CustomerSetting.Security.Authenticate
 {
     using System;
+    using System.Diagnostics;
     using System.Web;
     using System.Web.Helpers;
     using System.Web.Mvc;
-    using Fanex.Module.Logs;
-    using Fanex.Module.Logs.Services;
+    using Logging.Extensions.Web;
 
     /// <summary>
     /// TODO: Update summary.
@@ -76,12 +76,12 @@ namespace Fanex.CustomerSetting.Security.Authenticate
                 else
                 {
                     var exceptionLog = new Exception("Cannot read Request Verification Token from cookie.");
-                    exceptionLog.Write(Formater.LogType.Warning);
+                    ExceptionHandler.Handle(exceptionLog, TraceEventType.Warning);
                 }
             }
             catch (Exception ex)
             {
-                ex.Write(Formater.LogType.Warning);
+                ExceptionHandler.Handle(ex, TraceEventType.Warning);
 
                 return false;
             }
