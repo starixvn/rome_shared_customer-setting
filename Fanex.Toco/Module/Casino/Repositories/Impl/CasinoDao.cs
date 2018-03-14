@@ -88,33 +88,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
                         Utils.ToString(allCustomerInfoDr.ResultSet.Tables[0].Rows[0]["site"]) :
                         "ibcbet";
                 }
-
-                try
-                {
-                    dt = customer.GetDefaultMaxTransfer(customerDetail.GeneralInfo.UpperCustID, customerDetail.GeneralInfo.Currency, uplineId == 0);
-
-                    if (customerDetail.GeneralInfo.RoleId != 4 && dt != null && dt.Rows.Count > 0)
-                    {
-                        customerDetail.GeneralInfo.MaxTransferCreditLimit = Utils.ToDouble(dt.Rows[0]["MaxLimit"]);
-                        customerDetail.GeneralInfo.MinTransferCreditLimit = Utils.ToDouble(dt.Rows[0]["MinLimit"]);
-                        customerDetail.GeneralInfo.DefaultTransferCredit = Utils.ToDouble(dt.Rows[0]["DefMaxTransferCredit"]);
-                    }
-                    else
-                    {
-                        customerDetail.GeneralInfo.MaxTransferCreditLimit = Utils.ToDouble(dt.Rows[0]["MaxTransferCredit"]);
-                        customerDetail.GeneralInfo.MinTransferCreditLimit = customerDetail.GeneralInfo.MaxTransferCreditLimit;
-                        customerDetail.GeneralInfo.DefaultTransferCredit = Utils.ToDouble(dt.Rows[0]["SuperMaxTransfer"]);
-                    }
-                }
-                catch (ErrorException casinoEx)
-                {
-                    ExceptionHandler.Handle(new Exception(casinoEx.Message), TraceEventType.Warning);
-                }
-                catch (Exception ex)
-                {
-                    ExceptionHandler.Handle(ex, TraceEventType.Warning);
-                }
-
+                
                 customerDetail.GeneralInfo.NoIBCData = false;
             }
 

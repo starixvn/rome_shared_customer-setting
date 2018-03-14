@@ -531,27 +531,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     custIBC.GeneralInfo.IsDisableAutoMPT = Utils.ToBoolean(row["DisableAutoMPT"]);
                 }
 
-                // Get max transfer information
-                if (custIBC.GeneralInfo.UpperCustID != 0)
-                {
-                    try
-                    {
-                        var dt2 = cust.GetDefaultMaxTransfer(custIBC.GeneralInfo.UpperCustID, 0, false);
-                        custIBC.GeneralInfo.MaxTransferCreditLimit = Utils.ToDouble(dt2.Rows[0]["MaxLimit"]);
-                        custIBC.GeneralInfo.MinTransferCreditLimit = Utils.ToDouble(dt2.Rows[0]["MinLimit"]);
-
-                        custIBC.GeneralInfo.DefaultTransferCredit = Utils.ToDouble(dt2.Rows[0]["DefMaxTransferCredit"]);
-                    }
-                    catch (ErrorException casinoEx)
-                    {
-                        ExceptionHandler.Handle(new Exception(casinoEx.Message), TraceEventType.Warning);
-                    }
-                    catch (Exception ex)
-                    {
-                        ExceptionHandler.Handle(ex, TraceEventType.Warning);
-                    }
-                }
-
                 custIBC.GeneralInfo.NoCSData = false;
             }
         }
@@ -572,23 +551,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                 var custInfo = this.GetCustInfoIBC(custId, uplineId);
 
                 bool isEnableCasino = !customerModel.CasinoDisabled || !customerModel.CasinoSync;
-                if (customerModel.CasinoSync)
-                {
-                    maxTransferUpdated = cust.UpdateMaxTransferMisc(
-                      custId,
-                      isEnableCasino,
-                       !isEnableCasino,
-                       true,
-                       (decimal)customerModel.MaxTransferCredit,
-                        customerModel.IsAutoReset,
-                        settingModel.IsPtByGameType,
-                        ip,
-                        modifiedId,
-                        modifiedBy,
-                        fromSystem
-                    );
-                }
-
 
                 if (!custInfo.GeneralInfo.CasinoSync)
                 {
@@ -720,23 +682,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             {
                 bool isEnableCasino = !customerModel.CasinoDisabled || !customerModel.CasinoSync;
 
-                if (customerModel.CasinoSync)
-                {
-                    maxTransferUpdated = cust.UpdateMaxTransferMisc(
-                      custId,
-                      isEnableCasino,
-                       !isEnableCasino,
-                       true,
-                       (decimal)customerModel.MaxTransferCredit,
-                        customerModel.IsAutoReset,
-                        settingModel.IsPtByGameType,
-                        ip,
-                        modifiedId,
-                        modifiedBy,
-                        fromSystem
-                    );
-                }
-
                 if (!customerModel.CasinoSync)
                 {
                     var customerInfo = this.GetCustInfoIBC(custId, uplineId);
@@ -858,23 +803,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             {
                 bool isEnableCasino = !customerModel.CasinoDisabled || !customerModel.CasinoSync;
 
-                if (customerModel.CasinoSync)
-                {
-                    maxTransferUpdated = cust.UpdateMaxTransferMisc(
-                      custId,
-                      isEnableCasino,
-                       !isEnableCasino,
-                       true,
-                       (decimal)customerModel.MaxTransferCredit,
-                        customerModel.IsAutoReset,
-                        settingModel.IsPtByGameType,
-                        ip,
-                        modifiedId,
-                        modifiedBy,
-                        fromSystem
-                    );
-                }
-                else
+                if (!customerModel.CasinoSync)
                 {
                     var customerInfo = this.GetCustInfoIBC(custId, uplineId);
                     settingsInserted = cust.InsertCustSetting(
@@ -994,23 +923,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             try
             {
                 bool isEnableCasino = !customerModel.CasinoDisabled || !customerModel.CasinoSync;
-
-                if (customerModel.CasinoSync)
-                {
-                    maxTransferUpdated = cust.UpdateMaxTransferMisc(
-                      custId,
-                      isEnableCasino,
-                      !isEnableCasino,
-                       true,
-                       (decimal)customerModel.MaxTransferCredit,
-                        customerModel.IsAutoReset,
-                        settingModel.IsPtByGameType,
-                        ip,
-                        modifiedId,
-                        modifiedBy,
-                        fromSystem
-                    );
-                }
 
                 if (!customerModel.CasinoSync)
                 {
@@ -1225,7 +1137,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var cust = new Customer();
 
             resultStake = cust.UpdateCustGameTypeStakeLevel(gameStakeTable);
-            var success = cust.UpdateMaxTransfer(custId, customer.GeneralInfo.IsMaxWin, Utils.ToDecimal(customer.GeneralInfo.MaxTransferCredit), customer.GeneralInfo.IsAutoReset, ip, modifiedId, modifiedBy, fromSystem);
 
             // Process error messages
             foreach (DataRow item in resultStake.Rows)
@@ -1235,7 +1146,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
             msg = msg.EndsWith("<br />") ? msg.Substring(0, msg.LastIndexOf("<br />")) : msg;
 
-            return new Result((msg == string.Empty || resultStake.Rows.Count == 0) && success ? 0 : 1, msg);
+            return new Result((msg == string.Empty || resultStake.Rows.Count == 0) ? 1 : 0, msg);
         }
 
         private static string Lang(string original)
@@ -2027,7 +1938,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
         {
             var cust = new Customer();
             var gameTypes = new List<GameType>();
-            var dt = synced ? cust.GetCustGameType(custId, gameKindID) : new BasicInfo().GetGameType(gameKindID);
+            var dt = synced ? cust.GetCustGameType(custId, gameKindID) : new BasicInfo().GetGameType(gameKindID, custId, exchangeId);
             List<decimal?> s4s = new List<decimal?>(), n4s = new List<decimal?>(), scos = new List<decimal?>();
             this._tblCustMultipleStakeLevel = custId != 0 ? cust.GetCustMultipleStakeLevel(custId, gameKindID) : null;
             foreach (DataRow row in dt.Rows)
