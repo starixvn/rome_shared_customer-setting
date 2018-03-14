@@ -30,7 +30,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Entities
 
         public bool CasinoDisabledDownline { get; set; }
 
-        public bool CasinoSync { get; set; }
+        public bool CasinoSync { get; set; }        
 
         public bool GoldDeluxeDisabled { get; set; }
 
