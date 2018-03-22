@@ -32,14 +32,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Entities
 
         public bool CasinoSync { get; set; }
 
-        public bool LiveCasinoDisabled { get; set; }
-
-        public bool LiveCasinoSync { get; set; }
-
-        public bool BingoDisabled { get; set; }
-
-        public bool BingoSync { get; set; }
-
         public bool GoldDeluxeDisabled { get; set; }
 
         public int Currency { get; set; }

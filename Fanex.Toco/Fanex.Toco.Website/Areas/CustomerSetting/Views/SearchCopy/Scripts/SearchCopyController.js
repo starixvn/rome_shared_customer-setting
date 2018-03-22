@@ -26,12 +26,8 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', 'v
             { sportname: '-- choose sport --', sportvalue: 'choosesport' },
             { sportname: 'Sportsbook', sportvalue: 'tabSportsbook' },
             { sportname: 'Sportsbook Min PT', sportvalue: 'tabSportsbookMinPT' },
-            { sportname: 'Racing', sportvalue: 'tabRacing' },
-            { sportname: 'Racing Min PT', sportvalue: 'tabRacingMinPT' },
             { sportname: 'Casino', sportvalue: 'tabCasino' },
-            { sportname: 'Virtual Sports', sportvalue: 'tabVirtualSports' },
-            { sportname: 'Bingo', sportvalue: 'tabBingo' },
-            { sportname: 'Live Casino', sportvalue: 'tabLiveCasino' }
+            { sportname: 'Virtual Sports', sportvalue: 'tabVirtualSports' }
     ];
     $scope.selectedSport = $scope.sports[0];
 
@@ -132,12 +128,8 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', 'v
     $scope.resetFrameSource = function () {
         $("#frmSportbook").attr('src', "");
         $("#frmSportbookMinPT").attr('src', "");
-        $("#frmRacing").attr('src', "");
-        $("#frmRacingMinPT").attr('src', "");
         $("#frmCasino").attr('src', "");
         $("#frmVirtualSports").attr('src', "");
-        $("#frmBingo").attr('src', "");
-        $("#frmLiveCasino").attr('src', "");
     };
 
     $scope.showSetting = function (tabId) {
@@ -168,14 +160,6 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', 'v
                 $scope.loadData("#frmSportbookMinPT", url);
                 $scope.resize("#frmSportbookMinPT");
                 break;
-            case 'tabRacing': url += "/EditSuperPTRacing/Index?custid=" + $scope.existedUser.userid;
-                $scope.loadData("#frmRacing", url);
-                $scope.resize("#frmRacing");
-                break;
-            case 'tabRacingMinPT': url += "/customer/pt/racing/SuperMinUpdate.aspx?custId=" + $scope.existedUser.userid;
-                $scope.loadData("#frmRacingMinPT", url);
-                $scope.resize("#frmRacingMinPT");
-                break;
             case 'tabCasino': url += "/Customer/PositionTakingCS.aspx?custId=" + $scope.existedUser.userid;
                 $scope.loadData("#frmCasino", url);
                 $scope.resize("#frmCasino");
@@ -183,14 +167,6 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', 'v
             case 'tabVirtualSports': url += "/VirtualSportSuperPT/EditSuper?custId=" + $scope.existedUser.userid + "&uname=" + $scope.existedUser.username + "&roleId=4";
                 $scope.loadData("#frmVirtualSports", url);
                 $scope.resize("#frmVirtualSports");
-                break;
-            case 'tabBingo': url += "/Customer/PT/Bingo/SuperUpdate.aspx?custId=" + $scope.existedUser.userid;
-                $scope.loadData("#frmBingo", url);
-                $scope.resize("#frmBingo");
-                break;
-            case 'tabLiveCasino': url += "/LiveCasino/PTSetting/EditSuper.aspx?custId=" + $scope.existedUser.userid + "&exchangeId=20&roleId=4";
-                $scope.loadData("#frmLiveCasino", url);
-                $scope.resize("#frmLiveCasino");
                 break;
             case 'tabGenealInformation': $("#divGeneralInformation").show();
         }
@@ -207,21 +183,11 @@ searchCopyController.controller('SearchCopyController', ['$scope', 'message', 'v
     };
 
     $scope.disableSports = function (statusSports) {
-        if (statusSports.HideRacing == true) {
-            $("#listSports option[value='3']").remove();
-            $("#listSports option[value='4']").remove();
-        }
         if (statusSports.HideCasino == true) {
             $("#listSports option[value='5']").remove();
         }
         if (statusSports.HideVirtualSports == true) {
             $("#listSports option[value='6']").remove();
-        }
-        if (statusSports.HideBingo == true) {
-            $("#listSports option[value='7']").remove();
-        }
-        if (statusSports.HideLiveCasino == true) {
-            $("#listSports option[value='8']").remove();
         }
     };
 

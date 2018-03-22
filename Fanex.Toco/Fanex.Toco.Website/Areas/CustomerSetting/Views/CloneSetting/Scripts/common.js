@@ -640,8 +640,8 @@ function open_dailyreport(link)
 
 //this function is used to display span error for Adding, Editing of Customer
 //when error of each Sporttype is shown, panel of each Sporttype is shown too
-var arrPlaceHolder=["err","error1","error2","error3","error5","error8","error10","error11","error201","error99","error151", "error161", "error99_9"];
-var arrPanel=["","panelSoccer","panelBasket","panelFootball","panelTennis","panelBaseball","panelGolf","panelMoto","panelFinancial","panelOtherSports","panelHorseRacing", "panelNumberGame", "panelMixedSports"];
+var arrPlaceHolder=["err","error1","error2","error3","error5","error8","error10","error11","error201","error99", "error161", "error99_9"];
+var arrPanel=["","panelSoccer","panelBasket","panelFootball","panelTennis","panelBaseball","panelGolf","panelMoto","panelFinancial","panelOtherSports", "panelNumberGame", "panelMixedSports"];
 function ShowError(errMsg,placeHolder)
 {
 	flag=false; 	
@@ -861,32 +861,6 @@ function KeyPress(e)
         obj("pagenav_ibtn").click();                
     }
 }   
-
-
-//------------------------------------------
-function DisableHR(idchkHR)
-{
-    if(obj(idchkHR).checked)
-    {
-        obj('hddisableHR').value=0;
-    }
-    else
-    {
-        obj('hddisableHR').value=1;
-    }
-}
-function DisableHRByCurr(sel) {
-    
-    var CurrAllow="0";
-    var currvalue="0";               
-    if(sel.value != "0")
-    {          
-        CurrAllow=sel.value.split('_')[1];
-        currvalue=sel.value.split('_')[0];       
-    }
-    obj("hdCurr").value=currvalue;
-    obj("hdAllowCurr").value=CurrAllow;
-}
 
 //do not allow enter text on numberic field
 function AllowNumber(e)

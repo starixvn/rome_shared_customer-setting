@@ -309,12 +309,6 @@
   <data name="UpdatedWinLimitSuccessfully" xml:space="preserve">
     <value>최대 지급금액: 성공적으로 업데이트하였습니다.</value>
   </data>
-  <data name="UpdateLiveCasinoStatusSuccess" xml:space="preserve">
-    <value>상황: 성공적으로 업데이트하였습니다.</value>
-  </data>
-  <data name="UpdateLiveCasinoStatusUnSuccess" xml:space="preserve">
-    <value>이 계정은 라이브 카지노 설정이 없거나 업라인에 의해 비활성화되어  라이브 카지노를 활성화할 수 없습니다.</value>
-  </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>성공적으로 업데이트하였습니다.</value>
   </data>

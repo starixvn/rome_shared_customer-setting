@@ -306,12 +306,6 @@
   <data name="UpdatedWinLimitSuccessfully" xml:space="preserve">
     <value>Maximum Win: Updated successfully.</value>
   </data>
-  <data name="UpdateLiveCasinoStatusSuccess" xml:space="preserve">
-    <value>Status: Updated successfully.</value>
-  </data>
-  <data name="UpdateLiveCasinoStatusUnSuccess" xml:space="preserve">
-    <value>Updated Status unsuccessfully because Live Casino status has been disabled at upline.</value>
-  </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>Updated Successfully.</value>
   </data>

@@ -111,36 +111,6 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
             return RefData.GetResourceDataByRefIdAndResourceId(refId, resourceId, TWLang(language), defaultValue);
         }
 
-        public static string GetLiveCasinoResult(int resultId)
-        {
-            string result = string.Empty;
-            /*switch(resultId)
-            {
-                case 1:
-                    result = "Banker";
-                    break;
-                case 2:
-                    result = "Player";
-                    break;
-                case 3:
-                    result = "Tie";
-                    break;
-                case 4:
-                    result = "Big";
-                    break;
-                case 5:
-                    result = "Small";
-                    break;
-                case 6:
-                    result = "B.Pair";
-                    break;
-                case 7:
-                    result = "P.Pair";
-                    break;
-            }*/
-            return RefData.GetCasinoBetItem(Converter.ToString2(resultId), TWLang(AppSession.CurrentSession.Language));
-        }
-
         public static string GetRouletteBetItem(int itemId)
         {
             return RefData.GetRouletteBetItem(Converter.ToString2(itemId), TWLang(AppSession.CurrentSession.Language));
