@@ -243,6 +243,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authenticate\CasinoUMTimeFilter.cs" />
+    <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Configurations\CasinoSection.cs" />
     <Compile Include="Controllers\App_Start\ModuleRegistrator.cs" />
     <Compile Include="Controllers\AgentController.cs" />
@@ -250,6 +251,7 @@
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\CasinoCustomerController.cs" />
+    <Compile Include="Criteria\GetEnabledJackpotProductsCriteria.cs" />
     <Compile Include="Entities\CasinoCustomer.cs" />
     <Compile Include="Entities\CurrentMemberWinLoss.cs" />
     <Compile Include="Entities\GeneralCasinoCustomer.cs" />
@@ -270,7 +272,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Criteria\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.Toco.Module.Core\_Core.csproj">
