@@ -2,8 +2,10 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
 {
     using System;
     using System.Web.Mvc;
+    using Configurations;
     using Criteria;
     using Entities;
+    using Filter;
     using Resources;
     using Security.Authenticate;
     using Services;
@@ -23,6 +25,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "ColossusBetSetting")]
+        [IsBelonging]
         public ActionResult EditSetting(SettingContext settingContext)
         {
             var setting = _colossusBetService.EditSetting(settingContext);
@@ -33,7 +36,8 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
 
         [HttpPost]
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "ColossusBetSetting")]
-       // [AntiXSRFFilter] // Comment this attribute when buiding for NAP & Alpha
+        [IsBelonging]
+        // [AntiXSRFFilter] // Comment this attribute when buiding for NAP & Alpha
         public JsonResult UpdateSetting(ColossusBetModel model)
         {
             var colossusBetSession = new ColossusBetSession();
@@ -57,6 +61,11 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
                     });
 
             return Json(result);
+        }
+
+        public ActionResult UnAuthorized()
+        {
+            return View(ColossusBetSection.Instance.UnAuthorizedPath);
         }
 
         private static object GetEnableDownlineValue(Status status)

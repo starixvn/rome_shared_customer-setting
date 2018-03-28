@@ -142,6 +142,15 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are not authorized on this function.
+        /// </summary>
+        public static string DontHavePermission {
+            get {
+                return ResourceManager.GetString("DontHavePermission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit Colossus Bets.
         /// </summary>
         public static string EditColossusBets {

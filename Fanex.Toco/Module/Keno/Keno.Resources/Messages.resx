@@ -138,6 +138,9 @@
   <data name="PositionTaking" xml:space="preserve">
     <value>Position Taking</value>
   </data>
+  <data name="UnauthorizeMsg" xml:space="preserve">
+    <value>You are not authorized on this function</value>
+  </data>
   <data name="UpdatedFail" xml:space="preserve">
     <value>Update customer setting failed!</value>
   </data>
