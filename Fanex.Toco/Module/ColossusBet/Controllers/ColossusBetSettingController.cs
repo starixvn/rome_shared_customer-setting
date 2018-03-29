@@ -1,6 +1,5 @@
 namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
 {
-    using System;
     using System.Web.Mvc;
     using Configurations;
     using Criteria;
@@ -37,7 +36,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Controllers
         [HttpPost]
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "ColossusBetSetting")]
         [IsBelonging]
-        [AntiXSRFFilter] // Comment this attribute when buiding for NAP & Alpha
+        [AntiXSRFFilter]
         public JsonResult UpdateSetting(ColossusBetModel model)
         {
             var colossusBetSession = new ColossusBetSession();
