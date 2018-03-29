@@ -1146,7 +1146,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
             msg = msg.EndsWith("<br />") ? msg.Substring(0, msg.LastIndexOf("<br />")) : msg;
 
-            return new Result((msg == string.Empty || resultStake.Rows.Count == 0) ? 1 : 0, msg);
+            return new Result((msg == string.Empty || resultStake.Rows.Count == 0) ? 0 : 1, msg);
         }
 
         public bool UpdateCSStatus(int custid, bool syncCS, bool disabledCS, bool isUpdDownline, int userId, string ip, int subAccId, byte systemId, string lang, string username, string subUsername, out string errMsg)
