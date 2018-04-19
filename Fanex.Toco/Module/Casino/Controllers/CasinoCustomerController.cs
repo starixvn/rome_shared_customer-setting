@@ -18,7 +18,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
     public class CasinoCustomerController : BaseController
     {
-        public ActionResult CustomerInfo(int id, int uplineId)
+        public ActionResult CustomerInfo()
         {
             return PartialView("~/Areas/CustomerSetting/Views/Casino/Customer/CustomerInfo.cshtml");
         }
@@ -69,45 +69,9 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             return Content("var customerModel = " + result + ";");
         }
 
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Transfer")]
-        [CasinoUMTimeFilter]
-        //[AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
-        public ActionResult ResetMaxTransfer(int id, string groupName = null)
-        {
-            var authenticateService = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
-
-            if (!authenticateService.IsBelong(id, null, groupName))
-            {
-                return ActionDenied(Request);
-            }
-
-            var customerInfo = new CasinoLibrary.SBAgent.Customer();
-
-            try
-            {
-                var success = customerInfo.ResetMaxTransfer(
-                    id,
-                    Request.UserHostAddress,
-                    AppSession.CurrentSession.UserId,
-                    AppSession.CurrentSession.UserName,
-                    AppSession.CurrentSession.FromSystem);
-
-                return JsonBase(new { ErrorCode = success ? 0 : 1, ErrorMessage = success ? string.Empty : "Reset max transfer failed" });
-            }
-            catch (ErrorException casinoEx)
-            {
-                ExceptionHandler.Handle(new Exception(casinoEx.Message), TraceEventType.Warning);
-
-                return JsonBase(new { ErrorCode = 9999, ErrorMessage = casinoEx.Message });
-            }
-            catch (Exception ex)
-            {
-                return JsonBase(new { ErrorCode = 1, ErrorMessage = ex.Message });
-            }
-        }
-
+        
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
-        //[AntiXSRFFilter] // Comment this attribute when building for NAP & Alpha
+        [AntiXSRFFilter]
         public ActionResult GetCurrentWinLimit(int id, string groupName = null)
         {
             var authenticateService = Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
