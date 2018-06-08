@@ -65,8 +65,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
                 customerDetail.GeneralInfo.CasinoSync = Utils.ToBoolean(row["synccasino"]);
                 customerDetail.GeneralInfo.CasinoDisabled = Utils.ToBoolean(row["disablecasino"]);
                 // TO DO hard code
-                customerDetail.GeneralInfo.CasinoDisabledDownline = false;
-                customerDetail.GeneralInfo.HasDownline = true;
 
                 customerDetail.GeneralInfo.GoldDeluxeDisabled = Utils.ToBoolean(row["disablegolddeluxe"]);
                 customerDetail.GeneralInfo.IBCCustID = Utils.ToInt32(row["custid"]);
@@ -112,7 +110,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
             param.Add("custid", custid);
             param.Add("disabledcs", disabledCS);
             param.Add("synccs", syncCS);
-            param.Add("enabledownline", false);
 
             param.Add("userid", userId);
             param.Add("subaccid", subAccId);
@@ -133,13 +130,12 @@ namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
             return cust.UpdateCustEnableCasino(custid, !disabledCS, true, ip, custid, subAccId == 0 ? username : subUsername, 2);
         }
 
-        public bool DoUpdateCSStatusWithoutSync(int custid, bool syncCS, bool disabledCS, bool isUpdDownline, int userId, string ip, int subAccId, byte systemId, string lang, out string errMsg)
+        public bool DoUpdateCSStatusWithoutSync(int custid, bool syncCS, bool disabledCS, int userId, string ip, int subAccId, byte systemId, string lang, out string errMsg)
         {
             Hashtable param = new Hashtable();
             param.Add("custid", custid);
             param.Add("disabledcs", disabledCS);
             param.Add("synccs", syncCS);
-            // param.Add("enabledownline", isUpdDownline);
 
             param.Add("userid", userId);
             param.Add("subaccid", subAccId);

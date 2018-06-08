@@ -606,7 +606,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     custId,
                     true,
                     customerModel.UplineDisabledCasino ? true : customerModel.CasinoDisabled,
-                    !customerModel.CasinoDisabledDownline,
                     modifiedId,
                     ip,
                     AppSession.SubAccountId,
@@ -737,7 +736,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     custId,
                     true,
                     customerModel.UplineDisabledCasino ? true : customerModel.CasinoDisabled,
-                    !customerModel.CasinoDisabledDownline,
                     uplineId,
                     string.Empty,
                     0,
@@ -864,7 +862,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     custId,
                     true,
                     customerModel.UplineDisabledCasino ? true : customerModel.CasinoDisabled,
-                    !customerModel.CasinoDisabledDownline,
                     uplineId,
                     string.Empty,
                     0,
@@ -915,7 +912,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var messages = string.Empty;
             var settingsInserted = true;
             var statusUpdated = true;
-            var maxTransferUpdated = false;
             var casinoPTResult = new Result();
             var enablePTUpdated = false;
             var cust = new Customer();
@@ -986,7 +982,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
                     custId,
                     true,
                     customerModel.UplineDisabledCasino ? true : customerModel.CasinoDisabled,
-                    !customerModel.CasinoDisabledDownline,
                     uplineId,
                     string.Empty,
                     0,
@@ -1149,10 +1144,10 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             return new Result((msg == string.Empty || resultStake.Rows.Count == 0) ? 0 : 1, msg);
         }
 
-        public bool UpdateCSStatus(int custid, bool syncCS, bool disabledCS, bool isUpdDownline, int userId, string ip, int subAccId, byte systemId, string lang, string username, string subUsername, out string errMsg)
+        public bool UpdateCSStatus(int custid, bool syncCS, bool disabledCS, int userId, string ip, int subAccId, byte systemId, string lang, string username, string subUsername, out string errMsg)
         {
             var cust = new Customer();
-            var status = this.DoUpdateCSStatusWithoutSync(custid, syncCS, disabledCS, isUpdDownline, userId, ip, subAccId, systemId, lang, out errMsg);
+            var status = this.DoUpdateCSStatusWithoutSync(custid, syncCS, disabledCS, userId, ip, subAccId, systemId, lang, out errMsg);
 
             if (!status)
             {
@@ -1161,7 +1156,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 
             try
             {
-                status = cust.UpdateCustEnableCasino(custid, !disabledCS, isUpdDownline, ip, custid, username, 2);
+                status = cust.UpdateCustEnableCasino(custid, !disabledCS, false, ip, custid, username, 2);
             }
             catch (ErrorException casinoEx)
             {
@@ -1200,9 +1195,9 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             }
         }
 
-        private bool DoUpdateCSStatusWithoutSync(int custid, bool syncCS, bool disabledCS, bool isUpdDownline, int userId, string ip, int subAccId, byte systemId, string lang, out string errMsg)
+        private bool DoUpdateCSStatusWithoutSync(int custid, bool syncCS, bool disabledCS, int userId, string ip, int subAccId, byte systemId, string lang, out string errMsg)
         {
-            return this._casino.DoUpdateCSStatusWithoutSync(custid, syncCS, disabledCS, isUpdDownline, userId, ip, subAccId, systemId, lang, out errMsg);
+            return this._casino.DoUpdateCSStatusWithoutSync(custid, syncCS, disabledCS, userId, ip, subAccId, systemId, lang, out errMsg);
         }
 
         public Result UpdateMasterSettings(int custId, int roleId, int uplineId, int uplineRoleId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel model)

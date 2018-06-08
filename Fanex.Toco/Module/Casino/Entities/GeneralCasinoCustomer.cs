@@ -28,8 +28,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Entities
 
         public bool CasinoDisabled { get; set; }
 
-        public bool CasinoDisabledDownline { get; set; }
-
         public bool CasinoSync { get; set; }        
 
         public bool GoldDeluxeDisabled { get; set; }
@@ -107,8 +105,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Entities
         public bool IsDeposit { get; set; }
 
         public string SiteName { get; set; }
-
-        public bool HasDownline { get; set; }
 
         public MemberWinLimit MemberWinLimit { get; set; }
     }
