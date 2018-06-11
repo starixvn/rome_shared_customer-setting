@@ -541,7 +541,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var messages = string.Empty;
             var settingsInserted = true;
             var statusUpdated = true;
-            var maxTransferUpdated = false;
             var casinoPTResult = new Result();
             var enablePTUpdated = false;
             var cust = new Customer();
@@ -672,7 +671,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var messages = string.Empty;
             var settingsInserted = true;
             var statusUpdated = true;
-            var maxTransferUpdated = false;
             var casinoPTResult = new Result();
             var enablePTUpdated = false;
             var cust = new Customer();
@@ -792,7 +790,6 @@ namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
             var messages = string.Empty;
             var settingsInserted = true;
             var statusUpdated = true;
-            var maxTransferUpdated = false;
             var casinoPTResult = new Result();
             var enablePTUpdated = false;
             var cust = new Customer();
