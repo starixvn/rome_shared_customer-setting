@@ -321,4 +321,7 @@
   <data name="WarningPowerKeno" xml:space="preserve">
     <value>Australia position taking settings are being used for Max Keno, Max Keno 2, Mini Keno, Mini Keno 2, Spring, Summer, Autumn, Winter.</value>
   </data>
+  <data name="ProductStatus" xml:space="preserve">
+    <value>Product Status</value>
+  </data>
 </root>
