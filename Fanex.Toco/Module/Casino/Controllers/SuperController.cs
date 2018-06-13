@@ -17,6 +17,13 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
     public class SuperController : BaseController
     {
+        private readonly CasinoManager casinoManager;
+
+        public SuperController()
+        {
+            casinoManager = new CasinoManager();
+        }
+
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
         [CasinoUMTimeFilter]
         public ActionResult EditSuper(int id, int uplineId, string groupName = null, bool isSearchAndCopy = false)
@@ -31,7 +38,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
             try
             {
-                customerSetting = CasinoManager.Instance.SuperCasinoModel(id, uplineId);
+                customerSetting = casinoManager.SuperCasinoModel(id, uplineId);
                 customerSetting.IsReadOnly = isSearchAndCopy;
             }
             catch (ErrorException casinoEx)
@@ -61,7 +68,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 return this.ActionDenied(this.Request);
             }
 
-            var ret = CasinoManager.Instance.UpdateSuper(
+            var ret = casinoManager.UpdateSuper(
                 id, 
                 username, 
                 uplineId, 

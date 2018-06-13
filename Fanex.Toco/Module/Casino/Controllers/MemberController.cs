@@ -17,6 +17,13 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
     public class MemberController : BaseController
     {
+        private readonly CasinoManager casinoManager;
+
+        public MemberController()
+        {
+            casinoManager = new CasinoManager();
+        }
+
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
         [CasinoUMTimeFilter]
         public ActionResult EditMember(int id, int uplineId, string groupName = null, bool isSearchAndCopy = false)
@@ -30,7 +37,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
             try
             {
-                customerSetting = CasinoManager.Instance.MemberCasinoModel(id, uplineId);
+                customerSetting = casinoManager.MemberCasinoModel(id, uplineId);
                 customerSetting.IsReadOnly = isSearchAndCopy;
             }
             catch (ErrorException casinoEx)
@@ -62,7 +69,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
             try
             {
-                customerSetting = CasinoManager.Instance.MemberCasinoModelByMaster(id, uplineId);
+                customerSetting = casinoManager.MemberCasinoModelByMaster(id, uplineId);
                 customerSetting.IsReadOnly = isSearchAndCopy;
             }
             catch (ErrorException casinoEx)
@@ -94,7 +101,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
             try
             {
-                customerSetting = CasinoManager.Instance.MemberCasinoModelBySuper(id, uplineId);
+                customerSetting = casinoManager.MemberCasinoModelBySuper(id, uplineId);
                 customerSetting.IsReadOnly = isSearchAndCopy;
             }
             catch (ErrorException casinoEx)
@@ -124,7 +131,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             }
 
             actorName = AppSession.SubAccountId.Equals(0) ? actorName : AppSession.SubAccountName;
-            var result = CasinoManager.Instance.UpdateMember(
+            var result = casinoManager.UpdateMember(
                 id, 
                 username, 
                 uplineId, 
@@ -150,7 +157,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             }
 
             actorName = AppSession.SubAccountId.Equals(0) ? actorName : AppSession.SubAccountName;
-            var result = CasinoManager.Instance.UpdateMemberBySuper(
+            var result = casinoManager.UpdateMemberBySuper(
                 id, 
                 uplineId, 
                 Request.UserHostAddress, 
@@ -175,7 +182,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             }
 
             actorName = AppSession.SubAccountId.Equals(0) ? actorName : AppSession.SubAccountName;
-            var result = CasinoManager.Instance.UpdateMemberByMaster(
+            var result = casinoManager.UpdateMemberByMaster(
                 id, 
                 uplineId, 
                 Request.UserHostAddress, 

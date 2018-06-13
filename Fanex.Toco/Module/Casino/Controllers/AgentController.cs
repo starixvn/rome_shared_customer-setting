@@ -17,6 +17,13 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
     public class AgentController : BaseController
     {
+        private readonly CasinoManager casinoManager;
+
+        public AgentController()
+        {
+            casinoManager = new CasinoManager();
+        }
+
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
         [CasinoUMTimeFilter]
         public ActionResult EditAgent(int id, int uplineId, string groupName = null, bool isSearchAndCopy = false)
@@ -31,7 +38,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
             try
             {
-                customerSetting = CasinoManager.Instance.AgentCasinoModel(id, uplineId);
+                customerSetting = casinoManager.AgentCasinoModel(id, uplineId);
                 customerSetting.IsReadOnly = isSearchAndCopy;
             }
             catch (ErrorException casinoEx)
@@ -64,7 +71,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
             try
             {
-                customerSetting = CasinoManager.Instance.AgentCasinoModelBySuper(id, uplineId);
+                customerSetting = casinoManager.AgentCasinoModelBySuper(id, uplineId);
             }
             catch (ErrorException casinoEx)
             {
@@ -95,7 +102,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
             actorName = AppSession.SubAccountId.Equals(0) ? actorName : AppSession.SubAccountName;
 
-            var ret = CasinoManager.Instance.UpdateAgent(
+            var ret = casinoManager.UpdateAgent(
                 id,
                 username,
                 uplineId,

@@ -260,13 +260,14 @@
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\CasinoCustomerController.cs" />
+    <Compile Include="Criteria\AllowedDownlinesByLevelCriteria.cs" />
     <Compile Include="Criteria\GetEnabledJackpotProductsCriteria.cs" />
     <Compile Include="Entities\CasinoCustomer.cs" />
     <Compile Include="Entities\CurrentMemberWinLoss.cs" />
     <Compile Include="Entities\GeneralCasinoCustomer.cs" />
     <Compile Include="Entities\MemberWinLimit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\Impl\CasinoDao.cs" />
+    <Compile Include="Repositories\Impl\CasinoRepository.cs" />
     <Compile Include="Repositories\Impl\MemberWinLimitRepository.cs" />
     <Compile Include="Repositories\Interface\IMemberWinLimitRepository.cs" />
     <Compile Include="Resources\NGCasinoLang.Designer.cs">
@@ -276,6 +277,10 @@
     </Compile>
     <Compile Include="Services\Impl\CasinoManager.cs" />
     <Compile Include="Services\Impl\CasinoMemberWinLimitService.cs" />
+    <Compile Include="Services\Impl\AgentServices.cs" />
+    <Compile Include="Services\Impl\MasterServices.cs" />
+    <Compile Include="Services\Impl\MemberServices.cs" />
+    <Compile Include="Services\Impl\SuperServices.cs" />
     <Compile Include="Services\Interface\ICasinoMemberWinLimitService.cs" />
     <Compile Include="ViewModels\GameSettingModel.cs" />
   </ItemGroup>

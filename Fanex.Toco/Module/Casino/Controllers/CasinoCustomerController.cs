@@ -1,23 +1,25 @@
 namespace Fanex.CustomerSetting.Module.Casino.Controllers
 {
     using System;
-    using System.Diagnostics;
     using System.Web.Mvc;
-    using Authenticate;
-    using CasinoLibrary.Model.UserException;
-    using Fanex.CustomerSetting.Module.Casino.Entities;
-    using Fanex.CustomerSetting.Module.Casino.Services.Impl;
-    using Fanex.CustomerSetting.Module.Casino.Services.Interface;
-    using Fanex.CustomerSetting.Module.Core.Web;
-    using Fanex.CustomerSetting.Module.Core.Web.Controllers;
-    using Fanex.CustomerSetting.Security.Authenticate;
-    using Fanex.CustomerSetting.Security.Configurations;
-    using Logging.Extensions.Web;
+    using Core.Web.Controllers;
+    using Entities;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
+    using Security.Authenticate;
+    using Security.Configurations;
+    using Services.Impl;
+    using Services.Interface;
 
     public class CasinoCustomerController : BaseController
     {
+        private readonly CasinoManager casinoManager;
+
+        public CasinoCustomerController()
+        {
+            casinoManager = new CasinoManager();
+        }
+
         public ActionResult CustomerInfo()
         {
             return PartialView("~/Areas/CustomerSetting/Views/Casino/Customer/CustomerInfo.cshtml");
@@ -25,18 +27,18 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
         public ActionResult CustomerData(int id, int uplineId)
         {
-            var customerInfo = CasinoManager.Instance.GetCustInfoIBC(id, uplineId);
+            var customerInfo = casinoManager.GetCustInfoIBC(id, uplineId);
             var customerUpline = new CasinoCustomer();
 
             customerUpline.GeneralInfo.IBCCustID = uplineId;
 
             if (uplineId != 0)
             {
-                CasinoManager.Instance.GetCustSettingCS(ref customerUpline);
+                casinoManager.GetCustSettingCS(ref customerUpline);
             }
 
             customerInfo.GeneralInfo.IBCCustID = customerInfo.GeneralInfo.CasinoSync ? id : uplineId;
-            CasinoManager.Instance.GetCustSettingCS(ref customerInfo);
+            casinoManager.GetCustSettingCS(ref customerInfo);
 
             customerInfo.GeneralInfo.UplineRoleId = uplineId != 0 ? customerUpline.GeneralInfo.RoleId : 5;
             customerInfo.GeneralInfo.IsAutoReset = !customerInfo.GeneralInfo.CasinoSync ? true : customerInfo.GeneralInfo.IsAutoReset;

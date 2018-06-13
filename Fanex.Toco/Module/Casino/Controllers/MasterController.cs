@@ -17,6 +17,13 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
     public class MasterController : BaseController
     {
+        private readonly CasinoManager casinoManager;
+
+        public MasterController()
+        {
+            casinoManager = new CasinoManager();
+        }
+
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
         [CasinoUMTimeFilter]
         public ActionResult EditMaster(int id, int uplineId, string groupName = null, bool isSearchAndCopy = false)
@@ -31,7 +38,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
             try
             {
-                customerSetting = CasinoManager.Instance.MasterCasinoModel(id, uplineId);
+                customerSetting = casinoManager.MasterCasinoModel(id, uplineId);
                 customerSetting.IsReadOnly = isSearchAndCopy;
             }
             catch (ErrorException casinoEx)
@@ -63,7 +70,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
             actorName = AppSession.SubAccountId.Equals(0) ? actorName : AppSession.SubAccountName;
 
-            var ret = CasinoManager.Instance.UpdateMaster(id, 
+            var ret = casinoManager.UpdateMaster(id, 
                 username, 
                 uplineId, 
                 Request.UserHostAddress, 

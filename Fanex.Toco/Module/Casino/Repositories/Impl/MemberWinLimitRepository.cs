@@ -12,6 +12,7 @@
     using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.Data;
     using Logging.Extensions.Web;
+    using NAP.Framework.Data;
 
     public class MemberWinLimitRepository : IMemberWinLimitRepository
     {
@@ -94,6 +95,16 @@
             }
 
             return new CurrentMemberWinLoss();
+        }
+
+        public Result ExecuteNonQuery(ICriteria criteria)
+        {
+            using (var db = new ObjectDb(criteria.GetSettingKey()))
+            {
+                db.ExecuteNonQuery(criteria.GetSpParams());
+
+                return new Result(Utils.ToInt32(db.GetParameterValue("errcode")), Utils.ToString(db.GetParameterValue("errmsg")));
+            }
         }
 
         public Result UpdateMemberWinLimit(int custId, int userId, int subAccId, MemberWinLimit memberWinLimit)
