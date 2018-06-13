@@ -132,19 +132,9 @@
             return gameModel;
         }
 
-        public Result UpdateAgent(
-            int custId, 
-            string custName, 
-            int uplineId, 
-            string ip, 
-            int modifiedId, 
-            string modifiedBy, 
-            int fromSystem, 
-            byte systemId, 
-            CasinoSettingModel settingModel, 
-            GeneralCasinoCustomer customerModel)
+        public Result UpdateAgent(UpdateCasinoCommand command)
         {
-            var allowedDownlinesResult = CheckAllowedDownlines(custId, 2);
+            var allowedDownlinesResult = CheckAllowedDownlines(command.CustId, 2);
             if (!allowedDownlinesResult.IsSuccess)
             {
                 return allowedDownlinesResult;
@@ -160,48 +150,48 @@
 
             try
             {
-                if (!customerModel.CasinoSync)
+                if (!command.CustomerModel.CasinoSync)
                 {
-                    var customerInfo = this.GetCustInfoIBC(custId, uplineId);
+                    var customerInfo = this.GetCustInfoIBC(command.CustId, command.UplineId);
                     settingsInserted = cust.InsertCustSetting(
                         "01",
-                        custId,
-                        custName,
-                        customerModel.UserName2,
-                        customerModel.FirstName,
-                        customerModel.LastName,
+                        command.CustId,
+                        command.CustName,
+                        command.CustomerModel.UserName2,
+                        command.CustomerModel.FirstName,
+                        command.CustomerModel.LastName,
                         customerInfo.UserPwd,
-                        customerModel.Phone,
-                        customerModel.MobilePhone,
-                        customerModel.Currency,
-                        customerModel.Fax,
-                        customerModel.Closed,
-                        customerModel.Suspend,
-                        customerModel.IsEnablePT,
-                        (decimal)customerModel.MaxWin,
-                        (decimal)customerModel.MaxLose,
+                        command.CustomerModel.Phone,
+                        command.CustomerModel.MobilePhone,
+                        command.CustomerModel.Currency,
+                        command.CustomerModel.Fax,
+                        command.CustomerModel.Closed,
+                        command.CustomerModel.Suspend,
+                        command.CustomerModel.IsEnablePT,
+                        (decimal)command.CustomerModel.MaxWin,
+                        (decimal)command.CustomerModel.MaxLose,
                         true,
-                        (decimal)customerModel.MaxTransferCredit,
+                        (decimal)command.CustomerModel.MaxTransferCredit,
                         customerInfo.SIBCCustID,
                         customerInfo.MIBCCustID,
-                        custId,
-                        customerModel.PTByGameType,
-                        customerModel.RoleId.ToString(),
+                        command.CustId,
+                        command.CustomerModel.PTByGameType,
+                        command.CustomerModel.RoleId.ToString(),
                         DateTime.Now,
-                        ip,
-                        modifiedId,
-                        modifiedBy,
-                        fromSystem,
-                        customerModel.IsAutoReset,
+                        command.IP,
+                        command.ModifiedId,
+                        command.ModifiedBy,
+                        command.FromSystem,
+                        command.CustomerModel.IsAutoReset,
                         false,
                         false,
-                        customerModel.IsDisableAutoMPT);
+                        command.CustomerModel.IsDisableAutoMPT);
                 }
 
                 // Enable PT/Update max transfer for direct downline only
                 if (statusUpdated)
                 {
-                    enablePTUpdated = cust.UpdateCustEnablePT(custId, true);
+                    enablePTUpdated = cust.UpdateCustEnablePT(command.CustId, true);
                 }
             }
             catch (ErrorException casinoEx)
@@ -215,31 +205,31 @@
             }
 
             // Update Status for direct downline only
-            if ((settingsInserted && !customerModel.CasinoSync) || customerModel.CasinoSync)
+            if ((settingsInserted && !command.CustomerModel.CasinoSync) || command.CustomerModel.CasinoSync)
             {
                 statusUpdated = this.UpdateCSStatus(
-                    custId,
+                    command.CustId,
                     true,
-                    customerModel.UplineDisabledCasino ? true : customerModel.CasinoDisabled,
-                    uplineId,
+                    command.CustomerModel.UplineDisabledCasino ? true : command.CustomerModel.CasinoDisabled,
+                    command.UplineId,
                     string.Empty,
                     0,
-                    systemId,
+                    command.SystemId,
                     "en",
-                    customerModel.UserName,
+                    command.CustomerModel.UserName,
                     string.Empty,
                     out errMsg);
             }
 
             // Update PT/Betting limit settings
             casinoPTResult = this.UpdateAgentSettings(
-                custId,
-                customerModel.RoleId,
-                ip,
-                modifiedId,
-                modifiedBy,
-                fromSystem,
-                settingModel);
+                command.CustId,
+                command.CustomerModel.RoleId,
+                command.IP,
+                command.ModifiedId,
+                command.ModifiedBy,
+                command.FromSystem,
+                command.SettingModel);
 
             // Gets error messages
             messages += string.IsNullOrWhiteSpace(errMsg) && casinoPTResult.IsSuccess ? string.Empty : !string.IsNullOrWhiteSpace(errMsg) ? errMsg + "<br />" + casinoPTResult.ErrorMessage : casinoPTResult.ErrorMessage;
@@ -257,7 +247,7 @@
             if (result.IsSuccess)
             {
                 MemberWinLimitService service = new MemberWinLimitServiceImpl();
-                result = service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.MemberWinLimit);
+                result = service.UpdateMemberWinLimit(command.CustId, command.ModifiedId, AppSession.SubAccountId, command.CustomerModel.MemberWinLimit);
             }
 
             return result;

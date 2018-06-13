@@ -128,7 +128,15 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
         [CasinoUMTimeFilter]
         [AntiXSRFFilter]
-        public ActionResult UpdateMemberPost(int id, string username, int uplineId, int userId, string actorName, string settingModel, string customerModel, string groupName = null)
+        public ActionResult UpdateMemberPost(
+            int id, 
+            string username, 
+            int uplineId, 
+            int userId, 
+            string actorName, 
+            string settingModel, 
+            string customerModel, 
+            string groupName = null)
         {
             if (!IsBelong(id, groupName))
             {
@@ -136,7 +144,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             }
 
             actorName = AppSession.SubAccountId.Equals(0) ? actorName : AppSession.SubAccountName;
-            var result = memberServices.UpdateMember(
+            var result = memberServices.UpdateMember( new UpdateCasinoCommand(
                 id, 
                 username, 
                 uplineId, 
@@ -146,7 +154,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 AppSession.CurrentSession.FromSystem, 
                 SystemId,
                 JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), 
-                JsonConvert.DeserializeObject<GeneralCasinoCustomer>(customerModel));
+                JsonConvert.DeserializeObject<GeneralCasinoCustomer>(customerModel)));
 
             return JsonBase(new { ErrorCode = result.IsSuccess ? 0 : 1, ErrorMessage = result.ErrorMessage });
         }
@@ -154,7 +162,14 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
         [CasinoUMTimeFilter]
         [AntiXSRFFilter]
-        public ActionResult UpdateMemberBySuperPost(int id, int uplineId, int userId, string actorName, string settingModel, string customerModel, string groupName = null)
+        public ActionResult UpdateMemberBySuperPost(
+            int id, 
+            int uplineId, 
+            int userId, 
+            string actorName, 
+            string settingModel, 
+            string customerModel, 
+            string groupName = null)
         {
             if (!IsBelong(id, groupName))
             {
@@ -162,8 +177,9 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             }
 
             actorName = AppSession.SubAccountId.Equals(0) ? actorName : AppSession.SubAccountName;
-            var result = memberServices.UpdateMemberBySuper(
-                id, 
+            var result = memberServices.UpdateMemberBySuper(new UpdateCasinoCommand(
+                id,
+                string.Empty,
                 uplineId, 
                 Request.UserHostAddress, 
                 userId, 
@@ -171,7 +187,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 AppSession.CurrentSession.FromSystem, 
                 SystemId,
                 JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), 
-                JsonConvert.DeserializeObject<GeneralCasinoCustomer>(customerModel));
+                JsonConvert.DeserializeObject<GeneralCasinoCustomer>(customerModel)));
 
             return JsonBase(new { ErrorCode = result.IsSuccess ? 0 : 1, ErrorMessage = result.ErrorMessage });
         }
@@ -179,7 +195,14 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
         [CasinoUMTimeFilter]
         [AntiXSRFFilter]
-        public ActionResult UpdateMemberByMasterPost(int id, int uplineId, int userId, string actorName, string settingModel, string customerModel, string groupName = null)
+        public ActionResult UpdateMemberByMasterPost(
+            int id, 
+            int uplineId, 
+            int userId, 
+            string actorName, 
+            string settingModel, 
+            string customerModel, 
+            string groupName = null)
         {
             if (!IsBelong(id, groupName))
             {
@@ -187,8 +210,9 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             }
 
             actorName = AppSession.SubAccountId.Equals(0) ? actorName : AppSession.SubAccountName;
-            var result = memberServices.UpdateMemberByMaster(
-                id, 
+            var result = memberServices.UpdateMemberByMaster(new UpdateCasinoCommand(
+                id,
+                string.Empty,
                 uplineId, 
                 Request.UserHostAddress, 
                 userId, 
@@ -196,7 +220,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 AppSession.CurrentSession.FromSystem, 
                 SystemId,
                 JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), 
-                JsonConvert.DeserializeObject<GeneralCasinoCustomer>(customerModel));
+                JsonConvert.DeserializeObject<GeneralCasinoCustomer>(customerModel)));
 
             return JsonBase(new { ErrorCode = result.IsSuccess ? 0 : 1, ErrorMessage = result.ErrorMessage });
         }
