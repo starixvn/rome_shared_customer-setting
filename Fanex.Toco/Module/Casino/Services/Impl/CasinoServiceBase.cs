@@ -16,17 +16,17 @@
     using Repositories.Impl;
     using ViewModels;
 
-    public partial class CasinoManager
+    public class CasinoServiceBase
     {
-        private const int Super = 4;
-        private const int Master = 3;
-        private const int Agent = 2;
-        private const int Member = 1;
+        protected const int Super = 4;
+        protected const int Master = 3;
+        protected const int Agent = 2;
+        protected const int Member = 1;
 
-        private readonly CasinoRepository casinoRepository;
-        private DataTable _tblCustMultipleStakeLevel;
+        protected readonly CasinoRepository casinoRepository;
+        protected DataTable _tblCustMultipleStakeLevel;
 
-        public CasinoManager(CasinoRepository casinoRepository = null)
+        public CasinoServiceBase(CasinoRepository casinoRepository = null)
         {
             this.casinoRepository = casinoRepository ?? new CasinoRepositoryImpl();
         }
@@ -116,7 +116,7 @@
             return productIds.Any();
         }
 
-        private static string Lang(string original)
+        public static string Lang(string original)
         {
             switch (AppSession.Language)
             {
@@ -144,7 +144,7 @@
             return this.casinoRepository.DoUpdateCSStatusWithoutSync(custid, syncCS, disabledCS, userId, ip, subAccId, systemId, lang, out errMsg);
         }
 
-        private string SelectedStakeLevels(List<StakeLevel> stakes)
+        protected string SelectedStakeLevels(List<StakeLevel> stakes)
         {
             var selectedLevels = string.Empty;
 
@@ -156,7 +156,7 @@
             return selectedLevels.EndsWith(",") ? selectedLevels.Substring(0, selectedLevels.Length - 1) : selectedLevels;
         }
 
-        private DataTable GameKindsDataTable()
+        protected DataTable GameKindsDataTable()
         {
             var dt = new DataTable();
             dt.Columns.AddRange(
@@ -188,7 +188,7 @@
             return dt;
         }
 
-        private DataTable GameTypesDataTable()
+        protected DataTable GameTypesDataTable()
         {
             var dt = new DataTable();
             dt.Columns.AddRange(
@@ -221,7 +221,7 @@
             return dt;
         }
 
-        private DataTable GameTypesStakesDataTable()
+        protected DataTable GameTypesStakesDataTable()
         {
             var dt = new DataTable();
             dt.Columns.AddRange(
@@ -240,7 +240,7 @@
             return dt;
         }
 
-        private List<StakeLevel> GetStakeLevels(
+        protected List<StakeLevel> GetStakeLevels(
             int custId, 
             int gameTypeID, 
             int exchangeId = 0, 
@@ -279,14 +279,14 @@
             return stakeLevels;
         }
 
-        private DataTable GetCustStakeLevel(int gameTypeID)
+        protected DataTable GetCustStakeLevel(int gameTypeID)
         {
             DataRow[] result = null;
             result = this._tblCustMultipleStakeLevel.Select("GameTypeID = " + gameTypeID);
             return result == null || result.Length == 0 ? this._tblCustMultipleStakeLevel.Clone() : result.CopyToDataTable();
         }
 
-        private Result CheckAllowedDownlines(int custId, byte custRole)
+        protected Result CheckAllowedDownlines(int custId, byte custRole)
             => casinoRepository.ExecuteNonQuery(new AllowedDownlinesCriteria(custId, custRole));
     }
 }

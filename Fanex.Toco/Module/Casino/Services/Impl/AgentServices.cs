@@ -15,7 +15,7 @@
     using Logging.Extensions.Web;
     using ViewModels;
 
-    public partial class CasinoManager
+    public class AgentServices : CasinoServiceBase
     {
         public CasinoSettingModel AgentCasinoModel(int custId, int uplineId)
         {

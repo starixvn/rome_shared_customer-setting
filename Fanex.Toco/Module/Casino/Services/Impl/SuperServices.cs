@@ -17,7 +17,7 @@
     using Logging.Extensions.Web;
     using ViewModels;
 
-    public partial class CasinoManager
+    public class SuperServices : CasinoServiceBase
     {
         public CasinoSettingModel SuperCasinoModel(int custId, int uplineId)
         {
@@ -187,11 +187,9 @@
             }
 
             // Update PT/Betting limit settings
-            casinoPTResult = this.UpdateMasterSettings(
+            casinoPTResult = this.UpdateSuperSettings(
                 custId,
                 customerModel.RoleId,
-                uplineId,
-                customerModel.UplineRoleId,
                 ip,
                 modifiedId,
                 modifiedBy,
@@ -276,25 +274,81 @@
             return gameTypes;
         }
 
-        public Result UpdateSuperBettingLimit(
-            int custId, 
-            int roleId, 
-            string ip, 
-            int modifiedId, 
-            string modifiedBy, 
-            int fromSystem, 
-            CasinoSettingModel model, 
-            CasinoCustomer customer)
+        private Result UpdateSuperSettings(
+            int custId,
+            int roleId,
+            string ip,
+            int modifiedId,
+            string modifiedBy,
+            int fromSystem,
+            CasinoSettingModel model)
         {
             var msg = string.Empty;
+            var gameKindTable = this.GameKindsDataTable();
+            var gameTypeTable = this.GameTypesDataTable();
             var gameStakeTable = this.GameTypesStakesDataTable();
 
             foreach (var gameGroup in model.GameGroups)
             {
                 var gameGroupID = gameGroup.GameGroupID;
 
-                foreach (var gameType in gameGroup.GameTypes)
+                gameKindTable.Rows.Add(
+                    new object[]
+                            {
+                                custId,
+                                gameGroupID,
+                                null,
+                                !(roleId == Super || roleId == Master) || gameGroup.Is3 == true ? null : (object)gameGroup.S3,
+                                !(roleId == Master || roleId == Agent) || gameGroup.Im2== true ? null : (object)gameGroup.M3,
+                                !(roleId == Agent || roleId == Member) ? null : (object)gameGroup.N3,
+                                gameGroup.Is3 == true ? 1 : 0,
+                                !gameGroup.Is3 == true ? null : (object)gameGroup.Us3,
+                                0,
+                                null,
+                                !(roleId == Super || roleId == Master || roleId == Agent) ? null : (object)gameGroup.N3,
+                                0,
+                                roleId != Super ? null : (object)gameGroup.Mco, //// Mco instead of Sco coz use in View.
+                                roleId != Master ? null : (object)gameGroup.Mco,
+                                roleId != Agent ? null : (object)gameGroup.Aco,
+                                roleId != Member ? null : (object)gameGroup.co,
+                                roleId,
+                                ip,
+                                modifiedId,
+                                modifiedBy,
+                                fromSystem
+                            });
+
+                var gameTypes = gameGroup.GameTypes;
+
+                foreach (var gameType in gameTypes)
                 {
+                    gameTypeTable.Rows.Add(
+                       new object[]
+                            {
+                                custId,
+                                gameType.GameTypeID,
+                                null,
+                                !(roleId == Super || roleId == Master) || gameType.Is3 == true ? null : (object)gameType.S3,
+                                !(roleId == Master || roleId == Agent)  || gameType.Im2 == true? null : (object)gameType.M3,
+                                !(roleId == Agent || roleId == Member) ? null : (object)gameType.N3,
+                                gameType.Is3 == true ? 1 : 0,
+                                !gameType.Is3 == true ? null : (object)gameType.Us3,
+                                 0,
+                                 null,
+                                !(roleId == Super || roleId == Master || roleId == Member) ? null : (object)gameType.N3,
+                                0,
+                                roleId != Super ? null : (object)gameType.Sco,
+                                roleId != Master ? null : (object)gameType.Mco,
+                                roleId != Agent ? null : (object)gameType.Aco,
+                                roleId != Member ? null : (object)gameType.co,
+                                this.SelectedStakeLevels(gameType.BettingLimits),
+                                roleId,
+                                ip,
+                                modifiedId,
+                                modifiedBy,
+                                fromSystem
+                            });
+
                     gameStakeTable.Rows.Add(
                         new object[]
                             {
@@ -310,20 +364,46 @@
                 }
             }
 
+            var resultKind = new DataTable();
+            var resultType = new DataTable();
             var resultStake = new DataTable();
             var cust = new Customer();
 
-            resultStake = cust.UpdateCustGameTypeStakeLevel(gameStakeTable);
+            resultKind = cust.UpdateCustGameKind(gameKindTable);
+
+            if (model.IsPtByGameType)
+            {
+                resultType = cust.UpdateCustGameType(gameTypeTable);
+            }
+            else
+            {
+                resultStake = cust.UpdateCustGameTypeStakeLevel(gameStakeTable);
+            }
 
             // Process error messages
-            foreach (DataRow item in resultStake.Rows)
+            foreach (DataRow item in resultKind.Rows)
             {
                 msg += item.Field<string>("ErrMsg") + "<br />";
             }
 
+            if (model.IsPtByGameType)
+            {
+                foreach (DataRow item in resultType.Rows)
+                {
+                    msg += item.Field<string>("ErrMsg") + "<br />";
+                }
+            }
+            else
+            {
+                foreach (DataRow item in resultStake.Rows)
+                {
+                    msg += item.Field<string>("ErrMsg") + "<br />";
+                }
+            }
+
             msg = msg.EndsWith("<br />") ? msg.Substring(0, msg.LastIndexOf("<br />")) : msg;
 
-            return new Result((msg == string.Empty || resultStake.Rows.Count == 0) ? 0 : 1, msg);
+            return new Result(msg == string.Empty || (resultKind.Rows.Count == 0 && resultType.Rows.Count == 0 && resultStake.Rows.Count == 0) ? 0 : 1, msg);
         }
     }
 }

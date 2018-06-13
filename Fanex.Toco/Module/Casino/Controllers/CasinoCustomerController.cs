@@ -13,11 +13,11 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
     public class CasinoCustomerController : BaseController
     {
-        private readonly CasinoManager casinoManager;
+        private readonly CasinoServiceBase casinoManager;
 
         public CasinoCustomerController()
         {
-            casinoManager = new CasinoManager();
+            casinoManager = new CasinoServiceBase();
         }
 
         public ActionResult CustomerInfo()

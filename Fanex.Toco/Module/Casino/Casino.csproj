@@ -275,7 +275,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NGCasinoLang.resx</DependentUpon>
     </Compile>
-    <Compile Include="Services\Impl\CasinoManager.cs" />
+    <Compile Include="Services\Impl\CasinoServiceBase.cs" />
     <Compile Include="Services\Impl\CasinoMemberWinLimitService.cs" />
     <Compile Include="Services\Impl\AgentServices.cs" />
     <Compile Include="Services\Impl\MasterServices.cs" />

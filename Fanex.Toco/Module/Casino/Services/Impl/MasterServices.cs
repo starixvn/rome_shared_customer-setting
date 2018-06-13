@@ -15,7 +15,7 @@
     using Logging.Extensions.Web;
     using ViewModels;
 
-    public partial class CasinoManager
+    public class MasterServices : CasinoServiceBase
     {
         public CasinoSettingModel MasterCasinoModel(int custId, int uplineId)
         {
@@ -46,7 +46,7 @@
                 var gameGroup = new GameGroup();
 
                 // Commission
-                gameGroup.Mco = Utils.ToDecimal(row["MAgentRollingRate"]).Format(4); // synced ? Utils.ToDecimal(row["UplineMAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["MAgentRollingRate"]).Format(4);
+                gameGroup.Mco = Utils.ToDecimal(row["MAgentRollingRate"]).Format(4); 
                 gameGroup.Sco = synced ? Utils.ToDecimal(row["UplineSMAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["SMAgentRollingRate"]).Format(4);
 
                 if (!synced)
@@ -60,7 +60,7 @@
 
                 // Super preset PT
                 gameGroup.S4 = synced ? Utils.ToDecimal(row["UplineMaxPositionTaking"]).Format(2) : Utils.ToDecimal(row["MaxPositionTaking"]).Format(2);
-                gameGroup.S3 = Utils.ToDecimal(row["SPositionTaking"]).Format(2); // synced ? Utils.ToDecimal(row["UplineSPositionTaking"]).Format(2) : Utils.ToDecimal(row["SPositionTaking"]).Format(2);
+                gameGroup.S3 = Utils.ToDecimal(row["SPositionTaking"]).Format(2); 
 
                 // Super Auto PT
                 gameGroup.Is3 = Utils.ToBoolean(row["IsAutoPositionTaking"]);
