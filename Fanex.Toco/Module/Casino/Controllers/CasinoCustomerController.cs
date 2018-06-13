@@ -13,11 +13,15 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
     public class CasinoCustomerController : BaseController
     {
-        private readonly CasinoServiceBase casinoManager;
+        private readonly CasinoServiceBase casinoServiceBase;
 
-        public CasinoCustomerController()
+        public CasinoCustomerController() : this(null)
         {
-            casinoManager = new CasinoServiceBase();
+        }
+
+        public CasinoCustomerController(CasinoServiceBase casinoServiceBase)
+        {
+            this.casinoServiceBase = casinoServiceBase ?? new CasinoServiceBaseImpl();
         }
 
         public ActionResult CustomerInfo()
@@ -27,18 +31,18 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
 
         public ActionResult CustomerData(int id, int uplineId)
         {
-            var customerInfo = casinoManager.GetCustInfoIBC(id, uplineId);
+            var customerInfo = casinoServiceBase.GetCustInfoIBC(id, uplineId);
             var customerUpline = new CasinoCustomer();
 
             customerUpline.GeneralInfo.IBCCustID = uplineId;
 
             if (uplineId != 0)
             {
-                casinoManager.GetCustSettingCS(ref customerUpline);
+                customerUpline = casinoServiceBase.GetCustSettingCS(customerUpline);
             }
 
             customerInfo.GeneralInfo.IBCCustID = customerInfo.GeneralInfo.CasinoSync ? id : uplineId;
-            casinoManager.GetCustSettingCS(ref customerInfo);
+            customerInfo = casinoServiceBase.GetCustSettingCS(customerInfo);
 
             customerInfo.GeneralInfo.UplineRoleId = uplineId != 0 ? customerUpline.GeneralInfo.RoleId : 5;
             customerInfo.GeneralInfo.IsAutoReset = !customerInfo.GeneralInfo.CasinoSync ? true : customerInfo.GeneralInfo.IsAutoReset;
@@ -55,7 +59,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             }
 
             // Gets member win limit information.
-            ICasinoMemberWinLimitService winLimitService = new CasinoMemberWinLimitService();
+            MemberWinLimitService winLimitService = new MemberWinLimitServiceImpl();
             customerInfo.GeneralInfo.MemberWinLimit = winLimitService.GetMemberWinLimit(id);
 
             var generalCustomer = customerInfo.GeneralInfo;
@@ -83,7 +87,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 return ActionDenied(Request);
             }
 
-            ICasinoMemberWinLimitService service = new CasinoMemberWinLimitService();
+            MemberWinLimitService service = new MemberWinLimitServiceImpl();
 
             var result = service.GetCurrentWinLimit(id);
 

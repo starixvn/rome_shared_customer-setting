@@ -17,7 +17,7 @@
     using Logging.Extensions.Web;
     using ViewModels;
 
-    public class SuperServices : CasinoServiceBase
+    public class SuperServicesImpl : CasinoServiceBaseImpl, SuperServices
     {
         public CasinoSettingModel SuperCasinoModel(int custId, int uplineId)
         {
@@ -43,7 +43,7 @@
                 throw new Exception("Invalid custId");
             }
 
-            this.GetCustSettingCS(ref custInfo);
+            custInfo = this.GetCustSettingCS(custInfo);
             gameModel.IsPtByGameType = custInfo.GeneralInfo.PTByGameType;
 
             foreach (DataRow row in dt.Rows)
@@ -211,7 +211,7 @@
 
             if (result.IsSuccess)
             {
-                ICasinoMemberWinLimitService service = new CasinoMemberWinLimitService();
+                MemberWinLimitService service = new MemberWinLimitServiceImpl();
                 result = service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.MemberWinLimit);
             }
 
@@ -404,6 +404,13 @@
             msg = msg.EndsWith("<br />") ? msg.Substring(0, msg.LastIndexOf("<br />")) : msg;
 
             return new Result(msg == string.Empty || (resultKind.Rows.Count == 0 && resultType.Rows.Count == 0 && resultStake.Rows.Count == 0) ? 0 : 1, msg);
+        }
+
+        private bool IsEnabledJackpot(int custId)
+        {
+            var productIds = casinoRepository.GetEnabledJackpotProducts(new Criteria.GetEnabledJackpotProductsCriteria(custId, Configurations.AppSettings.LocalTest));
+
+            return productIds.Any();
         }
     }
 }

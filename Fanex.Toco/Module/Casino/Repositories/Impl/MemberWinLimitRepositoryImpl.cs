@@ -4,17 +4,17 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.Globalization;
-    using Fanex.CustomerSetting.Module.Casino.Entities;
-    using Fanex.CustomerSetting.Module.Casino.Repositories.Interface;
-    using Fanex.CustomerSetting.Module.Casino.Resources;
-    using Fanex.CustomerSetting.Module.Core;
-    using Fanex.CustomerSetting.Module.Core.Models;
-    using Fanex.CustomerSetting.Module.Core.Web;
-    using Fanex.Data;
+    using Core;
+    using Core.Models;
+    using Core.Web;
+    using Data;
+    using Entities;
+    using Interface;
     using Logging.Extensions.Web;
     using NAP.Framework.Data;
+    using Resources;
 
-    public class MemberWinLimitRepository : IMemberWinLimitRepository
+    public class MemberWinLimitRepositoryImpl : MemberWinLimitRepository
     {
         public MemberWinLimit GetMemberWinLimit(int custId)
         {

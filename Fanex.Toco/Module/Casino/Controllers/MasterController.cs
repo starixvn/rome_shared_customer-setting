@@ -13,15 +13,20 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
     using Security.Authenticate;
     using Security.Configurations;
     using Services.Impl;
+    using Services.Interface;
     using ViewModels;
 
     public class MasterController : BaseController
     {
         private readonly MasterServices masterServices;
 
-        public MasterController()
+        public MasterController() : this(null)
         {
-            masterServices = new MasterServices();
+        }
+
+        public MasterController(MasterServices masterServices)
+        {
+            this.masterServices = masterServices ?? new MasterServicesImpl();
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]

@@ -13,15 +13,20 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
     using Security.Authenticate;
     using Security.Configurations;
     using Services.Impl;
+    using Services.Interface;
     using ViewModels;
 
     public class SuperController : BaseController
     {
         private readonly SuperServices superServices;
 
-        public SuperController()
+        public SuperController() : this(null)
         {
-            superServices = new SuperServices();
+        }
+
+        public SuperController(SuperServices superServices)
+        {
+            this.superServices = superServices ?? new SuperServicesImpl();
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]

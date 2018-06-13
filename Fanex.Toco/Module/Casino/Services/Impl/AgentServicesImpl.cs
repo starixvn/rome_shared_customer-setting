@@ -15,9 +15,9 @@
     using Logging.Extensions.Web;
     using ViewModels;
 
-    public class MasterServices : CasinoServiceBase
+    public class AgentServicesImpl : CasinoServiceBaseImpl, AgentServices
     {
-        public CasinoSettingModel MasterCasinoModel(int custId, int uplineId)
+        public CasinoSettingModel AgentCasinoModel(int custId, int uplineId)
         {
             var gameModel = new CasinoSettingModel();
             var gameGroups = new List<GameGroup>();
@@ -32,9 +32,9 @@
             // Gets upline settings
             casinoSettingUpline.GeneralInfo.IBCCustID = uplineId;
             casinoSettingUpline.GeneralInfo.UplineRoleId = custInfo.GeneralInfo.RoleId + 1;
-            this.GetCustSettingCS(ref casinoSettingUpline);
+            casinoSettingUpline = this.GetCustSettingCS(casinoSettingUpline);
 
-            if (custInfo.GeneralInfo.RoleId != Master)
+            if (custInfo.GeneralInfo.RoleId != Agent)
             {
                 throw new Exception("Invalid custId");
             }
@@ -46,34 +46,34 @@
                 var gameGroup = new GameGroup();
 
                 // Commission
-                gameGroup.Mco = Utils.ToDecimal(row["MAgentRollingRate"]).Format(4); 
-                gameGroup.Sco = synced ? Utils.ToDecimal(row["UplineSMAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["SMAgentRollingRate"]).Format(4);
+                gameGroup.Aco = synced ? Utils.ToDecimal(row["AgentRollingRate"]).Format(4) : Utils.ToDecimal(row["UplineAgentRollingRate"]).Format(4);
+                gameGroup.Mco = synced ? Utils.ToDecimal(row["UplineMAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["MAgentRollingRate"]).Format(4);
 
                 if (!synced)
                 {
-                    gameGroup.Mco = gameGroup.Sco;
+                    gameGroup.Aco = gameGroup.Mco;
                 }
 
                 // Game Group Info
                 gameGroup.GameGroupID = Utils.ToInt32(row["GameKind"]);
                 gameGroup.GameGroupName = Utils.ToString(row[Lang("GameKindName")]);
 
-                // Super preset PT
-                gameGroup.S4 = synced ? Utils.ToDecimal(row["UplineMaxPositionTaking"]).Format(2) : Utils.ToDecimal(row["MaxPositionTaking"]).Format(2);
-                gameGroup.S3 = Utils.ToDecimal(row["SPositionTaking"]).Format(2); 
+                // Master preset PT
+                gameGroup.M3 = !synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
+                gameGroup.M2 = Utils.ToDecimal(row["MPositionTaking"]).Format(2); 
 
-                // Super Auto PT
-                gameGroup.Is3 = Utils.ToBoolean(row["IsAutoPositionTaking"]);
-                gameGroup.Us3 = Utils.ToDecimal(row["AutoPositionTaking"]).Format(2);
+                // Master Auto PT
+                gameGroup.Im2 = Utils.ToBoolean(row["IsAutoMPositionTaking"]);
+                gameGroup.Um2 = Utils.ToDecimal(row["AutoMPositionTaking"]).Format(2);
 
-                // Master Max PT
-                gameGroup.M3 = synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
+                // Agent Max PT
+                gameGroup.A2 = synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
 
-                // Master Min PT
-                gameGroup.N3 = synced ? Utils.ToDecimal(row["MinPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMinPositionTaking"]).Format(2);
+                // Agent Min PT
+                gameGroup.N2 = !synced ? 0 : Utils.ToDecimal(row["MinPositionTaking"]).Format(2);
 
                 // Assign game types
-                var gameTypes = this.GetGameTypeMaster(id, gameGroup.GameGroupID, synced, ref gameGroup, gameModel.IsPtByGameType);
+                var gameTypes = this.GetGameTypeAgent(id, gameGroup.GameGroupID, synced, ref gameGroup, gameModel.IsPtByGameType);
                 gameGroup.GameTypes = gameTypes;
 
                 gameGroups.Add(gameGroup);
@@ -84,19 +84,67 @@
             return gameModel;
         }
 
-        public Result UpdateMaster(
-          int custId,
-          string custName,
-          int uplineId,
-          string ip,
-          int modifiedId,
-          string modifiedBy,
-          int fromSystem,
-          byte systemId,
-          CasinoSettingModel settingModel,
-          GeneralCasinoCustomer customerModel)
+        public CasinoSettingModel AgentCasinoModelBySuper(int custId, int uplineId)
         {
-            var allowedDownlinesResult = CheckAllowedDownlines(custId, 3);
+            var gameModel = new CasinoSettingModel();
+            var gameGroups = new List<GameGroup>();
+            var custInfo = this.GetCustInfoIBC(custId, uplineId);
+            var synced = custInfo.GeneralInfo.CasinoSync;
+            var id = synced ? custId : uplineId;
+            var cust = new Customer();
+            var dt = cust.GetCustGameKind(id);
+
+            var casinoSettingUpline = new CasinoCustomer();
+
+            // Gets upline settings
+            casinoSettingUpline.GeneralInfo.IBCCustID = uplineId;
+            casinoSettingUpline.GeneralInfo.UplineRoleId = custInfo.GeneralInfo.RoleId + 2;
+            casinoSettingUpline = this.GetCustSettingCS(casinoSettingUpline);
+
+            if (custInfo.GeneralInfo.RoleId != Agent)
+            {
+                throw new Exception("Invalid custId");
+            }
+
+            gameModel.IsPtByGameType = casinoSettingUpline.GeneralInfo.PTByGameType;
+
+            foreach (DataRow row in dt.Rows)
+            {
+                var gameGroup = new GameGroup();
+
+                // Game Group Info
+                gameGroup.GameGroupID = Utils.ToInt32(row["GameKind"]);
+                gameGroup.GameGroupName = Utils.ToString(row[Lang("GameKindName")]);
+
+                // Master preset PT
+                gameGroup.M3 = synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
+                gameGroup.M2 = synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
+
+                // Assign game types
+                var gameTypes = this.GetGameTypeAgentBySuper(id, gameGroup.GameGroupID, synced);
+                gameGroup.GameTypes = gameTypes;
+
+                gameGroups.Add(gameGroup);
+            }
+
+            gameModel.GameGroups = gameGroups;
+
+            return gameModel;
+        }
+
+        public Result UpdateAgent(
+            int custId, 
+            string custName, 
+            int uplineId, 
+            string ip, 
+            int modifiedId, 
+            string modifiedBy, 
+            int fromSystem, 
+            byte systemId, 
+            CasinoSettingModel settingModel, 
+            GeneralCasinoCustomer customerModel)
+        {
+            var allowedDownlinesResult = CheckAllowedDownlines(custId, 2);
             if (!allowedDownlinesResult.IsSuccess)
             {
                 return allowedDownlinesResult;
@@ -149,6 +197,12 @@
                         false,
                         customerModel.IsDisableAutoMPT);
                 }
+
+                // Enable PT/Update max transfer for direct downline only
+                if (statusUpdated)
+                {
+                    enablePTUpdated = cust.UpdateCustEnablePT(custId, true);
+                }
             }
             catch (ErrorException casinoEx)
             {
@@ -175,20 +229,12 @@
                     customerModel.UserName,
                     string.Empty,
                     out errMsg);
-
-                // Enable PT/Update max transfer for direct downline only
-                if (statusUpdated)
-                {
-                    enablePTUpdated = cust.UpdateCustEnablePT(custId, true);
-                }
             }
 
             // Update PT/Betting limit settings
-            casinoPTResult = this.UpdateMasterSettings(
+            casinoPTResult = this.UpdateAgentSettings(
                 custId,
                 customerModel.RoleId,
-                uplineId,
-                customerModel.UplineRoleId,
                 ip,
                 modifiedId,
                 modifiedBy,
@@ -210,21 +256,19 @@
 
             if (result.IsSuccess)
             {
-                ICasinoMemberWinLimitService service = new CasinoMemberWinLimitService();
+                MemberWinLimitService service = new MemberWinLimitServiceImpl();
                 result = service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.MemberWinLimit);
             }
 
             return result;
         }
 
-        public Result UpdateMasterSettings(
+        private Result UpdateAgentSettings(
             int custId, 
-            int roleId, 
-            int uplineId, 
-            int uplineRoleId, 
+            int roleId,
             string ip, 
             int modifiedId, 
-            string modifiedBy,
+            string modifiedBy, 
             int fromSystem, 
             CasinoSettingModel model)
         {
@@ -232,6 +276,7 @@
             var gameKindTable = this.GameKindsDataTable();
             var gameTypeTable = this.GameTypesDataTable();
             var gameStakeTable = this.GameTypesStakesDataTable();
+            var cust = new Customer();
 
             foreach (var gameGroup in model.GameGroups)
             {
@@ -243,16 +288,16 @@
                                 custId,
                                 gameGroupID,
                                 null,
-                                !(roleId == Super || roleId == Master) || gameGroup.Is3 == true ? null : (object)gameGroup.S3,
-                                !(roleId == Master || roleId == Agent) || gameGroup.Im2== true ? null : (object)gameGroup.M3,
-                                !(roleId == Agent || roleId == Member) ? null : (object)gameGroup.N3,
-                                gameGroup.Is3 == true ? 1 : 0,
-                                !gameGroup.Is3 == true ? null : (object)gameGroup.Us3,
+                                !(roleId == Super || roleId == Master) || gameGroup.Is3 == true ? null : (object)gameGroup.M3,
+                                !(roleId == Master || roleId == Agent) || gameGroup.Im2 == true ?  null : (object)gameGroup.M2,
+                                !(roleId == Agent || roleId == Member) ? null : (object)gameGroup.A2,
                                 0,
                                 null,
-                                !(roleId == Super || roleId == Master || roleId == Agent) ? null : (object)gameGroup.N3,
+                                gameGroup.Im2 == true ? 1 : 0,
+                                !gameGroup.Im2 == true ? null : (object)gameGroup.Um2,
+                                !(roleId == Super || roleId == Master || roleId == Agent) ? null : (object)gameGroup.N2,
                                 0,
-                                roleId != Super ? null : (object)gameGroup.Mco, //// Mco instead of Sco coz use in View.
+                                roleId != Super ? null : (object)gameGroup.Sco,
                                 roleId != Master ? null : (object)gameGroup.Mco,
                                 roleId != Agent ? null : (object)gameGroup.Aco,
                                 roleId != Member ? null : (object)gameGroup.co,
@@ -268,19 +313,19 @@
                 foreach (var gameType in gameTypes)
                 {
                     gameTypeTable.Rows.Add(
-                       new object[]
+                        new object[]
                             {
                                 custId,
                                 gameType.GameTypeID,
                                 null,
-                                !(roleId == Super || roleId == Master) || gameType.Is3 == true ? null : (object)gameType.S3,
-                                !(roleId == Master || roleId == Agent)  || gameType.Im2 == true? null : (object)gameType.M3,
-                                !(roleId == Agent || roleId == Member) ? null : (object)gameType.N3,
-                                gameType.Is3 == true ? 1 : 0,
-                                !gameType.Is3 == true ? null : (object)gameType.Us3,
+                                !(roleId == Super || roleId == Master) || gameType.Is3 == true ? null : (object)gameType.M3,
+                                !(roleId == Master || roleId == Agent) || gameType.Im2 == true ? null : (object)gameType.M2,
+                                !(roleId == Agent || roleId == Member) ? null : (object)gameType.A2,
                                  0,
-                                 null,
-                                !(roleId == Super || roleId == Master || roleId == Member) ? null : (object)gameType.N3,
+                                null,
+                                 gameType.Im2 == true ? 1 : 0,
+                                !gameType.Im2 == true ? null : (object)gameType.Um2,
+                                !(roleId == Super || roleId == Master || roleId == Agent) ? null : (object)gameType.N2,
                                 0,
                                 roleId != Super ? null : (object)gameType.Sco,
                                 roleId != Master ? null : (object)gameType.Mco,
@@ -294,8 +339,9 @@
                                 fromSystem
                             });
 
-                    gameStakeTable.Rows.Add(
-                        new object[]
+
+                    var gameStakeTableTmp =
+                          new object[]
                             {
                                 custId,
                                 gameType.GameTypeID,
@@ -305,14 +351,17 @@
                                 modifiedId,
                                 modifiedBy,
                                 fromSystem
-                            });
+                            };
+
+                    gameStakeTable.Rows.Add(
+                        gameStakeTableTmp
+                      );
                 }
             }
 
             var resultKind = new DataTable();
             var resultType = new DataTable();
             var resultStake = new DataTable();
-            var cust = new Customer();
 
             resultKind = cust.UpdateCustGameKind(gameKindTable);
 
@@ -351,7 +400,7 @@
             return new Result(msg == string.Empty || (resultKind.Rows.Count == 0 && resultType.Rows.Count == 0 && resultStake.Rows.Count == 0) ? 0 : 1, msg);
         }
 
-        private List<GameType> GetGameTypeMaster(
+        private List<GameType> GetGameTypeAgent(
             int custId, 
             int gameKindID, 
             bool synced, 
@@ -361,60 +410,87 @@
             var cust = new Customer();
             var gameTypes = new List<GameType>();
             var dt = cust.GetCustGameType(custId, gameKindID);
+            List<decimal?> mcos = new List<decimal?>(), m3s = new List<decimal?>(), um2s = new List<decimal?>(), a2s = new List<decimal?>(), n2s = new List<decimal?>();
             this._tblCustMultipleStakeLevel = custId != 0 ? cust.GetCustMultipleStakeLevel(custId, gameKindID) : null;
-            List<decimal?> scos = new List<decimal?>(), s4s = new List<decimal?>(),
-                us3s = new List<decimal?>(), m3s = new List<decimal?>(), n3s = new List<decimal?>();
-
             foreach (DataRow row in dt.Rows)
             {
                 var gameType = new GameType();
 
-                gameType.Mco = Utils.ToDecimal(row["MAgentRollingRate"]).Format(4); 
-                gameType.Sco = synced ? Utils.ToDecimal(row["UplineSMAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["SMAgentRollingRate"]).Format(4);
-
-                if (!synced)
-                {
-                    gameType.Mco = gameType.Sco;
-                }
-
-                // Game type Info
+                // Game Group Info
                 gameType.GameTypeID = Utils.ToInt32(row["GameTypeID"]);
                 gameType.GameTypeName = Utils.ToString(row[Lang("GameTypeName")]);
 
-                // Super preset PT
-                gameType.S4 = synced ? Utils.ToDecimal(row["UplineMaxPositionTaking"]).Format(2) : Utils.ToDecimal(row["MaxPositionTaking"]).Format(2);
-                gameType.S3 = Utils.ToDecimal(row["SPositionTaking"]).Format(2); 
+                // Commission
+                gameType.Aco = synced ? Utils.ToDecimal(row["AgentRollingRate"]).Format(4) : Utils.ToDecimal(row["UplineAgentRollingRate"]).Format(4);
+                gameType.Mco = synced ? Utils.ToDecimal(row["UplineMAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["MAgentRollingRate"]).Format(4);
 
-                // Super Auto PT
-                gameType.Is3 = Utils.ToBoolean(row["IsAutoPositionTaking"]);
-                gameType.Us3 = Utils.ToDecimal(row["AutoPositionTaking"]).Format(2);
+                if (!synced)
+                {
+                    gameType.Aco = gameType.Mco;
+                }
 
-                // Master Max PT
-                gameType.M3 = synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
+                // Master preset PT
+                gameType.M3 = !synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
+                gameType.M2 = Utils.ToDecimal(row["MPositionTaking"]).Format(2);
 
-                // Master Min PT
-                gameType.N3 = !synced ? 0 : Utils.ToDecimal(row["MinPositionTaking"]).Format(2);
+                // Agent Max PT
+                gameType.A2 = synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
+
+                // Master Auto PT
+                gameType.Im2 = Utils.ToBoolean(row["IsAutoMPositionTaking"]);
+                gameType.Um2 = Utils.ToDecimal(row["AutoMPositionTaking"]).Format(2);
+
+                // Agent Min PT
+                gameType.N2 = !synced ? 0 : Utils.ToDecimal(row["MinPositionTaking"]).Format(2);
 
                 // Betting limits
                 var stakes = this.GetStakeLevels(custId, gameType.GameTypeID, 0, synced);
                 gameType.BettingLimits = stakes;
 
-                scos.Add(gameType.Sco);
-                us3s.Add(gameType.Us3);
+                mcos.Add(gameType.Mco);
                 m3s.Add(gameType.M3);
-                n3s.Add(gameType.N3);
-                s4s.Add(gameType.S4);
+                a2s.Add(gameType.A2);
+                n2s.Add(gameType.N2);
+                um2s.Add(gameType.Um2);
 
                 gameTypes.Add(gameType);
             }
 
             if (isPTByGameType)
             {
-                gameGroup.Sco = scos.Max();
-                gameGroup.Us3 = us3s.Max();
+                gameGroup.Mco = mcos.Max();
                 gameGroup.M3 = m3s.Max();
-                gameGroup.N3 = n3s.Max();
-                gameGroup.S4 = s4s.Max();
+                gameGroup.A2 = a2s.Max();
+                gameGroup.N2 = n2s.Max();
+                gameGroup.Um2 = um2s.Max();
+            }
+
+            return gameTypes;
+        }
+
+        private List<GameType> GetGameTypeAgentBySuper(int custId, int gameKindID, bool synced)
+        {
+            var cust = new Customer();
+            var gameTypes = new List<GameType>();
+            var dt = cust.GetCustGameType(custId, gameKindID);
+            this._tblCustMultipleStakeLevel = custId != 0 ? cust.GetCustMultipleStakeLevel(custId, gameKindID) : null;
+            foreach (DataRow row in dt.Rows)
+            {
+                var gameType = new GameType();
+
+                // Game type info
+                gameType.GameTypeID = Utils.ToInt32(row["GameTypeID"]);
+                gameType.GameTypeName = Utils.ToString(row[Lang("GameTypeName")]);
+
+                // Master preset PT
+                gameType.M3 = synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
+                gameType.M2 = synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
+
+                // Betting limits
+                var stakes = this.GetStakeLevels(custId, gameType.GameTypeID);
+                gameType.BettingLimits = stakes;
+
+                gameTypes.Add(gameType);
             }
 
             return gameTypes;

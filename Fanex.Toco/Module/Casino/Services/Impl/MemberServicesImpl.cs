@@ -15,7 +15,7 @@
     using Logging.Extensions.Web;
     using ViewModels;
 
-    public class MemberServices : CasinoServiceBase
+    public class MemberServicesImpl : CasinoServiceBaseImpl, MemberServices
     {
         public CasinoSettingModel MemberCasinoModel(int custId, int uplineId)
         {
@@ -32,7 +32,7 @@
             // Gets upline settings
             casinoSettingUpline.GeneralInfo.IBCCustID = uplineId;
             casinoSettingUpline.GeneralInfo.UplineRoleId = custInfo.GeneralInfo.RoleId + 1;
-            this.GetCustSettingCS(ref casinoSettingUpline);
+            casinoSettingUpline = this.GetCustSettingCS(casinoSettingUpline);
 
             if (custInfo.GeneralInfo.RoleId != 1)
             {
@@ -89,7 +89,7 @@
             // Gets upline settings
             casinoSettingUpline.GeneralInfo.IBCCustID = uplineId;
             casinoSettingUpline.GeneralInfo.UplineRoleId = custInfo.GeneralInfo.RoleId + 3;
-            this.GetCustSettingCS(ref casinoSettingUpline);
+            casinoSettingUpline = this.GetCustSettingCS(casinoSettingUpline);
 
             if (custInfo.GeneralInfo.RoleId != Member)
             {
@@ -159,7 +159,7 @@
             // Gets upline settings
             casinoSettingUpline.GeneralInfo.IBCCustID = uplineId;
             casinoSettingUpline.GeneralInfo.UplineRoleId = custInfo.GeneralInfo.RoleId + 2;
-            this.GetCustSettingCS(ref casinoSettingUpline);
+            casinoSettingUpline = this.GetCustSettingCS(casinoSettingUpline);
 
             if (custInfo.GeneralInfo.RoleId != Member)
             {
@@ -344,7 +344,7 @@
 
             if (result.IsSuccess)
             {
-                ICasinoMemberWinLimitService service = new CasinoMemberWinLimitService();
+                MemberWinLimitService service = new MemberWinLimitServiceImpl();
                 result = service.UpdateMemberWinLimit(custId, modifiedId, AppSession.SubAccountId, customerModel.MemberWinLimit);
             }
 

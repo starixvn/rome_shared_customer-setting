@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Data;
     using System.Diagnostics;
-    using System.Linq;
     using CasinoLibrary.Model.UserException;
     using CasinoLibrary.SBAgent;
     using Core;
@@ -12,11 +11,14 @@
     using Core.Web;
     using Criteria;
     using Entities;
+    using Interface;
     using Logging.Extensions.Web;
     using Repositories.Impl;
+    using Repositories.Interface;
     using ViewModels;
 
-    public class CasinoServiceBase
+
+    public class CasinoServiceBaseImpl : CasinoServiceBase
     {
         protected const int Super = 4;
         protected const int Master = 3;
@@ -26,7 +28,7 @@
         protected readonly CasinoRepository casinoRepository;
         protected DataTable _tblCustMultipleStakeLevel;
 
-        public CasinoServiceBase(CasinoRepository casinoRepository = null)
+        public CasinoServiceBaseImpl(CasinoRepository casinoRepository = null)
         {
             this.casinoRepository = casinoRepository ?? new CasinoRepositoryImpl();
         }
@@ -36,39 +38,41 @@
             return this.casinoRepository.GetCustInfoIBC(custid, uplineId);
         }
 
-        public void GetCustSettingCS(ref CasinoCustomer custIBC)
+        public CasinoCustomer GetCustSettingCS(CasinoCustomer custIBCModel)
         {
             var cust = new Customer();
-            var dt = custIBC.GeneralInfo.CasinoSync || (custIBC.GeneralInfo.IBCCustID != 0 && custIBC.GeneralInfo.RoleId != Super) ? cust.GetCustSetting(custIBC.GeneralInfo.IBCCustID) : new DataTable();
+            var dt = custIBCModel.GeneralInfo.CasinoSync || (custIBCModel.GeneralInfo.IBCCustID != 0 && custIBCModel.GeneralInfo.RoleId != Super) ? cust.GetCustSetting(custIBCModel.GeneralInfo.IBCCustID) : new DataTable();
             DataRow row = null;
             if (dt != null && dt.Rows.Count > 0)
             {
                 row = dt.Rows[0];
-                custIBC.GeneralInfo.IsEnablePT = Utils.ToBoolean(row["IsEnablePT"]);
-                custIBC.GeneralInfo.TotalWinLoss = custIBC.GeneralInfo.CasinoSync ? Utils.ToDouble(row["ActualMaxTransfer"]) : 0;
-                custIBC.GeneralInfo.MaxWin = Utils.ToDouble(row["MaxWin"]);
-                custIBC.GeneralInfo.MaxLose = Utils.ToDouble(row["MaxLose"]);
+                custIBCModel.GeneralInfo.IsEnablePT = Utils.ToBoolean(row["IsEnablePT"]);
+                custIBCModel.GeneralInfo.TotalWinLoss = custIBCModel.GeneralInfo.CasinoSync ? Utils.ToDouble(row["ActualMaxTransfer"]) : 0;
+                custIBCModel.GeneralInfo.MaxWin = Utils.ToDouble(row["MaxWin"]);
+                custIBCModel.GeneralInfo.MaxLose = Utils.ToDouble(row["MaxLose"]);
 
-                custIBC.GeneralInfo.MaxTransferCredit = Utils.ToDouble(row["MaxTransferCredit"]);
+                custIBCModel.GeneralInfo.MaxTransferCredit = Utils.ToDouble(row["MaxTransferCredit"]);
 
-                custIBC.GeneralInfo.IsMaxWin = Utils.ToBoolean(row["IsMaxWin"]);
-                custIBC.GeneralInfo.IsMaxLose = Utils.ToBoolean(row["IsMaxLose"]);
-                custIBC.GeneralInfo.PTByGameType = Utils.ToBoolean(row["PTByGameType"]);
-                custIBC.GeneralInfo.PTByGameKind = Utils.ToBoolean(row["PTByGameKind"]);
-                custIBC.GeneralInfo.RoleId = Utils.ToInt32(row["RoleId"]);
-                custIBC.GeneralInfo.UpperCustID = Utils.ToInt32(row["UpperCustId"]);
-                custIBC.GeneralInfo.IsAutoReset = Utils.ToBoolean(row["IsAutoReset"]);
+                custIBCModel.GeneralInfo.IsMaxWin = Utils.ToBoolean(row["IsMaxWin"]);
+                custIBCModel.GeneralInfo.IsMaxLose = Utils.ToBoolean(row["IsMaxLose"]);
+                custIBCModel.GeneralInfo.PTByGameType = Utils.ToBoolean(row["PTByGameType"]);
+                custIBCModel.GeneralInfo.PTByGameKind = Utils.ToBoolean(row["PTByGameKind"]);
+                custIBCModel.GeneralInfo.RoleId = Utils.ToInt32(row["RoleId"]);
+                custIBCModel.GeneralInfo.UpperCustID = Utils.ToInt32(row["UpperCustId"]);
+                custIBCModel.GeneralInfo.IsAutoReset = Utils.ToBoolean(row["IsAutoReset"]);
 
-                if (custIBC.GeneralInfo.RoleId == Master)
+                if (custIBCModel.GeneralInfo.RoleId == Master)
                 {
-                    custIBC.GeneralInfo.IsDisableAutoMPT = Utils.ToBoolean(row["DisableAutoMPT"]);
+                    custIBCModel.GeneralInfo.IsDisableAutoMPT = Utils.ToBoolean(row["DisableAutoMPT"]);
                 }
 
-                custIBC.GeneralInfo.NoCSData = false;
+                custIBCModel.GeneralInfo.NoCSData = false;
             }
+
+            return custIBCModel;
         }
 
-        public bool UpdateCSStatus(
+        protected bool UpdateCSStatus(
             int custid, 
             bool syncCS, 
             bool disabledCS, 
@@ -109,14 +113,7 @@
             return status;
         }
 
-        public bool IsEnabledJackpot(int custId)
-        {
-            var productIds = casinoRepository.GetEnabledJackpotProducts(new Criteria.GetEnabledJackpotProductsCriteria(custId, Configurations.AppSettings.LocalTest));
-
-            return productIds.Any();
-        }
-
-        public static string Lang(string original)
+        protected static string Lang(string original)
         {
             switch (AppSession.Language)
             {
@@ -128,20 +125,6 @@
                 case "ko-KR": return original + "_Ko";
                 default: return original + "_En";
             }
-        }
-
-        private bool DoUpdateCSStatusWithoutSync(
-            int custid, 
-            bool syncCS, 
-            bool disabledCS, 
-            int userId, 
-            string ip, 
-            int subAccId, 
-            byte systemId, 
-            string lang, 
-            out string errMsg)
-        {
-            return this.casinoRepository.DoUpdateCSStatusWithoutSync(custid, syncCS, disabledCS, userId, ip, subAccId, systemId, lang, out errMsg);
         }
 
         protected string SelectedStakeLevels(List<StakeLevel> stakes)
@@ -288,5 +271,19 @@
 
         protected Result CheckAllowedDownlines(int custId, byte custRole)
             => casinoRepository.ExecuteNonQuery(new AllowedDownlinesCriteria(custId, custRole));
+
+        private bool DoUpdateCSStatusWithoutSync(
+            int custid,
+            bool syncCS,
+            bool disabledCS,
+            int userId,
+            string ip,
+            int subAccId,
+            byte systemId,
+            string lang,
+            out string errMsg)
+        {
+            return this.casinoRepository.DoUpdateCSStatusWithoutSync(custid, syncCS, disabledCS, userId, ip, subAccId, systemId, lang, out errMsg);
+        }
     }
 }

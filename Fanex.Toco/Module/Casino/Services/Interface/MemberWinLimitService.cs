@@ -1,12 +1,9 @@
-﻿namespace Fanex.CustomerSetting.Module.Casino.Repositories.Interface
+﻿namespace Fanex.CustomerSetting.Module.Casino.Services.Interface
 {
     using Fanex.CustomerSetting.Module.Casino.Entities;
     using Fanex.CustomerSetting.Module.Core.Models;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
-    public interface IMemberWinLimitRepository
+    public interface MemberWinLimitService
     {
         MemberWinLimit GetMemberWinLimit(int custId);
 

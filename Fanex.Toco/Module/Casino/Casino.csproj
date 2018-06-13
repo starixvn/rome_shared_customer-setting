@@ -267,21 +267,27 @@
     <Compile Include="Entities\GeneralCasinoCustomer.cs" />
     <Compile Include="Entities\MemberWinLimit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\Impl\CasinoRepository.cs" />
-    <Compile Include="Repositories\Impl\MemberWinLimitRepository.cs" />
-    <Compile Include="Repositories\Interface\IMemberWinLimitRepository.cs" />
+    <Compile Include="Repositories\Impl\CasinoRepositoryImpl.cs" />
+    <Compile Include="Repositories\Impl\MemberWinLimitRepositoryImpl.cs" />
+    <Compile Include="Repositories\Interface\CasinoRepository.cs" />
+    <Compile Include="Repositories\Interface\MemberWinLimitRepository.cs" />
     <Compile Include="Resources\NGCasinoLang.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NGCasinoLang.resx</DependentUpon>
     </Compile>
-    <Compile Include="Services\Impl\CasinoServiceBase.cs" />
-    <Compile Include="Services\Impl\CasinoMemberWinLimitService.cs" />
-    <Compile Include="Services\Impl\AgentServices.cs" />
-    <Compile Include="Services\Impl\MasterServices.cs" />
-    <Compile Include="Services\Impl\MemberServices.cs" />
-    <Compile Include="Services\Impl\SuperServices.cs" />
-    <Compile Include="Services\Interface\ICasinoMemberWinLimitService.cs" />
+    <Compile Include="Services\Impl\CasinoServiceBaseImpl.cs" />
+    <Compile Include="Services\Impl\MemberWinLimitServiceImpl.cs" />
+    <Compile Include="Services\Impl\AgentServicesImpl.cs" />
+    <Compile Include="Services\Impl\MasterServicesImpl.cs" />
+    <Compile Include="Services\Impl\MemberServicesImpl.cs" />
+    <Compile Include="Services\Impl\SuperServicesImpl.cs" />
+    <Compile Include="Services\Interface\CasinoServiceBase.cs" />
+    <Compile Include="Services\Interface\SuperServices.cs" />
+    <Compile Include="Services\Interface\MemberServices.cs" />
+    <Compile Include="Services\Interface\MasterServices.cs" />
+    <Compile Include="Services\Interface\AgentServices.cs" />
+    <Compile Include="Services\Interface\MemberWinLimitService.cs" />
     <Compile Include="ViewModels\GameSettingModel.cs" />
   </ItemGroup>
   <ItemGroup>
