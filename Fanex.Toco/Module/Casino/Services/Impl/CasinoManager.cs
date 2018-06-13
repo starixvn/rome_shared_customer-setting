@@ -8,7 +8,9 @@
     using CasinoLibrary.Model.UserException;
     using CasinoLibrary.SBAgent;
     using Core;
+    using Core.Models;
     using Core.Web;
+    using Criteria;
     using Entities;
     using Logging.Extensions.Web;
     using Repositories.Impl;
@@ -66,7 +68,18 @@
             }
         }
 
-        public bool UpdateCSStatus(int custid, bool syncCS, bool disabledCS, int userId, string ip, int subAccId, byte systemId, string lang, string username, string subUsername, out string errMsg)
+        public bool UpdateCSStatus(
+            int custid, 
+            bool syncCS, 
+            bool disabledCS, 
+            int userId, 
+            string ip, 
+            int subAccId, 
+            byte systemId, 
+            string lang, 
+            string username, 
+            string subUsername, 
+            out string errMsg)
         {
             var cust = new Customer();
             var status = this.DoUpdateCSStatusWithoutSync(custid, syncCS, disabledCS, userId, ip, subAccId, systemId, lang, out errMsg);
@@ -117,7 +130,16 @@
             }
         }
 
-        private bool DoUpdateCSStatusWithoutSync(int custid, bool syncCS, bool disabledCS, int userId, string ip, int subAccId, byte systemId, string lang, out string errMsg)
+        private bool DoUpdateCSStatusWithoutSync(
+            int custid, 
+            bool syncCS, 
+            bool disabledCS, 
+            int userId, 
+            string ip, 
+            int subAccId, 
+            byte systemId, 
+            string lang, 
+            out string errMsg)
         {
             return this.casinoRepository.DoUpdateCSStatusWithoutSync(custid, syncCS, disabledCS, userId, ip, subAccId, systemId, lang, out errMsg);
         }
@@ -218,7 +240,13 @@
             return dt;
         }
 
-        private List<StakeLevel> GetStakeLevels(int custId, int gameTypeID, int exchangeId = 0, bool synced = true, bool isSuper = false, string site = null)
+        private List<StakeLevel> GetStakeLevels(
+            int custId, 
+            int gameTypeID, 
+            int exchangeId = 0, 
+            bool synced = true, 
+            bool isSuper = false, 
+            string site = null)
         {
             var cust = new Customer();
             var stakeLevels = new List<StakeLevel>();
@@ -257,5 +285,8 @@
             result = this._tblCustMultipleStakeLevel.Select("GameTypeID = " + gameTypeID);
             return result == null || result.Length == 0 ? this._tblCustMultipleStakeLevel.Clone() : result.CopyToDataTable();
         }
+
+        private Result CheckAllowedDownlines(int custId, byte custRole)
+            => casinoRepository.ExecuteNonQuery(new AllowedDownlinesCriteria(custId, custRole));
     }
 }

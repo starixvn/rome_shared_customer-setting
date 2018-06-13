@@ -86,8 +86,24 @@
             return gameModel;
         }
 
-        public Result UpdateSuper(int custId, string custName, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, byte systemId, CasinoSettingModel settingModel, GeneralCasinoCustomer customerModel)
+        public Result UpdateSuper(
+            int custId, 
+            string custName, 
+            int uplineId, 
+            string ip, 
+            int modifiedId, 
+            string modifiedBy, 
+            int fromSystem, 
+            byte systemId, 
+            CasinoSettingModel settingModel, 
+            GeneralCasinoCustomer customerModel)
         {
+            var allowedDownlinesResult = CheckAllowedDownlines(custId, 4);
+            if (!allowedDownlinesResult.IsSuccess)
+            {
+                return allowedDownlinesResult;
+            }
+
             var errMsg = string.Empty;
             var messages = string.Empty;
             var settingsInserted = true;
@@ -99,8 +115,6 @@
             try
             {
                 var custInfo = this.GetCustInfoIBC(custId, uplineId);
-
-                bool isEnableCasino = !customerModel.CasinoDisabled || !customerModel.CasinoSync;
 
                 if (!custInfo.GeneralInfo.CasinoSync)
                 {
@@ -206,7 +220,16 @@
             return result;
         }
 
-        private List<GameType> GetGameTypeSuper(int custId, decimal maxPT, decimal comm, int gameKindID, bool synced, ref GameGroup gameGroup, int exchangeId = 0, bool isPTByGameType = false, string site = null)
+        private List<GameType> GetGameTypeSuper(
+            int custId, 
+            decimal maxPT,
+            decimal comm, 
+            int gameKindID, 
+            bool synced,
+            ref GameGroup gameGroup, 
+            int exchangeId = 0, 
+            bool isPTByGameType = false, 
+            string site = null)
         {
             var cust = new Customer();
             var gameTypes = new List<GameType>();
@@ -253,7 +276,15 @@
             return gameTypes;
         }
 
-        public Result UpdateSuperBettingLimit(int custId, int roleId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel model, CasinoCustomer customer)
+        public Result UpdateSuperBettingLimit(
+            int custId, 
+            int roleId, 
+            string ip, 
+            int modifiedId, 
+            string modifiedBy, 
+            int fromSystem, 
+            CasinoSettingModel model, 
+            CasinoCustomer customer)
         {
             var msg = string.Empty;
             var gameStakeTable = this.GameTypesStakesDataTable();

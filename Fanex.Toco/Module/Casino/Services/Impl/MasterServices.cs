@@ -96,6 +96,12 @@
           CasinoSettingModel settingModel,
           GeneralCasinoCustomer customerModel)
         {
+            var allowedDownlinesResult = CheckAllowedDownlines(custId, 3);
+            if (!allowedDownlinesResult.IsSuccess)
+            {
+                return allowedDownlinesResult;
+            }
+
             var errMsg = string.Empty;
             var messages = string.Empty;
             var settingsInserted = true;
@@ -106,8 +112,6 @@
 
             try
             {
-                bool isEnableCasino = !customerModel.CasinoDisabled || !customerModel.CasinoSync;
-
                 if (!customerModel.CasinoSync)
                 {
                     var customerInfo = this.GetCustInfoIBC(custId, uplineId);
@@ -213,7 +217,16 @@
             return result;
         }
 
-        public Result UpdateMasterSettings(int custId, int roleId, int uplineId, int uplineRoleId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel model)
+        public Result UpdateMasterSettings(
+            int custId, 
+            int roleId, 
+            int uplineId, 
+            int uplineRoleId, 
+            string ip, 
+            int modifiedId, 
+            string modifiedBy,
+            int fromSystem, 
+            CasinoSettingModel model)
         {
             var msg = string.Empty;
             var gameKindTable = this.GameKindsDataTable();
@@ -338,7 +351,12 @@
             return new Result(msg == string.Empty || (resultKind.Rows.Count == 0 && resultType.Rows.Count == 0 && resultStake.Rows.Count == 0) ? 0 : 1, msg);
         }
 
-        private List<GameType> GetGameTypeMaster(int custId, int gameKindID, bool synced, ref GameGroup gameGroup, bool isPTByGameType = false)
+        private List<GameType> GetGameTypeMaster(
+            int custId, 
+            int gameKindID, 
+            bool synced, 
+            ref GameGroup gameGroup, 
+            bool isPTByGameType = false)
         {
             var cust = new Customer();
             var gameTypes = new List<GameType>();
@@ -351,7 +369,7 @@
             {
                 var gameType = new GameType();
 
-                gameType.Mco = Utils.ToDecimal(row["MAgentRollingRate"]).Format(4); // synced ? Utils.ToDecimal(row["UplineMAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["MAgentRollingRate"]).Format(4);
+                gameType.Mco = Utils.ToDecimal(row["MAgentRollingRate"]).Format(4); 
                 gameType.Sco = synced ? Utils.ToDecimal(row["UplineSMAgentRollingRate"]).Format(4) : Utils.ToDecimal(row["SMAgentRollingRate"]).Format(4);
 
                 if (!synced)
@@ -365,7 +383,7 @@
 
                 // Super preset PT
                 gameType.S4 = synced ? Utils.ToDecimal(row["UplineMaxPositionTaking"]).Format(2) : Utils.ToDecimal(row["MaxPositionTaking"]).Format(2);
-                gameType.S3 = Utils.ToDecimal(row["SPositionTaking"]).Format(2); // synced ? Utils.ToDecimal(row["UplineSPositionTaking"]).Format(2) : Utils.ToDecimal(row["SPositionTaking"]).Format(2);
+                gameType.S3 = Utils.ToDecimal(row["SPositionTaking"]).Format(2); 
 
                 // Super Auto PT
                 gameType.Is3 = Utils.ToBoolean(row["IsAutoPositionTaking"]);

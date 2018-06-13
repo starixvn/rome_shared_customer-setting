@@ -213,8 +213,24 @@
             return gameModel;
         }
 
-        public Result UpdateMember(int custId, string custName, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, byte systemId, CasinoSettingModel settingModel, GeneralCasinoCustomer customerModel)
+        public Result UpdateMember(
+            int custId, 
+            string custName, 
+            int uplineId, 
+            string ip, 
+            int modifiedId, 
+            string modifiedBy, 
+            int fromSystem, 
+            byte systemId, 
+            CasinoSettingModel settingModel, 
+            GeneralCasinoCustomer customerModel)
         {
+            var allowedDownlinesResult = CheckAllowedDownlines(custId, 1);
+            if (!allowedDownlinesResult.IsSuccess)
+            {
+                return allowedDownlinesResult;
+            }
+
             var errMsg = string.Empty;
             var messages = string.Empty;
             var settingsInserted = true;
@@ -225,8 +241,6 @@
 
             try
             {
-                bool isEnableCasino = !customerModel.CasinoDisabled || !customerModel.CasinoSync;
-
                 if (!customerModel.CasinoSync)
                 {
                     try
@@ -309,8 +323,6 @@
             casinoPTResult = this.UpdateMemberSettings(
                 custId,
                 customerModel.RoleId,
-                uplineId,
-                customerModel.UplineRoleId,
                 ip,
                 modifiedId,
                 modifiedBy,
@@ -339,18 +351,31 @@
             return result;
         }
 
-        public Result UpdateMemberBySuper(int custId, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, byte systemId, CasinoSettingModel settingModel, GeneralCasinoCustomer customerModel)
+        public Result UpdateMemberBySuper(
+            int custId, 
+            int uplineId, 
+            string ip, 
+            int modifiedId, 
+            string modifiedBy, 
+            int fromSystem, 
+            byte systemId, 
+            CasinoSettingModel settingModel, 
+            GeneralCasinoCustomer customerModel)
         {
+            var allowedDownlinesResult = CheckAllowedDownlines(custId, 1);
+            if (!allowedDownlinesResult.IsSuccess)
+            {
+                return allowedDownlinesResult;
+            }
+
             var errMsg = string.Empty;
             var messages = string.Empty;
             var casinoPTResult = new Result();
-            var cust = new Customer();
 
             // Update PT/Betting limit settings
             casinoPTResult = this.UpdateMemberSettingsBySuper(
                 custId,
                 customerModel.RoleId,
-                uplineId,
                 customerModel.UplineRoleId,
                 ip,
                 modifiedId,
@@ -374,18 +399,31 @@
             return result;
         }
 
-        public Result UpdateMemberByMaster(int custId, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, byte systemId, CasinoSettingModel settingModel, GeneralCasinoCustomer customerModel)
+        public Result UpdateMemberByMaster(
+            int custId, 
+            int uplineId, 
+            string ip, 
+            int modifiedId, 
+            string modifiedBy, 
+            int fromSystem, 
+            byte systemId, 
+            CasinoSettingModel settingModel, 
+            GeneralCasinoCustomer customerModel)
         {
+            var allowedDownlinesResult = CheckAllowedDownlines(custId, 1);
+            if (!allowedDownlinesResult.IsSuccess)
+            {
+                return allowedDownlinesResult;
+            }
+
             var errMsg = string.Empty;
             var messages = string.Empty;
             var casinoPTResult = new Result();
-            var cust = new Customer();
 
             // Update PT/Betting limit settings
             casinoPTResult = this.UpdateMemberSettingsByMaster(
                 custId,
                 customerModel.RoleId,
-                uplineId,
                 customerModel.UplineRoleId,
                 ip,
                 modifiedId,
@@ -409,7 +447,14 @@
             return result;
         }
 
-        public Result UpdateMemberSettings(int custId, int roleId, int uplineId, int uplineRoleId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel model)
+        private Result UpdateMemberSettings(
+            int custId, 
+            int roleId, 
+            string ip, 
+            int modifiedId, 
+            string modifiedBy, 
+            int fromSystem, 
+            CasinoSettingModel model)
         {
             var msg = string.Empty;
             var gameKindTable = this.GameKindsDataTable();
@@ -534,7 +579,15 @@
             return new Result(msg == string.Empty || (resultKind.Rows.Count == 0 && resultType.Rows.Count == 0 && resultStake.Rows.Count == 0) ? 0 : 1, msg);
         }
 
-        private Result UpdateMemberSettingsBySuper(int custId, int roleId, int uplineId, int uplineRoleId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel model)
+        private Result UpdateMemberSettingsBySuper(
+            int custId, 
+            int roleId, 
+            int uplineRoleId, 
+            string ip, 
+            int modifiedId, 
+            string modifiedBy, 
+            int fromSystem, 
+            CasinoSettingModel model)
         {
             var msg = string.Empty;
             var gameKindTable = this.GameKindsDataTableMember();
@@ -640,7 +693,15 @@
             return new Result(msg == string.Empty || (resultKind.Rows.Count == 0 && resultType.Rows.Count == 0 && resultStake.Rows.Count == 0) ? 0 : 1, msg);
         }
 
-        private Result UpdateMemberSettingsByMaster(int custId, int roleId, int uplineId, int uplineRoleId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel model)
+        private Result UpdateMemberSettingsByMaster(
+            int custId, 
+            int roleId, 
+            int uplineRoleId, 
+            string ip, 
+            int modifiedId, 
+            string modifiedBy, 
+            int fromSystem, 
+            CasinoSettingModel model)
         {
             var msg = string.Empty;
             var gameKindTable = this.GameKindsDataTableMember();
@@ -794,7 +855,12 @@
             return dt;
         }
 
-        private List<GameType> GetGameTypeMember(int custId, int gameKindID, bool synced, ref GameGroup gameGroup, bool isPTByGameType = false)
+        private List<GameType> GetGameTypeMember(
+            int custId, 
+            int gameKindID, 
+            bool synced, 
+            ref GameGroup gameGroup, 
+            bool isPTByGameType = false)
         {
             var cust = new Customer();
             var gameTypes = new List<GameType>();
@@ -845,7 +911,11 @@
             return gameTypes;
         }
 
-        private List<GameType> GetGameTypeMemberBySuper(int custId, int gameKindID, ref GameGroup gameGroup, bool isPTByGameType = false)
+        private List<GameType> GetGameTypeMemberBySuper(
+            int custId, 
+            int gameKindID, 
+            ref GameGroup gameGroup, 
+            bool isPTByGameType = false)
         {
             var cust = new Customer();
             var gameTypes = new List<GameType>();
@@ -912,7 +982,11 @@
             return gameTypes;
         }
 
-        private List<GameType> GetGameTypeMemberByMaster(int custId, int gameKindID, ref GameGroup gameGroup, bool isPTByGameType = false)
+        private List<GameType> GetGameTypeMemberByMaster(
+            int custId, 
+            int gameKindID, 
+            ref GameGroup gameGroup, 
+            bool isPTByGameType = false)
         {
             var cust = new Customer();
             var gameTypes = new List<GameType>();

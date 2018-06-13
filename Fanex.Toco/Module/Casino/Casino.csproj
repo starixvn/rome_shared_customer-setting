@@ -260,7 +260,7 @@
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\CasinoCustomerController.cs" />
-    <Compile Include="Criteria\AllowedDownlinesByLevelCriteria.cs" />
+    <Compile Include="Criteria\AllowedDownlinesCriteria.cs" />
     <Compile Include="Criteria\GetEnabledJackpotProductsCriteria.cs" />
     <Compile Include="Entities\CasinoCustomer.cs" />
     <Compile Include="Entities\CurrentMemberWinLoss.cs" />

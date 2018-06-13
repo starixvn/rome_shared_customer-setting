@@ -132,8 +132,24 @@
             return gameModel;
         }
 
-        public Result UpdateAgent(int custId, string custName, int uplineId, string ip, int modifiedId, string modifiedBy, int fromSystem, byte systemId, CasinoSettingModel settingModel, GeneralCasinoCustomer customerModel)
+        public Result UpdateAgent(
+            int custId, 
+            string custName, 
+            int uplineId, 
+            string ip, 
+            int modifiedId, 
+            string modifiedBy, 
+            int fromSystem, 
+            byte systemId, 
+            CasinoSettingModel settingModel, 
+            GeneralCasinoCustomer customerModel)
         {
+            var allowedDownlinesResult = CheckAllowedDownlines(custId, 2);
+            if (!allowedDownlinesResult.IsSuccess)
+            {
+                return allowedDownlinesResult;
+            }
+
             var errMsg = string.Empty;
             var messages = string.Empty;
             var settingsInserted = true;
@@ -144,8 +160,6 @@
 
             try
             {
-                bool isEnableCasino = !customerModel.CasinoDisabled || !customerModel.CasinoSync;
-
                 if (!customerModel.CasinoSync)
                 {
                     var customerInfo = this.GetCustInfoIBC(custId, uplineId);
@@ -251,7 +265,16 @@
             return result;
         }
 
-        public Result UpdateAgentSettings(int custId, int roleId, int uplineId, int uplineRoleId, string ip, int modifiedId, string modifiedBy, int fromSystem, CasinoSettingModel model)
+        public Result UpdateAgentSettings(
+            int custId, 
+            int roleId, 
+            int uplineId, 
+            int uplineRoleId, 
+            string ip, 
+            int modifiedId, 
+            string modifiedBy, 
+            int fromSystem, 
+            CasinoSettingModel model)
         {
             var msg = string.Empty;
             var gameKindTable = this.GameKindsDataTable();
@@ -381,7 +404,12 @@
             return new Result(msg == string.Empty || (resultKind.Rows.Count == 0 && resultType.Rows.Count == 0 && resultStake.Rows.Count == 0) ? 0 : 1, msg);
         }
 
-        private List<GameType> GetGameTypeAgent(int custId, int gameKindID, bool synced, ref GameGroup gameGroup, bool isPTByGameType = false)
+        private List<GameType> GetGameTypeAgent(
+            int custId, 
+            int gameKindID, 
+            bool synced, 
+            ref GameGroup gameGroup, 
+            bool isPTByGameType = false)
         {
             var cust = new Customer();
             var gameTypes = new List<GameType>();
@@ -407,7 +435,7 @@
 
                 // Master preset PT
                 gameType.M3 = !synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
-                gameType.M2 = Utils.ToDecimal(row["MPositionTaking"]).Format(2); // !synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
+                gameType.M2 = Utils.ToDecimal(row["MPositionTaking"]).Format(2);
 
                 // Agent Max PT
                 gameType.A2 = synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
