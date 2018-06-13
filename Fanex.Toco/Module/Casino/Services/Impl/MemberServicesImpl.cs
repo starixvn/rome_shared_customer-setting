@@ -428,7 +428,6 @@
             int fromSystem, 
             CasinoSettingModel model)
         {
-            var msg = string.Empty;
             var gameKindTable = this.GameKindsDataTable();
             var gameTypeTable = this.GameTypesDataTable();
             var gameStakeTable = this.GameTypesStakesDataTable();
@@ -525,30 +524,7 @@
                 resultStake = cust.UpdateCustGameTypeStakeLevel(gameStakeTable);
             }
 
-            // Process error messages
-            foreach (DataRow item in resultKind.Rows)
-            {
-                msg += item.Field<string>("ErrMsg") + "<br />";
-            }
-
-            if (model.IsPtByGameType)
-            {
-                foreach (DataRow item in resultType.Rows)
-                {
-                    msg += item.Field<string>("ErrMsg") + "<br />";
-                }
-            }
-            else
-            {
-                foreach (DataRow item in resultStake.Rows)
-                {
-                    msg += item.Field<string>("ErrMsg") + "<br />";
-                }
-            }
-
-            msg = msg.EndsWith("<br />") ? msg.Substring(0, msg.LastIndexOf("<br />")) : msg;
-
-            return new Result(msg == string.Empty || (resultKind.Rows.Count == 0 && resultType.Rows.Count == 0 && resultStake.Rows.Count == 0) ? 0 : 1, msg);
+            return BuildMessages(resultKind, resultType, resultStake, model);
         }
 
         private Result UpdateMemberSettingsBySuper(
@@ -561,7 +537,6 @@
             int fromSystem, 
             CasinoSettingModel model)
         {
-            var msg = string.Empty;
             var gameKindTable = this.GameKindsDataTableMember();
             var gameTypeTable = this.GameTypesDataTableMember();
             var gameStakeTable = this.GameTypesStakesDataTable();
@@ -639,30 +614,7 @@
 
             resultStake = cust.UpdateCustGameTypeStakeLevel(gameStakeTable);
 
-            // Process error messages
-            foreach (DataRow item in resultKind.Rows)
-            {
-                msg += item.Field<string>("ErrMsg") + "<br />";
-            }
-
-            if (model.IsPtByGameType)
-            {
-                foreach (DataRow item in resultType.Rows)
-                {
-                    msg += item.Field<string>("ErrMsg") + "<br />";
-                }
-            }
-            else
-            {
-                foreach (DataRow item in resultStake.Rows)
-                {
-                    msg += item.Field<string>("ErrMsg") + "<br />";
-                }
-            }
-
-            msg = msg.EndsWith("<br />") ? msg.Substring(0, msg.LastIndexOf("<br />")) : msg;
-
-            return new Result(msg == string.Empty || (resultKind.Rows.Count == 0 && resultType.Rows.Count == 0 && resultStake.Rows.Count == 0) ? 0 : 1, msg);
+            return BuildMessages(resultKind, resultType, resultStake, model);
         }
 
         private Result UpdateMemberSettingsByMaster(
@@ -675,7 +627,6 @@
             int fromSystem, 
             CasinoSettingModel model)
         {
-            var msg = string.Empty;
             var gameKindTable = this.GameKindsDataTableMember();
             var gameTypeTable = this.GameTypesDataTableMember();
             var gameStakeTable = this.GameTypesStakesDataTable();
@@ -753,30 +704,7 @@
 
             resultStake = cust.UpdateCustGameTypeStakeLevel(gameStakeTable);
 
-            // Process error messages
-            foreach (DataRow item in resultKind.Rows)
-            {
-                msg += item.Field<string>("ErrMsg") + "<br />";
-            }
-
-            if (model.IsPtByGameType)
-            {
-                foreach (DataRow item in resultType.Rows)
-                {
-                    msg += item.Field<string>("ErrMsg") + "<br />";
-                }
-            }
-            else
-            {
-                foreach (DataRow item in resultStake.Rows)
-                {
-                    msg += item.Field<string>("ErrMsg") + "<br />";
-                }
-            }
-
-            msg = msg.EndsWith("<br />") ? msg.Substring(0, msg.LastIndexOf("<br />")) : msg;
-
-            return new Result(msg == string.Empty || (resultKind.Rows.Count == 0 && resultType.Rows.Count == 0 && resultStake.Rows.Count == 0) ? 0 : 1, msg);
+            return BuildMessages(resultKind, resultType, resultStake, model);
         }
 
         private DataTable GameKindsDataTableMember()
