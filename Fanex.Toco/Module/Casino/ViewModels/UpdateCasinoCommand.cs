@@ -16,16 +16,16 @@
             CasinoSettingModel settingModel,
             GeneralCasinoCustomer customerModel)
         {
-            this.CustId = custId;
-            this.CustName = custName;
-            this.UplineId = uplineId;
-            this.IP = ip;
-            this.ModifiedBy = modifiedBy;
-            this.ModifiedId = modifiedId;
-            this.FromSystem = fromSystem;
-            this.SystemId = systemId;
-            this.SettingModel = settingModel;
-            this.CustomerModel = customerModel;
+            CustId = custId;
+            CustName = custName;
+            UplineId = uplineId;
+            IP = ip;
+            ModifiedBy = modifiedBy;
+            ModifiedId = modifiedId;
+            FromSystem = fromSystem;
+            SystemId = systemId;
+            SettingModel = settingModel;
+            CustomerModel = customerModel;
         }
 
         public int CustId { get; }

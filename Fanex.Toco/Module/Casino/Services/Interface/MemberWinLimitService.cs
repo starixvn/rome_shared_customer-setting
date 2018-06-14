@@ -1,7 +1,7 @@
 ﻿namespace Fanex.CustomerSetting.Module.Casino.Services.Interface
 {
-    using Fanex.CustomerSetting.Module.Casino.Entities;
-    using Fanex.CustomerSetting.Module.Core.Models;
+    using Core.Models;
+    using Entities;
 
     public interface MemberWinLimitService
     {

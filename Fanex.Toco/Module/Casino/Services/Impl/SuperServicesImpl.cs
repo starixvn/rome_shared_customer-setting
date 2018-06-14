@@ -208,6 +208,53 @@
             return result;
         }
 
+        public Result UpdateSuperBettingLimit(
+            int custId, 
+            int roleId, 
+            string ip, 
+            int modifiedId, 
+            string modifiedBy, 
+            int fromSystem, 
+            CasinoSettingModel model)
+        {
+            var msg = string.Empty;
+            var gameStakeTable = this.GameTypesStakesDataTable();
+
+            foreach (var gameGroup in model.GameGroups)
+            {
+                foreach (var gameType in gameGroup.GameTypes)
+                {
+                    gameStakeTable.Rows.Add(
+                        new object[]
+                            {
+                                custId,
+                                gameType.GameTypeID,
+                                this.SelectedStakeLevels(gameType.BettingLimits),
+                                roleId,
+                                ip,
+                                modifiedId,
+                                modifiedBy,
+                                fromSystem
+                            });
+                }
+            }
+
+            var cust = new Customer();
+
+            var resultStake = cust.UpdateCustGameTypeStakeLevel(gameStakeTable);
+
+            // Process error messages
+            foreach (DataRow item in resultStake.Rows)
+            {
+                msg += item.Field<string>("ErrMsg") + "<br />";
+            }
+
+            msg = msg.EndsWith("<br />") ? msg.Substring(0, msg.LastIndexOf("<br />")) : msg;
+
+            return new Result((msg == string.Empty || resultStake.Rows.Count == 0) ? 0 : 1, msg);
+        }
+
+
         private List<GameType> GetGameTypeSuper(
             int custId, 
             decimal maxPT,

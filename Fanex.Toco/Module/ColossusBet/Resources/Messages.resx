@@ -255,4 +255,7 @@
   <data name="DontHavePermission" xml:space="preserve">
     <value>You are not authorized on this function</value>
   </data>
+  <data name="ProductStatus" xml:space="preserve">
+    <value>Product Status</value>
+  </data>
 </root>
