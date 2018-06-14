@@ -14,6 +14,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
     public class CasinoCustomerController : BaseController
     {
         private readonly CasinoServiceBase casinoServiceBase;
+        private const string customerInfoPartialPage = "~/Areas/CustomerSetting/Views/Casino/Customer/CustomerInfo.cshtml";
 
         public CasinoCustomerController() : this(null)
         {
@@ -24,10 +25,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             this.casinoServiceBase = casinoServiceBase ?? new CasinoServiceBaseImpl();
         }
 
-        public ActionResult CustomerInfo()
-        {
-            return PartialView("~/Areas/CustomerSetting/Views/Casino/Customer/CustomerInfo.cshtml");
-        }
+        public ActionResult CustomerInfo() => PartialView(customerInfoPartialPage);
 
         public ActionResult CustomerData(int id, int uplineId)
         {

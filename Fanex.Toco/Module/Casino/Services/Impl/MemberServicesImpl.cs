@@ -509,11 +509,10 @@
                 }
             }
 
-            var resultKind = new DataTable();
+            var resultKind = cust.UpdateCustGameKind(gameKindTable);
+
             var resultType = new DataTable();
             var resultStake = new DataTable();
-
-            resultKind = cust.UpdateCustGameKind(gameKindTable);
 
             if (model.IsPtByGameType)
             {
@@ -601,18 +600,16 @@
                 }
             }
 
-            var resultKind = new DataTable();
-            var resultType = new DataTable();
-            var resultStake = new DataTable();
+            var resultKind = cust.UpdateCustGameKind_EditMember(gameKindTable);
 
-            resultKind = cust.UpdateCustGameKind_EditMember(gameKindTable);
+            var resultType = new DataTable();
 
             if (model.IsPtByGameType)
             {
                 resultType = cust.UpdateCustGameType_EditMember(gameTypeTable);
             }
 
-            resultStake = cust.UpdateCustGameTypeStakeLevel(gameStakeTable);
+            var resultStake = cust.UpdateCustGameTypeStakeLevel(gameStakeTable);
 
             return BuildMessages(resultKind, resultType, resultStake, model);
         }
@@ -691,18 +688,16 @@
                 }
             }
 
-            var resultKind = new DataTable();
-            var resultType = new DataTable();
-            var resultStake = new DataTable();
+            var resultKind = cust.UpdateCustGameKind_EditMember(gameKindTable);
 
-            resultKind = cust.UpdateCustGameKind_EditMember(gameKindTable);
+            var resultType = new DataTable();
 
             if (model.IsPtByGameType)
             {
                 resultType = cust.UpdateCustGameType_EditMember(gameTypeTable);
             }
 
-            resultStake = cust.UpdateCustGameTypeStakeLevel(gameStakeTable);
+            var resultStake = cust.UpdateCustGameTypeStakeLevel(gameStakeTable);
 
             return BuildMessages(resultKind, resultType, resultStake, model);
         }

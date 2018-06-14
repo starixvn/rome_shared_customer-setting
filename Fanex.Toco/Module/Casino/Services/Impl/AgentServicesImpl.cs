@@ -22,6 +22,12 @@
             var gameModel = new CasinoSettingModel();
             var gameGroups = new List<GameGroup>();
             var custInfo = this.GetCustInfoIBC(custId, uplineId);
+
+            if (custInfo.GeneralInfo.RoleId != Agent)
+            {
+                throw new Exception("Invalid custId");
+            }
+
             var synced = custInfo.GeneralInfo.CasinoSync;
             var id = synced ? custId : uplineId;
             var cust = new Customer();
@@ -33,11 +39,6 @@
             casinoSettingUpline.GeneralInfo.IBCCustID = uplineId;
             casinoSettingUpline.GeneralInfo.UplineRoleId = custInfo.GeneralInfo.RoleId + 1;
             casinoSettingUpline = this.GetCustSettingCS(casinoSettingUpline);
-
-            if (custInfo.GeneralInfo.RoleId != Agent)
-            {
-                throw new Exception("Invalid custId");
-            }
 
             gameModel.IsPtByGameType = casinoSettingUpline.GeneralInfo.PTByGameType;
 
@@ -89,6 +90,12 @@
             var gameModel = new CasinoSettingModel();
             var gameGroups = new List<GameGroup>();
             var custInfo = this.GetCustInfoIBC(custId, uplineId);
+
+            if (custInfo.GeneralInfo.RoleId != Agent)
+            {
+                throw new Exception("Invalid custId");
+            }
+
             var synced = custInfo.GeneralInfo.CasinoSync;
             var id = synced ? custId : uplineId;
             var cust = new Customer();
@@ -100,11 +107,6 @@
             casinoSettingUpline.GeneralInfo.IBCCustID = uplineId;
             casinoSettingUpline.GeneralInfo.UplineRoleId = custInfo.GeneralInfo.RoleId + 2;
             casinoSettingUpline = this.GetCustSettingCS(casinoSettingUpline);
-
-            if (custInfo.GeneralInfo.RoleId != Agent)
-            {
-                throw new Exception("Invalid custId");
-            }
 
             gameModel.IsPtByGameType = casinoSettingUpline.GeneralInfo.PTByGameType;
 
@@ -348,11 +350,10 @@
                 }
             }
 
-            var resultKind = new DataTable();
+            var resultKind = cust.UpdateCustGameKind(gameKindTable);
+
             var resultType = new DataTable();
             var resultStake = new DataTable();
-
-            resultKind = cust.UpdateCustGameKind(gameKindTable);
 
             if (model.IsPtByGameType)
             {

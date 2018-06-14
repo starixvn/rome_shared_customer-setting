@@ -63,8 +63,6 @@
                 customerDetail.GeneralInfo.IsEnablePT = true;
 
                 // Get max transfer information
-                CasinoLibrary.SBAgent.Customer customer = new CasinoLibrary.SBAgent.Customer();
-                DataTable dt = null;
 
                 if (uplineId == 0)
                 {

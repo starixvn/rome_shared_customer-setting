@@ -19,6 +19,9 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
     public class AgentController : BaseController
     {
         private readonly AgentServices agentServices;
+        private const string errorPage = "~/Areas/CustomerSetting/Views/Casino/Error.cshtml";
+        private const string editAgentPartialPage = "~/Areas/CustomerSetting/Views/Casino/Agent/EditAgent.cshtml";
+        private const string viewAgentBySuperPartialPage = "~/Areas/CustomerSetting/Views/Casino/Agent/ViewAgentBySuper.cshtml";
 
         public AgentController() : this(null)
         {
@@ -50,16 +53,16 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             {
                 ExceptionHandler.Handle(new Exception(casinoEx.Message), TraceEventType.Warning);
 
-                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", casinoEx.Message);
+                return this.PartialView(errorPage, casinoEx.Message);
             }
             catch (Exception ex)
             {
                 ExceptionHandler.Handle(ex, TraceEventType.Warning);
 
-                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", ex.Message);
+                return this.PartialView(errorPage, ex.Message);
             }
 
-            return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Agent/EditAgent.cshtml", customerSetting);
+            return this.PartialView(editAgentPartialPage, customerSetting);
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Casino")]
@@ -82,22 +85,30 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             {
                 ExceptionHandler.Handle(new Exception(casinoEx.Message), TraceEventType.Warning);
 
-                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", casinoEx.Message);
+                return this.PartialView(errorPage, casinoEx.Message);
             }
             catch (Exception ex)
             {
                 ExceptionHandler.Handle(ex, TraceEventType.Warning);
 
-                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", ex.Message);
+                return this.PartialView(errorPage, ex.Message);
             }
 
-            return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Agent/ViewAgentBySuper.cshtml", customerSetting);
+            return this.PartialView(viewAgentBySuperPartialPage, customerSetting);
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
         [CasinoUMTimeFilter]
         [AntiXSRFFilter]
-        public ActionResult UpdateAgentPost(int id, string username, int uplineId, int userId, string actorName, string settingModel, string customerModel, string groupName = null)
+        public ActionResult UpdateAgentPost(
+            int id, 
+            string username, 
+            int uplineId, 
+            int userId, 
+            string actorName, 
+            string settingModel, 
+            string customerModel,
+            string groupName = null)
         {
             var obj = System.Activator.CreateInstance(Type.GetType(CustomerSettingSection.Instance.AuthenticateFactory)) as IAuthenticate;
             if (!obj.IsBelong(id, null, groupName))

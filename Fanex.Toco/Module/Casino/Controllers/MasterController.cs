@@ -19,6 +19,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
     public class MasterController : BaseController
     {
         private readonly MasterServices masterServices;
+        private const string errorPage = "~/Areas/CustomerSetting/Views/Casino/Error.cshtml";
+        private const string editMasterPartialPage = "~/Areas/CustomerSetting/Views/Casino/Master/EditMaster.cshtml";
 
         public MasterController() : this(null)
         {
@@ -50,16 +52,16 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             {
                 ExceptionHandler.Handle(new Exception(casinoEx.Message), TraceEventType.Warning);
 
-                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", casinoEx.Message);
+                return this.PartialView(errorPage, casinoEx.Message);
             }
             catch (Exception ex)
             {
                 ExceptionHandler.Handle(ex, TraceEventType.Warning);
 
-                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", ex.Message);
+                return this.PartialView(errorPage, ex.Message);
             }
 
-            return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Master/EditMaster.cshtml", customerSetting);
+            return this.PartialView(editMasterPartialPage, customerSetting);
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]

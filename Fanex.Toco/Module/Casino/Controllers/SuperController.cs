@@ -19,6 +19,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
     public class SuperController : BaseController
     {
         private readonly SuperServices superServices;
+        private const string errorPage = "~/Areas/CustomerSetting/Views/Casino/Error.cshtml";
+        private const string editSuperPartialPage = "~/Areas/CustomerSetting/Views/Casino/Super/EditSuper.cshtml";
 
         public SuperController() : this(null)
         {
@@ -50,16 +52,16 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             {
                 ExceptionHandler.Handle(new Exception(casinoEx.Message), TraceEventType.Warning);
 
-                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", casinoEx.Message);
+                return this.PartialView(errorPage, casinoEx.Message);
             }
             catch (Exception ex)
             {
                 ExceptionHandler.Handle(ex, TraceEventType.Warning);
 
-                return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Error.cshtml", ex.Message);
+                return this.PartialView(errorPage, ex.Message);
             }
 
-            return this.PartialView("~/Areas/CustomerSetting/Views/Casino/Super/EditSuper.cshtml", customerSetting);
+            return this.PartialView(editSuperPartialPage, customerSetting);
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]

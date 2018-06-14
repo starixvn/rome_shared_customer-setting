@@ -17,7 +17,6 @@
     using Repositories.Interface;
     using ViewModels;
 
-
     public class CasinoServiceBaseImpl : CasinoServiceBase
     {
         protected const int Super = 4;
@@ -34,15 +33,14 @@
         }
 
         public CasinoCustomer GetCustInfoIBC(int custid, int uplineId)
-        {
-            return this.casinoRepository.GetCustInfoIBC(custid, uplineId);
-        }
+            => casinoRepository.GetCustInfoIBC(custid, uplineId);
 
         public CasinoCustomer GetCustSettingCS(CasinoCustomer custIBCModel)
         {
             var cust = new Customer();
             var dt = custIBCModel.GeneralInfo.CasinoSync || (custIBCModel.GeneralInfo.IBCCustID != 0 && custIBCModel.GeneralInfo.RoleId != Super) ? cust.GetCustSetting(custIBCModel.GeneralInfo.IBCCustID) : new DataTable();
             DataRow row = null;
+
             if (dt != null && dt.Rows.Count > 0)
             {
                 row = dt.Rows[0];
@@ -231,10 +229,9 @@
             bool isSuper = false, 
             string site = null)
         {
-            var cust = new Customer();
             var stakeLevels = new List<StakeLevel>();
             var dt = custId != 0 ? GetCustStakeLevel(gameTypeID) : new BasicInfo() { SiteName = site }.GetGameTypeStakeLevel(gameTypeID, exchangeId);
-            //var dt = custId != 0 ? cust.GetCustStakeLevel(custId, gameTypeID) : new BasicInfo() { SiteName = site }.GetGameTypeStakeLevel(gameTypeID, exchangeId);
+            
             dt = dt == null ? new BasicInfo() { SiteName = site }.GetGameTypeStakeLevel(gameTypeID, exchangeId) : dt;
 
             foreach (DataRow row in dt.Rows)
@@ -316,8 +313,15 @@
             byte systemId,
             string lang,
             out string errMsg)
-        {
-            return this.casinoRepository.DoUpdateCSStatusWithoutSync(custid, syncCS, disabledCS, userId, ip, subAccId, systemId, lang, out errMsg);
-        }
+            => casinoRepository.DoUpdateCSStatusWithoutSync(
+                custid, 
+                syncCS, 
+                disabledCS, 
+                userId, 
+                ip, 
+                subAccId, 
+                systemId, 
+                lang, 
+                out errMsg);
     }
 }

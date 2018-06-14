@@ -21,9 +21,16 @@
         {
             var gameModel = new CasinoSettingModel();
             var gameGroups = new List<GameGroup>();
+
             var custInfo = this.GetCustInfoIBC(custId, uplineId);
+            if (custInfo.GeneralInfo.RoleId != Master)
+            {
+                throw new Exception("Invalid custId");
+            }
+
             var synced = custInfo.GeneralInfo.CasinoSync;
             var id = synced ? custId : uplineId;
+
             var cust = new Customer();
             var dt = cust.GetCustGameKind(id);
 
@@ -33,11 +40,6 @@
             casinoSettingUpline.GeneralInfo.IBCCustID = uplineId;
             casinoSettingUpline.GeneralInfo.UplineRoleId = custInfo.GeneralInfo.RoleId + 1;
             casinoSettingUpline = this.GetCustSettingCS(casinoSettingUpline);
-
-            if (custInfo.GeneralInfo.RoleId != Master)
-            {
-                throw new Exception("Invalid custId");
-            }
 
             gameModel.IsPtByGameType = casinoSettingUpline.GeneralInfo.PTByGameType;
 
@@ -294,13 +296,12 @@
                 }
             }
 
-            var resultKind = new DataTable();
+            var cust = new Customer();
+            var resultKind = cust.UpdateCustGameKind(gameKindTable);
+
             var resultType = new DataTable();
             var resultStake = new DataTable();
-            var cust = new Customer();
-
-            resultKind = cust.UpdateCustGameKind(gameKindTable);
-
+           
             if (model.IsPtByGameType)
             {
                 resultType = cust.UpdateCustGameType(gameTypeTable);
