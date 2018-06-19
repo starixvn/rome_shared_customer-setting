@@ -419,7 +419,7 @@
             return result;
         }
 
-        private Result UpdateMemberSettings(
+        public Result UpdateMemberSettings(
             int custId, 
             int roleId, 
             string ip, 

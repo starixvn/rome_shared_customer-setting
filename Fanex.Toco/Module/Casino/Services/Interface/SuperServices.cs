@@ -17,5 +17,7 @@
             string modifiedBy,
             int fromSystem,
             CasinoSettingModel model);
+
+        bool IsEnabledJackpot(int custId);
     }
 }

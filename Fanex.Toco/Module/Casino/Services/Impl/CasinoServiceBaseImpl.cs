@@ -70,7 +70,7 @@
             return custIBCModel;
         }
 
-        protected bool UpdateCSStatus(
+        public bool UpdateCSStatus(
             int custid, 
             bool syncCS, 
             bool disabledCS, 

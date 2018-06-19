@@ -254,6 +254,12 @@
             return new Result((msg == string.Empty || resultStake.Rows.Count == 0) ? 0 : 1, msg);
         }
 
+        public bool IsEnabledJackpot(int custId)
+        {
+            var productIds = casinoRepository.GetEnabledJackpotProducts(new Criteria.GetEnabledJackpotProductsCriteria(custId, Configurations.AppSettings.LocalTest));
+
+            return productIds.Any();
+        }
 
         private List<GameType> GetGameTypeSuper(
             int custId, 
@@ -417,13 +423,6 @@
             }
 
             return BuildMessages(resultKind, resultType, resultStake, model);
-        }
-
-        private bool IsEnabledJackpot(int custId)
-        {
-            var productIds = casinoRepository.GetEnabledJackpotProducts(new Criteria.GetEnabledJackpotProductsCriteria(custId, Configurations.AppSettings.LocalTest));
-
-            return productIds.Any();
         }
     }
 }

@@ -16,5 +16,14 @@
         Result UpdateMemberBySuper(UpdateCasinoCommand command);
 
         Result UpdateMemberByMaster(UpdateCasinoCommand command);
+
+        Result UpdateMemberSettings(
+            int custId,
+            int roleId,
+            string ip,
+            int modifiedId,
+            string modifiedBy,
+            int fromSystem,
+            CasinoSettingModel model);
     }
 }
