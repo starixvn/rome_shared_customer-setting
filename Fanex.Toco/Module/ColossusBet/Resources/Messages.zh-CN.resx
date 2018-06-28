@@ -252,4 +252,7 @@
   <data name="MemberCommision" xml:space="preserve">
     <value>会员佣金 %</value>
   </data>
+  <data name="ProductStatus" xml:space="preserve">
+    <value>产品状态</value>
+  </data>
 </root>

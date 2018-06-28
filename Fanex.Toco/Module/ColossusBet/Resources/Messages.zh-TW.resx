@@ -252,4 +252,7 @@
   <data name="CashInShare" xml:space="preserve">
     <value>現金股份</value>
   </data>
+  <data name="ProductStatus" xml:space="preserve">
+    <value>產品狀態</value>
+  </data>
 </root>

@@ -363,4 +363,7 @@
   <data name="lblWinning" xml:space="preserve">
     <value>贏</value>
   </data>
+  <data name="ProductStatus" xml:space="preserve">
+    <value>產品狀態</value>
+  </data>
 </root>
