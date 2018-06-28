@@ -23,6 +23,8 @@
         protected const int Master = 3;
         protected const int Agent = 2;
         protected const int Member = 1;
+        protected const string CreditCasinoNo = "01";
+        protected const string DepositCasinoNo = "02";
 
         protected readonly CasinoRepository casinoRepository;
         protected DataTable _tblCustMultipleStakeLevel;
@@ -70,7 +72,7 @@
             return custIBCModel;
         }
 
-        public bool UpdateCSStatus(
+        public Result UpdateCSStatus(
             int custid, 
             bool syncCS, 
             bool disabledCS, 
@@ -80,24 +82,36 @@
             byte systemId, 
             string lang, 
             string username, 
-            string subUsername, 
-            out string errMsg)
+            string subUsername)
         {
-            var cust = new Customer();
-            var status = this.DoUpdateCSStatusWithoutSync(custid, syncCS, disabledCS, userId, ip, subAccId, systemId, lang, out errMsg);
+           
+            var result = casinoRepository.ExecuteNonQuery(
+                new UpdateCasinoStatusCriteria(
+                    custid,
+                    disabledCS,
+                    syncCS,
+                    userId,
+                    subAccId,
+                    ip,
+                    lang,
+                    systemId));
+
+            var status = result.IsSuccess;
+            string errMsg = string.Empty;
 
             if (!status)
             {
-                return false;
+                return result;
             }
 
             try
             {
+                var cust = new Customer();
                 status = cust.UpdateCustEnableCasino(custid, !disabledCS, false, ip, custid, username, 2);
             }
             catch (ErrorException casinoEx)
             {
-                ExceptionHandler.Handle(new Exception(casinoEx.Message), TraceEventType.Warning);
+                ExceptionHandler.Handle(new Exception(casinoEx.Message, casinoEx), TraceEventType.Warning);
                 errMsg = casinoEx.Message;
                 status = false;
             }
@@ -108,7 +122,7 @@
                 status = false;
             }
 
-            return status;
+            return new Result(status ? 0 : 101, errMsg);
         }
 
         protected static string Lang(string original)
@@ -301,27 +315,5 @@
 
             return new Result(msg == string.Empty || (resultKind.Rows.Count == 0 && resultType.Rows.Count == 0 && resultStake.Rows.Count == 0) ? 0 : 1, msg);
         }
-
-
-        private bool DoUpdateCSStatusWithoutSync(
-            int custid,
-            bool syncCS,
-            bool disabledCS,
-            int userId,
-            string ip,
-            int subAccId,
-            byte systemId,
-            string lang,
-            out string errMsg)
-            => casinoRepository.DoUpdateCSStatusWithoutSync(
-                custid, 
-                syncCS, 
-                disabledCS, 
-                userId, 
-                ip, 
-                subAccId, 
-                systemId, 
-                lang, 
-                out errMsg);
     }
 }

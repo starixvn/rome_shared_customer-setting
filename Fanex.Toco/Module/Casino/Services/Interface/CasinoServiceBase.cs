@@ -1,5 +1,6 @@
 ﻿namespace Fanex.CustomerSetting.Module.Casino.Services.Interface
 {
+    using Core.Models;
     using Entities;
 
     public interface CasinoServiceBase
@@ -8,7 +9,7 @@
 
         CasinoCustomer GetCustSettingCS(CasinoCustomer custIBCModel);
 
-        bool UpdateCSStatus(
+        Result UpdateCSStatus(
             int custid,
             bool syncCS,
             bool disabledCS,
@@ -18,8 +19,7 @@
             byte systemId,
             string lang,
             string username,
-            string subUsername,
-            out string errMsg);
+            string subUsername);
     }
 
 }

@@ -224,9 +224,8 @@
             var errMsg = string.Empty;
             var messages = string.Empty;
             var settingsInserted = true;
-            var statusUpdated = true;
-            var casinoPTResult = new Result();
-            var enablePTUpdated = false;
+            var updateStatusResult = new Result();
+            var updateSettingResult = new Result();
             var cust = new Customer();
 
             try
@@ -237,7 +236,7 @@
                     {
                         var customerInfo = this.GetCustInfoIBC(command.CustId, command.UplineId);
                         settingsInserted = cust.InsertCustSetting(
-                            "01",
+                            CreditCasinoNo,
                             command.CustId,
                             command.CustName,
                             command.CustomerModel.UserName2,
@@ -289,7 +288,7 @@
             // Update Status for direct downline only
             if ((settingsInserted && !command.CustomerModel.CasinoSync) || command.CustomerModel.CasinoSync)
             {
-                statusUpdated = this.UpdateCSStatus(
+                updateStatusResult = UpdateCSStatus(
                     command.CustId,
                     true,
                     command.CustomerModel.UplineDisabledCasino ? true : command.CustomerModel.CasinoDisabled,
@@ -299,18 +298,16 @@
                     command.SystemId,
                     "en",
                     command.CustomerModel.UserName,
-                    string.Empty,
-                    out errMsg);
+                    string.Empty);
 
-                // Enable PT/Update max transfer for direct downline only
-                if (statusUpdated)
+                if (updateStatusResult.IsSuccess)
                 {
-                    enablePTUpdated = cust.UpdateCustEnablePT(command.CustId, true);
+                    cust.UpdateCustEnablePT(command.CustId, true);
                 }
             }
 
             // Update PT/Betting limit settings
-            casinoPTResult = this.UpdateMemberSettings(
+            updateSettingResult = this.UpdateMemberSettings(
                 command.CustId,
                 command.CustomerModel.RoleId,
                 command.IP,
@@ -320,7 +317,7 @@
                 command.SettingModel);
 
             // Gets error messages
-            messages += string.IsNullOrWhiteSpace(errMsg) && casinoPTResult.IsSuccess ? string.Empty : !string.IsNullOrWhiteSpace(errMsg) ? errMsg + "<br />" + casinoPTResult.ErrorMessage : casinoPTResult.ErrorMessage;
+            messages += string.IsNullOrWhiteSpace(errMsg) && updateSettingResult.IsSuccess ? string.Empty : !string.IsNullOrWhiteSpace(errMsg) ? errMsg + "<br />" + updateSettingResult.ErrorMessage : updateSettingResult.ErrorMessage;
 
             var msgs = messages.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             var retMsg = string.Empty;

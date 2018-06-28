@@ -91,50 +91,6 @@
             return Utils.ToBoolean(dr.Outputs["status"]);
         }
 
-        public bool UpdateCSStatus(int custid, bool syncCS, bool disabledCS, int userId, string ip, int subAccId, string lang, string username, string subUsername, byte systemId)
-        {
-            Hashtable param = new Hashtable();
-            param.Add("custid", custid);
-            param.Add("disabledcs", disabledCS);
-            param.Add("synccs", syncCS);
-
-            param.Add("userid", userId);
-            param.Add("subaccid", subAccId);
-            param.Add("loginip", ip);
-            param.Add("language", lang);
-            param.Add("systemid", systemId);
-
-            DbResult dr = DbHelper.ExecuteDbResult("Acc_UpdCSStatus", param, 300);
-
-            bool status = Utils.ToBoolean(dr.Outputs["status"]);
-
-            if (!status)
-            {
-                return false;
-            }
-
-            Customer cust = new Customer();
-            return cust.UpdateCustEnableCasino(custid, !disabledCS, true, ip, custid, subAccId == 0 ? username : subUsername, 2);
-        }
-
-        public bool DoUpdateCSStatusWithoutSync(int custid, bool syncCS, bool disabledCS, int userId, string ip, int subAccId, byte systemId, string lang, out string errMsg)
-        {
-            Hashtable param = new Hashtable();
-            param.Add("custid", custid);
-            param.Add("disabledcs", disabledCS);
-            param.Add("synccs", syncCS);
-
-            param.Add("userid", userId);
-            param.Add("subaccid", subAccId);
-            param.Add("loginip", ip);
-            param.Add("language", lang);
-            param.Add("systemid", systemId);
-            DbResult dr = DbHelper.ExecuteDbResult("Acc_UpdCSStatus", param, 300);
-
-            errMsg = dr.Outputs["errmsg"].ToString();
-            return Utils.ToBoolean(dr.Outputs["status"]);
-        }
-
         public IList<int> GetEnabledJackpotProducts(GetEnabledJackpotProductsCriteria criteria)
         {
             var productIds = new List<int>();
