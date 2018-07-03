@@ -99,8 +99,6 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Repositories
                 model.StatusPartial = new Status()
                 {
                     IsEnabled = !dataReader.To<bool>("DisableColossusBet"),
-                    IsDownlinesEnabled = !dataReader.To<bool>("DisableDownlines"),
-                    IsHasDownlines = dataReader.To<bool>("Downlines"),
                     Upline = new Status()
                     {
                         IsEnabled = !dataReader.To<bool>("DisableUpline"),

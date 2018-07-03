@@ -7,10 +7,6 @@ namespace Fanex.CustomerSetting.Module.ColossusBetSetting.Entities
     {
         public bool IsEnabled { get; set; }
 
-        public bool IsHasDownlines { get; set; }
-
-        public bool IsDownlinesEnabled { get; set; }
-
         public bool IsStatusUpdated { get; set; }
 
         public Status Upline { get; set; }

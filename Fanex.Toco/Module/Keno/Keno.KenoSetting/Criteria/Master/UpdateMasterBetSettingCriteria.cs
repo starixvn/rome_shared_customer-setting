@@ -29,8 +29,6 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Criteria
 
         public bool Disable { get; set; }
 
-        public bool DisableDownLines { get; set; }
-
         public bool UpdateMinMaxBet { get; set; }
 
         public double MinBet { get; set; }

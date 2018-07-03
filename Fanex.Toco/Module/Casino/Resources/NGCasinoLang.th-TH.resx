@@ -360,4 +360,7 @@
   <data name="lblWinning" xml:space="preserve">
     <value>ชนะ</value>
   </data>
+  <data name="ProductStatus" xml:space="preserve">
+    <value>สถานะผลิตภันฑ์</value>
+  </data>
 </root>

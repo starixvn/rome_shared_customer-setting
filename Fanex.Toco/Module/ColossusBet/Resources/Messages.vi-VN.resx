@@ -252,4 +252,7 @@
   <data name="CashInShare" xml:space="preserve">
     <value>Phần chia Đổi lấy Tiền mặt</value>
   </data>
+  <data name="ProductStatus" xml:space="preserve">
+    <value>Trạng thái sản phẩm</value>
+  </data>
 </root>

@@ -245,7 +245,6 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
                     MaxBet = dataReader.HasColumn("MaxBet") ? dataReader.ToDouble("MaxBet") : 0,
                     MaxPerMatch = dataReader.HasColumn("MaxPerGameType") ? dataReader.ToDouble("MaxPerGameType") : 0,
                     IsEnabled = dataReader.HasColumn("IsDisabled") ? !dataReader.ToBool("IsDisabled") : false,
-                    IsDownlinesEnabled = dataReader.HasColumn("DisableDownlinesKeno") ? !dataReader.ToBool("DisableDownlinesKeno") : false,
                     Upline = new BetSetting()
                     {
                         MinBet = dataReader.HasColumn("MinBet_Min") ? dataReader.ToDouble("MinBet_Min") : 0,

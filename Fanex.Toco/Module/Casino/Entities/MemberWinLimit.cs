@@ -1,7 +1,6 @@
 ﻿namespace Fanex.CustomerSetting.Module.Casino.Entities
 {
     using System.Collections.Generic;
-    using Newtonsoft.Json;
 
     public class MemberWinLimit
     {

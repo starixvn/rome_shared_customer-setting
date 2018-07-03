@@ -321,4 +321,7 @@
   <data name="WarningPowerKeno" xml:space="preserve">
     <value>澳洲的占成数设置被用于Max Keno, Max Keno 2,迷你快乐彩游戏, 迷你快乐彩游戏2,春,夏,秋,冬。</value>
   </data>
+  <data name="ProductStatus" xml:space="preserve">
+    <value>产品状态</value>
+  </data>
 </root>
