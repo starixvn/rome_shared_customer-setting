@@ -32,11 +32,8 @@ namespace Fanex.Module.Statement.AppStart
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(AreaName, context);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-            // Register(System.Web.Http.GlobalConfiguration.Configuration);
         }
     }
 }
