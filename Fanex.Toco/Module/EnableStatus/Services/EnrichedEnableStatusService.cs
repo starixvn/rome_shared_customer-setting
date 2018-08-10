@@ -50,7 +50,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
         {
             foreach (EnableStatusEntity enableStatusEntity in enableStatusModel.Entities)
             {
-                enableStatusEntity.EnableText = CacheRef.GetRefResourceByRefIdAndResourceId("Product", "24", AppSession.CurrentSession.Language, string.Empty);
+                enableStatusEntity.EnableText = CacheRef.GetRefResourceByRefIdAndResourceId("Product", "24", string.Empty);
             }
         }
 

@@ -9,9 +9,7 @@
 //------------------------------------------------------------------------------
 
 namespace ThirdPartyProducts.StatusSetting.Resources {
-#pragma warning disable CS8019 // Unnecessary using directive.
     using System;
-#pragma warning restore CS8019 // Unnecessary using directive.
     
     
     /// <summary>
