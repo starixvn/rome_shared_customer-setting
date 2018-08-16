@@ -37,8 +37,8 @@ namespace Fanex.CustomerSetting.Module.Core
         public const string IS_ALLOW_PROGRESSIVE_BONUS = "Contants.AppSession.IsAllowProgressiveBonus";
         public const string USER_ROLEID = "Contants.AppSession.UserRoleId";
 
-        public const string SUB_ACCOUNT_ID = "Contants.AppSession.SubAccountId";
-        public const string SUB_ACCOUNT_NAME = "Contants.AppSession.SubAccountName";
+        public const string SUB_ACCOUNT_ID = "SUBACCID";
+        public const string SUB_ACCOUNT_NAME = "SUBUSERNAME";
         public const string FROM_SYSTEM = "Contants.AppSession.FromSystem";
         public const string LANGUAGE = "culture";
         public const string PROGRESSIVE_BONUS_OLD_VALUE = "Contants.AppSession.ProgressiveBonusOldValue";

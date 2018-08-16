@@ -255,11 +255,11 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 		{
 			get
 			{
-				return SessionManager.Get<int>(CommonConstants.SUB_ACCOUNT_ID);
+				return SessionManager.Get<int>(HttpContext.Current.Session.SessionID + "_" + CommonConstants.SUB_ACCOUNT_ID);
 			}
 			set
 			{
-				SessionManager.Set<int>(CommonConstants.SUB_ACCOUNT_ID, value);
+				SessionManager.Set<int>(HttpContext.Current.Session.SessionID + "_" + CommonConstants.SUB_ACCOUNT_ID, value);
 			}
 		}
 
@@ -267,12 +267,12 @@ namespace Fanex.CustomerSetting.Module.Core.Web
         {
             get
             {
-                return SessionManager.Get<string>(CommonConstants.SUB_ACCOUNT_NAME);
+                return SessionManager.Get<string>(HttpContext.Current.Session.SessionID + "_" + CommonConstants.SUB_ACCOUNT_NAME);
             }
 
             set
             {
-                SessionManager.Set<string>(CommonConstants.SUB_ACCOUNT_NAME, value);
+                SessionManager.Set<string>(HttpContext.Current.Session.SessionID + "_" + CommonConstants.SUB_ACCOUNT_NAME, value);
             }
         }
 
