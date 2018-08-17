@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Web;
 using Fanex.NAP.Core.Model;
+using System.Threading;
 
 namespace Fanex.CustomerSetting.Module.Core.Web
 {
@@ -280,11 +281,7 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 		{
 			get
 			{
-				return SessionManager.Get<string>(CommonConstants.LANGUAGE);
-			}
-			set
-			{
-				SessionManager.Set<string>(CommonConstants.LANGUAGE, value);
+				return Thread.CurrentThread.CurrentCulture.Name;
 			}
 		}
 
