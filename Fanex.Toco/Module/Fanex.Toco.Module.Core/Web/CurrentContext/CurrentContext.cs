@@ -49,32 +49,8 @@ namespace Fanex.CustomerSetting.Module.Core.Web
         {
             get
             {
-                string ip = string.Empty;
-
-                foreach (IPAddress ipa in Dns.GetHostAddresses(HttpContext.Current.Request.UserHostAddress))
-                {
-                    if (ipa.AddressFamily.ToString().Equals("InterNetwork"))
-                    {
-                        ip = ipa.ToString();
-                        break;
-                    }
-                }
-
-                if (!ip.Equals(string.Empty))
-                {
-                    return ip;
-                }
-
-                foreach (IPAddress ipa in Dns.GetHostAddresses(Dns.GetHostName()))
-                {
-                    if (ipa.AddressFamily.ToString().Equals("InterNetwork"))
-                    {
-                        ip = ipa.ToString();
-                        break;
-                    }
-                }
-
-                return ip.Trim();
+                var ip = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
+                return ip.Split(',')[0];
             }
         }
 
@@ -87,7 +63,7 @@ namespace Fanex.CustomerSetting.Module.Core.Web
                 if (!string.IsNullOrEmpty(ip))
                 {
                     string[] range = ip.Split(',');
-                    string trueIP = range[0].Trim();
+                    ip = range[0].Trim();
                 }
                 else
                 {
