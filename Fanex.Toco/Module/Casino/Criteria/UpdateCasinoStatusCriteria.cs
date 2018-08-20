@@ -37,6 +37,7 @@
         [SpParam(SqlParamName = "Subaccid")]
         public int SubAccountId { get; }
 
+        [SpParam(SqlParamName = "LoginIP")]
         public string IP { get; }
 
         public string Language { get; }
