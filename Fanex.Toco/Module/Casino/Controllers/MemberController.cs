@@ -150,8 +150,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             var result = memberServices.UpdateMember( new UpdateCasinoCommand(
                 id, 
                 username, 
-                uplineId, 
-                Request.UserHostAddress, 
+                uplineId,
+                AppSession.CurrentContext.Ip4Address, 
                 userId, 
                 actorName,
                 AppSession.CurrentSession.FromSystem, 
@@ -159,7 +159,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), 
                 JsonConvert.DeserializeObject<GeneralCasinoCustomer>(customerModel)));
 
-            return JsonBase(new { ErrorCode = result.IsSuccess ? 0 : 1, ErrorMessage = result.ErrorMessage });
+            return JsonBase(new { ErrorCode = result.IsSuccess ? 0 : 1, result.ErrorMessage });
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
@@ -183,8 +183,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             var result = memberServices.UpdateMemberBySuper(new UpdateCasinoCommand(
                 id,
                 string.Empty,
-                uplineId, 
-                Request.UserHostAddress, 
+                uplineId,
+                AppSession.CurrentContext.Ip4Address, 
                 userId, 
                 actorName,
                 AppSession.CurrentSession.FromSystem, 
@@ -192,7 +192,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), 
                 JsonConvert.DeserializeObject<GeneralCasinoCustomer>(customerModel)));
 
-            return JsonBase(new { ErrorCode = result.IsSuccess ? 0 : 1, ErrorMessage = result.ErrorMessage });
+            return JsonBase(new { ErrorCode = result.IsSuccess ? 0 : 1, result.ErrorMessage });
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
@@ -216,8 +216,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
             var result = memberServices.UpdateMemberByMaster(new UpdateCasinoCommand(
                 id,
                 string.Empty,
-                uplineId, 
-                Request.UserHostAddress, 
+                uplineId,
+                AppSession.CurrentContext.Ip4Address, 
                 userId, 
                 actorName,
                 AppSession.CurrentSession.FromSystem, 
@@ -225,7 +225,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), 
                 JsonConvert.DeserializeObject<GeneralCasinoCustomer>(customerModel)));
 
-            return JsonBase(new { ErrorCode = result.IsSuccess ? 0 : 1, ErrorMessage = result.ErrorMessage });
+            return JsonBase(new { ErrorCode = result.IsSuccess ? 0 : 1, result.ErrorMessage });
         }
 
         [NonAction]

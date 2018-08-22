@@ -292,13 +292,13 @@
                     command.CustId,
                     true,
                     command.CustomerModel.UplineDisabledCasino ? true : command.CustomerModel.CasinoDisabled,
-                    command.UplineId,
-                    string.Empty,
-                    0,
+                    command.ModifiedId,
+                    command.IP,
+                    command.SubAccId,
                     command.SystemId,
-                    "en",
+                    AppSession.Language,
                     command.CustomerModel.UserName,
-                    string.Empty);
+                    command.SubAccName);
 
                 if (updateStatusResult.IsSuccess)
                 {
@@ -332,7 +332,7 @@
             if (result.IsSuccess)
             {
                 MemberWinLimitService service = new MemberWinLimitServiceImpl();
-                result = service.UpdateMemberWinLimit(command.CustId, command.ModifiedId, AppSession.SubAccountId, command.CustomerModel.MemberWinLimit);
+                result = service.UpdateMemberWinLimit(command.CustId, command.ModifiedId, command.SubAccId, command.CustomerModel.MemberWinLimit);
             }
 
             return result;

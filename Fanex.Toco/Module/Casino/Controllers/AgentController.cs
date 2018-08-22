@@ -122,7 +122,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 id,
                 username,
                 uplineId,
-                Request.UserHostAddress,
+                AppSession.CurrentContext.Ip4Address,
                 userId,
                 actorName,
                 AppSession.CurrentSession.FromSystem,
@@ -130,7 +130,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel),
                 JsonConvert.DeserializeObject<GeneralCasinoCustomer>(customerModel)));
 
-            return this.JsonBase(new { ErrorCode = ret.IsSuccess ? 0 : 1, ErrorMessage = ret.ErrorMessage });
+            return this.JsonBase(new { ErrorCode = ret.IsSuccess ? 0 : 1, ret.ErrorMessage });
         }
     }
 }

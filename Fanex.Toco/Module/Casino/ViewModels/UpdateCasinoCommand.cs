@@ -1,5 +1,6 @@
 ﻿namespace Fanex.CustomerSetting.Module.Casino.ViewModels
 {
+    using Core.Web;
     using Entities;
 
     public class UpdateCasinoCommand
@@ -26,6 +27,8 @@
             SystemId = systemId;
             SettingModel = settingModel;
             CustomerModel = customerModel;
+            SubAccId = AppSession.SubAccountId;
+            SubAccName = AppSession.SubAccountName;
         }
 
         public int CustId { get; }
@@ -33,6 +36,10 @@
         public string CustName { get; }
 
         public int UplineId { get; }
+
+        public int SubAccId { get; }
+
+        public string SubAccName { get; set; }
 
         public string IP { get; }
 

@@ -160,11 +160,11 @@
                     command.CustomerModel.UplineDisabledCasino ? true : command.CustomerModel.CasinoDisabled,
                     command.ModifiedId,
                     command.IP,
-                    AppSession.SubAccountId,
+                    command.SubAccId,
                     command.SystemId,
                     AppSession.Language,
                     command.CustomerModel.UserName,
-                    string.Empty);
+                    command.SubAccName);
 
                 if (updateStatusResult.IsSuccess)
                 {
@@ -198,12 +198,23 @@
             if (result.IsSuccess)
             {
                 MemberWinLimitService service = new MemberWinLimitServiceImpl();
-                result = service.UpdateMemberWinLimit(command.CustId, command.ModifiedId, AppSession.SubAccountId, command.CustomerModel.MemberWinLimit);
+                result = service.UpdateMemberWinLimit(command.CustId, command.ModifiedId, command.SubAccId, command.CustomerModel.MemberWinLimit);
             }
 
             return result;
         }
 
+        /// <summary>
+        /// Used for ExtNAP edit betting limit and Search and Copy on NAP
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="roleId"></param>
+        /// <param name="ip"></param>
+        /// <param name="modifiedId"></param>
+        /// <param name="modifiedBy"></param>
+        /// <param name="fromSystem"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public Result UpdateSuperBettingLimit(
             int custId, 
             int roleId, 
