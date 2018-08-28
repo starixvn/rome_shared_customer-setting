@@ -22,7 +22,6 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
     using Fanex.CustomerSetting.Module.Core;
     using Fanex.CustomerSetting.Module.Core.Models;
     using Module.Core.Services.Impl;
-    using RemotingRef;
 
     /// <summary>
     /// TODO: Update summary.
@@ -73,7 +72,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Services
                         {
                             if (product.GetFromRemotingRef)
                             {
-                                item.EnableText = item.SportTypeName = item.BetTypeName = CacheRef.GetRefResourceByRefIdAndResourceId("Product", context.Product.ToString(), context.Language, string.Empty);
+                                item.EnableText = item.SportTypeName = item.BetTypeName = CacheRef.GetRefResourceByRefIdAndResourceId("Product", context.Product.ToString(), string.Empty);
                             }
                             else
                             {

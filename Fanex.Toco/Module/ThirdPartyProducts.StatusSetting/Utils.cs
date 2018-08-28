@@ -1,11 +1,13 @@
-﻿using RemotingRef;
-using System;
-using System.Threading;
-
-namespace ThirdPartyProducts.StatusSetting
+﻿namespace ThirdPartyProducts.StatusSetting
 {
+    using Fanex.RemotingRef;
+    using System;
+    using System.Threading;
+
     internal static class Utils
     {
+        private static IRemotingRefService _remotingRefService = new RemotingRefService();
+
         internal static bool ToBoolean(object value)
         {
             var val = false;
@@ -76,12 +78,12 @@ namespace ThirdPartyProducts.StatusSetting
 
         internal static string GetProductName(string productId, string language)
         {
-            return RefData.GetResourceDataByRefIdAndResourceId("Product", productId, language, string.Empty);
+            return _remotingRefService.GetResourceDataByRefIdAndResourceId("Product", productId, language, string.Empty);
         }
 
         internal static string GetSportName(string sportType, string language)
         {
-            return RefData.GetSportName(sportType, language, string.Empty);
+            return _remotingRefService.GetSportName(sportType, language, string.Empty);
         }
 
         internal static string GetBetTypeName(string betType, string language)
@@ -89,7 +91,7 @@ namespace ThirdPartyProducts.StatusSetting
             var betTypeName = Resources.BetTypeName.ResourceManager.GetString("BetType_" + betType);
             if (string.IsNullOrEmpty(betTypeName))
             {
-                betTypeName = RefData.GetBetTypeName(betType, language, string.Empty);
+                betTypeName = _remotingRefService.GetBetTypeName(betType, language);
             }
 
             return betTypeName;
