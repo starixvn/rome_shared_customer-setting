@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
+using System;
+using System.Configuration;
 using Newtonsoft.Json;
 using NSubstitute;
 using NUnit.Framework;
@@ -94,7 +96,12 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Implement
             substitute["IsSyncedUpline"].Returns(1);
             substitute["IsDisabledDownline"].Returns(1);
             substitute["IsSync"].Returns(1);
-
+            
+            Fanex.RemotingRef.RefDataTypeContainer
+                .ConnectTo(new Uri("http://ha.nexdev.net:7258/main/"))
+                .FromApplication("ThirdPartyProducts.StatusSetting.Tests")
+                .SupportOnlyDefaultLanguage();
+            var language = Utils.GetLanguageKeyForRemotingRef();
             var expectedValue = new ProductStatus()
             {
                 ProductId = 1,
@@ -108,10 +115,10 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Implement
                 IsDisabledDownline = true,
                 IsSync = true,
 
-                ProductName = string.Empty,
-                BetTypeName = string.Empty,
-                SportName = string.Empty
-            };
+                ProductName = Utils.GetProductName("1", language),
+                BetTypeName = Utils.GetBetTypeName("1", language),
+                SportName = Utils.GetSportName("1", language)
+        };
 
             // Actual
             var actualValue = _settingService.MapSpDataMock(substitute);

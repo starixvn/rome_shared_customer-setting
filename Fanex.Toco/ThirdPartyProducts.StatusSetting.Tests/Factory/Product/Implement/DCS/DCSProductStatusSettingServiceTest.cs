@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using NSubstitute;
 using NUnit.Framework;
 using System.Collections;
@@ -135,6 +136,12 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Implement.DCS
             substitute["IsSyncedUpline"].Returns("true");
             substitute["IsHidden"].Returns("true");
             substitute["IsHiddenUpline"].Returns("true");
+            // Arrange
+            Fanex.RemotingRef.RefDataTypeContainer
+                .ConnectTo(new Uri("http://ha.nexdev.net:7258/main/"))
+                .FromApplication("ThirdPartyProducts.StatusSetting.Tests")
+                .SupportOnlyDefaultLanguage();
+            var language = Utils.GetLanguageKeyForRemotingRef();
             var expectedValue = new ProductStatus()
             {
                 ProductId = 1,
@@ -148,9 +155,9 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Implement.DCS
                 IsSyncedUpline = true,
                 IsHidden = true,
                 IsHiddenUpline = true,
-                SportName = string.Empty,
-                BetTypeName = string.Empty,
-                ProductName = string.Empty,
+                ProductName = Utils.GetProductName("1", language),
+                BetTypeName = Utils.GetBetTypeName("1", language),
+                SportName = Utils.GetSportName("1", language)
             };
 
             // Actual

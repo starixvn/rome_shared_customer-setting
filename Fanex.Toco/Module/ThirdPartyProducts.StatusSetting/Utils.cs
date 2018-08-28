@@ -6,7 +6,7 @@
 
     internal static class Utils
     {
-        private static IRemotingRefService _remotingRefService = new RemotingRefService();
+        private static readonly IRemotingRefService _remotingRefService = new RemotingRefService();
 
         internal static bool ToBoolean(object value)
         {

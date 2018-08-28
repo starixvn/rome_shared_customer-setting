@@ -361,6 +361,11 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product
             substitute["IsSyncedUpline"].Returns(1);
             substitute["IsHidden"].Returns(1);
             substitute["IsHiddenUpline"].Returns(1);
+            Fanex.RemotingRef.RefDataTypeContainer
+                .ConnectTo(new Uri("http://ha.nexdev.net:7258/main/"))
+                .FromApplication("ThirdPartyProducts.StatusSetting.Tests")
+                .SupportOnlyDefaultLanguage();
+            var language = Utils.GetLanguageKeyForRemotingRef();
             var expectedValue = new ProductStatus()
             {
                 ProductId = 1,
@@ -374,9 +379,9 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product
                 IsSyncedUpline = true,
                 IsHidden = true,
                 IsHiddenUpline = true,
-                ProductName = string.Empty,
-                BetTypeName = string.Empty,
-                SportName = string.Empty
+                ProductName = Utils.GetProductName("1", language),
+                BetTypeName = Utils.GetBetTypeName("1", language),
+                SportName = Utils.GetSportName("1", language)
             };
 
             // Actual

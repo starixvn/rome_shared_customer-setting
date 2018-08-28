@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using NSubstitute;
 using NUnit.Framework;
 using System.Collections;
@@ -17,7 +18,7 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Implement
             new object[] {
             new ProductStatus () { BetType = 12 },
             new ProductStatusResult() { ErrorCode = "1", ErrorMessage = "Test" },
-            new ProductStatusResult() { ErrorCode = "1", ErrorMessage = ": Test" }
+            new ProductStatusResult() { ErrorCode = "1", ErrorMessage = "1H Odd/Even: Test" }
             },
             new object[] {
             new ProductStatus () { BetType = 12 },
@@ -44,6 +45,12 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Implement
         [Test, TestCaseSource("RefineErrorMessageTestCaseInput")]
         public void RefineErrorMessage_AnyArgument_ReturnCorrectData(ProductStatus input, ProductStatusResult output, ProductStatusResult expectedOutput)
         {
+            // Arrange
+            Fanex.RemotingRef.RefDataTypeContainer
+                .ConnectTo(new Uri("http://ha.nexdev.net:7258/main/"))
+                .FromApplication("ThirdPartyProducts.StatusSetting.Tests")
+                .SupportOnlyDefaultLanguage();
+
             // Actual
             var actualOutput = KenoStatusSettingService.RefineErrorMessage(input, output);
 

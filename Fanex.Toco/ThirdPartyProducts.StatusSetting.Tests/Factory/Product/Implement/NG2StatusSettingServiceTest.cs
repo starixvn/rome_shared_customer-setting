@@ -55,6 +55,11 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Implement
             substitute["HasDownline"].Returns("true");
             substitute["IsSync"].Returns("true");
             substitute["IsHidden"].Returns("true");
+            Fanex.RemotingRef.RefDataTypeContainer
+                .ConnectTo(new Uri("http://ha.nexdev.net:7258/main/"))
+                .FromApplication("ThirdPartyProducts.StatusSetting.Tests")
+                .SupportOnlyDefaultLanguage();
+            var language = Utils.GetLanguageKeyForRemotingRef();
             var expectedValue = new ProductStatus() {
                 ProductId=(int)Enums.Product.NG2,
                 BetType = 1,
@@ -65,9 +70,9 @@ namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Implement
                 HasDownline=true,
                 IsSync=true,
                 IsHidden=true,
-                SportName = string.Empty,
-                BetTypeName=string.Empty,
-                ProductName= string.Empty,
+                ProductName = Utils.GetProductName(((int)Enums.Product.NG2).ToString(), language),
+                BetTypeName = Utils.GetBetTypeName("1", language),
+                SportName = Utils.GetSportName("1", language)
             };
 
             // Actual
