@@ -26,6 +26,8 @@
 
         Lucky3 = 26,
 
-        Bullfighting = 30
+        Bullfighting = 30,
+
+        PokerGames = 33
     }
 }

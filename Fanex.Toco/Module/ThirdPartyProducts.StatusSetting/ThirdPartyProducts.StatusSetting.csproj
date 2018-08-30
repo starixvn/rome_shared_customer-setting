@@ -143,6 +143,7 @@
     <Compile Include="Factory\Product\Implement\KenoStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\CasinoStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\ColossusBetStatusSettingService.cs" />
+    <Compile Include="Factory\Product\Implement\PokerGamesStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\VirtualSports2StatusSettingService.cs" />
     <Compile Include="Factory\Product\ProductStatusSettingServiceBase.cs" />
     <Compile Include="GlobalSuppressions.cs" />
