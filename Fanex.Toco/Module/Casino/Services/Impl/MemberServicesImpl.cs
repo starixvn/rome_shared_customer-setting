@@ -606,9 +606,9 @@
                 resultType = cust.UpdateCustGameType_EditMember(gameTypeTable);
             }
 
-            var resultStake = cust.UpdateCustGameTypeStakeLevel(gameStakeTable);
+            // var resultStake = cust.UpdateCustGameTypeStakeLevel(gameStakeTable); Hotfix 93258
 
-            return BuildMessages(resultKind, resultType, resultStake, model);
+            return BuildMessages(resultKind, resultType, new DataTable(), model);
         }
 
         private Result UpdateMemberSettingsByMaster(
@@ -694,9 +694,9 @@
                 resultType = cust.UpdateCustGameType_EditMember(gameTypeTable);
             }
 
-            var resultStake = cust.UpdateCustGameTypeStakeLevel(gameStakeTable);
+            // var resultStake = cust.UpdateCustGameTypeStakeLevel(gameStakeTable); Hotfix 93258
 
-            return BuildMessages(resultKind, resultType, resultStake, model);
+            return BuildMessages(resultKind, resultType, new DataTable(), model);
         }
 
         private DataTable GameKindsDataTableMember()
