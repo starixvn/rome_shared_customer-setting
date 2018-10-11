@@ -89,7 +89,7 @@
                         decimal lossPercent = reader.ToDecimal("LossPercent");
                         decimal? maxLossAmount = reader["MaxLossAmount"] == DBNull.Value ? new decimal?() : reader.ToDecimal("MaxLossAmount");
 
-                        return new CurrentMemberWinLoss(winPercent, maxWinLimit, currentAmount, lossPercent, maxLossAmount);
+                        return new CurrentMemberWinLoss(winPercent, currentAmount, maxWinLimit, lossPercent, maxLossAmount);
                     }
                 }
             }
