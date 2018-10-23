@@ -6,11 +6,11 @@
         {
         }
 
-        public CurrentMemberWinLoss(decimal winPercent, decimal maxWinLimit, decimal maxWinCredit, decimal lossPercent, decimal? maxLossAmount)
+        public CurrentMemberWinLoss(decimal winPercent, decimal currentAmount, decimal maxWinCredit, decimal lossPercent, decimal? maxLossAmount)
         {
             WinPercent = winPercent;
-            MaxWinAmount = maxWinLimit == 0 ? new decimal?() : maxWinCredit;
-
+            MaxWinAmount = maxWinCredit;
+            CurrentAmount = currentAmount;
             LossPercent = lossPercent;
             MaxLossAmount = maxLossAmount;
         }
@@ -22,5 +22,7 @@
         public decimal LossPercent { get; set; }
 
         public decimal? MaxLossAmount { get; set; }
+
+        public decimal CurrentAmount { get; set; }
     }
 }
