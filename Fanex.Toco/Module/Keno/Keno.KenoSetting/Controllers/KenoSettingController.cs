@@ -33,7 +33,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Controllers
 
         [HttpPost]
         [IsBelonging]
-        [AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "KenoSetting")]
+        [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "KenoSetting")]
         [AntiXSRFFilter]
         public JsonResult UpdateSuper(SuperSettingViewModel superSetting)
         {
