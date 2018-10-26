@@ -1,0 +1,52 @@
+﻿using Newtonsoft.Json;
+using NUnit.Framework;
+using System.Collections;
+using System.Collections.Generic;
+using ThirdPartyProducts.StatusSetting.Factory;
+using ThirdPartyProducts.StatusSetting.Factory.Product.Implement;
+using ThirdPartyProducts.StatusSetting.Model;
+
+namespace ThirdPartyProducts.StatusSetting.Test.Factory.Product.Implement
+{
+    [TestFixture]
+    [Category("ThirdPartyProducts.StatusSetting.Test.Factory.Product.Implement")]
+    public class CasinoStatusSettingServiceTest
+    {
+        [Test]
+        public void Update_AnyArgument_ReturnCorrectData()
+        {
+            // Arrange
+            var request = new UpdateProductStatusRequest()
+            {
+                CustId = 1,
+                SubAccId = 1,
+                ProductId = 1,
+                SystemId = 1,
+                UplineId = 1,
+                UserId = 1,
+                Ip = "127.0.0.1",
+                ProductStatus = new List<ProductStatus>() {
+                    new ProductStatus()
+                }
+            };
+            ObjectDbFactory.ExecuteNonQueryFunc = criteria => ExecuteNonQueryTest();
+            var expectedValue = new List<ProductStatusResult>();
+            expectedValue.Add(new ProductStatusResult() { ErrorCode = "0", ErrorMessage= string.Empty });
+            // Actual
+            var actualValue = new CasinoStatusSettingService().Update(request);
+            ObjectDbFactory.ExecuteNonQueryFunc = null;
+
+            // Assert
+            Assert.AreEqual(JsonConvert.SerializeObject(expectedValue), JsonConvert.SerializeObject(actualValue));
+        }
+
+        private Hashtable ExecuteNonQueryTest()
+        {
+            return new Hashtable()
+            {
+                { "errcode", "0" },
+                { "errmsg", string.Empty }
+            };
+        }
+    }
+}
