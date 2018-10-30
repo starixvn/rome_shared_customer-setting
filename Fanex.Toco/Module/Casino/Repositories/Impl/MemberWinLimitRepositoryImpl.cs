@@ -84,12 +84,12 @@
                     if (reader.Read())
                     {
                         decimal winPercent = reader.ToDecimal("WinPercent");
-                        decimal maxWinLimit = reader.ToDecimal("MaxWinLimit");
+                        decimal maxWinCredit = reader.ToDecimal("MaxWinCredit");
                         decimal currentAmount = reader.ToDecimal("CurrentAmount");
                         decimal lossPercent = reader.ToDecimal("LossPercent");
                         decimal? maxLossAmount = reader["MaxLossAmount"] == DBNull.Value ? new decimal?() : reader.ToDecimal("MaxLossAmount");
 
-                        return new CurrentMemberWinLoss(winPercent, currentAmount, maxWinLimit, lossPercent, maxLossAmount);
+                        return new CurrentMemberWinLoss(winPercent, currentAmount, maxWinCredit, lossPercent, maxLossAmount);
                     }
                 }
             }
