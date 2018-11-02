@@ -11,22 +11,22 @@
 
     public class WinLossLimitController : BaseController
     {
-        private readonly MemberWinLimitService service;
+        private readonly MemberWinLimitPartialService service;
 
         public WinLossLimitController() : this(null)
         {
         }
 
-        internal WinLossLimitController(MemberWinLimitService service)
+        internal WinLossLimitController(MemberWinLimitPartialService service)
         {
-            this.service = service ?? new MemberWinLimitServiceImpl();
+            this.service = service ?? new MemberWinLimitPartialServiceImpl();
         }
 
         [HttpPost, AntiXSRFFilter, CasinoUMTimeFilter, AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
-        public ActionResult Update(int custId, int userId, int subAccId, string winLimit)
+        public ActionResult Update(int custId, int userId, int subAccId, string winLimit, byte roleId)
         {
             var memberWinLimit = JsonConvert.DeserializeObject<MemberWinLimit>(winLimit);            
-            var result = service.UpdateMemberWinLimit(custId, userId, subAccId, memberWinLimit);
+            var result = service.UpdateMemberWinLimit(custId, userId, subAccId, memberWinLimit, roleId);
 
             return JsonBase(result);
         }

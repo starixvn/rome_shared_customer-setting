@@ -215,12 +215,6 @@
 
         public Result UpdateMember(UpdateCasinoCommand command)
         {
-            var allowedDownlinesResult = CheckAllowedDownlines(command.CustId, 1);
-            if (!allowedDownlinesResult.IsSuccess)
-            {
-                return allowedDownlinesResult;
-            }
-
             var errMsg = string.Empty;
             var messages = string.Empty;
             var settingsInserted = true;
@@ -340,12 +334,6 @@
 
         public Result UpdateMemberBySuper(UpdateCasinoCommand command)
         {
-            var allowedDownlinesResult = CheckAllowedDownlines(command.CustId, 1);
-            if (!allowedDownlinesResult.IsSuccess)
-            {
-                return allowedDownlinesResult;
-            }
-
             var errMsg = string.Empty;
             var messages = string.Empty;
             var casinoPTResult = new Result();
@@ -379,12 +367,6 @@
 
         public Result UpdateMemberByMaster(UpdateCasinoCommand command)
         {
-            var allowedDownlinesResult = CheckAllowedDownlines(command.CustId, 1);
-            if (!allowedDownlinesResult.IsSuccess)
-            {
-                return allowedDownlinesResult;
-            }
-
             var errMsg = string.Empty;
             var messages = string.Empty;
             var casinoPTResult = new Result();

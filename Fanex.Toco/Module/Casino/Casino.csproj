@@ -266,12 +266,14 @@
       <DependentUpon>NGCasinoLang.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\Impl\CasinoServiceBaseImpl.cs" />
+    <Compile Include="Services\Impl\MemberWinLimitPartialServiceImpl.cs" />
     <Compile Include="Services\Impl\MemberWinLimitServiceImpl.cs" />
     <Compile Include="Services\Impl\AgentServicesImpl.cs" />
     <Compile Include="Services\Impl\MasterServicesImpl.cs" />
     <Compile Include="Services\Impl\MemberServicesImpl.cs" />
     <Compile Include="Services\Impl\SuperServicesImpl.cs" />
     <Compile Include="Services\Interface\CasinoServiceBase.cs" />
+    <Compile Include="Services\Interface\MemberWinLimitPartialService.cs" />
     <Compile Include="Services\Interface\SuperServices.cs" />
     <Compile Include="Services\Interface\MemberServices.cs" />
     <Compile Include="Services\Interface\MasterServices.cs" />
