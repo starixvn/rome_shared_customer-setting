@@ -5,6 +5,13 @@
 
     public interface MemberWinLimitPartialService
     {
-        Result UpdateMemberWinLimit(int custId, int userId, int subAccId, MemberWinLimit memberWinLimit, byte roleId);
+        Result UpdateMemberWinLimit(
+            int custId,
+            int userId,
+            int subAccId,
+            string ip,
+            string language,
+            MemberWinLimit memberWinLimit,
+            byte roleId);
     }
 }

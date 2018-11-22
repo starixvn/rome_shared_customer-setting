@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.Web;
 using Fanex.Module.NG2.Entities;
 using Fanex.Module.NG2.Repository;
@@ -26,20 +25,9 @@ namespace Fanex.Module.NG2.Services
             int subAccId = 0)
         {
             var logInfo = string.Empty;
-            var allowed = false;
             var result = new Entities.Result();
 
-            if (siteId == SiteId.Alpha)
-            {
-                allowed = true;
-            }
-            else
-            {
-                var db = BaseRepository.CheckAllowedCurrencyAll(custId);
-                allowed = Convert.ToBoolean(db.Outputs["allowedng2"]);
-            }
-            
-            if (allowed)
+            if (siteId == SiteId.Alpha || BaseRepository.CheckAllowedCurrencyAll(custId))
             {
                 try
                 {
@@ -81,7 +69,7 @@ namespace Fanex.Module.NG2.Services
 
                 if (roleId == RoleId.Super)
                 {
-                    Fanex.Logging.Logger.Log.Info(logInfo);
+                    Logging.Logger.Log.Info(logInfo);
                 }
             }                  
 

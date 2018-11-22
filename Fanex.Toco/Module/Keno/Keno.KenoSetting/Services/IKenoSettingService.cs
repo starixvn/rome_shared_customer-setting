@@ -40,8 +40,8 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
 
         IList<Result> UpdateMemberCustomerSettingInCaseOfMasterEditMember(MasterEditMemberSettingViewModel memberSetting);
 
-        IList<Result> UpdateBetSetting(BetSetting betSetting);
+        IList<Result> UpdateBetSetting(BetSetting betSetting, byte? systemId);
 
-        IList<Result> UpdateBetSettingSuper(BetSetting betSetting, int custId, int userId);
+        IList<Result> UpdateBetSettingSuper(BetSetting betSetting, int custId, int userId, byte? systemId);
     }
 }

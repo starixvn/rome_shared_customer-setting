@@ -9,6 +9,12 @@
 
         CurrentMemberWinLoss GetCurrentWinLimit(int custId);
 
-        Result UpdateMemberWinLimit(int custId, int userId, int subAccId, MemberWinLimit memberWinLimit);
+        Result UpdateMemberWinLimit(
+            int custId,
+            int userId,
+            int subAccId,
+            string ip,
+            string language,
+            MemberWinLimit memberWinLimit);
     }
 }

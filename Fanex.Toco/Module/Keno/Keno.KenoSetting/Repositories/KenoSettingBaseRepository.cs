@@ -11,11 +11,10 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
 {
     using System;
     using System.Collections.Generic;
+    using Data.Repository;
     using Fanex.CustomerSetting.Module.Core.Models;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.Helpers;
     using Fanex.Data;
-    using Fanex.NAP.Framework.Data;
-    using Fanex.NAP.Framework.Exceptions;
 
     /// <summary>
     /// KenoSettingRepository Class.
@@ -43,7 +42,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
         {
             if (criteria == null || !criteria.IsValid())
             {
-                throw new NapDataAccessException();
+                throw new InvalidOperationException("Criteria is null or invalid.");
             }
 
             return ExecuteUpdateSetting(criteria);

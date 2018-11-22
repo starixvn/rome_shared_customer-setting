@@ -1,6 +1,7 @@
 ﻿namespace Fanex.CustomerSetting.Module.Casino.Criteria
 {
-    using Fanex.NAP.Framework.Data;
+    using Data;
+    using Data.Repository;
 
     public class GetEnabledJackpotProductsCriteria : CriteriaBase
     {

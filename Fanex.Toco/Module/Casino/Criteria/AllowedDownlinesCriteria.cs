@@ -1,6 +1,7 @@
 ﻿namespace Fanex.CustomerSetting.Module.Casino.Criteria
 {
-    using NAP.Framework.Data;
+    using Data;
+    using Data.Repository;
 
     public class AllowedDownlinesCriteria : CriteriaBase
     {

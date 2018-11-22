@@ -4,37 +4,51 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.Data;
-    using CasinoLibrary.SBAgent;
     using Core;
     using Core.Models;
     using Criteria;
     using Data;
-    using Data.DNAide;
+    using Data.Repository;
     using Entities;
     using Interface;
-    using NAP.Framework.Data;
 
     public class CasinoRepositoryImpl : CasinoRepository
     {
         public CasinoCustomer GetCustInfoIBC(int ibcCustId, int uplineId)
         {
+            DataSet dr;
+            var uplineDisableCasino = false;
+
             Hashtable param = new Hashtable();
             param.Add("custid", ibcCustId);
 
-            var uplineParam = new Hashtable();
-            uplineParam.Add("custid", uplineId);
+            using (IObjectDb db = new ObjectDb("Age_CustomerSelUserInfo"))
+            {
+                db.AssignParamValues(param);
+                dr = db.ExecuteDataSet();
+            }
 
-            DbResult dr = DbHelper.ExecuteDbResult("Age_CustomerSelUserInfo", param, 300);
-            var upline = uplineId != 0 ? DbHelper.ExecuteDbResult("Age_CustomerSelUserInfo", uplineParam, 300) : new DbResult(new Hashtable(), new DataSet());
+            if (uplineId != 0)
+            {
+                var uplineParam = new Hashtable();
+                uplineParam.Add("custid", uplineId);
+
+                using (IObjectDb db = new ObjectDb("Age_CustomerSelUserInfo"))
+                {
+                    db.AssignParamValues(uplineParam);
+                    var upline = db.ExecuteDataSet();
+                    uplineDisableCasino = (bool)upline.Tables[0].Rows[0]["disablecasino"];
+                }
+            }
 
             DataRow row = null;
             CasinoCustomer customerDetail = new CasinoCustomer();
             customerDetail.GeneralInfo.CasinoNo = "01";
-            customerDetail.GeneralInfo.UplineDisabledCasino = uplineId != 0 ? (bool)upline.ResultSet.Tables[0].Rows[0]["disablecasino"] : false;
+            customerDetail.GeneralInfo.UplineDisabledCasino = uplineDisableCasino;
 
-            if (dr.ResultSet.Tables[0].Rows.Count > 0)
+            if (dr.Tables[0].Rows.Count > 0)
             {
-                row = dr.ResultSet.Tables[0].Rows[0];
+                row = dr.Tables[0].Rows[0];
                 customerDetail.GeneralInfo.UserName = Utils.ToString(row["username"]);
                 customerDetail.GeneralInfo.UserName2 = Utils.ToString(row["username2"]);
                 customerDetail.GeneralInfo.FirstName = Utils.ToString(row["firstname"]);
@@ -68,18 +82,39 @@
                 {
                     var allCustomerInfoParam = new Hashtable();
                     allCustomerInfoParam.Add("username", customerDetail.GeneralInfo.UserName);
-                    DbResult allCustomerInfoDr = DbHelper.ExecuteDbResult("SelAllInfo", allCustomerInfoParam, 300);
-                    customerDetail.GeneralInfo.IsDeposit = Utils.ToBoolean(allCustomerInfoDr.ResultSet.Tables[0].Rows[0]["isdeposit"]);
-                    customerDetail.GeneralInfo.SiteName =
-                        customerDetail.GeneralInfo.IsDeposit ?
-                        Utils.ToString(allCustomerInfoDr.ResultSet.Tables[0].Rows[0]["site"]) :
-                        "ibcbet";
+
+                    using (IObjectDb db = new ObjectDb("SelAllInfo"))
+                    {
+                        db.AssignParamValues(allCustomerInfoParam);
+                        var allCustomerInfoDr = db.ExecuteDataSet().Tables[0].Rows[0];
+
+                        customerDetail.GeneralInfo.IsDeposit = Utils.ToBoolean(allCustomerInfoDr["isdeposit"]);
+                        customerDetail.GeneralInfo.SiteName = customerDetail.GeneralInfo.IsDeposit
+                            ? Utils.ToString(allCustomerInfoDr["site"])
+                            : "ibcbet";
+                    }
                 }
 
                 customerDetail.GeneralInfo.NoIBCData = false;
             }
 
             return customerDetail;
+        }
+
+        public bool GetCasinoStatus(int custid)
+        {
+            Hashtable param = new Hashtable();
+            param.Add("custid", custid);
+
+            using (IObjectDb db = new ObjectDb("Age_GetCSStatus"))
+            {
+                db.AssignParamValues(param);
+
+                db.ExecuteDataSet();
+                var outputs = db.GetOuputParams();
+
+                return Utils.ToBoolean(outputs["status"]);
+            }
         }
 
         public IList<int> GetEnabledJackpotProducts(GetEnabledJackpotProductsCriteria criteria)

@@ -9,7 +9,6 @@
 
 namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.ViewModels
 {
-    using System.Collections.Generic;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities;
 
     /// <summary>
@@ -39,5 +38,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.ViewModels
                 positionTaking.IsUpdateUS1 = true;
             }
         }
+
+        public byte? SystemId { get; set; }
     }
 }

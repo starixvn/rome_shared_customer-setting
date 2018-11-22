@@ -9,14 +9,14 @@
 
 namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
 {
+    using Data.Repository;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities;
-    using Fanex.NAP.Framework.Data;
 
     public interface ICriteriaGeneratorService
     {
         IKenoSession KenoSession { get; }
 
-        ICriteria CreateUpdateBetSettingCriteria(BetSetting betSetting);
+        ICriteria CreateUpdateBetSettingCriteria(BetSetting betSetting, byte? systemId);
 
         ICriteria CreateUpdatePositionTakingCriteria(dynamic positionTaking);
     }

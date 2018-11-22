@@ -20,7 +20,14 @@
             this.casinoRepository = casinoRepository ?? new CasinoRepositoryImpl();
         }
 
-        public Result UpdateMemberWinLimit(int custId, int userId, int subAccId, MemberWinLimit memberWinLimit, byte roleId)
+        public Result UpdateMemberWinLimit(
+            int custId,
+            int userId,
+            int subAccId,
+            string ip,
+            string language,
+            MemberWinLimit memberWinLimit,
+            byte roleId)
         {
             if (roleId != 1)
             {
@@ -31,7 +38,7 @@
                 }
             }
 
-            return repository.UpdateMemberWinLimit(custId, userId, subAccId, memberWinLimit);
+            return repository.UpdateMemberWinLimit(custId, userId, subAccId, ip, language, memberWinLimit);
         }
     }
 }

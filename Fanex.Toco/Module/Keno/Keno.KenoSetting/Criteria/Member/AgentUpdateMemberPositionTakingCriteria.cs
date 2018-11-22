@@ -9,8 +9,9 @@
 
 namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Criteria
 {
+    using Data;
+    using Data.Repository;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities;
-    using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// AgentUpdateMemberPositionTakingCriteria class.
@@ -23,12 +24,15 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Criteria
 
         public int BetType { get; set; }
 
+        [SpParam(Ignored = true)]
         public bool UpdatePT { get; set; }
 
         public double A1 { get; set; }
 
+        [SpParam(Ignored = true)]
         public double Discount { get; set; }
 
+        [SpParam(Ignored = true)]
         public bool UpdateComm { get; set; }
 
         public int SubAccId { get; set; }

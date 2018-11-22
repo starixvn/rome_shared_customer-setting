@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using Fanex.Data;
-using Fanex.Data.DNAide;
 using Fanex.Logging.Extensions.Web;
 
 namespace Fanex.Module.NG2.Repository
@@ -11,22 +10,22 @@ namespace Fanex.Module.NG2.Repository
     /// </summary>
     public class BaseRepository
     {
-        public static DbResult CheckAllowedCurrencyAll(int custId)
+        public static bool CheckAllowedCurrencyAll(int custId)
         {
-            DbResult checkCurrency = new DbResult(new Hashtable(), new System.Data.DataSet());
+            var isAllowed = false;
+
             try
             {
                 var param = new Hashtable();
                 param.Add("custid", custId);
 
-                using (ObjectDb db = new ObjectDb("CheckAllowedShow", 600))
+                using (IObjectDb db = new ObjectDb("CheckAllowedShow", 600))
                 {
                     db.AssignParamValues(param);
-
-                    var ds = db.ExecuteDataSet();
+                    db.ExecuteDataSet();
                     var output = db.GetOuputParams();
 
-                    checkCurrency = new DbResult(output, ds);
+                    isAllowed = Convert.ToBoolean(output["allowedng2"]);
                 }
             }
             catch (Exception ex)
@@ -34,7 +33,7 @@ namespace Fanex.Module.NG2.Repository
                 ExceptionHandler.Handle(ex);
             }
 
-            return checkCurrency;
+            return isAllowed;
         }
     }
 }

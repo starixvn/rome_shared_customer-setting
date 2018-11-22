@@ -1,13 +1,15 @@
 ﻿namespace Fanex.CustomerSetting.Module.Casino.Controllers
 {
+    using System.Globalization;
+    using System.Web.Mvc;
     using Authenticate;
+    using Core.Web;
     using Core.Web.Controllers;
     using Entities;
     using Newtonsoft.Json;
     using Security.Authenticate;
     using Services.Impl;
     using Services.Interface;
-    using System.Web.Mvc;
 
     public class WinLossLimitController : BaseController
     {
@@ -26,7 +28,13 @@
         public ActionResult Update(int custId, int userId, int subAccId, string winLimit, byte roleId)
         {
             var memberWinLimit = JsonConvert.DeserializeObject<MemberWinLimit>(winLimit);            
-            var result = service.UpdateMemberWinLimit(custId, userId, subAccId, memberWinLimit, roleId);
+            var result = service.UpdateMemberWinLimit(
+                custId,
+                userId,
+                subAccId,
+                AppSession.CurrentContext.Ip4Address,
+                CultureInfo.CurrentCulture.Name,
+                memberWinLimit, roleId);
 
             return JsonBase(result);
         }

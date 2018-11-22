@@ -16,7 +16,13 @@
         public CurrentMemberWinLoss GetCurrentWinLimit(int custId)
             => memberWinLimitRepository.GetCurrentWinLimit(custId);
 
-        public Result UpdateMemberWinLimit(int custId, int userId, int subAccId, MemberWinLimit memberWinLimit)
-            => memberWinLimitRepository.UpdateMemberWinLimit(custId, userId, subAccId, memberWinLimit);
+        public Result UpdateMemberWinLimit(
+            int custId,
+            int userId,
+            int subAccId,
+            string ip,
+            string language,
+            MemberWinLimit memberWinLimit)
+            => memberWinLimitRepository.UpdateMemberWinLimit(custId, userId, subAccId, ip, language, memberWinLimit);
     }
 }

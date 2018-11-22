@@ -10,9 +10,9 @@
 namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
 {
     using System.Collections.Generic;
+    using Data.Repository;
     using Fanex.CustomerSetting.Module.Core.Models;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.ViewModels;
-    using Fanex.NAP.Framework.Data;
 
     public interface IKenoSettingRepository
     {

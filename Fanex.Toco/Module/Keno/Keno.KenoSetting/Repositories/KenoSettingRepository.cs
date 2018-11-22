@@ -9,6 +9,10 @@
 
 namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using Data.Repository;
     using Fanex.Common.Extensions;
     using Fanex.CustomerSetting.Module.Core.Models;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.Configurations;
@@ -16,10 +20,6 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.Helpers;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.ViewModels;
     using Fanex.Data;
-    using Fanex.NAP.Framework.Data;
-    using Fanex.NAP.Framework.Exceptions;
-    using System.Collections.Generic;
-    using System.Data;
 
     /// <summary>
     /// KenoSettingRepository Class.
@@ -35,7 +35,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
         {
             if (!criteria.IsValid())
             {
-                throw new NapDataAccessException();
+                throw new InvalidOperationException("Criteria is invalid.");
             }
 
             var superSetting = new SuperSettingViewModel();
@@ -62,7 +62,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
         {
             if (!criteria.IsValid())
             {
-                throw new NapDataAccessException();
+                throw new InvalidOperationException("Criteria is invalid.");
             }
 
             var masterSetting = new MasterSettingViewModel();
@@ -89,7 +89,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
         {
             if (!criteria.IsValid())
             {
-                throw new NapDataAccessException();
+                throw new InvalidOperationException("Criteria is invalid.");
             }
 
             var agentSetting = new AgentSettingViewModel();
@@ -116,7 +116,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
         {
             if (!criteria.IsValid())
             {
-                throw new NapDataAccessException();
+                throw new InvalidOperationException("Criteria is invalid.");
             }
 
             var memberSetting = new AgentEditMemberSettingViewModel();
@@ -143,7 +143,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
         {
             if (!criteria.IsValid())
             {
-                throw new NapDataAccessException();
+                throw new InvalidOperationException("Criteria is invalid.");
             }
 
             var memberSetting = new SuperEditMemberSettingViewModel();
@@ -170,7 +170,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
         {
             if (!criteria.IsValid())
             {
-                throw new NapDataAccessException();
+                throw new InvalidOperationException("Criteria is invalid.");
             }
 
             var memberSetting = new MasterEditMemberSettingViewModel();

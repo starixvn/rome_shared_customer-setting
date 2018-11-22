@@ -9,9 +9,10 @@
 
 namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
 {
+    using Data.Repository;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.Criteria;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities;
-    using Fanex.NAP.Framework.Data;
+    using Helpers;
 
     /// <summary>
     /// Criteria Generator Service.
@@ -35,7 +36,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
         /// <returns>
         /// The instance of ICriteria.
         /// </returns>
-        public ICriteria CreateUpdateBetSettingCriteria(BetSetting betSetting)
+        public ICriteria CreateUpdateBetSettingCriteria(BetSetting betSetting, byte? systemId)
         {
             return new UpdateMasterBetSettingCriteria()
             {
@@ -51,7 +52,8 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
                 UserId = CustomerInformation.UserId,
                 SubAccId = CustomerInformation.SubAccId,
                 Ip = KenoSession.Ip,
-                Language = CustomerInformation.Language
+                Language = CustomerInformation.Language,
+                SystemId = systemId ?? SystemIdHelper.GetFromConfigurationFile()
             };
         }
 

@@ -9,8 +9,8 @@
 
 namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Criteria
 {
+    using Data.Repository;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities;
-    using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// GetAgentSettingCriteria class.

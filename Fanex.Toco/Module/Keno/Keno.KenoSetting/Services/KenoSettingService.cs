@@ -89,37 +89,37 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
         public IList<Result> UpdateSuperCustomerSetting(SuperSettingViewModel superSetting)
         {
             _criteriaGeneratorService = _criteriaGeneratorService ?? new SuperCriteriaGeneratorService(superSetting.CustomerInformation);
-            return UpdateCustomerSetting(superSetting);
+            return UpdateCustomerSetting(superSetting, superSetting.SystemId);
         }
 
         public IList<Result> UpdateMasterCustomerSetting(MasterSettingViewModel masterSetting)
         {
             _criteriaGeneratorService = _criteriaGeneratorService ?? new MasterCriteriaGeneratorService(masterSetting.CustomerInformation);
-            return UpdateCustomerSetting(masterSetting);
+            return UpdateCustomerSetting(masterSetting, masterSetting.SystemId);
         }
 
         public IList<Result> UpdateAgentCustomerSetting(AgentSettingViewModel agentSetting)
         {
             _criteriaGeneratorService = _criteriaGeneratorService ?? new AgentCriteriaGeneratorService(agentSetting.CustomerInformation);
-            return UpdateCustomerSetting(agentSetting);
+            return UpdateCustomerSetting(agentSetting, agentSetting.SystemId);
         }
 
         public IList<Result> UpdateMemberCustomerSettingInCaseOfAgentEditMember(AgentEditMemberSettingViewModel memberSetting)
         {
             _criteriaGeneratorService = _criteriaGeneratorService ?? new AgentEditMemberCriteriaGeneratorService(memberSetting.CustomerInformation);
-            return UpdateCustomerSetting(memberSetting);
+            return UpdateCustomerSetting(memberSetting, memberSetting.SystemId);
         }
 
         public IList<Result> UpdateMemberCustomerSettingInCaseOfSuperEditMember(SuperEditMemberSettingViewModel memberSetting)
         {
             _criteriaGeneratorService = _criteriaGeneratorService ?? new SuperEditMemberCriteriaGeneratorService(memberSetting.CustomerInformation);
-            return UpdateCustomerSetting(memberSetting);
+            return UpdateCustomerSetting(memberSetting, memberSetting.SystemId);
         }
 
         public IList<Result> UpdateMemberCustomerSettingInCaseOfMasterEditMember(MasterEditMemberSettingViewModel memberSetting)
         {
             _criteriaGeneratorService = _criteriaGeneratorService ?? new MasterEditMemberCriteriaGeneratorService(memberSetting.CustomerInformation);
-            return UpdateCustomerSetting(memberSetting);
+            return UpdateCustomerSetting(memberSetting, memberSetting.SystemId);
         }
 
         /// <summary>
@@ -129,9 +129,9 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
         /// <returns>
         /// The list of results.
         /// </returns>
-        public IList<Result> UpdateBetSetting(BetSetting betSetting)
+        public IList<Result> UpdateBetSetting(BetSetting betSetting, byte? systemId)
         {
-            var criteria = _criteriaGeneratorService.CreateUpdateBetSettingCriteria(betSetting);
+            var criteria = _criteriaGeneratorService.CreateUpdateBetSettingCriteria(betSetting, systemId);
             IList<Result> results = criteria is InvalidCriteria ? new List<Result>() : _kenoSettingRepository.UpdateBetSetting(criteria);
 
             foreach (var result in results)
@@ -151,14 +151,14 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
         /// <returns>
         /// The list of results.
         /// </returns>
-        public IList<Result> UpdateBetSettingSuper(BetSetting betSetting, int custId, int userId)
+        public IList<Result> UpdateBetSettingSuper(BetSetting betSetting, int custId, int userId, byte? systemId)
         {
             _criteriaGeneratorService = new SuperCriteriaGeneratorService(new CustomerInformation()
             {
                 CustId = custId,
                 UserId = userId
             });
-            var criteria = _criteriaGeneratorService.CreateUpdateBetSettingCriteria(betSetting);
+            var criteria = _criteriaGeneratorService.CreateUpdateBetSettingCriteria(betSetting, systemId);
             IList<Result> results = criteria is InvalidCriteria ? new List<Result>() : _kenoSettingRepository.UpdateBetSetting(criteria);
 
             foreach (var result in results)
@@ -194,17 +194,19 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
         /// </summary>
         /// <param name="customerSetting">Customer setting.</param>
         /// <returns>List result.</returns>
-        internal List<Result> UpdateCustomerSetting(dynamic customerSetting)
+        internal List<Result> UpdateCustomerSetting(dynamic customerSetting, byte? systemId)
         {
             customerSetting.AdjustInformationWhenUpdateSetting();
             var results = new List<Result>();
             try
             {
-                results.AddRange(this.UpdateBetSettings(customerSetting));
+                results.AddRange(this.UpdateBetSettings(customerSetting, systemId));
                 results.AddRange(this.UpdatePositionTakings(customerSetting));
             }
             catch (Exception ex)
             {
+                LoggingHandler.Log(ex);
+
                 results.Add(new Result
                 {
                     ErrorCode = 100,
@@ -222,7 +224,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
         /// <returns>
         /// The list of results.
         /// </returns>
-        internal IList<Result> UpdateBetSettings(dynamic customerSetting)
+        internal IList<Result> UpdateBetSettings(dynamic customerSetting, byte? systemId)
         {
             var results = new List<Result>();
 
@@ -230,7 +232,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
             {
                 if (betSetting.IsDataChanged())
                 {
-                    results.AddRange(this.UpdateBetSetting(betSetting));
+                    results.AddRange(this.UpdateBetSetting(betSetting, systemId));
                 }
             }
 

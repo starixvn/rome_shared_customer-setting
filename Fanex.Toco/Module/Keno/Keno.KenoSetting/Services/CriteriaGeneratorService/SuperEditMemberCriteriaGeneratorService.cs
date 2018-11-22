@@ -9,10 +9,10 @@
 
 namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
 {
+    using Data.Repository;
     using Fanex.CustomerSetting.Module.Core.Criteria;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.Criteria;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities;
-    using Fanex.NAP.Framework.Data;
 
     /// <summary>
     /// Criteria Generator Service.
@@ -36,7 +36,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
         /// <returns>
         /// The instance of ICriteria.
         /// </returns>
-        public ICriteria CreateUpdateBetSettingCriteria(BetSetting betSetting)
+        public ICriteria CreateUpdateBetSettingCriteria(BetSetting betSetting, byte? systemId)
         {
             return new InvalidCriteria();
         }

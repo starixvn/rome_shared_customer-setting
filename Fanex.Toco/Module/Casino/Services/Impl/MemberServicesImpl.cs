@@ -353,7 +353,13 @@
             if (result.IsSuccess)
             {
                 MemberWinLimitService service = new MemberWinLimitServiceImpl();
-                result = service.UpdateMemberWinLimit(command.CustId, command.ModifiedId, command.SubAccId, command.CustomerModel.MemberWinLimit);
+                result = service.UpdateMemberWinLimit(
+                    command.CustId,
+                    command.ModifiedId,
+                    command.SubAccId,
+                    command.IP,
+                    AppSession.Language,
+                    command.CustomerModel.MemberWinLimit);
             }
 
             return result;

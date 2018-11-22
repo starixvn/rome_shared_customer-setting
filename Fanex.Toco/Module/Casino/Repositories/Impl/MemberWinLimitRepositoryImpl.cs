@@ -3,15 +3,13 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Globalization;
     using Core;
     using Core.Models;
-    using Core.Web;
     using Data;
+    using Data.Repository;
     using Entities;
     using Interface;
     using Logging.Extensions.Web;
-    using NAP.Framework.Data;
     using Resources;
 
     public class MemberWinLimitRepositoryImpl : MemberWinLimitRepository
@@ -101,7 +99,13 @@
             }
         }
 
-        public Result UpdateMemberWinLimit(int custId, int userId, int subAccId, MemberWinLimit memberWinLimit)
+        public Result UpdateMemberWinLimit(
+            int custId,
+            int userId,
+            int subAccId,
+            string ip,
+            string language,
+            MemberWinLimit memberWinLimit)
         {
             using (var db = new ObjectDb("Acc_CustomerWinlimitUpd"))
             {
@@ -113,9 +117,9 @@
                 param.Add("bettype", 2101);
                 param.Add("maxlosslimit", memberWinLimit.MaximumLoss);
                 param.Add("subaccid", subAccId);
-                param.Add("ip", AppSession.CurrentContext.Ip4Address);
+                param.Add("ip", ip);
                 param.Add("userid", userId);
-                param.Add("language", CultureInfo.CurrentCulture.Name);
+                param.Add("language", language);
                 param.Add("errcode", 0);
                 param.Add("errmsg", string.Empty);
 

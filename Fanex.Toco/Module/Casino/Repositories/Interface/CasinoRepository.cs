@@ -3,8 +3,8 @@
     using System.Collections.Generic;
     using Core.Models;
     using Criteria;
+    using Data.Repository;
     using Entities;
-    using NAP.Framework.Data;
 
     public interface CasinoRepository
     {
