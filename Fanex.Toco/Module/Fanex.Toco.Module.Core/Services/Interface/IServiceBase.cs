@@ -10,11 +10,11 @@
 //   <change who="Ricky.Nguyen" date="2012.11.6">Move</change>
 // </history>
 
-using Fanex.CustomerSetting.Module.Core.Criteria;
-using Fanex.CustomerSetting.Module.Core.Models;
-using Fanex.NAP.Framework.Data;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using Fanex.CustomerSetting.Module.Core.Criteria;
+using Fanex.CustomerSetting.Module.Core.Models;
+using Fanex.Data.Repository;
 
 namespace Fanex.CustomerSetting.Module.Core.Services.Interface
 {

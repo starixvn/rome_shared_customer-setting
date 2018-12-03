@@ -1,4 +1,5 @@
-﻿using Fanex.NAP.Framework.Data;
+﻿using System;
+using Fanex.Data.Repository;
 
 namespace Fanex.CustomerSetting.Module.Core.Criteria
 {
@@ -10,5 +11,8 @@ namespace Fanex.CustomerSetting.Module.Core.Criteria
         {
             return "Acc_CustomerIsInternalAdmin";
         }
+
+        public override bool IsValid()
+            => CustID > 0;
     }
 }

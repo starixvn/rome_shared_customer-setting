@@ -6,9 +6,9 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-using Fanex.CustomerSetting.Module.Core.Models;
-using Fanex.NAP.Framework.Data;
 using System.Diagnostics.CodeAnalysis;
+using Fanex.CustomerSetting.Module.Core.Models;
+using Fanex.Data.Repository;
 
 namespace Fanex.CustomerSetting.Module.Core.Criteria
 {

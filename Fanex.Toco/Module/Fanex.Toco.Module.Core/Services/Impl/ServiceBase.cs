@@ -5,13 +5,13 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
     using System.Diagnostics.CodeAnalysis;
     using Criteria;
     using Data;
+    using Data.Repository;
     using Fanex.Caching;
     using Fanex.Common.Helper;
     using Fanex.CustomerSetting.Module.Core.Repository;
     using Fanex.CustomerSetting.Module.Core.Services.Interface;
     using Fanex.NAP.Core.Web.Context;
     using Fanex.NAP.Core.Web.Session;
-    using Fanex.NAP.Framework.Data;
     using Models;
     using NAP.Core.Context;
 
