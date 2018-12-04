@@ -2,7 +2,7 @@
 using Fanex.BetList.Core.Entities;
 using Fanex.Common;
 using Fanex.Data;
-using Fanex.NAP.Framework.Data;
+using Fanex.Data.Repository;
 
 namespace Fanex.CustomerSetting.Module.ColossusBets.Repositories
 {

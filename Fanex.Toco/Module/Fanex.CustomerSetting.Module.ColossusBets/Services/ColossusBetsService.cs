@@ -10,8 +10,8 @@ using Fanex.CustomerSetting.Module.ColossusBets.Models;
 using Fanex.CustomerSetting.Module.ColossusBets.Repositories;
 using Fanex.CustomerSetting.Module.ColossusBets.Resources;
 using Fanex.Logging.Extensions.Web;
-using Fanex.NAP.Framework.Data;
 using Newtonsoft.Json;
+using Fanex.Data.Repository;
 
 namespace Fanex.CustomerSetting.Module.ColossusBets.Services
 {
