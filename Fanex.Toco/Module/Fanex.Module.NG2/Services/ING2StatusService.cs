@@ -18,6 +18,7 @@ namespace Fanex.Module.NG2.Services
             int currencyId, 
             int userId,
             byte systemId,
+            string ip,
             string language = "en-US", 
             int subAccId = 0);
 

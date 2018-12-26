@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Web;
 using Fanex.Module.NG2.Entities;
 using Fanex.Module.NG2.Repository;
 using ONEbook.NG2.API.DTO.CreateAccount;
@@ -21,6 +20,7 @@ namespace Fanex.Module.NG2.Services
             int currencyId,
             int userId,
             byte systemId,
+            string ip,
             string language = "en-US", 
             int subAccId = 0)
         {
@@ -51,13 +51,13 @@ namespace Fanex.Module.NG2.Services
                     if (response.Result.IsSuccess && (response.Result.AccountArray.Count > 0 ? response.Result.AccountArray[0].IsSuccess : true))
                     {
                         logInfo += "<br />3. Calling update sync at MBC";
-                        result = SyncStatus(custId, userId, HttpContext.Current.Request.UserHostName, subAccId);
+                        result = SyncStatus(custId, userId, ip, subAccId);
 
                         logInfo += "<br />4. Update sync at MBC - Success: " + result.IsSuccess;
                         if (result.IsSuccess)
                         {
                             logInfo += "<br />5. Calling update disable status: " + uplineDisabled;
-                            result = EnableStatus(custId, userId, uplineDisabled, HttpContext.Current.Request.UserHostAddress, systemId, subAccId);
+                            result = EnableStatus(custId, userId, uplineDisabled, ip, systemId, subAccId);
                             logInfo += "<br />6. Update disable status - Success: " + result.IsSuccess;
                         }
                     }
