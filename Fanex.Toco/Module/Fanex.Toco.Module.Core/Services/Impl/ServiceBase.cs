@@ -81,7 +81,7 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
                 return new CheckCustomerBelongToSpecialSiteResult(
                     Convert.IsDBNull(outputs["isspecialsite"]) ? false : Convert.ToBoolean(outputs["isspecialsite"]),
                     Convert.IsDBNull(outputs["isspecialheadline"]) ? false : Convert.ToBoolean(outputs["isspecialheadline"]),
-                    Convert.IsDBNull(outputs["sitecode"]) ? 1 : Convert.ToInt32(outputs["sitecode"]));
+                    Convert.IsDBNull(outputs["site"]) ? string.Empty : outputs["site"].ToString());
             }
         }
 

@@ -12,13 +12,13 @@ namespace Fanex.CustomerSetting.Module.Core.Models
 
         public bool IsSpecialHeadline { get; private set; }
 
-        public int SiteCode { get; private set; }
+        public string Site { get; private set; }
 
-        public CheckCustomerBelongToSpecialSiteResult(bool isSpecialSite, bool isSpecialHeadline, int siteCode)
+        public CheckCustomerBelongToSpecialSiteResult(bool isSpecialSite, bool isSpecialHeadline, string site)
         {
             IsSpecialSite = isSpecialSite;
             IsSpecialHeadline = isSpecialHeadline;
-            SiteCode = siteCode;
+            Site = site;
         }
     }
 }
