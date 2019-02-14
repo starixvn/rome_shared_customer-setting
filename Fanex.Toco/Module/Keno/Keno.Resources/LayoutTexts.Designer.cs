@@ -511,6 +511,15 @@ namespace Fanex.CustomerSetting.Module.Keno.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Inputting 0 / 0 / 0 for Min Bet / Max Bet / Max Per Match will prevent members from playing the game..
+        /// </summary>
+        public static string MemberUnlimitedBetSettingWarningMessage {
+            get {
+                return ResourceManager.GetString("MemberUnlimitedBetSettingWarningMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Min Bet.
         /// </summary>
         public static string MinBet {
@@ -570,6 +579,15 @@ namespace Fanex.CustomerSetting.Module.Keno.Resources {
         public static string PTComm {
             get {
                 return ResourceManager.GetString("PTComm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inputting Min Bet = Max Bet = Max Per Match = 0 means that you will not limit the bet setting of this account.&lt;br/&gt;In order to prevent members from playing the game, set the value to 0 / 0.1 / 0.1 for Min Bet / Max Bet / Max Per Match..
+        /// </summary>
+        public static string SMAUnlimitedBetSettingWarningMessage {
+            get {
+                return ResourceManager.GetString("SMAUnlimitedBetSettingWarningMessage", resourceCulture);
             }
         }
         

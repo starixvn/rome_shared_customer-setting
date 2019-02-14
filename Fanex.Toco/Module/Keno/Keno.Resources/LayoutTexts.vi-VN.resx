@@ -324,4 +324,10 @@
   <data name="ProductStatus" xml:space="preserve">
     <value>Trạng thái sản phẩm</value>
   </data>
+  <data name="MemberUnlimitedBetSettingWarningMessage" xml:space="preserve">
+    <value>Để ngăn không cho Member đặt cược, hãy thiết lập giá trị Cược nhỏ nhất / Cược lớn nhất/ Cược tối đa cho 1 trận là 0 / 0 /0</value>
+  </data>
+  <data name="SMAUnlimitedBetSettingWarningMessage" xml:space="preserve">
+    <value>Cược nhỏ nhất = Cược lớn nhất = Cược tối đa cho 1 trận = 0, nghĩa là bạn sẽ không giới hạn mức cược cho tài khoản này.&lt;br/&gt;Để ngăn không cho Member đặt cược, hãy thiết lập giá trị Cược nhỏ nhất / Cược lớn nhất/ Cược tối đa cho 1 trận là 0 / 0.1 / 0.1</value>
+  </data>
 </root>

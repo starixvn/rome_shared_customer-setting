@@ -324,4 +324,10 @@
   <data name="ProductStatus" xml:space="preserve">
     <value>產品狀態</value>
   </data>
+  <data name="MemberUnlimitedBetSettingWarningMessage" xml:space="preserve">
+    <value>輸入最低投註/ 最高投註/ 單場限額： 0/ 0/ 0 可以限制會員進行投註此產品。</value>
+  </data>
+  <data name="SMAUnlimitedBetSettingWarningMessage" xml:space="preserve">
+    <value>輸入最低投註 = 最高投註 = 單場限額 = 0 即代表沒有限制此賬號的投註設定。&lt;br/&gt;倘若欲限制會員進行投註，您可設置 最低投註 / 最高投註 / 單場限額 ： 0 / 0.1 / 0.1/ 0.1</value>
+  </data>
 </root>

@@ -324,4 +324,10 @@
   <data name="ProductStatus" xml:space="preserve">
     <value>สถานะผลิตภันฑ์</value>
   </data>
+  <data name="MemberUnlimitedBetSettingWarningMessage" xml:space="preserve">
+    <value>ป้อนค่าเดิมพัน 0/0/0 สำหรับค่าเดิมพันต่ำสุด / ค่าเดิมพันสูงสุด / ค่าเดิมพันสูงสุดต่อการแข่งขันจะป้องกันไม่ให้สมาชิกเล่นเกม</value>
+  </data>
+  <data name="SMAUnlimitedBetSettingWarningMessage" xml:space="preserve">
+    <value>ป้อนค่าเดิมพันต่ำสุด = ค่าเดิมพันสูงสุด = ค่าเดิมพันสูงสุดต่อการแข่งขัน = 0 หมายความว่าคุณจะไม่ จำกัด การเดิมพันของบัญชี&lt;br/&gt;เพื่อป้องกันไม่ให้สมาชิกเล่นเกมตั้งค่าเป็น 0 / 0.1 / 0.1 สำหรับการเดิมพันขั้นต่ำ / ค่าเดิมพันสูงสุด / ค่าเดิมพันสูงสุดต่อการแข่งขัน</value>
+  </data>
 </root>
