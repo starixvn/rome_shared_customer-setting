@@ -187,7 +187,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit Keno.
+        ///   Looks up a localized string similar to Edit RNG Keno.
         /// </summary>
         public static string EditKeno {
             get {
@@ -196,7 +196,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit Multiple Keno.
+        ///   Looks up a localized string similar to Edit Multiple RNG Keno.
         /// </summary>
         public static string EditMultipleKeno {
             get {
@@ -673,7 +673,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update Keno Setting.
+        ///   Looks up a localized string similar to Update RNG Keno Setting.
         /// </summary>
         public static string UpdateKenoSetting {
             get {
