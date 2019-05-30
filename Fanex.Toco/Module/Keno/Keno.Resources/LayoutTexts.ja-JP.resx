@@ -235,7 +235,7 @@
     <value>Super PT</value>
   </data>
   <data name="UpdateKenoSetting" xml:space="preserve">
-    <value>Update Keno Setting</value>
+    <value>Update RNG Keno Setting</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>
@@ -295,7 +295,7 @@
     <value>Update</value>
   </data>
   <data name="EditKeno" xml:space="preserve">
-    <value>Edit Keno</value>
+    <value>Edit RNG Keno</value>
   </data>
   <data name="lblMaxBet" xml:space="preserve">
     <value>Max Bet</value>
@@ -307,7 +307,7 @@
     <value>Min Bet</value>
   </data>
   <data name="EditMultipleKeno" xml:space="preserve">
-    <value>Edit Multiple Keno</value>
+    <value>Edit Multiple RNG Keno</value>
   </data>
   <data name="lblCopyAllBetSetting" xml:space="preserve">
     <value>Copy All Bet Setting from Australia Acttab</value>

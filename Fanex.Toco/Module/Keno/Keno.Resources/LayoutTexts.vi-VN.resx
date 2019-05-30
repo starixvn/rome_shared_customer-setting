@@ -289,13 +289,13 @@
     <value>Update</value>
   </data>
   <data name="UpdateKenoSetting" xml:space="preserve">
-    <value>Update Keno Setting</value>
+    <value>Update RGN Keno Setting</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>
   </data>
   <data name="EditKeno" xml:space="preserve">
-    <value>Edit Keno</value>
+    <value>Edit RNG Keno</value>
   </data>
   <data name="lblMaxBet" xml:space="preserve">
     <value>Max Bet</value>
@@ -307,7 +307,7 @@
     <value>Min Bet</value>
   </data>
   <data name="EditMultipleKeno" xml:space="preserve">
-    <value>Edit Multiple Keno</value>
+    <value>Edit Multiple RNG Keno</value>
   </data>
   <data name="lblCopyAllBetSetting" xml:space="preserve">
     <value>Sao chép tất cả thiết lập về giới hạn cược từ Australia Acttab</value>

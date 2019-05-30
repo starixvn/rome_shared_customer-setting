@@ -235,7 +235,7 @@
     <value>슈퍼 PT</value>
   </data>
   <data name="UpdateKenoSetting" xml:space="preserve">
-    <value>Update Keno Setting</value>
+    <value>Update RNG Keno Setting</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>사용자 이름</value>
@@ -292,7 +292,7 @@
     <value>업데이트</value>
   </data>
   <data name="EditKeno" xml:space="preserve">
-    <value>Edit Keno</value>
+    <value>Edit RNG Keno</value>
   </data>
   <data name="lblMaxBet" xml:space="preserve">
     <value>최대 배팅</value>
@@ -304,7 +304,7 @@
     <value>최소 배팅</value>
   </data>
   <data name="EditMultipleKeno" xml:space="preserve">
-    <value>Edit Multiple Keno</value>
+    <value>Edit Multiple RNG Keno</value>
   </data>
   <data name="lblCopyAllBetSetting" xml:space="preserve">
     <value>아래의 베팅 설정을 호주 으로 부터 모두 복사 </value>
