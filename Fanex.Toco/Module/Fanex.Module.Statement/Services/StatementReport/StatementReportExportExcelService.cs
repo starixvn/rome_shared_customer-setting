@@ -191,9 +191,8 @@ namespace Fanex.Module.Statement.Services.StatementReport
             currentRow++;
 
             var headerRow = worksheet.CreateRow(currentRow);
-            var columnWidths = new int[] { 13, 20, 20, 20, 20, 20, 20, 20, 20 };
-            var maxColumnIndex = 8;
-            for (var i = 0; i <= maxColumnIndex; i++)
+            var columnWidths = new int[] { 13, 20, 20, 20, 20, 20, 20, 20, 20, 20 };
+            for (var i = 0; i <= columnWidths.Length - 1; i++)
             {
                 headerRow.Sheet.SetColumnWidth(i, columnWidths[i] * 256);
             }

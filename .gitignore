@@ -23,6 +23,7 @@ Thumbs.db
 *.lib
 *.sbr
 *.orig
+*.sh
 obj/
 [Rr]elease*/
 _ReSharper*/
@@ -30,3 +31,4 @@ _ReSharper*/
 Fanex.Toco/Fanex.Toco.sln.GhostDoc.xml
 Fanex.Toco/.vs/config/applicationhost.config
 packages/
+.vs/
