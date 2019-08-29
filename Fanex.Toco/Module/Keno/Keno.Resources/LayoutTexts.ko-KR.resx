@@ -315,9 +315,6 @@
   <data name="lblCopyAllStatus" xml:space="preserve">
     <value>Copy all below status from Australia Acttab</value>
   </data>
-  <data name="WarningPowerKeno" xml:space="preserve">
-    <value>Australia position taking settings are being used for Max Keno, Max Keno 2, Mini Keno, Mini Keno 2, Spring, Summer, Autumn, Winter.</value>
-  </data>
   <data name="MemberUnlimitedBetSettingWarningMessage" xml:space="preserve">
     <value>Inputting 0 / 0 / 0 for Min Bet / Max Bet / Max Per Match will prevent members from playing the game.</value>
   </data>

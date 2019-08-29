@@ -319,7 +319,7 @@
     <value>คัดลอกการตั้งค่ากสถานะจากออสเตรเลีย</value>
   </data>
   <data name="WarningPowerKeno" xml:space="preserve">
-    <value>การตั้งค่าเอี่ยวของ Keno ออสเตรเลียจะถูกใช้กับ Max Keno, Max Keno 2, Mini Keno, Mini Keno 2, Spring, Summer, Autumn, Winter.</value>
+    <value>การตั้งค่าเอี่ยวของ Keno ออสเตรเลียจะถูกใช้กับ Max Keno, Max Keno 2, Mini Keno, Mini Keno 2, Spring, Summer, Autumn, Winter, Keno War, Keno War 2.</value>
   </data>
   <data name="ProductStatus" xml:space="preserve">
     <value>สถานะผลิตภันฑ์</value>
