@@ -168,9 +168,6 @@
   <data name="member" xml:space="preserve">
     <value>Member</value>
   </data>
-  <data name="poker" xml:space="preserve">
-    <value>Poker</value>
-  </data>
   <data name="s44" xml:space="preserve">
     <value>Sportsbook2</value>
   </data>
@@ -185,12 +182,6 @@
   </data>
   <data name="warningKenoBeijing" xml:space="preserve">
     <value>Australia setting is being used for Beijing as well</value>
-  </data>
-  <data name="p14" xml:space="preserve">
-    <value>Microgaming - Live Casino</value>
-  </data>
-  <data name="p17" xml:space="preserve">
-    <value>Microgaming - RnG Casino</value>
   </data>
   <data name="warningVoidBridgeUnsyncedAllDownline" xml:space="preserve">
     <value>The Macau Games Setting is not fully available. Please go to Edit Macau Games page to adjust.</value>

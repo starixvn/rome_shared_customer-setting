@@ -131,8 +131,6 @@
     <Compile Include="Factory\Product\Criteria\UpdateColossusBetStatusCriteria.cs" />
     <Compile Include="Factory\Product\Implement\GoldDeluxeStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\DCS\MultipleBettypeDCSProductStatusSettingService.cs" />
-    <Compile Include="Factory\Product\Implement\BullfightingStatusSettingService.cs" />
-    <Compile Include="Factory\Product\Implement\Lucky3StatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\LotteryStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\DCS\SingleBettypeDCSProductStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\NG2StatusSettingService.cs" />
@@ -143,7 +141,6 @@
     <Compile Include="Factory\Product\Implement\KenoStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\CasinoStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\ColossusBetStatusSettingService.cs" />
-    <Compile Include="Factory\Product\Implement\PokerGamesStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\VirtualSports2StatusSettingService.cs" />
     <Compile Include="Factory\Product\ProductStatusSettingServiceBase.cs" />
     <Compile Include="GlobalSuppressions.cs" />

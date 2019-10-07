@@ -19,7 +19,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class EnableStatusResources {
@@ -246,33 +246,6 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Resources {
         public static string Notes {
             get {
                 return ResourceManager.GetString("Notes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Microgaming - Live Casino.
-        /// </summary>
-        public static string p14 {
-            get {
-                return ResourceManager.GetString("p14", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Microgaming - RnG Casino.
-        /// </summary>
-        public static string p17 {
-            get {
-                return ResourceManager.GetString("p17", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Poker.
-        /// </summary>
-        public static string poker {
-            get {
-                return ResourceManager.GetString("poker", resourceCulture);
             }
         }
         

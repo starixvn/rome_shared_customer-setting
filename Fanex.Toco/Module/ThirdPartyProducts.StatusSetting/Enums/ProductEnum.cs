@@ -23,11 +23,5 @@
         VirtualSports2 = 27,
 
         Lottery = 28,
-
-        Lucky3 = 26,
-
-        Bullfighting = 30,
-
-        PokerGames = 33
     }
 }

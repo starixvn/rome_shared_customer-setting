@@ -47,17 +47,9 @@
       <Project>{5f8f3877-90e3-48a3-bad7-4207dcba088d}</Project>
       <Name>Casino</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Module\ColossusBet\Fanex.CustomerSetting.Module.ColossusBetSetting.csproj">
-      <Project>{2955165b-6354-42bf-86cc-a2e959fd448e}</Project>
-      <Name>Fanex.CustomerSetting.Module.ColossusBetSetting</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Module\EnableStatus\EnableStatus.csproj">
       <Project>{22f2a79c-5f7a-4a4b-9f4b-1011228914e3}</Project>
       <Name>EnableStatus</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Module\Fanex.CustomerSetting.Module.ColossusBets\Fanex.CustomerSetting.Module.ColossusBets.csproj">
-      <Project>{4dc252e8-df63-49b0-8baa-717e10b30932}</Project>
-      <Name>Fanex.CustomerSetting.Module.ColossusBets</Name>
     </ProjectReference>
     <ProjectReference Include="..\Module\Fanex.Module.Statement\Fanex.Module.Statement.csproj">
       <Project>{2b8bf7a6-3c6d-42e9-956e-d4b144eddaee}</Project>
