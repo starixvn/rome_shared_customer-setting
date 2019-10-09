@@ -53,7 +53,7 @@ namespace Fanex.Module.Statement.Services.StatementReport
             var checkSpecialSite = serviceBase.CheckSpecialSitePermission(
                 new CheckSpecialSitePermissionCriteria()
                 {
-                    UserID = AppSession.AccId,
+                    UserID = AppSession.CurrentSession.UserId,
                     CustID = criteria.CustId
                 });
             if (checkSpecialSite.ErrorCode > 0)
@@ -104,7 +104,7 @@ namespace Fanex.Module.Statement.Services.StatementReport
             var checkSpecialSite = serviceBase.CheckSpecialSitePermission(
                 new CheckSpecialSitePermissionCriteria()
                 {
-                    UserID = AppSession.AccId,
+                    UserID = AppSession.CurrentSession.UserId,
                     CustID = criteria.CustId
                 });
             if (checkSpecialSite.ErrorCode > 0)
@@ -208,6 +208,11 @@ namespace Fanex.Module.Statement.Services.StatementReport
         public CustomerInformationModel GetCustomerInfo(GetCustomerInformationByUsername criteria)
         {
             CustomerInformationModel result = new CustomerInformationModel();
+            if (!criteria.IsValid())
+            {
+                return result;
+            }
+
             try
             {
                 result = _statementReportRepository.GetCustomerInfo(criteria);
@@ -229,6 +234,11 @@ namespace Fanex.Module.Statement.Services.StatementReport
         /// </returns>
         public bool CheckInternalByUsername(CheckInternalByUsernameCriteria criteria)
         {
+            if (!criteria.IsValid())
+            {
+                return false;
+            }
+
             bool result = false;
             try
             {
@@ -259,7 +269,6 @@ namespace Fanex.Module.Statement.Services.StatementReport
                 criteria.ToDate.Year >= 9999
                 ? DateTime.Now : criteria.ToDate;
 
-            List<StatementReportCriteria> dateRange = new List<StatementReportCriteria>();
             if (criteria.FromDate > criteria.MoveBetsDay ||
                 (criteria.BalanceUpDay <= criteria.FromDate && criteria.ToDate <= criteria.MoveBetsDay) ||
                  criteria.ToDate < criteria.BalanceUpDay)
