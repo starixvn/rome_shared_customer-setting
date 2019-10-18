@@ -1,5 +1,8 @@
 namespace Fanex.CustomerSetting.Module.Core.Services.Impl
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using Criteria;
     using Data;
     using Fanex.Caching;
@@ -10,9 +13,7 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
     using Fanex.NAP.Core.Web.Session;
     using Fanex.NAP.Framework.Data;
     using Models;
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
+    using NAP.Core.Context;
 
     public class ServiceBase : IServiceBase
     {

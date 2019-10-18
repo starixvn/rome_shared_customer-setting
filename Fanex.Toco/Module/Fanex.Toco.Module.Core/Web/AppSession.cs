@@ -13,13 +13,13 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Web;
-using Fanex.NAP.Core.Model;
 using System.Threading;
+using System.Web;
+using Fanex.NAP.Core.Models;
 
 namespace Fanex.CustomerSetting.Module.Core.Web
 {
-	[SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
+    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
 	public static class AppSession
 	{
         public static ICurrentSession CurrentSession
