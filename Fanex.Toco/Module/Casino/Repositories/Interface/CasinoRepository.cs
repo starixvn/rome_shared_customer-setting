@@ -10,8 +10,6 @@
     {
         CasinoCustomer GetCustInfoIBC(int ibcCustId, int uplineId);
 
-        bool GetCasinoStatus(int custid);
-
         IList<int> GetEnabledJackpotProducts(GetEnabledJackpotProductsCriteria criteria);
 
         Result ExecuteNonQuery(ICriteria criteria);

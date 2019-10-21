@@ -135,8 +135,6 @@
     <Compile Include="Factory\Product\Criteria\DCS\NG2\UpdateNG2ProductStatusCriteriaTest.cs" />
     <Compile Include="Factory\Product\Criteria\DCS\UpdateDCSProductStatusCriteriaTest.cs" />
     <Compile Include="Factory\Product\Criteria\DCS\SelectDCSProductStatusCriteriaTest.cs" />
-    <Compile Include="Factory\Product\Criteria\SelectGoldDeluxeStatusCriteriaTest.cs" />
-    <Compile Include="Factory\Product\Criteria\UpdateGoldDeluxeStatusCriteriaTest.cs" />
     <Compile Include="Factory\Product\Criteria\SelectProductStatusCriteriaTest.cs" />
     <Compile Include="Factory\Product\Criteria\UpdateCasinoStatusCriteriaTest.cs" />
     <Compile Include="Factory\Product\Criteria\UpdateColossusBetStatusCriteriaTest.cs" />
@@ -155,8 +153,6 @@
     <Compile Include="Factory\Product\ProductStatusSettingServiceBaseMock.cs" />
     <Compile Include="Factory\Product\ProductStatusSettingServiceBaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Factory\Product\Implement\GoldDeluxeStatusSettingServiceMock.cs" />
-    <Compile Include="Factory\Product\Implement\GoldDeluxeStatusSettingServiceTest.cs" />
     <Compile Include="Services\StatusSettingServiceTests.cs" />
     <Compile Include="TestData\ExcuteSPResult.cs" />
     <Compile Include="UtilsTest.cs" />
