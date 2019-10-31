@@ -26,8 +26,6 @@ namespace Fanex.Module.Statement.Criteria
         }
 
         public override bool IsValid()
-        {
-            return true;
-        }
+            => !string.IsNullOrWhiteSpace(Username);
     }
 }

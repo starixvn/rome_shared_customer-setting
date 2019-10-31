@@ -20,21 +20,12 @@ namespace Fanex.Module.Statement.Criteria
         public string Username { get; set; }
 
         public int UserId
-        {
-            get
-            {
-                return AppSession.AccId;
-            }
-        }
+            => AppSession.CurrentSession.UserId;
 
         public override string GetSettingKey()
-        {
-            return "Statement_Report_GetCustomerInformationByUsername";
-        }
+            => "Statement_Report_GetCustomerInformationByUsername";
 
         public override bool IsValid()
-        {
-            return true;
-        }
+            => !string.IsNullOrWhiteSpace(Username) && UserId > 0;
     }
 }
