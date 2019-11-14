@@ -6,7 +6,6 @@ namespace Fanex.CustomerSetting.Module.Core.Constants
         public const int MixParlay = 100;
         public const int Soccer = 1;
         public const int Casino = 71;
-        public const int P2P = 72;
         public const int CombinationMixParlay = 98;
 
         public const int Motorsports = 99;
@@ -48,9 +47,6 @@ namespace Fanex.CustomerSetting.Module.Core.Constants
 
         public const int ESport = 43;
         public const int GoldDeluxe = 255;
-
-        public const int MicroGamingLiveCasino = 203;
-        public const int MicroGamingRNGCasino = 205;
         public const int AGCasino = 250;
 
         public const int RNG_RNGGame = 208;

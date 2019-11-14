@@ -82,15 +82,6 @@
             return customerDetail;
         }
 
-        public bool GetCasinoStatus(int custid)
-        {
-            Hashtable param = new Hashtable();
-            param.Add("custid", custid);
-
-            DbResult dr = DbHelper.ExecuteDbResult("Age_GetCSStatus", param, 300);
-            return Utils.ToBoolean(dr.Outputs["status"]);
-        }
-
         public IList<int> GetEnabledJackpotProducts(GetEnabledJackpotProductsCriteria criteria)
         {
             var productIds = new List<int>();

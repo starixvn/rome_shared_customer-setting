@@ -35,8 +35,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fanex.Common, Version=1.0.404.97, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Common.1.0.404.97\lib\net40\Fanex.Common.dll</HintPath>
+    <Reference Include="Fanex.Common, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Common.1.1.0.1\lib\net40\Fanex.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Data, Version=0.5.404.59, Culture=neutral, processorArchitecture=MSIL">
@@ -123,16 +123,11 @@
     <Compile Include="Factory\Product\Criteria\DCS\NG2\UpdateNG2ProductStatusCriteria.cs" />
     <Compile Include="Factory\Product\Criteria\DCS\SelectDCSProductStatusCriteria.cs" />
     <Compile Include="Factory\Product\Criteria\DCS\UpdateDCSProductStatusCriteria.cs" />
-    <Compile Include="Factory\Product\Criteria\SelectGoldDeluxeStatusCriteria.cs" />
     <Compile Include="Factory\Product\Criteria\SelectProductStatusCriteria.cs" />
-    <Compile Include="Factory\Product\Criteria\UpdateGoldDeluxeStatusCriteria.cs" />
     <Compile Include="Factory\Product\Criteria\UpdateCasinoStatusCriteria.cs" />
     <Compile Include="Factory\Product\Criteria\UpdateKenoStatusCriteria.cs" />
     <Compile Include="Factory\Product\Criteria\UpdateColossusBetStatusCriteria.cs" />
-    <Compile Include="Factory\Product\Implement\GoldDeluxeStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\DCS\MultipleBettypeDCSProductStatusSettingService.cs" />
-    <Compile Include="Factory\Product\Implement\BullfightingStatusSettingService.cs" />
-    <Compile Include="Factory\Product\Implement\Lucky3StatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\LotteryStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\DCS\SingleBettypeDCSProductStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\NG2StatusSettingService.cs" />
@@ -143,7 +138,6 @@
     <Compile Include="Factory\Product\Implement\KenoStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\CasinoStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\ColossusBetStatusSettingService.cs" />
-    <Compile Include="Factory\Product\Implement\PokerGamesStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\VirtualSports2StatusSettingService.cs" />
     <Compile Include="Factory\Product\ProductStatusSettingServiceBase.cs" />
     <Compile Include="GlobalSuppressions.cs" />
