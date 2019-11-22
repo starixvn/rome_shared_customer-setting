@@ -8,7 +8,7 @@
 
     public class MemberWinLimitServiceImpl : MemberWinLimitService
     {
-        private MemberWinLimitRepository memberWinLimitRepository = new MemberWinLimitRepositoryImpl();
+        private readonly MemberWinLimitRepository memberWinLimitRepository = new MemberWinLimitRepositoryImpl();
 
         public MemberWinLimit GetMemberWinLimit(int custId)
             => memberWinLimitRepository.GetMemberWinLimit(custId);

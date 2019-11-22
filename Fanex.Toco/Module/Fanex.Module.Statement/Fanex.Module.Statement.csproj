@@ -124,6 +124,7 @@
     <Compile Include="Criteria\StatementReport\SMAStatementCriteria.cs" />
     <Compile Include="Criteria\StatementReport\StatementReportCriteria.cs" />
     <Compile Include="Criteria\StatementReport\TransferDetailsCriteria.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Models\CustomerInformationModel.cs" />
     <Compile Include="Models\DataColumnModel.cs" />
     <Compile Include="Models\StatementReport\StatementModel.cs" />

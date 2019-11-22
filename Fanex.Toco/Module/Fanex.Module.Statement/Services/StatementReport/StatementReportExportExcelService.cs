@@ -9,10 +9,6 @@
 
 namespace Fanex.Module.Statement.Services.StatementReport
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.IO;
-    using System.Linq;
     using Fanex.Module.Statement.Configurations;
     using Fanex.Module.Statement.Criteria.StatementReport;
     using Fanex.Module.Statement.Models;
@@ -21,6 +17,9 @@ namespace Fanex.Module.Statement.Services.StatementReport
     using NPOI.HSSF.UserModel;
     using NPOI.HSSF.Util;
     using NPOI.SS.UserModel;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.IO;
 
     /// <summary>
     /// Statement Report Export Excel Service.
@@ -247,7 +246,6 @@ namespace Fanex.Module.Statement.Services.StatementReport
             currentCell = headerRow.CreateCell(currentColumn);
             currentCell.SetCellValue(Labels.Accumulated_Total);
             currentCell.CellStyle = headerStyle;
-            currentColumn++;
         }
 
         /// <summary>
@@ -270,13 +268,11 @@ namespace Fanex.Module.Statement.Services.StatementReport
             var statementListLength = data.StatementList.Count;
             if (statementListLength == 0)
             {
-                ExportEmptyReport(workbook, worksheet, 8, currentRow);
+                ExportEmptyReport(workbook, worksheet, currentRow);
                 return;
             }
 
-            var palette = workbook.GetCustomPalette();
-            var evenRowColorIndex = palette.FindSimilarColor(230, 230, 255).GetIndex();
-            var oddRowColorIndex = palette.FindSimilarColor(255, 255, 204).GetIndex();
+            var palette = workbook.GetCustomPalette();          
             var noteOpeningBalanceColorIndex = palette.FindSimilarColor(255, 102, 255).GetIndex();
 
             var reportStyle = ReportStyle(workbook);
@@ -313,8 +309,6 @@ namespace Fanex.Module.Statement.Services.StatementReport
             for (int i = 0; i < statementListLength; i++)
             {
                 var row = worksheet.CreateRow(currentRow);
-                var colorIndex = i % 2 == 1 ? oddRowColorIndex : evenRowColorIndex;
-
                 var statement = data.StatementList[i];
                 var currentColumn = 0;
                 var column = row.CreateCell(currentColumn);
@@ -390,7 +384,6 @@ namespace Fanex.Module.Statement.Services.StatementReport
                 column.CellStyle = IsNegative(statement.AccumulatedTotal) ?
                     twoDecimalRedNumberStyle :
                     twoDecimalNumberStyle;
-                currentColumn++;
 
                 previousStatement = statement;
                 currentRow++;
@@ -462,7 +455,6 @@ namespace Fanex.Module.Statement.Services.StatementReport
             currentCell = headerRow.CreateCell(currentColumn);
             currentCell.SetCellValue(Labels.Accumulated_Total);
             currentCell.CellStyle = headerStyle;
-            currentColumn++;
         }
 
         /// <summary>
@@ -485,13 +477,11 @@ namespace Fanex.Module.Statement.Services.StatementReport
             var currentRow = 2;
             if (statementListLength == 0)
             {
-                ExportEmptyReport(workbook, worksheet, 6, currentRow);
+                ExportEmptyReport(workbook, worksheet, currentRow);
                 return;
             }
 
-            var palette = workbook.GetCustomPalette();
-            var evenRowColorIndex = palette.FindSimilarColor(230, 230, 255).GetIndex();
-            var oddRowColorIndex = palette.FindSimilarColor(255, 255, 204).GetIndex();
+            var palette = workbook.GetCustomPalette();        
             var noteOpeningBalanceColorIndex = palette.FindSimilarColor(255, 102, 255).GetIndex();
 
             var reportStyle = ReportStyle(workbook);
@@ -527,8 +517,7 @@ namespace Fanex.Module.Statement.Services.StatementReport
             StatementModel previousStatement = null;
             for (int i = 0; i < statementListLength; i++)
             {
-                var row = worksheet.CreateRow(currentRow);
-                var colorIndex = i % 2 == 1 ? oddRowColorIndex : evenRowColorIndex;
+                var row = worksheet.CreateRow(currentRow);             
 
                 var statement = data.StatementList[i];
                 var currentColumn = 0;
@@ -584,7 +573,6 @@ namespace Fanex.Module.Statement.Services.StatementReport
                 column.CellStyle = IsNegative(statement.AccumulatedTotal) ?
                     twoDecimalRedNumberStyle :
                     twoDecimalNumberStyle;
-                currentColumn++;
 
                 previousStatement = statement;
                 currentRow++;
@@ -662,7 +650,6 @@ namespace Fanex.Module.Statement.Services.StatementReport
                 currentCell = headerRow.CreateCell(currentColumn);
                 currentCell.SetCellValue(Labels.Creator);
                 currentCell.CellStyle = headerStyle;
-                currentColumn++;
             }
         }
 
@@ -684,16 +671,14 @@ namespace Fanex.Module.Statement.Services.StatementReport
         {
             var statementListLength = data.StatementList.Count;
             var currentRow = 2;
-            var maxColumnIndex = 2;
+
             if (statementListLength == 0)
             {
-                ExportEmptyReport(workbook, worksheet, maxColumnIndex, currentRow);
+                ExportEmptyReport(workbook, worksheet, currentRow);
                 return;
             }
 
-            var palette = workbook.GetCustomPalette();
-            var evenRowColorIndex = palette.FindSimilarColor(230, 230, 255).GetIndex();
-            var oddRowColorIndex = palette.FindSimilarColor(255, 255, 204).GetIndex();
+            var palette = workbook.GetCustomPalette();        
 
             var reportStyle = ReportStyle(workbook);
             var textStyle = workbook.CreateCellStyle();
@@ -733,9 +718,7 @@ namespace Fanex.Module.Statement.Services.StatementReport
             var isShowCreator = StatementSection.Instance.ShowCreatorOnDetail;
             for (int i = 0; i < statementListLength; i++)
             {
-                row = worksheet.CreateRow(currentRow);
-                var colorIndex = i % 2 == 1 ? oddRowColorIndex : evenRowColorIndex;
-
+                row = worksheet.CreateRow(currentRow);   
                 statement = data.StatementList[i];
                 currentColumn = 0;
                 column = row.CreateCell(currentColumn);
@@ -764,8 +747,7 @@ namespace Fanex.Module.Statement.Services.StatementReport
                 {
                     column = row.CreateCell(currentColumn);
                     ExportDataColumnText(column, statement.Creator);
-                    column.CellStyle = textStyle;
-                    currentColumn++;
+                    column.CellStyle = textStyle;                  
                 }
 
                 currentRow++;
@@ -828,11 +810,8 @@ namespace Fanex.Module.Statement.Services.StatementReport
             {
                 column = row.CreateCell(currentColumn);
                 column.SetCellValue(string.Empty);
-                column.CellStyle = grandTotalTextStyle;
-                currentColumn++;
-            }
-
-            currentRow++;
+                column.CellStyle = grandTotalTextStyle;              
+            }          
         }
 
         private bool IsNegative(DataColumnModel cellValue)
@@ -852,7 +831,6 @@ namespace Fanex.Module.Statement.Services.StatementReport
         private void ExportEmptyReport(
             HSSFWorkbook workbook,
             ISheet worksheet,
-            int maxColumnIndex,
             int currentRow)
         {
             var textStyle = workbook.CreateCellStyle();

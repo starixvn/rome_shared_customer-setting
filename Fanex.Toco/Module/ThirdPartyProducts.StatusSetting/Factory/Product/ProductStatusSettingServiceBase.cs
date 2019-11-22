@@ -69,29 +69,31 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product
         protected virtual void Validate(UpdateProductStatusRequest updateProductStatusRequest)
         {
             // Validate input custid & productId > 0, productStatus != null && Count > 0
+            const string updateProductStatus = "updateProductStatusRequest";
+
             if (updateProductStatusRequest.CustId <= 0)
             {
-                throw new ArgumentOutOfRangeException("updateProductStatusRequest", updateProductStatusRequest.CustId, string.Format(Message.ArgumentMustGreaterThanZero, "CustId"));
+                throw new ArgumentOutOfRangeException(updateProductStatus, updateProductStatusRequest.CustId, string.Format(Message.ArgumentMustGreaterThanZero, "CustId"));
             }
 
             if (updateProductStatusRequest.ProductId <= 0)
             {
-                throw new ArgumentOutOfRangeException("updateProductStatusRequest", updateProductStatusRequest.ProductId, string.Format(Message.ArgumentMustGreaterThanZero, "ProductId"));
+                throw new ArgumentOutOfRangeException(updateProductStatus, updateProductStatusRequest.ProductId, string.Format(Message.ArgumentMustGreaterThanZero, "ProductId"));
             }
 
             if (updateProductStatusRequest.SystemId != 1 && updateProductStatusRequest.SystemId != 2 && updateProductStatusRequest.SystemId != 4)
             {
-                throw new ArgumentOutOfRangeException("updateProductStatusRequest", updateProductStatusRequest.SystemId, string.Format(Message.ArgumentSystemIdMustBeInRange, "SystemId"));
+                throw new ArgumentOutOfRangeException(updateProductStatus, updateProductStatusRequest.SystemId, string.Format(Message.ArgumentSystemIdMustBeInRange, "SystemId"));
             }
 
             if (string.IsNullOrEmpty(updateProductStatusRequest.Ip))
             {
-                throw new ArgumentNullException("updateProductStatusRequest", string.Format(Message.ArgumentCannotBeNullOrEmpty, "Ip"));
+                throw new ArgumentNullException(updateProductStatus, string.Format(Message.ArgumentCannotBeNullOrEmpty, "Ip"));
             }
 
             if (updateProductStatusRequest.ProductStatus == null || updateProductStatusRequest.ProductStatus.Count == 0)
             {
-                throw new ArgumentNullException("updateProductStatusRequest", string.Format(Message.ArgumentCannotBeNullOrEmpty, "ProductStatus"));
+                throw new ArgumentNullException(updateProductStatus, string.Format(Message.ArgumentCannotBeNullOrEmpty, "ProductStatus"));
             }
         }
     }

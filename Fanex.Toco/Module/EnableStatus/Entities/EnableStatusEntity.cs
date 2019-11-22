@@ -14,25 +14,11 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Entities
     /// </summary>    
     public class EnableStatusEntity
     {
-        private bool _hasDownline = true;
-
         public bool IsDirty { get; set; }
 
         public bool Hide { get; set; }
-                
-        public bool HasDownline
-        {
-            get
-            {
-                return _hasDownline;
-            }
 
-            set
-            {
-                _hasDownline = value;
-            }
-        }
-
+        public bool HasDownline { get; set; } = true;
         public object SettingType { get; set; }
 
         public int ProductId { get; set; }

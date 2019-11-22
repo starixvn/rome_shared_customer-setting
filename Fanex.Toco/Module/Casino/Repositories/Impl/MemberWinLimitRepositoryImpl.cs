@@ -33,25 +33,20 @@
                 {
                     using (var reader = db.ExecuteReader())
                     {
-                        if (reader != null)
-                        {
-                            while (reader.Read())
-                            {
-                                winLimit.IsDailyAutoResetUpline = reader.ToBoolean("UplineIsAutoReset");
-                                winLimit.IsDailyAutoReset = reader.ToBoolean("IsAutoReset");
-                                winLimit.MinimumLoss = reader.ToDecimal("MinLossLimit");
+                        if (reader != null && reader.Read())
+                        {                           
+                            winLimit.IsDailyAutoResetUpline = reader.ToBoolean("UplineIsAutoReset");
+                            winLimit.IsDailyAutoReset = reader.ToBoolean("IsAutoReset");
+                            winLimit.MinimumLoss = reader.ToDecimal("MinLossLimit");
 
-                                winLimit.MaximumLoss = reader.ToDecimal("MaxLossLimit");
-                                winLimit.MaximumLossLimit = reader.ToDecimal("UplineMaxLossLimit");
-                                winLimit.MaximumWinLimits = new List<KeyValuePair<string, int>>();
+                            winLimit.MaximumLoss = reader.ToDecimal("MaxLossLimit");
+                            winLimit.MaximumLossLimit = reader.ToDecimal("UplineMaxLossLimit");
+                            winLimit.MaximumWinLimits = new List<KeyValuePair<string, int>>();
 
-                                var maxWin = reader.ToInt32("MaxWinLimit");
-                                var maxWinLimit = reader.ToInt32("UplineMaxWinLimit");
+                            var maxWin = reader.ToInt32("MaxWinLimit");
+                            var maxWinLimit = reader.ToInt32("UplineMaxWinLimit");
 
-                                winLimit = MapMemberWinLimits(winLimit, maxWin, maxWinLimit);
-
-                                break;
-                            }
+                            winLimit = MapMemberWinLimits(winLimit, maxWin, maxWinLimit);                            
                         }
                     }
 
@@ -60,8 +55,7 @@
                 catch (Exception ex)
                 {
                     ExceptionHandler.Handle(ex);
-
-                    throw ex;
+                    throw;
                 }
             }
         }
@@ -136,8 +130,7 @@
                 catch (Exception ex)
                 {
                     ExceptionHandler.Handle(ex);
-
-                    throw ex;
+                    throw;
                 }
             }
         }

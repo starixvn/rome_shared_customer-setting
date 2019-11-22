@@ -56,7 +56,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
 
             var currentCustInfo = this.GetCurrentCustomerInfo(context.CustId);
             var isCrossLevel = this.IsCrossingLevel(context, currentCustInfo);
-            var product = Helper.Products.Where(p => p.Id.Equals(context.ProductId, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+            var product = Helper.Products.FirstOrDefault(p => p.Id.Equals(context.ProductId, StringComparison.OrdinalIgnoreCase));
             model.ReadOnly = isCrossLevel;
             model.Warning = Helper.GetResource(product.Warning);
             if (product.Id.Equals("voidbridge", StringComparison.CurrentCultureIgnoreCase))
@@ -160,8 +160,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                 catch (Exception ex)
                 {
                     ExceptionHandler.Handle(ex);
-
-                    throw ex;
+                    throw;
                 }                
             }
         }
@@ -231,8 +230,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                 catch (Exception ex)
                 {
                     ExceptionHandler.Handle(ex);
-
-                    throw ex;
+                    throw;
                 }
             }
         }
@@ -332,8 +330,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories
                 catch (Exception ex)
                 {
                     ExceptionHandler.Handle(ex);
-
-                    throw ex;
+                    throw;
                 }
             }
         }

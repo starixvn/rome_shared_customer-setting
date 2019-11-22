@@ -128,8 +128,7 @@
         protected static string Lang(string original)
         {
             switch (AppSession.Language)
-            {
-                case "en-US": return original + "_En";
+            {               
                 case "zh-TW": return original + "_Ct"; // Traditional
                 case "zh-CN": return original + "_Cs"; // Simplified
                 case "ja-JP": return original + "_Jp";

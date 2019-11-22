@@ -91,6 +91,7 @@
     <Compile Include="Authenticate\GroupConfigurations.cs" />
     <Compile Include="Configurations\CustomerSettingSection.cs" />
     <Compile Include="Authenticate\IAuthenticate.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resource\Errors.Designer.cs" />
   </ItemGroup>

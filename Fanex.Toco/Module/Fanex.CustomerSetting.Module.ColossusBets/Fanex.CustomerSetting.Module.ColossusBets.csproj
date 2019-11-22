@@ -124,6 +124,7 @@
     <Compile Include="Controllers\ColossusBetsController.cs" />
     <Compile Include="Criteria\GetColossusBetsBetDetailsCriteria.cs" />
     <Compile Include="Criteria\GetSiteIdByCustomerIdCriteria.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helpers\BetListHelper.cs" />
     <Compile Include="Models\ColossusBetsDetailModel.cs" />
     <Compile Include="Models\ResultDetail.cs" />

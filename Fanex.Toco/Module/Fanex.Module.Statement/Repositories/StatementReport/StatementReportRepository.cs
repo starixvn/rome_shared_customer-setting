@@ -267,9 +267,8 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
             using (var objDb = new ObjectDb(criteria.GetSettingKey()))
             {
                 objDb.AssignParamValues(criteria.GetSpParams());
-                var reader = objDb.ExecuteReader();
-                var outputParams = objDb.GetOuputParams();
-                result = Converter.ToBool(outputParams["isinternal"]);
+                objDb.ExecuteNonQuery();             
+                result = Converter.ToBool(objDb.GetOuputParams()["isinternal"]);
             }
 
             return result;

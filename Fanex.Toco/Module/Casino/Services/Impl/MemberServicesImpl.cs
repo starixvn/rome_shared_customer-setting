@@ -60,7 +60,7 @@
 
                 // Agent preset PT
                 gameGroup.M2 = synced ? Utils.ToDecimal(row["UplineMaxPositionTaking"]).Format(2) : Utils.ToDecimal(row["MaxPositionTaking"]).Format(2);
-                gameGroup.M1 = Utils.ToDecimal(row["APositionTaking"]).Format(2); // !synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
+                gameGroup.M1 = Utils.ToDecimal(row["APositionTaking"]).Format(2);
                 gameGroup.N2 = synced ? Utils.ToDecimal(row["UplineMinPositionTaking"]).Format(2) : Utils.ToDecimal(row["MinPositionTaking"]).Format(2);
 
                 // Assign game types
@@ -336,10 +336,9 @@
         {
             var errMsg = string.Empty;
             var messages = string.Empty;
-            var casinoPTResult = new Result();
 
             // Update PT/Betting limit settings
-            casinoPTResult = this.UpdateMemberSettingsBySuper(
+            var casinoPTResult = this.UpdateMemberSettingsBySuper(
                 command.CustId,
                 command.CustomerModel.RoleId,
                 command.CustomerModel.UplineRoleId,
@@ -369,10 +368,9 @@
         {
             var errMsg = string.Empty;
             var messages = string.Empty;
-            var casinoPTResult = new Result();
-
+            
             // Update PT/Betting limit settings
-            casinoPTResult = this.UpdateMemberSettingsByMaster(
+            var casinoPTResult = this.UpdateMemberSettingsByMaster(
                 command.CustId,
                 command.CustomerModel.RoleId,
                 command.CustomerModel.UplineRoleId,
@@ -761,7 +759,7 @@
 
                 // Agent preset PT
                 gameType.M2 = synced ? Utils.ToDecimal(row["UplineMaxPositionTaking"]).Format(2) : Utils.ToDecimal(row["MaxPositionTaking"]).Format(2);
-                gameType.M1 = Utils.ToDecimal(row["APositionTaking"]).Format(2); // !synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
+                gameType.M1 = Utils.ToDecimal(row["APositionTaking"]).Format(2);
                 gameType.N2 = synced ? Utils.ToDecimal(row["UplineMinPositionTaking"]).Format(2) : Utils.ToDecimal(row["MinPositionTaking"]).Format(2);
 
                 // Betting limits
@@ -863,25 +861,14 @@
             bool isPTByGameType = false)
         {
             var cust = new Customer();
-            var gameTypes = new List<GameType>();
-            var dtMaster = cust.GetCustGameType(custId, gameKindID);
+            var gameTypes = new List<GameType>();           
             var dt = cust.GetCustGameType_EditMember(custId, gameKindID);
             this._tblCustMultipleStakeLevel = custId != 0 ? cust.GetCustMultipleStakeLevel(custId, gameKindID) : null;
             List<decimal?> s4s = new List<decimal?>(), m3s = new List<decimal?>(), n2s = new List<decimal?>();
 
             foreach (DataRow row in dt.Rows)
             {
-                var gameType = new GameType();
-                var isAutoOnMember = false;
-
-                foreach (DataRow dtrow in dtMaster.Rows)
-                {
-                    if (row["GameTypeID"].Equals(dtrow["GameTypeID"]))
-                    {
-                        isAutoOnMember = Utils.ToBoolean(dtrow["IsAutoMPositionTaking"]);
-                        break;
-                    }
-                }
+                var gameType = new GameType();   
 
                 // Game type info
                 gameType.GameTypeID = Utils.ToInt32(row["GameTypeID"]);

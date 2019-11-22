@@ -30,7 +30,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers
         /// <summary>
         /// Enable status service.
         /// </summary>
-        private IEnableStatusService _service = new EnrichedEnableStatusService(new EnableStatusService());
+        private readonly IEnableStatusService _service = new EnrichedEnableStatusService(new EnableStatusService());
 
         /// <summary>
         /// Gets index page of enable status form.
@@ -41,7 +41,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers
         public ActionResult Index(RequestContext context)
         {
             var controlName = typeof(ProductStatusController).Name;
-            var mainAction = Helper.Products.Where(p => p.Id.Equals(context.ProductId, StringComparison.OrdinalIgnoreCase)).FirstOrDefault().Function;
+            var mainAction = Helper.Products.FirstOrDefault(p => p.Id.Equals(context.ProductId, StringComparison.OrdinalIgnoreCase)).Function;
             var actionPath = controlName + "/" + mainAction;
             var authenticationType = AuthenticateAction.AuthenticationType.Read;
             var authenticateFactory = AuthenticateFactory.Create(authenticationType, mainAction);
@@ -51,7 +51,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers
                 return ActionDenied(Request);
             }
 
-            var sp = Helper.GetStoredProcedures(context.ProductId).Where(p => p.Type == StoredProcedure.SpType.SELECT).FirstOrDefault();
+            var sp = Helper.GetStoredProcedures(context.ProductId).FirstOrDefault(p => p.Type == StoredProcedure.SpType.SELECT);
             var model = _service.GetProductStatus(sp, context);
 
             return View("~/Areas/CustomerSetting/Views/EnableStatus/Index.cshtml", model);
@@ -66,7 +66,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers
         public ActionResult GetProductStatusNotAllowDisabledDownline(RequestContext context)
         {
             var controlName = typeof(ProductStatusController).Name;
-            var mainAction = Helper.Products.Where(p => p.Id.Equals(context.ProductId, StringComparison.OrdinalIgnoreCase)).FirstOrDefault().Function;
+            var mainAction = Helper.Products.FirstOrDefault(p => p.Id.Equals(context.ProductId, StringComparison.OrdinalIgnoreCase)).Function;
             var actionPath = controlName + "/" + mainAction;
             var authenticationType = AuthenticateAction.AuthenticationType.Read;
             var authenticateFactory = AuthenticateFactory.Create(authenticationType, mainAction);
@@ -76,7 +76,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers
                 return ActionDenied(Request);
             }
 
-            var sp = Helper.GetStoredProcedures(context.ProductId).Where(p => p.Type == StoredProcedure.SpType.SELECT).FirstOrDefault();
+            var sp = Helper.GetStoredProcedures(context.ProductId).FirstOrDefault(p => p.Type == StoredProcedure.SpType.SELECT);
             var model = _service.GetProductStatus(sp, context);
 
             return View("~/Areas/CustomerSetting/Views/EnableStatusNotAllowDisabledDownline/Index.cshtml", model);
@@ -93,7 +93,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers
         {
             var modelObj = JsonConvert.DeserializeObject<EnableStatusModel>(model);
             var controlName = typeof(ProductStatusController).Name;
-            var mainAction = Helper.Products.Where(p => p.Id.Equals(modelObj.RequestContext.ProductId, StringComparison.OrdinalIgnoreCase)).FirstOrDefault().Function;
+            var mainAction = Helper.Products.FirstOrDefault(p => p.Id.Equals(modelObj.RequestContext.ProductId, StringComparison.OrdinalIgnoreCase)).Function;
             var actionPath = controlName + "/" + mainAction;
             var authenticationType = AuthenticateAction.AuthenticationType.Host;
             var auth = AuthenticateFactory.Create(authenticationType, mainAction);
@@ -103,7 +103,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Controllers
                 return ActionDenied(Request);
             }
 
-            var sp = Helper.GetStoredProcedures(modelObj.RequestContext.ProductId).Where(p => p.Type == StoredProcedure.SpType.UPDATE).FirstOrDefault();
+            var sp = Helper.GetStoredProcedures(modelObj.RequestContext.ProductId).FirstOrDefault(p => p.Type == StoredProcedure.SpType.UPDATE);
             var results = _service.UpdateProductStatus(modelObj, sp);
 
             return JsonBase(results);

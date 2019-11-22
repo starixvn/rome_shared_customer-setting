@@ -16,16 +16,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Entities
     /// </summary>
     public class RequestContext
     {
-        private string _language = "en-US";
-        private bool _newMode = false;
-
-        public bool NewMode
-        {
-            get { return _newMode; }
-
-            set { _newMode = value; }
-        }
-        
+        public bool NewMode { get; set; } = false;
         public int Product
         {
             get;
@@ -106,19 +97,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Entities
             set;
         }
 
-        public string Language
-        {
-            get
-            {
-                return _language;
-            }
-
-            set
-            {
-                _language = value;
-            }
-        }
-
+        public string Language { get; set; } = "en-US";
         public bool HasDownline
         {
             get;

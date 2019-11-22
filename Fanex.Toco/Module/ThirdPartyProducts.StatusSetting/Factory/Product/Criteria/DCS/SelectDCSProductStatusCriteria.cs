@@ -9,13 +9,7 @@ namespace ThirdPartyProducts.StatusSetting.Factory.Product.Criteria
         [SpParam(Ignored = true)]
         public bool IsDeposit { get; set; }
 
-        public int SettingType
-        {
-            get
-            {
-                return IsDeposit ? 4 : 13;
-            }
-        }
+        public int SettingType => IsDeposit ? 4 : 13;
 
         public override string GetSettingKey()
         {

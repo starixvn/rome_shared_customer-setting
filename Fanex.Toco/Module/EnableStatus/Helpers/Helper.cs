@@ -54,7 +54,7 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers
         public static SpCollectionConfiguration GetStoredProcedures(string productId)
         {
             var products = Products;
-            var product = products.Where(p => p.Id.Equals(productId, System.StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+            var product = products.FirstOrDefault(p => p.Id.Equals(productId, System.StringComparison.OrdinalIgnoreCase));
             var sps = product.SpCollection;
 
             return sps;
@@ -78,11 +78,10 @@ namespace Fanex.CustomerSetting.EnableStatus.AllInOne.Helpers
             foreach (var property in props)
             {
                 if (property.Name.Equals(mapProperty, StringComparison.OrdinalIgnoreCase))
-                {
-                    var result = false;
+                {                  
                     var value = property.GetValue(entity, null);
                     value = value == null ? string.Empty : value;
-                    bool.TryParse(value.ToString(), out result);
+                    bool.TryParse(value.ToString(), out bool result);
                     return reverse ? !result : value;
                 }
             }

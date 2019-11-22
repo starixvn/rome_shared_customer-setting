@@ -59,10 +59,7 @@ namespace Fanex.CustomerSetting.Module.ColossusBets.Services
             var siteIds = ColossusBetsSection.SiteId.Split(new char[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
 
             switch (roleId)
-            {
-                case RoleIdConstants.Super:
-                    return siteIds[0];
-
+            {  
                 case RoleIdConstants.Master:
                     return siteIds[1];
 
@@ -76,20 +73,25 @@ namespace Fanex.CustomerSetting.Module.ColossusBets.Services
 
         private ViewTokenResultModel GetTokenResult(int userId, int customerId)
         {
+            WebClient client = new WebClient();
             try
-            {
+            {               
                 string tokenUrl = string.Format(ColossusBetsSection.TokenUrl, userId, customerId);
-
-                WebClient client = new WebClient();
                 string resultJSON = client.DownloadString(new Uri(tokenUrl));
-
                 return JsonConvert.DeserializeObject<ViewTokenResultModel>(resultJSON);
             }
             catch (Exception exception)
             {
                 ExceptionHandler.Handle(exception);
             }
-
+            finally
+            {
+                if (client != null)
+                {
+                    client.Dispose();
+                }
+                    
+            }  
             return null;
         }
 

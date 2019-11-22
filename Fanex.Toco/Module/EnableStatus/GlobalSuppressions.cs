@@ -1,0 +1,10 @@
+﻿
+// This file is used by Code Analysis to maintain SuppressMessage 
+// attributes that are applied to this project.
+// Project-level suppressions either have no target or are given 
+// a specific target and scoped to a namespace, type, member, etc.
+
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Code Smell", "S1643:Strings should not be concatenated using '+' in a loop", Justification = "<Pending>", Scope = "member", Target = "~M:Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories.EnableStatusRepository.UpdateProductStatus(Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings.SpElementConfiguration,Fanex.CustomerSetting.EnableStatus.AllInOne.Entities.RequestContext,System.Collections.Generic.IList{Fanex.CustomerSetting.EnableStatus.AllInOne.Entities.EnableStatusEntity})~Fanex.CustomerSetting.Module.Core.Models.Result")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Code Smell", "S112:General exceptions should never be thrown", Justification = "<Pending>", Scope = "member", Target = "~M:Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories.EnableStatusRepository.UpdateProductStatus(Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings.SpElementConfiguration,Fanex.CustomerSetting.EnableStatus.AllInOne.Entities.RequestContext,Fanex.CustomerSetting.EnableStatus.AllInOne.Entities.EnableStatusEntity)~Fanex.CustomerSetting.Module.Core.Models.Result")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Code Smell", "S112:General exceptions should never be thrown", Justification = "<Pending>", Scope = "member", Target = "~M:Fanex.CustomerSetting.EnableStatus.AllInOne.Repositories.EnableStatusRepository.UpdateProductStatus(Fanex.CustomerSetting.EnableStatus.AllInOne.Mappings.SpElementConfiguration,Fanex.CustomerSetting.EnableStatus.AllInOne.Entities.RequestContext,System.Collections.Generic.IList{Fanex.CustomerSetting.EnableStatus.AllInOne.Entities.EnableStatusEntity})~Fanex.CustomerSetting.Module.Core.Models.Result")]
+

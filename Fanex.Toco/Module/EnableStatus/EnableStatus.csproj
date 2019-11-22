@@ -154,6 +154,7 @@
     <Compile Include="Entities\EnableStatusEnum.cs" />
     <Compile Include="Entities\RequestContext.cs" />
     <Compile Include="Entities\StoredProcedure.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helpers\Helper.cs" />
     <Compile Include="Mappings\ResultCollectionConfiguration.cs" />
     <Compile Include="Mappings\ResultElementConfiguration.cs" />
