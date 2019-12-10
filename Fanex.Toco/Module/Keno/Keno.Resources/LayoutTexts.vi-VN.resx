@@ -121,58 +121,58 @@
     <value>Agent</value>
   </data>
   <data name="AgentComm" xml:space="preserve">
-    <value>Agent Comm</value>
+    <value>Hoa hồng của Agent</value>
   </data>
   <data name="AgentMaxPT" xml:space="preserve">
-    <value>Agent Max PT</value>
+    <value>PT lớn nhất của Agent</value>
   </data>
   <data name="AgentMinPT" xml:space="preserve">
-    <value>Agent Min PT</value>
+    <value>PT nhỏ nhất của Agent</value>
   </data>
   <data name="AgentPresetPT" xml:space="preserve">
-    <value>Agent Preset PT</value>
+    <value>Thiết lập của Agent</value>
   </data>
   <data name="AgentPT" xml:space="preserve">
-    <value>Agent PT</value>
+    <value>PT của Agent</value>
   </data>
   <data name="All" xml:space="preserve">
-    <value>All</value>
+    <value>Tất cả</value>
   </data>
   <data name="BetSetting" xml:space="preserve">
     <value>Giới hạn cược</value>
   </data>
   <data name="BettingLimit" xml:space="preserve">
-    <value>Betting Limit</value>
+    <value>Giới hạn cược</value>
   </data>
   <data name="CountryMarket" xml:space="preserve">
-    <value>Country/Market</value>
+    <value>Quốc gia/Thị trường</value>
   </data>
   <data name="CustomerInfo" xml:space="preserve">
-    <value>CustomerInfo</value>
+    <value>Thông tin Khách hàng</value>
   </data>
   <data name="DailyAutoMessege" xml:space="preserve">
-    <value>Daily auto reset limit (at 12 noon GMT+8)</value>
+    <value>Tự động Reset giới hạn cược (12h GMT +8)</value>
   </data>
   <data name="Downline" xml:space="preserve">
-    <value>Downline</value>
+    <value>Cấp dưới</value>
   </data>
   <data name="Downlines" xml:space="preserve">
-    <value>Downlines</value>
+    <value>Các cấp dưới</value>
   </data>
   <data name="Enable" xml:space="preserve">
-    <value>Enable</value>
+    <value>Cho phép</value>
   </data>
   <data name="EnableDownlines" xml:space="preserve">
-    <value>Enable Downlines</value>
+    <value>Cho phép các cấp dưới</value>
   </data>
   <data name="EnableStatus" xml:space="preserve">
-    <value>Enable Status</value>
+    <value>Cho phép</value>
   </data>
   <data name="Fax" xml:space="preserve">
     <value>Fax</value>
   </data>
   <data name="FirstName" xml:space="preserve">
-    <value>First Name</value>
+    <value>Tên</value>
   </data>
   <data name="GameSetting" xml:space="preserve">
     <value>Game Setting</value>
@@ -181,22 +181,22 @@
     <value>Game Type</value>
   </data>
   <data name="IsAuto" xml:space="preserve">
-    <value>Is Auto</value>
+    <value>Tự động</value>
   </data>
   <data name="LastName" xml:space="preserve">
-    <value>Last Name</value>
+    <value>Họ</value>
   </data>
   <data name="lblChangePTTo" xml:space="preserve">
-    <value>Do you want to update all member's position taking to</value>
+    <value>Bạn có muốn cập nhật tất cả PT của Member sang</value>
   </data>
   <data name="lblConfirm" xml:space="preserve">
-    <value>Confirm Update Members' PT</value>
+    <value>Xác nhận cập nhật PT của Member</value>
   </data>
   <data name="lblHaveChangeAgentPositionTaking" xml:space="preserve">
-    <value>You have changed this agent not to take auto position taking.</value>
+    <value>Bạn vừa thay đổi Agent này không lấy PT tự động</value>
   </data>
   <data name="lblHaveChangeMasterPositionTaking" xml:space="preserve">
-    <value>You have changed this master not to take auto position taking.</value>
+    <value>Bạn vừa thay đổi Master này không lấy PT tự động</value>
   </data>
   <data name="lblNo" xml:space="preserve">
     <value>No</value>
@@ -208,88 +208,88 @@
     <value>Master</value>
   </data>
   <data name="MasterAutoPresetPT" xml:space="preserve">
-    <value>Master Auto Preset PT</value>
+    <value>Tự động của Master</value>
   </data>
   <data name="MasterAutoPT" xml:space="preserve">
-    <value>Master Auto PT</value>
+    <value>PT tự động của Master</value>
   </data>
   <data name="MasterComm" xml:space="preserve">
-    <value>Master Comm</value>
+    <value>Hoa hồng của Master</value>
   </data>
   <data name="MasterMaxPT" xml:space="preserve">
-    <value>Master Max PT</value>
+    <value>PT lớn nhất của Master</value>
   </data>
   <data name="MasterMinPT" xml:space="preserve">
-    <value>Master Min PT</value>
+    <value>PT nhỏ nhất của Master</value>
   </data>
   <data name="MasterPresetPT" xml:space="preserve">
-    <value>Master Preset PT</value>
+    <value>Thiết lập của Master</value>
   </data>
   <data name="MasterPT" xml:space="preserve">
-    <value>Master PT</value>
+    <value>PT của Master</value>
   </data>
   <data name="MaxBet" xml:space="preserve">
-    <value>MaxBet</value>
+    <value>Cược lớn nhất</value>
   </data>
   <data name="MaxPerMatch" xml:space="preserve">
-    <value>MaxPerMatch</value>
+    <value>Cược tối đa cho 1 trận</value>
   </data>
   <data name="Member" xml:space="preserve">
     <value>Member</value>
   </data>
   <data name="MemberComm" xml:space="preserve">
-    <value>Member Comm</value>
+    <value>Hoa hồng của Member</value>
   </data>
   <data name="MemberMaxTransferCredit" xml:space="preserve">
-    <value>Member Max Transfer Credit</value>
+    <value>Tín dụng chuyển khoản lớn nhất của Member</value>
   </data>
   <data name="MinBet" xml:space="preserve">
-    <value>MinBet</value>
+    <value>Cược nhỏ nhất</value>
   </data>
   <data name="MobilePhone" xml:space="preserve">
-    <value>Mobile Phone</value>
+    <value>Di động</value>
   </data>
   <data name="NickName" xml:space="preserve">
-    <value>Nick Name</value>
+    <value>Biệt Danh</value>
   </data>
   <data name="Phone" xml:space="preserve">
-    <value>Phone</value>
+    <value>Điện thoại</value>
   </data>
   <data name="PositionTaking" xml:space="preserve">
     <value>Position Taking</value>
   </data>
   <data name="PTComm" xml:space="preserve">
-    <value>Postion Taking/Commission</value>
+    <value>Postion Taking/Hoa hồng</value>
   </data>
   <data name="Super" xml:space="preserve">
     <value>Super</value>
   </data>
   <data name="SuperAutoPresetPT" xml:space="preserve">
-    <value>Super Auto Preset PT</value>
+    <value>Tự động của Super</value>
   </data>
   <data name="SuperAutoPT" xml:space="preserve">
-    <value>Super Auto PT</value>
+    <value>PT tự động của Super</value>
   </data>
   <data name="SuperCommission" xml:space="preserve">
-    <value>Super Commission</value>
+    <value>Hoa hồng của Super</value>
   </data>
   <data name="SuperMaxPT" xml:space="preserve">
-    <value>Super Max PT</value>
+    <value>PT lớn nhất của Super</value>
   </data>
   <data name="SuperMinPT" xml:space="preserve">
-    <value>Super Min PT</value>
+    <value>PT nhỏ nhất của Super</value>
   </data>
   <data name="SuperPresetPT" xml:space="preserve">
-    <value>Super Preset PT</value>
+    <value>Thiết lập của Super</value>
   </data>
   <data name="SuperPT" xml:space="preserve">
-    <value>Super PT</value>
+    <value>PT của Super</value>
   </data>
   <data name="Update" xml:space="preserve">
-    <value>Update</value>
+    <value>Cập nhật</value>
   </data>
   <data name="UpdateKenoSetting" xml:space="preserve">
-    <value>Update RGN Keno Setting</value>
+    <value>Cập nhật RNG Keno</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>
@@ -298,13 +298,13 @@
     <value>Edit RNG Keno</value>
   </data>
   <data name="lblMaxBet" xml:space="preserve">
-    <value>Max Bet</value>
+    <value>Cược lớn nhất</value>
   </data>
   <data name="lblMaxPerMatch" xml:space="preserve">
-    <value>Max Per Match</value>
+    <value>Cược tối đa cho 1 trận</value>
   </data>
   <data name="lblMinBet" xml:space="preserve">
-    <value>Min Bet</value>
+    <value>Cược nhỏ nhất</value>
   </data>
   <data name="EditMultipleKeno" xml:space="preserve">
     <value>Edit Multiple RNG Keno</value>
@@ -313,10 +313,10 @@
     <value>Sao chép tất cả thiết lập về giới hạn cược từ Australia Acttab</value>
   </data>
   <data name="lblCopyAllPT" xml:space="preserve">
-    <value>Copy all Position Taking from Australia Acttab</value>
+    <value>Sao chép tất cả PT từ Australia Acttab</value>
   </data>
   <data name="lblCopyAllStatus" xml:space="preserve">
-    <value>Copy all below status from Australia Acttab</value>
+    <value>Sao chép tất cả Trạng thái bên dưới từ Australia Acttab</value>
   </data>
   <data name="WarningPowerKeno" xml:space="preserve">
     <value>Position Taking của thị trường Australia sẽ được áp dụng cho Max Keno, Max Keno 2, Mini Keno, Mini Keno 2, Spring, Summer, Autumn, Winter, Keno War, Keno War 2.</value>

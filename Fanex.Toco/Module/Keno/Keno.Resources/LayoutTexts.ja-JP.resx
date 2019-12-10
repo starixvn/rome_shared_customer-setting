@@ -253,7 +253,7 @@
     <value>MaxPerMatch</value>
   </data>
   <data name="MinBet" xml:space="preserve">
-    <value>MinBet</value>
+    <value>Min Bet</value>
   </data>
   <data name="CountryMarket" xml:space="preserve">
     <value>Country/Market</value>

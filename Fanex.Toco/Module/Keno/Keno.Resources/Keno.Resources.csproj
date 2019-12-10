@@ -73,7 +73,7 @@
     <EmbeddedResource Include="Messages.vi-VN.resx" />
     <EmbeddedResource Include="ViewLang.th-TH.resx" />
     <EmbeddedResource Include="ViewLang.ko-KR.resx" />
-    <EmbeddedResource Include="ViewLang.js-JP.resx" />
+    <EmbeddedResource Include="ViewLang.ja-JP.resx" />
     <EmbeddedResource Include="ViewLang.zh-TW.resx" />
     <EmbeddedResource Include="ViewLang.zh-CN.resx" />
     <EmbeddedResource Include="Messages.ko-KR.resx" />
