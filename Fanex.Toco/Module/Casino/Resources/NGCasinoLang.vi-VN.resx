@@ -127,7 +127,7 @@
     <value>Previous enabled downlines</value>
   </data>
   <data name="lblAccumulatedWinLoss" xml:space="preserve">
-    <value>Accumulated transferable amount</value>
+    <value>Tổng mức tín dụng có thể chuyển khoản</value>
   </data>
   <data name="lblAgentComm" xml:space="preserve">
     <value>Hoa hồng cho Agent</value>
@@ -178,7 +178,7 @@
     <value>Thể loại</value>
   </data>
   <data name="lblGroupSetting" xml:space="preserve">
-    <value>Group Setting</value>
+    <value>Thiết lập nhóm</value>
   </data>
   <data name="lblHaveChangeAgentPositionTaking" xml:space="preserve">
     <value>Bạn vừa mới ngăn Agent này lấy Auto PT</value>
@@ -190,10 +190,10 @@
     <value>Họ</value>
   </data>
   <data name="lblMasterAutoPresetPT" xml:space="preserve">
-    <value>Auto Master Preset</value>
+    <value>Thiết lập của Master</value>
   </data>
   <data name="lblMasterAutoPT" xml:space="preserve">
-    <value>Auto PT của Master</value>
+    <value>PT tự động của Master</value>
   </data>
   <data name="lblMasterComm" xml:space="preserve">
     <value>Hoa hồng của Master</value>
@@ -214,7 +214,7 @@
     <value>Tiền thắng cược lớn nhất</value>
   </data>
   <data name="lblMaxTransferCredit" xml:space="preserve">
-    <value>Member Max Transfer Credit</value>
+    <value>Chuyển khoản lớn nhất của Member</value>
   </data>
   <data name="lblMemberCommission" xml:space="preserve">
     <value>Hoa hồng của Member</value>
@@ -232,7 +232,7 @@
     <value>Không</value>
   </data>
   <data name="lblOf" xml:space="preserve">
-    <value>of</value>
+    <value>của</value>
   </data>
   <data name="lblOnGivenCredit" xml:space="preserve">
     <value>trong hạn mức tín dụng được cấp</value>
@@ -244,10 +244,10 @@
     <value>Position Taking/Hoa hồng</value>
   </data>
   <data name="lblSuperAutoPresetPT" xml:space="preserve">
-    <value>Auto Super Preset</value>
+    <value>Thiết lập của Super</value>
   </data>
   <data name="lblSuperAutoPT" xml:space="preserve">
-    <value>Auto PT của Super</value>
+    <value>PT tự động của Super</value>
   </data>
   <data name="lblSuperCommission" xml:space="preserve">
     <value>Hoa hồng cho Super</value>
@@ -289,7 +289,7 @@
     <value>Thông tin chưa được cập nhật</value>
   </data>
   <data name="noLimited" xml:space="preserve">
-    <value>No limited</value>
+    <value>Không giới hạn</value>
   </data>
   <data name="positiontaking" xml:space="preserve">
     <value>Position Taking</value>
@@ -331,16 +331,16 @@
     <value>Tùy chỉnh đồng loạt cho  Casino</value>
   </data>
   <data name="lbleditcasino" xml:space="preserve">
-    <value>Cho phép Casino</value>
+    <value>Tùy chỉnh cho Casino</value>
   </data>
   <data name="submit" xml:space="preserve">
-    <value>Submit</value>
+    <value>Cập nhật</value>
   </data>
   <data name="lblMaxLoss" xml:space="preserve">
-    <value>Maximum Loss</value>
+    <value>Tiền cược thua lớn nhất</value>
   </data>
   <data name="errorNotAuthorized" xml:space="preserve">
-    <value>You are not authorized on this function</value>
+    <value>Bạn không có quyền trên chức năng này</value>
   </data>
   <data name="lblClickToViewCurrentWinLossAmount" xml:space="preserve">
     <value>Nhấn để xem giá trị thắng thua hiện tại</value>
@@ -352,12 +352,24 @@
     <value>Thua</value>
   </data>
   <data name="lblMemberWinLossLimit" xml:space="preserve">
-    <value>Member Win/Loss Limit</value>
+    <value>Giới hạn Thắng/Thua của Member</value>
   </data>
   <data name="lblWinning" xml:space="preserve">
     <value>Thắng</value>
   </data>
   <data name="ProductStatus" xml:space="preserve">
     <value>Trạng thái sản phẩm</value>
+  </data>
+  <data name="lblSubmit" xml:space="preserve">
+    <value>Cập nhật</value>
+  </data>
+  <data name="lblEnable" xml:space="preserve">
+    <value>Mở Casino</value>
+  </data>
+  <data name="lblConfirmUpdateMemberPT" xml:space="preserve">
+    <value>Xác nhận cập nhật PT của Member</value>
+  </data>
+  <data name="InvalidCustomer" xml:space="preserve">
+    <value>Customer không hợp lệ</value>
   </data>
 </root>
