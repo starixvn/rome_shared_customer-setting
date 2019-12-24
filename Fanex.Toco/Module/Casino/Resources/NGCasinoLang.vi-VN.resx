@@ -139,7 +139,7 @@
     <value>PT nhỏ nhất của Agent</value>
   </data>
   <data name="lblAgentPresetPT" xml:space="preserve">
-    <value>Giá trị PT trước đó của Agent</value>
+    <value>PT dự định của Agent</value>
   </data>
   <data name="lblAgentPT" xml:space="preserve">
     <value>PT của Agent</value>
@@ -181,16 +181,16 @@
     <value>Thiết lập nhóm</value>
   </data>
   <data name="lblHaveChangeAgentPositionTaking" xml:space="preserve">
-    <value>Bạn vừa mới ngăn Agent này lấy Auto PT</value>
+    <value>Bạn vừa mới ngăn Agent này lấy PT tự động</value>
   </data>
   <data name="lblHaveChangeMasterPositionTaking" xml:space="preserve">
-    <value>Bạn vừa mới ngăn Master này lấy Auto PT</value>
+    <value>Bạn vừa mới ngăn Master này lấy  PT tự động</value>
   </data>
   <data name="lblLastName" xml:space="preserve">
     <value>Họ</value>
   </data>
   <data name="lblMasterAutoPresetPT" xml:space="preserve">
-    <value>Thiết lập của Master</value>
+    <value>PT dự định tự động của Master</value>
   </data>
   <data name="lblMasterAutoPT" xml:space="preserve">
     <value>PT tự động của Master</value>
@@ -205,7 +205,7 @@
     <value>PT nhỏ nhất của Master</value>
   </data>
   <data name="lblMasterPresetPT" xml:space="preserve">
-    <value>Giá trị PT trước đó của Master</value>
+    <value>PT dự định của Master</value>
   </data>
   <data name="lblMasterPT" xml:space="preserve">
     <value>PT của Master</value>
@@ -244,7 +244,7 @@
     <value>Position Taking/Hoa hồng</value>
   </data>
   <data name="lblSuperAutoPresetPT" xml:space="preserve">
-    <value>Thiết lập của Super</value>
+    <value>PT dự định tự động của Super</value>
   </data>
   <data name="lblSuperAutoPT" xml:space="preserve">
     <value>PT tự động của Super</value>
@@ -259,7 +259,7 @@
     <value>PT nhỏ nhất của Super</value>
   </data>
   <data name="lblSuperPresetPT" xml:space="preserve">
-    <value>Giá trị PT trước đó của Super</value>
+    <value>PT dự định của Super</value>
   </data>
   <data name="lblSuperPT" xml:space="preserve">
     <value>PT của Super</value>
@@ -340,7 +340,7 @@
     <value>Tiền cược thua lớn nhất</value>
   </data>
   <data name="errorNotAuthorized" xml:space="preserve">
-    <value>Bạn không có quyền trên chức năng này</value>
+    <value>Bạn không được cho phép sử dụng chức năng này</value>
   </data>
   <data name="lblClickToViewCurrentWinLossAmount" xml:space="preserve">
     <value>Nhấn để xem giá trị thắng thua hiện tại</value>
