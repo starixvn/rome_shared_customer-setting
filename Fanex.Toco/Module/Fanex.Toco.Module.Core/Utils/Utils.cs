@@ -441,5 +441,18 @@ namespace Fanex.CustomerSetting.Module.Core
 
             return ip.Trim();
         }
+
+        public static bool HasColumn(this IDataReader dr, string columnName)
+        {
+            for (int i = 0; i < dr.FieldCount; i++)
+            {
+                if (dr.GetName(i).Equals(columnName, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }
