@@ -84,7 +84,6 @@
             string username, 
             string subUsername)
         {
-           
             var result = casinoRepository.ExecuteNonQuery(
                 new UpdateCasinoStatusCriteria(
                     custid,

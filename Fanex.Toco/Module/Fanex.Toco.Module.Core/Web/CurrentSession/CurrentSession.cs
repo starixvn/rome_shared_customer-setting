@@ -106,5 +106,10 @@ namespace Fanex.CustomerSetting.Module.Core.Web
             get { return 2; }
             set { SessionManager.Set<int>(CommonConstants.FROM_SYSTEM, value); }
         }
+
+        public bool IsBelongToSpecialGroups
+        {
+            get;
+        }
     }
 }

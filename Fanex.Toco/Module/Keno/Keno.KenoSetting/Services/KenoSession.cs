@@ -57,5 +57,8 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
                 return AppSettings.IsLocalTest;
             }
         }
+
+        public bool IsBelongToSpecialGroups
+            => AppSession.CurrentSession.IsBelongToSpecialGroups;
     }
 }

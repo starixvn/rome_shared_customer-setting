@@ -44,5 +44,7 @@ namespace Fanex.CustomerSetting.Module.Core.Web
         string Language { get; set; }
 
         int FromSystem { get; set; }
+
+        bool IsBelongToSpecialGroups { get; }
     }
 }

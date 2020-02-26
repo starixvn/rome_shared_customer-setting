@@ -221,6 +221,7 @@
             var updateStatusResult = new Result();
             var updateSettingResult = new Result();
             var cust = new Customer();
+            CasinoCustomer customerInfo = null;
 
             try
             {
@@ -228,7 +229,7 @@
                 {
                     try
                     {
-                        var customerInfo = this.GetCustInfoIBC(command.CustId, command.UplineId);
+                        customerInfo = this.GetCustInfoIBC(command.CustId, command.UplineId);
                         settingsInserted = cust.InsertCustSetting(
                             CreditCasinoNo,
                             command.CustId,
@@ -282,17 +283,37 @@
             // Update Status for direct downline only
             if ((settingsInserted && !command.CustomerModel.CasinoSync) || command.CustomerModel.CasinoSync)
             {
-                updateStatusResult = UpdateCSStatus(
-                    command.CustId,
-                    true,
-                    command.CustomerModel.UplineDisabledCasino ? true : command.CustomerModel.CasinoDisabled,
-                    command.ModifiedId,
-                    command.IP,
-                    command.SubAccId,
-                    command.SystemId,
-                    AppSession.Language,
-                    command.CustomerModel.UserName,
-                    command.SubAccName);
+                if (AppSession.CurrentSession.IsBelongToSpecialGroups)
+                {
+                    if (customerInfo != null)
+                    {
+                        updateStatusResult = UpdateCSStatus(
+                            command.CustId,
+                            true,
+                            command.CustomerModel.UplineDisabledCasino || customerInfo.GeneralInfo.CasinoDisabled,
+                            command.ModifiedId,
+                            command.IP,
+                            command.SubAccId,
+                            command.SystemId,
+                            AppSession.Language,
+                            command.CustomerModel.UserName,
+                            command.SubAccName);
+                    }
+                }
+                else
+                {
+                    updateStatusResult = UpdateCSStatus(
+                        command.CustId,
+                        true,
+                        command.CustomerModel.UplineDisabledCasino ? true : command.CustomerModel.CasinoDisabled,
+                        command.ModifiedId,
+                        command.IP,
+                        command.SubAccId,
+                        command.SystemId,
+                        AppSession.Language,
+                        command.CustomerModel.UserName,
+                        command.SubAccName);
+                }
 
                 if (updateStatusResult.IsSuccess)
                 {

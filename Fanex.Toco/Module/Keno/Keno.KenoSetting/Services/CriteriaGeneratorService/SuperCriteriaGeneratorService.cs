@@ -43,7 +43,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
                 CustId = CustomerInformation.CustId,
                 SportType = Constants.SportType,
                 BetType = betSetting.BetTypeId,
-                UpdateStatus = betSetting.IsStatusUpdated,
+                UpdateStatus = !KenoSession.IsBelongToSpecialGroups && betSetting.IsStatusUpdated,
                 Disable = !betSetting.IsEnabled,
                 UpdateMinMaxBet = betSetting.IsBetSettingUpdated,
                 MinBet = betSetting.MinBet,
