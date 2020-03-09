@@ -61,7 +61,7 @@
 
                 // Master preset PT
                 gameGroup.M3 = !synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
-                gameGroup.M2 = Utils.ToDecimal(row["MPositionTaking"]).Format(2); 
+                gameGroup.M2 = Utils.ToDecimal(row["MPositionTaking"]).Format(2);
 
                 // Master Auto PT
                 gameGroup.Im2 = Utils.ToBoolean(row["IsAutoMPositionTaking"]);
@@ -148,12 +148,13 @@
             var updateStatusResult = new Result();
             var updateSettingResult = new Result();
             var cust = new Customer();
+            CasinoCustomer customerInfo = null;
 
             try
             {
                 if (!command.CustomerModel.CasinoSync)
                 {
-                    var customerInfo = GetCustInfoIBC(command.CustId, command.UplineId);
+                    customerInfo = GetCustInfoIBC(command.CustId, command.UplineId);
                     settingsInserted = cust.InsertCustSetting(
                         CreditCasinoNo,
                         command.CustId,
@@ -202,7 +203,26 @@
             // Update Status for direct downline only
             if ((settingsInserted && !command.CustomerModel.CasinoSync) || command.CustomerModel.CasinoSync)
             {
-                updateStatusResult = UpdateCSStatus(
+                if (AppSession.CurrentSession.IsBelongToSpecialGroups)
+                {
+                    if (customerInfo != null)
+                    {
+                        updateStatusResult = UpdateCSStatus(
+                            command.CustId,
+                            true,
+                            command.CustomerModel.UplineDisabledCasino || customerInfo.GeneralInfo.CasinoDisabled,
+                            command.ModifiedId,
+                            command.IP,
+                            command.SubAccId,
+                            command.SystemId,
+                            AppSession.Language,
+                            command.CustomerModel.UserName,
+                            command.SubAccName);
+                    }
+                }
+                else
+                {
+                    updateStatusResult = UpdateCSStatus(
                     command.CustId,
                     true,
                     command.CustomerModel.UplineDisabledCasino ? true : command.CustomerModel.CasinoDisabled,
@@ -213,6 +233,7 @@
                     AppSession.Language,
                     command.CustomerModel.UserName,
                     command.SubAccName);
+                }
 
                 errMsg = updateStatusResult.ErrorMessage;
 
@@ -255,12 +276,12 @@
         }
 
         private Result UpdateAgentSettings(
-            int custId, 
+            int custId,
             int roleId,
-            string ip, 
-            int modifiedId, 
-            string modifiedBy, 
-            int fromSystem, 
+            string ip,
+            int modifiedId,
+            string modifiedBy,
+            int fromSystem,
             CasinoSettingModel model)
         {
             var gameKindTable = this.GameKindsDataTable();
@@ -367,10 +388,10 @@
         }
 
         private List<GameType> GetGameTypeAgent(
-            int custId, 
-            int gameKindID, 
-            bool synced, 
-            ref GameGroup gameGroup, 
+            int custId,
+            int gameKindID,
+            bool synced,
+            ref GameGroup gameGroup,
             bool isPTByGameType = false)
         {
             var cust = new Customer();

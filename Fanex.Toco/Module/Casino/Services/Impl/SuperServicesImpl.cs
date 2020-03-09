@@ -154,17 +154,20 @@
             // Update Status for direct downline only
             if ((settingsInserted && !command.CustomerModel.CasinoSync) || command.CustomerModel.CasinoSync)
             {
-                updateStatusResult = UpdateCSStatus(
-                    command.CustId,
-                    true,
-                    command.CustomerModel.UplineDisabledCasino ? true : command.CustomerModel.CasinoDisabled,
-                    command.ModifiedId,
-                    command.IP,
-                    command.SubAccId,
-                    command.SystemId,
-                    AppSession.Language,
-                    command.CustomerModel.UserName,
-                    command.SubAccName);
+                if (!AppSession.CurrentSession.IsBelongToSpecialGroups)
+                {
+                    updateStatusResult = UpdateCSStatus(
+                        command.CustId,
+                        true,
+                        command.CustomerModel.UplineDisabledCasino ? true : command.CustomerModel.CasinoDisabled,
+                        command.ModifiedId,
+                        command.IP,
+                        command.SubAccId,
+                        command.SystemId,
+                        AppSession.Language,
+                        command.CustomerModel.UserName,
+                        command.SubAccName);
+                }
 
                 if (updateStatusResult.IsSuccess)
                 {

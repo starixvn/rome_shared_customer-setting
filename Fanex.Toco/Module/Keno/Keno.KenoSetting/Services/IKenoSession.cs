@@ -23,5 +23,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
         string Language { get; }
 
         bool IsLocalTest { get; }
+
+        bool IsBelongToSpecialGroups { get; }
     }
 }
