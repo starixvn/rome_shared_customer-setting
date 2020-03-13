@@ -853,6 +853,15 @@ namespace Fanex.CustomerSetting.Module.Casino.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Each bet type must have at least one Bet Limit value to be selected..
+        /// </summary>
+        public static string WarningUncheckAllStakeLevelMsg_DirectionV3 {
+            get {
+                return ResourceManager.GetString("WarningUncheckAllStakeLevelMsg_DirectionV3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to do/does not have any Betting Limit because the upline has all Betting Limit settings unchecked and it affects the downline settings. Therefore, the Betting Limit will be taken from the minimum Betting Limit of UPLINE by default.
         /// </summary>
         public static string WarningUplineUncheckAllStakeLevelMsg {

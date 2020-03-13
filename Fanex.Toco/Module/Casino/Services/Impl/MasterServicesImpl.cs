@@ -1,18 +1,19 @@
 ﻿namespace Fanex.CustomerSetting.Module.Casino.Services.Impl
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.Diagnostics;
-    using System.Linq;
     using CasinoLibrary.Model.UserException;
     using CasinoLibrary.SBAgent;
     using Core;
     using Core.Models;
     using Core.Web;
     using Entities;
+    using Fanex.CustomerSetting.Module.Casino.Resources;
     using Interface;
     using Logging.Extensions.Web;
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Diagnostics;
+    using System.Linq;
     using ViewModels;
 
     public class MasterServicesImpl : CasinoServiceBaseImpl, MasterServices
@@ -88,6 +89,11 @@
 
         public Result UpdateMaster(UpdateCasinoCommand command)
         {
+            if (AppSession.CurrentSession.IsBelongToSpecialGroups && command.SettingModel.IsUncheckedAllStakeLevels())
+            {
+                return new Result(500, NGCasinoLang.WarningUncheckAllStakeLevelMsg_DirectionV3);
+            }
+
             var allowedDownlinesResult = CheckAllowedDownlines(command.CustId, 3);
             if (!allowedDownlinesResult.IsSuccess)
             {
@@ -237,6 +243,11 @@
             int fromSystem, 
             CasinoSettingModel model)
         {
+            if (AppSession.CurrentSession.IsBelongToSpecialGroups && model.IsUncheckedAllStakeLevels())
+            {
+                return new Result(500, NGCasinoLang.WarningUncheckAllStakeLevelMsg_DirectionV3);
+            }
+
             var gameKindTable = this.GameKindsDataTable();
             var gameTypeTable = this.GameTypesDataTable();
             var gameStakeTable = this.GameTypesStakesDataTable();

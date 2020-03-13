@@ -366,4 +366,7 @@
   <data name="ProductStatus" xml:space="preserve">
     <value>产品状态</value>
   </data>
+  <data name="WarningUncheckAllStakeLevelMsg_DirectionV3" xml:space="preserve">
+    <value>每种投注类型至少需要选择一个投注限额。</value>
+  </data>
 </root>

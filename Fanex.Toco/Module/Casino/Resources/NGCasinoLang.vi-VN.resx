@@ -372,4 +372,7 @@
   <data name="InvalidCustomer" xml:space="preserve">
     <value>Customer không hợp lệ</value>
   </data>
+  <data name="WarningUncheckAllStakeLevelMsg_DirectionV3" xml:space="preserve">
+    <value>Mỗi loại cược phải có ít nhất một Giới Hạn Cược.</value>
+  </data>
 </root>

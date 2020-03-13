@@ -16,6 +16,25 @@ namespace Fanex.CustomerSetting.Module.Casino.ViewModels
         public bool IsReadOnly { get; set; }
 
         public List<GameGroup> GameGroups { get; set; }
+
+        public bool IsUncheckedAllStakeLevels()
+        {
+            foreach(var gameGroup in GameGroups)
+            {
+                foreach(var gameType in gameGroup.GameTypes)
+                {
+                    foreach(var stakeLevel in gameType.BettingLimits)
+                    {
+                        if (stakeLevel.IsChecked)
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+
+            return true;
+        }
     }
 
     public class Pt : Commission
