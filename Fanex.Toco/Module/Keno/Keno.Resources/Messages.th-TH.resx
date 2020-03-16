@@ -123,6 +123,9 @@
   <data name="BetSetting" xml:space="preserve">
     <value>การกำหนดการวางเดิมพัน</value>
   </data>
+  <data name="GreaterThan" xml:space="preserve">
+    <value>สุดต้องมากกว่า หรือเท่ากับ</value>
+  </data>
   <data name="LessThan" xml:space="preserve">
     <value>ควรน้อยกว่า หรือ เท่ากับ</value>
   </data>

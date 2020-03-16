@@ -147,4 +147,7 @@
   <data name="UnauthorizeMsg" xml:space="preserve">
     <value>Bạn không có quyền trên chức năng này</value>
   </data>
+  <data name="GreaterThan" xml:space="preserve">
+    <value>phải lớn hơn hay bằng</value>
+  </data>
 </root>
