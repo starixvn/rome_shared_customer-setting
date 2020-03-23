@@ -123,6 +123,9 @@
   <data name="BetSetting" xml:space="preserve">
     <value>投注設定</value>
   </data>
+  <data name="GreaterThan" xml:space="preserve">
+    <value>必須大於或等於</value>
+  </data>
   <data name="LessThan" xml:space="preserve">
     <value>應小於或等於</value>
   </data>

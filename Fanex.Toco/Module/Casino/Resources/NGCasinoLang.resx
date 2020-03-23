@@ -384,4 +384,7 @@
   <data name="ProductStatus" xml:space="preserve">
     <value>Product Status</value>
   </data>
+  <data name="WarningUncheckAllStakeLevelMsg_DirectionV3" xml:space="preserve">
+    <value>Each bet type must have at least one Bet Limit value to be selected.</value>
+  </data>
 </root>
