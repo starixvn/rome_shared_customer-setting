@@ -30,7 +30,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
 
         AgentEditMemberSettingViewModel GetSettingInCaseOfAgentEditMember(CustomerInformationViewModel customerInformationViewModel);
 
-        IList<Result> UpdateMemberCustomerSettingInCaseOfAgentEditMember(AgentEditMemberSettingViewModel memberSetting, IKenoSession kenoSession = null);
+        IList<Result> UpdateMemberCustomerSettingInCaseOfAgentEditMember(AgentEditMemberSettingViewModel memberSetting, bool cloneSetting = false);
 
         SuperEditMemberSettingViewModel GetSettingInCaseOfSuperEditMember(CustomerInformationViewModel customerInformationViewModel);
 
