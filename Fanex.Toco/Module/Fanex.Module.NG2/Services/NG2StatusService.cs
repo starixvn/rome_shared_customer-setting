@@ -112,6 +112,10 @@ namespace Fanex.Module.NG2.Services
                     if ((config.Debug == "1" && response.Result.IsSuccess) || (response.Result.IsSuccess && response.Result.AccountArray[index].IsSuccess))
                     {
                         result = _repository.SyncStatus(cust.ObCustId, request.UserId, request.Ip);
+                        if (result.IsSuccess)
+                        {
+                            result = EnableStatus(cust.ObCustId, request.UserId, request.Call.IsDisabled.Value, request.Ip, GetSystemId(request.Auth.SiteId));
+                        }
                     }
 
                     ++index;
@@ -124,6 +128,9 @@ namespace Fanex.Module.NG2.Services
         public Entities.Result SyncStatus(int custId, int userId, string ip, int subAccId = 0)
         {
             return _repository.SyncStatus(custId, userId, ip, subAccId);
-        }        
+        }
+
+        private byte GetSystemId(int siteId)
+            => ((SiteId)siteId) == SiteId.Alpha ? (byte)2 : (byte)1;
     }
 }
