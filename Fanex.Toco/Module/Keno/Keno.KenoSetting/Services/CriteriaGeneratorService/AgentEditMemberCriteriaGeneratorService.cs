@@ -1,27 +1,18 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="AgentEditMemberCriteriaGeneratorService.cs" company="">
-// Copyright (c). All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Paul.Nguyen" date="2014/02/20">Created.</change>
-// </history>
-
-namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
+﻿namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
 {
     using Fanex.CustomerSetting.Module.Core.Criteria;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.Criteria;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities;
     using Fanex.NAP.Framework.Data;
 
-    /// <summary>
-    /// Criteria Generator Service.
-    /// </summary>
     public class AgentEditMemberCriteriaGeneratorService : CriteriaGeneratorServiceBase, ICriteriaGeneratorService
     {
-        public AgentEditMemberCriteriaGeneratorService(CustomerInformation customerInformation)
+        private readonly bool cloneSetting;
+
+        public AgentEditMemberCriteriaGeneratorService(CustomerInformation customerInformation, bool cloneSetting)
             : base(null, customerInformation)
         {
+            this.cloneSetting = cloneSetting;
         }
 
         public AgentEditMemberCriteriaGeneratorService(IKenoSession kenoSession, CustomerInformation customerInformation)
@@ -38,12 +29,19 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
         /// </returns>
         public ICriteria CreateUpdateBetSettingCriteria(BetSetting betSetting)
         {
+            var status = betSetting.IsStatusUpdated;
+
+            if(KenoSession.IsBelongToSpecialGroups && !this.cloneSetting)
+            {
+                status = true;
+            }
+
             return new AgentUpdateMemberBetSettingCriteria()
             {
                 CustId = CustomerInformation.CustId,
                 SportType = Constants.SportType,
                 BetType = betSetting.BetTypeId,
-                UpdateStatus = !KenoSession.IsBelongToSpecialGroups && betSetting.IsStatusUpdated,
+                UpdateStatus = status,
                 Disable = !betSetting.IsEnabled,
                 UpdateMinMaxBet = betSetting.IsBetSettingUpdated,
                 MinBet = betSetting.MinBet,
