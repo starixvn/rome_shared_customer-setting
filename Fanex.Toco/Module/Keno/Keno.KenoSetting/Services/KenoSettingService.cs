@@ -110,7 +110,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
                 ?? new AgentEditMemberCriteriaGeneratorService(
                     memberSetting.CustomerInformation,
                     memberSetting.CustomerInformation.IsMultiple ? true : cloneSetting);
-            return UpdateCustomerSetting(memberSetting);
+            return UpdateCustomerSetting(memberSetting, memberSetting.SystemId);
         }
 
         public IList<Result> UpdateMemberCustomerSettingInCaseOfSuperEditMember(SuperEditMemberSettingViewModel memberSetting)

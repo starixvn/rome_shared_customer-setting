@@ -17,6 +17,8 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Criteria
     /// </summary>
     public class AgentUpdateMemberBetSettingCriteria : CriteriaBase
     {
+        public bool IsSC { get; set; } = false;
+
         public int CustId { get; set; }
 
         public int SportType { get; set; }
