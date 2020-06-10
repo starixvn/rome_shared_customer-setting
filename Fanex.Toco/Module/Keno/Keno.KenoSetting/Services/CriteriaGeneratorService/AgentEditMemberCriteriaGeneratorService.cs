@@ -29,19 +29,13 @@
         /// </returns>
         public ICriteria CreateUpdateBetSettingCriteria(BetSetting betSetting)
         {
-            var status = betSetting.IsStatusUpdated;
-
-            if(KenoSession.IsBelongToSpecialGroups && !this.cloneSetting)
-            {
-                status = true;
-            }
-
             return new AgentUpdateMemberBetSettingCriteria()
             {
+                IsSC = this.cloneSetting,
                 CustId = CustomerInformation.CustId,
                 SportType = Constants.SportType,
                 BetType = betSetting.BetTypeId,
-                UpdateStatus = status,
+                UpdateStatus = betSetting.IsStatusUpdated,
                 Disable = !betSetting.IsEnabled,
                 UpdateMinMaxBet = betSetting.IsBetSettingUpdated,
                 MinBet = betSetting.MinBet,
