@@ -691,7 +691,7 @@ namespace Fanex.CustomerSetting.Module.Keno.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Australia position taking settings are being used for Max Keno, Max Keno 2, Mini Keno, Mini Keno 2, Spring, Summer, Autumn, Winter, Keno War, Keno War 2..
+        ///   Looks up a localized string similar to Australia Position Taking settings are being used for Max Keno, Max Keno 2, Mini Keno, Mini Keno 2, Spring, Summer, Autumn, Winter, Keno War, Keno War 2, Lucky28, Max Keno (20+1), Max Keno (20+1) 2.
         /// </summary>
         public static string WarningPowerKeno {
             get {
