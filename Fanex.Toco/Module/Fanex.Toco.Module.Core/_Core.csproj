@@ -179,6 +179,7 @@
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Constants\BetTypeContants.cs" />
+    <Compile Include="Constants\NonDcsProduct.cs" />
     <Compile Include="Constants\SportContants.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
@@ -188,6 +189,7 @@
     <Compile Include="Criteria\CheckCustomerIsInternalAdminCriteria.cs" />
     <Compile Include="Criteria\CheckCustomerIsSpecialSiteCriteria.cs" />
     <Compile Include="Criteria\CheckSpecialSitePermissionCriteria.cs" />
+    <Compile Include="Criteria\CheckUmCriteria.cs" />
     <Compile Include="Criteria\GetBettypeCriteria.cs">
       <SubType>Code</SubType>
     </Compile>

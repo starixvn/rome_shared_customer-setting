@@ -7,6 +7,7 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
     using Data;
     using Fanex.Caching;
     using Fanex.Common.Helper;
+    using Fanex.CustomerSetting.Module.Core.Constants;
     using Fanex.CustomerSetting.Module.Core.Repository;
     using Fanex.CustomerSetting.Module.Core.Services.Interface;
     using Fanex.NAP.Core.Web.Context;
@@ -112,6 +113,22 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
             }
 
             return result;
+        }
+
+        public Result CheckUM(int custId, NonDcsProduct product, string langKey)
+        {
+            var criteria = new CheckUmCriteria(custId, (byte)product, langKey);
+            if (!criteria.IsValid())
+            {
+                return new Result(500, $"Invalid request custId: {custId}");
+            }
+
+            using (var db = new ObjectDb(criteria.GetSettingKey()))
+            {
+                db.ExecuteNonQuery(criteria.GetSpParams());
+
+                return new Result(Utils.ToInt32(db.GetParameterValue("errcode")), Utils.ToString(db.GetParameterValue("errmsg")));
+            }
         }
     }
 }

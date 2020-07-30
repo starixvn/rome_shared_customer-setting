@@ -11,6 +11,9 @@
     using Core.Web;
     using Criteria;
     using Entities;
+    using Fanex.CustomerSetting.Module.Core.Constants;
+    using Fanex.CustomerSetting.Module.Core.Services.Impl;
+    using Fanex.CustomerSetting.Module.Core.Services.Interface;
     using Interface;
     using Logging.Extensions.Web;
     using Repositories.Impl;
@@ -28,10 +31,12 @@
 
         protected readonly CasinoRepository casinoRepository;
         protected DataTable _tblCustMultipleStakeLevel;
+        protected readonly IServiceBase serviceBase;
 
-        public CasinoServiceBaseImpl(CasinoRepository casinoRepository = null)
+        public CasinoServiceBaseImpl(CasinoRepository casinoRepository = null, IServiceBase serviceBase = null)
         {
             this.casinoRepository = casinoRepository ?? new CasinoRepositoryImpl();
+            this.serviceBase = serviceBase ?? new ServiceBase();
         }
 
         public CasinoCustomer GetCustInfoIBC(int custid, int uplineId)
@@ -312,6 +317,11 @@
             msg = msg.EndsWith("<br />") ? msg.Substring(0, msg.LastIndexOf("<br />")) : msg;
 
             return new Result(msg == string.Empty || (resultKind.Rows.Count == 0 && resultType.Rows.Count == 0 && resultStake.Rows.Count == 0) ? 0 : 1, msg);
+        }
+
+        public Result CheckUM(int custId)
+        {
+            return serviceBase.CheckUM(custId, NonDcsProduct.RNGCasino, AppSession.CurrentSession.LangKey);
         }
     }
 }
