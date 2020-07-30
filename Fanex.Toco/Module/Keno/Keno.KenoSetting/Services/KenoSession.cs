@@ -38,7 +38,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
         {
             get
             {
-                return Utils.GetClientIP();
+                return AppSession.CurrentContext.Ip4Address;
             }
         }
 
