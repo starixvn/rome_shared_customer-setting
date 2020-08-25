@@ -51,7 +51,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
                 MaxPerMatch = betSetting.MaxPerMatch,
                 UserId = CustomerInformation.UserId,
                 SubAccId = CustomerInformation.SubAccId,
-                Ip = KenoSession.Ip,
+                Ip = CustomerInformation.Ip,
                 Language = CustomerInformation.Language,
                 SystemId = systemId ?? SystemIdHelper.GetFromConfigurationFile()
             };
@@ -91,7 +91,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
                 UpdateCommission = false,
                 UserId = CustomerInformation.UserId,
                 SubAccId = CustomerInformation.SubAccId,
-                Ip = KenoSession.Ip,
+                Ip = CustomerInformation.Ip,
                 Language = CustomerInformation.Language
             };
         }

@@ -43,7 +43,7 @@
                 MaxPerMatch = betSetting.MaxPerMatch,
                 UserId = CustomerInformation.UserId,
                 SubAccId = CustomerInformation.SubAccId,
-                Ip = KenoSession.Ip,
+                Ip = CustomerInformation.Ip,
                 Language = CustomerInformation.Language,
                 SystemId = systemId ?? SystemIdHelper.GetFromConfigurationFile()
             };
@@ -81,7 +81,7 @@
                 Discount = 0,
                 SubAccId = CustomerInformation.SubAccId,
                 UserId = CustomerInformation.UserId,
-                Ip = KenoSession.Ip,
+                Ip = CustomerInformation.Ip,
                 Language = CustomerInformation.Language
             };
         }
