@@ -10,9 +10,11 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
     using Fanex.CustomerSetting.Module.Core.Constants;
     using Fanex.CustomerSetting.Module.Core.Repository;
     using Fanex.CustomerSetting.Module.Core.Services.Interface;
+    using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.NAP.Core.Web.Context;
     using Fanex.NAP.Core.Web.Session;
     using Fanex.NAP.Framework.Data;
+    using Fanex.RemotingRef;
     using Models;
     using NAP.Core.Context;
 
@@ -25,16 +27,16 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
 
         protected readonly BaseRepository _repository;
 
-        protected readonly ICurrentContext _context;
+        protected readonly Web.ICurrentContext _context;
 
-        protected readonly ICurrentSession _session;
+        protected readonly Web.ICurrentSession _session;
         #endregion
         public ServiceBase(IDynamicRepository repository = null)
         {
             this.DynamicRepository = repository ?? new DynamicRepository();
             this._cacheManager = CacheService.CreateInstance();
             this._repository = new BaseRepository();
-            this._context = this._context ?? new CurrentContext();
+            this._context = this._context ?? new Web.CurrentContext();
         }
 
         protected IDynamicRepository Repository
@@ -127,7 +129,14 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
             {
                 db.ExecuteNonQuery(criteria.GetSpParams());
 
-                return new Result(Utils.ToInt32(db.GetParameterValue("errcode")), Utils.ToString(db.GetParameterValue("errmsg")));
+                var errMsg = Utils.ToString(db.GetParameterValue("errmsg"));
+                var formatedErrMsg = string.Format(errMsg, 
+                    CacheRef.GetRefResourceByRefIdAndResourceId(
+                        "Product", 
+                        ((byte)product).ToString(),
+                        product.ToString()));
+
+                return new Result(Utils.ToInt32(db.GetParameterValue("errcode")), formatedErrMsg);
             }
         }
     }
