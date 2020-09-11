@@ -114,7 +114,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
             _criteriaGeneratorService = _criteriaGeneratorService 
                 ?? new AgentEditMemberCriteriaGeneratorService(
                     memberSetting.CustomerInformation,
-                    memberSetting.CustomerInformation.IsMultiple ? true : cloneSetting);
+                    cloneSetting);
             return UpdateCustomerSetting(memberSetting);
         }
 
