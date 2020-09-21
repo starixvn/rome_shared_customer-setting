@@ -130,7 +130,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel),
                 JsonConvert.DeserializeObject<GeneralCasinoCustomer>(customerModel)));
 
-            return this.JsonBase(new { ErrorCode = ret.IsSuccess ? 0 : 1, ret.ErrorMessage });
+            return this.JsonBase(new { ErrorCode = ret.IsSuccess ? 0 : ret.ErrorCode, ret.ErrorMessage });
         }
     }
 }

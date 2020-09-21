@@ -89,6 +89,12 @@
 
         public Result UpdateMaster(UpdateCasinoCommand command)
         {
+            var checkUmResult = CheckUM(command.CustId);
+            if (!checkUmResult.IsSuccess)
+            {
+                return checkUmResult;
+            }
+
             if (AppSession.CurrentSession.IsBelongToSpecialGroups && command.SettingModel.IsUncheckedAllStakeLevels())
             {
                 return new Result(500, NGCasinoLang.WarningUncheckAllStakeLevelMsg_DirectionV3);

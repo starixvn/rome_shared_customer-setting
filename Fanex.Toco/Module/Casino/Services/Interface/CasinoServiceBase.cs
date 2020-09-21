@@ -20,6 +20,8 @@
             string lang,
             string username,
             string subUsername);
+
+        Result CheckUM(int custId);
     }
 
 }

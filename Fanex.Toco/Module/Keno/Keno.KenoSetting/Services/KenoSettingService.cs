@@ -11,9 +11,12 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
 {
     using System;
     using System.Collections.Generic;
+    using Fanex.CustomerSetting.Module.Core.Constants;
     using Fanex.CustomerSetting.Module.Core.Criteria;
     using Fanex.CustomerSetting.Module.Core.Models;
     using Fanex.CustomerSetting.Module.Core.Services.Impl;
+    using Fanex.CustomerSetting.Module.Core.Services.Interface;
+    using Fanex.CustomerSetting.Module.Core.Web;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.Criteria;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities;
     using Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories;
@@ -26,16 +29,18 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
     {
         private readonly IKenoSettingRepository _kenoSettingRepository;
         private ICriteriaGeneratorService _criteriaGeneratorService;
+        private readonly IServiceBase serviceBase;
 
         public KenoSettingService()
-            : this(null, null)
+            : this(null, null, null)
         {
         }
 
-        public KenoSettingService(IKenoSettingRepository kenoSettingRepository, ICriteriaGeneratorService criteriaGeneratorService)
+        public KenoSettingService(IKenoSettingRepository kenoSettingRepository, ICriteriaGeneratorService criteriaGeneratorService, IServiceBase serviceBase)
         {
             _kenoSettingRepository = kenoSettingRepository ?? new KenoSettingRepository();
             _criteriaGeneratorService = criteriaGeneratorService ?? null;
+            this.serviceBase = serviceBase ?? new ServiceBase();
         }
 
         public SuperSettingViewModel GetSuperSetting(CustomerInformationViewModel customerInformationViewModel)
@@ -199,6 +204,12 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Services
         /// <returns>List result.</returns>
         internal List<Result> UpdateCustomerSetting(dynamic customerSetting, byte? systemId)
         {
+            var checkUmResult = serviceBase.CheckUM((int)customerSetting.CustomerInformation.CustId, NonDcsProduct.RNGKeno, AppSession.CurrentSession.LangKey);
+            if (!checkUmResult.IsSuccess)
+            {
+                return new List<Result> { checkUmResult };
+            }
+
             customerSetting.AdjustInformationWhenUpdateSetting();
             var results = new List<Result>();
             try

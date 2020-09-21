@@ -11,13 +11,15 @@
     {
         private readonly MemberWinLimitRepository repository;
         private readonly CasinoRepository casinoRepository;
+        private readonly CasinoServiceBase casinoService;
 
-        public MemberWinLimitPartialServiceImpl() : this(null, null) { }
+        public MemberWinLimitPartialServiceImpl() : this(null, null, null) { }
 
-        internal MemberWinLimitPartialServiceImpl(MemberWinLimitRepository repository, CasinoRepository casinoRepository)
+        internal MemberWinLimitPartialServiceImpl(MemberWinLimitRepository repository, CasinoRepository casinoRepository, CasinoServiceBase casinoService)
         {
             this.repository = repository ?? new MemberWinLimitRepositoryImpl();
             this.casinoRepository = casinoRepository ?? new CasinoRepositoryImpl();
+            this.casinoService = casinoService ?? new CasinoServiceBaseImpl();
         }
 
         public Result UpdateMemberWinLimit(
@@ -29,6 +31,12 @@
             MemberWinLimit memberWinLimit,
             byte roleId)
         {
+            var checkUmResult = casinoService.CheckUM(custId);
+            if (!checkUmResult.IsSuccess)
+            {
+                return checkUmResult;
+            }
+
             if (roleId != 1)
             {
                 var allowDownlines = casinoRepository.ExecuteNonQuery(new AllowedDownlinesCriteria(custId, roleId));

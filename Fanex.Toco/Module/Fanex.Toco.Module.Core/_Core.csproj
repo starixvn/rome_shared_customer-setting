@@ -71,6 +71,9 @@
       <HintPath>..\..\packages\Fanex.NAP.Core.Client.1.2.1.6\lib\net40\Fanex.NAP.Core.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.NAP.Framework, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.NAP.Framework.1.0.0.2\lib\net40\Fanex.NAP.Framework.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.RemotingRef, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.RemotingRef.1.1.1\lib\net461\Fanex.RemotingRef.dll</HintPath>
       <Private>True</Private>
@@ -185,6 +188,7 @@
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Constants\BetTypeContants.cs" />
+    <Compile Include="Constants\NonDcsProduct.cs" />
     <Compile Include="Constants\SportContants.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
@@ -194,6 +198,7 @@
     <Compile Include="Criteria\CheckCustomerIsInternalAdminCriteria.cs" />
     <Compile Include="Criteria\CheckCustomerIsSpecialSiteCriteria.cs" />
     <Compile Include="Criteria\CheckSpecialSitePermissionCriteria.cs" />
+    <Compile Include="Criteria\CheckUmCriteria.cs" />
     <Compile Include="Criteria\GetBettypeCriteria.cs">
       <SubType>Code</SubType>
     </Compile>

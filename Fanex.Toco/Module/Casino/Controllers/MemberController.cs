@@ -159,7 +159,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), 
                 JsonConvert.DeserializeObject<GeneralCasinoCustomer>(customerModel)));
 
-            return JsonBase(new { ErrorCode = result.IsSuccess ? 0 : 1, result.ErrorMessage });
+            return JsonBase(new { ErrorCode = result.IsSuccess ? 0 : result.ErrorCode, result.ErrorMessage });
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
@@ -192,7 +192,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), 
                 JsonConvert.DeserializeObject<GeneralCasinoCustomer>(customerModel)));
 
-            return JsonBase(new { ErrorCode = result.IsSuccess ? 0 : 1, result.ErrorMessage });
+            return JsonBase(new { ErrorCode = result.IsSuccess ? 0 : result.ErrorCode, result.ErrorMessage });
         }
 
         [AuthenticateAction(AuthenticateAction.AuthenticationType.Host, "Casino")]
@@ -225,7 +225,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Controllers
                 JsonConvert.DeserializeObject<CasinoSettingModel>(settingModel), 
                 JsonConvert.DeserializeObject<GeneralCasinoCustomer>(customerModel)));
 
-            return JsonBase(new { ErrorCode = result.IsSuccess ? 0 : 1, result.ErrorMessage });
+            return JsonBase(new { ErrorCode = result.IsSuccess ? 0 : result.ErrorCode, result.ErrorMessage });
         }
 
         [NonAction]

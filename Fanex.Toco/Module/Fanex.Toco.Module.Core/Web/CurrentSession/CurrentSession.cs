@@ -111,5 +111,7 @@ namespace Fanex.CustomerSetting.Module.Core.Web
         {
             get;
         }
+
+        public string LangKey { get; set; } = "E";
     }
 }
