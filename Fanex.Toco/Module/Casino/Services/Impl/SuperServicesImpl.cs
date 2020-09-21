@@ -88,7 +88,13 @@
 
         public Result UpdateSuper(UpdateCasinoCommand command)
         {
-            if(AppSession.CurrentSession.IsBelongToSpecialGroups && command.SettingModel.IsUncheckedAllStakeLevels())
+            var checkUmResult = CheckUM(command.CustId);
+            if (!checkUmResult.IsSuccess)
+            {
+                return checkUmResult;
+            }
+
+            if (AppSession.CurrentSession.IsBelongToSpecialGroups && command.SettingModel.IsUncheckedAllStakeLevels())
             {
                 return new Result(500, NGCasinoLang.WarningUncheckAllStakeLevelMsg_DirectionV3);
             }
@@ -233,6 +239,12 @@
             int fromSystem, 
             CasinoSettingModel model)
         {
+            var checkUmResult = CheckUM(custId);
+            if (!checkUmResult.IsSuccess)
+            {
+                return checkUmResult;
+            }
+
             if (AppSession.CurrentSession.IsBelongToSpecialGroups && model.IsUncheckedAllStakeLevels())
             {
                 return new Result(500, NGCasinoLang.WarningUncheckAllStakeLevelMsg_DirectionV3);

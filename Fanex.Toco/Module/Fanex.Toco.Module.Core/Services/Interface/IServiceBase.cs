@@ -10,6 +10,7 @@
 //   <change who="Ricky.Nguyen" date="2012.11.6">Move</change>
 // </history>
 
+using Fanex.CustomerSetting.Module.Core.Constants;
 using Fanex.CustomerSetting.Module.Core.Criteria;
 using Fanex.CustomerSetting.Module.Core.Models;
 using Fanex.NAP.Framework.Data;
@@ -36,5 +37,7 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Interface
         CheckCustomerIsInternalAdminResult CheckCustomerIsInternalAdmin(CheckCustomerIsInternalAdminCriteria criteria);
 
         bool CheckCustomerHasSpecialSitePermission(CheckCustomerHasSpecialSiteFunctionPermissionCriteria criteria);
+
+        Result CheckUM(int custId, NonDcsProduct product, string langKey);
     }
 }
