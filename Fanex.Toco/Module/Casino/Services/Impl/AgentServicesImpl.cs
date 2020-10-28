@@ -61,18 +61,18 @@
                 gameGroup.GameGroupName = Utils.ToString(row[Lang("GameKindName")]);
 
                 // Master preset PT
-                gameGroup.M3 = !synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
-                gameGroup.M2 = Utils.ToDecimal(row["MPositionTaking"]).Format(2);
+                gameGroup.M3 = !synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(3) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(3);
+                gameGroup.M2 = Utils.ToDecimal(row["MPositionTaking"]).Format(3);
 
                 // Master Auto PT
                 gameGroup.Im2 = Utils.ToBoolean(row["IsAutoMPositionTaking"]);
-                gameGroup.Um2 = Utils.ToDecimal(row["AutoMPositionTaking"]).Format(2);
+                gameGroup.Um2 = Utils.ToDecimal(row["AutoMPositionTaking"]).Format(3);
 
                 // Agent Max PT
-                gameGroup.A2 = synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
+                gameGroup.A2 = synced ? Utils.ToDecimal(row["APositionTaking"]).Format(3) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(3);
 
                 // Agent Min PT
-                gameGroup.N2 = !synced ? 0 : Utils.ToDecimal(row["MinPositionTaking"]).Format(2);
+                gameGroup.N2 = !synced ? 0 : Utils.ToDecimal(row["MinPositionTaking"]).Format(3);
 
                 // Assign game types
                 var gameTypes = this.GetGameTypeAgent(id, gameGroup.GameGroupID, synced, ref gameGroup, gameModel.IsPtByGameType);
@@ -120,8 +120,8 @@
                 gameGroup.GameGroupName = Utils.ToString(row[Lang("GameKindName")]);
 
                 // Master preset PT
-                gameGroup.M3 = synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
-                gameGroup.M2 = synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
+                gameGroup.M3 = synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(3) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(3);
+                gameGroup.M2 = synced ? Utils.ToDecimal(row["APositionTaking"]).Format(3) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(3);
 
                 // Assign game types
                 var gameTypes = this.GetGameTypeAgentBySuper(id, gameGroup.GameGroupID, synced);
@@ -429,18 +429,18 @@
                 }
 
                 // Master preset PT
-                gameType.M3 = !synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
-                gameType.M2 = Utils.ToDecimal(row["MPositionTaking"]).Format(2);
+                gameType.M3 = !synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(3) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(3);
+                gameType.M2 = Utils.ToDecimal(row["MPositionTaking"]).Format(3);
 
                 // Agent Max PT
-                gameType.A2 = synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
+                gameType.A2 = synced ? Utils.ToDecimal(row["APositionTaking"]).Format(3) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(3);
 
                 // Master Auto PT
                 gameType.Im2 = Utils.ToBoolean(row["IsAutoMPositionTaking"]);
-                gameType.Um2 = Utils.ToDecimal(row["AutoMPositionTaking"]).Format(2);
+                gameType.Um2 = Utils.ToDecimal(row["AutoMPositionTaking"]).Format(3);
 
                 // Agent Min PT
-                gameType.N2 = !synced ? 0 : Utils.ToDecimal(row["MinPositionTaking"]).Format(2);
+                gameType.N2 = !synced ? 0 : Utils.ToDecimal(row["MinPositionTaking"]).Format(3);
 
                 // Betting limits
                 var stakes = this.GetStakeLevels(custId, gameType.GameTypeID, 0, synced);
@@ -482,8 +482,8 @@
                 gameType.GameTypeName = Utils.ToString(row[Lang("GameTypeName")]);
 
                 // Master preset PT
-                gameType.M3 = synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
-                gameType.M2 = synced ? Utils.ToDecimal(row["APositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(2);
+                gameType.M3 = synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(3) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(3);
+                gameType.M2 = synced ? Utils.ToDecimal(row["APositionTaking"]).Format(3) : Utils.ToDecimal(row["UplineAPositionTaking"]).Format(3);
 
                 // Betting limits
                 var stakes = this.GetStakeLevels(custId, gameType.GameTypeID);

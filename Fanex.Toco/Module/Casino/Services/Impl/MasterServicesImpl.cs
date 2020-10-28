@@ -62,18 +62,18 @@
                 gameGroup.GameGroupName = Utils.ToString(row[Lang("GameKindName")]);
 
                 // Super preset PT
-                gameGroup.S4 = synced ? Utils.ToDecimal(row["UplineMaxPositionTaking"]).Format(2) : Utils.ToDecimal(row["MaxPositionTaking"]).Format(2);
-                gameGroup.S3 = Utils.ToDecimal(row["SPositionTaking"]).Format(2); 
+                gameGroup.S4 = synced ? Utils.ToDecimal(row["UplineMaxPositionTaking"]).Format(3) : Utils.ToDecimal(row["MaxPositionTaking"]).Format(3);
+                gameGroup.S3 = Utils.ToDecimal(row["SPositionTaking"]).Format(3); 
 
                 // Super Auto PT
                 gameGroup.Is3 = Utils.ToBoolean(row["IsAutoPositionTaking"]);
-                gameGroup.Us3 = Utils.ToDecimal(row["AutoPositionTaking"]).Format(2);
+                gameGroup.Us3 = Utils.ToDecimal(row["AutoPositionTaking"]).Format(3);
 
                 // Master Max PT
-                gameGroup.M3 = synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
+                gameGroup.M3 = synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(3) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(3);
 
                 // Master Min PT
-                gameGroup.N3 = synced ? Utils.ToDecimal(row["MinPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMinPositionTaking"]).Format(2);
+                gameGroup.N3 = synced ? Utils.ToDecimal(row["MinPositionTaking"]).Format(3) : Utils.ToDecimal(row["UplineMinPositionTaking"]).Format(3);
 
                 // Assign game types
                 var gameTypes = this.GetGameTypeMaster(id, gameGroup.GameGroupID, synced, ref gameGroup, gameModel.IsPtByGameType);
@@ -383,18 +383,18 @@
                 gameType.GameTypeName = Utils.ToString(row[Lang("GameTypeName")]);
 
                 // Super preset PT
-                gameType.S4 = synced ? Utils.ToDecimal(row["UplineMaxPositionTaking"]).Format(2) : Utils.ToDecimal(row["MaxPositionTaking"]).Format(2);
-                gameType.S3 = Utils.ToDecimal(row["SPositionTaking"]).Format(2); 
+                gameType.S4 = synced ? Utils.ToDecimal(row["UplineMaxPositionTaking"]).Format(3) : Utils.ToDecimal(row["MaxPositionTaking"]).Format(3);
+                gameType.S3 = Utils.ToDecimal(row["SPositionTaking"]).Format(3); 
 
                 // Super Auto PT
                 gameType.Is3 = Utils.ToBoolean(row["IsAutoPositionTaking"]);
-                gameType.Us3 = Utils.ToDecimal(row["AutoPositionTaking"]).Format(2);
+                gameType.Us3 = Utils.ToDecimal(row["AutoPositionTaking"]).Format(3);
 
                 // Master Max PT
-                gameType.M3 = synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(2) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(2);
+                gameType.M3 = synced ? Utils.ToDecimal(row["MPositionTaking"]).Format(3) : Utils.ToDecimal(row["UplineMPositionTaking"]).Format(3);
 
                 // Master Min PT
-                gameType.N3 = !synced ? 0 : Utils.ToDecimal(row["MinPositionTaking"]).Format(2);
+                gameType.N3 = !synced ? 0 : Utils.ToDecimal(row["MinPositionTaking"]).Format(3);
 
                 // Betting limits
                 var stakes = this.GetStakeLevels(custId, gameType.GameTypeID, 0, synced);
