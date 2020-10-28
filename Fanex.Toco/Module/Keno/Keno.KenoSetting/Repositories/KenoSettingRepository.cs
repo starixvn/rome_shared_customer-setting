@@ -223,6 +223,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
                 customerInformation.IsDisableAutoMPT = dataReader.HasColumn("DisableAutoMPT") ? dataReader.ToBool("DisableAutoMPT") : false;
                 customerInformation.RoleId = (int)role;
                 customerInformation.ActionType = (int)actionType;
+                customerInformation.Site = dataReader.HasColumn("site") ? dataReader.ToString("site") : string.Empty;
             }
 
             return customerInformation;

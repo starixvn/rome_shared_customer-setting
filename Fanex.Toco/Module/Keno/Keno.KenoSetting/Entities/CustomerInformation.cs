@@ -49,5 +49,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
         public int SubAccId { get; set; }
 
         public bool IsMultiple { get; set; }
+
+        public string Site { get; set; }
     }
 }
