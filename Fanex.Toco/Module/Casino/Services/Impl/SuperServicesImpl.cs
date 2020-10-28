@@ -24,7 +24,7 @@
             var gameModel = new CasinoSettingModel();
             var gameGroups = new List<GameGroup>();
             var custInfo = this.GetCustInfoIBC(custId, uplineId);
-            decimal maxPT = Utils.ToDecimal(ConfigurationManager.AppSettings["MaxPT"]).Format();
+            decimal maxPT = Utils.ToDecimal(ConfigurationManager.AppSettings["MaxPT"]).Format(3);
             decimal maxComm = Utils.ToDecimal(ConfigurationManager.AppSettings["MaxComm"]).Format(4);
             if (custInfo.GeneralInfo.IsDeposit)
             {
@@ -56,11 +56,11 @@
 
                 // Super preset PT
                 gameGroup.S4 = maxPT;
-                gameGroup.S3 = !synced ? 0 : Utils.ToDecimal(row["MaxPositionTaking"]).Format();
+                gameGroup.S3 = !synced ? 0 : Utils.ToDecimal(row["MaxPositionTaking"]).Format(3);
 
                 // Master Min PT
                 gameGroup.N4 = gameGroup.S3;
-                gameGroup.N3 = !synced ? 0 : Utils.ToDecimal(row["MinPositionTaking"]).Format();
+                gameGroup.N3 = !synced ? 0 : Utils.ToDecimal(row["MinPositionTaking"]).Format(3);
 
                 // Commission
                 if (gameGroup.GameGroupID.Equals(136))
@@ -323,11 +323,11 @@
 
                 // Super preset PT
                 gameType.S4 = maxPT;
-                gameType.S3 = !synced ? 0 : Utils.ToDecimal(row["MaxPositionTaking"]).Format();
+                gameType.S3 = !synced ? 0 : Utils.ToDecimal(row["MaxPositionTaking"]).Format(3);
 
                 // Master Min PT
                 gameType.N4 = gameType.S3;
-                gameType.N3 = !synced ? 0 : Utils.ToDecimal(row["MinPositionTaking"]).Format();
+                gameType.N3 = !synced ? 0 : Utils.ToDecimal(row["MinPositionTaking"]).Format(3);
 
                 // Betting limits
                 var stakes = this.GetStakeLevels(custId, gameType.GameTypeID, exchangeId, synced, true, site);
