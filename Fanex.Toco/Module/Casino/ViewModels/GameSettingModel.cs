@@ -15,6 +15,8 @@ namespace Fanex.CustomerSetting.Module.Casino.ViewModels
 
         public bool IsReadOnly { get; set; }
 
+        public bool IsPT3Decimal { get; set; }
+
         public List<GameGroup> GameGroups { get; set; }
 
         public bool IsUncheckedAllStakeLevels()

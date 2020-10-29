@@ -6,6 +6,7 @@
     using Core.Models;
     using Core.Web;
     using Entities;
+    using Fanex.CustomerSetting.Module.Casino.Configurations;
     using Fanex.CustomerSetting.Module.Casino.Resources;
     using Interface;
     using Logging.Extensions.Web;
@@ -24,6 +25,7 @@
             var gameGroups = new List<GameGroup>();
 
             var custInfo = this.GetCustInfoIBC(custId, uplineId);
+            gameModel.IsPT3Decimal = AppSettings.PT3DecimalSites().Any(site => site.Equals(custInfo.Site, StringComparison.CurrentCultureIgnoreCase));
             if (custInfo.GeneralInfo.RoleId != Master)
             {
                 throw new Exception("Invalid custId");

@@ -6,6 +6,7 @@
     using Core.Models;
     using Core.Web;
     using Entities;
+    using Fanex.CustomerSetting.Module.Casino.Configurations;
     using Fanex.CustomerSetting.Module.Casino.Resources;
     using Interface;
     using Logging.Extensions.Web;
@@ -27,9 +28,8 @@
             var id = synced ? custId : uplineId;
             var cust = new Customer();
             var dt = cust.GetCustGameKind(id);
-
             var casinoSettingUpline = new CasinoCustomer();
-
+            gameModel.IsPT3Decimal = AppSettings.PT3DecimalSites().Any(site => site.Equals(custInfo.Site, StringComparison.CurrentCultureIgnoreCase));
             // Gets upline settings
             casinoSettingUpline.GeneralInfo.IBCCustID = uplineId;
             casinoSettingUpline.GeneralInfo.UplineRoleId = custInfo.GeneralInfo.RoleId + 1;
