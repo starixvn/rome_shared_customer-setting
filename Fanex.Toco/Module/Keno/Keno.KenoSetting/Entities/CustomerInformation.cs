@@ -7,6 +7,10 @@
 //   <change who="Paul.Nguyen" date="2014/02/20">Created.</change>
 // </history>
 
+using Fanex.CustomerSetting.Module.Keno.KenoSetting.Configurations;
+using System;
+using System.Linq;
+
 namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
 {
     /// <summary>
@@ -51,5 +55,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
         public bool IsMultiple { get; set; }
 
         public string Site { get; set; }
+
+        public bool IsPT3Decimal => AppSettings.PT3DecimalSites().Any(site => site.Equals(this.Site, StringComparison.CurrentCultureIgnoreCase));
     }
 }
