@@ -84,6 +84,7 @@
             var cust = new Customer();
             var dt = cust.GetCustGameKind_EditMember(custId);
             var dtsuper = cust.GetCustGameKind(custId);
+            gameModel.IsPT3Decimal = AppSettings.PT3DecimalSites().Any(site => site.Equals(custInfo.Site, StringComparison.CurrentCultureIgnoreCase));
 
             var casinoSettingUpline = new CasinoCustomer();
 
@@ -154,6 +155,7 @@
             var cust = new Customer();
             var dt = cust.GetCustGameKind_EditMember(custId);
             var dtmaster = cust.GetCustGameKind(custId);
+            gameModel.IsPT3Decimal = AppSettings.PT3DecimalSites().Any(site => site.Equals(custInfo.Site, StringComparison.CurrentCultureIgnoreCase));
 
             var casinoSettingUpline = new CasinoCustomer();
 
