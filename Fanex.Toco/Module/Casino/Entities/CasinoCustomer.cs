@@ -28,5 +28,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Entities
         public int MIBCCustID { get; set; }
 
         public int AIBCCustID { get; set; }
+
+        public string Site { get; set; }
     }
 }

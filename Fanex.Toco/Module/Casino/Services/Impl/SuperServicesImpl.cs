@@ -5,6 +5,7 @@
     using Core;
     using Core.Models;
     using Core.Web;
+    using Fanex.CustomerSetting.Module.Casino.Configurations;
     using Fanex.CustomerSetting.Module.Casino.Resources;
     using Interface;
     using Logging.Extensions.Web;
@@ -24,8 +25,9 @@
             var gameModel = new CasinoSettingModel();
             var gameGroups = new List<GameGroup>();
             var custInfo = this.GetCustInfoIBC(custId, uplineId);
-            decimal maxPT = Utils.ToDecimal(ConfigurationManager.AppSettings["MaxPT"]).Format();
+            decimal maxPT = Utils.ToDecimal(ConfigurationManager.AppSettings["MaxPT"]).Format(3);
             decimal maxComm = Utils.ToDecimal(ConfigurationManager.AppSettings["MaxComm"]).Format(4);
+            gameModel.IsPT3Decimal = AppSettings.PT3DecimalSites().Any(site => site.Equals(custInfo.Site, StringComparison.CurrentCultureIgnoreCase));
             if (custInfo.GeneralInfo.IsDeposit)
             {
                 ArrayList depositSetting = new BasicInfo().GetCasinoSetting(DepositCasinoNo);
@@ -56,11 +58,11 @@
 
                 // Super preset PT
                 gameGroup.S4 = maxPT;
-                gameGroup.S3 = !synced ? 0 : Utils.ToDecimal(row["MaxPositionTaking"]).Format();
+                gameGroup.S3 = !synced ? 0 : Utils.ToDecimal(row["MaxPositionTaking"]).Format(3);
 
                 // Master Min PT
                 gameGroup.N4 = gameGroup.S3;
-                gameGroup.N3 = !synced ? 0 : Utils.ToDecimal(row["MinPositionTaking"]).Format();
+                gameGroup.N3 = !synced ? 0 : Utils.ToDecimal(row["MinPositionTaking"]).Format(3);
 
                 // Commission
                 if (gameGroup.GameGroupID.Equals(136))
@@ -231,12 +233,12 @@
         /// <param name="model"></param>
         /// <returns></returns>
         public Result UpdateSuperBettingLimit(
-            int custId, 
-            int roleId, 
-            string ip, 
-            int modifiedId, 
-            string modifiedBy, 
-            int fromSystem, 
+            int custId,
+            int roleId,
+            string ip,
+            int modifiedId,
+            string modifiedBy,
+            int fromSystem,
             CasinoSettingModel model)
         {
             var checkUmResult = CheckUM(custId);
@@ -295,14 +297,14 @@
         }
 
         private List<GameType> GetGameTypeSuper(
-            int custId, 
+            int custId,
             decimal maxPT,
-            decimal comm, 
-            int gameKindID, 
+            decimal comm,
+            int gameKindID,
             bool synced,
-            ref GameGroup gameGroup, 
-            int exchangeId = 0, 
-            bool isPTByGameType = false, 
+            ref GameGroup gameGroup,
+            int exchangeId = 0,
+            bool isPTByGameType = false,
             string site = null)
         {
             var cust = new Customer();
@@ -323,11 +325,11 @@
 
                 // Super preset PT
                 gameType.S4 = maxPT;
-                gameType.S3 = !synced ? 0 : Utils.ToDecimal(row["MaxPositionTaking"]).Format();
+                gameType.S3 = !synced ? 0 : Utils.ToDecimal(row["MaxPositionTaking"]).Format(3);
 
                 // Master Min PT
                 gameType.N4 = gameType.S3;
-                gameType.N3 = !synced ? 0 : Utils.ToDecimal(row["MinPositionTaking"]).Format();
+                gameType.N3 = !synced ? 0 : Utils.ToDecimal(row["MinPositionTaking"]).Format(3);
 
                 // Betting limits
                 var stakes = this.GetStakeLevels(custId, gameType.GameTypeID, exchangeId, synced, true, site);

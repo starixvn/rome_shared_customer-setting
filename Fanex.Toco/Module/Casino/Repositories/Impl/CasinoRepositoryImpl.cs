@@ -61,6 +61,7 @@
                 customerDetail.GeneralInfo.UpperCustID = uplineId;
                 customerDetail.GeneralInfo.NoCSData = true;
                 customerDetail.GeneralInfo.IsEnablePT = true;
+                customerDetail.Site = Utils.ToString(row["site"]);
 
                 // Get max transfer information
 
