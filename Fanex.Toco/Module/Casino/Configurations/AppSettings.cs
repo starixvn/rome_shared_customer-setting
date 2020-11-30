@@ -17,5 +17,8 @@ namespace Fanex.CustomerSetting.Module.Casino.Configurations
             => ConfigurationManager.AppSettings["PT3DecimalSites"] == null ?
             new List<string> { "789y" } :
             ConfigurationManager.AppSettings["PT3DecimalSites"].ToString().Split(',').Select(site => site.Trim()).ToList();
+
+        public static byte SettingStatus
+            => ConfigurationManager.AppSettings["SettingStatus"] == null ? (byte)0 : byte.Parse(ConfigurationManager.AppSettings["SettingStatus"]);
     }
 }

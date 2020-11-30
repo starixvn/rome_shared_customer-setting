@@ -11,13 +11,14 @@ namespace Fanex.Module.NG2.Repository
     /// </summary>
     public class BaseRepository
     {
-        public static DbResult CheckAllowedCurrencyAll(int custId)
+        public static DbResult CheckAllowedCurrencyAll(int custId, byte settingStatus = 0)
         {
             DbResult checkCurrency = new DbResult(new Hashtable(), new System.Data.DataSet());
             try
             {
                 var param = new Hashtable();
                 param.Add("custid", custId);
+                param.Add("settingstatus", settingStatus);
 
                 using (ObjectDb db = new ObjectDb("CheckAllowedShow", 600))
                 {

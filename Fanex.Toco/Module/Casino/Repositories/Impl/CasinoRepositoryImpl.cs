@@ -1,18 +1,18 @@
 ﻿namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Data;
-    using CasinoLibrary.SBAgent;
     using Core;
     using Core.Models;
     using Criteria;
     using Data;
     using Data.DNAide;
     using Entities;
+    using Fanex.CustomerSetting.Module.Casino.Configurations;
     using Interface;
     using NAP.Framework.Data;
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Data;
 
     public class CasinoRepositoryImpl : CasinoRepository
     {
@@ -20,9 +20,11 @@
         {
             Hashtable param = new Hashtable();
             param.Add("custid", ibcCustId);
+            param.Add("settingstatus", AppSettings.SettingStatus);
 
             var uplineParam = new Hashtable();
             uplineParam.Add("custid", uplineId);
+            uplineParam.Add("settingstatus", AppSettings.SettingStatus);
 
             DbResult dr = DbHelper.ExecuteDbResult("Age_CustomerSelUserInfo", param, 300);
             var upline = uplineId != 0 ? DbHelper.ExecuteDbResult("Age_CustomerSelUserInfo", uplineParam, 300) : new DbResult(new Hashtable(), new DataSet());
@@ -69,6 +71,7 @@
                 {
                     var allCustomerInfoParam = new Hashtable();
                     allCustomerInfoParam.Add("username", customerDetail.GeneralInfo.UserName);
+                    allCustomerInfoParam.Add("settingstatus", AppSettings.SettingStatus);
                     DbResult allCustomerInfoDr = DbHelper.ExecuteDbResult("SelAllInfo", allCustomerInfoParam, 300);
                     customerDetail.GeneralInfo.IsDeposit = Utils.ToBoolean(allCustomerInfoDr.ResultSet.Tables[0].Rows[0]["isdeposit"]);
                     customerDetail.GeneralInfo.SiteName =
