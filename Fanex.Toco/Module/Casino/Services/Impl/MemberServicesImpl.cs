@@ -425,17 +425,25 @@
 
             var errMsg = string.Empty;
             var messages = string.Empty;
-            
+
             // Update PT/Betting limit settings
-            var casinoPTResult = this.UpdateMemberSettingsByMaster(
-                command.CustId,
-                command.CustomerModel.RoleId,
-                command.CustomerModel.UplineRoleId,
-                command.IP,
-                command.ModifiedId,
-                command.ModifiedBy,
-                command.FromSystem,
-                command.SettingModel);
+            var casinoPTResult = new Result();
+            try
+            {
+                casinoPTResult = this.UpdateMemberSettingsByMaster(
+                    command.CustId,
+                    command.CustomerModel.RoleId,
+                    command.CustomerModel.UplineRoleId,
+                    command.IP,
+                    command.ModifiedId,
+                    command.ModifiedBy,
+                    command.FromSystem,
+                    command.SettingModel);
+            }
+            catch (ErrorException e)
+            {
+                return new Result(500, e.Message.Split(':').LastOrDefault());
+            }
 
             // Gets error messages
             messages += string.IsNullOrWhiteSpace(errMsg) && casinoPTResult.IsSuccess ? string.Empty : !string.IsNullOrWhiteSpace(errMsg) ? errMsg + "<br />" + casinoPTResult.ErrorMessage : casinoPTResult.ErrorMessage;
