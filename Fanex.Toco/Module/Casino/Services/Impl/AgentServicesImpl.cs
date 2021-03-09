@@ -258,14 +258,21 @@
             }
 
             // Update PT/Betting limit settings
-            updateSettingResult = this.UpdateAgentSettings(
-                command.CustId,
-                command.CustomerModel.RoleId,
-                command.IP,
-                command.ModifiedId,
-                command.ModifiedBy,
-                command.FromSystem,
-                command.SettingModel);
+            try
+            {
+                updateSettingResult = this.UpdateAgentSettings(
+                    command.CustId,
+                    command.CustomerModel.RoleId,
+                    command.IP,
+                    command.ModifiedId,
+                    command.ModifiedBy,
+                    command.FromSystem,
+                    command.SettingModel);
+            }
+            catch (ErrorException e)
+            {
+                return new Result(500, e.Message.Split(':').LastOrDefault());
+            }
 
             // Gets error messages
             messages += string.IsNullOrWhiteSpace(errMsg) && updateSettingResult.IsSuccess ? string.Empty : !string.IsNullOrWhiteSpace(errMsg) ? errMsg + "<br />" + updateSettingResult.ErrorMessage : updateSettingResult.ErrorMessage;
