@@ -9,12 +9,13 @@
 
 namespace Fanex.Module.Statement.Criteria.StatementReport
 {
-    using System;
-    using System.Data;
     using Fanex.Caching;
+    using Fanex.Caching.Memory;
     using Fanex.CustomerSetting.Module.Core;
     using Fanex.Module.Statement.Repositories.StatementReport;
     using Fanex.NAP.Framework.Data;
+    using System;
+    using System.Data;
 
     /// <summary>
     /// Date Range Report Criteria.
@@ -22,7 +23,7 @@ namespace Fanex.Module.Statement.Criteria.StatementReport
     public class DateRangeReportCriteria : CriteriaBase
     {
         private const string BalanceUpDayKey = "__balanceUpDayKey";
-        private static ICache _cache;
+        private static ICacheService _cache;
         private DataTable _balanceUpDay;
         private IStatementReportRepository _report;
 
@@ -65,7 +66,7 @@ namespace Fanex.Module.Statement.Criteria.StatementReport
 
             if (_cache == null)
             {
-                _cache = CacheService.CreateInstance(CacheType.MemoryCache);
+                _cache = new CacheService(new MemoryCache(new MemoryCacheOptions()));
             }
 
             _balanceUpDay = _cache.Get<DataTable>(BalanceUpDayKey);
@@ -73,7 +74,7 @@ namespace Fanex.Module.Statement.Criteria.StatementReport
             if (_balanceUpDay == null)
             {
                 _balanceUpDay = _report.GetBalanceUpDay();
-                _cache.Set<DataTable>(BalanceUpDayKey, _balanceUpDay, DateTime.Now.AddMinutes(5));
+                _cache.Set<DataTable>(BalanceUpDayKey, _balanceUpDay, new CacheItemOptions().SetAbsoluteExpiration(DateTime.Now.AddMinutes(5)));
 
                 return _balanceUpDay;
             }

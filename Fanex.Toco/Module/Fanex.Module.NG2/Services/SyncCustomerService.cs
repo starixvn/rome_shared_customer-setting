@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
+﻿using Fanex.Caching;
+using Fanex.Caching.Memory;
 using Fanex.Logging.Extensions.Web;
 using Fanex.Module.NG2.Entities;
 using Fanex.Module.NG2.Repository;
 using ONEbook.NG2.API.DTO.CheckIsSyncCustomer;
 using ONEbook.NG2.API.Interface;
-using Fanex.Caching;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Text;
 
 namespace Fanex.Module.NG2.Services
 {
@@ -27,7 +28,7 @@ namespace Fanex.Module.NG2.Services
         public SyncCustomerResult CheckSyncCustomers()
         {
             var result = new SyncCustomerResult();
-            var cache = CacheService.CreateInstance(CacheType.MemoryCache);
+            var cache = new CacheService(new MemoryCache(new MemoryCacheOptions()));
             var preResult = cache.Get<SyncCustomerResult>("SyncCustomerResult_" + DateTime.Now.ToString("yyyyMMdd")) ?? new SyncCustomerResult();
             var oldCustIds = preResult.NotSyncedIn3rdCustomers.Select(l => l.CustId)
                 .Concat(preResult.NotSyncedInMbcCustomers.Select(l => l.CustId));
@@ -104,7 +105,7 @@ namespace Fanex.Module.NG2.Services
                 result.LogIds = idsLog;
 
                 // Cache result
-                cache.Set("SyncCustomerResult_" + DateTime.Now.ToString("yyyyMMdd"), result, DateTime.Now.AddHours(26));
+                cache.Set("SyncCustomerResult_" + DateTime.Now.ToString("yyyyMMdd"), result, new CacheItemOptions().SetAbsoluteExpiration(DateTime.Now.AddHours(26)));
             }
             else
             {
