@@ -23,8 +23,6 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
         #region generated code
         protected readonly IDynamicRepository DynamicRepository;
 
-        protected readonly ICache _cacheManager;
-
         protected readonly BaseRepository _repository;
 
         protected readonly Web.ICurrentContext _context;
@@ -34,7 +32,6 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
         public ServiceBase(IDynamicRepository repository = null)
         {
             this.DynamicRepository = repository ?? new DynamicRepository();
-            this._cacheManager = CacheService.CreateInstance();
             this._repository = new BaseRepository();
             this._context = this._context ?? new Web.CurrentContext();
         }
