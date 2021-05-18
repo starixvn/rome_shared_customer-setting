@@ -12,17 +12,18 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using Fanex.Caching;
+using Fanex.Caching.Memory;
 
 namespace Fanex.CustomerSetting.Module.Core.Web
 {
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented")]
     public static class CacheManager
     {
-        private static readonly ICache _cacheManager;
+        private static readonly ICacheService _cacheManager;
 
         static CacheManager()
         {
-            _cacheManager = CacheService.CreateInstance(CacheType.MemoryCache);
+            _cacheManager = new CacheService(new MemoryCache(new MemoryCacheOptions()));
         }
 
         public static object Get(string key)
@@ -67,22 +68,22 @@ namespace Fanex.CustomerSetting.Module.Core.Web
 
         public static void Set(string key, object value, TimeSpan timeSpanExpiration)
         {
-            _cacheManager.Set(key, value, timeSpanExpiration);
+            _cacheManager.Set(key, value, new CacheItemOptions().SetSlidingExpiration(timeSpanExpiration));
         }
 
         public static void Set<T>(string key, T value, TimeSpan timeSpanExpiration)
         {
-            _cacheManager.Set<T>(key, value, timeSpanExpiration);
+            _cacheManager.Set<T>(key, value, new CacheItemOptions().SetSlidingExpiration(timeSpanExpiration));
         }
 
         public static void Set(string key, object value, DateTime absoluteExpiration)
         {
-            _cacheManager.Set(key, value, absoluteExpiration);
+            _cacheManager.Set(key, value, new CacheItemOptions().SetAbsoluteExpiration(absoluteExpiration));
         }
 
         public static void Set<T>(string key, T value, DateTime absoluteExpiration)
         {
-            _cacheManager.Set<T>(key, value, absoluteExpiration);
+            _cacheManager.Set<T>(key, value, new CacheItemOptions().SetAbsoluteExpiration(absoluteExpiration));
         }
 
         public static void Remove(string key)
