@@ -38,6 +38,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SonarQube", "SonarQube", "{
 	ProjectSection(SolutionItems) = preProject
 		SonarQube\Customer.SettingCSharp.ruleset = SonarQube\Customer.SettingCSharp.ruleset
 		SonarQube\SolutionBinding.sqconfig = SonarQube\SolutionBinding.sqconfig
+		SonarQube\customer.setting\CSharp\SonarLint.xml = SonarQube\customer.setting\CSharp\SonarLint.xml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThirdPartyProducts.StatusSetting.Tests", "ThirdPartyProducts.StatusSetting.Tests\ThirdPartyProducts.StatusSetting.Tests.csproj", "{C197B7D8-341D-48E9-8168-3CF273545A99}"
