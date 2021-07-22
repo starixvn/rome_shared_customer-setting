@@ -256,8 +256,6 @@
                             string.Empty,
                             command.CustomerModel.Currency,
                             string.Empty,
-                            command.CustomerModel.Closed,
-                            command.CustomerModel.Suspend,
                             command.CustomerModel.IsEnablePT,
                             (decimal)command.CustomerModel.MaxWin,
                             (decimal)command.CustomerModel.MaxLose,

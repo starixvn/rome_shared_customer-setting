@@ -47,8 +47,6 @@
                 customerDetail.GeneralInfo.Email = Utils.ToString(row["email"]);
                 customerDetail.GeneralInfo.RoleId = Utils.ToInt32(row["roleid"]);
                 customerDetail.GeneralInfo.Currency = Utils.ToInt32(row["currency"]);
-                customerDetail.GeneralInfo.Closed = Utils.ToBoolean(row["closed"]);
-                customerDetail.GeneralInfo.Suspend = Utils.ToBoolean(row["suspend"]);
                 customerDetail.SIBCCustID = Utils.ToInt32(row["superid"]);
                 customerDetail.MIBCCustID = Utils.ToInt32(row["masterid"]);
                 customerDetail.AIBCCustID = Utils.ToInt32(row["agentid"]);

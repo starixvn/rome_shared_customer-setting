@@ -54,11 +54,7 @@ namespace Fanex.CustomerSetting.Module.Casino.Entities
 
         public int CountryID { get; set; }
 
-        public string Fax { get; set; }
-
-        public bool Closed { get; set; }
-
-        public bool Suspend { get; set; }        
+        public string Fax { get; set; }        
 
         public int IBCCustID { get; set; }
 
