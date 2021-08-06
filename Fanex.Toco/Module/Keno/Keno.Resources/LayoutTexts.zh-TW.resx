@@ -325,9 +325,9 @@
     <value>產品狀態</value>
   </data>
   <data name="MemberUnlimitedBetSettingWarningMessage" xml:space="preserve">
-    <value>輸入最低投註/ 最高投註/ 單場限額： 0/ 0/ 0 可以限制會員進行投註此產品。</value>
+    <value>Inputting all fields of bet setting = 0 to prevent members from playing the game.</value>
   </data>
   <data name="SMAUnlimitedBetSettingWarningMessage" xml:space="preserve">
-    <value>輸入最低投註 = 最高投註 = 單場限額 = 0 即代表沒有限制此賬號的投註設定。&lt;br/&gt;倘若欲限制會員進行投註，您可設置 最低投註 / 最高投註 / 單場限額 ： 0 / 0.1 / 0.1/ 0.1</value>
+    <value>Inputting all fields of bet setting = 0 means you do not set limit to the bet setting of this account.&lt;br/&gt;To prevent members from playing the game, set Min Bet = 0 and other fields = 0.1.&lt;br/&gt;Updating upline's bet setting might decrease all downlines' to make sure the downlines' are not greater than their uplines.</value>
   </data>
 </root>
