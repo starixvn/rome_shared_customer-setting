@@ -6,12 +6,13 @@
     using Interface;
     using Repositories.Impl;
     using Repositories.Interface;
+    using System.Collections.Generic;
 
     public class MemberWinLimitPartialServiceImpl : MemberWinLimitPartialService
     {
         private readonly MemberWinLimitRepository repository;
         private readonly CasinoRepository casinoRepository;
-        private readonly CasinoServiceBase casinoService;
+        private readonly CasinoServiceBase casinoService;       
 
         public MemberWinLimitPartialServiceImpl() : this(null, null, null) { }
 
@@ -40,6 +41,17 @@
             }
 
             return repository.UpdateMemberWinLimit(custId, userId, subAccId, memberWinLimit);
+        }
+
+        public IList<Result> MultipleCopySuperMemberWinLimit(int custId, List<int> custIds, int userId)
+        {
+            var results = new List<Result>();
+            var memberWinLimit = repository.GetMemberWinLimit(custId);
+            foreach (var toCustIds in custIds)
+            {
+                results.Add(UpdateMemberWinLimit(toCustIds, userId, 0, memberWinLimit, 4));
+            }
+            return results;
         }
     }
 }
