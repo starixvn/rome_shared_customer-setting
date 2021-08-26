@@ -8,6 +8,6 @@
     {
         Result UpdateMemberWinLimit(int custId, int userId, int subAccId, MemberWinLimit memberWinLimit, byte roleId);
 
-        IList<Result> MultipleCopySuperMemberWinLimit(int custId, List<int> custIds, int userId);
+        IList<CasinoResult> MultipleCopySuperMemberWinLimit(int custId, List<int> custIds, int userId);
     }
 }

@@ -12,9 +12,11 @@
     {
         private readonly MemberWinLimitRepository repository;
         private readonly CasinoRepository casinoRepository;
-        private readonly CasinoServiceBase casinoService;       
+        private readonly CasinoServiceBase casinoService;
 
-        public MemberWinLimitPartialServiceImpl() : this(null, null, null) { }
+        public MemberWinLimitPartialServiceImpl() : this(null, null, null)
+        {
+        }
 
         internal MemberWinLimitPartialServiceImpl(MemberWinLimitRepository repository, CasinoRepository casinoRepository, CasinoServiceBase casinoService)
         {
@@ -43,13 +45,17 @@
             return repository.UpdateMemberWinLimit(custId, userId, subAccId, memberWinLimit);
         }
 
-        public IList<Result> MultipleCopySuperMemberWinLimit(int custId, List<int> custIds, int userId)
+        public IList<CasinoResult> MultipleCopySuperMemberWinLimit(int custId, List<int> custIds, int userId)
         {
-            var results = new List<Result>();
+            var results = new List<CasinoResult>();
             var memberWinLimit = repository.GetMemberWinLimit(custId);
             foreach (var toCustIds in custIds)
             {
-                results.Add(UpdateMemberWinLimit(toCustIds, userId, 0, memberWinLimit, 4));
+                var result = UpdateMemberWinLimit(toCustIds, userId, 0, memberWinLimit, 4);
+                if (result.ErrorCode > 0)
+                {
+                    results.Add(new CasinoResult(toCustIds, result));
+                }
             }
             return results;
         }
