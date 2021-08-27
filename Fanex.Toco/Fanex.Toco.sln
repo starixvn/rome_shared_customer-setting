@@ -65,6 +65,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ColossusBet", "ColossusBet"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.CustomerSetting.Module.ColossusBets", "Module\Fanex.CustomerSetting.Module.ColossusBets\Fanex.CustomerSetting.Module.ColossusBets.csproj", "{4DC252E8-DF63-49B0-8BAA-717E10B30932}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NapApi.Client.Application", "NapApi.Client.Application\NapApi.Client.Application.csproj", "{D090F23D-D11E-41BD-9CED-016DC3189AD9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -131,6 +133,10 @@ Global
 		{4DC252E8-DF63-49B0-8BAA-717E10B30932}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DC252E8-DF63-49B0-8BAA-717E10B30932}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DC252E8-DF63-49B0-8BAA-717E10B30932}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D090F23D-D11E-41BD-9CED-016DC3189AD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D090F23D-D11E-41BD-9CED-016DC3189AD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D090F23D-D11E-41BD-9CED-016DC3189AD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D090F23D-D11E-41BD-9CED-016DC3189AD9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -159,6 +165,7 @@ Global
 		{F697D186-0B73-462D-B468-8D14031BAC68} = {DBBBB2F5-B6D2-4EEE-BF03-20109F69EBBB}
 		{56416552-63AC-417E-91B8-2912DBC3FFD4} = {05A68ED2-3C7B-462D-9600-2126D2E41ED9}
 		{4DC252E8-DF63-49B0-8BAA-717E10B30932} = {56416552-63AC-417E-91B8-2912DBC3FFD4}
+		{D090F23D-D11E-41BD-9CED-016DC3189AD9} = {3A814811-08C0-4F0B-814F-6427089D7DA7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {29E788ED-EB0D-4714-851F-807EFDE438BF}
