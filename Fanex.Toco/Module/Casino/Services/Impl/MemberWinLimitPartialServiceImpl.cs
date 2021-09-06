@@ -25,7 +25,7 @@
             this.casinoService = casinoService ?? new CasinoServiceBaseImpl();
         }
 
-        public Result UpdateMemberWinLimit(int custId, int userId, int subAccId, MemberWinLimit memberWinLimit, byte roleId)
+        public Result UpdateMemberWinLimit(int custId, int userId, int subAccId, MemberWinLimit memberWinLimit, byte roleId, string sourceUsername = null)
         {
             var checkUmResult = casinoService.CheckUM(custId);
             if (!checkUmResult.IsSuccess)
@@ -42,16 +42,16 @@
                 }
             }
 
-            return repository.UpdateMemberWinLimit(custId, userId, subAccId, memberWinLimit);
+            return repository.UpdateMemberWinLimit(custId, userId, subAccId, memberWinLimit, sourceUsername);
         }
 
-        public IList<CasinoResult> MultipleCopySuperMemberWinLimit(int custId, List<int> custIds, int userId)
+        public IList<CasinoResult> MultipleCopySuperMemberWinLimit(int custId, List<int> custIds, int userId, string sourceUsername)
         {
             var results = new List<CasinoResult>();
             var memberWinLimit = repository.GetMemberWinLimit(custId);
             foreach (var toCustIds in custIds)
             {
-                var result = UpdateMemberWinLimit(toCustIds, userId, 0, memberWinLimit, 4);
+                var result = UpdateMemberWinLimit(toCustIds, userId, 0, memberWinLimit, 4, sourceUsername);
                 if (result.ErrorCode > 0)
                 {
                     results.Add(new CasinoResult(toCustIds, result));

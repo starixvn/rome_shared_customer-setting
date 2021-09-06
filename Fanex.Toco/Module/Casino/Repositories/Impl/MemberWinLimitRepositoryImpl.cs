@@ -1,9 +1,5 @@
 ﻿namespace Fanex.CustomerSetting.Module.Casino.Repositories.Impl
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Globalization;
     using Core;
     using Core.Models;
     using Core.Web;
@@ -13,6 +9,10 @@
     using Logging.Extensions.Web;
     using NAP.Framework.Data;
     using Resources;
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Globalization;
 
     public class MemberWinLimitRepositoryImpl : MemberWinLimitRepository
     {
@@ -34,7 +34,7 @@
                     using (var reader = db.ExecuteReader())
                     {
                         if (reader != null && reader.Read())
-                        {                           
+                        {
                             winLimit.IsDailyAutoResetUpline = reader.ToBoolean("UplineIsAutoReset");
                             winLimit.IsDailyAutoReset = reader.ToBoolean("IsAutoReset");
                             winLimit.MinimumLoss = reader.ToDecimal("MinLossLimit");
@@ -46,7 +46,7 @@
                             var maxWin = reader.ToInt32("MaxWinLimit");
                             var maxWinLimit = reader.ToInt32("UplineMaxWinLimit");
 
-                            winLimit = MapMemberWinLimits(winLimit, maxWin, maxWinLimit);                            
+                            winLimit = MapMemberWinLimits(winLimit, maxWin, maxWinLimit);
                         }
                     }
 
@@ -101,7 +101,7 @@
             }
         }
 
-        public Result UpdateMemberWinLimit(int custId, int userId, int subAccId, MemberWinLimit memberWinLimit)
+        public Result UpdateMemberWinLimit(int custId, int userId, int subAccId, MemberWinLimit memberWinLimit, string sourceUsername = null)
         {
             using (var db = new ObjectDb("Acc_CustomerWinlimitUpd"))
             {
@@ -118,7 +118,10 @@
                 param.Add("language", CultureInfo.CurrentCulture.Name);
                 param.Add("errcode", 0);
                 param.Add("errmsg", string.Empty);
-
+                if (!string.IsNullOrEmpty(sourceUsername))
+                {
+                    param.Add("sourceusername", sourceUsername);
+                }
                 db.AssignParamValues(param);
 
                 try
@@ -149,6 +152,7 @@
                     winLimit.MaximumWinLimits.Add(new KeyValuePair<string, int>("3X", 3));
 
                     break;
+
                 case 10:
                     winLimit.MaximumWinLimits.Add(new KeyValuePair<string, int>("10X", 10));
                     winLimit.MaximumWinLimits.Add(new KeyValuePair<string, int>("5X", 5));
@@ -161,6 +165,7 @@
                     winLimit.MaximumWinLimits.Add(new KeyValuePair<string, int>("3X", 3));
 
                     break;
+
                 default:
                     winLimit.MaximumWinLimits.Add(new KeyValuePair<string, int>("3X", 3));
 
