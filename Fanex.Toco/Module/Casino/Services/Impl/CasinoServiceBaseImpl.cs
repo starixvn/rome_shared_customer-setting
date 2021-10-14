@@ -100,33 +100,7 @@
                     lang,
                     systemId));
 
-            var status = result.IsSuccess;
-            string errMsg = string.Empty;
-
-            if (!status)
-            {
-                return result;
-            }
-
-            try
-            {
-                var cust = new Customer();
-                status = cust.UpdateCustEnableCasino(custid, !disabledCS, false, ip, custid, username, 2);
-            }
-            catch (ErrorException casinoEx)
-            {
-                ExceptionHandler.Handle(new Exception(casinoEx.Message, casinoEx), TraceEventType.Warning);
-                errMsg = casinoEx.Message;
-                status = false;
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler.Handle(ex, TraceEventType.Information);
-                errMsg = ex.Message;
-                status = false;
-            }
-
-            return new Result(status ? 0 : 101, errMsg);
+            return result;
         }
 
         protected static string Lang(string original)
