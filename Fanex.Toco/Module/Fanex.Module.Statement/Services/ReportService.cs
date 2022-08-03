@@ -15,6 +15,7 @@ namespace Fanex.Module.Statement.Services
     {
         public const string BetTrans14SPSuffix = "_14";
         public const string WarehouseSPSuffix = "_WH";
+        public const string SiteDBPrefix = "SiteDB_";
 
         /// <summary>
         /// Gets the store mapping suffix.
@@ -37,5 +38,24 @@ namespace Fanex.Module.Statement.Services
 
             return WarehouseSPSuffix;
         }
+
+        public static string GetStoreMappingSiteDB(DateRangeReportCriteria criteria, bool isSiteDB, string settingKey)
+        {
+            if (criteria.FromDate > criteria.MoveBetsDay)
+            {
+                return isSiteDB ? SiteDBPrefix + settingKey: settingKey;
+            }
+
+            if (criteria.FromDate >= criteria.BalanceUpDay)
+            {
+                return settingKey + BetTrans14SPSuffix;
+            }
+
+            return WarehouseSPSuffix;
+        }
+
+
+
+
     }
 }

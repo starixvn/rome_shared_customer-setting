@@ -24,9 +24,13 @@ namespace Fanex.Module.Statement.Criteria.StatementReport
 
         public int PageIndex { get; set; }
 
+      
+        [SpParam(Ignored = true)]
+        public bool IsSiteDB { get; set; } = false;
+
         public override string GetSettingKey()
         {
-            return "Statement_Report_GetList" + ReportService.GetStoreMappingSuffix(this);
+            return ReportService.GetStoreMappingSiteDB(this, IsSiteDB, "Statement_Report_GetList");
         }
 
         public override bool IsValid()
