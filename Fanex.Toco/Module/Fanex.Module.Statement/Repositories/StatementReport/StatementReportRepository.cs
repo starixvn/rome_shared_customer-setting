@@ -48,7 +48,7 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
             using (var objDb = new ObjectDb(criteria.GetSettingKey()))
             {
                 IDataReader reader;
-                if (criteria.IsSiteDB)
+                if (criteria.IsSiteDB && criteria.IsBeforeMoveBet)
                 {
                     reader = objDb.ExecuteReaderScaleoutDB(criteria.GetSpParams(), siteDB.AGIP);
                 }
@@ -127,7 +127,7 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
                 using (var objDb = new ObjectDb(criteria.GetSettingKey()))
                 {
                     IDataReader reader;
-                    if (criteria.IsSiteDB)
+                    if (criteria.IsSiteDB && criteria.IsBeforeMoveBet)
                     {
                         reader = objDb.ExecuteReaderScaleoutDB(criteria.GetSpParams(), siteDB.AGIP);
                     }

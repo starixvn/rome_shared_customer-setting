@@ -33,6 +33,15 @@ namespace Fanex.Module.Statement.Criteria.StatementReport
         public bool IsSiteDB { get; set; } = false;
 
         [SpParam(Ignored = true)]
+        public bool IsBeforeMoveBet
+        {
+            get
+            {
+                return FromDate > MoveBetsDay;
+            }
+        }
+
+        [SpParam(Ignored = true)]
         public int PageSize { get; set; }
 
         [SpParam(Ignored = true)]

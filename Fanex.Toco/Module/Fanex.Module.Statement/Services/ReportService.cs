@@ -51,7 +51,7 @@ namespace Fanex.Module.Statement.Services
                 return settingKey + BetTrans14SPSuffix;
             }
 
-            return WarehouseSPSuffix;
+            return settingKey + WarehouseSPSuffix;
         }
 
 

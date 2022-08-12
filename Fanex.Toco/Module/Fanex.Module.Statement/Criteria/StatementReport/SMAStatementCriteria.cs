@@ -28,6 +28,15 @@ namespace Fanex.Module.Statement.Criteria.StatementReport
         [SpParam(Ignored = true)]
         public bool IsSiteDB { get; set; } = false;
 
+        [SpParam(Ignored = true)]
+        public bool IsBeforeMoveBet
+        {
+            get
+            {
+                return FromDate > MoveBetsDay;
+            }
+        }
+
         public override string GetSettingKey()
         {
             return ReportService.GetStoreMappingSiteDB(this, IsSiteDB, "Statement_Report_GetList");
