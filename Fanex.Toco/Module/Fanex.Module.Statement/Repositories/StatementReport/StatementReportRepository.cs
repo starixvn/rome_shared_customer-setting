@@ -9,16 +9,17 @@
 
 namespace Fanex.Module.Statement.Repositories.StatementReport
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.Diagnostics.CodeAnalysis;
     using Fanex.Common;
     using Fanex.Data;
     using Fanex.Module.Statement.Criteria;
     using Fanex.Module.Statement.Criteria.StatementReport;
     using Fanex.Module.Statement.Models;
     using Fanex.Module.Statement.Models.StatementReport;
+    using Fanex.Tarus.Infrastructure.Extensions;
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// Statement Report Repository.
@@ -41,10 +42,22 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
                 PageIndex = criteria.PageIndex
             };
 
+            var siteDB = ObjectDbExtensions.GetSiteDBConfigByCustId(criteria.CustId);
+            criteria.IsSiteDB = siteDB.IsSiteDB;
+
             using (var objDb = new ObjectDb(criteria.GetSettingKey()))
             {
-                objDb.AssignParamValues(criteria.GetSpParams());
-                var reader = objDb.ExecuteReader();
+                IDataReader reader;
+                if (criteria.IsSiteDB)
+                {
+                    reader = objDb.ExecuteReaderScaleoutDB(criteria.GetSpParams(), siteDB.AGIP);
+                }
+                else
+                {
+                    objDb.AssignParamValues(criteria.GetSpParams());
+                    reader = objDb.ExecuteReader();
+                }
+
                 while (reader.Read())
                 {
                     var statementModel = new StatementModel
@@ -108,10 +121,22 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
 
             if (criteria.IsValid())
             {
+                var siteDB = ObjectDbExtensions.GetSiteDBConfigByCustId(criteria.CustId);
+                criteria.IsSiteDB = siteDB.IsSiteDB;
+
                 using (var objDb = new ObjectDb(criteria.GetSettingKey()))
                 {
-                    objDb.AssignParamValues(criteria.GetSpParams());
-                    var reader = objDb.ExecuteReader();
+                    IDataReader reader;
+                    if (criteria.IsSiteDB)
+                    {
+                        reader = objDb.ExecuteReaderScaleoutDB(criteria.GetSpParams(), siteDB.AGIP);
+                    }
+                    else
+                    {
+                        objDb.AssignParamValues(criteria.GetSpParams());
+                        reader = objDb.ExecuteReader();
+                    }
+
                     while (reader.Read())
                     {
                         var statementModel = new StatementModel
@@ -147,11 +172,11 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
                                 HasData = !Convert.IsDBNull(reader["Comm"]),
                                 Value = Converter.To<double>(reader["Comm"])
                             },
-                        GrandPrize = new DataColumnModel
-                        {
-                            HasData = !Convert.IsDBNull(reader["GrandPrize"]),
-                            Value = Converter.To<double>(reader["GrandPrize"])
-                        },
+                            GrandPrize = new DataColumnModel
+                            {
+                                HasData = !Convert.IsDBNull(reader["GrandPrize"]),
+                                Value = Converter.To<double>(reader["GrandPrize"])
+                            },
                             TransferAmount = new DataColumnModel
                             {
                                 HasData = !Convert.IsDBNull(reader["TransferAmt"]),
@@ -182,16 +207,16 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
         public StatementReportModel TransferDetails(TransferDetailsCriteria criteria)
         {
             StatementReportModel result = new StatementReportModel
-           {
-               StatementList = new List<StatementModel>(),
-               Total = new StatementModel
-               {
-                   TransferAmount = new DataColumnModel
-                   {
-                       HasData = true
-                   }
-               }
-           };
+            {
+                StatementList = new List<StatementModel>(),
+                Total = new StatementModel
+                {
+                    TransferAmount = new DataColumnModel
+                    {
+                        HasData = true
+                    }
+                }
+            };
 
             double totalTransferAmount = 0;
             if (criteria.IsValid())
@@ -267,7 +292,7 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
             using (var objDb = new ObjectDb(criteria.GetSettingKey()))
             {
                 objDb.AssignParamValues(criteria.GetSpParams());
-                objDb.ExecuteNonQuery();             
+                objDb.ExecuteNonQuery();
                 result = Converter.ToBool(objDb.GetOuputParams()["isinternal"]);
             }
 
