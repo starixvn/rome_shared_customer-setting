@@ -82,7 +82,8 @@
                 SubAccId = CustomerInformation.SubAccId,
                 UserId = CustomerInformation.UserId,
                 Ip = CustomerInformation.Ip,
-                Language = CustomerInformation.Language
+                Language = CustomerInformation.Language,
+                IsSearchAndCopy = cloneSetting
             };
         }
     }
