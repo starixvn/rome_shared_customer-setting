@@ -23,10 +23,12 @@ namespace Fanex.Module.Statement.Criteria.StatementReport
         public int PageSize { get; set; }
 
         public int PageIndex { get; set; }
-
       
         [SpParam(Ignored = true)]
         public bool IsSiteDB { get; set; } = false;
+
+        [SpParam(Ignored = true)]
+        public int SiteDBGroupID { get; set; }
 
         [SpParam(Ignored = true)]
         public bool IsBeforeMoveBet
@@ -39,7 +41,7 @@ namespace Fanex.Module.Statement.Criteria.StatementReport
 
         public override string GetSettingKey()
         {
-            return ReportService.GetStoreMappingSiteDB(this, IsSiteDB, "Statement_Report_GetList");
+            return ReportService.GetStoreMappingSiteDB(this, IsSiteDB, SiteDBGroupID, "Statement_Report_GetList");
         }
 
         public override bool IsValid()

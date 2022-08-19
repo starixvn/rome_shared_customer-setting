@@ -44,6 +44,7 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
 
             var siteDB = ObjectDbExtensions.GetSiteDBConfigByCustId(criteria.CustId);
             criteria.IsSiteDB = siteDB.IsSiteDB;
+            criteria.SiteDBGroupID = siteDB.SiteDBGroupID;
 
             using (var objDb = new ObjectDb(criteria.GetSettingKey()))
             {
@@ -123,6 +124,7 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
             {
                 var siteDB = ObjectDbExtensions.GetSiteDBConfigByCustId(criteria.CustId);
                 criteria.IsSiteDB = siteDB.IsSiteDB;
+                criteria.SiteDBGroupID = siteDB.SiteDBGroupID;
 
                 using (var objDb = new ObjectDb(criteria.GetSettingKey()))
                 {
@@ -221,10 +223,23 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
             double totalTransferAmount = 0;
             if (criteria.IsValid())
             {
+                var siteDB = ObjectDbExtensions.GetSiteDBConfigByCustId(criteria.CustId);
+                criteria.IsSiteDB = siteDB.IsSiteDB;
+                criteria.SiteDBGroupID = siteDB.SiteDBGroupID;
+
                 using (var objDb = new ObjectDb(criteria.GetSettingKey()))
                 {
-                    objDb.AssignParamValues(criteria.GetSpParams());
-                    var reader = objDb.ExecuteReader();
+                    IDataReader reader;
+                    if (criteria.IsSiteDB && criteria.IsBeforeBalanceUpDate)
+                    {
+                        reader = objDb.ExecuteReaderScaleoutDB(criteria.GetSpParams(), siteDB.AGIP);
+                    }
+                    else
+                    {
+                        objDb.AssignParamValues(criteria.GetSpParams());
+                        reader = objDb.ExecuteReader();
+                    }
+
                     while (reader.Read())
                     {
                         var transferAmount = Converter.To<double>(reader["amount"]);
