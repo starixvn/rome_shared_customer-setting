@@ -81,7 +81,8 @@
                 SubAccId = CustomerInformation.SubAccId,
                 UserId = CustomerInformation.UserId,
                 Ip = KenoSession.Ip,
-                Language = CustomerInformation.Language
+                Language = CustomerInformation.Language,
+                IsSearchAndCopy= cloneSetting
             };
         }
     }

@@ -39,6 +39,8 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Criteria
 
         public string Language { get; set; }
 
+        public bool IsSearchAndCopy { get; set; }
+
         public string ErrCode { get; set; }
 
         public string ErrMsg { get; set; }
