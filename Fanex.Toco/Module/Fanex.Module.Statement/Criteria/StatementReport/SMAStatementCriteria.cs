@@ -23,10 +23,25 @@ namespace Fanex.Module.Statement.Criteria.StatementReport
         public int PageSize { get; set; }
 
         public int PageIndex { get; set; }
+      
+        [SpParam(Ignored = true)]
+        public bool IsSiteDB { get; set; } = false;
+
+        [SpParam(Ignored = true)]
+        public int SiteDBGroupID { get; set; }
+
+        [SpParam(Ignored = true)]
+        public bool IsBeforeMoveBet
+        {
+            get
+            {
+                return FromDate > MoveBetsDay;
+            }
+        }
 
         public override string GetSettingKey()
         {
-            return "Statement_Report_GetList" + ReportService.GetStoreMappingSuffix(this);
+            return ReportService.GetStoreMappingSiteDB(this, IsSiteDB, SiteDBGroupID, "Statement_Report_GetList");
         }
 
         public override bool IsValid()

@@ -37,13 +37,26 @@ namespace Fanex.Module.Statement.Criteria.StatementReport
         [SpParam(Ignored = true)]
         public string SiteName { get; set; }
 
+        [SpParam(Ignored = true)]
+        public bool IsSiteDB { get; set; }
+
+        [SpParam(Ignored = true)]
+        public int SiteDBGroupID { get; set; }
+
+        [SpParam(Ignored = true)]
+        public bool IsBeforeBalanceUpDate
+            => Converter.ToDateTime(TransferDate) >= BalanceUpDate;
+
         public override string GetSettingKey()
         {
-            var storeProcedureSuffix = Converter.ToDateTime(TransferDate) >= BalanceUpDate ?
-                string.Empty :
-                ReportService.WarehouseSPSuffix;
+            if (IsBeforeBalanceUpDate)
+            {
+                return IsSiteDB
+                    ? $"SiteDB{SiteDBGroupID}_Statement_Report_TransferDetails"
+                    : "Statement_Report_TransferDetails";
+            }
 
-            return "Statement_Report_TransferDetails" + storeProcedureSuffix;
+            return $"Statement_Report_TransferDetails{ReportService.WarehouseSPSuffix}";
         }
 
         public override bool IsValid()
