@@ -43,61 +43,64 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
             };
 
             var siteDB = ObjectDbExtensions.GetSiteDBConfigByCustId(criteria.CustId);
-            criteria.IsSiteDB = siteDB.IsSiteDB;
-            criteria.SiteDBGroupID = siteDB.SiteDBGroupID;
-
-            using (var objDb = new ObjectDb(criteria.GetSettingKey()))
+            if (siteDB != null)
             {
-                IDataReader reader;
-                if (criteria.IsSiteDB && criteria.IsBeforeMoveBet)
-                {
-                    reader = objDb.ExecuteReaderScaleoutDB(criteria.GetSpParams(), siteDB.AGIP);
-                }
-                else
-                {
-                    objDb.AssignParamValues(criteria.GetSpParams());
-                    reader = objDb.ExecuteReader();
-                }
+                criteria.IsSiteDB = siteDB.IsSiteDB;
+                criteria.SiteDBGroupID = siteDB.SiteDBGroupID;
 
-                while (reader.Read())
+                using (var objDb = new ObjectDb(criteria.GetSettingKey()))
                 {
-                    var statementModel = new StatementModel
+                    IDataReader reader;
+                    if (criteria.IsSiteDB && criteria.IsBeforeMoveBet)
                     {
-                        StatementDate = Converter.ToDateTime(reader["winlostdate"]),
-                        OpeningBalance = new DataColumnModel
-                        {
-                            HasData = !Convert.IsDBNull(reader["OpeningBalance"]),
-                            Value = Converter.To<double>(reader["OpeningBalance"])
-                        },
-                        Turnover = new DataColumnModel
-                        {
-                            HasData = !Convert.IsDBNull(reader["turnover"]),
-                            Value = Converter.To<double>(reader["turnover"])
-                        },
-                        WinLoss = new DataColumnModel
-                        {
-                            HasData = !Convert.IsDBNull(reader["WinLost"]),
-                            Value = Converter.To<double>(reader["WinLost"])
-                        },
-                        Commission = new DataColumnModel
-                        {
-                            HasData = !Convert.IsDBNull(reader["Comm"]),
-                            Value = Converter.To<double>(reader["Comm"])
-                        },
-                        TransferAmount = new DataColumnModel
-                        {
-                            HasData = !Convert.IsDBNull(reader["TransferAmt"]),
-                            Value = Converter.To<double>(reader["TransferAmt"])
-                        },
-                        AccumulatedTotal = new DataColumnModel
-                        {
-                            HasData = !Convert.IsDBNull(reader["ClosingBalance"]),
-                            Value = Converter.To<double>(reader["ClosingBalance"])
-                        }
-                    };
+                        reader = objDb.ExecuteReaderScaleoutDB(criteria.GetSpParams(), siteDB.AGIP);
+                    }
+                    else
+                    {
+                        objDb.AssignParamValues(criteria.GetSpParams());
+                        reader = objDb.ExecuteReader();
+                    }
 
-                    statementModel.StatementDateString = statementModel.StatementDate.ToString("MM/dd/yyyy");
-                    result.StatementList.Add(statementModel);
+                    while (reader.Read())
+                    {
+                        var statementModel = new StatementModel
+                        {
+                            StatementDate = Converter.ToDateTime(reader["winlostdate"]),
+                            OpeningBalance = new DataColumnModel
+                            {
+                                HasData = !Convert.IsDBNull(reader["OpeningBalance"]),
+                                Value = Converter.To<double>(reader["OpeningBalance"])
+                            },
+                            Turnover = new DataColumnModel
+                            {
+                                HasData = !Convert.IsDBNull(reader["turnover"]),
+                                Value = Converter.To<double>(reader["turnover"])
+                            },
+                            WinLoss = new DataColumnModel
+                            {
+                                HasData = !Convert.IsDBNull(reader["WinLost"]),
+                                Value = Converter.To<double>(reader["WinLost"])
+                            },
+                            Commission = new DataColumnModel
+                            {
+                                HasData = !Convert.IsDBNull(reader["Comm"]),
+                                Value = Converter.To<double>(reader["Comm"])
+                            },
+                            TransferAmount = new DataColumnModel
+                            {
+                                HasData = !Convert.IsDBNull(reader["TransferAmt"]),
+                                Value = Converter.To<double>(reader["TransferAmt"])
+                            },
+                            AccumulatedTotal = new DataColumnModel
+                            {
+                                HasData = !Convert.IsDBNull(reader["ClosingBalance"]),
+                                Value = Converter.To<double>(reader["ClosingBalance"])
+                            }
+                        };
+
+                        statementModel.StatementDateString = statementModel.StatementDate.ToString("MM/dd/yyyy");
+                        result.StatementList.Add(statementModel);
+                    }
                 }
             }
 
