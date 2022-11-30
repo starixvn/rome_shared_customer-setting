@@ -39,5 +39,7 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Interface
         bool CheckCustomerHasSpecialSitePermission(CheckCustomerHasSpecialSiteFunctionPermissionCriteria criteria);
 
         Result CheckUM(int custId, NonDcsProduct product, string langKey);
+
+        void AddMsgAfterCreateNewSMA(AddMsgAfterCreateNewSMACriteria criteria);
     }
 }

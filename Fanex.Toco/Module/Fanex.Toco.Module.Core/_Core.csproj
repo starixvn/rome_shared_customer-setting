@@ -187,6 +187,7 @@
     <Compile Include="Criteria\CheckCustomerIsInternalAdminCriteria.cs" />
     <Compile Include="Criteria\CheckCustomerIsSpecialSiteCriteria.cs" />
     <Compile Include="Criteria\CheckSpecialSitePermissionCriteria.cs" />
+    <Compile Include="Criteria\AddMsgAfterCreateNewSMACriteria.cs" />
     <Compile Include="Criteria\CheckUmCriteria.cs" />
     <Compile Include="Criteria\GetBettypeCriteria.cs">
       <SubType>Code</SubType>

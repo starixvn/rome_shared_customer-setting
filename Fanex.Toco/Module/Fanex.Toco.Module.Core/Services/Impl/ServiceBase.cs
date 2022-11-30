@@ -3,6 +3,7 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
     using Criteria;
     using Data;
     using Fanex.Caching;
@@ -129,13 +130,51 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
                 db.ExecuteNonQuery(criteria.GetSpParams());
 
                 var errMsg = Utils.ToString(db.GetParameterValue("errmsg"));
-                var formatedErrMsg = string.Format(errMsg, 
+                var formatedErrMsg = string.Format(errMsg,
                     CacheRef.GetRefResourceByRefIdAndResourceId(
-                        "Product", 
+                        "Product",
                         ((byte)product).ToString(),
                         product.ToString()));
 
                 return new Result(Utils.ToInt32(db.GetParameterValue("errcode")), formatedErrMsg);
+            }
+        }
+
+        public void AddMsgAfterCreateNewSMA(AddMsgAfterCreateNewSMACriteria criteria)
+        {
+            Task.Factory.StartNew(Task_AddMsgAfterCreateNewSMA, criteria);
+        }
+
+        private void Task_AddMsgAfterCreateNewSMA(object criteriaObject)
+        {
+            try
+            {
+                Check.Argument.IsNotNull(criteriaObject, nameof(criteriaObject));
+                AddMsgAfterCreateNewSMACriteria criteria = criteriaObject as AddMsgAfterCreateNewSMACriteria;
+                Check.Argument.IsNotNegativeOrZero(criteria.CustId, nameof(criteria.CustId));
+                int errCode;
+                string errMsg;
+                using (var db = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    db.ExecuteNonQuery(criteria.GetSpParams());
+                    var outputs = db.GetOuputParams();
+                    errCode = Utils.ToInt32(outputs["errcode"]);
+                    errMsg = Utils.ToString(outputs["errmsg"]);
+                }
+
+                if (errCode > 0 || !string.IsNullOrWhiteSpace(errMsg))
+                {
+                    LoggingHandler.Log(string.Format("[Age_MsgCustReadStatus_Ins] CustId: {0}; SubAccId: {1}; RoleId: {2} ErrCode: {3}; ErrMsg: {4}", 
+                        criteria.CustId,
+                        criteria.SubAccId,
+                        criteria.Roleid,
+                        errCode, 
+                        errMsg) , LogType.Info);
+                }
+            }
+            catch (Exception ex)
+            {
+                LoggingHandler.Log(ex);
             }
         }
     }
