@@ -4,24 +4,25 @@ namespace Fanex.Module.NG2.Services
 {
     public interface ING2StatusService
     {
-        Result SyncStatus(int custId, int userId, string ip, int subAccId = 0);
+        Result SyncStatus(int custId, int userId, string ip, byte settingStatus, int subAccId = 0);
 
-        Result EnableStatus(int custId, int userId, bool disabled, string ip, byte systemId, int subAccId = 0);
+        Result EnableStatus(int custId, int userId, bool disabled, string ip, byte systemId, byte settingStatus, int subAccId = 0);
 
         Result AutoInsertAccount(
-            int custId, 
-            string username, 
-            RoleId roleId, 
-            int uplineId, 
-            bool uplineDisabled, 
-            SiteId siteId, 
-            int currencyId, 
+            int custId,
+            string username,
+            RoleId roleId,
+            int uplineId,
+            bool uplineDisabled,
+            SiteId siteId,
+            int currencyId,
             int userId,
             byte systemId,
             string ip,
-            string language = "en-US", 
+            byte settingStatus,
+            string language = "en-US",
             int subAccId = 0);
 
-        Result RetrySyncCustomers(ONEbook.NG2.API.DTO.CreateAccount.Request request);
+        Result RetrySyncCustomers(ONEbook.NG2.API.DTO.CreateAccount.Request request, byte settingStatus);
     }
 }

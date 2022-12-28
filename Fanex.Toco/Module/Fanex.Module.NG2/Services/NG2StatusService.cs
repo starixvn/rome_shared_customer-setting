@@ -21,6 +21,7 @@ namespace Fanex.Module.NG2.Services
             int userId,
             byte systemId,
             string ip,
+            byte settingStatus,
             string language = "en-US", 
             int subAccId = 0)
         {
@@ -51,13 +52,13 @@ namespace Fanex.Module.NG2.Services
                     if (response.Result.IsSuccess && (response.Result.AccountArray.Count > 0 ? response.Result.AccountArray[0].IsSuccess : true))
                     {
                         logInfo += "<br />3. Calling update sync at MBC";
-                        result = SyncStatus(custId, userId, ip, subAccId);
+                        result = SyncStatus(custId, userId, ip, settingStatus, subAccId);
 
                         logInfo += "<br />4. Update sync at MBC - Success: " + result.IsSuccess;
                         if (result.IsSuccess)
                         {
                             logInfo += "<br />5. Calling update disable status: " + uplineDisabled;
-                            result = EnableStatus(custId, userId, uplineDisabled, ip, systemId, subAccId);
+                            result = EnableStatus(custId, userId, uplineDisabled, ip, systemId, settingStatus, subAccId);
                             logInfo += "<br />6. Update disable status - Success: " + result.IsSuccess;
                         }
                     }
@@ -76,12 +77,12 @@ namespace Fanex.Module.NG2.Services
             return result;
         }
 
-        public Entities.Result EnableStatus(int custId, int userId, bool disabled, string ip, byte systemId, int subAccId = 0)
+        public Entities.Result EnableStatus(int custId, int userId, bool disabled, string ip, byte systemId, byte settingStatus, int subAccId = 0)
         {
-            return _repository.EnableStatus(custId, userId, disabled, ip, systemId, subAccId);
+            return _repository.EnableStatus(custId, userId, disabled, ip, systemId, settingStatus, subAccId);
         }
 
-        public Entities.Result RetrySyncCustomers(Request request)
+        public Entities.Result RetrySyncCustomers(Request request, byte settingStatus)
         {
             var config = ONEbook.NG2.API.Configuration.NG2Configuration.Instance;
             var result = new Entities.Result();
@@ -99,10 +100,10 @@ namespace Fanex.Module.NG2.Services
                 {
                     if ((config.Debug == "1" && response.Result.IsSuccess) || (response.Result.IsSuccess && response.Result.AccountArray[index].IsSuccess))
                     {
-                        result = _repository.SyncStatus(cust.ObCustId, request.UserId, request.Ip);
+                        result = _repository.SyncStatus(cust.ObCustId, request.UserId, request.Ip, settingStatus);
                         if (result.IsSuccess)
                         {
-                            result = EnableStatus(cust.ObCustId, request.UserId, request.Call.IsDisabled.Value, request.Ip, GetSystemId(request.Auth.SiteId));
+                            result = EnableStatus(cust.ObCustId, request.UserId, request.Call.IsDisabled.Value, request.Ip, settingStatus, GetSystemId(request.Auth.SiteId));
                         }
                     }
 
@@ -113,9 +114,9 @@ namespace Fanex.Module.NG2.Services
             return result;
         }
 
-        public Entities.Result SyncStatus(int custId, int userId, string ip, int subAccId = 0)
+        public Entities.Result SyncStatus(int custId, int userId, string ip, byte settingStatus, int subAccId = 0)
         {
-            return _repository.SyncStatus(custId, userId, ip, subAccId);
+            return _repository.SyncStatus(custId, userId, ip, settingStatus, subAccId);
         }
 
         private byte GetSystemId(int siteId)
