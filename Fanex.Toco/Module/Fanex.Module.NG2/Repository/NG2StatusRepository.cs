@@ -41,7 +41,7 @@ namespace Fanex.Module.NG2.Repository
             return result;
         }
 
-        public Result SyncStatus(int custId, int userId, string ip, int subAccId = 0)
+        public Result SyncStatus(int custId, int userId, string ip, byte settingStatus, int subAccId = 0)
         {
             var result = new Result();
             try
@@ -55,6 +55,7 @@ namespace Fanex.Module.NG2.Repository
                     param.Add("userid", userId);
                     param.Add("subaccid", subAccId);
                     param.Add("ip", ip);
+                    param.Add("settingstatus", settingStatus);
                     param.Add("errcode", 0);
                     param.Add("errmsg", string.Empty);
 
