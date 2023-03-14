@@ -224,6 +224,7 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Repositories
                 customerInformation.RoleId = (int)role;
                 customerInformation.ActionType = (int)actionType;
                 customerInformation.Site = dataReader.HasColumn("site") ? dataReader.ToString("site") : string.Empty;
+                customerInformation.SiteLabel = dataReader.HasColumn("sitelabel") ? dataReader.ToString("sitelabel") : string.Empty;
             }
 
             return customerInformation;
