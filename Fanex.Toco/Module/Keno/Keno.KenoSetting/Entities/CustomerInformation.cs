@@ -56,6 +56,8 @@ namespace Fanex.CustomerSetting.Module.Keno.KenoSetting.Entities
 
         public string Site { get; set; }
 
-        public bool IsPT3Decimal => AppSettings.PT3DecimalSites().Any(site => site.Equals(this.Site, StringComparison.CurrentCultureIgnoreCase));
+        public string SiteLabel { get; set; }
+
+        public bool IsPT3Decimal => AppSettings.PT3DecimalSites().Any(site => site.Equals(this.SiteLabel, StringComparison.CurrentCultureIgnoreCase));
     }
 }
