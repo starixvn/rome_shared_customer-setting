@@ -1068,10 +1068,6 @@
     <None Include="Scripts\_Libs\MonthPicker\monPickr-0.0.3-custom.less" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Module\Casino\Casino.csproj">
-      <Project>{5f8f3877-90e3-48a3-bad7-4207dcba088d}</Project>
-      <Name>Casino</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Module\EnableStatus\EnableStatus.csproj">
       <Project>{22F2A79C-5F7A-4A4B-9F4B-1011228914E3}</Project>
       <Name>EnableStatus</Name>
@@ -1079,14 +1075,6 @@
     <ProjectReference Include="..\Module\Fanex.Module.Statement\Fanex.Module.Statement.csproj">
       <Project>{2B8BF7A6-3C6D-42E9-956E-D4B144EDDAEE}</Project>
       <Name>Fanex.Module.Statement</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Module\Keno\Keno.Resources\Keno.Resources.csproj">
-      <Project>{F317B419-340B-418D-B2AB-8C43F18B85D6}</Project>
-      <Name>Keno.Resources</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Module\Keno\Keno.KenoSetting\Fanex.CustomerSetting.Module.Keno.KenoSetting.csproj">
-      <Project>{4204CDC3-7A3E-46C6-A97F-4CB07D2DF45E}</Project>
-      <Name>Fanex.CustomerSetting.Module.Keno.KenoSetting</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
