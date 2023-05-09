@@ -45,10 +45,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Module\Casino\Casino.csproj">
-      <Project>{5f8f3877-90e3-48a3-bad7-4207dcba088d}</Project>
-      <Name>Casino</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Module\EnableStatus\EnableStatus.csproj">
       <Project>{22f2a79c-5f7a-4a4b-9f4b-1011228914e3}</Project>
       <Name>EnableStatus</Name>
@@ -60,14 +56,6 @@
     <ProjectReference Include="..\Module\Fanex.Toco.Module.Core\_Core.csproj">
       <Project>{af2e11aa-2a92-47ac-86fa-4d48b0aeb5d7}</Project>
       <Name>_Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Module\Keno\Keno.KenoSetting\Fanex.CustomerSetting.Module.Keno.KenoSetting.csproj">
-      <Project>{4204cdc3-7a3e-46c6-a97f-4cb07d2df45e}</Project>
-      <Name>Fanex.CustomerSetting.Module.Keno.KenoSetting</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Module\Keno\Keno.Resources\Keno.Resources.csproj">
-      <Project>{f317b419-340b-418d-b2ab-8c43f18b85d6}</Project>
-      <Name>Keno.Resources</Name>
     </ProjectReference>
     <ProjectReference Include="..\Module\ThirdPartyProducts.StatusSetting\ThirdPartyProducts.StatusSetting.csproj">
       <Project>{2a82bc2f-a685-4d5a-ab23-0a4c8fee4bd2}</Project>
