@@ -147,8 +147,6 @@
     <Compile Include="Factory\Product\Implement\KenoStatusSettingServiceTest.cs" />
     <Compile Include="Factory\Product\Implement\AllbetStatusSettingServiceTest.cs" />
     <Compile Include="Factory\Product\Implement\MacauGamesStatusSettingServiceTest.cs" />
-    <Compile Include="Factory\Product\Implement\NG2StatusSettingServiceMock.cs" />
-    <Compile Include="Factory\Product\Implement\NG2StatusSettingServiceTest.cs" />
     <Compile Include="Factory\Product\Implement\ColossusBetStatusSettingServiceTest.cs" />
     <Compile Include="Factory\Product\ProductStatusSettingServiceBaseMock.cs" />
     <Compile Include="Factory\Product\ProductStatusSettingServiceBaseTest.cs" />

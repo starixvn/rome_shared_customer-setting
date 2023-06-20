@@ -130,7 +130,6 @@
     <Compile Include="Factory\Product\Implement\DCS\MultipleBettypeDCSProductStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\LotteryStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\DCS\SingleBettypeDCSProductStatusSettingService.cs" />
-    <Compile Include="Factory\Product\Implement\NG2StatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\FishingWorldStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\MacauGamesStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\AllbetStatusSettingService.cs" />

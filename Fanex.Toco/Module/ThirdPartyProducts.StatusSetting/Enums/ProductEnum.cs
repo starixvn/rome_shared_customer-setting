@@ -14,8 +14,6 @@
 
         MacauGames = 22,
 
-        NG2 = 23,
-
         FishingWorld = 24,
 
         GoldDeluxe = 12,
