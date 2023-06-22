@@ -119,8 +119,6 @@
     <Compile Include="Enums\ProductEnum.cs" />
     <Compile Include="Factory\ObjectDBFactory.cs" />
     <Compile Include="Factory\ProductFactory.cs" />
-    <Compile Include="Factory\Product\Criteria\DCS\NG2\SelectNG2ProductStatusCriteria.cs" />
-    <Compile Include="Factory\Product\Criteria\DCS\NG2\UpdateNG2ProductStatusCriteria.cs" />
     <Compile Include="Factory\Product\Criteria\DCS\SelectDCSProductStatusCriteria.cs" />
     <Compile Include="Factory\Product\Criteria\DCS\UpdateDCSProductStatusCriteria.cs" />
     <Compile Include="Factory\Product\Criteria\SelectProductStatusCriteria.cs" />
