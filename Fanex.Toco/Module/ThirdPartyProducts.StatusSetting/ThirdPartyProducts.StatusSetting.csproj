@@ -119,8 +119,6 @@
     <Compile Include="Enums\ProductEnum.cs" />
     <Compile Include="Factory\ObjectDBFactory.cs" />
     <Compile Include="Factory\ProductFactory.cs" />
-    <Compile Include="Factory\Product\Criteria\DCS\NG2\SelectNG2ProductStatusCriteria.cs" />
-    <Compile Include="Factory\Product\Criteria\DCS\NG2\UpdateNG2ProductStatusCriteria.cs" />
     <Compile Include="Factory\Product\Criteria\DCS\SelectDCSProductStatusCriteria.cs" />
     <Compile Include="Factory\Product\Criteria\DCS\UpdateDCSProductStatusCriteria.cs" />
     <Compile Include="Factory\Product\Criteria\SelectProductStatusCriteria.cs" />
@@ -130,7 +128,6 @@
     <Compile Include="Factory\Product\Implement\DCS\MultipleBettypeDCSProductStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\LotteryStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\DCS\SingleBettypeDCSProductStatusSettingService.cs" />
-    <Compile Include="Factory\Product\Implement\NG2StatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\FishingWorldStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\MacauGamesStatusSettingService.cs" />
     <Compile Include="Factory\Product\Implement\AllbetStatusSettingService.cs" />
