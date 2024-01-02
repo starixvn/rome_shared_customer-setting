@@ -9,14 +9,14 @@
 
 namespace Fanex.Module.Statement.Services.StatementReport
 {
+    using NPOI.HSSF.UserModel;
+    using NPOI.HSSF.Util;
+    using NPOI.SS.UserModel;
     using Fanex.Module.Statement.Configurations;
     using Fanex.Module.Statement.Criteria.StatementReport;
     using Fanex.Module.Statement.Models;
     using Fanex.Module.Statement.Models.StatementReport;
     using Fanex.Module.Statement.Resources;
-    using NPOI.HSSF.UserModel;
-    using NPOI.HSSF.Util;
-    using NPOI.SS.UserModel;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
@@ -99,7 +99,7 @@ namespace Fanex.Module.Statement.Services.StatementReport
             font.FontName = "Tahoma";
             font.FontHeightInPoints = 9;
             font.Color = HSSFColor.Black.Index;
-            font.Boldweight = (short)NPOI.SS.UserModel.FontBoldWeight.Bold;
+            font.IsBold = true;
 
             titleStyle.Indention = 2;
             titleStyle.SetFont(font);
@@ -119,26 +119,26 @@ namespace Fanex.Module.Statement.Services.StatementReport
             font.FontName = "Tahoma";
             font.FontHeightInPoints = 9;
             font.Color = HSSFColor.Black.Index;
-            font.Boldweight = (short)NPOI.SS.UserModel.FontBoldWeight.Bold;
+            font.IsBold = true;
 
             var palette = workbook.GetCustomPalette();
-            var colorIndex = palette.FindSimilarColor(131, 202, 255).GetIndex();
-            var borderColorIndex = palette.FindSimilarColor(128, 100, 162).GetIndex();
+            var colorIndex = palette.FindSimilarColor(131, 202, 255).Indexed;
+            var borderColorIndex = palette.FindSimilarColor(128, 100, 162).Indexed;
 
             headerStyle.SetFont(font);
-            headerStyle.Alignment = NPOI.SS.UserModel.HorizontalAlignment.Center;
-            headerStyle.VerticalAlignment = NPOI.SS.UserModel.VerticalAlignment.Center;
+            headerStyle.Alignment = HorizontalAlignment.Center;
+            headerStyle.VerticalAlignment = VerticalAlignment.Center;
 
             headerStyle.BottomBorderColor = borderColorIndex;
-            headerStyle.BorderBottom = NPOI.SS.UserModel.BorderStyle.Thin;
+            headerStyle.BorderBottom = BorderStyle.Thin;
             headerStyle.TopBorderColor = borderColorIndex;
-            headerStyle.BorderTop = NPOI.SS.UserModel.BorderStyle.Thin;
+            headerStyle.BorderTop = BorderStyle.Thin;
             headerStyle.LeftBorderColor = borderColorIndex;
-            headerStyle.BorderLeft = NPOI.SS.UserModel.BorderStyle.Thin;
+            headerStyle.BorderLeft = BorderStyle.Thin;
             headerStyle.RightBorderColor = borderColorIndex;
-            headerStyle.BorderRight = NPOI.SS.UserModel.BorderStyle.Thin;
+            headerStyle.BorderRight = BorderStyle.Thin;
             headerStyle.FillForegroundColor = colorIndex;
-            headerStyle.FillPattern = NPOI.SS.UserModel.FillPattern.SolidForeground;
+            headerStyle.FillPattern = FillPattern.SolidForeground;
 
             return headerStyle;
         }
@@ -152,17 +152,17 @@ namespace Fanex.Module.Statement.Services.StatementReport
         {
             var reportStyle = workbook.CreateCellStyle();
             var palette = workbook.GetCustomPalette();
-            var borderColorIndex = palette.FindSimilarColor(128, 100, 162).GetIndex();
+            var borderColorIndex = palette.FindSimilarColor(128, 100, 162).Indexed;
 
             reportStyle.BottomBorderColor = borderColorIndex;
-            reportStyle.VerticalAlignment = NPOI.SS.UserModel.VerticalAlignment.Center;
-            reportStyle.BorderBottom = NPOI.SS.UserModel.BorderStyle.Thin;
+            reportStyle.VerticalAlignment = VerticalAlignment.Center;
+            reportStyle.BorderBottom = BorderStyle.Thin;
             reportStyle.TopBorderColor = borderColorIndex;
-            reportStyle.BorderTop = NPOI.SS.UserModel.BorderStyle.Thin;
+            reportStyle.BorderTop = BorderStyle.Thin;
             reportStyle.LeftBorderColor = borderColorIndex;
-            reportStyle.BorderLeft = NPOI.SS.UserModel.BorderStyle.Thin;
+            reportStyle.BorderLeft = BorderStyle.Thin;
             reportStyle.RightBorderColor = borderColorIndex;
-            reportStyle.BorderRight = NPOI.SS.UserModel.BorderStyle.Thin;
+            reportStyle.BorderRight = BorderStyle.Thin;
             reportStyle.WrapText = true;
             return reportStyle;
         }
@@ -273,7 +273,7 @@ namespace Fanex.Module.Statement.Services.StatementReport
             }
 
             var palette = workbook.GetCustomPalette();          
-            var noteOpeningBalanceColorIndex = palette.FindSimilarColor(255, 102, 255).GetIndex();
+            var noteOpeningBalanceColorIndex = palette.FindSimilarColor(255, 102, 255).Indexed;
 
             var reportStyle = ReportStyle(workbook);
             var textStyle = workbook.CreateCellStyle();
@@ -293,12 +293,12 @@ namespace Fanex.Module.Statement.Services.StatementReport
 
             var centerTextStyle = workbook.CreateCellStyle();
             centerTextStyle.CloneStyleFrom(textStyle);
-            centerTextStyle.Alignment = NPOI.SS.UserModel.HorizontalAlignment.Center;
+            centerTextStyle.Alignment = HorizontalAlignment.Center;
 
             var twoDecimalNumberStyle = workbook.CreateCellStyle();
             twoDecimalNumberStyle.CloneStyleFrom(reportStyle);
             twoDecimalNumberStyle.DataFormat = workbook.CreateDataFormat().GetFormat("#,##0.00");
-            twoDecimalNumberStyle.Alignment = NPOI.SS.UserModel.HorizontalAlignment.Right;
+            twoDecimalNumberStyle.Alignment = HorizontalAlignment.Right;
             twoDecimalNumberStyle.SetFont(mediumBlackNormal);
 
             var twoDecimalRedNumberStyle = workbook.CreateCellStyle();
@@ -482,7 +482,7 @@ namespace Fanex.Module.Statement.Services.StatementReport
             }
 
             var palette = workbook.GetCustomPalette();        
-            var noteOpeningBalanceColorIndex = palette.FindSimilarColor(255, 102, 255).GetIndex();
+            var noteOpeningBalanceColorIndex = palette.FindSimilarColor(255, 102, 255).Indexed;
 
             var reportStyle = ReportStyle(workbook);
             var textStyle = workbook.CreateCellStyle();
@@ -502,12 +502,12 @@ namespace Fanex.Module.Statement.Services.StatementReport
 
             var centerTextStyle = workbook.CreateCellStyle();
             centerTextStyle.CloneStyleFrom(textStyle);
-            centerTextStyle.Alignment = NPOI.SS.UserModel.HorizontalAlignment.Center;
+            centerTextStyle.Alignment = HorizontalAlignment.Center;
 
             var twoDecimalNumberStyle = workbook.CreateCellStyle();
             twoDecimalNumberStyle.CloneStyleFrom(reportStyle);
             twoDecimalNumberStyle.DataFormat = workbook.CreateDataFormat().GetFormat("#,##0.00");
-            twoDecimalNumberStyle.Alignment = NPOI.SS.UserModel.HorizontalAlignment.Right;
+            twoDecimalNumberStyle.Alignment = HorizontalAlignment.Right;
             twoDecimalNumberStyle.SetFont(mediumBlackNormal);
 
             var twoDecimalRedNumberStyle = workbook.CreateCellStyle();
@@ -698,12 +698,12 @@ namespace Fanex.Module.Statement.Services.StatementReport
 
             var centerTextStyle = workbook.CreateCellStyle();
             centerTextStyle.CloneStyleFrom(textStyle);
-            centerTextStyle.Alignment = NPOI.SS.UserModel.HorizontalAlignment.Center;
+            centerTextStyle.Alignment = HorizontalAlignment.Center;
 
             var twoDecimalNumberStyle = workbook.CreateCellStyle();
             twoDecimalNumberStyle.CloneStyleFrom(reportStyle);
             twoDecimalNumberStyle.DataFormat = workbook.CreateDataFormat().GetFormat("#,##0.00");
-            twoDecimalNumberStyle.Alignment = NPOI.SS.UserModel.HorizontalAlignment.Right;
+            twoDecimalNumberStyle.Alignment = HorizontalAlignment.Right;
             twoDecimalNumberStyle.SetFont(mediumBlackNormal);
 
             var twoDecimalRedNumberStyle = workbook.CreateCellStyle();
@@ -756,24 +756,24 @@ namespace Fanex.Module.Statement.Services.StatementReport
             statement = data.Total;
             currentColumn = 0;
 
-            var grandTotalColorIndex = palette.FindSimilarColor(219, 225, 187).GetIndex();
+            var grandTotalColorIndex = palette.FindSimilarColor(219, 225, 187).Indexed;
             var grandTotalTextStyle = workbook.CreateCellStyle();
 
             var boldBlackNormal = workbook.CreateFont();
             boldBlackNormal.FontName = "Tahoma";
             boldBlackNormal.FontHeightInPoints = 9;
             boldBlackNormal.Color = HSSFColor.Black.Index;
-            boldBlackNormal.Boldweight = (short)NPOI.SS.UserModel.FontBoldWeight.Bold;
+            boldBlackNormal.IsBold = true;
 
             var boldRedNormal = workbook.CreateFont();
             boldRedNormal.FontName = "Tahoma";
             boldRedNormal.FontHeightInPoints = 9;
             boldRedNormal.Color = HSSFColor.Red.Index;
-            boldRedNormal.Boldweight = (short)NPOI.SS.UserModel.FontBoldWeight.Bold;
+            boldRedNormal.IsBold = true;
 
             grandTotalTextStyle.CloneStyleFrom(reportStyle);
             grandTotalTextStyle.SetFont(boldBlackNormal);
-            grandTotalTextStyle.Alignment = NPOI.SS.UserModel.HorizontalAlignment.Right;
+            grandTotalTextStyle.Alignment = HorizontalAlignment.Right;
             grandTotalTextStyle.FillForegroundColor = grandTotalColorIndex;
             grandTotalTextStyle.FillPattern = FillPattern.SolidForeground;
 
@@ -838,7 +838,7 @@ namespace Fanex.Module.Statement.Services.StatementReport
             font.FontName = "Tahoma";
             font.FontHeightInPoints = 9;
             font.Color = HSSFColor.Red.Index;
-            font.Boldweight = (short)NPOI.SS.UserModel.FontBoldWeight.Bold;
+            font.IsBold = true;
             textStyle.SetFont(font);
 
             var row = worksheet.CreateRow(currentRow);
