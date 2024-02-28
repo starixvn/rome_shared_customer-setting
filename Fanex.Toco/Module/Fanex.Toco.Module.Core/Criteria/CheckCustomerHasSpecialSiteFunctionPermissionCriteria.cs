@@ -10,7 +10,7 @@ namespace Fanex.CustomerSetting.Module.Core.Criteria
         {
             get
             {
-                return "[AccessSpecialSites]";
+                return "[789ySites]";
             }
         }
 
