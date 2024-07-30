@@ -116,8 +116,7 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
                 db.ExecuteNonQuery();
                 var outputs = db.GetOuputParams();
                 return new CheckCustomerIsInternalAdminResult(
-                    Convert.IsDBNull(outputs["isinternaladmin"]) ? false : Convert.ToBoolean(outputs["isinternaladmin"]),
-                    Convert.IsDBNull(outputs["isallowaccess"]) ? false : Convert.ToBoolean(outputs["isallowaccess"]));
+                    Convert.IsDBNull(outputs["isinternaladmin"]) ? false : Convert.ToBoolean(outputs["isinternaladmin"]));
             }
         }
 

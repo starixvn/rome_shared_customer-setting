@@ -9,12 +9,9 @@ namespace Fanex.CustomerSetting.Module.Core.Models
     {
         public bool IsInternalAdmin { get; private set; }
 
-        public bool IsAllowAccess { get; private set; }
-
-        public CheckCustomerIsInternalAdminResult(bool isInternalAdmin, bool isAllowAccess)
+        public CheckCustomerIsInternalAdminResult(bool isInternalAdmin)
         {
             IsInternalAdmin = isInternalAdmin;
-            IsAllowAccess = isAllowAccess;
         }
     }
 }
