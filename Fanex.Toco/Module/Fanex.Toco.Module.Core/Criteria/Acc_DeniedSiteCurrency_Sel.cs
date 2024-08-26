@@ -11,6 +11,8 @@
 
         public int mode { get; set; }
 
+        public string DeniedList { get; set; }
+
         public override string GetSettingKey()
             => "Acc_DeniedSiteCurrency_Sel";
 

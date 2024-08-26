@@ -80,7 +80,8 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
         {
             Acc_DeniedSiteCurrency_Sel criteria = new Acc_DeniedSiteCurrency_Sel()
             {
-                mode = mode
+                mode = mode,
+                DeniedList = ""
             };
 
             using (var objDb = new ObjectDb(criteria.GetSettingKey()))
