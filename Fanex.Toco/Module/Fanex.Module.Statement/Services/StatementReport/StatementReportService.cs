@@ -54,7 +54,9 @@ namespace Fanex.Module.Statement.Services.StatementReport
                 new CheckSpecialSitePermissionCriteria()
                 {
                     UserID = AppSession.CurrentSession.UserId,
-                    CustID = criteria.CustId
+                    UserName = AppSession.AdminUsername,
+                    CustID = criteria.CustId,
+                    DeniedList = serviceBase.Acc_DeniedSiteCurrency_Sel(0)
                 });
             if (checkSpecialSite.ErrorCode > 0)
             {
@@ -105,7 +107,9 @@ namespace Fanex.Module.Statement.Services.StatementReport
                 new CheckSpecialSitePermissionCriteria()
                 {
                     UserID = AppSession.CurrentSession.UserId,
-                    CustID = criteria.CustId
+                    UserName = AppSession.AdminUsername,
+                    CustID = criteria.CustId,
+                    DeniedList = serviceBase.Acc_DeniedSiteCurrency_Sel(0)
                 });
             if (checkSpecialSite.ErrorCode > 0)
             {

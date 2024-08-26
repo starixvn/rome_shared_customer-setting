@@ -6,11 +6,15 @@ namespace Fanex.CustomerSetting.Module.Core.Criteria
     {
         public int UserID { get; set; }
 
+        public string UserName { get; set; }
+
         public int? CustID { get; set; }
 
         public string CustName { get; set; }
 
         public byte? CheckCustId { get; set; }
+
+        public string DeniedList { get; set; }
 
         public override string GetSettingKey()
         {

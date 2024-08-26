@@ -183,6 +183,7 @@
     </Compile>
     <Compile Include="Controllers\Base\ControllerExtentions.cs" />
     <Compile Include="Controllers\Base\JsonBase.cs" />
+    <Compile Include="Criteria\Acc_DeniedSiteCurrency_Sel.cs" />
     <Compile Include="Criteria\CheckCustomerHasSpecialSiteFunctionPermissionCriteria.cs" />
     <Compile Include="Criteria\CheckCustomerIsInternalAdminCriteria.cs" />
     <Compile Include="Criteria\CheckCustomerIsSpecialSiteCriteria.cs" />

@@ -131,7 +131,9 @@ namespace Fanex.Module.Statement.Controllers
             var criteria = new CheckSpecialSitePermissionCriteria()
             {
                 UserID = AppSession.AccId,
-                CustName = userName
+                UserName = AppSession.AdminUsername,
+                CustName = userName,
+                DeniedList = service.Acc_DeniedSiteCurrency_Sel(0)
             };
 
             return Json(service.CheckSpecialSitePermission(criteria));
