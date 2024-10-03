@@ -1,11 +1,11 @@
 ﻿namespace Fanex.CustomerSetting.Module.Core.Attributes
 {
-    using System.Collections.Generic;
-    using System.Web.Mvc;
     using Common;
     using Criteria;
     using CustomerSetting.Module.Core.Web;
     using Services.Impl;
+    using System.Collections.Generic;
+    using System.Web.Mvc;
 
     public class SpecialSiteFilterAttribute : ActionFilterAttribute
     {
@@ -26,8 +26,10 @@
                 var checkSpecialSite = permissionService.CheckSpecialSitePermission(new CheckSpecialSitePermissionCriteria()
                 {
                     UserID = AppSession.CurrentSession.UserId,
+                    UserName = AppSession.AdminUsername,
                     CustID = custid,
-                    CustName = username
+                    CustName = username,
+                    DeniedList = permissionService.Acc_DeniedSiteCurrency_Sel(0)
                 });
 
                 if (checkSpecialSite.ErrorCode > 0)

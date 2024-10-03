@@ -41,5 +41,7 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Interface
         Result CheckUM(int custId, NonDcsProduct product, string langKey);
 
         void AddMsgAfterCreateNewSMA(AddMsgAfterCreateNewSMACriteria criteria);
+
+        string Acc_DeniedSiteCurrency_Sel(int mode);
     }
 }

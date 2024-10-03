@@ -62,6 +62,7 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
 
         public Result CheckSpecialSitePermission(CheckSpecialSitePermissionCriteria criteria)
         {
+            criteria.DeniedList = Acc_DeniedSiteCurrency_Sel(0);
             Result result = new Result();
             using (ObjectDb db = new ObjectDb(criteria.GetSettingKey()))
             {
@@ -74,6 +75,23 @@ namespace Fanex.CustomerSetting.Module.Core.Services.Impl
 
             return result;
         }
+
+        public string Acc_DeniedSiteCurrency_Sel(int mode)
+        {
+            Acc_DeniedSiteCurrency_Sel criteria = new Acc_DeniedSiteCurrency_Sel()
+            {
+                mode = mode,
+                DeniedList = ""
+            };
+
+            using (var objDb = new ObjectDb(criteria.GetSettingKey()))
+            {
+                objDb.AssignParamValues(criteria.GetSpParams());
+                objDb.ExecuteNonQuery();
+                return objDb.GetOuputParams()["deniedlist"].ToString();
+            }
+        }
+
 
         public CheckCustomerBelongToSpecialSiteResult CheckCustomerBelongToSpecialSite(CheckCustomerIsSpecialSiteCriteria criteria)
         {
