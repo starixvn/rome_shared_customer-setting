@@ -53,9 +53,5 @@ namespace Fanex.Module.Statement.Services
 
             return settingKey + WarehouseSPSuffix;
         }
-
-
-
-
     }
 }

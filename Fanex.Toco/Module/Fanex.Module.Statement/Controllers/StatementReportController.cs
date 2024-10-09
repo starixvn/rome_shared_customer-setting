@@ -76,6 +76,14 @@ namespace Fanex.Module.Statement.Controllers
             return Json(statementList);
         }
 
+        [HttpPost, AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Statement")]
+        public JsonResult RewardStatement(RewardStatementCriteria criteria)
+        {
+            var statementList = _statementReportService.RewardStatement(criteria);
+            Session[SessionKeyStatement] = statementList;
+            return Json(statementList);
+        }
+
         [HttpGet, AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Statement")]
         public ActionResult TransferDetails(TransferDetailsCriteria criteria)
         {

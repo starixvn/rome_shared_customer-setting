@@ -203,6 +203,52 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
             return result;
         }
 
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules",
+          "SP2101:MethodMustNotContainMoreLinesThan",
+          Justification = "Reviewed. Suppression is OK here.")]
+        public List<RewardStatementModel> RewardStatement(RewardStatementCriteria criteria)
+        {
+            List<RewardStatementModel> result = new List<RewardStatementModel>();
+
+            if (criteria.IsValid())
+            {
+                using (var objDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    IDataReader reader;
+                        objDb.AssignParamValues(criteria.GetSpParams());
+                        reader = objDb.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        var statementModel = new RewardStatementModel
+                        {
+                            StatementDate = Converter.ToDateTime(reader["winlostdate"]),
+                            OpeningBalance = new DataColumnModel
+                            {
+                                HasData = !Convert.IsDBNull(reader["OpeningBalance"]),
+                                Value = Converter.To<double>(reader["OpeningBalance"])
+                            },
+                            TransferAmount = new DataColumnModel
+                            {
+                                HasData = !Convert.IsDBNull(reader["TransferAmt"]),
+                                Value = Converter.To<double>(reader["TransferAmt"])
+                            },
+                            AccumulatedTotal = new DataColumnModel
+                            {
+                                HasData = !Convert.IsDBNull(reader["ClosingBalance"]),
+                                Value = Converter.To<double>(reader["ClosingBalance"])
+                            }
+                        };
+
+                        statementModel.StatementDateString = statementModel.StatementDate.ToString("MM/dd/yyyy");
+                        result.Add(statementModel);
+                    }
+                }
+            }
+
+            return result;
+        }
+
         /// <summary>
         /// Gets the transfer details.
         /// </summary>

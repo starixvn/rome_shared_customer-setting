@@ -2,13 +2,9 @@
 // <copyright file="IStatementReportRepository.cs" company="">
 // Copyright (c). All rights reserved.
 // </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Louis.Nguyen" date="2012.12.07">Created</change>
-// </history>
-
 namespace Fanex.Module.Statement.Repositories.StatementReport
 {
+    using System.Collections.Generic;
     using System.Data;
     using Fanex.Module.Statement.Criteria;
     using Fanex.Module.Statement.Criteria.StatementReport;
@@ -20,6 +16,8 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
         StatementReportModel SMAStatement(SMAStatementCriteria criteria);
 
         StatementReportModel MemberStatement(MemberStatementCriteria criteria);
+
+        List<RewardStatementModel> RewardStatement(RewardStatementCriteria criteria);
 
         StatementReportModel TransferDetails(TransferDetailsCriteria criteria);
 

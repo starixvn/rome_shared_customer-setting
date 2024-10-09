@@ -146,6 +146,24 @@ namespace Fanex.Module.Statement.Services.StatementReport
             return result;
         }
 
+        public List<RewardStatementModel> RewardStatement(RewardStatementCriteria criteria)
+        {
+            var serviceBase = new ServiceBase();
+            var checkSpecialSite = serviceBase.CheckSpecialSitePermission(
+                new CheckSpecialSitePermissionCriteria()
+                {
+                    UserID = AppSession.CurrentSession.UserId,
+                    UserName = AppSession.AdminUsername,
+                    CustID = criteria.CustId
+                });
+            if (checkSpecialSite.ErrorCode > 0)
+            {
+                return new List<RewardStatementModel>();
+            }
+
+            return _statementReportRepository.RewardStatement(criteria);
+        }
+
         /// <summary>
         /// Gets the transfer details.
         /// </summary>
@@ -255,7 +273,7 @@ namespace Fanex.Module.Statement.Services.StatementReport
 
             return result;
         }
-        
+
         /// <summary>
         /// Gets the report date range.
         /// </summary>
@@ -267,7 +285,7 @@ namespace Fanex.Module.Statement.Services.StatementReport
         private List<StatementReportCriteria> GetReportDateRange(StatementReportCriteria criteria)
         {
             criteria.FromDate = criteria.FromDate.Year <= 1753 ||
-                criteria.FromDate.Year >= 9999 
+                criteria.FromDate.Year >= 9999
                 ? DateTime.Now : criteria.FromDate;
             criteria.ToDate = criteria.ToDate.Year <= 1753 ||
                 criteria.ToDate.Year >= 9999
@@ -277,20 +295,20 @@ namespace Fanex.Module.Statement.Services.StatementReport
                 (criteria.BalanceUpDay <= criteria.FromDate && criteria.ToDate <= criteria.MoveBetsDay) ||
                  criteria.ToDate < criteria.BalanceUpDay)
             {
-                return new List<StatementReportCriteria>() 
-                { 
+                return new List<StatementReportCriteria>()
+                {
                     new StatementReportCriteria
                     {
                         FromDate = criteria.FromDate,
-                        ToDate = criteria.ToDate 
+                        ToDate = criteria.ToDate
                     }
                 };
             }
 
             if (criteria.FromDate >= criteria.BalanceUpDay && criteria.ToDate > criteria.MoveBetsDay)
             {
-                return new List<StatementReportCriteria>() 
-                { 
+                return new List<StatementReportCriteria>()
+                {
                     new StatementReportCriteria
                     {
                         FromDate = criteria.FromDate,
@@ -306,8 +324,8 @@ namespace Fanex.Module.Statement.Services.StatementReport
 
             if (criteria.ToDate > criteria.MoveBetsDay)
             {
-                return new List<StatementReportCriteria>() 
-                { 
+                return new List<StatementReportCriteria>()
+                {
                     new StatementReportCriteria
                     {
                         FromDate = criteria.FromDate,
@@ -326,8 +344,8 @@ namespace Fanex.Module.Statement.Services.StatementReport
                 };
             }
 
-            return new List<StatementReportCriteria>() 
-            { 
+            return new List<StatementReportCriteria>()
+            {
                     new StatementReportCriteria
                     {
                         FromDate = criteria.FromDate,

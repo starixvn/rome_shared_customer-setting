@@ -196,6 +196,7 @@
     <Compile Include="Criteria\CheckInternalByUsernameCriteria.cs" />
     <Compile Include="Criteria\DateRangeReportCriteria.cs" />
     <Compile Include="Criteria\GetCustomerInformationByUsername.cs" />
+    <Compile Include="Criteria\StatementReport\RewardStatementCriteria.cs" />
     <Compile Include="Criteria\StatementReport\MemberStatementCriteria.cs" />
     <Compile Include="Criteria\StatementReport\SMAStatementCriteria.cs" />
     <Compile Include="Criteria\StatementReport\StatementReportCriteria.cs" />
@@ -203,6 +204,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Models\CustomerInformationModel.cs" />
     <Compile Include="Models\DataColumnModel.cs" />
+    <Compile Include="Models\StatementReport\RewardStatementModel.cs" />
     <Compile Include="Models\StatementReport\StatementModel.cs" />
     <Compile Include="Models\StatementReport\StatementReportModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
