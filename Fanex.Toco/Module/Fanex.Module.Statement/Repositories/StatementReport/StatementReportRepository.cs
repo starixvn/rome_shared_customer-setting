@@ -215,8 +215,8 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
                 using (var objDb = new ObjectDb(criteria.GetSettingKey()))
                 {
                     IDataReader reader;
-                        objDb.AssignParamValues(criteria.GetSpParams());
-                        reader = objDb.ExecuteReader();
+                    objDb.AssignParamValues(criteria.GetSpParams());
+                    reader = objDb.ExecuteReader();
 
                     while (reader.Read())
                     {
@@ -279,7 +279,7 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
                 using (var objDb = new ObjectDb(criteria.GetSettingKey()))
                 {
                     IDataReader reader;
-                    if (criteria.IsSiteDB && criteria.IsBeforeBalanceUpDate)
+                    if (!criteria.IsReward && criteria.IsSiteDB && criteria.IsBeforeBalanceUpDate)
                     {
                         reader = objDb.ExecuteReaderScaleoutDB(criteria.GetSpParams(), siteDB.AGIP);
                     }
@@ -309,6 +309,57 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
                         {
                             statementModel.ExchangeRate = Converter.ToString2(reader["ExRate"]);
                         }
+
+                        statementModel.StatementDateString = statementModel.StatementDate.ToString("dddd <br> MM/dd/yyyy <br> hh:mm:ss tt");
+                        result.StatementList.Add(statementModel);
+                        totalTransferAmount += transferAmount;
+                    }
+                }
+            }
+
+            result.Total.TransferAmount.Value = Math.Round(totalTransferAmount, 2);
+            return result;
+        }
+
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
+        public StatementReportModel RewardTransferDetails(TransferDetailsCriteria criteria)
+        {
+            StatementReportModel result = new StatementReportModel
+            {
+                StatementList = new List<StatementModel>(),
+                Total = new StatementModel
+                {
+                    TransferAmount = new DataColumnModel
+                    {
+                        HasData = true
+                    }
+                }
+            };
+
+            double totalTransferAmount = 0;
+            if (criteria.IsValid())
+            {
+                using (var objDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    IDataReader reader;
+                    objDb.AssignParamValues(criteria.GetSpParams());
+                    reader = objDb.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        var transferAmount = Converter.To<double>(reader["amount"]);
+                        var statementModel = new StatementModel
+                        {
+                            StatementDate = Converter.ToDateTime(reader["transdate"]),
+                            TransactionType = Converter.ToString2(reader["transtype"]),
+                            Description = Converter.ToString2(reader["remark"]),
+                            TransferAmount = new DataColumnModel
+                            {
+                                HasData = true,
+                                Value = transferAmount
+                            },
+                            Creator = Converter.ToString2(reader["creator"])
+                        };
 
                         statementModel.StatementDateString = statementModel.StatementDate.ToString("dddd <br> MM/dd/yyyy <br> hh:mm:ss tt");
                         result.StatementList.Add(statementModel);

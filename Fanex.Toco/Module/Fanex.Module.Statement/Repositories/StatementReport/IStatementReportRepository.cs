@@ -21,6 +21,8 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
 
         StatementReportModel TransferDetails(TransferDetailsCriteria criteria);
 
+        StatementReportModel RewardTransferDetails(TransferDetailsCriteria criteria);
+
         CustomerInformationModel GetCustomerInfo(GetCustomerInformationByUsername criteria);
 
         bool CheckInternalByUsername(CheckInternalByUsernameCriteria criteria);

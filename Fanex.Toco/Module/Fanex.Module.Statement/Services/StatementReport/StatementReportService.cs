@@ -179,7 +179,7 @@ namespace Fanex.Module.Statement.Services.StatementReport
 
             try
             {
-                result = _statementReportRepository.TransferDetails(criteria);
+                result = criteria.IsReward ? _statementReportRepository.RewardTransferDetails(criteria) : _statementReportRepository.TransferDetails(criteria);
             }
             catch (Exception ex)
             {
