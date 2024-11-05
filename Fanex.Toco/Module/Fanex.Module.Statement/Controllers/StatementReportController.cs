@@ -20,6 +20,7 @@ namespace Fanex.Module.Statement.Controllers
     using Fanex.Module.Statement.Models.StatementReport;
     using Fanex.Module.Statement.Resources;
     using Fanex.Module.Statement.Services.StatementReport;
+    using System.Collections.Generic;
     using System.Web.Mvc;
 
     /// <summary>
@@ -109,6 +110,16 @@ namespace Fanex.Module.Statement.Controllers
             var fileDownloadName = string.Format(Labels.StatementReportName, criteria.FromDate.ToString("MM_dd_yyyy"), criteria.ToDate.ToString("MM_dd_yyyy"));
             return File(
                 _statementReportService.ExportSMAStatement(criteria, (StatementReportModel)Session[SessionKeyStatement]).ToArray(),
+                "application/vnd.ms-excel",
+                fileDownloadName);
+        }
+
+        [HttpGet, AuthenticateAction(AuthenticateAction.AuthenticationType.Read, "Statement")]
+        public ActionResult ExportRewardStatement(RewardStatementCriteria criteria)
+        {
+            var fileDownloadName = string.Format(Labels.StatementRewardReportName, criteria.FromDate.ToString("MM_dd_yyyy"), criteria.ToDate.ToString("MM_dd_yyyy"));
+            return File(
+                _statementReportService.ExportRewardStatement(criteria, (List<RewardStatementModel>)Session[SessionKeyStatement]).ToArray(),
                 "application/vnd.ms-excel",
                 fileDownloadName);
         }

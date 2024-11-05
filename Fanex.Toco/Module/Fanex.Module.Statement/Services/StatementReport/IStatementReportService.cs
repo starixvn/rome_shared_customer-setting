@@ -30,6 +30,8 @@ namespace Fanex.Module.Statement.Services.StatementReport
 
         MemoryStream ExportSMAStatement(SMAStatementCriteria criteria, StatementReportModel data);
 
+        MemoryStream ExportRewardStatement(RewardStatementCriteria criteria, List<RewardStatementModel> data);
+
         MemoryStream ExportTransferDetails(TransferDetailsCriteria criteria, StatementReportModel data);
 
         CustomerInformationModel GetCustomerInfo(GetCustomerInformationByUsername criteria);

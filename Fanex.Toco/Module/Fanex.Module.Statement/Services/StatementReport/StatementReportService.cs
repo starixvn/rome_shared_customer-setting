@@ -211,6 +211,17 @@ namespace Fanex.Module.Statement.Services.StatementReport
             return _exportExcelService.ExportSMAStatement(criteria, data);
         }
 
+        public MemoryStream ExportRewardStatement(RewardStatementCriteria criteria, List<RewardStatementModel> data)
+        {
+            if (data == null)
+            {
+                data = RewardStatement(criteria);
+            }
+
+            StatementReportExportExcelService _exportExcelService = new StatementReportExportExcelService();
+            return _exportExcelService.ExportRewardStatement(criteria, data);
+        }
+
         public MemoryStream ExportTransferDetails(TransferDetailsCriteria criteria, StatementReportModel data)
         {
             if (data == null)
