@@ -9,6 +9,7 @@
 
 namespace Fanex.Module.Statement.Services.StatementReport
 {
+    using System.Collections.Generic;
     using System.IO;
     using Fanex.Module.Statement.Criteria;
     using Fanex.Module.Statement.Criteria.StatementReport;
@@ -21,11 +22,15 @@ namespace Fanex.Module.Statement.Services.StatementReport
 
         StatementReportModel MemberStatement(MemberStatementCriteria criteria);
 
+        List<RewardStatementModel> RewardStatement(RewardStatementCriteria criteria);
+
         StatementReportModel TransferDetails(TransferDetailsCriteria criteria);
 
         MemoryStream ExportMemberStatement(MemberStatementCriteria criteria, StatementReportModel data);
 
         MemoryStream ExportSMAStatement(SMAStatementCriteria criteria, StatementReportModel data);
+
+        MemoryStream ExportRewardStatement(RewardStatementCriteria criteria, List<RewardStatementModel> data);
 
         MemoryStream ExportTransferDetails(TransferDetailsCriteria criteria, StatementReportModel data);
 

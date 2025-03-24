@@ -65,6 +65,19 @@ namespace Fanex.Module.Statement.Services.StatementReport
             workbook.Write(result);
             return result;
         }
+        public MemoryStream ExportRewardStatement(RewardStatementCriteria criteria, List<RewardStatementModel> data)
+        {
+            var result = new MemoryStream();
+            var sheetName = Labels.Statement;
+            HSSFWorkbook workbook = new HSSFWorkbook();
+            var worksheet = workbook.CreateSheet(sheetName);
+
+            ExportHeaderRewardStatement(workbook, worksheet, criteria);
+            ExportBodyRewardStatement(workbook, worksheet, data);
+
+            workbook.Write(result);
+            return result;
+        }
 
         /// <summary>
         /// Exports the transfer details.
@@ -559,6 +572,141 @@ namespace Fanex.Module.Statement.Services.StatementReport
                 column.CellStyle = IsNegative(statement.Commission) ?
                     twoDecimalRedNumberStyle :
                     twoDecimalNumberStyle;
+                currentColumn++;
+
+                column = row.CreateCell(currentColumn);
+                ExportDataColumnModel(column, statement.TransferAmount);
+                column.CellStyle = IsNegative(statement.TransferAmount) ?
+                    twoDecimalRedNumberStyle :
+                    twoDecimalNumberStyle;
+                currentColumn++;
+
+                column = row.CreateCell(currentColumn);
+                ExportDataColumnModel(column, statement.AccumulatedTotal);
+                column.CellStyle = IsNegative(statement.AccumulatedTotal) ?
+                    twoDecimalRedNumberStyle :
+                    twoDecimalNumberStyle;
+
+                previousStatement = statement;
+                currentRow++;
+            }
+        }
+
+        private void ExportHeaderRewardStatement(
+           HSSFWorkbook workbook,
+           ISheet worksheet,
+           RewardStatementCriteria criteria)
+        {
+            var currentRow = 0;
+            var titleRow = worksheet.CreateRow(currentRow);
+            var titleCell = titleRow.CreateCell(0);
+            titleCell.SetCellValue(Labels.Statement + " (" + criteria.Username + "): " + criteria.FromDate.ToString("MM/dd/yyyy") +
+                "-->" + criteria.ToDate.ToString("MM/dd/yyyy"));
+            titleCell.CellStyle = TitleStyle(workbook);
+            currentRow++;
+
+            var headerRow = worksheet.CreateRow(currentRow);
+            var columnWidths = new int[] { 13, 20, 20, 20 };
+            var maxColumnIndex = 3;
+            for (var i = 0; i <= maxColumnIndex; i++)
+            {
+                headerRow.Sheet.SetColumnWidth(i, columnWidths[i] * 256);
+            }
+
+            var headerStyle = HeaderStyle(workbook);
+            var currentColumn = 0;
+            var currentCell = headerRow.CreateCell(currentColumn);
+            currentCell.SetCellValue(Labels.Date);
+            currentCell.CellStyle = headerStyle;
+            currentColumn++;
+
+            currentCell = headerRow.CreateCell(currentColumn);
+            currentCell.SetCellValue(Labels.Opening_Balance);
+            currentCell.CellStyle = headerStyle;
+            currentColumn++;
+
+            currentCell = headerRow.CreateCell(currentColumn);
+            currentCell.SetCellValue(Labels.Transfer_Amt);
+            currentCell.CellStyle = headerStyle;
+            currentColumn++;
+
+            currentCell = headerRow.CreateCell(currentColumn);
+            currentCell.SetCellValue(Labels.Accumulated_Total);
+            currentCell.CellStyle = headerStyle;
+        }
+
+        private void ExportBodyRewardStatement(
+            HSSFWorkbook workbook,
+            ISheet worksheet,
+            List<RewardStatementModel> data)
+        {
+            var statementListLength = data.Count;
+            var currentRow = 2;
+            if (statementListLength == 0)
+            {
+                ExportEmptyReport(workbook, worksheet, currentRow);
+                return;
+            }
+
+            var palette = workbook.GetCustomPalette();
+            var noteOpeningBalanceColorIndex = palette.FindSimilarColor(255, 102, 255).Indexed;
+
+            var reportStyle = ReportStyle(workbook);
+            var textStyle = workbook.CreateCellStyle();
+
+            var mediumBlackNormal = workbook.CreateFont();
+            mediumBlackNormal.FontName = "Tahoma";
+            mediumBlackNormal.FontHeightInPoints = 9;
+            mediumBlackNormal.Color = HSSFColor.Black.Index;
+
+            var mediumRedNormal = workbook.CreateFont();
+            mediumRedNormal.FontName = "Tahoma";
+            mediumRedNormal.FontHeightInPoints = 9;
+            mediumRedNormal.Color = HSSFColor.Red.Index;
+
+            textStyle.CloneStyleFrom(reportStyle);
+            textStyle.SetFont(mediumBlackNormal);
+
+            var centerTextStyle = workbook.CreateCellStyle();
+            centerTextStyle.CloneStyleFrom(textStyle);
+            centerTextStyle.Alignment = HorizontalAlignment.Center;
+
+            var twoDecimalNumberStyle = workbook.CreateCellStyle();
+            twoDecimalNumberStyle.CloneStyleFrom(reportStyle);
+            twoDecimalNumberStyle.DataFormat = workbook.CreateDataFormat().GetFormat("#,##0.00");
+            twoDecimalNumberStyle.Alignment = HorizontalAlignment.Right;
+            twoDecimalNumberStyle.SetFont(mediumBlackNormal);
+
+            var twoDecimalRedNumberStyle = workbook.CreateCellStyle();
+            twoDecimalRedNumberStyle.CloneStyleFrom(twoDecimalNumberStyle);
+            twoDecimalRedNumberStyle.SetFont(mediumRedNormal);
+
+            RewardStatementModel previousStatement = null;
+            for (int i = 0; i < statementListLength; i++)
+            {
+                var row = worksheet.CreateRow(currentRow);
+
+                var statement = data[i];
+                var currentColumn = 0;
+                var column = row.CreateCell(currentColumn);
+                column.SetCellValue(statement.StatementDateString);
+                column.CellStyle = centerTextStyle;
+                currentColumn++;
+
+                column = row.CreateCell(currentColumn);
+                ExportDataColumnModel(column, statement.OpeningBalance);
+                var cellStyle = workbook.CreateCellStyle();
+                cellStyle.CloneStyleFrom(IsNegative(statement.OpeningBalance) ?
+                    twoDecimalRedNumberStyle :
+                    twoDecimalNumberStyle);
+                if (previousStatement != null &&
+                   (double)statement.OpeningBalance.Value != (double)previousStatement.AccumulatedTotal.Value)
+                {
+                    cellStyle.FillForegroundColor = noteOpeningBalanceColorIndex;
+                    cellStyle.FillPattern = FillPattern.SolidForeground;
+                }
+
+                column.CellStyle = cellStyle;
                 currentColumn++;
 
                 column = row.CreateCell(currentColumn);

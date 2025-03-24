@@ -228,6 +228,9 @@
   <data name="StatementReportName" xml:space="preserve">
     <value>Statement_{0}_To_{1}.xls</value>
   </data>
+  <data name="StatementRewardReportName" xml:space="preserve">
+    <value>Statement_Reward_{0}_To_{1}.xls</value>
+  </data>
   <data name="Statement_Guidelines" xml:space="preserve">
     <value>Statement Guidelines</value>
   </data>

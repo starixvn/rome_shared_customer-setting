@@ -47,8 +47,16 @@ namespace Fanex.Module.Statement.Criteria.StatementReport
         public bool IsBeforeBalanceUpDate
             => Converter.ToDateTime(TransferDate) >= BalanceUpDate;
 
+        [SpParam(Ignored = true)]
+        public bool IsReward { get; set; }
+
         public override string GetSettingKey()
         {
+            if (IsReward)
+            {
+                return "Acc_StatementRewardSel_Detail";
+            }
+
             if (IsBeforeBalanceUpDate)
             {
                 return IsSiteDB
