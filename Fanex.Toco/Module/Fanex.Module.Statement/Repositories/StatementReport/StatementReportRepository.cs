@@ -20,12 +20,15 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
     using System.Collections.Generic;
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
 
     /// <summary>
     /// Statement Report Repository.
     /// </summary>
     public class StatementReportRepository : IStatementReportRepository
     {
+        private readonly int[] _hideTransactionTypeBetTypes = new int[] { 31001, 31002, 31006};
+
         /// <summary>
         /// Gets the SMA statement.
         /// </summary>
@@ -292,6 +295,7 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
                     while (reader.Read())
                     {
                         var transferAmount = Converter.To<double>(reader["amount"]);
+                        var bettype = Converter.ToInt(reader["bettype"]);
                         var statementModel = new StatementModel
                         {
                             StatementDate = Converter.ToDateTime(reader["transdate"]),
@@ -302,7 +306,8 @@ namespace Fanex.Module.Statement.Repositories.StatementReport
                                 HasData = true,
                                 Value = transferAmount
                             },
-                            Creator = Converter.ToString2(reader["creator"])
+                            Creator = Converter.ToString2(reader["creator"]),
+                            IsHideTransactionType = _hideTransactionTypeBetTypes.Contains(bettype)
                         };
 
                         if (criteria.BalanceUpDate <= Converter.ToDateTime(criteria.TransferDate))

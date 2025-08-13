@@ -46,5 +46,7 @@ namespace Fanex.Module.Statement.Models.StatementReport
         public string ExchangeRate { get; set; }
 
         public string Creator { get; set; }
+
+        public bool IsHideTransactionType { get; set; }
     }
 }
